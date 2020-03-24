@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2d3af104b4f046ac8514e78536113cee" Name="Diagram1" ZoomLevel="95">
+        <EntityTypeShape EntityType="Model.Actions" Width="1.5" PointX="9.75" PointY="15.5" />
+        <EntityTypeShape EntityType="Model.Logs" Width="1.5" PointX="14.25" PointY="19.125" />
+        <EntityTypeShape EntityType="Model.Provinces" Width="1.5" PointX="9.75" PointY="1.5" />
+        <EntityTypeShape EntityType="Model.Towns" Width="1.5" PointX="12" PointY="1.5" />
+        <EntityTypeShape EntityType="Model.UserClaims" Width="1.5" PointX="14.25" PointY="16.375" />
+        <EntityTypeShape EntityType="Model.UserLogins" Width="1.5" PointX="14.25" PointY="13.875" />
+        <EntityTypeShape EntityType="Model.UserRoles" Width="1.5" PointX="9.75" PointY="18.125" />
+        <EntityTypeShape EntityType="Model.UserRolesInActions" Width="1.5" PointX="12" PointY="22.5" />
+        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="12" PointY="13.875" />
+        <AssociationConnector Association="Model.FK_Logs_Users" />
+        <AssociationConnector Association="Model.FK_Towns_Towns" />
+        <AssociationConnector Association="Model.FK_UserClaims_Users" />
+        <AssociationConnector Association="Model.FK_UserLogins_Users" />
+        <AssociationConnector Association="Model.FK_UserRolesInActions_UserRoles" />
+        <AssociationConnector Association="Model.UsersInRoles" />
+        <EntityTypeShape EntityType="Model.Employees" Width="1.5" PointX="3" PointY="9.125" />
+        <EntityTypeShape EntityType="Model.Suppliers" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="Model.Offices" Width="1.5" PointX="0.75" PointY="8.625" />
+        <AssociationConnector Association="Model.FK_Employees_Offices" />
+        <EntityTypeShape EntityType="Model.Obligations" Width="1.5" PointX="5.625" PointY="1.125" />
+        <EntityTypeShape EntityType="Model.Payees" Width="1.5" PointX="3.375" PointY="2.875" />
+        <AssociationConnector Association="Model.FK_Obligations_Payees" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
