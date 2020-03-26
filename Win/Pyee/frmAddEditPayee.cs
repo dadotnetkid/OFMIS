@@ -15,12 +15,12 @@ namespace Win.OB
 {
     public partial class frmAddEditPayee : DevExpress.XtraEditors.XtraForm
     {
-        private AddEditLoadPayees addEditLoadPayees;
+        private AddEditPayees addEditLoadPayees;
 
         public frmAddEditPayee(MethodType methodType, Payees payees)
         {
             InitializeComponent();
-            this.addEditLoadPayees = new AddEditLoadPayees(this, payees) { methodType = methodType };
+            this.addEditLoadPayees = new AddEditPayees(this, payees) { methodType = methodType };
             addEditLoadPayees.Init();
         }
 

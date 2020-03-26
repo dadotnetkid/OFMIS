@@ -10,17 +10,20 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Models;
 using Win.BL;
+using System.Data.Entity;
+using Models.Repository;
 
 namespace Win.OB
 {
     public partial class frmAddEditObligation : XtraForm
     {
-        private AddEditLoadObligations obligations;
-
+        private AddEditObligations obligations;
+        //private List<ORDetails> oRDetails = new List<ORDetails>();
         public frmAddEditObligation(MethodType methodType, Obligations obligations)
         {
             InitializeComponent();
-            this.obligations = new AddEditLoadObligations(this, obligations) { methodType = methodType };
+            this.obligations = new AddEditObligations(this, obligations) { methodType = methodType };
+
         }
 
         private void frmAddEditObligation_Load(object sender, EventArgs e)

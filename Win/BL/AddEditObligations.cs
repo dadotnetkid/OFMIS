@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.Data.Linq;
 using DevExpress.XtraEditors;
 using Helpers;
 using Models;
@@ -13,7 +14,7 @@ using Win.OB;
 
 namespace Win.BL
 {
-    public class AddEditLoadObligations : ITransactions<Obligations>
+    public class AddEditObligations : ITransactions<Obligations>
     {
         private frmAddEditObligation frm;
         private string controlNo;
@@ -22,12 +23,64 @@ namespace Win.BL
         public bool isClosed;
 
 
-        public AddEditLoadObligations(frmAddEditObligation frm, Obligations obligations)
+        public AddEditObligations(frmAddEditObligation frm, Obligations obligations)
         {
             this.frm = frm;
             this.obligations = obligations;
             frm.txtDate.EditValue = DateTime.Now;
             frm.cboPayee.EditValueChanged += CboPayee_EditValueChanged;
+            frm.ORDetailsGridView.RowUpdated += ORDetailsGridView_RowUpdated;
+            frm.btnDelORDetailRepo.ButtonClick += BtnDelORDetailRepo_ButtonClick;
+
+            frm.ORDetailGridControl.DataSource = new BindingSource() { DataSource = new List<ORDetails>() };
+            LoadAppropriation();
+            LoadPayees();
+
+        }
+
+        private void BtnDelORDetailRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            try
+            {
+
+                if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+                if (frm.ORDetailsGridView.GetFocusedRow() is ORDetails item)
+                {
+                    UnitOfWork unitOfWork = new UnitOfWork();
+                    unitOfWork.ORDetailsRepo.Delete(m => m.Id == item.Id);
+                    unitOfWork.Save();
+                    LoadOrDetails();
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ORDetailsGridView_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
+        {
+            try
+            {
+                if (e.Row is ORDetails item)
+                {
+                    item.ObligationId = obId;
+                    var unitOfWork = new UnitOfWork();
+                    if (item.Id == 0)
+                        unitOfWork.ORDetailsRepo.Insert(item);
+                    else
+                        unitOfWork.ORDetailsRepo.Update(item);
+                    unitOfWork.Save();
+                    LoadOrDetails();
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
         }
 
         private void CboPayee_EditValueChanged(object sender, EventArgs e)
@@ -38,6 +91,7 @@ namespace Win.BL
                 {
                     frm.txtAddress.Text = item.Address;
                     frm.txtOffice.Text = item.Office;
+
                 }
             }
         }
@@ -52,11 +106,11 @@ namespace Win.BL
             try
             {
                 var unitOfWork = new UnitOfWork();
-                unitOfWork.ObligationsRepo.Update(new Obligations()
+                var ob = new Obligations()
                 {
                     Id = obId,
                     ControlNo = controlNo,
-                    Date = DateTime.Now,
+                    Date = obligations.Date ?? DateTime.Now,
                     BudgetControlNo = frm.txtPBOControl.EditValue?.ToString(),
                     PayeeId = frm.cboPayee.EditValue?.ToInt(),
                     PayeeAddress = frm.txtAddress.EditValue?.ToString(),
@@ -66,7 +120,19 @@ namespace Win.BL
                     ChiefPosition = frm.txtChiefPosition.EditValue?.ToString(),
                     PBO = frm.txtBudgetOfficer.Text,
                     PBOPos = frm.txtPBOPos.Text,
-                });
+                    Amount = unitOfWork.ORDetailsRepo.Fetch(m => m.ObligationId == obId).Sum(x => x.Amount) ?? 0,
+                    Status = frm.chkClosed.CheckState == CheckState.Checked ? "Closed" : "Active",
+                    Earmarked = frm.chkEarmarked.Checked,
+                    Closed = frm.chkClosed.Checked,
+
+
+                };
+                if (obligations.DateClosed == null && frm.chkClosed.Checked)
+                    ob.DateClosed = DateTime.Now;
+                if (obligations.DateClosed != null && frm.chkClosed.Checked)
+                    ob.DateClosed = obligations.DateClosed;
+
+                unitOfWork.ObligationsRepo.Update(ob);
                 unitOfWork.Save();
 
             }
@@ -100,7 +166,10 @@ namespace Win.BL
                 this.obId = obligations?.Id ?? obId;
                 this.controlNo = obligations?.ControlNo ?? controlNo;
                 frm.lblHeader.Text = controlNo + " - " + item?.Payees?.Name;
-                LoadPayees();
+                frm.chkClosed.CheckState = item.Status == "Closed" ? CheckState.Checked : CheckState.Unchecked;
+                frm.chkEarmarked.Checked = item.Earmarked ?? false;
+                frm.ORDetailGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails.ToList());
+
             }
             catch (Exception e)
             {
@@ -129,7 +198,7 @@ namespace Win.BL
                 unitOfWork.Save();
                 frm.lblHeader.Text = controlNo + " - New Payee";
                 frm.txtControl.EditValue = controlNo;
-                LoadPayees();
+
                 return;
             }
             catch (Exception e)
@@ -137,7 +206,7 @@ namespace Win.BL
                 MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             this.controlNo = DateTime.Now.ToString("yyyy-MM-") + "0001";
-      
+
         }
 
         public void Close(FormClosingEventArgs formClosingEventArgs)
@@ -167,7 +236,26 @@ namespace Win.BL
 
         public void LoadPayees()
         {
-            frm.cboPayee.Properties.DataSource = new BindingList<Payees>(new UnitOfWork().PayeesRepo.Get());
+            frm.cboPayee.Properties.DataSource = new EntityServerModeSource()
+            {
+                QueryableSource = new UnitOfWork().PayeesRepo.Fetch()
+            };
+        }
+
+        public void LoadAppropriation()
+        {
+            frm.cboAppropriationLookUpRepo.DataSource = new EntityServerModeSource()
+            {
+                QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch()
+            };
+        }
+
+        void LoadOrDetails()
+        {
+            frm.ORDetailGridControl.DataSource = new EntityServerModeSource()
+            {
+                QueryableSource = new UnitOfWork().ORDetailsRepo.Fetch(m => m.ObligationId == obId)
+            };
         }
     }
 }

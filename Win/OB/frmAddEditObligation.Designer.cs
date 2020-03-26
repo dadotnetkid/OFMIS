@@ -28,7 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditObligation));
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.txtChiefPosition = new DevExpress.XtraEditors.TextEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.txtChiefOfficer = new DevExpress.XtraEditors.TextEdit();
@@ -57,6 +63,18 @@
             this.btnAddPayee = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.ORDetailGridControl = new DevExpress.XtraGrid.GridControl();
+            this.oRDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ORDetailsGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colDelORDetails = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnDelORDetailRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colParticulars = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.colAccountCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cboAppropriationLookUpRepo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.chkClosed = new DevExpress.XtraEditors.CheckEdit();
+            this.chkEarmarked = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtChiefPosition.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtChiefOfficer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBudgetOfficer.Properties)).BeginInit();
@@ -70,6 +88,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPBOControl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPBOPos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPayee.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ORDetailGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.oRDetailsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ORDetailsGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDelORDetailRepo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboAppropriationLookUpRepo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkClosed.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkEarmarked.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtChiefPosition
@@ -216,7 +242,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(530, 54);
+            this.panel1.Size = new System.Drawing.Size(521, 54);
             this.panel1.TabIndex = 28;
             // 
             // lblHeader
@@ -285,7 +311,8 @@
             this.cboPayee.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Office", "Office"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Address", "Address")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Address", "Address"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Description", "Description")});
             this.cboPayee.Properties.DisplayMember = "Name";
             this.cboPayee.Properties.NullText = "";
             this.cboPayee.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
@@ -311,7 +338,7 @@
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
-            this.btnClose.Location = new System.Drawing.Point(409, 315);
+            this.btnClose.Location = new System.Drawing.Point(409, 531);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(105, 31);
             this.btnClose.TabIndex = 12;
@@ -324,18 +351,145 @@
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(302, 315);
+            this.btnSave.Location = new System.Drawing.Point(302, 531);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(101, 31);
             this.btnSave.TabIndex = 11;
             this.btnSave.Text = "Save ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // ORDetailGridControl
+            // 
+            this.ORDetailGridControl.DataSource = this.oRDetailsBindingSource;
+            this.ORDetailGridControl.Location = new System.Drawing.Point(6, 341);
+            this.ORDetailGridControl.MainView = this.ORDetailsGridView;
+            this.ORDetailGridControl.Name = "ORDetailGridControl";
+            this.ORDetailGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemSpinEdit1,
+            this.cboAppropriationLookUpRepo,
+            this.btnDelORDetailRepo});
+            this.ORDetailGridControl.Size = new System.Drawing.Size(508, 167);
+            this.ORDetailGridControl.TabIndex = 30;
+            this.ORDetailGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.ORDetailsGridView});
+            // 
+            // oRDetailsBindingSource
+            // 
+            this.oRDetailsBindingSource.DataSource = typeof(Models.ORDetails);
+            // 
+            // ORDetailsGridView
+            // 
+            this.ORDetailsGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colDelORDetails,
+            this.colParticulars,
+            this.colAmount,
+            this.colAccountCode});
+            this.ORDetailsGridView.GridControl = this.ORDetailGridControl;
+            this.ORDetailsGridView.Name = "ORDetailsGridView";
+            this.ORDetailsGridView.OptionsNavigation.AutoFocusNewRow = true;
+            this.ORDetailsGridView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.ORDetailsGridView.OptionsView.ShowGroupPanel = false;
+            // 
+            // colDelORDetails
+            // 
+            this.colDelORDetails.ColumnEdit = this.btnDelORDetailRepo;
+            this.colDelORDetails.Name = "colDelORDetails";
+            this.colDelORDetails.Visible = true;
+            this.colDelORDetails.VisibleIndex = 0;
+            this.colDelORDetails.Width = 20;
+            // 
+            // btnDelORDetailRepo
+            // 
+            this.btnDelORDetailRepo.AutoHeight = false;
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            this.btnDelORDetailRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnDelORDetailRepo.Name = "btnDelORDetailRepo";
+            this.btnDelORDetailRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // colParticulars
+            // 
+            this.colParticulars.Caption = "Particulars";
+            this.colParticulars.FieldName = "Particulars";
+            this.colParticulars.Name = "colParticulars";
+            this.colParticulars.Visible = true;
+            this.colParticulars.VisibleIndex = 1;
+            this.colParticulars.Width = 143;
+            // 
+            // colAmount
+            // 
+            this.colAmount.Caption = "Amount";
+            this.colAmount.ColumnEdit = this.repositoryItemSpinEdit1;
+            this.colAmount.DisplayFormat.FormatString = "n2";
+            this.colAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.colAmount.FieldName = "Amount";
+            this.colAmount.Name = "colAmount";
+            this.colAmount.Visible = true;
+            this.colAmount.VisibleIndex = 3;
+            this.colAmount.Width = 111;
+            // 
+            // repositoryItemSpinEdit1
+            // 
+            this.repositoryItemSpinEdit1.AutoHeight = false;
+            this.repositoryItemSpinEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
+            // 
+            // colAccountCode
+            // 
+            this.colAccountCode.Caption = "Account Code";
+            this.colAccountCode.ColumnEdit = this.cboAppropriationLookUpRepo;
+            this.colAccountCode.FieldName = "AppropriationId";
+            this.colAccountCode.Name = "colAccountCode";
+            this.colAccountCode.Visible = true;
+            this.colAccountCode.VisibleIndex = 2;
+            this.colAccountCode.Width = 209;
+            // 
+            // cboAppropriationLookUpRepo
+            // 
+            this.cboAppropriationLookUpRepo.AutoHeight = false;
+            this.cboAppropriationLookUpRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboAppropriationLookUpRepo.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AccountCodeText", "Account Code"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AccountName", "AccountName")});
+            this.cboAppropriationLookUpRepo.DisplayMember = "AccountCodeText";
+            this.cboAppropriationLookUpRepo.Name = "cboAppropriationLookUpRepo";
+            this.cboAppropriationLookUpRepo.NullText = "";
+            this.cboAppropriationLookUpRepo.ValueMember = "Id";
+            // 
+            // chkClosed
+            // 
+            this.chkClosed.Location = new System.Drawing.Point(81, 316);
+            this.chkClosed.Name = "chkClosed";
+            this.chkClosed.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.chkClosed.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.chkClosed.Properties.Appearance.Options.UseFont = true;
+            this.chkClosed.Properties.Appearance.Options.UseForeColor = true;
+            this.chkClosed.Properties.Caption = "Closed";
+            this.chkClosed.Size = new System.Drawing.Size(75, 19);
+            this.chkClosed.TabIndex = 31;
+            // 
+            // chkEarmarked
+            // 
+            this.chkEarmarked.Location = new System.Drawing.Point(191, 316);
+            this.chkEarmarked.Name = "chkEarmarked";
+            this.chkEarmarked.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.chkEarmarked.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.chkEarmarked.Properties.Appearance.Options.UseFont = true;
+            this.chkEarmarked.Properties.Appearance.Options.UseForeColor = true;
+            this.chkEarmarked.Properties.Caption = "Earmarked";
+            this.chkEarmarked.Size = new System.Drawing.Size(101, 19);
+            this.chkEarmarked.TabIndex = 31;
+            // 
             // frmAddEditObligation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(530, 361);
+            this.ClientSize = new System.Drawing.Size(521, 573);
+            this.Controls.Add(this.chkEarmarked);
+            this.Controls.Add(this.chkClosed);
+            this.Controls.Add(this.ORDetailGridControl);
             this.Controls.Add(this.btnAddPayee);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
@@ -385,6 +539,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPBOControl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPBOPos.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPayee.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ORDetailGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.oRDetailsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ORDetailsGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDelORDetailRepo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboAppropriationLookUpRepo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkClosed.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkEarmarked.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,5 +581,17 @@
         public DevExpress.XtraEditors.LabelControl lblHeader;
         public DevExpress.XtraEditors.LookUpEdit cboPayee;
         private DevExpress.XtraEditors.SimpleButton btnAddPayee;
+        public DevExpress.XtraGrid.GridControl ORDetailGridControl;
+        public DevExpress.XtraGrid.Views.Grid.GridView ORDetailsGridView;
+        private DevExpress.XtraGrid.Columns.GridColumn colAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn colAccountCode;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
+        public DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cboAppropriationLookUpRepo;
+        private DevExpress.XtraGrid.Columns.GridColumn colDelORDetails;
+        public DevExpress.XtraGrid.Columns.GridColumn colParticulars;
+        public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelORDetailRepo;
+        private System.Windows.Forms.BindingSource oRDetailsBindingSource;
+        public DevExpress.XtraEditors.CheckEdit chkClosed;
+        public DevExpress.XtraEditors.CheckEdit chkEarmarked;
     }
 }

@@ -15,7 +15,7 @@ namespace Win.BL
         void Save();
         void Details();
         void Init();
-        void Close(FormClosingEventArgs e);
+        void Close(FormClosingEventArgs eventArgs);
 
     }
 }

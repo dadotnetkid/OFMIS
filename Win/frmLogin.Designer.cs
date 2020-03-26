@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.btnServerSetup = new DevExpress.XtraEditors.SimpleButton();
             this.txtToday = new DevExpress.XtraEditors.TextEdit();
             this.txtUserName = new DevExpress.XtraEditors.TextEdit();
@@ -131,7 +132,7 @@
             this.chkRemember.Location = new System.Drawing.Point(153, 104);
             this.chkRemember.Name = "chkRemember";
             this.chkRemember.Properties.Caption = "Remember Me?";
-            this.chkRemember.Size = new System.Drawing.Size(102, 19);
+            this.chkRemember.Size = new System.Drawing.Size(102, 18);
             this.chkRemember.TabIndex = 6;
             // 
             // pictureEdit1
@@ -169,9 +170,11 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.HelpButton = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximumSize = new System.Drawing.Size(431, 198);
             this.Name = "frmLogin";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.frmLogin_Load);

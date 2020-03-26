@@ -24,9 +24,19 @@
         <EntityTypeShape EntityType="Model.Suppliers" Width="1.5" PointX="0.75" PointY="5" />
         <EntityTypeShape EntityType="Model.Offices" Width="1.5" PointX="0.75" PointY="8.625" />
         <AssociationConnector Association="Model.FK_Employees_Offices" />
-        <EntityTypeShape EntityType="Model.Obligations" Width="1.5" PointX="5.625" PointY="1.125" />
         <EntityTypeShape EntityType="Model.Payees" Width="1.5" PointX="3.375" PointY="2.875" />
+        <EntityTypeShape EntityType="Model.Appropriations" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.FundTypes" Width="1.5" PointX="5.375" PointY="7.75" />
+        <EntityTypeShape EntityType="Model.Allotments" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="Model.FK_Allotments_Appropriations" />
+        <EntityTypeShape EntityType="Model.ORDetails" Width="1.5" PointX="7.875" PointY="4.625" />
+        <AssociationConnector Association="Model.FK_ORDetails_Appropriations" />
+        <EntityTypeShape EntityType="Model.Obligations" Width="1.5" PointX="5.625" PointY="1" />
         <AssociationConnector Association="Model.FK_Obligations_Payees" />
+        <AssociationConnector Association="Model.FK_ORDetails_Obligations" />
+        <EntityTypeShape EntityType="Model.ReAlignments" Width="1.5" PointX="2.625" PointY="1.25" />
+        <AssociationConnector Association="Model.FK_ReAlignments_Appropriations" />
+        <AssociationConnector Association="Model.FK_ReAlignments_TargetSource" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

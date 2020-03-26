@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Win.Accnts;
 using Win.OB;
 
 namespace Win
@@ -28,6 +29,12 @@ namespace Win
         {
             frmLogin frm = new frmLogin();
             frm.ShowDialog();
+        }
+
+        private void btnAccounts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new UcAccounts() { Dock = DockStyle.Fill });
         }
     }
 }

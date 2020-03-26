@@ -23,6 +23,64 @@ namespace Models.Repository
 
         }
 
+        private GenericRepository<ReAlignments> _ReAlignmentsRepo;
+        public GenericRepository<ReAlignments> ReAlignmentsRepo
+        {
+            get
+            {
+                if (this._ReAlignmentsRepo == null)
+                    this._ReAlignmentsRepo = new GenericRepository<ReAlignments>(context);
+                return _ReAlignmentsRepo;
+            }
+            set { _ReAlignmentsRepo = value; }
+        }
+
+        private GenericRepository<ORDetails> _ORDetailsRepo;
+        public GenericRepository<ORDetails> ORDetailsRepo
+        {
+            get
+            {
+                if (this._ORDetailsRepo == null)
+                    this._ORDetailsRepo = new GenericRepository<ORDetails>(context);
+                return _ORDetailsRepo;
+            }
+            set { _ORDetailsRepo = value; }
+        }
+
+        private GenericRepository<Allotments> _AllotmentsRepo;
+        public GenericRepository<Allotments> AllotmentsRepo
+        {
+            get
+            {
+                if (this._AllotmentsRepo == null)
+                    this._AllotmentsRepo = new GenericRepository<Allotments>(context);
+                return _AllotmentsRepo;
+            }
+            set { _AllotmentsRepo = value; }
+        }
+
+        private GenericRepository<FundTypes> _FundTypesRepo;
+        public GenericRepository<FundTypes> FundTypesRepo
+        {
+            get
+            {
+                if (this._FundTypesRepo == null)
+                    this._FundTypesRepo = new GenericRepository<FundTypes>(context);
+                return _FundTypesRepo;
+            }
+            set { _FundTypesRepo = value; }
+        }
+        private GenericRepository<Appropriations> _AppropriationsRepoRepo;
+        public GenericRepository<Appropriations> AppropriationsRepoRepo
+        {
+            get
+            {
+                if (this._AppropriationsRepoRepo == null)
+                    this._AppropriationsRepoRepo = new GenericRepository<Appropriations>(context);
+                return _AppropriationsRepoRepo;
+            }
+            set { _AppropriationsRepoRepo = value; }
+        }
         private GenericRepository<Payees> _PayeesRepo;
         public GenericRepository<Payees> PayeesRepo
         {

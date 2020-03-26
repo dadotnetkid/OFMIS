@@ -35,6 +35,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>nv_logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Win.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v18.2" />
     <Reference Include="DevExpress.Data.v18.2" />
@@ -71,9 +77,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL\AddEditLoadObligations.cs" />
-    <Compile Include="BL\AddEditLoadPayees.cs" />
+    <Compile Include="Accnts\frmAddEditAllotment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accnts\frmAddEditAllotment.Designer.cs">
+      <DependentUpon>frmAddEditAllotment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accnts\frmAddEditAppropriation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accnts\frmAddEditAppropriation.Designer.cs">
+      <DependentUpon>frmAddEditAppropriation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accnts\frmAddEditReAlignment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accnts\frmAddEditReAlignment.Designer.cs">
+      <DependentUpon>frmAddEditReAlignment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accnts\UcAccounts.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Accnts\UcAccounts.Designer.cs">
+      <DependentUpon>UcAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BL\AddEditAllotment.cs" />
+    <Compile Include="BL\AddEditAppropriation.cs" />
+    <Compile Include="BL\AddEditObligations.cs" />
+    <Compile Include="BL\AddEditPayees.cs" />
+    <Compile Include="BL\AddEditRealignment.cs" />
+    <Compile Include="BL\ILoad.cs" />
     <Compile Include="BL\ITransactions.cs" />
+    <Compile Include="BL\LoadAppropriations.cs" />
+    <Compile Include="BL\LoadObligations.cs" />
     <Compile Include="ConnectionDialog.cs" />
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -107,6 +143,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Accnts\frmAddEditAllotment.resx">
+      <DependentUpon>frmAddEditAllotment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accnts\frmAddEditAppropriation.resx">
+      <DependentUpon>frmAddEditAppropriation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accnts\frmAddEditReAlignment.resx">
+      <DependentUpon>frmAddEditReAlignment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accnts\UcAccounts.resx">
+      <DependentUpon>UcAccounts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,7 +206,10 @@
   <ItemGroup>
     <None Include="Resources\nv_logo.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="nv_logo.ico" />
+    <Content Include="Resources\nv_logo.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

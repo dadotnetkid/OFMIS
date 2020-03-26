@@ -143,6 +143,13 @@
     <Compile Include="Actions.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Allotments.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppropriationPartial.cs" />
+    <Compile Include="Appropriations.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="ControllersActionsPartial.cs" />
     <Compile Include="Controllers\IdentityController.cs" />
     <Compile Include="EditingMode.cs" />
@@ -153,6 +160,9 @@
     <Compile Include="Enums.cs" />
     <Compile Include="ForgotPassword.cs" />
     <Compile Include="FormProperties.cs" />
+    <Compile Include="FundTypes.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Logs.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
@@ -175,14 +185,22 @@
     <Compile Include="Obligations.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="ObligationsPartial.cs" />
     <Compile Include="Offices.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="ORDetails.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PayeePartial.cs" />
     <Compile Include="Payees.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provinces.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReAlignments.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\CriteriaEvaluator.cs" />

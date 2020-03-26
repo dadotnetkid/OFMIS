@@ -10,18 +10,18 @@ using Win.OB;
 
 namespace Win.BL
 {
-    public class AddEditLoadPayees : ITransactions<Payees>
+    public class AddEditPayees : ITransactions<Payees>
     {
         private frmAddEditPayee frm;
         public bool isClosed;
         private Payees payees;
         private int payeeId;
 
-        public AddEditLoadPayees(frmAddEditPayee frm, Payees payees)
+        public AddEditPayees(frmAddEditPayee frm, Payees payees)
         {
             this.frm = frm;
             this.payees = payees;
-            
+
 
         }
         public MethodType methodType { get; set; }
@@ -78,13 +78,12 @@ namespace Win.BL
                     return;
                 }
                 var unitOfWork = new UnitOfWork();
-                this.payeeId =
-                    (unitOfWork.PayeesRepo.Fetch().OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0) + 1;
-                unitOfWork.PayeesRepo.Insert(new Payees()
+                var payeee = new Payees()
                 {
-                    Id = payeeId,
-                });
+                };
+                unitOfWork.PayeesRepo.Insert(payeee);
                 unitOfWork.Save();
+                payeeId = payeee.Id;
                 return;
             }
             catch (Exception e)
@@ -102,8 +101,8 @@ namespace Win.BL
                 if (isClosed)
                     return;
                 var unitOfWork = new UnitOfWork();
-                this.payeeId =
-                    (unitOfWork.PayeesRepo.Fetch().OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0) + 1;
+                //this.payeeId =
+                //    (unitOfWork.PayeesRepo.Fetch().OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0) + 1;
                 unitOfWork.PayeesRepo.Delete(m => m.Id == payeeId);
                 unitOfWork.Save();
 
