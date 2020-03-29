@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using Models.Repository;
+using Win.Properties;
 
 namespace Win
 {
@@ -16,7 +18,10 @@ namespace Win
         public frmLogin()
         {
             InitializeComponent();
+            
         }
+
+       
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
@@ -30,7 +35,7 @@ namespace Win
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnServerSetup_Click(object sender, EventArgs e)

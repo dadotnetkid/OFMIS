@@ -43,6 +43,7 @@ namespace Models
         public Nullable<int> PRNo { get; set; }
         public byte[] SSMA_TimeStamp { get; set; }
         public decimal Amount { get; set; }
+        public Nullable<int> Year { get; set; }
     
         public virtual Payees Payees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

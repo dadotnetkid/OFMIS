@@ -96,12 +96,12 @@ namespace Models.Repository
 
             if (orderBy != null)
             {
-                return orderBy(query).AsNoTracking().ToList();
+                return orderBy(query).ToList();
                 //return orderBy(query);
             }
             else
             {
-                return query.AsNoTracking().ToList();
+                return query.ToList();
                 //return query;
             }
         }
@@ -235,6 +235,15 @@ namespace Models.Repository
             //           context.Entry(entityToUpdate).State = EntityState.Detached;
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;
+        }
+        public virtual void UpdateRange(List<TEntity> entityToUpdate)
+        {
+            //           context.Entry(entityToUpdate).State = EntityState.Detached;
+            foreach (var item in entityToUpdate)
+            {
+                dbSet.Attach(item);
+                context.Entry(item).State = EntityState.Modified;
+            }
         }
 
         public virtual async Task<int> UpdateAsync(TEntity entity)

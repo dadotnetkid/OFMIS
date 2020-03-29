@@ -152,6 +152,9 @@
     </Compile>
     <Compile Include="ControllersActionsPartial.cs" />
     <Compile Include="Controllers\IdentityController.cs" />
+    <Compile Include="DefaultSettings.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="EditingMode.cs" />
     <Compile Include="EmployeePartial.cs" />
     <Compile Include="Employees.cs">
@@ -160,6 +163,7 @@
     <Compile Include="Enums.cs" />
     <Compile Include="ForgotPassword.cs" />
     <Compile Include="FormProperties.cs" />
+    <Compile Include="FundTypePartial.cs" />
     <Compile Include="FundTypes.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
@@ -208,6 +212,9 @@
     <Compile Include="Repository\IdentityExtension.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
     <Compile Include="RoleStore.cs" />
+    <Compile Include="Signatories.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startups\ApplicationOAuthProvider.cs" />
     <Compile Include="Startups\SecurityConfig.cs" />
     <Compile Include="Startups\Startup.Auth.cs" />
@@ -236,7 +243,12 @@
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="UserStores.cs" />
+    <Compile Include="ViewModels\AOBViewModel.cs" />
+    <Compile Include="ViewModels\ObligationRequestViewModel.cs" />
     <Compile Include="ViewModels\ScannerViewModels.cs" />
+    <Compile Include="Years.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

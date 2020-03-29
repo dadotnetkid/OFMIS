@@ -34,11 +34,20 @@
             this.lblUserLevel = new DevExpress.XtraBars.BarHeaderItem();
             this.btnObligation = new DevExpress.XtraBars.BarButtonItem();
             this.btnAccounts = new DevExpress.XtraBars.BarButtonItem();
+            this.btnYear = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDefaultSettings = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSignatories = new DevExpress.XtraBars.BarButtonItem();
+            this.btnORReports = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDetailedobligationRequest = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.pnlMain = new DevExpress.XtraEditors.PanelControl();
+            this.btnAOBReport = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
             this.SuspendLayout();
@@ -51,12 +60,19 @@
             this.lblUsername,
             this.lblUserLevel,
             this.btnObligation,
-            this.btnAccounts});
+            this.btnAccounts,
+            this.btnYear,
+            this.btnDefaultSettings,
+            this.btnSignatories,
+            this.btnORReports,
+            this.btnDetailedobligationRequest,
+            this.btnAOBReport});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 1;
+            this.ribbonControl1.MaxItemId = 7;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.ribbonPage1});
+            this.ribbonPage1,
+            this.ribbonPage2});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019;
             this.ribbonControl1.Size = new System.Drawing.Size(981, 154);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
@@ -91,11 +107,57 @@
             this.btnAccounts.Name = "btnAccounts";
             this.btnAccounts.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAccounts_ItemClick);
             // 
+            // btnYear
+            // 
+            this.btnYear.Caption = "Years";
+            this.btnYear.Id = 1;
+            this.btnYear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnYear.ImageOptions.Image")));
+            this.btnYear.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnYear.ImageOptions.LargeImage")));
+            this.btnYear.Name = "btnYear";
+            this.btnYear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnYear_ItemClick);
+            // 
+            // btnDefaultSettings
+            // 
+            this.btnDefaultSettings.Caption = "Default Settings";
+            this.btnDefaultSettings.Id = 2;
+            this.btnDefaultSettings.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDefaultSettings.ImageOptions.Image")));
+            this.btnDefaultSettings.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDefaultSettings.ImageOptions.LargeImage")));
+            this.btnDefaultSettings.Name = "btnDefaultSettings";
+            this.btnDefaultSettings.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDefaultSettings_ItemClick);
+            // 
+            // btnSignatories
+            // 
+            this.btnSignatories.Caption = "Signatories";
+            this.btnSignatories.Id = 3;
+            this.btnSignatories.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSignatories.ImageOptions.Image")));
+            this.btnSignatories.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSignatories.ImageOptions.LargeImage")));
+            this.btnSignatories.Name = "btnSignatories";
+            this.btnSignatories.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSignatories_ItemClick);
+            // 
+            // btnORReports
+            // 
+            this.btnORReports.Caption = "Obligation Requests";
+            this.btnORReports.Id = 4;
+            this.btnORReports.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnORReports.ImageOptions.Image")));
+            this.btnORReports.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnORReports.ImageOptions.LargeImage")));
+            this.btnORReports.Name = "btnORReports";
+            this.btnORReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnORReports_ItemClick);
+            // 
+            // btnDetailedobligationRequest
+            // 
+            this.btnDetailedobligationRequest.Caption = "Detailed obligation Requests";
+            this.btnDetailedobligationRequest.Id = 5;
+            this.btnDetailedobligationRequest.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDetailedobligationRequest.ImageOptions.Image")));
+            this.btnDetailedobligationRequest.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDetailedobligationRequest.ImageOptions.LargeImage")));
+            this.btnDetailedobligationRequest.Name = "btnDetailedobligationRequest";
+            this.btnDetailedobligationRequest.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDetailedobligationRequest_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
-            this.ribbonPageGroup2});
+            this.ribbonPageGroup2,
+            this.ribbonPageGroup3});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Home";
             // 
@@ -113,6 +175,28 @@
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Manage Funds";
             // 
+            // ribbonPageGroup3
+            // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnYear);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnDefaultSettings);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnSignatories);
+            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            this.ribbonPageGroup3.Text = "Options";
+            // 
+            // ribbonPage2
+            // 
+            this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup4});
+            this.ribbonPage2.Name = "ribbonPage2";
+            this.ribbonPage2.Text = "Reports";
+            // 
+            // ribbonPageGroup4
+            // 
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnORReports);
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnDetailedobligationRequest);
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnAOBReport);
+            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            // 
             // ribbonStatusBar1
             // 
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 645);
@@ -127,6 +211,15 @@
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(981, 491);
             this.pnlMain.TabIndex = 4;
+            // 
+            // btnAOBReport
+            // 
+            this.btnAOBReport.Caption = "AOB Report";
+            this.btnAOBReport.Id = 6;
+            this.btnAOBReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.btnAOBReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.btnAOBReport.Name = "btnAOBReport";
+            this.btnAOBReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAOBReport_ItemClick);
             // 
             // Main
             // 
@@ -163,6 +256,15 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
         private DevExpress.XtraEditors.PanelControl pnlMain;
+        private DevExpress.XtraBars.BarButtonItem btnYear;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
+        private DevExpress.XtraBars.BarButtonItem btnDefaultSettings;
+        private DevExpress.XtraBars.BarButtonItem btnSignatories;
+        private DevExpress.XtraBars.BarButtonItem btnORReports;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraBars.BarButtonItem btnDetailedobligationRequest;
+        private DevExpress.XtraBars.BarButtonItem btnAOBReport;
     }
 }
 

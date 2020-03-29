@@ -23,6 +23,41 @@ namespace Models.Repository
 
         }
 
+        private GenericRepository<Signatories> _SignatoriesRepo;
+        public GenericRepository<Signatories> SignatoriesRepo
+        {
+            get
+            {
+                if (this._SignatoriesRepo == null)
+                    this._SignatoriesRepo = new GenericRepository<Signatories>(context);
+                return _SignatoriesRepo;
+            }
+            set { _SignatoriesRepo = value; }
+        }
+
+        private GenericRepository<DefaultSettings> _DefaultSettingsRepo;
+        public GenericRepository<DefaultSettings> DefaultSettingsRepo
+        {
+            get
+            {
+                if (this._DefaultSettingsRepo == null)
+                    this._DefaultSettingsRepo = new GenericRepository<DefaultSettings>(context);
+                return _DefaultSettingsRepo;
+            }
+            set { _DefaultSettingsRepo = value; }
+        }
+
+        private GenericRepository<Years> _YearsRepo;
+        public GenericRepository<Years> YearsRepo
+        {
+            get
+            {
+                if (this._YearsRepo == null)
+                    this._YearsRepo = new GenericRepository<Years>(context);
+                return _YearsRepo;
+            }
+            set { _YearsRepo = value; }
+        }
         private GenericRepository<ReAlignments> _ReAlignmentsRepo;
         public GenericRepository<ReAlignments> ReAlignmentsRepo
         {

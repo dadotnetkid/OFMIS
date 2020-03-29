@@ -21,8 +21,10 @@ namespace Win
             Application.SetCompatibleTextRenderingDefault(false);
 
             BonusSkins.Register();
-            Models.DataSource.ConnectionString = Settings.Default.ConnectionString;
-            Console.Write(new UnitOfWork().ObligationsRepo.Fetch().Count());
+
+ 
+
+
             Application.Run(new Main());
         }
     }

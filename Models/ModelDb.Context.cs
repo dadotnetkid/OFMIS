@@ -44,5 +44,8 @@ namespace Models
         public virtual DbSet<ORDetails> ORDetails { get; set; }
         public virtual DbSet<Obligations> Obligations { get; set; }
         public virtual DbSet<ReAlignments> ReAlignments { get; set; }
+        public virtual DbSet<Years> Years { get; set; }
+        public virtual DbSet<DefaultSettings> DefaultSettings { get; set; }
+        public virtual DbSet<Signatories> Signatories { get; set; }
     }
 }

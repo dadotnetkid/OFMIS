@@ -124,6 +124,7 @@ namespace Win.BL
                     Status = frm.chkClosed.CheckState == CheckState.Checked ? "Closed" : "Active",
                     Earmarked = frm.chkEarmarked.Checked,
                     Closed = frm.chkClosed.Checked,
+                    Year = obligations.Year ?? new StaticSettings().Year
 
 
                 };
@@ -146,8 +147,8 @@ namespace Win.BL
 
         public void Details()
         {
-            if (methodType == MethodType.Add)
-                return;
+            //if (methodType == MethodType.Add)
+            //    return;
             try
             {
                 var item = obligations ?? new UnitOfWork().ObligationsRepo.Find(m => m.Id == this.obId);
@@ -165,10 +166,15 @@ namespace Win.BL
                 frm.txtChiefPosition.EditValue = item.ChiefPosition;
                 this.obId = obligations?.Id ?? obId;
                 this.controlNo = obligations?.ControlNo ?? controlNo;
-                frm.lblHeader.Text = controlNo + " - " + item?.Payees?.Name;
+                frm.lblHeader.Text = methodType == MethodType.Add ? controlNo + " - New Payee" : controlNo + " - " + item?.Payees?.Name;
+                frm.txtControl.EditValue = controlNo;
                 frm.chkClosed.CheckState = item.Status == "Closed" ? CheckState.Checked : CheckState.Unchecked;
                 frm.chkEarmarked.Checked = item.Earmarked ?? false;
                 frm.ORDetailGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails.ToList());
+                frm.txtBudgetOfficer.Text = string.IsNullOrWhiteSpace(item.PBO) ? new StaticSettings().PBO : item.PBO;
+                frm.txtPBOPos.Text = string.IsNullOrWhiteSpace(item.PBOPos) ? new StaticSettings().PBOPos : item.PBOPos;
+                frm.txtChiefOfficer.Text = string.IsNullOrWhiteSpace(item.Chief) ? new StaticSettings().ChiefOfOffice : item.Chief;
+                frm.txtChiefPosition.Text = string.IsNullOrWhiteSpace(item.ChiefPosition) ? new StaticSettings().ChiefOfOfficePos : item.ChiefPosition;
 
             }
             catch (Exception e)
@@ -193,12 +199,12 @@ namespace Win.BL
                 unitOfWork.ObligationsRepo.Insert(new Obligations()
                 {
                     Id = obId,
-                    ControlNo = controlNo
+                    ControlNo = controlNo,
+                    Year = new StaticSettings().Year
                 });
                 unitOfWork.Save();
-                frm.lblHeader.Text = controlNo + " - New Payee";
-                frm.txtControl.EditValue = controlNo;
 
+                Details();
                 return;
             }
             catch (Exception e)

@@ -16,13 +16,24 @@ namespace Win.BL
     public class LoadObligations : ILoad<Obligations>
     {
         private ucObligations uc;
-
+        private int year => new StaticSettings().Year;
         public LoadObligations(ucObligations uc)
         {
             this.uc = uc;
             uc.btnDeleteRepoOBR.ButtonClick += BtnDeleteRepoOBR_ButtonClick;
             uc.btnEditRepoOBR.ButtonClick += BtnEditRepoOBR_ButtonClick;
             uc.gridObligation.FocusedRowChanged += GridObligation_FocusedRowChanged;
+            uc.btnEditDV.Click += BtnEditDV_Click;
+        }
+
+        private void BtnEditDV_Click(object sender, EventArgs e)
+        {
+            if (uc.gridObligation.GetFocusedRow() is Obligations item)
+            {
+                frmEditDisbursementVoucher frm = new frmEditDisbursementVoucher(item);
+                frm.ShowDialog();
+                this.Init();
+            }
         }
 
         private void BtnEditRepoOBR_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -72,7 +83,7 @@ namespace Win.BL
         public void Init()
         {
             uc.ObligationGridControl.DataSource = new EntityServerModeSource()
-            { QueryableSource = new UnitOfWork().ObligationsRepo.Fetch() };
+            { QueryableSource = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year) };
             if (uc.gridObligation.GetFocusedRow() is Obligations item)
             {
                 Detail(new UnitOfWork().ObligationsRepo.Find(m => m.Id == item.Id));
@@ -98,6 +109,7 @@ namespace Win.BL
                 uc.txtAmount.Text = item.Amount.ToString("n2");
                 uc.txtStatus.Text = item.Status;
                 uc.txtBudgetCtl.Text = item.BudgetControlNo;
+                uc.txtParticular.Text = item.DVParticular;
                 uc.ORDetailGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails.ToList());
             }
             catch (Exception exception)
@@ -110,7 +122,7 @@ namespace Win.BL
         {
             this.uc.ObligationGridControl.DataSource = new EntityServerModeSource()
             {
-                QueryableSource = new UnitOfWork().ObligationsRepo.Fetch(m => m.Description.Contains(search)).Where(x => x.Status.Contains(uc.cboStatus.Text)),
+                QueryableSource = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year && m.Description.Contains(search)).Where(x => x.Status.Contains(uc.cboStatus.Text)),
 
             };
         }

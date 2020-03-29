@@ -16,7 +16,7 @@ namespace Win.BL
     public class LoadAppropriations : ILoad<Appropriations>
     {
         private UcAccounts uc;
-
+        int year => new StaticSettings().Year;
         public LoadAppropriations(UcAccounts uc)
         {
             this.uc = uc;
@@ -96,7 +96,7 @@ namespace Win.BL
         {
             uc.appropriationGridControl.DataSource = new EntityServerModeSource()
             {
-                QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch()
+                QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch(m => m.Year == year)
             };
 
         }
@@ -138,14 +138,15 @@ namespace Win.BL
 
         public void Search(string search)
         {
-            IQueryable obj = null;
+
             var unitOfWork = new UnitOfWork();
-            if (unitOfWork.AppropriationsRepoRepo.Fetch(x => x.AccountCode.Contains(search)).Any())
-                obj = unitOfWork.AppropriationsRepoRepo.Fetch(x => x.AccountCode.Contains(search));
-            else if (unitOfWork.AppropriationsRepoRepo.Fetch(x => x.AccountCodeText.Contains(search)).Any())
-                obj = unitOfWork.AppropriationsRepoRepo.Fetch(x => x.AccountCodeText.Contains(search));
-            else if (unitOfWork.AppropriationsRepoRepo.Fetch(x => x.AccountName.Contains(search)).Any())
-                obj = unitOfWork.AppropriationsRepoRepo.Fetch(x => x.AccountName.Contains(search));
+            IQueryable<Appropriations> obj = unitOfWork.AppropriationsRepoRepo.Fetch(m => m.Year == year);
+            if (obj.Any(x => x.AccountCode.Contains(search)))
+                obj = obj.Where(x => x.AccountCode.Contains(search));
+            else if (obj.Any(x => x.AccountCodeText.Contains(search)))
+                obj = obj.Where(x => x.AccountCodeText.Contains(search));
+            else if (obj.Any(x => x.AccountName.Contains(search)))
+                obj = obj.Where(x => x.AccountName.Contains(search));
 
             uc.appropriationGridControl.DataSource = new EntityServerModeSource()
             {

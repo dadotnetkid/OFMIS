@@ -48,7 +48,8 @@ namespace Win.BL
                     FundType = frm.cboFundType.Text,
                     AccountName = frm.txtAccountName.Text,
                     Appropriation = frm.txtAppropriationAmount.EditValue.ToDecimal(),
-                    Id = appropriation.Id
+                    Id = appropriation.Id,
+                    Year = appropriation.Year ?? new StaticSettings().Year
                 });
                 unitOfWork.Save();
                 isClosed = true;
