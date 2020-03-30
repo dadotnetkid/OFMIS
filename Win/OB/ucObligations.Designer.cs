@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions7 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucObligations));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions5 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions6 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject25 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject26 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject27 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject28 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions8 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject29 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject30 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject31 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject32 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions9 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject33 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject34 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject35 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject36 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.ObligationGridControl = new DevExpress.XtraGrid.GridControl();
+            this.OBGridControl = new DevExpress.XtraGrid.GridControl();
             this.entityServerModeSource1 = new DevExpress.Data.Linq.EntityServerModeSource();
-            this.gridObligation = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.OBGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDel = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDeleteRepoOBR = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
@@ -109,9 +109,9 @@
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ObligationGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OBGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.entityServerModeSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridObligation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OBGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteRepoOBR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditRepoOBR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -145,7 +145,7 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.ObligationGridControl);
+            this.panelControl1.Controls.Add(this.OBGridControl);
             this.panelControl1.Controls.Add(this.panelControl2);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
@@ -153,20 +153,20 @@
             this.panelControl1.Size = new System.Drawing.Size(438, 573);
             this.panelControl1.TabIndex = 0;
             // 
-            // ObligationGridControl
+            // OBGridControl
             // 
-            this.ObligationGridControl.DataSource = this.entityServerModeSource1;
-            this.ObligationGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ObligationGridControl.Location = new System.Drawing.Point(2, 62);
-            this.ObligationGridControl.MainView = this.gridObligation;
-            this.ObligationGridControl.Name = "ObligationGridControl";
-            this.ObligationGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.OBGridControl.DataSource = this.entityServerModeSource1;
+            this.OBGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OBGridControl.Location = new System.Drawing.Point(2, 62);
+            this.OBGridControl.MainView = this.OBGridView;
+            this.OBGridControl.Name = "OBGridControl";
+            this.OBGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDeleteRepoOBR,
             this.btnEditRepoOBR});
-            this.ObligationGridControl.Size = new System.Drawing.Size(434, 509);
-            this.ObligationGridControl.TabIndex = 2;
-            this.ObligationGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridObligation});
+            this.OBGridControl.Size = new System.Drawing.Size(434, 509);
+            this.OBGridControl.TabIndex = 2;
+            this.OBGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.OBGridView});
             // 
             // entityServerModeSource1
             // 
@@ -174,23 +174,23 @@
             this.entityServerModeSource1.ElementType = typeof(Models.Obligations);
             this.entityServerModeSource1.KeyExpression = "Id";
             // 
-            // gridObligation
+            // OBGridView
             // 
-            this.gridObligation.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.OBGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colId,
             this.colDel,
             this.colDate,
             this.colAmount,
             this.colDescription,
             this.colEdit});
-            this.gridObligation.GridControl = this.ObligationGridControl;
-            this.gridObligation.Name = "gridObligation";
-            this.gridObligation.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridObligation.OptionsBehavior.ReadOnly = true;
-            this.gridObligation.OptionsEditForm.ShowOnDoubleClick = DevExpress.Utils.DefaultBoolean.False;
-            this.gridObligation.OptionsLayout.Columns.AddNewColumns = false;
-            this.gridObligation.OptionsView.ShowGroupPanel = false;
-            this.gridObligation.OptionsView.ShowPreviewRowLines = DevExpress.Utils.DefaultBoolean.False;
+            this.OBGridView.GridControl = this.OBGridControl;
+            this.OBGridView.Name = "OBGridView";
+            this.OBGridView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.OBGridView.OptionsBehavior.ReadOnly = true;
+            this.OBGridView.OptionsEditForm.ShowOnDoubleClick = DevExpress.Utils.DefaultBoolean.False;
+            this.OBGridView.OptionsLayout.Columns.AddNewColumns = false;
+            this.OBGridView.OptionsView.ShowGroupPanel = false;
+            this.OBGridView.OptionsView.ShowPreviewRowLines = DevExpress.Utils.DefaultBoolean.False;
             // 
             // colId
             // 
@@ -208,9 +208,9 @@
             // btnDeleteRepoOBR
             // 
             this.btnDeleteRepoOBR.AutoHeight = false;
-            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
+            editorButtonImageOptions7.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions7.Image")));
             this.btnDeleteRepoOBR.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions7, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject25, serializableAppearanceObject26, serializableAppearanceObject27, serializableAppearanceObject28, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDeleteRepoOBR.Name = "btnDeleteRepoOBR";
             this.btnDeleteRepoOBR.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -254,9 +254,9 @@
             // btnEditRepoOBR
             // 
             this.btnEditRepoOBR.AutoHeight = false;
-            editorButtonImageOptions5.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions5.Image")));
+            editorButtonImageOptions8.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions8.Image")));
             this.btnEditRepoOBR.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions8, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject29, serializableAppearanceObject30, serializableAppearanceObject31, serializableAppearanceObject32, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditRepoOBR.Name = "btnEditRepoOBR";
             this.btnEditRepoOBR.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -365,9 +365,9 @@
             this.btnNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
             this.btnNew.Location = new System.Drawing.Point(264, 11);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(102, 23);
+            this.btnNew.Size = new System.Drawing.Size(108, 23);
             this.btnNew.TabIndex = 12;
-            this.btnNew.Text = "Add OBR";
+            this.btnNew.Text = "Add ObR";
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // labelControl1
@@ -706,7 +706,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(545, 7);
+            this.label1.Location = new System.Drawing.Point(548, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(267, 27);
             this.label1.TabIndex = 14;
@@ -786,9 +786,9 @@
             // btnDelORDetailRepo
             // 
             this.btnDelORDetailRepo.AutoHeight = false;
-            editorButtonImageOptions6.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions6.Image")));
+            editorButtonImageOptions9.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions9.Image")));
             this.btnDelORDetailRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions9, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject33, serializableAppearanceObject34, serializableAppearanceObject35, serializableAppearanceObject36, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelORDetailRepo.Name = "btnDelORDetailRepo";
             this.btnDelORDetailRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -922,9 +922,9 @@
             this.Load += new System.EventHandler(this.ucObligations_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ObligationGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OBGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.entityServerModeSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridObligation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OBGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteRepoOBR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditRepoOBR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
@@ -965,8 +965,8 @@
         #endregion
 
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        public DevExpress.XtraGrid.GridControl ObligationGridControl;
-        public DevExpress.XtraGrid.Views.Grid.GridView gridObligation;
+        public DevExpress.XtraGrid.GridControl OBGridControl;
+        public DevExpress.XtraGrid.Views.Grid.GridView OBGridView;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.Data.Linq.EntityServerModeSource entityServerModeSource1;
         private DevExpress.XtraGrid.Columns.GridColumn colId;

@@ -145,7 +145,7 @@ namespace Win.BL
 
 
 
-        public void Details()
+        public void Detail()
         {
             //if (methodType == MethodType.Add)
             //    return;
@@ -189,7 +189,7 @@ namespace Win.BL
             {
                 if (methodType == MethodType.Edit)
                 {
-                    Details();
+                    Detail();
                     return;
                 }
                 var unitOfWork = new UnitOfWork();
@@ -204,7 +204,7 @@ namespace Win.BL
                 });
                 unitOfWork.Save();
 
-                Details();
+                Detail();
                 return;
             }
             catch (Exception e)

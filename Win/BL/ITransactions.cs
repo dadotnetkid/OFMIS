@@ -13,7 +13,7 @@ namespace Win.BL
         MethodType methodType { get; set; }
 
         void Save();
-        void Details();
+        void Detail();
         void Init();
         void Close(FormClosingEventArgs eventArgs);
 

@@ -26,7 +26,7 @@ namespace Win.OB
 
         private void frmAddEditPayee_Load(object sender, EventArgs e)
         {
-            addEditLoadPayees.Details();
+            addEditLoadPayees.Detail();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

@@ -122,6 +122,9 @@
     <Compile Include="BL\EditDisbursementVoucher.cs" />
     <Compile Include="BL\ILoad.cs" />
     <Compile Include="BL\ITransactions.cs" />
+    <Compile Include="BL\LoadAddEditItems.cs" />
+    <Compile Include="BL\LoadAddEditPQ.cs" />
+    <Compile Include="BL\LoadAddEditPurchaseRequest.cs" />
     <Compile Include="BL\LoadAppropriations.cs" />
     <Compile Include="BL\LoadObligations.cs" />
     <Compile Include="ConnectionDialog.cs" />
@@ -172,6 +175,42 @@
     </Compile>
     <Compile Include="OB\frmEditDisbursementVoucher.Designer.cs">
       <DependentUpon>frmEditDisbursementVoucher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PQ\frmAddEditPQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PQ\frmAddEditPQ.Designer.cs">
+      <DependentUpon>frmAddEditPQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PQ\UCPQ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PQ\UCPQ.Designer.cs">
+      <DependentUpon>UCPQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PR\frmAddEditItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PR\frmAddEditItems.Designer.cs">
+      <DependentUpon>frmAddEditItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PR\frmAddEditPurchaseRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PR\frmAddEditPurchaseRequest.Designer.cs">
+      <DependentUpon>frmAddEditPurchaseRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PR\frmItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PR\frmItems.Designer.cs">
+      <DependentUpon>frmItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PR\UCPurchaseRequest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PR\UCPurchaseRequest.Designer.cs">
+      <DependentUpon>UCPurchaseRequest.cs</DependentUpon>
     </Compile>
     <Compile Include="Pyee\frmAddEditPayee.cs">
       <SubType>Form</SubType>
@@ -266,6 +305,24 @@
     <EmbeddedResource Include="OB\frmEditDisbursementVoucher.resx">
       <DependentUpon>frmEditDisbursementVoucher.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PQ\frmAddEditPQ.resx">
+      <DependentUpon>frmAddEditPQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PQ\UCPQ.resx">
+      <DependentUpon>UCPQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PR\frmAddEditItems.resx">
+      <DependentUpon>frmAddEditItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PR\frmAddEditPurchaseRequest.resx">
+      <DependentUpon>frmAddEditPurchaseRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PR\frmItems.resx">
+      <DependentUpon>frmItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PR\UCPurchaseRequest.resx">
+      <DependentUpon>UCPurchaseRequest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pyee\frmAddEditPayee.resx">
       <DependentUpon>frmAddEditPayee.cs</DependentUpon>
     </EmbeddedResource>
@@ -334,7 +391,7 @@
     <Content Include="Resources\nv_logo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="PR\" />
+    <Folder Include="PO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

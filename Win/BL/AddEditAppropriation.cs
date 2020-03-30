@@ -61,7 +61,7 @@ namespace Win.BL
             }
         }
 
-        public void Details()
+        public void Detail()
         {
             try
             {
@@ -86,7 +86,7 @@ namespace Win.BL
                 LoadFundType();
                 if (methodType == MethodType.Edit)
                 {
-                    Details();
+                    Detail();
                     return;
                 }
 

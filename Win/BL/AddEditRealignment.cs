@@ -69,7 +69,7 @@ namespace Win.BL
         }
 
 
-        public void Details()
+        public void Detail()
         {
             try
             {
@@ -97,7 +97,7 @@ namespace Win.BL
             {
                 if (methodType == MethodType.Edit)
                 {
-                    Details();
+                    Detail();
                     return;
                 }
 
@@ -111,7 +111,7 @@ namespace Win.BL
 
                 unitOfWork.ReAlignmentsRepo.Insert(item);
                 unitOfWork.Save();
-                Details();
+                Detail();
             }
             catch (Exception e)
             {

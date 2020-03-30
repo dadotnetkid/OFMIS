@@ -21,6 +21,7 @@ namespace Models
             this.ORDetails = new HashSet<ORDetails>();
             this.SourceReAlignments = new HashSet<ReAlignments>();
             this.TargetReAlignments = new HashSet<ReAlignments>();
+            this.PurchaseRequests = new HashSet<PurchaseRequests>();
         }
     
         public int Id { get; set; }
@@ -41,5 +42,7 @@ namespace Models
         public virtual ICollection<ReAlignments> SourceReAlignments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReAlignments> TargetReAlignments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PurchaseRequests> PurchaseRequests { get; set; }
     }
 }

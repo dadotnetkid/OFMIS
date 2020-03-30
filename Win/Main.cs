@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Models.Repository;
 using Win.Accnts;
 using Win.OB;
+using Win.PR;
 using Win.Rprts;
 
 namespace Win
@@ -84,6 +85,18 @@ namespace Win
         {
             frmAOBReportViewer frm = new frmAOBReportViewer();
             frm.ShowDialog();
+        }
+
+        private void btnItems_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmItems frm = new frmItems();
+            frm.ShowDialog();
+        }
+
+        private void btnPR_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new UCPurchaseRequest() { Dock = DockStyle.Fill });
         }
     }
 }

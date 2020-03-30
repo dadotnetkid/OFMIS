@@ -22,13 +22,13 @@ namespace Win.BL
             this.uc = uc;
             uc.btnDeleteRepoOBR.ButtonClick += BtnDeleteRepoOBR_ButtonClick;
             uc.btnEditRepoOBR.ButtonClick += BtnEditRepoOBR_ButtonClick;
-            uc.gridObligation.FocusedRowChanged += GridObligation_FocusedRowChanged;
+            uc.OBGridView.FocusedRowChanged += GridObligation_FocusedRowChanged;
             uc.btnEditDV.Click += BtnEditDV_Click;
         }
 
         private void BtnEditDV_Click(object sender, EventArgs e)
         {
-            if (uc.gridObligation.GetFocusedRow() is Obligations item)
+            if (uc.OBGridView.GetFocusedRow() is Obligations item)
             {
                 frmEditDisbursementVoucher frm = new frmEditDisbursementVoucher(item);
                 frm.ShowDialog();
@@ -39,7 +39,7 @@ namespace Win.BL
         private void BtnEditRepoOBR_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
 
-            if (uc.gridObligation.GetFocusedRow() is Obligations item)
+            if (uc.OBGridView.GetFocusedRow() is Obligations item)
             {
                 frmAddEditObligation frm = new frmAddEditObligation(MethodType.Edit, item);
                 frm.ShowDialog();
@@ -66,7 +66,7 @@ namespace Win.BL
 
                 if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
-                if (uc.gridObligation.GetFocusedRow() is Obligations item)
+                if (uc.OBGridView.GetFocusedRow() is Obligations item)
                 {
                     UnitOfWork unitOfWork = new UnitOfWork();
                     unitOfWork.ObligationsRepo.Delete(m => m.Id == item.Id);
@@ -82,9 +82,9 @@ namespace Win.BL
 
         public void Init()
         {
-            uc.ObligationGridControl.DataSource = new EntityServerModeSource()
+            uc.OBGridControl.DataSource = new EntityServerModeSource()
             { QueryableSource = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year) };
-            if (uc.gridObligation.GetFocusedRow() is Obligations item)
+            if (uc.OBGridView.GetFocusedRow() is Obligations item)
             {
                 Detail(new UnitOfWork().ObligationsRepo.Find(m => m.Id == item.Id));
             }
@@ -120,7 +120,7 @@ namespace Win.BL
 
         public void Search(string search)
         {
-            this.uc.ObligationGridControl.DataSource = new EntityServerModeSource()
+            this.uc.OBGridControl.DataSource = new EntityServerModeSource()
             {
                 QueryableSource = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year && m.Description.Contains(search)).Where(x => x.Status.Contains(uc.cboStatus.Text)),
 

@@ -150,6 +150,9 @@
     <Compile Include="Appropriations.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Categories.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="ControllersActionsPartial.cs" />
     <Compile Include="Controllers\IdentityController.cs" />
     <Compile Include="DefaultSettings.cs">
@@ -165,6 +168,9 @@
     <Compile Include="FormProperties.cs" />
     <Compile Include="FundTypePartial.cs" />
     <Compile Include="FundTypes.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Items.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Logs.cs">
@@ -200,8 +206,20 @@
     <Compile Include="Payees.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="PQDetails.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PRDetails.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PriceQuotations.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provinces.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseRequests.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="ReAlignments.cs">

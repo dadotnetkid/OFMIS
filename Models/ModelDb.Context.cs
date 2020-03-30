@@ -47,5 +47,11 @@ namespace Models
         public virtual DbSet<Years> Years { get; set; }
         public virtual DbSet<DefaultSettings> DefaultSettings { get; set; }
         public virtual DbSet<Signatories> Signatories { get; set; }
+        public virtual DbSet<Items> Items { get; set; }
+        public virtual DbSet<PurchaseRequests> PurchaseRequests { get; set; }
+        public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<PRDetails> PRDetails { get; set; }
+        public virtual DbSet<PQDetails> PQDetails { get; set; }
+        public virtual DbSet<PriceQuotations> PriceQuotations { get; set; }
     }
 }

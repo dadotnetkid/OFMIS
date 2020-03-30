@@ -39,15 +39,18 @@
             this.btnSignatories = new DevExpress.XtraBars.BarButtonItem();
             this.btnORReports = new DevExpress.XtraBars.BarButtonItem();
             this.btnDetailedobligationRequest = new DevExpress.XtraBars.BarButtonItem();
+            this.btnAOBReport = new DevExpress.XtraBars.BarButtonItem();
+            this.btnItems = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.pnlMain = new DevExpress.XtraEditors.PanelControl();
-            this.btnAOBReport = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPR = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
             this.SuspendLayout();
@@ -66,9 +69,11 @@
             this.btnSignatories,
             this.btnORReports,
             this.btnDetailedobligationRequest,
-            this.btnAOBReport});
+            this.btnAOBReport,
+            this.btnItems,
+            this.btnPR});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 7;
+            this.ribbonControl1.MaxItemId = 9;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -152,11 +157,30 @@
             this.btnDetailedobligationRequest.Name = "btnDetailedobligationRequest";
             this.btnDetailedobligationRequest.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDetailedobligationRequest_ItemClick);
             // 
+            // btnAOBReport
+            // 
+            this.btnAOBReport.Caption = "AOB Report";
+            this.btnAOBReport.Id = 6;
+            this.btnAOBReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAOBReport.ImageOptions.Image")));
+            this.btnAOBReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAOBReport.ImageOptions.LargeImage")));
+            this.btnAOBReport.Name = "btnAOBReport";
+            this.btnAOBReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAOBReport_ItemClick);
+            // 
+            // btnItems
+            // 
+            this.btnItems.Caption = "Items";
+            this.btnItems.Id = 7;
+            this.btnItems.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnItems.ImageOptions.Image")));
+            this.btnItems.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnItems.ImageOptions.LargeImage")));
+            this.btnItems.Name = "btnItems";
+            this.btnItems.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItems_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
             this.ribbonPageGroup2,
+            this.ribbonPageGroup5,
             this.ribbonPageGroup3});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Home";
@@ -174,6 +198,13 @@
             this.ribbonPageGroup2.ItemLinks.Add(this.btnAccounts);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Manage Funds";
+            // 
+            // ribbonPageGroup5
+            // 
+            this.ribbonPageGroup5.ItemLinks.Add(this.btnPR);
+            this.ribbonPageGroup5.ItemLinks.Add(this.btnItems);
+            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
+            this.ribbonPageGroup5.Text = "Purchase Request";
             // 
             // ribbonPageGroup3
             // 
@@ -212,14 +243,14 @@
             this.pnlMain.Size = new System.Drawing.Size(981, 491);
             this.pnlMain.TabIndex = 4;
             // 
-            // btnAOBReport
+            // btnPR
             // 
-            this.btnAOBReport.Caption = "AOB Report";
-            this.btnAOBReport.Id = 6;
-            this.btnAOBReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.btnAOBReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.btnAOBReport.Name = "btnAOBReport";
-            this.btnAOBReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAOBReport_ItemClick);
+            this.btnPR.Caption = "Purchase Requests";
+            this.btnPR.Id = 8;
+            this.btnPR.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.btnPR.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.btnPR.Name = "btnPR";
+            this.btnPR.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPR_ItemClick);
             // 
             // Main
             // 
@@ -265,6 +296,9 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.BarButtonItem btnDetailedobligationRequest;
         private DevExpress.XtraBars.BarButtonItem btnAOBReport;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
+        private DevExpress.XtraBars.BarButtonItem btnItems;
+        private DevExpress.XtraBars.BarButtonItem btnPR;
     }
 }
 

@@ -38,6 +38,13 @@
           <Property Name="DateCreated" Type="datetime2" Precision="7" />
           <Property Name="Createdby" Type="nvarchar" MaxLength="128" />
         </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <EntityType Name="DefaultSettings">
           <Key>
             <PropertyRef Name="Id" />
@@ -83,6 +90,17 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FundType" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="128" />
+          <Property Name="Item" Type="nvarchar" MaxLength="255" />
+          <Property Name="UOM" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cost" Type="money" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="Logs">
           <Key>
@@ -158,6 +176,47 @@
           <Property Name="Address" Type="nvarchar" MaxLength="128" />
           <Property Name="Note" Type="nvarchar" MaxLength="128" />
         </EntityType>
+        <EntityType Name="PQDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PQId" Type="int" />
+          <Property Name="ItemNo" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Item" Type="nvarchar" MaxLength="255" />
+          <Property Name="UOM" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cost" Type="money" />
+          <Property Name="TotalAmount" Type="money" />
+        </EntityType>
+        <EntityType Name="PRDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRId" Type="int" />
+          <Property Name="ItemNo" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Item" Type="nvarchar" MaxLength="255" />
+          <Property Name="UOM" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cost" Type="money" />
+          <Property Name="TotalAmount" Type="money" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="PriceQuotations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PRId" Type="int" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
+          <Property Name="ControlNo" Type="nvarchar" MaxLength="128" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Purpose" Type="nvarchar(max)" />
+          <Property Name="TotalAmount" Type="money" />
+        </EntityType>
         <EntityType Name="Provinces">
           <Key>
             <PropertyRef Name="Id" />
@@ -165,6 +224,19 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="SortOrder" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PurchaseRequests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="AppropriationId" Type="int" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
+          <Property Name="ControlNo" Type="nvarchar" MaxLength="128" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Purpose" Type="nvarchar(max)" />
+          <Property Name="TotalAmount" Type="money" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="ReAlignments">
           <Key>
@@ -374,6 +446,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PQDetails_PurchaseQuotations">
+          <End Role="PriceQuotations" Type="Self.PriceQuotations" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PQDetails" Type="Self.PQDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceQuotations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PQDetails">
+              <PropertyRef Name="PQId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRDetails_PurchaseRequests">
+          <End Role="PurchaseRequests" Type="Self.PurchaseRequests" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PRDetails" Type="Self.PRDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseRequests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PRDetails">
+              <PropertyRef Name="PRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseQuotations_PurchaseRequests">
+          <End Role="PurchaseRequests" Type="Self.PurchaseRequests" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PriceQuotations" Type="Self.PriceQuotations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseRequests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PriceQuotations">
+              <PropertyRef Name="PRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseRequests_Appropriations">
+          <End Role="Appropriations" Type="Self.Appropriations" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PurchaseRequests" Type="Self.PurchaseRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appropriations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseRequests">
+              <PropertyRef Name="AppropriationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ReAlignments_Appropriations">
           <End Role="Appropriations" Type="Self.Appropriations" Multiplicity="0..1" />
           <End Role="ReAlignments" Type="Self.ReAlignments" Multiplicity="*" />
@@ -474,15 +602,21 @@
           <EntitySet Name="Actions" EntityType="Self.Actions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Allotments" EntityType="Self.Allotments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Appropriations" EntityType="Self.Appropriations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DefaultSettings" EntityType="Self.DefaultSettings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FundTypes" EntityType="Self.FundTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Obligations" EntityType="Self.Obligations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Offices" EntityType="Self.Offices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ORDetails" EntityType="Self.ORDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payees" EntityType="Self.Payees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PQDetails" EntityType="Self.PQDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRDetails" EntityType="Self.PRDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceQuotations" EntityType="Self.PriceQuotations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provinces" EntityType="Self.Provinces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseRequests" EntityType="Self.PurchaseRequests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReAlignments" EntityType="Self.ReAlignments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatories" EntityType="Self.Signatories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
@@ -517,6 +651,22 @@
           <AssociationSet Name="FK_ORDetails_Obligations" Association="Self.FK_ORDetails_Obligations">
             <End Role="Obligations" EntitySet="Obligations" />
             <End Role="ORDetails" EntitySet="ORDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PQDetails_PurchaseQuotations" Association="Self.FK_PQDetails_PurchaseQuotations">
+            <End Role="PriceQuotations" EntitySet="PriceQuotations" />
+            <End Role="PQDetails" EntitySet="PQDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRDetails_PurchaseRequests" Association="Self.FK_PRDetails_PurchaseRequests">
+            <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
+            <End Role="PRDetails" EntitySet="PRDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseQuotations_PurchaseRequests" Association="Self.FK_PurchaseQuotations_PurchaseRequests">
+            <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
+            <End Role="PriceQuotations" EntitySet="PriceQuotations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseRequests_Appropriations" Association="Self.FK_PurchaseRequests_Appropriations">
+            <End Role="Appropriations" EntitySet="Appropriations" />
+            <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
           </AssociationSet>
           <AssociationSet Name="FK_ReAlignments_Appropriations" Association="Self.FK_ReAlignments_Appropriations">
             <End Role="Appropriations" EntitySet="Appropriations" />
@@ -630,6 +780,28 @@
           <EntitySet Name="Years" EntityType="Model.Years" />
           <EntitySet Name="DefaultSettings" EntityType="Model.DefaultSettings" />
           <EntitySet Name="Signatories" EntityType="Model.Signatories" />
+          <EntitySet Name="Items" EntityType="Model.Items" />
+          <EntitySet Name="PurchaseRequests" EntityType="Model.PurchaseRequests" />
+          <EntitySet Name="Categories" EntityType="Model.Categories" />
+          <EntitySet Name="PRDetails" EntityType="Model.PRDetails" />
+          <AssociationSet Name="FK_PRDetails_PurchaseRequests" Association="Model.FK_PRDetails_PurchaseRequests">
+            <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
+            <End Role="PRDetails" EntitySet="PRDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseRequests_Appropriations" Association="Model.FK_PurchaseRequests_Appropriations">
+            <End Role="Appropriations" EntitySet="Appropriations" />
+            <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
+          </AssociationSet>
+          <EntitySet Name="PQDetails" EntityType="Model.PQDetails" />
+          <EntitySet Name="PriceQuotations" EntityType="Model.PriceQuotations" />
+          <AssociationSet Name="FK_PQDetails_PurchaseQuotations" Association="Model.FK_PQDetails_PurchaseQuotations">
+            <End Role="PriceQuotations" EntitySet="PriceQuotations" />
+            <End Role="PQDetails" EntitySet="PQDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseQuotations_PurchaseRequests" Association="Model.FK_PurchaseQuotations_PurchaseRequests">
+            <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
+            <End Role="PriceQuotations" EntitySet="PriceQuotations" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Actions">
           <Key>
@@ -895,6 +1067,7 @@
           <NavigationProperty Name="ORDetails" Relationship="Model.FK_ORDetails_Appropriations" FromRole="Appropriations" ToRole="ORDetails" />
           <NavigationProperty Name="SourceReAlignments" Relationship="Model.FK_ReAlignments_Appropriations" FromRole="Appropriations" ToRole="ReAlignments" />
           <NavigationProperty Name="TargetReAlignments" Relationship="Model.FK_ReAlignments_TargetSource" FromRole="Appropriations" ToRole="ReAlignments" />
+          <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_PurchaseRequests_Appropriations" FromRole="Appropriations" ToRole="PurchaseRequests" />
         </EntityType>
         <EntityType Name="FundTypes">
           <Key>
@@ -1094,6 +1267,139 @@
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="Int32" />
         </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Item" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UOM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DateCreated" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="PurchaseRequests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="AppropriationId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
+          <Property Name="ControlNo" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Purpose" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PRDetails" Relationship="Model.FK_PRDetails_PurchaseRequests" FromRole="PurchaseRequests" ToRole="PRDetails" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Appropriations" Relationship="Model.FK_PurchaseRequests_Appropriations" FromRole="PurchaseRequests" ToRole="Appropriations" />
+          <Property Name="TableName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PriceQuotations" Relationship="Model.FK_PurchaseQuotations_PurchaseRequests" FromRole="PurchaseRequests" ToRole="PriceQuotations" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PRDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" a:SetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRId" Type="Int32" />
+          <Property Name="ItemNo" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UOM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_PRDetails_PurchaseRequests" FromRole="PRDetails" ToRole="PurchaseRequests" />
+          <Property Name="TableName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_PRDetails_PurchaseRequests">
+          <End Type="Model.PurchaseRequests" Role="PurchaseRequests" Multiplicity="0..1" />
+          <End Type="Model.PRDetails" Role="PRDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseRequests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PRDetails">
+              <PropertyRef Name="PRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseRequests_Appropriations">
+          <End Type="Model.Appropriations" Role="Appropriations" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.PurchaseRequests" Role="PurchaseRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appropriations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseRequests">
+              <PropertyRef Name="AppropriationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PQDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PQId" Type="Int32" />
+          <Property Name="ItemNo" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UOM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="PriceQuotations" Relationship="Model.FK_PQDetails_PurchaseQuotations" FromRole="PQDetails" ToRole="PriceQuotations" />
+        </EntityType>
+        <EntityType Name="PriceQuotations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PRId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
+          <Property Name="ControlNo" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Purpose" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="PQDetails" Relationship="Model.FK_PQDetails_PurchaseQuotations" FromRole="PriceQuotations" ToRole="PQDetails" />
+          <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_PurchaseQuotations_PurchaseRequests" FromRole="PriceQuotations" ToRole="PurchaseRequests" />
+        </EntityType>
+        <Association Name="FK_PQDetails_PurchaseQuotations">
+          <End Type="Model.PriceQuotations" Role="PriceQuotations" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.PQDetails" Role="PQDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceQuotations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PQDetails">
+              <PropertyRef Name="PQId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseQuotations_PurchaseRequests">
+          <End Type="Model.PurchaseRequests" Role="PurchaseRequests" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.PriceQuotations" Role="PriceQuotations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseRequests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PriceQuotations">
+              <PropertyRef Name="PRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1409,6 +1715,84 @@
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Person" ColumnName="Person" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="Model.Items">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="UOM" ColumnName="UOM" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseRequests">
+            <EntityTypeMapping TypeName="Model.PurchaseRequests">
+              <MappingFragment StoreEntitySet="PurchaseRequests">
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="AppropriationId" ColumnName="AppropriationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="Model.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRDetails">
+            <EntityTypeMapping TypeName="Model.PRDetails">
+              <MappingFragment StoreEntitySet="PRDetails">
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="UOM" ColumnName="UOM" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+                <ScalarProperty Name="PRId" ColumnName="PRId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PQDetails">
+            <EntityTypeMapping TypeName="Model.PQDetails">
+              <MappingFragment StoreEntitySet="PQDetails">
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="UOM" ColumnName="UOM" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+                <ScalarProperty Name="PQId" ColumnName="PQId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceQuotations">
+            <EntityTypeMapping TypeName="Model.PriceQuotations">
+              <MappingFragment StoreEntitySet="PriceQuotations">
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PRId" ColumnName="PRId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

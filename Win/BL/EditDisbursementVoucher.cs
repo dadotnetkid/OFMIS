@@ -48,7 +48,7 @@ namespace Win.BL
             }
         }
 
-        public void Details()
+        public void Detail()
         {
             if (item == null)
                 return;
@@ -71,7 +71,7 @@ namespace Win.BL
             {
                 frm.cboApprovedBy.Properties.DataSource = new BindingList<Signatories>(new UnitOfWork().SignatoriesRepo.Get());
                 frm.cboApprovedBy.EditValueChanged += CboApprovedBy_EditValueChanged;
-                Details();
+                Detail();
             }
             catch (Exception e)
             {
