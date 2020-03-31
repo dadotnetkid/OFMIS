@@ -10,6 +10,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using Helpers;
 using Models;
 using Models.Repository;
+using Win.PQ;
 using Win.PR;
 
 namespace Win.BL
@@ -164,7 +165,7 @@ namespace Win.BL
             frmAddEditPurchaseRequest.txtDescription.Text = item.Description;
             frmAddEditPurchaseRequest.cboAccountCode.EditValue = item.AppropriationId;
             frmAddEditPurchaseRequest.txtPurpose.Text = item.Purpose;
-     
+
             frmAddEditPurchaseRequest.ItemsGridControl.DataSource =
                 new BindingList<PRDetails>(unitOfWork.PRDetailsRepo.Get(m => m.PRId == item.Id));
         }
@@ -269,6 +270,8 @@ namespace Win.BL
             ucPR.txtAmount.EditValue = pr.TotalAmount;
             ucPR.txtAccountCode.EditValue = pr.Appropriations?.AccountCode + " - " + pr.Appropriations?.AccountName;
             ucPR.ItemsGridControl.DataSource = new BindingList<PRDetails>(pr.PRDetails.ToList());
+            ucPR.PQTabPage.Controls.Clear();
+            ucPR.PQTabPage.Controls.Add(new UCPQ(pr) { Dock = DockStyle.Fill });
         }
 
         public void Search(string search)

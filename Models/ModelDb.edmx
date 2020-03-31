@@ -216,6 +216,8 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Purpose" Type="nvarchar(max)" />
           <Property Name="TotalAmount" Type="money" />
+          <Property Name="PGSOfficer" Type="nvarchar(max)" />
+          <Property Name="Position" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Provinces">
           <Key>
@@ -1371,6 +1373,8 @@
           <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="PQDetails" Relationship="Model.FK_PQDetails_PurchaseQuotations" FromRole="PriceQuotations" ToRole="PQDetails" />
           <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_PurchaseQuotations_PurchaseRequests" FromRole="PriceQuotations" ToRole="PurchaseRequests" />
+          <Property Name="PGSOfficer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_PQDetails_PurchaseQuotations">
           <End Type="Model.PriceQuotations" Role="PriceQuotations" Multiplicity="0..1">
@@ -1787,6 +1791,8 @@
           <EntitySetMapping Name="PriceQuotations">
             <EntityTypeMapping TypeName="Model.PriceQuotations">
               <MappingFragment StoreEntitySet="PriceQuotations">
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="PGSOfficer" ColumnName="PGSOfficer" />
                 <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
                 <ScalarProperty Name="Purpose" ColumnName="Purpose" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

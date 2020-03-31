@@ -27,6 +27,8 @@ namespace Models
         public string Description { get; set; }
         public string Purpose { get; set; }
         public Nullable<decimal> TotalAmount { get; set; }
+        public string PGSOfficer { get; set; }
+        public string Position { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PQDetails> PQDetails { get; set; }

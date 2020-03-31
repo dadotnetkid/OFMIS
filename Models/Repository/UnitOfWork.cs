@@ -23,6 +23,29 @@ namespace Models.Repository
 
         }
 
+        private GenericRepository<PQDetails> _PQDetailsRepo;
+        public GenericRepository<PQDetails> PQDetailsRepo
+        {
+            get
+            {
+                if (this._PQDetailsRepo == null)
+                    this._PQDetailsRepo = new GenericRepository<PQDetails>(context);
+                return _PQDetailsRepo;
+            }
+            set { _PQDetailsRepo = value; }
+        }
+
+        private GenericRepository<PriceQuotations> _PriceQuotationsRepo;
+        public GenericRepository<PriceQuotations> PriceQuotationsRepo
+        {
+            get
+            {
+                if (this._PriceQuotationsRepo == null)
+                    this._PriceQuotationsRepo = new GenericRepository<PriceQuotations>(context);
+                return _PriceQuotationsRepo;
+            }
+            set { _PriceQuotationsRepo = value; }
+        }
         private GenericRepository<PRDetails> _PRDetailsRepo;
         public GenericRepository<PRDetails> PRDetailsRepo
         {
