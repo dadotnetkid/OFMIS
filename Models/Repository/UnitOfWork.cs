@@ -23,6 +23,41 @@ namespace Models.Repository
 
         }
 
+
+        private GenericRepository<PODetails> _PODetailsRepo;
+        public GenericRepository<PODetails> PODetailsRepo
+        {
+            get
+            {
+                if (this._PODetailsRepo == null)
+                    this._PODetailsRepo = new GenericRepository<PODetails>(context);
+                return _PODetailsRepo;
+            }
+            set { _PODetailsRepo = value; }
+        }
+        private GenericRepository<PRDetails> _PRDetailsRepo;
+        public GenericRepository<PRDetails> PRDetailsRepo
+        {
+            get
+            {
+                if (this._PRDetailsRepo == null)
+                    this._PRDetailsRepo = new GenericRepository<PRDetails>(context);
+                return _PRDetailsRepo;
+            }
+            set { _PRDetailsRepo = value; }
+        }
+        private GenericRepository<PurchaseOrders> _PurchaseOrdersRepo;
+        public GenericRepository<PurchaseOrders> PurchaseOrdersRepo
+        {
+            get
+            {
+                if (this._PurchaseOrdersRepo == null)
+                    this._PurchaseOrdersRepo = new GenericRepository<PurchaseOrders>(context);
+                return _PurchaseOrdersRepo;
+            }
+            set { _PurchaseOrdersRepo = value; }
+        }
+
         private GenericRepository<PQDetails> _PQDetailsRepo;
         public GenericRepository<PQDetails> PQDetailsRepo
         {
@@ -46,18 +81,7 @@ namespace Models.Repository
             }
             set { _PriceQuotationsRepo = value; }
         }
-        private GenericRepository<PRDetails> _PRDetailsRepo;
-        public GenericRepository<PRDetails> PRDetailsRepo
-        {
-            get
-            {
-                if (this._PRDetailsRepo == null)
-                    this._PRDetailsRepo = new GenericRepository<PRDetails>(context);
-                return _PRDetailsRepo;
-            }
-            set { _PRDetailsRepo = value; }
-        }
-        private GenericRepository<PurchaseRequests> _PurchaseRequestsRepo;
+        public GenericRepository<PurchaseRequests> _PurchaseRequestsRepo;
         public GenericRepository<PurchaseRequests> PurchaseRequestsRepo
         {
             get

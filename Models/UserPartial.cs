@@ -72,12 +72,8 @@ namespace Models
 
     public class UsersMeta
     {
-        [EmailAddress]
-        [Required(ErrorMessage = "Required")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Required")]
         public string FirstName { get; set; }
-        [Required(ErrorMessage = "Required")]
         public string LastName { get; set; }
 
     }

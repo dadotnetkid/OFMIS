@@ -11,6 +11,7 @@ using Win.Accnts;
 using Win.OB;
 using Win.PR;
 using Win.Rprts;
+using Win.Usr;
 
 namespace Win
 {
@@ -97,6 +98,18 @@ namespace Win
         {
             pnlMain.Controls.Clear();
             pnlMain.Controls.Add(new UCPurchaseRequest() { Dock = DockStyle.Fill });
+        }
+
+        private void btnUsers_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new UCUsers() { Dock = DockStyle.Fill });
+        }
+
+        private void btnUserlevel_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new UCUserLevels() { Dock = DockStyle.Fill });
         }
     }
 }

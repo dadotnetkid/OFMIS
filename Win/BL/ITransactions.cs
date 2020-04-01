@@ -8,14 +8,12 @@ using Models;
 
 namespace Win.BL
 {
-    interface ITransactions<TEntity>
+   public interface ITransactions<TEntity>
     {
         MethodType methodType { get; set; }
-
         void Save();
         void Detail();
         void Init();
         void Close(FormClosingEventArgs eventArgs);
-
     }
 }

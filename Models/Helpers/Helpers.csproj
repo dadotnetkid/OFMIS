@@ -129,6 +129,7 @@
     <Compile Include="Authorization.cs" />
     <Compile Include="ControllerHelpers.cs" />
     <Compile Include="CriteriaEvaluator.cs" />
+    <Compile Include="Cryptography.cs" />
     <Compile Include="Custom\MultiColumnComboBox.cs">
       <SubType>Component</SubType>
     </Compile>

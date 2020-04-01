@@ -53,5 +53,7 @@ namespace Models
         public virtual DbSet<PRDetails> PRDetails { get; set; }
         public virtual DbSet<PQDetails> PQDetails { get; set; }
         public virtual DbSet<PriceQuotations> PriceQuotations { get; set; }
+        public virtual DbSet<PODetails> PODetails { get; set; }
+        public virtual DbSet<PurchaseOrders> PurchaseOrders { get; set; }
     }
 }

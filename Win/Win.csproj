@@ -65,6 +65,7 @@
     <Reference Include="DevExpress.XtraPrinting.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v18.2.Extensions, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -123,6 +124,7 @@
     <Compile Include="BL\ILoad.cs" />
     <Compile Include="BL\ITransactions.cs" />
     <Compile Include="BL\LoadAddEditItems.cs" />
+    <Compile Include="BL\LoadAddEditPO.cs" />
     <Compile Include="BL\LoadAddEditPQ.cs" />
     <Compile Include="BL\LoadAddEditPurchaseRequest.cs" />
     <Compile Include="BL\LoadAppropriations.cs" />
@@ -176,6 +178,18 @@
     <Compile Include="OB\frmEditDisbursementVoucher.Designer.cs">
       <DependentUpon>frmEditDisbursementVoucher.cs</DependentUpon>
     </Compile>
+    <Compile Include="PO\frmAddEditPO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PO\frmAddEditPO.Designer.cs">
+      <DependentUpon>frmAddEditPO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PO\UCPO.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PO\UCPO.Designer.cs">
+      <DependentUpon>UCPO.cs</DependentUpon>
+    </Compile>
     <Compile Include="PQ\frmAddEditPQ.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +219,12 @@
     </Compile>
     <Compile Include="PR\frmItems.Designer.cs">
       <DependentUpon>frmItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptPurchaseRequest.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptPurchaseRequest.Designer.cs">
+      <DependentUpon>rptPurchaseRequest.cs</DependentUpon>
     </Compile>
     <Compile Include="PR\UCPurchaseRequest.cs">
       <SubType>UserControl</SubType>
@@ -269,6 +289,31 @@
       <DependentUpon>rptObligationRequests.cs</DependentUpon>
     </Compile>
     <Compile Include="StaticSettings.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="Usr\frmAddEditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usr\frmAddEditUser.Designer.cs">
+      <DependentUpon>frmAddEditUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usr\frmAddEditUserLevel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usr\frmAddEditUserLevel.Designer.cs">
+      <DependentUpon>frmAddEditUserLevel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usr\UCUserLevels.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Usr\UCUserLevels.Designer.cs">
+      <DependentUpon>UCUserLevels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usr\UCUsers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Usr\UCUsers.Designer.cs">
+      <DependentUpon>UCUsers.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Accnts\frmAddEditAllotment.resx">
       <DependentUpon>frmAddEditAllotment.cs</DependentUpon>
     </EmbeddedResource>
@@ -305,6 +350,12 @@
     <EmbeddedResource Include="OB\frmEditDisbursementVoucher.resx">
       <DependentUpon>frmEditDisbursementVoucher.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PO\frmAddEditPO.resx">
+      <DependentUpon>frmAddEditPO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PO\UCPO.resx">
+      <DependentUpon>UCPO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PQ\frmAddEditPQ.resx">
       <DependentUpon>frmAddEditPQ.cs</DependentUpon>
     </EmbeddedResource>
@@ -319,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PR\frmItems.resx">
       <DependentUpon>frmItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptPurchaseRequest.resx">
+      <DependentUpon>rptPurchaseRequest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PR\UCPurchaseRequest.resx">
       <DependentUpon>UCPurchaseRequest.cs</DependentUpon>
@@ -361,6 +415,18 @@
     <EmbeddedResource Include="Rprts\rptObligationRequests.resx">
       <DependentUpon>rptObligationRequests.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Usr\frmAddEditUser.resx">
+      <DependentUpon>frmAddEditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usr\frmAddEditUserLevel.resx">
+      <DependentUpon>frmAddEditUserLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usr\UCUserLevels.resx">
+      <DependentUpon>UCUserLevels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usr\UCUsers.resx">
+      <DependentUpon>UCUsers.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -390,9 +456,7 @@
     <Content Include="nv_logo.ico" />
     <Content Include="Resources\nv_logo.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PO\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
