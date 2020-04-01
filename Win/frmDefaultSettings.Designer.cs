@@ -137,9 +137,9 @@
             this.labelControl1.Appearance.Options.UseForeColor = true;
             this.labelControl1.Location = new System.Drawing.Point(13, 73);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(105, 14);
+            this.labelControl1.Size = new System.Drawing.Size(49, 14);
             this.labelControl1.TabIndex = 30;
-            this.labelControl1.Text = "Provincial Governor";
+            this.labelControl1.Text = "Governor";
             // 
             // labelControl2
             // 

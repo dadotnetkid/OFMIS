@@ -70,7 +70,16 @@ namespace Win.BL
                     if (item.Id == 0)
                         unitOfWork.ORDetailsRepo.Insert(item);
                     else
-                        unitOfWork.ORDetailsRepo.Update(item);
+                    {
+                        unitOfWork.ORDetailsRepo.Update(new ORDetails()
+                        {
+                            Id = item.Id,
+                            Amount = item.Amount,
+                            ObligationId = item.ObligationId,
+                            AppropriationId = item.AppropriationId,
+                            Particulars = item.Particulars
+                        });
+                    }
                     unitOfWork.Save();
                     LoadOrDetails();
                 }
@@ -106,11 +115,11 @@ namespace Win.BL
             try
             {
                 var unitOfWork = new UnitOfWork();
-                var ob = new Obligations()
+                obligations = new Obligations()
                 {
-                    Id = obId,
-                    ControlNo = controlNo,
-                    Date = obligations.Date ?? DateTime.Now,
+                    Id = obligations.Id,
+                    ControlNo = obligations.ControlNo,
+                    Date = obligations?.Date ?? DateTime.Now,
                     BudgetControlNo = frm.txtPBOControl.EditValue?.ToString(),
                     PayeeId = frm.cboPayee.EditValue?.ToInt(),
                     PayeeAddress = frm.txtAddress.EditValue?.ToString(),
@@ -124,16 +133,19 @@ namespace Win.BL
                     Status = frm.chkClosed.CheckState == CheckState.Checked ? "Closed" : "Active",
                     Earmarked = frm.chkEarmarked.Checked,
                     Closed = frm.chkClosed.Checked,
-                    Year = obligations.Year ?? new StaticSettings().Year
+                    Year = obligations.Year ?? new StaticSettings().Year,
+                    ResponsibilityCenter = new StaticSettings().ResponsibilityCenter,
+                    ResponsibilityCenterCode = new StaticSettings().ResponsibilityCenterCode,
+
 
 
                 };
                 if (obligations.DateClosed == null && frm.chkClosed.Checked)
-                    ob.DateClosed = DateTime.Now;
+                    obligations.DateClosed = DateTime.Now;
                 if (obligations.DateClosed != null && frm.chkClosed.Checked)
-                    ob.DateClosed = obligations.DateClosed;
+                    obligations.DateClosed = obligations.DateClosed;
 
-                unitOfWork.ObligationsRepo.Update(ob);
+                unitOfWork.ObligationsRepo.Update(obligations);
                 unitOfWork.Save();
 
             }
@@ -151,7 +163,7 @@ namespace Win.BL
             //    return;
             try
             {
-                var item = obligations ?? new UnitOfWork().ObligationsRepo.Find(m => m.Id == this.obId);
+                var item = obligations;
                 if (item == null) return;
                 frm.txtDate.EditValue = item.Date;
                 frm.txtControl.EditValue = item.ControlNo;
@@ -196,12 +208,14 @@ namespace Win.BL
                 this.obId =
                     (unitOfWork.ObligationsRepo.Fetch().OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0) + 1;
                 this.controlNo = DateTime.Now.ToString("yyyy-MM-") + obId.ToString("0000");
-                unitOfWork.ObligationsRepo.Insert(new Obligations()
+                this.obligations = new Obligations()
                 {
                     Id = obId,
                     ControlNo = controlNo,
-                    Year = new StaticSettings().Year
-                });
+                    Year = new StaticSettings().Year,
+                    Date = DateTime.Now
+                };
+                unitOfWork.ObligationsRepo.Insert(obligations);
                 unitOfWork.Save();
 
                 Detail();
@@ -250,18 +264,17 @@ namespace Win.BL
 
         public void LoadAppropriation()
         {
+            var year = new StaticSettings().Year;
             frm.cboAppropriationLookUpRepo.DataSource = new EntityServerModeSource()
             {
-                QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch()
+                QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch(m => m.Year == year)
             };
         }
 
         void LoadOrDetails()
         {
-            frm.ORDetailGridControl.DataSource = new EntityServerModeSource()
-            {
-                QueryableSource = new UnitOfWork().ORDetailsRepo.Fetch(m => m.ObligationId == obId)
-            };
+            frm.ORDetailGridControl.DataSource =
+                new BindingList<ORDetails>(new UnitOfWork().ORDetailsRepo.Fetch(m => m.ObligationId == obId).ToList());
         }
     }
 }

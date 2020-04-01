@@ -29,12 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditReAlignment));
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.txtAmount = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -44,14 +48,15 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.txtRemarks = new DevExpress.XtraEditors.MemoEdit();
             this.cboSourceAccountCode = new DevExpress.XtraEditors.TextEdit();
+            this.txtAmount = new DevExpress.XtraEditors.SpinEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTargetAccountCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtRealignmentDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtRealignmentDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboSourceAccountCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -117,17 +122,6 @@
             this.btnSave.TabIndex = 37;
             this.btnSave.Text = "Save ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // txtAmount
-            // 
-            this.txtAmount.Location = new System.Drawing.Point(168, 138);
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtAmount.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.txtAmount.Properties.Appearance.Options.UseFont = true;
-            this.txtAmount.Properties.Appearance.Options.UseForeColor = true;
-            this.txtAmount.Size = new System.Drawing.Size(511, 22);
-            this.txtAmount.TabIndex = 35;
             // 
             // labelControl5
             // 
@@ -257,6 +251,25 @@
             this.cboSourceAccountCode.Size = new System.Drawing.Size(511, 22);
             this.cboSourceAccountCode.TabIndex = 33;
             // 
+            // txtAmount
+            // 
+            this.txtAmount.Location = new System.Drawing.Point(168, 138);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtAmount.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.txtAmount.Properties.Appearance.Options.UseFont = true;
+            this.txtAmount.Properties.Appearance.Options.UseForeColor = true;
+            this.txtAmount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.txtAmount.Properties.DisplayFormat.FormatString = "n2";
+            this.txtAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.txtAmount.Properties.EditFormat.FormatString = "n2";
+            this.txtAmount.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.txtAmount.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.txtAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.txtAmount.Size = new System.Drawing.Size(511, 22);
+            this.txtAmount.TabIndex = 35;
+            // 
             // frmAddEditReAlignment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,7 +277,6 @@
             this.ClientSize = new System.Drawing.Size(691, 268);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.txtAmount);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl3);
@@ -275,6 +287,7 @@
             this.Controls.Add(this.dtRealignmentDate);
             this.Controls.Add(this.txtRemarks);
             this.Controls.Add(this.cboSourceAccountCode);
+            this.Controls.Add(this.txtAmount);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -285,12 +298,12 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAddEditReAlignment_FormClosing);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTargetAccountCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtRealignmentDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtRealignmentDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboSourceAccountCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,7 +314,6 @@
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraEditors.SimpleButton btnSave;
-        public DevExpress.XtraEditors.TextEdit txtAmount;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl2;
@@ -312,5 +324,6 @@
         public DevExpress.XtraEditors.DateEdit dtRealignmentDate;
         public DevExpress.XtraEditors.MemoEdit txtRemarks;
         public DevExpress.XtraEditors.TextEdit cboSourceAccountCode;
+        public DevExpress.XtraEditors.SpinEdit txtAmount;
     }
 }

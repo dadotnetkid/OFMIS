@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using Models;
 using Models.Repository;
 using Win.BL;
+using Win.Rprts;
 
 namespace Win.OB
 {
@@ -46,5 +47,18 @@ namespace Win.OB
         {
             loadObligations.Init();
         }
+
+        private void btnPreview_Click(object sender, EventArgs e)
+        {
+            if (OBGridView.GetFocusedRow() is Obligations item)
+            {
+                frmReportViewer frm = new frmReportViewer(new rptObligationRequestPreview()
+                {
+                    DataSource = new UnitOfWork().ObligationsRepo.Get(m => m.Id == item.Id)
+            });
+            frm.ShowDialog();
+        }
+
     }
+}
 }

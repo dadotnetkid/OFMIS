@@ -43,6 +43,8 @@
             this.btnItems = new DevExpress.XtraBars.BarButtonItem();
             this.btnPR = new DevExpress.XtraBars.BarButtonItem();
             this.btnUsers = new DevExpress.XtraBars.BarButtonItem();
+            this.btnUserlevel = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPayees = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -54,7 +56,7 @@
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.pnlMain = new DevExpress.XtraEditors.PanelControl();
-            this.btnUserlevel = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDefaultAccounts = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
             this.SuspendLayout();
@@ -77,9 +79,11 @@
             this.btnItems,
             this.btnPR,
             this.btnUsers,
-            this.btnUserlevel});
+            this.btnUserlevel,
+            this.btnPayees,
+            this.btnDefaultAccounts});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 11;
+            this.ribbonControl1.MaxItemId = 13;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -200,6 +204,24 @@
             this.btnUsers.Name = "btnUsers";
             this.btnUsers.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUsers_ItemClick);
             // 
+            // btnUserlevel
+            // 
+            this.btnUserlevel.Caption = "User Level";
+            this.btnUserlevel.Id = 10;
+            this.btnUserlevel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUserlevel.ImageOptions.Image")));
+            this.btnUserlevel.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnUserlevel.ImageOptions.LargeImage")));
+            this.btnUserlevel.Name = "btnUserlevel";
+            this.btnUserlevel.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUserlevel_ItemClick);
+            // 
+            // btnPayees
+            // 
+            this.btnPayees.Caption = "Payees";
+            this.btnPayees.Id = 11;
+            this.btnPayees.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPayees.ImageOptions.Image")));
+            this.btnPayees.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPayees.ImageOptions.LargeImage")));
+            this.btnPayees.Name = "btnPayees";
+            this.btnPayees.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPayees_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -233,9 +255,11 @@
             // 
             // ribbonPageGroup3
             // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnPayees);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnYear);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnDefaultSettings);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnSignatories);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnDefaultAccounts);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Options";
             // 
@@ -281,14 +305,14 @@
             this.pnlMain.Size = new System.Drawing.Size(981, 491);
             this.pnlMain.TabIndex = 4;
             // 
-            // btnUserlevel
+            // btnDefaultAccounts
             // 
-            this.btnUserlevel.Caption = "User Level";
-            this.btnUserlevel.Id = 10;
-            this.btnUserlevel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUserlevel.ImageOptions.Image")));
-            this.btnUserlevel.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnUserlevel.ImageOptions.LargeImage")));
-            this.btnUserlevel.Name = "btnUserlevel";
-            this.btnUserlevel.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUserlevel_ItemClick);
+            this.btnDefaultAccounts.Caption = "Default Accounts";
+            this.btnDefaultAccounts.Id = 12;
+            this.btnDefaultAccounts.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.btnDefaultAccounts.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.btnDefaultAccounts.Name = "btnDefaultAccounts";
+            this.btnDefaultAccounts.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDefaultAccounts_ItemClick);
             // 
             // Main
             // 
@@ -341,6 +365,8 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
         private DevExpress.XtraBars.BarButtonItem btnUserlevel;
+        private DevExpress.XtraBars.BarButtonItem btnPayees;
+        private DevExpress.XtraBars.BarButtonItem btnDefaultAccounts;
     }
 }
 

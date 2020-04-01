@@ -116,11 +116,11 @@
             this.colRealignmentDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRealignmentSourceAccount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRealignmentTargetAccount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colReAlignmentAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRealignmentRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnRealigment = new DevExpress.XtraEditors.SimpleButton();
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
-            this.colReAlignmentAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colRealignmentRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appropriationGridControl)).BeginInit();
@@ -304,7 +304,7 @@
             this.btnAllotments.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnAllotments.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.btnAllotments.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAllotments.ImageOptions.Image")));
-            this.btnAllotments.Location = new System.Drawing.Point(264, 14);
+            this.btnAllotments.Location = new System.Drawing.Point(372, 11);
             this.btnAllotments.Name = "btnAllotments";
             this.btnAllotments.Size = new System.Drawing.Size(102, 23);
             this.btnAllotments.TabIndex = 14;
@@ -317,7 +317,7 @@
             this.btnAppropriations.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnAppropriations.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.btnAppropriations.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAppropriations.ImageOptions.Image")));
-            this.btnAppropriations.Location = new System.Drawing.Point(372, 14);
+            this.btnAppropriations.Location = new System.Drawing.Point(264, 11);
             this.btnAppropriations.Name = "btnAppropriations";
             this.btnAppropriations.Size = new System.Drawing.Size(102, 23);
             this.btnAppropriations.TabIndex = 13;
@@ -789,6 +789,24 @@
             this.colRealignmentTargetAccount.VisibleIndex = 4;
             this.colRealignmentTargetAccount.Width = 196;
             // 
+            // colReAlignmentAmount
+            // 
+            this.colReAlignmentAmount.Caption = "Amount";
+            this.colReAlignmentAmount.FieldName = "Amount";
+            this.colReAlignmentAmount.Name = "colReAlignmentAmount";
+            this.colReAlignmentAmount.Visible = true;
+            this.colReAlignmentAmount.VisibleIndex = 5;
+            this.colReAlignmentAmount.Width = 83;
+            // 
+            // colRealignmentRemarks
+            // 
+            this.colRealignmentRemarks.Caption = "Remarks";
+            this.colRealignmentRemarks.FieldName = "Remarks";
+            this.colRealignmentRemarks.Name = "colRealignmentRemarks";
+            this.colRealignmentRemarks.Visible = true;
+            this.colRealignmentRemarks.VisibleIndex = 6;
+            this.colRealignmentRemarks.Width = 81;
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(88)))), ((int)(((byte)(8)))));
@@ -809,7 +827,7 @@
             this.btnRealigment.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnRealigment.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.btnRealigment.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRealigment.ImageOptions.Image")));
-            this.btnRealigment.Location = new System.Drawing.Point(480, 14);
+            this.btnRealigment.Location = new System.Drawing.Point(480, 11);
             this.btnRealigment.Name = "btnRealigment";
             this.btnRealigment.Size = new System.Drawing.Size(102, 23);
             this.btnRealigment.TabIndex = 16;
@@ -833,24 +851,6 @@
             this.lblHeader.Size = new System.Drawing.Size(258, 46);
             this.lblHeader.TabIndex = 15;
             this.lblHeader.Text = "00000-PITD";
-            // 
-            // colReAlignmentAmount
-            // 
-            this.colReAlignmentAmount.Caption = "Amount";
-            this.colReAlignmentAmount.FieldName = "Amount";
-            this.colReAlignmentAmount.Name = "colReAlignmentAmount";
-            this.colReAlignmentAmount.Visible = true;
-            this.colReAlignmentAmount.VisibleIndex = 5;
-            this.colReAlignmentAmount.Width = 83;
-            // 
-            // colRealignmentRemarks
-            // 
-            this.colRealignmentRemarks.Caption = "Remarks";
-            this.colRealignmentRemarks.FieldName = "Remarks";
-            this.colRealignmentRemarks.Name = "colRealignmentRemarks";
-            this.colRealignmentRemarks.Visible = true;
-            this.colRealignmentRemarks.VisibleIndex = 6;
-            this.colRealignmentRemarks.Width = 81;
             // 
             // UcAccounts
             // 

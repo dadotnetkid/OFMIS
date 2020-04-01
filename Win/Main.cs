@@ -10,6 +10,7 @@ using Models.Repository;
 using Win.Accnts;
 using Win.OB;
 using Win.PR;
+using Win.Pyee;
 using Win.Rprts;
 using Win.Usr;
 
@@ -110,6 +111,18 @@ namespace Win
         {
             pnlMain.Controls.Clear();
             pnlMain.Controls.Add(new UCUserLevels() { Dock = DockStyle.Fill });
+        }
+
+        private void btnPayees_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new UCPayees() { Dock = DockStyle.Fill });
+        }
+
+        private void btnDefaultAccounts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmDefaultAccounts frm = new frmDefaultAccounts();
+            frm.ShowDialog();
         }
     }
 }

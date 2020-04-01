@@ -45,7 +45,6 @@
             this.txtAddress = new DevExpress.XtraEditors.TextEdit();
             this.txtOffice = new DevExpress.XtraEditors.TextEdit();
             this.txtControl = new DevExpress.XtraEditors.TextEdit();
-            this.txtDate = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -75,6 +74,7 @@
             this.cboAppropriationLookUpRepo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.chkClosed = new DevExpress.XtraEditors.CheckEdit();
             this.chkEarmarked = new DevExpress.XtraEditors.CheckEdit();
+            this.txtDate = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtChiefPosition.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtChiefOfficer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBudgetOfficer.Properties)).BeginInit();
@@ -82,7 +82,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOffice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControl.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPBOControl.Properties)).BeginInit();
@@ -96,14 +95,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboAppropriationLookUpRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkClosed.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkEarmarked.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtChiefPosition
             // 
-            this.txtChiefPosition.Location = new System.Drawing.Point(81, 289);
+            this.txtChiefPosition.Location = new System.Drawing.Point(97, 289);
             this.txtChiefPosition.Name = "txtChiefPosition";
+            this.txtChiefPosition.Properties.ReadOnly = true;
             this.txtChiefPosition.Properties.UseReadOnlyAppearance = false;
-            this.txtChiefPosition.Size = new System.Drawing.Size(433, 20);
+            this.txtChiefPosition.Size = new System.Drawing.Size(417, 20);
             this.txtChiefPosition.TabIndex = 10;
             // 
             // labelControl9
@@ -116,10 +118,11 @@
             // 
             // txtChiefOfficer
             // 
-            this.txtChiefOfficer.Location = new System.Drawing.Point(81, 267);
+            this.txtChiefOfficer.Location = new System.Drawing.Point(97, 267);
             this.txtChiefOfficer.Name = "txtChiefOfficer";
+            this.txtChiefOfficer.Properties.ReadOnly = true;
             this.txtChiefOfficer.Properties.UseReadOnlyAppearance = false;
-            this.txtChiefOfficer.Size = new System.Drawing.Size(433, 20);
+            this.txtChiefOfficer.Size = new System.Drawing.Size(417, 20);
             this.txtChiefOfficer.TabIndex = 9;
             // 
             // labelControl8
@@ -132,10 +135,11 @@
             // 
             // txtBudgetOfficer
             // 
-            this.txtBudgetOfficer.Location = new System.Drawing.Point(81, 223);
+            this.txtBudgetOfficer.Location = new System.Drawing.Point(97, 223);
             this.txtBudgetOfficer.Name = "txtBudgetOfficer";
+            this.txtBudgetOfficer.Properties.ReadOnly = true;
             this.txtBudgetOfficer.Properties.UseReadOnlyAppearance = false;
-            this.txtBudgetOfficer.Size = new System.Drawing.Size(433, 20);
+            this.txtBudgetOfficer.Size = new System.Drawing.Size(417, 20);
             this.txtBudgetOfficer.TabIndex = 7;
             // 
             // labelControl7
@@ -148,43 +152,35 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(81, 201);
+            this.txtDescription.Location = new System.Drawing.Point(97, 201);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Properties.UseReadOnlyAppearance = false;
-            this.txtDescription.Size = new System.Drawing.Size(433, 20);
+            this.txtDescription.Size = new System.Drawing.Size(417, 20);
             this.txtDescription.TabIndex = 6;
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(81, 179);
+            this.txtAddress.Location = new System.Drawing.Point(97, 179);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Properties.UseReadOnlyAppearance = false;
-            this.txtAddress.Size = new System.Drawing.Size(433, 20);
+            this.txtAddress.Size = new System.Drawing.Size(417, 20);
             this.txtAddress.TabIndex = 5;
             // 
             // txtOffice
             // 
-            this.txtOffice.Location = new System.Drawing.Point(81, 157);
+            this.txtOffice.Location = new System.Drawing.Point(97, 157);
             this.txtOffice.Name = "txtOffice";
             this.txtOffice.Properties.UseReadOnlyAppearance = false;
-            this.txtOffice.Size = new System.Drawing.Size(433, 20);
+            this.txtOffice.Size = new System.Drawing.Size(417, 20);
             this.txtOffice.TabIndex = 4;
             // 
             // txtControl
             // 
-            this.txtControl.Location = new System.Drawing.Point(81, 91);
+            this.txtControl.Location = new System.Drawing.Point(97, 91);
             this.txtControl.Name = "txtControl";
             this.txtControl.Properties.UseReadOnlyAppearance = false;
-            this.txtControl.Size = new System.Drawing.Size(433, 20);
+            this.txtControl.Size = new System.Drawing.Size(417, 20);
             this.txtControl.TabIndex = 1;
-            // 
-            // txtDate
-            // 
-            this.txtDate.Location = new System.Drawing.Point(81, 69);
-            this.txtDate.Name = "txtDate";
-            this.txtDate.Properties.UseReadOnlyAppearance = false;
-            this.txtDate.Size = new System.Drawing.Size(434, 20);
-            this.txtDate.TabIndex = 0;
             // 
             // labelControl6
             // 
@@ -222,9 +218,9 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(7, 93);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(35, 13);
+            this.labelControl2.Size = new System.Drawing.Size(78, 13);
             this.labelControl2.TabIndex = 11;
-            this.labelControl2.Text = "Control";
+            this.labelControl2.Text = "Office Control #";
             // 
             // labelControl1
             // 
@@ -274,16 +270,16 @@
             // 
             this.labelControl10.Location = new System.Drawing.Point(6, 115);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(58, 13);
+            this.labelControl10.Size = new System.Drawing.Size(69, 13);
             this.labelControl10.TabIndex = 11;
-            this.labelControl10.Text = "PBO Control";
+            this.labelControl10.Text = "PBO Control #";
             // 
             // txtPBOControl
             // 
-            this.txtPBOControl.Location = new System.Drawing.Point(81, 113);
+            this.txtPBOControl.Location = new System.Drawing.Point(97, 113);
             this.txtPBOControl.Name = "txtPBOControl";
             this.txtPBOControl.Properties.UseReadOnlyAppearance = false;
-            this.txtPBOControl.Size = new System.Drawing.Size(433, 20);
+            this.txtPBOControl.Size = new System.Drawing.Size(417, 20);
             this.txtPBOControl.TabIndex = 2;
             // 
             // labelControl11
@@ -296,15 +292,16 @@
             // 
             // txtPBOPos
             // 
-            this.txtPBOPos.Location = new System.Drawing.Point(81, 245);
+            this.txtPBOPos.Location = new System.Drawing.Point(97, 245);
             this.txtPBOPos.Name = "txtPBOPos";
+            this.txtPBOPos.Properties.ReadOnly = true;
             this.txtPBOPos.Properties.UseReadOnlyAppearance = false;
-            this.txtPBOPos.Size = new System.Drawing.Size(433, 20);
+            this.txtPBOPos.Size = new System.Drawing.Size(417, 20);
             this.txtPBOPos.TabIndex = 8;
             // 
             // cboPayee
             // 
-            this.cboPayee.Location = new System.Drawing.Point(81, 135);
+            this.cboPayee.Location = new System.Drawing.Point(97, 135);
             this.cboPayee.Name = "cboPayee";
             this.cboPayee.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -319,7 +316,7 @@
             this.cboPayee.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cboPayee.Properties.UseReadOnlyAppearance = false;
             this.cboPayee.Properties.ValueMember = "Id";
-            this.cboPayee.Size = new System.Drawing.Size(413, 20);
+            this.cboPayee.Size = new System.Drawing.Size(397, 20);
             this.cboPayee.TabIndex = 3;
             // 
             // btnAddPayee
@@ -482,6 +479,25 @@
             this.chkEarmarked.Size = new System.Drawing.Size(101, 19);
             this.chkEarmarked.TabIndex = 31;
             // 
+            // txtDate
+            // 
+            this.txtDate.EditValue = null;
+            this.txtDate.Location = new System.Drawing.Point(97, 69);
+            this.txtDate.Name = "txtDate";
+            this.txtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtDate.Properties.DisplayFormat.FormatString = "";
+            this.txtDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.txtDate.Properties.EditFormat.FormatString = "";
+            this.txtDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.txtDate.Properties.Mask.EditMask = "";
+            this.txtDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.txtDate.Properties.UseReadOnlyAppearance = false;
+            this.txtDate.Size = new System.Drawing.Size(418, 20);
+            this.txtDate.TabIndex = 0;
+            // 
             // frmAddEditObligation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -507,7 +523,6 @@
             this.Controls.Add(this.txtOffice);
             this.Controls.Add(this.txtPBOControl);
             this.Controls.Add(this.txtControl);
-            this.Controls.Add(this.txtDate);
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.labelControl4);
@@ -516,6 +531,7 @@
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.cboPayee);
+            this.Controls.Add(this.txtDate);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAddEditObligation";
@@ -532,7 +548,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOffice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControl.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
@@ -547,6 +562,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboAppropriationLookUpRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkClosed.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkEarmarked.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -557,7 +574,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         public DevExpress.XtraEditors.TextEdit txtControl;
-        public DevExpress.XtraEditors.TextEdit txtDate;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl4;
@@ -593,5 +609,6 @@
         private System.Windows.Forms.BindingSource oRDetailsBindingSource;
         public DevExpress.XtraEditors.CheckEdit chkClosed;
         public DevExpress.XtraEditors.CheckEdit chkEarmarked;
+        public DevExpress.XtraEditors.DateEdit txtDate;
     }
 }

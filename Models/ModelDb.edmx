@@ -45,6 +45,16 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Category" Type="nvarchar" MaxLength="128" />
         </EntityType>
+        <EntityType Name="DefaultAccounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="128" />
+          <Property Name="AccountCodeText" Type="nvarchar" MaxLength="128" />
+          <Property Name="AccountName" Type="nvarchar(max)" />
+          <Property Name="FundType" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <EntityType Name="DefaultSettings">
           <Key>
             <PropertyRef Name="Id" />
@@ -142,6 +152,8 @@
           <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="Amount" Type="money" Nullable="false" />
           <Property Name="Year" Type="int" />
+          <Property Name="ResponsibilityCenter" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResponsibilityCenterCode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Offices">
           <Key>
@@ -671,6 +683,7 @@
           <EntitySet Name="Allotments" EntityType="Self.Allotments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Appropriations" EntityType="Self.Appropriations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefaultAccounts" EntityType="Self.DefaultAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DefaultSettings" EntityType="Self.DefaultSettings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FundTypes" EntityType="Self.FundTypes" Schema="dbo" store:Type="Tables" />
@@ -890,6 +903,7 @@
             <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
             <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
           </AssociationSet>
+          <EntitySet Name="DefaultAccounts" EntityType="Model.DefaultAccounts" />
           </EntityContainer>
         <EntityType Name="Actions">
           <Key>
@@ -1246,6 +1260,8 @@
           <NavigationProperty Name="Payees" Relationship="Model.FK_Obligations_Payees" FromRole="Obligations" ToRole="Payees" />
           <NavigationProperty Name="ORDetails" Relationship="Model.FK_ORDetails_Obligations" FromRole="Obligations" ToRole="ORDetails" />
           <Property Name="Year" Type="Int32" />
+          <Property Name="ResponsibilityCenter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResponsibilityCenterCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Obligations_Payees">
           <End Type="Model.Payees" Role="Payees" Multiplicity="0..1" />
@@ -1560,6 +1576,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DefaultAccounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AccountCodeText" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AccountName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FundType" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1792,6 +1818,8 @@
           <EntitySetMapping Name="Obligations">
             <EntityTypeMapping TypeName="Model.Obligations">
               <MappingFragment StoreEntitySet="Obligations">
+                <ScalarProperty Name="ResponsibilityCenterCode" ColumnName="ResponsibilityCenterCode" />
+                <ScalarProperty Name="ResponsibilityCenter" ColumnName="ResponsibilityCenter" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
@@ -1995,6 +2023,17 @@
                 <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="PRId" ColumnName="PRId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefaultAccounts">
+            <EntityTypeMapping TypeName="Model.DefaultAccounts">
+              <MappingFragment StoreEntitySet="DefaultAccounts">
+                <ScalarProperty Name="FundType" ColumnName="FundType" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="AccountCodeText" ColumnName="AccountCodeText" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -11,5 +11,8 @@ namespace Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public decimal? TotalAmount => this.ORDetails.Sum(m => m.Amount);
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public string AmountToWords => Amount.ToString().NumberToWords();
     }
 }

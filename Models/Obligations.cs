@@ -44,6 +44,8 @@ namespace Models
         public byte[] SSMA_TimeStamp { get; set; }
         public decimal Amount { get; set; }
         public Nullable<int> Year { get; set; }
+        public string ResponsibilityCenter { get; set; }
+        public string ResponsibilityCenterCode { get; set; }
     
         public virtual Payees Payees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -58,6 +58,9 @@ namespace Win
 
             try
             {
+
+                if (MessageBox.Show("Do you want to submit this?", "Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
                 var settings = new StaticSettings();
                 var defaultSettings = new DefaultSettings()
                 {
@@ -88,6 +91,9 @@ namespace Win
                 else
                     unitOfWork.DefaultSettingsRepo.Update(defaultSettings);
                 unitOfWork.Save();
+
+                MessageBox.Show("Successfully Save Default Setting", "Default Setting", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             catch (Exception exception)
             {

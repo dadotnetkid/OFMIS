@@ -23,6 +23,17 @@ namespace Models.Repository
 
         }
 
+        private GenericRepository<DefaultAccounts> _DefaultAccountsRepo;
+        public GenericRepository<DefaultAccounts> DefaultAccountsRepo
+        {
+            get
+            {
+                if (this._DefaultAccountsRepo == null)
+                    this._DefaultAccountsRepo = new GenericRepository<DefaultAccounts>(context);
+                return _DefaultAccountsRepo;
+            }
+            set { _DefaultAccountsRepo = value; }
+        }
 
         private GenericRepository<PODetails> _PODetailsRepo;
         public GenericRepository<PODetails> PODetailsRepo

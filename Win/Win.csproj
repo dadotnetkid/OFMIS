@@ -15,6 +15,26 @@
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>\\192.168.30.13\c%24\Installers\OFMIS\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://plgunv_adserver/ofmis/</InstallUrl>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>index.htm</WebPage>
+    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -40,6 +60,18 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Win.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>3116C387C4E4AF32B60560306BD9DF2C2B706991</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Win_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v18.2" />
@@ -130,6 +162,12 @@
     <Compile Include="BL\LoadAppropriations.cs" />
     <Compile Include="BL\LoadObligations.cs" />
     <Compile Include="ConnectionDialog.cs" />
+    <Compile Include="frmDefaultAccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDefaultAccounts.Designer.cs">
+      <DependentUpon>frmDefaultAccounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDefaultSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +257,18 @@
     </Compile>
     <Compile Include="PR\frmItems.Designer.cs">
       <DependentUpon>frmItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pyee\UCPayees.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pyee\UCPayees.Designer.cs">
+      <DependentUpon>UCPayees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptObligationRequestPreview.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptObligationRequestPreview.Designer.cs">
+      <DependentUpon>rptObligationRequestPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="Rprts\rptPurchaseRequest.cs">
       <SubType>Component</SubType>
@@ -326,6 +376,9 @@
     <EmbeddedResource Include="Accnts\UcAccounts.resx">
       <DependentUpon>UcAccounts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDefaultAccounts.resx">
+      <DependentUpon>frmDefaultAccounts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDefaultSettings.resx">
       <DependentUpon>frmDefaultSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -370,6 +423,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PR\frmItems.resx">
       <DependentUpon>frmItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pyee\UCPayees.resx">
+      <DependentUpon>UCPayees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptObligationRequestPreview.resx">
+      <DependentUpon>rptObligationRequestPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptPurchaseRequest.resx">
       <DependentUpon>rptPurchaseRequest.cs</DependentUpon>
@@ -438,6 +497,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Win_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Helpers\Helpers.csproj">
@@ -457,7 +517,18 @@
     <Content Include="Resources\nv_logo.ico" />
     <Content Include="sql-scripts\ofmis.sql" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
