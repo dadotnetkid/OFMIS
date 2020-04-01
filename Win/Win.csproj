@@ -455,6 +455,7 @@
   <ItemGroup>
     <Content Include="nv_logo.ico" />
     <Content Include="Resources\nv_logo.ico" />
+    <Content Include="sql-scripts\ofmis.sql" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
