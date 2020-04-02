@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.Data.Linq;
+using DevExpress.XtraEditors;
 using Helpers;
 using Models;
 using Models.Repository;
@@ -22,7 +23,23 @@ namespace Win.BL
         {
             this.frm = frm;
             this.appropriation = appropriation;
+            frm.txtAccountCode.EditValueChanged += TxtAccountCode_EditValueChanged;
         }
+
+        private void TxtAccountCode_EditValueChanged(object sender, EventArgs e)
+        {
+            if (sender is LookUpEdit lookUpEdit)
+            {
+                if (lookUpEdit.GetSelectedDataRow() is DefaultAccounts item)
+                {
+                    frm.txtAccountCodeText.Text = item.AccountCodeText;
+                    frm.txtAccountName.Text = item.AccountName;
+                    frm.cboFundType.EditValue = item.FundType;
+                }
+            }
+
+        }
+
         public AddEditAppropriation()
         {
 
@@ -65,13 +82,18 @@ namespace Win.BL
         {
             try
             {
-                if (methodType == MethodType.Add) return;
+
                 if (appropriation == null) return;
+                frm.txtAccountCode.Properties.DataSource = new EntityServerModeSource()
+                {
+                    QueryableSource = new UnitOfWork().DefaultAccountsRepo.Fetch()
+                };
                 frm.txtAccountCode.Text = appropriation.AccountCode;
                 frm.txtAccountCodeText.Text = appropriation.AccountCodeText;
                 frm.cboFundType.EditValue = appropriation.FundType;
                 frm.txtAccountName.Text = appropriation.AccountName;
                 frm.txtAppropriationAmount.EditValue = appropriation.Appropriation;
+
             }
             catch (Exception e)
             {
@@ -89,11 +111,11 @@ namespace Win.BL
                     Detail();
                     return;
                 }
-
                 UnitOfWork unitOfWork = new UnitOfWork();
                 appropriation = new Appropriations();
                 unitOfWork.AppropriationsRepoRepo.Insert(appropriation);
                 unitOfWork.Save();
+                Detail();
             }
             catch (Exception e)
             {

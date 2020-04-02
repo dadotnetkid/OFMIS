@@ -12,13 +12,10 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Signatories
+    public partial class Positions
     {
         public int Id { get; set; }
-        public string Person { get; set; }
         public string Position { get; set; }
-        public string Note { get; set; }
-        public Nullable<int> Year { get; set; }
-        public string Office { get; set; }
+        public string Description { get; set; }
     }
 }

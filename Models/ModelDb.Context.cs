@@ -56,5 +56,6 @@ namespace Models
         public virtual DbSet<PODetails> PODetails { get; set; }
         public virtual DbSet<PurchaseOrders> PurchaseOrders { get; set; }
         public virtual DbSet<DefaultAccounts> DefaultAccounts { get; set; }
+        public virtual DbSet<Positions> Positions { get; set; }
     }
 }

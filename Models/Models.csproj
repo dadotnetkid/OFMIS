@@ -212,6 +212,9 @@
     <Compile Include="PODetails.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Positions.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="PQDetails.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>

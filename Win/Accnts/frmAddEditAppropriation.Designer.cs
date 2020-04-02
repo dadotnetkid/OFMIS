@@ -42,20 +42,20 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.txtAccountCode = new DevExpress.XtraEditors.TextEdit();
             this.txtAccountCodeText = new DevExpress.XtraEditors.TextEdit();
             this.txtAccountName = new DevExpress.XtraEditors.TextEdit();
             this.txtAppropriationAmount = new DevExpress.XtraEditors.SpinEdit();
             this.cboFundType = new DevExpress.XtraEditors.LookUpEdit();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.txtAccountCode = new DevExpress.XtraEditors.LookUpEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAccountCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountCodeText.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAppropriationAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboFundType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAccountCode.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -144,21 +144,14 @@
             this.labelControl5.TabIndex = 31;
             this.labelControl5.Text = "Appropriation";
             // 
-            // txtAccountCode
-            // 
-            this.txtAccountCode.Location = new System.Drawing.Point(170, 83);
-            this.txtAccountCode.Name = "txtAccountCode";
-            this.txtAccountCode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtAccountCode.Properties.Appearance.Options.UseFont = true;
-            this.txtAccountCode.Size = new System.Drawing.Size(300, 22);
-            this.txtAccountCode.TabIndex = 0;
-            // 
             // txtAccountCodeText
             // 
             this.txtAccountCodeText.Location = new System.Drawing.Point(170, 109);
             this.txtAccountCodeText.Name = "txtAccountCodeText";
             this.txtAccountCodeText.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtAccountCodeText.Properties.Appearance.Options.UseFont = true;
+            this.txtAccountCodeText.Properties.ReadOnly = true;
+            this.txtAccountCodeText.Properties.UseReadOnlyAppearance = false;
             this.txtAccountCodeText.Size = new System.Drawing.Size(300, 22);
             this.txtAccountCodeText.TabIndex = 1;
             // 
@@ -168,6 +161,8 @@
             this.txtAccountName.Name = "txtAccountName";
             this.txtAccountName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtAccountName.Properties.Appearance.Options.UseFont = true;
+            this.txtAccountName.Properties.ReadOnly = true;
+            this.txtAccountName.Properties.UseReadOnlyAppearance = false;
             this.txtAccountName.Size = new System.Drawing.Size(300, 22);
             this.txtAccountName.TabIndex = 3;
             // 
@@ -206,7 +201,9 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Description", "Description")});
             this.cboFundType.Properties.DisplayMember = "FundType";
             this.cboFundType.Properties.NullText = "";
+            this.cboFundType.Properties.ReadOnly = true;
             this.cboFundType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.cboFundType.Properties.UseReadOnlyAppearance = false;
             this.cboFundType.Properties.ValueMember = "FundType";
             this.cboFundType.Size = new System.Drawing.Size(300, 22);
             this.cboFundType.TabIndex = 2;
@@ -237,6 +234,24 @@
             this.btnSave.Text = "Save ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // txtAccountCode
+            // 
+            this.txtAccountCode.Location = new System.Drawing.Point(170, 83);
+            this.txtAccountCode.Name = "txtAccountCode";
+            this.txtAccountCode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtAccountCode.Properties.Appearance.Options.UseFont = true;
+            this.txtAccountCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtAccountCode.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AccountCode", "Account Code"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AccountName", "Account Name")});
+            this.txtAccountCode.Properties.DisplayMember = "AccountCode";
+            this.txtAccountCode.Properties.NullText = "";
+            this.txtAccountCode.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.txtAccountCode.Properties.ValueMember = "AccountCode";
+            this.txtAccountCode.Size = new System.Drawing.Size(300, 22);
+            this.txtAccountCode.TabIndex = 0;
+            // 
             // frmAddEditAppropriation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,7 +261,6 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtAccountName);
             this.Controls.Add(this.txtAccountCodeText);
-            this.Controls.Add(this.txtAccountCode);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl3);
@@ -255,6 +269,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtAppropriationAmount);
             this.Controls.Add(this.cboFundType);
+            this.Controls.Add(this.txtAccountCode);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -266,11 +281,11 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAccountCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountCodeText.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAppropriationAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboFundType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAccountCode.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,10 +303,10 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraEditors.SimpleButton btnSave;
-        public DevExpress.XtraEditors.TextEdit txtAccountCode;
         public DevExpress.XtraEditors.TextEdit txtAccountCodeText;
         public DevExpress.XtraEditors.TextEdit txtAccountName;
         public DevExpress.XtraEditors.SpinEdit txtAppropriationAmount;
         public DevExpress.XtraEditors.LookUpEdit cboFundType;
+        public DevExpress.XtraEditors.LookUpEdit txtAccountCode;
     }
 }

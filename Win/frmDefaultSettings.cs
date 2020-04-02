@@ -31,21 +31,6 @@ namespace Win
             var i = new StaticSettings().settings();
             if (i == null)
                 return;
-            txtPG.Text = i.PG;
-            txtPGPos.Text = i.PGPos;
-            txtPA.Text = i.PA;
-            txtPAPos.Text = i.PAPos;
-            txtPBO.Text = i.PBO;
-            txtPBOPos.Text = i.PBOPos;
-            txtPT.Text = i.PT;
-            txtPTPos.Text = i.PTPos;
-            txtPAccountant.Text = i.PAccountant;
-            txtPAccountantPos.Text = i.PAccountantPos;
-            txtPGSO.Text = i.PGSO;
-            txtPGSOPos.Text = i.PGSOPosition;
-            txtDepartment.Text = i.Department;
-            txtChiefOfOffice.Text = i.ChiefOfOffice;
-            txtChiefOfOfficePos.Text = i.ChiefOfOfficePos;
             txtResponsibilityCenter.Text = i.ResponsibilityCenterCode;
             txtResponsibilityCenterCode.Text = i.ResponsibilityCenterCode;
             txtOfficeId.Text = i.OfficeId;
@@ -64,24 +49,9 @@ namespace Win
                 var settings = new StaticSettings();
                 var defaultSettings = new DefaultSettings()
                 {
-                    PG = txtPG.Text,
-                    PGPos = txtPGPos.Text,
-                    PA = txtPA.Text,
-                    PAPos = txtPAPos.Text,
-                    PT = txtPT.Text,
-                    PTPos = txtPTPos.Text,
-                    PAccountant = txtPAccountant.Text,
-                    PAccountantPos = txtPAccountantPos.Text,
-                    PGSO = txtPGSO.Text,
-                    PGSOPosition = txtPGSOPos.Text,
-                    Department = txtDepartment.Text,
-                    ChiefOfOffice = txtChiefOfOffice.Text,
-                    ChiefOfOfficePos = txtChiefOfOfficePos.Text,
                     ResponsibilityCenter = txtResponsibilityCenter.Text,
                     ResponsibilityCenterCode = txtResponsibilityCenterCode.Text,
                     OfficeId = txtOfficeId.Text,
-                    PBO = txtPBO.Text,
-                    PBOPos = txtPBOPos.Text,
                     Year = settings.Year,
                     Id = settings.Id
                 };

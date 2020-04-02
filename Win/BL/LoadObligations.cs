@@ -16,7 +16,7 @@ namespace Win.BL
     public class LoadObligations : ILoad<Obligations>
     {
         private ucObligations uc;
-        private int year => new StaticSettings().Year;
+        private int year = new StaticSettings().Year;
         public LoadObligations(ucObligations uc)
         {
             this.uc = uc;
@@ -120,10 +120,20 @@ namespace Win.BL
 
         public void Search(string search)
         {
+            var ob = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year);
+            if (ob.Any(x => x.Description.Contains(search)))
+                ob = ob.Where(x => x.Description.Contains(search));
+            else if (ob.Any(x => x.ControlNo.Contains(search)))
+                ob = ob.Where(x => x.ControlNo.Contains(search));
+            else if (ob.Any(x => x.Payees.Name.Contains(search)))
+                ob = ob.Where(x => x.Payees.Name.Contains(search));
+            else
+                ob = null;
+            if (uc.cboStatus.Text != "All")
+                ob = ob.Where(x => x.Status.Contains(uc.cboStatus.Text));
             this.uc.OBGridControl.DataSource = new EntityServerModeSource()
             {
-                QueryableSource = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year && m.Description.Contains(search)).Where(x => x.Status.Contains(uc.cboStatus.Text)),
-
+                QueryableSource = ob
             };
         }
     }

@@ -55,6 +55,7 @@
         <AssociationConnector Association="Model.FK_PODetails_PurchaseOrders" />
         <AssociationConnector Association="Model.FK_PurchaseOrders_PurchaseRequests" />
         <EntityTypeShape EntityType="Model.DefaultAccounts" Width="1.5" PointX="6.375" PointY="16.75" />
+        <EntityTypeShape EntityType="Model.Positions" Width="1.5" PointX="17.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
