@@ -40,14 +40,21 @@ namespace Win.Usr
 
                 if (MessageBox.Show("Do you want to submit this?", "Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
-                userRoles = new UserRoles()
-                {
-                    Id = userRoles.Id,
-                    Name = txtName.Text,
-                    Description = txtDescription.Text
-                };
                 var unitOfWork = new UnitOfWork();
-                unitOfWork.UserRolesRepo.Update(userRoles);
+                userRoles = unitOfWork.UserRolesRepo.Find(m => m.Id == userRoles.Id, "Functions");
+
+
+                userRoles.Name = txtName.Text;
+                userRoles.Description = txtDescription.Text;
+
+                //unitOfWork.FunctionsRepo.DeleteRange(m => m.UserRoles.Any(x => x.Id == userRoles.Id));
+                //List<string> function = cboFunctions.Properties.GetItems().GetCheckedValues().Select(x => x.ToString()).ToList();
+                //unitOfWork.FunctionsRepo.InsertRange(unitOfWork.FunctionsRepo.Get(x => function.Contains(x.Action)));
+                userRoles.Functions.Clear();
+                foreach (string i in cboFunctions.Properties.GetItems().GetCheckedValues())
+                {
+                    userRoles.Functions.Add(unitOfWork.FunctionsRepo.Find(m => m.Action == i, false));
+                }
                 unitOfWork.Save();
                 this.isClosed = true;
                 this.Close();
@@ -65,6 +72,9 @@ namespace Win.Usr
                 return;
             txtName.Text = userRoles.Name;
             txtDescription.Text = userRoles.Description;
+            
+            cboFunctions.Properties.DataSource = new BindingList<Functions>(new UnitOfWork().FunctionsRepo.Get());
+            cboFunctions.EditValue = userRoles.Actions;
         }
 
         public void Init()

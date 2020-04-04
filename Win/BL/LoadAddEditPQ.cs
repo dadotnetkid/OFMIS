@@ -109,7 +109,7 @@ namespace Win.BL
                             Id = item.Id
                         };
                         unitOfWork.PQDetailsRepo.Update(item);
-                   
+
                     }
                     unitOfWork.Save();
                     frmAddEditPQ.ItemsGridControl.DataSource =
@@ -197,12 +197,12 @@ namespace Win.BL
         {
             priceQuotations = new UnitOfWork().PriceQuotationsRepo.Find(m => m.Id == priceQuotations.Id);
             if (priceQuotations == null) return;
-
+            var staticSetting = new StaticSettings();
             frmAddEditPQ.dtDate.EditValue = priceQuotations.Date ?? DateTime.Now;
             frmAddEditPQ.txtControlNumber.Text = priceQuotations.ControlNo;
             frmAddEditPQ.txtDescription.Text = priceQuotations.Description;
-            frmAddEditPQ.txtPGSOfficer.Text = string.IsNullOrEmpty(priceQuotations.PGSOfficer) ? new StaticSettings().PGSO : priceQuotations.PGSOfficer;
-            frmAddEditPQ.txtPGSOPosition.Text = string.IsNullOrEmpty(priceQuotations.Position) ? new StaticSettings().PGSOPosition : priceQuotations.Position;
+            frmAddEditPQ.txtPGSOfficer.Text = string.IsNullOrEmpty(priceQuotations.PGSOfficer) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "PGSO")?.Person : priceQuotations.PGSOfficer;
+            frmAddEditPQ.txtPGSOPosition.Text = string.IsNullOrEmpty(priceQuotations.Position) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "PGSO")?.Position : priceQuotations.Position;
             frmAddEditPQ.ItemsGridControl.DataSource =
                 new BindingList<PQDetails>(new UnitOfWork().PQDetailsRepo.Get(m => m.PQId == priceQuotations.Id));
         }

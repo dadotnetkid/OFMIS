@@ -55,7 +55,7 @@ namespace Helpers
             string actionName = ActionName;//HttpContext.Current.Request.RequestContext.RouteData.Values["Action"].ToString();
             string controllerName = ControllerName;// HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
             var userId = HttpContext.Current.User.Identity.GetUserId();
-            var users = unitOfWork.UsersRepo.Fetch(m => m.Id == userId).Any(m => m.UserRoles.Any(x => x.UserRolesInActions.Any(u => u.Action.Contains(actionName))));
+            var users = unitOfWork.UsersRepo.Fetch(m => m.Id == userId).Any(m => m.UserRoles.Any(x => x.Functions.Any(u => u.Action.Contains(actionName))));
             return users;
         }
 

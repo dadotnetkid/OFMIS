@@ -12,22 +12,27 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserRoles
+    public partial class Payrolls
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserRoles()
+        public Payrolls()
         {
-            this.Users = new HashSet<Users>();
-            this.Functions = new HashSet<Functions>();
+            this.PayrollDetails = new HashSet<PayrollDetails>();
         }
     
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public int OBId { get; set; }
+        public string ControlNo { get; set; }
         public string Description { get; set; }
+        public string Title { get; set; }
+        public string ColumnTitle1 { get; set; }
+        public string ColumnTitle2 { get; set; }
+        public string ChiefOfOffice { get; set; }
+        public string Position { get; set; }
+        public string Accountant { get; set; }
+        public string Treasurer { get; set; }
     
+        public virtual Obligations Obligations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Functions> Functions { get; set; }
+        public virtual ICollection<PayrollDetails> PayrollDetails { get; set; }
     }
 }

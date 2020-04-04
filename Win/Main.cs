@@ -28,6 +28,8 @@ namespace Win
 
         private void btnObligation_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!User.UserInAction("Obligations"))
+                return;
             pnlMain.Controls.Clear();
             pnlMain.Controls.Add(new ucObligations() { Dock = DockStyle.Fill });
 
@@ -37,6 +39,8 @@ namespace Win
         {
             Form frm = new frmLogin();
             frm.ShowDialog();
+            lblUsername.Caption = $"Name: {User.GetFullName() }";
+            lblUserLevel.Caption = $"User Level: {User.GetUserLevel()}";
             var unitOfWork = new UnitOfWork();
             if (!unitOfWork.YearsRepo.Fetch().Any(x => x.IsActive == true))
             {
@@ -123,6 +127,21 @@ namespace Win
         {
             frmDefaultAccounts frm = new frmDefaultAccounts();
             frm.ShowDialog();
+        }
+
+        private void btnLogout_ItemPressed(object sender, DevExpress.XtraBars.Ribbon.BackstageViewItemEventArgs e)
+        {
+            backstageViewControl1.Close();
+            frmLogin frm = new frmLogin();
+            frm.ShowDialog();
+        }
+
+        private void btnClose_ItemClick(object sender, DevExpress.XtraBars.Ribbon.BackstageViewItemEventArgs e)
+        {
+
+            if (MessageBox.Show("Do you want to close this application?", "Close Application", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+            Application.Exit();
         }
     }
 }

@@ -16,7 +16,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>\\192.168.30.13\c%24\Installers\OFMIS\</PublishUrl>
+    <PublishUrl>ftp://66.42.60.93/wwwroot/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -26,10 +26,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://plgunv_adserver/ofmis/</InstallUrl>
+    <InstallUrl>http://ofmis.nuevavizcayagov.ml/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -104,6 +104,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Data.ConnectionUI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=f4ca07f51760da93, processorArchitecture=MSIL">
       <HintPath>..\..\..\Development Cache\.nuget\packages\DataConnectionDialog.1.2\Lib\Microsoft.Data.ConnectionUI.dll</HintPath>
     </Reference>
@@ -112,7 +115,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -151,6 +156,7 @@
     <Compile Include="BL\AddEditAppropriation.cs" />
     <Compile Include="BL\AddEditObligations.cs" />
     <Compile Include="BL\AddEditPayees.cs" />
+    <Compile Include="BL\AddEditPayroll.cs" />
     <Compile Include="BL\AddEditRealignment.cs" />
     <Compile Include="BL\EditDisbursementVoucher.cs" />
     <Compile Include="BL\ILoad.cs" />
@@ -161,6 +167,7 @@
     <Compile Include="BL\LoadAddEditPurchaseRequest.cs" />
     <Compile Include="BL\LoadAppropriations.cs" />
     <Compile Include="BL\LoadObligations.cs" />
+    <Compile Include="BL\LoadPayroll.cs" />
     <Compile Include="ConnectionDialog.cs" />
     <Compile Include="frmDefaultAccounts.cs">
       <SubType>Form</SubType>
@@ -264,6 +271,18 @@
     <Compile Include="Pyee\UCPayees.Designer.cs">
       <DependentUpon>UCPayees.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pyrll\frmAddEditPayroll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pyrll\frmAddEditPayroll.Designer.cs">
+      <DependentUpon>frmAddEditPayroll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pyrll\UCPayrolls.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pyrll\UCPayrolls.Designer.cs">
+      <DependentUpon>UCPayrolls.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rprts\rptObligationRequestPreview.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -352,6 +371,12 @@
     <Compile Include="Usr\frmAddEditUserLevel.Designer.cs">
       <DependentUpon>frmAddEditUserLevel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Usr\UCFunctions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Usr\UCFunctions.Designer.cs">
+      <DependentUpon>UCFunctions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Usr\UCUserLevels.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -427,6 +452,12 @@
     <EmbeddedResource Include="Pyee\UCPayees.resx">
       <DependentUpon>UCPayees.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pyrll\frmAddEditPayroll.resx">
+      <DependentUpon>frmAddEditPayroll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pyrll\UCPayrolls.resx">
+      <DependentUpon>UCPayrolls.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptObligationRequestPreview.resx">
       <DependentUpon>rptObligationRequestPreview.cs</DependentUpon>
     </EmbeddedResource>
@@ -480,6 +511,9 @@
     <EmbeddedResource Include="Usr\frmAddEditUserLevel.resx">
       <DependentUpon>frmAddEditUserLevel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Usr\UCFunctions.resx">
+      <DependentUpon>UCFunctions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Usr\UCUserLevels.resx">
       <DependentUpon>UCUserLevels.cs</DependentUpon>
     </EmbeddedResource>
@@ -529,6 +563,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

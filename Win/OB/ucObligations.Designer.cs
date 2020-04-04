@@ -108,6 +108,7 @@
             this.btnEditDV = new DevExpress.XtraEditors.SimpleButton();
             this.txtParticular = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.tabPayroll = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OBGridControl)).BeginInit();
@@ -754,6 +755,7 @@
             this.xtraTabControl1.TabIndex = 15;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
+            this.tabPayroll,
             this.xtraTabPage2});
             // 
             // xtraTabPage1
@@ -897,9 +899,15 @@
             // 
             this.labelControl15.Location = new System.Drawing.Point(10, 38);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(50, 13);
+            this.labelControl15.Size = new System.Drawing.Size(49, 13);
             this.labelControl15.TabIndex = 0;
             this.labelControl15.Text = "Particulars";
+            // 
+            // tabPayroll
+            // 
+            this.tabPayroll.Name = "tabPayroll";
+            this.tabPayroll.Size = new System.Drawing.Size(791, 259);
+            this.tabPayroll.Text = "Payroll";
             // 
             // ucObligations
             // 
@@ -1045,5 +1053,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl15;
         public DevExpress.XtraEditors.SimpleButton btnEditDV;
         private DevExpress.XtraEditors.SimpleButton btnPreview;
+        public DevExpress.XtraTab.XtraTabPage tabPayroll;
     }
 }

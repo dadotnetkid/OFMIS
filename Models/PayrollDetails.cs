@@ -12,9 +12,17 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Actions
+    public partial class PayrollDetails
     {
         public int Id { get; set; }
-        public string Action { get; set; }
+        public Nullable<int> PayrollId { get; set; }
+        public Nullable<int> ItemNumber { get; set; }
+        public string Name { get; set; }
+        public string Designation { get; set; }
+        public Nullable<decimal> ColumnTitle1 { get; set; }
+        public Nullable<decimal> ColumnTitle2 { get; set; }
+        public Nullable<decimal> Total { get; set; }
+    
+        public virtual Payrolls Payrolls { get; set; }
     }
 }

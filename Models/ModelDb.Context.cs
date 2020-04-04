@@ -25,14 +25,12 @@ namespace Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Actions> Actions { get; set; }
         public virtual DbSet<Logs> Logs { get; set; }
         public virtual DbSet<Provinces> Provinces { get; set; }
         public virtual DbSet<Towns> Towns { get; set; }
         public virtual DbSet<UserClaims> UserClaims { get; set; }
         public virtual DbSet<UserLogins> UserLogins { get; set; }
         public virtual DbSet<UserRoles> UserRoles { get; set; }
-        public virtual DbSet<UserRolesInActions> UserRolesInActions { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
@@ -57,5 +55,9 @@ namespace Models
         public virtual DbSet<PurchaseOrders> PurchaseOrders { get; set; }
         public virtual DbSet<DefaultAccounts> DefaultAccounts { get; set; }
         public virtual DbSet<Positions> Positions { get; set; }
+        public virtual DbSet<Functions> Functions { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<PayrollDetails> PayrollDetails { get; set; }
+        public virtual DbSet<Payrolls> Payrolls { get; set; }
     }
 }

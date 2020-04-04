@@ -16,6 +16,8 @@ namespace Win
 {
     public partial class frmLogin : DevExpress.XtraEditors.XtraForm
     {
+        private bool isClosed;
+
         public frmLogin()
         {
             InitializeComponent();
@@ -57,18 +59,26 @@ namespace Win
                 Settings.Default.RememberMe = chkRemember.Checked;
                 Settings.Default.Save();
             }
-
+            User.UserId = user.Id;
+            isClosed = true;
             this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.ExitThread();
         }
 
         private void btnServerSetup_Click(object sender, EventArgs e)
         {
             ConnectionDialog.ShowDialog();
+        }
+
+        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            if (!this.isClosed)
+                Application.ExitThread();
         }
     }
 }

@@ -38,10 +38,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cboFunctions = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboFunctions.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -50,7 +53,7 @@
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
-            this.btnClose.Location = new System.Drawing.Point(183, 129);
+            this.btnClose.Location = new System.Drawing.Point(183, 151);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(105, 31);
             this.btnClose.TabIndex = 81;
@@ -63,7 +66,7 @@
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(76, 129);
+            this.btnSave.Location = new System.Drawing.Point(76, 151);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(101, 31);
             this.btnSave.TabIndex = 80;
@@ -138,15 +141,39 @@
             this.pictureEdit1.Size = new System.Drawing.Size(78, 52);
             this.pictureEdit1.TabIndex = 0;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 130);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.TabIndex = 72;
+            this.label3.Text = "Description";
+            // 
+            // cboFunctions
+            // 
+            this.cboFunctions.Location = new System.Drawing.Point(76, 125);
+            this.cboFunctions.Name = "cboFunctions";
+            this.cboFunctions.Properties.AllowMultiSelect = true;
+            this.cboFunctions.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboFunctions.Properties.DisplayMember = "Action";
+            this.cboFunctions.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.cboFunctions.Properties.ValueMember = "Action";
+            this.cboFunctions.Size = new System.Drawing.Size(212, 20);
+            this.cboFunctions.TabIndex = 82;
+            // 
             // frmAddEditUserLevel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(298, 182);
+            this.ClientSize = new System.Drawing.Size(298, 200);
+            this.Controls.Add(this.cboFunctions);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtName);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
@@ -164,6 +191,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboFunctions.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,5 +208,7 @@
         private System.Windows.Forms.Panel panel1;
         public DevExpress.XtraEditors.LabelControl lblHeader;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private System.Windows.Forms.Label label3;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit cboFunctions;
     }
 }

@@ -28,6 +28,8 @@ namespace Win.OB
 
         private void btnNew_Click(object sender, EventArgs e)
         {
+            if (!User.UserInAction("Add Obligations"))
+                return;
             frmAddEditObligation frm = new frmAddEditObligation(MethodType.Add, null);
             frm.ShowDialog();
             loadObligations.Init();
@@ -55,10 +57,10 @@ namespace Win.OB
                 frmReportViewer frm = new frmReportViewer(new rptObligationRequestPreview()
                 {
                     DataSource = new UnitOfWork().ObligationsRepo.Get(m => m.Id == item.Id)
-            });
-            frm.ShowDialog();
-        }
+                });
+                frm.ShowDialog();
+            }
 
+        }
     }
-}
 }

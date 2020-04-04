@@ -23,8 +23,30 @@ namespace Models.Repository
 
         }
 
-    
-        private GenericRepository<Positions> _PositionsRepo;
+
+        private GenericRepository<PayrollDetails> _PayrollDetailsRepo;
+        public GenericRepository<PayrollDetails> PayrollDetailsRepo
+        {
+            get
+            {
+                if (this._PayrollDetailsRepo == null)
+                    this._PayrollDetailsRepo = new GenericRepository<PayrollDetails>(context);
+                return _PayrollDetailsRepo;
+            }
+            set { _PayrollDetailsRepo = value; }
+        }
+        private GenericRepository<Payrolls> _PayrollsRepo;
+        public GenericRepository<Payrolls> PayrollsRepo
+        {
+            get
+            {
+                if (this._PayrollsRepo == null)
+                    this._PayrollsRepo = new GenericRepository<Payrolls>(context);
+                return _PayrollsRepo;
+            }
+            set { _PayrollsRepo = value; }
+        }
+    private GenericRepository<Positions> _PositionsRepo;
         public GenericRepository<Positions> PositionsRepo
         {
             get
@@ -126,16 +148,16 @@ namespace Models.Repository
             }
             set { _ItemsRepo = value; }
         }
-        private GenericRepository<Signatories> _SignatoriesRepo;
-        public GenericRepository<Signatories> SignatoriesRepo
+        private GenericRepository<Signatories> _ChiefOfOfficesRepo;
+        public GenericRepository<Signatories> ChiefOfOfficesRepo
         {
             get
             {
-                if (this._SignatoriesRepo == null)
-                    this._SignatoriesRepo = new GenericRepository<Signatories>(context);
-                return _SignatoriesRepo;
+                if (this._ChiefOfOfficesRepo == null)
+                    this._ChiefOfOfficesRepo = new GenericRepository<Signatories>(context);
+                return _ChiefOfOfficesRepo;
             }
-            set { _SignatoriesRepo = value; }
+            set { _ChiefOfOfficesRepo = value; }
         }
 
         private GenericRepository<DefaultSettings> _DefaultSettingsRepo;
@@ -336,30 +358,18 @@ namespace Models.Repository
             set { _TownsRepo = value; }
         }
 
-        private GenericRepository<Actions> _ActionsRepo;
-        public GenericRepository<Actions> ActionsRepo
+
+        private GenericRepository<Functions> _FunctionsRepo;
+        public GenericRepository<Functions> FunctionsRepo
         {
             get
             {
-                if (this._ActionsRepo == null)
-                    this._ActionsRepo = new GenericRepository<Actions>(context);
-                return _ActionsRepo;
+                if (this._FunctionsRepo == null)
+                    this._FunctionsRepo = new GenericRepository<Functions>(context);
+                return _FunctionsRepo;
             }
-            set { _ActionsRepo = value; }
+            set { _FunctionsRepo = value; }
         }
-
-        private GenericRepository<UserRolesInActions> _UserRolesInActionsRepo;
-        public GenericRepository<UserRolesInActions> UserRolesInActionsRepo
-        {
-            get
-            {
-                if (this._UserRolesInActionsRepo == null)
-                    this._UserRolesInActionsRepo = new GenericRepository<UserRolesInActions>(context);
-                return _UserRolesInActionsRepo;
-            }
-            set { _UserRolesInActionsRepo = value; }
-        }
-
 
 
 

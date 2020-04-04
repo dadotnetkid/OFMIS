@@ -163,6 +163,10 @@ namespace Win.BL
             //    return;
             try
             {
+
+                var staticSetting = new StaticSettings();
+
+                var chiefOfOffice = new UnitOfWork().ChiefOfOfficesRepo.Find(m => m.Year == staticSetting.Year);
                 var item = obligations;
                 if (item == null) return;
                 frm.txtDate.EditValue = item.Date;
@@ -183,10 +187,10 @@ namespace Win.BL
                 frm.chkClosed.CheckState = item.Status == "Closed" ? CheckState.Checked : CheckState.Unchecked;
                 frm.chkEarmarked.Checked = item.Earmarked ?? false;
                 frm.ORDetailGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails.ToList());
-                frm.txtBudgetOfficer.Text = string.IsNullOrWhiteSpace(item.PBO) ? new StaticSettings().PBO : item.PBO;
-                frm.txtPBOPos.Text = string.IsNullOrWhiteSpace(item.PBOPos) ? new StaticSettings().PBOPos : item.PBOPos;
-                frm.txtChiefOfficer.Text = string.IsNullOrWhiteSpace(item.Chief) ? new StaticSettings().ChiefOfOffice : item.Chief;
-                frm.txtChiefPosition.Text = string.IsNullOrWhiteSpace(item.ChiefPosition) ? new StaticSettings().ChiefOfOfficePos : item.ChiefPosition;
+                frm.txtBudgetOfficer.Text = string.IsNullOrWhiteSpace(item.PBO) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "Provincial Budget Office")?.Person : item.PBO;
+                frm.txtPBOPos.Text = string.IsNullOrWhiteSpace(item.PBOPos) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "Provincial Budget Office")?.Position : item.PBOPos;
+                frm.txtChiefOfficer.Text = string.IsNullOrWhiteSpace(item.Chief) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "PITD")?.Person : item.Chief;
+                frm.txtChiefPosition.Text = string.IsNullOrWhiteSpace(item.ChiefPosition) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "PITD")?.Position : item.ChiefPosition;
 
             }
             catch (Exception e)

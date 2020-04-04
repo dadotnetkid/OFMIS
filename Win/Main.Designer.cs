@@ -57,12 +57,16 @@
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.pnlMain = new DevExpress.XtraEditors.PanelControl();
+            this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
+            this.btnClose = new DevExpress.XtraBars.Ribbon.BackstageViewButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
             // 
+            this.ribbonControl1.ApplicationButtonDropDownControl = this.backstageViewControl1;
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
@@ -95,7 +99,7 @@
             // 
             // lblUsername
             // 
-            this.lblUsername.Caption = "Name: Mark Christopher Cacal";
+            this.lblUsername.Caption = "Name: ";
             this.lblUsername.Id = 3;
             this.lblUsername.Name = "lblUsername";
             // 
@@ -314,12 +318,29 @@
             this.pnlMain.Size = new System.Drawing.Size(981, 491);
             this.pnlMain.TabIndex = 4;
             // 
+            // backstageViewControl1
+            // 
+            this.backstageViewControl1.Items.Add(this.btnClose);
+            this.backstageViewControl1.Location = new System.Drawing.Point(77, 231);
+            this.backstageViewControl1.Name = "backstageViewControl1";
+            this.backstageViewControl1.OwnerControl = this.ribbonControl1;
+            this.backstageViewControl1.Size = new System.Drawing.Size(480, 229);
+            this.backstageViewControl1.TabIndex = 7;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Caption = "Close";
+            this.btnClose.ImageOptions.ItemNormal.Image = ((System.Drawing.Image)(resources.GetObject("backstageViewButtonItem1.ImageOptions.ItemNormal.Image")));
+            this.btnClose.Name = "btnClose";
+            this.btnClose.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(this.btnClose_ItemClick);
+            // 
             // Main
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.True;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(981, 667);
+            this.Controls.Add(this.backstageViewControl1);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
@@ -332,6 +353,7 @@
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,6 +389,8 @@
         private DevExpress.XtraBars.BarButtonItem btnUserlevel;
         private DevExpress.XtraBars.BarButtonItem btnPayees;
         private DevExpress.XtraBars.BarButtonItem btnDefaultAccounts;
+        private DevExpress.XtraBars.Ribbon.BackstageViewControl backstageViewControl1;
+        private DevExpress.XtraBars.Ribbon.BackstageViewButtonItem btnClose;
     }
 }
 

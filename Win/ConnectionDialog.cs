@@ -22,7 +22,7 @@ namespace Win
             DataConnectionDialog.Show(cd);
             Settings.Default.ConnectionString = cd.ConnectionString;
             Settings.Default.Save();
-     
+            Models.DataSource.ConnectionString= cd.ConnectionString;
             return cd.ConnectionString;
         }
     }

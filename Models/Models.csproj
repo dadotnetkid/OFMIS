@@ -140,9 +140,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions.cs">
-      <DependentUpon>ModelDb.tt</DependentUpon>
-    </Compile>
     <Compile Include="Allotments.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
@@ -169,6 +166,9 @@
     <Compile Include="Enums.cs" />
     <Compile Include="ForgotPassword.cs" />
     <Compile Include="FormProperties.cs" />
+    <Compile Include="Functions.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="FundTypePartial.cs" />
     <Compile Include="FundTypes.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
@@ -207,6 +207,12 @@
     </Compile>
     <Compile Include="PayeePartial.cs" />
     <Compile Include="Payees.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PayrollDetails.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payrolls.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="PODetails.cs">
@@ -253,6 +259,9 @@
     <Compile Include="Suppliers.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Towns.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
@@ -264,9 +273,6 @@
     </Compile>
     <Compile Include="UserPartial.cs" />
     <Compile Include="UserRoles.cs">
-      <DependentUpon>ModelDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserRolesInActions.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="UserRolesPartial.cs" />

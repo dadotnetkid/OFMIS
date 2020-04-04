@@ -19,7 +19,7 @@ namespace Models
             {
 
                 if (string.IsNullOrEmpty(actions))
-                    actions = string.Join(", ", this.UserRolesInActions.Select(x => x.Action));
+                    actions = string.Join(", ", this.Functions.Select(x => x.Action));
                 return actions;
             }
             set { actions = value; }
@@ -32,7 +32,7 @@ namespace Models
             {
 
                 if (string.IsNullOrEmpty(actions))
-                    _ids = string.Join(", ", this.UserRolesInActions.Select(x => x.Id));
+                    _ids = string.Join(", ", this.Functions.Select(x => x.Id));
                 return _ids;
             }
             set { _ids = value; }

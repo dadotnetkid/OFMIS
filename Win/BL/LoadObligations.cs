@@ -10,6 +10,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using Models;
 using Models.Repository;
 using Win.OB;
+using Win.Pyrll;
 
 namespace Win.BL
 {
@@ -111,6 +112,8 @@ namespace Win.BL
                 uc.txtBudgetCtl.Text = item.BudgetControlNo;
                 uc.txtParticular.Text = item.DVParticular;
                 uc.ORDetailGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails.ToList());
+                uc.tabPayroll.Controls.Clear();
+                uc.tabPayroll.Controls.Add(new UCPayrolls(item.Payrolls) { Dock = DockStyle.Fill }));
             }
             catch (Exception exception)
             {

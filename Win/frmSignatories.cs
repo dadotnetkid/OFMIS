@@ -33,7 +33,7 @@ namespace Win
                 if (SignatoriesGridView.GetFocusedRow() is Signatories item)
                 {
                     UnitOfWork unitOfWork = new UnitOfWork();
-                    unitOfWork.SignatoriesRepo.Delete(item);
+                    unitOfWork.ChiefOfOfficesRepo.Delete(item);
                     unitOfWork.Save();
                     Init();
                 }
@@ -58,11 +58,11 @@ namespace Win
                 if (item.Id == 0)
                 {
 
-                    unitOfWork.SignatoriesRepo.Insert(item);
+                    unitOfWork.ChiefOfOfficesRepo.Insert(item);
                 }
                 else
                 {
-                    unitOfWork.SignatoriesRepo.Update(item);
+                    unitOfWork.ChiefOfOfficesRepo.Update(item);
                 }
 
                 unitOfWork.Save();
@@ -73,7 +73,7 @@ namespace Win
         public void Init()
         {
             var year = new StaticSettings().Year;
-            gridControl1.DataSource = new BindingList<Signatories>(new UnitOfWork().SignatoriesRepo.Get(m => m.Year == year));
+            gridControl1.DataSource = new BindingList<Signatories>(new UnitOfWork().ChiefOfOfficesRepo.Get(m => m.Year == year));
             cboPosition.DataSource = new EntityServerModeSource()
             {
                 QueryableSource = new UnitOfWork().PositionsRepo.Fetch(),

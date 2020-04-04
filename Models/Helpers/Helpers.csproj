@@ -130,18 +130,6 @@
     <Compile Include="ControllerHelpers.cs" />
     <Compile Include="CriteriaEvaluator.cs" />
     <Compile Include="Cryptography.cs" />
-    <Compile Include="Custom\MultiColumnComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Custom\_MaskedTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Custom\_MultiColumnComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Custom\_MultiColumnComboPopup.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="ExcelHelper.cs" />
     <Compile Include="NetworkShareAccesser.cs" />
     <Compile Include="PrincipalHelpers.cs" />
@@ -157,15 +145,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Custom\_MaskedTextBox.resx">
-      <DependentUpon>_MaskedTextBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Custom\_MultiColumnComboBox.resx">
-      <DependentUpon>_MultiColumnComboBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Custom\_MultiColumnComboPopup.resx">
-      <DependentUpon>_MultiColumnComboPopup.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>

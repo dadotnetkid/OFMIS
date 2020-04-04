@@ -12,12 +12,12 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserRolesInActions
+    public partial class sysdiagrams
     {
-        public int Id { get; set; }
-        public string RoleId { get; set; }
-        public string Action { get; set; }
-    
-        public virtual UserRoles UserRoles { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

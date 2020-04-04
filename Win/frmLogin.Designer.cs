@@ -89,7 +89,7 @@
             // 
             this.labelControl1.Location = new System.Drawing.Point(144, 21);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(34, 13);
+            this.labelControl1.Size = new System.Drawing.Size(37, 13);
             this.labelControl1.TabIndex = 10;
             this.labelControl1.Text = "TODAY";
             // 
@@ -97,7 +97,7 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(121, 49);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(54, 13);
+            this.labelControl2.Size = new System.Drawing.Size(61, 13);
             this.labelControl2.TabIndex = 10;
             this.labelControl2.Text = "USERNAME";
             // 
@@ -105,7 +105,7 @@
             // 
             this.labelControl3.Location = new System.Drawing.Point(128, 77);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(49, 13);
+            this.labelControl3.Size = new System.Drawing.Size(55, 13);
             this.labelControl3.TabIndex = 11;
             this.labelControl3.Text = "PASSWRD";
             // 
@@ -177,6 +177,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLogin_FormClosing);
             this.Load += new System.EventHandler(this.frmLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtToday.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();

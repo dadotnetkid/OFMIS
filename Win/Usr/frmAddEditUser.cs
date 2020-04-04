@@ -12,6 +12,7 @@ using System.Data.Entity;
 using Helpers;
 using Models;
 using Models.Repository;
+using Models.Startups;
 using Win.BL;
 
 namespace Win.Usr
@@ -36,7 +37,7 @@ namespace Win.Usr
         private Users user;
         private bool isClosed;
 
-        public void Save()
+        public async void Save()
         {
             try
             {
@@ -46,23 +47,24 @@ namespace Win.Usr
 
 
                 UnitOfWork unitOfWork = new UnitOfWork();
-                user = new UnitOfWork().UsersRepo.Find(m => m.Id == user.Id,includeProperties:"UserRoles");
+                user = new UnitOfWork().UsersRepo.Find(m => m.Id == user.Id, includeProperties: "UserRoles");
                 user.SecurityStamp = Guid.NewGuid().ToString();
                 user.FirstName = txtFirstName.Text;
                 user.MiddleName = txtMiddleName.Text;
                 user.UserName = txtUserName.Text;
                 user.PasswordHash = Cryptography.Encrypt(txtPassword.Text, user.SecurityStamp);
-                user.UserRoles.Clear();
+                unitOfWork.Save();
+
+
+                ApplicationUserManager applicationUserManager =
+                    new ApplicationUserManager(new UserStores(new ModelDb()));
+                var roles = await applicationUserManager.GetRolesAsync(user.Id);
+                await applicationUserManager.RemoveFromRolesAsync(user.Id, roles.ToArray());
                 foreach (string i in cboUserRole.Properties.GetItems().GetCheckedValues())
                 {
-                    var role = new UnitOfWork().UserRolesRepo.Find(m => m.Name == i);
-                    user.UserRoles.Add(new UserRoles()
-                    {
-                        Id=role.Id,
-                        
-                    });
+                    await applicationUserManager.AddToRoleAsync(user.Id, i);
                 }
-                unitOfWork.Save();
+
 
                 this.isClosed = true;
                 this.Close();
