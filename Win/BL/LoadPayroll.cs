@@ -16,17 +16,14 @@ namespace Win.BL
         private UCPayrolls uCPayrolls;
         private Payrolls payrolls;
         internal SimpleButton btnEditNew;
+        private int obId;
 
 
-        public LoadPayroll(Action<LoadPayroll> action)
-        {
-            
-        }
-
-        public LoadPayroll(UCPayrolls uCPayrolls, Payrolls payrolls)
+        public LoadPayroll(UCPayrolls uCPayrolls, int obId)
         {
             this.uCPayrolls = uCPayrolls;
-            this.payrolls = payrolls;
+            this.obId = obId;
+            payrolls = new UnitOfWork().PayrollsRepo.Find(m => m.Id == obId);
             btnEditNew = uCPayrolls.btnEditNew;
             btnEditNew.Click += BtnEditNew_Click;
         }
@@ -39,18 +36,26 @@ namespace Win.BL
             }
         }
 
-      
+
         private void BtnEditNew_Click(object sender, EventArgs e)
         {
-                AddEditPayroll addEditPayroll = new AddEditPayroll(null);
+            frmAddEditPayroll frm;
+            if (payrolls == null)
+                frm = new frmAddEditPayroll(MethodType.Add, obId);
+            else
+                frm = new frmAddEditPayroll(MethodType.Edit, obId);
+            frm.ShowDialog();
+            Init();
+
         }
 
         public void Init()
         {
             uCPayrolls.PayrollGridControl.DataSource = new EntityServerModeSource()
             {
-                QueryableSource = new UnitOfWork().PayrollDetailsRepo.Fetch(m => m.PayrollId == payrolls.Id)
+                QueryableSource = new UnitOfWork().PayrollDetailsRepo.Fetch(m => m.PayrollId == obId)
             };
+            payrolls = new UnitOfWork().PayrollsRepo.Find(m => m.Id == obId);
             if (payrolls == null)
                 btnEditNew.Text = "New Payroll";
             else

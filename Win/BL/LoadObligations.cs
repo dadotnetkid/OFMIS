@@ -113,7 +113,7 @@ namespace Win.BL
                 uc.txtParticular.Text = item.DVParticular;
                 uc.ORDetailGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails.ToList());
                 uc.tabPayroll.Controls.Clear();
-                uc.tabPayroll.Controls.Add(new UCPayrolls(item.Payrolls) { Dock = DockStyle.Fill }));
+                uc.tabPayroll.Controls.Add(new UCPayrolls(item.Id) { Dock = DockStyle.Fill });
             }
             catch (Exception exception)
             {

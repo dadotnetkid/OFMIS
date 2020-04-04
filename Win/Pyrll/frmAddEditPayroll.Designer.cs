@@ -29,31 +29,31 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditPayroll));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions5 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions6 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.txtChiefPosition = new DevExpress.XtraEditors.TextEdit();
+            this.txtTreasurer = new DevExpress.XtraEditors.TextEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.txtChiefOfficer = new DevExpress.XtraEditors.TextEdit();
+            this.txtAccountant = new DevExpress.XtraEditors.TextEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.txtPBOPos = new DevExpress.XtraEditors.TextEdit();
+            this.txtGovernor = new DevExpress.XtraEditors.TextEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
-            this.txtBudgetOfficer = new DevExpress.XtraEditors.TextEdit();
+            this.txtPosition = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.txtDescription = new DevExpress.XtraEditors.TextEdit();
-            this.txtAddress = new DevExpress.XtraEditors.TextEdit();
-            this.txtOffice = new DevExpress.XtraEditors.TextEdit();
-            this.txtPBOControl = new DevExpress.XtraEditors.TextEdit();
+            this.txtChief = new DevExpress.XtraEditors.TextEdit();
+            this.txtColumn2 = new DevExpress.XtraEditors.TextEdit();
+            this.txtColumn1 = new DevExpress.XtraEditors.TextEdit();
+            this.txtPayDescription = new DevExpress.XtraEditors.TextEdit();
             this.txtControl = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -62,7 +62,6 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.cboPayee = new DevExpress.XtraEditors.LookUpEdit();
             this.txtDate = new DevExpress.XtraEditors.DateEdit();
             this.PayrollGridControl = new DevExpress.XtraGrid.GridControl();
             this.PayrollGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -80,18 +79,18 @@
             this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.txtPayTitle = new DevExpress.XtraEditors.TextEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtChiefPosition.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtChiefOfficer.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPBOPos.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBudgetOfficer.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOffice.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPBOControl.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTreasurer.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAccountant.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGovernor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtChief.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtColumn2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtColumn1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPayDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControl.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboPayee.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PayrollGridControl)).BeginInit();
@@ -100,6 +99,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnDeletePayrollRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinItemNumberRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinTotalRepo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPayTitle.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -142,14 +142,14 @@
             this.pictureEdit1.Size = new System.Drawing.Size(78, 52);
             this.pictureEdit1.TabIndex = 0;
             // 
-            // txtChiefPosition
+            // txtTreasurer
             // 
-            this.txtChiefPosition.Location = new System.Drawing.Point(97, 280);
-            this.txtChiefPosition.Name = "txtChiefPosition";
-            this.txtChiefPosition.Properties.ReadOnly = true;
-            this.txtChiefPosition.Properties.UseReadOnlyAppearance = false;
-            this.txtChiefPosition.Size = new System.Drawing.Size(716, 20);
-            this.txtChiefPosition.TabIndex = 41;
+            this.txtTreasurer.Location = new System.Drawing.Point(97, 280);
+            this.txtTreasurer.Name = "txtTreasurer";
+            this.txtTreasurer.Properties.ReadOnly = true;
+            this.txtTreasurer.Properties.UseReadOnlyAppearance = false;
+            this.txtTreasurer.Size = new System.Drawing.Size(716, 20);
+            this.txtTreasurer.TabIndex = 41;
             // 
             // labelControl9
             // 
@@ -161,14 +161,14 @@
             this.labelControl9.TabIndex = 51;
             this.labelControl9.Text = "Treasurer";
             // 
-            // txtChiefOfficer
+            // txtAccountant
             // 
-            this.txtChiefOfficer.Location = new System.Drawing.Point(97, 258);
-            this.txtChiefOfficer.Name = "txtChiefOfficer";
-            this.txtChiefOfficer.Properties.ReadOnly = true;
-            this.txtChiefOfficer.Properties.UseReadOnlyAppearance = false;
-            this.txtChiefOfficer.Size = new System.Drawing.Size(716, 20);
-            this.txtChiefOfficer.TabIndex = 39;
+            this.txtAccountant.Location = new System.Drawing.Point(97, 258);
+            this.txtAccountant.Name = "txtAccountant";
+            this.txtAccountant.Properties.ReadOnly = true;
+            this.txtAccountant.Properties.UseReadOnlyAppearance = false;
+            this.txtAccountant.Size = new System.Drawing.Size(716, 20);
+            this.txtAccountant.TabIndex = 39;
             // 
             // labelControl8
             // 
@@ -180,14 +180,14 @@
             this.labelControl8.TabIndex = 50;
             this.labelControl8.Text = "Accountant";
             // 
-            // txtPBOPos
+            // txtGovernor
             // 
-            this.txtPBOPos.Location = new System.Drawing.Point(97, 236);
-            this.txtPBOPos.Name = "txtPBOPos";
-            this.txtPBOPos.Properties.ReadOnly = true;
-            this.txtPBOPos.Properties.UseReadOnlyAppearance = false;
-            this.txtPBOPos.Size = new System.Drawing.Size(716, 20);
-            this.txtPBOPos.TabIndex = 38;
+            this.txtGovernor.Location = new System.Drawing.Point(97, 236);
+            this.txtGovernor.Name = "txtGovernor";
+            this.txtGovernor.Properties.ReadOnly = true;
+            this.txtGovernor.Properties.UseReadOnlyAppearance = false;
+            this.txtGovernor.Size = new System.Drawing.Size(716, 20);
+            this.txtGovernor.TabIndex = 38;
             // 
             // labelControl11
             // 
@@ -199,14 +199,14 @@
             this.labelControl11.TabIndex = 48;
             this.labelControl11.Text = "Governor";
             // 
-            // txtBudgetOfficer
+            // txtPosition
             // 
-            this.txtBudgetOfficer.Location = new System.Drawing.Point(97, 214);
-            this.txtBudgetOfficer.Name = "txtBudgetOfficer";
-            this.txtBudgetOfficer.Properties.ReadOnly = true;
-            this.txtBudgetOfficer.Properties.UseReadOnlyAppearance = false;
-            this.txtBudgetOfficer.Size = new System.Drawing.Size(716, 20);
-            this.txtBudgetOfficer.TabIndex = 37;
+            this.txtPosition.Location = new System.Drawing.Point(97, 214);
+            this.txtPosition.Name = "txtPosition";
+            this.txtPosition.Properties.ReadOnly = true;
+            this.txtPosition.Properties.UseReadOnlyAppearance = false;
+            this.txtPosition.Size = new System.Drawing.Size(716, 20);
+            this.txtPosition.TabIndex = 37;
             // 
             // labelControl7
             // 
@@ -218,39 +218,39 @@
             this.labelControl7.TabIndex = 49;
             this.labelControl7.Text = "Position";
             // 
-            // txtDescription
+            // txtChief
             // 
-            this.txtDescription.Location = new System.Drawing.Point(97, 192);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Properties.UseReadOnlyAppearance = false;
-            this.txtDescription.Size = new System.Drawing.Size(716, 20);
-            this.txtDescription.TabIndex = 36;
+            this.txtChief.Location = new System.Drawing.Point(97, 192);
+            this.txtChief.Name = "txtChief";
+            this.txtChief.Properties.UseReadOnlyAppearance = false;
+            this.txtChief.Size = new System.Drawing.Size(716, 20);
+            this.txtChief.TabIndex = 36;
             // 
-            // txtAddress
+            // txtColumn2
             // 
-            this.txtAddress.Location = new System.Drawing.Point(97, 170);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Properties.UseReadOnlyAppearance = false;
-            this.txtAddress.Size = new System.Drawing.Size(716, 20);
-            this.txtAddress.TabIndex = 35;
+            this.txtColumn2.Location = new System.Drawing.Point(97, 170);
+            this.txtColumn2.Name = "txtColumn2";
+            this.txtColumn2.Properties.UseReadOnlyAppearance = false;
+            this.txtColumn2.Size = new System.Drawing.Size(716, 20);
+            this.txtColumn2.TabIndex = 35;
             // 
-            // txtOffice
+            // txtColumn1
             // 
-            this.txtOffice.Location = new System.Drawing.Point(97, 148);
-            this.txtOffice.Name = "txtOffice";
-            this.txtOffice.Properties.UseReadOnlyAppearance = false;
-            this.txtOffice.Size = new System.Drawing.Size(716, 20);
-            this.txtOffice.TabIndex = 34;
+            this.txtColumn1.Location = new System.Drawing.Point(97, 148);
+            this.txtColumn1.Name = "txtColumn1";
+            this.txtColumn1.Properties.UseReadOnlyAppearance = false;
+            this.txtColumn1.Size = new System.Drawing.Size(716, 20);
+            this.txtColumn1.TabIndex = 34;
             // 
-            // txtPBOControl
+            // txtPayDescription
             // 
-            this.txtPBOControl.EditValue = "WE HEREBY ACKNOWLEDGE RECEIPT of the sum shown opposite our names as full compens" +
+            this.txtPayDescription.EditValue = "WE HEREBY ACKNOWLEDGE RECEIPT of the sum shown opposite our names as full compens" +
     "ation for the services rendered to the period stated";
-            this.txtPBOControl.Location = new System.Drawing.Point(97, 104);
-            this.txtPBOControl.Name = "txtPBOControl";
-            this.txtPBOControl.Properties.UseReadOnlyAppearance = false;
-            this.txtPBOControl.Size = new System.Drawing.Size(716, 20);
-            this.txtPBOControl.TabIndex = 32;
+            this.txtPayDescription.Location = new System.Drawing.Point(97, 104);
+            this.txtPayDescription.Name = "txtPayDescription";
+            this.txtPayDescription.Properties.UseReadOnlyAppearance = false;
+            this.txtPayDescription.Size = new System.Drawing.Size(716, 20);
+            this.txtPayDescription.TabIndex = 32;
             // 
             // txtControl
             // 
@@ -330,26 +330,6 @@
             this.labelControl1.TabIndex = 40;
             this.labelControl1.Text = "Date";
             // 
-            // cboPayee
-            // 
-            this.cboPayee.Location = new System.Drawing.Point(97, 126);
-            this.cboPayee.Name = "cboPayee";
-            this.cboPayee.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboPayee.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Office", "Office"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Address", "Address"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Description", "Description")});
-            this.cboPayee.Properties.DisplayMember = "Name";
-            this.cboPayee.Properties.NullText = "";
-            this.cboPayee.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            this.cboPayee.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.cboPayee.Properties.UseReadOnlyAppearance = false;
-            this.cboPayee.Properties.ValueMember = "Id";
-            this.cboPayee.Size = new System.Drawing.Size(716, 20);
-            this.cboPayee.TabIndex = 33;
-            // 
             // txtDate
             // 
             this.txtDate.EditValue = null;
@@ -400,6 +380,8 @@
             this.colTotal});
             this.PayrollGridView.GridControl = this.PayrollGridControl;
             this.PayrollGridView.Name = "PayrollGridView";
+            this.PayrollGridView.OptionsNavigation.AutoFocusNewRow = true;
+            this.PayrollGridView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.PayrollGridView.OptionsView.ShowGroupPanel = false;
             // 
             // colEdit
@@ -411,9 +393,9 @@
             // btnEditPayrollRepo
             // 
             this.btnEditPayrollRepo.AutoHeight = false;
-            editorButtonImageOptions5.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions5.Image")));
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.btnEditPayrollRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditPayrollRepo.Name = "btnEditPayrollRepo";
             this.btnEditPayrollRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -421,14 +403,16 @@
             // 
             this.colDelete.ColumnEdit = this.btnDeletePayrollRepo;
             this.colDelete.Name = "colDelete";
-            this.colDelete.Width = 20;
+            this.colDelete.Visible = true;
+            this.colDelete.VisibleIndex = 0;
+            this.colDelete.Width = 37;
             // 
             // btnDeletePayrollRepo
             // 
             this.btnDeletePayrollRepo.AutoHeight = false;
-            editorButtonImageOptions6.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions6.Image")));
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
             this.btnDeletePayrollRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDeletePayrollRepo.Name = "btnDeletePayrollRepo";
             this.btnDeletePayrollRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -439,7 +423,8 @@
             this.colNo.FieldName = "ItemNumber";
             this.colNo.Name = "colNo";
             this.colNo.Visible = true;
-            this.colNo.VisibleIndex = 0;
+            this.colNo.VisibleIndex = 1;
+            this.colNo.Width = 50;
             // 
             // spinItemNumberRepo
             // 
@@ -454,7 +439,7 @@
             this.colName.FieldName = "Name";
             this.colName.Name = "colName";
             this.colName.Visible = true;
-            this.colName.VisibleIndex = 1;
+            this.colName.VisibleIndex = 2;
             // 
             // colDesignation
             // 
@@ -462,39 +447,56 @@
             this.colDesignation.FieldName = "Designation";
             this.colDesignation.Name = "colDesignation";
             this.colDesignation.Visible = true;
-            this.colDesignation.VisibleIndex = 2;
+            this.colDesignation.VisibleIndex = 3;
             // 
             // colTItle1
             // 
             this.colTItle1.Caption = "Column Title1";
             this.colTItle1.ColumnEdit = this.spinTotalRepo;
-            this.colTItle1.FieldName = "Title1";
+            this.colTItle1.DisplayFormat.FormatString = "n2";
+            this.colTItle1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.colTItle1.FieldName = "ColumnTitle1";
             this.colTItle1.Name = "colTItle1";
+            this.colTItle1.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.colTItle1.Visible = true;
-            this.colTItle1.VisibleIndex = 3;
+            this.colTItle1.VisibleIndex = 4;
+            this.colTItle1.Width = 127;
             // 
             // spinTotalRepo
             // 
             this.spinTotalRepo.AutoHeight = false;
             this.spinTotalRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinTotalRepo.DisplayFormat.FormatString = "n2";
+            this.spinTotalRepo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.spinTotalRepo.EditFormat.FormatString = "n2";
+            this.spinTotalRepo.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.spinTotalRepo.Name = "spinTotalRepo";
             // 
             // colTitle2
             // 
             this.colTitle2.Caption = "Column Title 2";
-            this.colTitle2.FieldName = "Title2";
+            this.colTitle2.DisplayFormat.FormatString = "n2";
+            this.colTitle2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.colTitle2.FieldName = "ColumnTitle2";
             this.colTitle2.Name = "colTitle2";
+            this.colTitle2.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.colTitle2.Visible = true;
-            this.colTitle2.VisibleIndex = 4;
+            this.colTitle2.VisibleIndex = 5;
             // 
             // colTotal
             // 
             this.colTotal.Caption = "Total";
+            this.colTotal.ColumnEdit = this.spinTotalRepo;
+            this.colTotal.DisplayFormat.FormatString = "n2";
+            this.colTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colTotal.FieldName = "Total";
             this.colTotal.Name = "colTotal";
+            this.colTotal.OptionsColumn.ReadOnly = true;
+            this.colTotal.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.colTotal.Visible = true;
-            this.colTotal.VisibleIndex = 5;
+            this.colTotal.VisibleIndex = 6;
+            this.colTotal.Width = 90;
             // 
             // btnClose
             // 
@@ -520,6 +522,14 @@
             this.btnSave.TabIndex = 53;
             this.btnSave.Text = "Save ";
             // 
+            // txtPayTitle
+            // 
+            this.txtPayTitle.Location = new System.Drawing.Point(97, 126);
+            this.txtPayTitle.Name = "txtPayTitle";
+            this.txtPayTitle.Properties.UseReadOnlyAppearance = false;
+            this.txtPayTitle.Size = new System.Drawing.Size(716, 20);
+            this.txtPayTitle.TabIndex = 33;
+            // 
             // frmAddEditPayroll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -528,18 +538,18 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.PayrollGridControl);
-            this.Controls.Add(this.txtChiefPosition);
+            this.Controls.Add(this.txtTreasurer);
             this.Controls.Add(this.labelControl9);
-            this.Controls.Add(this.txtChiefOfficer);
+            this.Controls.Add(this.txtAccountant);
             this.Controls.Add(this.labelControl8);
-            this.Controls.Add(this.txtPBOPos);
+            this.Controls.Add(this.txtGovernor);
             this.Controls.Add(this.labelControl11);
-            this.Controls.Add(this.txtBudgetOfficer);
+            this.Controls.Add(this.txtPosition);
             this.Controls.Add(this.labelControl7);
-            this.Controls.Add(this.txtDescription);
-            this.Controls.Add(this.txtAddress);
-            this.Controls.Add(this.txtOffice);
-            this.Controls.Add(this.txtPBOControl);
+            this.Controls.Add(this.txtChief);
+            this.Controls.Add(this.txtColumn2);
+            this.Controls.Add(this.txtColumn1);
+            this.Controls.Add(this.txtPayDescription);
             this.Controls.Add(this.txtControl);
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.labelControl5);
@@ -548,24 +558,23 @@
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.cboPayee);
             this.Controls.Add(this.txtDate);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.txtPayTitle);
             this.Name = "frmAddEditPayroll";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add/Edit Payroll";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtChiefPosition.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtChiefOfficer.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPBOPos.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBudgetOfficer.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOffice.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPBOControl.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTreasurer.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAccountant.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGovernor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtChief.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtColumn2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtColumn1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPayDescription.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControl.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboPayee.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PayrollGridControl)).EndInit();
@@ -574,6 +583,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnDeletePayrollRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinItemNumberRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinTotalRepo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPayTitle.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -584,18 +594,18 @@
         private System.Windows.Forms.Panel panel1;
         public DevExpress.XtraEditors.LabelControl lblHeader;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
-        public DevExpress.XtraEditors.TextEdit txtChiefPosition;
+        public DevExpress.XtraEditors.TextEdit txtTreasurer;
         private DevExpress.XtraEditors.LabelControl labelControl9;
-        public DevExpress.XtraEditors.TextEdit txtChiefOfficer;
+        public DevExpress.XtraEditors.TextEdit txtAccountant;
         private DevExpress.XtraEditors.LabelControl labelControl8;
-        public DevExpress.XtraEditors.TextEdit txtPBOPos;
+        public DevExpress.XtraEditors.TextEdit txtGovernor;
         private DevExpress.XtraEditors.LabelControl labelControl11;
-        public DevExpress.XtraEditors.TextEdit txtBudgetOfficer;
+        public DevExpress.XtraEditors.TextEdit txtPosition;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        public DevExpress.XtraEditors.TextEdit txtDescription;
-        public DevExpress.XtraEditors.TextEdit txtAddress;
-        public DevExpress.XtraEditors.TextEdit txtOffice;
-        public DevExpress.XtraEditors.TextEdit txtPBOControl;
+        public DevExpress.XtraEditors.TextEdit txtChief;
+        public DevExpress.XtraEditors.TextEdit txtColumn2;
+        public DevExpress.XtraEditors.TextEdit txtColumn1;
+        public DevExpress.XtraEditors.TextEdit txtPayDescription;
         public DevExpress.XtraEditors.TextEdit txtControl;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
@@ -604,7 +614,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        public DevExpress.XtraEditors.LookUpEdit cboPayee;
         public DevExpress.XtraEditors.DateEdit txtDate;
         public DevExpress.XtraGrid.GridControl PayrollGridControl;
         public DevExpress.XtraGrid.Views.Grid.GridView PayrollGridView;
@@ -620,7 +629,8 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit spinTotalRepo;
         private DevExpress.XtraGrid.Columns.GridColumn colTitle2;
         private DevExpress.XtraGrid.Columns.GridColumn colTotal;
-        private DevExpress.XtraEditors.SimpleButton btnClose;
-        private DevExpress.XtraEditors.SimpleButton btnSave;
+        public DevExpress.XtraEditors.SimpleButton btnClose;
+        public DevExpress.XtraEditors.SimpleButton btnSave;
+        public DevExpress.XtraEditors.TextEdit txtPayTitle;
     }
 }

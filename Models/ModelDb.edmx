@@ -192,7 +192,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="PayrollId" Type="int" />
           <Property Name="ItemNumber" Type="int" />
           <Property Name="Name" Type="nvarchar(max)" />
@@ -203,9 +203,10 @@
         </EntityType>
         <EntityType Name="Payrolls">
           <Key>
-            <PropertyRef Name="OBId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="OBId" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
           <Property Name="ControlNo" Type="nvarchar" MaxLength="128" />
           <Property Name="Description" Type="nvarchar" MaxLength="128" />
           <Property Name="Title" Type="nvarchar" MaxLength="128" />
@@ -552,7 +553,7 @@
           <End Role="PayrollDetails" Type="Self.PayrollDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Payrolls">
-              <PropertyRef Name="OBId" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="PayrollDetails">
               <PropertyRef Name="PayrollId" />
@@ -569,7 +570,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Payrolls">
-              <PropertyRef Name="OBId" />
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1710,7 +1711,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PayrollId" Type="Int32" />
           <Property Name="ItemNumber" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1722,9 +1723,10 @@
         </EntityType>
         <EntityType Name="Payrolls">
           <Key>
-            <PropertyRef Name="OBId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="OBId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
           <Property Name="ControlNo" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
@@ -1747,7 +1749,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Payrolls">
-              <PropertyRef Name="OBId" />
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1758,7 +1760,7 @@
           <End Type="Model.PayrollDetails" Role="PayrollDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Payrolls">
-              <PropertyRef Name="OBId" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="PayrollDetails">
               <PropertyRef Name="PayrollId" />
@@ -2263,7 +2265,8 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
-                <ScalarProperty Name="OBId" ColumnName="OBId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

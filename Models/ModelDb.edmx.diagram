@@ -57,7 +57,7 @@
         <AssociationConnector Association="Model.UserRolesInFunctions" />
         <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="17.375" PointY="3.75" />
         <EntityTypeShape EntityType="Model.PayrollDetails" Width="1.5" PointX="8.25" PointY="23" />
-        <EntityTypeShape EntityType="Model.Payrolls" Width="1.5" PointX="6" PointY="22.625" />
+        <EntityTypeShape EntityType="Model.Payrolls" Width="1.5" PointX="6" PointY="22.5" />
         <AssociationConnector Association="Model.FK_Payrolls_Obligations" />
         <AssociationConnector Association="Model.FK_PayrollDetails_Payrolls" />
         </Diagram>

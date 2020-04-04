@@ -131,6 +131,7 @@
     <Compile Include="CriteriaEvaluator.cs" />
     <Compile Include="Cryptography.cs" />
     <Compile Include="ExcelHelper.cs" />
+    <Compile Include="IdHelper.cs" />
     <Compile Include="NetworkShareAccesser.cs" />
     <Compile Include="PrincipalHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

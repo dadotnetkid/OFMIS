@@ -20,7 +20,8 @@ namespace Models
             this.PayrollDetails = new HashSet<PayrollDetails>();
         }
     
-        public int OBId { get; set; }
+        public int Id { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public string ControlNo { get; set; }
         public string Description { get; set; }
         public string Title { get; set; }

@@ -80,7 +80,7 @@
             this.btnEditNew.Appearance.Options.UseFont = true;
             this.btnEditNew.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnEditNew.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.btnEditNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
+            this.btnEditNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEditNew.ImageOptions.Image")));
             this.btnEditNew.Location = new System.Drawing.Point(5, 5);
             this.btnEditNew.Name = "btnEditNew";
             this.btnEditNew.Size = new System.Drawing.Size(102, 23);
@@ -184,7 +184,7 @@
             // 
             this.colTItle1.Caption = "Column Title1";
             this.colTItle1.ColumnEdit = this.spinTotalRepo;
-            this.colTItle1.FieldName = "Title1";
+            this.colTItle1.FieldName = "ColumnTitle1";
             this.colTItle1.Name = "colTItle1";
             this.colTItle1.Visible = true;
             this.colTItle1.VisibleIndex = 3;
@@ -199,7 +199,7 @@
             // colTitle2
             // 
             this.colTitle2.Caption = "Column Title 2";
-            this.colTitle2.FieldName = "Title2";
+            this.colTitle2.FieldName = "ColumnTitle2";
             this.colTitle2.Name = "colTitle2";
             this.colTitle2.Visible = true;
             this.colTitle2.VisibleIndex = 4;

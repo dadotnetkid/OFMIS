@@ -17,10 +17,11 @@ namespace Win.Pyrll
     {
         private AddEditPayroll addEditPayroll;
 
-        public frmAddEditPayroll(MethodType methodType, Payrolls payrolls)
+        public frmAddEditPayroll(MethodType methodType, int obId)
         {
             InitializeComponent();
-            this.addEditPayroll = new AddEditPayroll(payrolls) {methodType = methodType};
+            this.addEditPayroll = new AddEditPayroll(this, obId) { methodType = methodType };
+            addEditPayroll.Init();
         }
     }
 }
