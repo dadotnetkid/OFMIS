@@ -53,60 +53,81 @@ namespace Win
 
         private void btnAccounts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!User.UserInAction("Accounts"))
+                return;
             pnlMain.Controls.Clear();
             pnlMain.Controls.Add(new UcAccounts() { Dock = DockStyle.Fill });
         }
 
         private void btnYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!User.UserInAction("Years"))
+                return;
             frmYears frm = new frmYears();
             frm.ShowDialog();
         }
 
         private void btnDefaultSettings_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!User.UserInAction("Years"))
+                return;
             frmDefaultSettings frm = new frmDefaultSettings();
             frm.ShowDialog();
         }
 
         private void btnSignatories_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!User.UserInAction("Signatories"))
+                return;
             frmSignatories frm = new frmSignatories();
             frm.ShowDialog();
         }
 
         private void btnORReports_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!User.UserInAction("OB Reports"))
+                return;
             frmObligationRequestReportViewer frm = new frmObligationRequestReportViewer();
             frm.ShowDialog();
         }
 
         private void btnDetailedobligationRequest_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!User.UserInAction("OB Detailed Reports"))
+                return;
             frmDetailedObligationRequestReportViewer frm = new frmDetailedObligationRequestReportViewer();
             frm.ShowDialog();
         }
 
         private void btnAOBReport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!User.UserInAction("AOB Report"))
+                return;
             frmAOBReportViewer frm = new frmAOBReportViewer();
             frm.ShowDialog();
         }
 
         private void btnItems_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!User.UserInAction("Items"))
+                return;
+
             frmItems frm = new frmItems();
             frm.ShowDialog();
         }
 
         private void btnPR_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!User.UserInAction("Purchase Requests"))
+                return;
             pnlMain.Controls.Clear();
             pnlMain.Controls.Add(new UCPurchaseRequest() { Dock = DockStyle.Fill });
         }
 
         private void btnUsers_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!User.UserInAction("Users"))
+                return;
             pnlMain.Controls.Clear();
             pnlMain.Controls.Add(new UCUsers() { Dock = DockStyle.Fill });
         }
@@ -119,12 +140,16 @@ namespace Win
 
         private void btnPayees_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!User.UserInAction("Payees"))
+                return;
             pnlMain.Controls.Clear();
             pnlMain.Controls.Add(new UCPayees() { Dock = DockStyle.Fill });
         }
 
         private void btnDefaultAccounts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!User.UserInAction("Default Accounts"))
+                return;
             frmDefaultAccounts frm = new frmDefaultAccounts();
             frm.ShowDialog();
         }
