@@ -857,6 +857,6 @@
         public DevExpress.XtraEditors.SpinEdit txtAmount;
         public DevExpress.XtraEditors.TextEdit txtAccountCode;
         public DevExpress.XtraTab.XtraTabPage PQTabPage;
-        private DevExpress.XtraTab.XtraTabPage tabPO;
+        public DevExpress.XtraTab.XtraTabPage tabPO;
     }
 }
