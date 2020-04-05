@@ -139,14 +139,14 @@ namespace Win.BL
                 frm.txtDate.DateTime = item.Date ?? DateTime.Now;
                 frm.txtControl.Text = item.ControlNo;
                 frm.txtPayTitle.Text = item.Title;
-                frm.txtPayDescription.Text = item.Description;
+                frm.txtPayDescription.Text = string.IsNullOrWhiteSpace(item.Description) ? frm.txtPayDescription.Text : item.Description;
                 frm.txtColumn1.Text = item.ColumnTitle1;
                 frm.txtColumn2.Text = item.ColumnTitle2;
                 frm.txtChief.Text = item.ChiefOfOffice;
                 frm.txtPosition.Text = item.Position;
                 frm.txtAccountant.Text = item.Accountant;
                 frm.txtTreasurer.Text = item.Treasurer;
-                frm.lblHeader.Text = item.Description;
+                frm.lblHeader.Text = frm.txtPayDescription.Text;
                 frm.PayrollGridControl.DataSource = new BindingList<PayrollDetails>(item.PayrollDetails.ToList());
             }
             catch (Exception e)
