@@ -6,9 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.Data.Linq;
+using DevExpress.XtraEditors;
 using Models;
 using Models.Repository;
 using Win.PQ;
+using Win.Rprts;
 
 namespace Win.BL
 {
@@ -27,8 +29,22 @@ namespace Win.BL
             uCPQ.btnDeletePQRepo.ButtonClick += BtnDeletePQRepo_ButtonClick;
             uCPQ.btnEditPQRepo.ButtonClick += BtnEditPQRepo_ButtonClick;
             uCPQ.btnNew.Click += BtnNew_Click;
+            uCPQ.btnPreview.Click += BtnPreview_Click;
 
         }
+
+        private void BtnPreview_Click(object sender, EventArgs e)
+        {
+            if (uCPQ.PQGridView.GetFocusedRow() is PriceQuotations item)
+            {
+                frmReportViewer frm = new frmReportViewer(new rptPurchaseQuotation(item)
+                {
+                    DataSource = new List<PriceQuotations>() { item }
+                });
+                frm.ShowDialog();
+            }
+        }
+
         public LoadAddEditPQ(frmAddEditPQ frmAddEditPQ, PriceQuotations priceQuotations)
         {
             this.frmAddEditPQ = frmAddEditPQ;
@@ -37,6 +53,25 @@ namespace Win.BL
             frmAddEditPQ.btnAddItems.Click += BtnAddItems_Click;
             frmAddEditPQ.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_ButtonClick;
             frmAddEditPQ.ItemsGridView.RowUpdated += ItemsGridView_RowUpdated;
+            frmAddEditPQ.txtPGSOfficer.EditValueChanged += TxtPGSOfficer_EditValueChanged;
+        }
+
+        private void TxtPGSOfficer_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (sender is LookUpEdit lookUpEdit)
+                {
+                    if (lookUpEdit.GetSelectedDataRow() is Signatories item)
+                    {
+                        frmAddEditPQ.txtPGSOPosition.Text = item.Position;
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnDeleteItemRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -201,8 +236,9 @@ namespace Win.BL
             frmAddEditPQ.dtDate.EditValue = priceQuotations.Date ?? DateTime.Now;
             frmAddEditPQ.txtControlNumber.Text = priceQuotations.ControlNo;
             frmAddEditPQ.txtDescription.Text = priceQuotations.Description;
-            frmAddEditPQ.txtPGSOfficer.Text = string.IsNullOrEmpty(priceQuotations.PGSOfficer) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "PGSO")?.Person : priceQuotations.PGSOfficer;
-            frmAddEditPQ.txtPGSOPosition.Text = string.IsNullOrEmpty(priceQuotations.Position) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "PGSO")?.Position : priceQuotations.Position;
+            frmAddEditPQ.txtPGSOfficer.Properties.DataSource = new EntityServerModeSource() { QueryableSource = new UnitOfWork().ChiefOfOfficesRepo.Fetch().Where(x => x.Office.Contains("BAC") || x.Office.Contains("PGSO")) };
+            frmAddEditPQ.txtPGSOfficer.Text = string.IsNullOrEmpty(priceQuotations.PGSOfficer) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "BAC")?.Person : priceQuotations.PGSOfficer;
+            frmAddEditPQ.txtPGSOPosition.Text = string.IsNullOrEmpty(priceQuotations.Position) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "BAC")?.Position : priceQuotations.Position;
             frmAddEditPQ.ItemsGridControl.DataSource =
                 new BindingList<PQDetails>(new UnitOfWork().PQDetailsRepo.Get(m => m.PQId == priceQuotations.Id));
         }

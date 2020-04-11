@@ -54,6 +54,7 @@ namespace Models
         public string Citizenship { get; set; }
         public string Languages { get; set; }
         public string Position { get; set; }
+        public Nullable<int> OfficeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Logs> Logs { get; set; }
@@ -63,5 +64,6 @@ namespace Models
         public virtual ICollection<UserLogins> UserLogins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRoles> UserRoles { get; set; }
+        public virtual Offices Offices { get; set; }
     }
 }

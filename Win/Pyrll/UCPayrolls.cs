@@ -25,5 +25,10 @@ namespace Win.Pyrll
             loadPayroll.Init();
 
         }
+
+        private void btnPrintRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+
+        }
     }
 }

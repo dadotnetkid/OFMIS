@@ -8,6 +8,7 @@ using DevExpress.XtraEditors;
 using Models;
 using Models.Repository;
 using Win.Pyrll;
+using Win.Rprts;
 
 namespace Win.BL
 {
@@ -26,6 +27,18 @@ namespace Win.BL
             payrolls = new UnitOfWork().PayrollsRepo.Find(m => m.Id == obId);
             btnEditNew = uCPayrolls.btnEditNew;
             btnEditNew.Click += BtnEditNew_Click;
+            uCPayrolls.btnPreview.Click += BtnPreview_Click;
+        }
+
+        private void BtnPreview_Click(object sender, EventArgs e)
+        {
+            var res = new UnitOfWork().PayrollsRepo.Find(m => m.Id == obId);
+            frmReportViewer frm =
+                new frmReportViewer(new rptOBRPayroll(res.Obligations.ResponsibilityCenter + " - " + res.ControlNo)
+            {
+                DataSource = new List<Payrolls>() { res }
+            });
+            frm.ShowDialog();
         }
 
         private void BtnDeletePayrollRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)

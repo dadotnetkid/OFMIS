@@ -64,8 +64,8 @@
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddItems = new DevExpress.XtraEditors.SimpleButton();
-            this.txtPGSOfficer = new DevExpress.XtraEditors.TextEdit();
             this.txtPGSOPosition = new DevExpress.XtraEditors.TextEdit();
+            this.txtPGSOfficer = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.spinAmountRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteItemRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinNumberRepo)).BeginInit();
@@ -78,8 +78,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPGSOfficer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPGSOPosition.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPGSOfficer.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // spinAmountRepo
@@ -126,14 +126,14 @@
             this.ItemsGridControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ItemsGridControl.Location = new System.Drawing.Point(13, 223);
+            this.ItemsGridControl.Location = new System.Drawing.Point(14, 201);
             this.ItemsGridControl.MainView = this.ItemsGridView;
             this.ItemsGridControl.Name = "ItemsGridControl";
             this.ItemsGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDeleteItemRepo,
-            this.spinNumberRepo,
-            this.spinAmountRepo});
-            this.ItemsGridControl.Size = new System.Drawing.Size(957, 371);
+            this.spinAmountRepo,
+            this.spinNumberRepo});
+            this.ItemsGridControl.Size = new System.Drawing.Size(957, 393);
             this.ItemsGridControl.TabIndex = 77;
             this.ItemsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ItemsGridView});
@@ -407,20 +407,11 @@
             this.btnAddItems.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnAddItems.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.btnAddItems.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddItems.ImageOptions.Image")));
-            this.btnAddItems.Location = new System.Drawing.Point(821, 194);
+            this.btnAddItems.Location = new System.Drawing.Point(821, 167);
             this.btnAddItems.Name = "btnAddItems";
             this.btnAddItems.Size = new System.Drawing.Size(150, 23);
             this.btnAddItems.TabIndex = 76;
             this.btnAddItems.Text = "Add Item from PR";
-            // 
-            // txtPGSOfficer
-            // 
-            this.txtPGSOfficer.Location = new System.Drawing.Point(97, 147);
-            this.txtPGSOfficer.Name = "txtPGSOfficer";
-            this.txtPGSOfficer.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPGSOfficer.Properties.Appearance.Options.UseFont = true;
-            this.txtPGSOfficer.Size = new System.Drawing.Size(605, 20);
-            this.txtPGSOfficer.TabIndex = 71;
             // 
             // txtPGSOPosition
             // 
@@ -431,6 +422,21 @@
             this.txtPGSOPosition.Properties.Appearance.Options.UseFont = true;
             this.txtPGSOPosition.Size = new System.Drawing.Size(605, 20);
             this.txtPGSOPosition.TabIndex = 72;
+            // 
+            // txtPGSOfficer
+            // 
+            this.txtPGSOfficer.Location = new System.Drawing.Point(97, 147);
+            this.txtPGSOfficer.Name = "txtPGSOfficer";
+            this.txtPGSOfficer.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPGSOfficer.Properties.Appearance.Options.UseFont = true;
+            this.txtPGSOfficer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtPGSOfficer.Properties.DisplayMember = "Person";
+            this.txtPGSOfficer.Properties.NullText = "";
+            this.txtPGSOfficer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.txtPGSOfficer.Properties.ValueMember = "Person";
+            this.txtPGSOfficer.Size = new System.Drawing.Size(605, 20);
+            this.txtPGSOfficer.TabIndex = 71;
             // 
             // frmAddEditPQ
             // 
@@ -451,8 +457,8 @@
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.dtDate);
-            this.Controls.Add(this.txtPGSOfficer);
             this.Controls.Add(this.txtPGSOPosition);
+            this.Controls.Add(this.txtPGSOfficer);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAddEditPQ";
@@ -472,24 +478,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPGSOfficer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPGSOPosition.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPGSOfficer.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraGrid.Columns.GridColumn colUOM;
         private DevExpress.XtraGrid.Columns.GridColumn colCost;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit spinAmountRepo;
         private DevExpress.XtraGrid.Columns.GridColumn colDateCreated;
         private DevExpress.XtraGrid.Columns.GridColumn colDelete;
         private DevExpress.XtraGrid.Columns.GridColumn colItem;
         private DevExpress.XtraGrid.Columns.GridColumn colQuantity;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit spinNumberRepo;
         private DevExpress.XtraGrid.Columns.GridColumn colItemNo;
         private DevExpress.XtraGrid.Columns.GridColumn Total;
         public DevExpress.XtraEditors.TextEdit txtControlNumber;
@@ -510,8 +512,11 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         public DevExpress.XtraEditors.MemoEdit txtDescription;
         public DevExpress.XtraEditors.DateEdit dtDate;
-        public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDeleteItemRepo;
-        public DevExpress.XtraEditors.TextEdit txtPGSOfficer;
         public DevExpress.XtraEditors.TextEdit txtPGSOPosition;
+        public DevExpress.XtraEditors.SimpleButton btnClose;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit spinAmountRepo;
+        public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDeleteItemRepo;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit spinNumberRepo;
+        public DevExpress.XtraEditors.LookUpEdit txtPGSOfficer;
     }
 }

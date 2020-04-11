@@ -32,8 +32,8 @@ namespace Models
         public string Accountant { get; set; }
         public string Treasurer { get; set; }
     
-        public virtual Obligations Obligations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayrollDetails> PayrollDetails { get; set; }
+        public virtual Obligations Obligations { get; set; }
     }
 }

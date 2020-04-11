@@ -11,16 +11,9 @@
         <EntityTypeShape EntityType="Model.UserClaims" Width="1.5" PointX="13.25" PointY="3.875" />
         <EntityTypeShape EntityType="Model.UserLogins" Width="1.5" PointX="13.25" PointY="1.375" />
         <EntityTypeShape EntityType="Model.UserRoles" Width="1.5" PointX="8.75" PointY="5.5" />
-        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="11" PointY="1.375" />
-        <AssociationConnector Association="Model.FK_Logs_Users" />
         <AssociationConnector Association="Model.FK_Towns_Towns" />
-        <AssociationConnector Association="Model.FK_UserClaims_Users" />
-        <AssociationConnector Association="Model.FK_UserLogins_Users" />
-        <AssociationConnector Association="Model.UsersInRoles" />
         <EntityTypeShape EntityType="Model.Employees" Width="1.5" PointX="8" PointY="13" />
         <EntityTypeShape EntityType="Model.Suppliers" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Model.Offices" Width="1.5" PointX="5.75" PointY="13" />
-        <AssociationConnector Association="Model.FK_Employees_Offices" />
         <EntityTypeShape EntityType="Model.Payees" Width="1.5" PointX="1.5" PointY="11.875" />
         <EntityTypeShape EntityType="Model.Appropriations" Width="1.5" PointX="0.75" PointY="4.25" />
         <EntityTypeShape EntityType="Model.FundTypes" Width="1.5" PointX="5.75" PointY="8.75" />
@@ -28,14 +21,10 @@
         <AssociationConnector Association="Model.FK_Allotments_Appropriations" />
         <EntityTypeShape EntityType="Model.ORDetails" Width="1.5" PointX="6" PointY="4.75" />
         <AssociationConnector Association="Model.FK_ORDetails_Appropriations" />
-        <EntityTypeShape EntityType="Model.Obligations" Width="1.5" PointX="3.75" PointY="10" />
-        <AssociationConnector Association="Model.FK_Obligations_Payees" />
-        <AssociationConnector Association="Model.FK_ORDetails_Obligations" />
         <EntityTypeShape EntityType="Model.ReAlignments" Width="1.5" PointX="3" PointY="6.125" />
         <AssociationConnector Association="Model.FK_ReAlignments_Appropriations" />
         <AssociationConnector Association="Model.FK_ReAlignments_TargetSource" />
         <EntityTypeShape EntityType="Model.Years" Width="1.5" PointX="0.75" PointY="15.75" />
-        <EntityTypeShape EntityType="Model.DefaultSettings" Width="1.5" PointX="15.375" PointY="0.75" />
         <EntityTypeShape EntityType="Model.Signatories" Width="1.5" PointX="15.375" PointY="6.75" />
         <EntityTypeShape EntityType="Model.Items" Width="1.5" PointX="15.375" PointY="9.75" />
         <EntityTypeShape EntityType="Model.PurchaseRequests" Width="1.5" PointX="10.375" PointY="15.75" />
@@ -58,8 +47,22 @@
         <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="17.375" PointY="3.75" />
         <EntityTypeShape EntityType="Model.PayrollDetails" Width="1.5" PointX="8.25" PointY="23" />
         <EntityTypeShape EntityType="Model.Payrolls" Width="1.5" PointX="6" PointY="22.5" />
-        <AssociationConnector Association="Model.FK_Payrolls_Obligations" />
         <AssociationConnector Association="Model.FK_PayrollDetails_Payrolls" />
+        <EntityTypeShape EntityType="Model.DefaultSettings" Width="1.5" PointX="3.375" PointY="17.75" />
+        <EntityTypeShape EntityType="Model.Offices" Width="1.5" PointX="5.75" PointY="28.5" />
+        <AssociationConnector Association="Model.FK_Employees_Offices" />
+        <AssociationConnector Association="Model.FK_Offices_Offices" />
+        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="11" PointY="2.5" />
+        <AssociationConnector Association="Model.FK_Logs_Users" />
+        <AssociationConnector Association="Model.FK_UserClaims_Users" />
+        <AssociationConnector Association="Model.FK_UserLogins_Users" />
+        <AssociationConnector Association="Model.UsersInRoles" />
+        <EntityTypeShape EntityType="Model.Obligations" Width="1.5" PointX="8" PointY="26.75" />
+        <AssociationConnector Association="Model.FK_Obligations_Offices" />
+        <AssociationConnector Association="Model.FK_Obligations_Payees" />
+        <AssociationConnector Association="Model.FK_ORDetails_Obligations" />
+        <AssociationConnector Association="Model.FK_Payrolls_Obligations" />
+        <AssociationConnector Association="Model.FK_Users_Offices" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

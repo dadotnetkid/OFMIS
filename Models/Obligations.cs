@@ -46,7 +46,9 @@ namespace Models
         public Nullable<int> Year { get; set; }
         public string ResponsibilityCenter { get; set; }
         public string ResponsibilityCenterCode { get; set; }
+        public Nullable<int> OfficeId { get; set; }
     
+        public virtual Offices Offices { get; set; }
         public virtual Payees Payees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDetails> ORDetails { get; set; }

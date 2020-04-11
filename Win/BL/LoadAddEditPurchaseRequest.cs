@@ -13,6 +13,7 @@ using Models.Repository;
 using Win.PO;
 using Win.PQ;
 using Win.PR;
+using Win.Rprts;
 
 namespace Win.BL
 {
@@ -25,6 +26,20 @@ namespace Win.BL
             ucPR.PRGrid.FocusedRowChanged += PRGrid_FocusedRowChanged;
             ucPR.btnDeleteRepoPR.ButtonClick += BtnDeleteRepoPR_ButtonClick;
             ucPR.btnEditRepoPR.ButtonClick += BtnEditRepoPR_ButtonClick;
+            ucPR.btnPreview.Click += BtnPreview_Click;
+
+        }
+
+        private void BtnPreview_Click(object sender, EventArgs e)
+        {
+            if (ucPR.PRGrid.GetFocusedRow() is PurchaseRequests pr)
+            {
+                frmReportViewer frm = new frmReportViewer(new rptPurchaseRequest()
+                {
+                    DataSource = new UnitOfWork().PurchaseRequestsRepo.Get(m => m.Id == pr.Id)
+                });
+                frm.ShowDialog();
+            }
         }
 
         private void BtnEditRepoPR_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -169,7 +184,7 @@ namespace Win.BL
 
             frmAddEditPurchaseRequest.ItemsGridControl.DataSource =
                 new BindingList<PRDetails>(unitOfWork.PRDetailsRepo.Get(m => m.PRId == item.Id));
-            
+
         }
 
         void ITransactions<PurchaseRequests>.Init()
@@ -275,7 +290,7 @@ namespace Win.BL
             ucPR.PQTabPage.Controls.Clear();
             ucPR.PQTabPage.Controls.Add(new UCPQ(pr) { Dock = DockStyle.Fill });
             ucPR.tabPO.Controls.Clear();
-            ucPR.tabPO.Controls.Add(new UCPO() {Dock = DockStyle.Fill});
+            ucPR.tabPO.Controls.Add(new UCPO(pr) { Dock = DockStyle.Fill });
         }
 
         public void Search(string search)

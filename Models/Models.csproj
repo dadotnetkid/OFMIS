@@ -155,6 +155,7 @@
     <Compile Include="DefaultAccounts.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="DefaultSettingPartial.cs" />
     <Compile Include="DefaultSettings.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
@@ -281,7 +282,9 @@
     </Compile>
     <Compile Include="UserStores.cs" />
     <Compile Include="ViewModels\AOBViewModel.cs" />
+    <Compile Include="ViewModels\DvReportViewModel.cs" />
     <Compile Include="ViewModels\ObligationRequestViewModel.cs" />
+    <Compile Include="ViewModels\OBRPayrollViewModel.cs" />
     <Compile Include="ViewModels\ScannerViewModels.cs" />
     <Compile Include="Years.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>

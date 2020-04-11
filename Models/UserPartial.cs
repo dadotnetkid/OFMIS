@@ -8,29 +8,26 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
+using Models.Repository;
 
 namespace Models
 {
     [MetadataType(typeof(UsersMeta))]
     public partial class Users : IUser<string>
     {
+   
 
-        private string fullName;
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [NotMapped]
         private string _userRole;
 
-        public string FullName
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(fullName))
-                    fullName = this.FirstName + " " + this.LastName;
-                return fullName;
-            }
-            set { fullName = value; }
-        }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [NotMapped]
+        public string FullName => $"{FirstName} {LastName}";
 
 
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [NotMapped]
         public string UserRole
         {
             get
@@ -46,6 +43,7 @@ namespace Models
         [NotMapped]
         public string Password { get; set; }
 
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Users, string> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -55,6 +53,8 @@ namespace Models
             userIdentity.AddClaim(new Claim("UserRoles", this.UserRole));
             return userIdentity;
         }
+
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Users, string> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

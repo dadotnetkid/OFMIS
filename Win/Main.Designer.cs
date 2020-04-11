@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
+            this.btnLogout = new DevExpress.XtraBars.Ribbon.BackstageViewButtonItem();
+            this.btnClose = new DevExpress.XtraBars.Ribbon.BackstageViewButtonItem();
             this.lblUsername = new DevExpress.XtraBars.BarHeaderItem();
             this.lblUserLevel = new DevExpress.XtraBars.BarHeaderItem();
             this.btnObligation = new DevExpress.XtraBars.BarButtonItem();
@@ -46,22 +49,22 @@
             this.btnUserlevel = new DevExpress.XtraBars.BarButtonItem();
             this.btnPayees = new DevExpress.XtraBars.BarButtonItem();
             this.btnDefaultAccounts = new DevExpress.XtraBars.BarButtonItem();
+            this.btnOffices = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.homeOpt = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.maintenanceOpt = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.pnlMain = new DevExpress.XtraEditors.PanelControl();
-            this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
-            this.btnClose = new DevExpress.XtraBars.Ribbon.BackstageViewButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -85,17 +88,42 @@
             this.btnUsers,
             this.btnUserlevel,
             this.btnPayees,
-            this.btnDefaultAccounts});
+            this.btnDefaultAccounts,
+            this.btnOffices});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 13;
+            this.ribbonControl1.MaxItemId = 14;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPage2,
             this.ribbonPage3});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019;
-            this.ribbonControl1.Size = new System.Drawing.Size(981, 154);
+            this.ribbonControl1.Size = new System.Drawing.Size(981, 156);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
+            // 
+            // backstageViewControl1
+            // 
+            this.backstageViewControl1.Items.Add(this.btnLogout);
+            this.backstageViewControl1.Items.Add(this.btnClose);
+            this.backstageViewControl1.Location = new System.Drawing.Point(77, 231);
+            this.backstageViewControl1.Name = "backstageViewControl1";
+            this.backstageViewControl1.OwnerControl = this.ribbonControl1;
+            this.backstageViewControl1.Size = new System.Drawing.Size(480, 229);
+            this.backstageViewControl1.TabIndex = 7;
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Caption = "Logout";
+            this.btnLogout.ImageOptions.ItemNormal.Image = ((System.Drawing.Image)(resources.GetObject("btnLogout.ImageOptions.ItemNormal.Image")));
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(this.btnLogout_ItemClick);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Caption = "Close";
+            this.btnClose.ImageOptions.ItemNormal.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.ItemNormal.Image")));
+            this.btnClose.Name = "btnClose";
+            this.btnClose.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(this.btnClose_ItemClick);
             // 
             // lblUsername
             // 
@@ -147,7 +175,7 @@
             // 
             // btnSignatories
             // 
-            this.btnSignatories.Caption = "Chief of Offices";
+            this.btnSignatories.Caption = "Signatories";
             this.btnSignatories.Id = 3;
             this.btnSignatories.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSignatories.ImageOptions.Image")));
             this.btnSignatories.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSignatories.ImageOptions.LargeImage")));
@@ -235,13 +263,22 @@
             this.btnDefaultAccounts.Name = "btnDefaultAccounts";
             this.btnDefaultAccounts.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDefaultAccounts_ItemClick);
             // 
+            // btnOffices
+            // 
+            this.btnOffices.Caption = "Offices";
+            this.btnOffices.Id = 13;
+            this.btnOffices.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnOffices.ImageOptions.Image")));
+            this.btnOffices.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnOffices.ImageOptions.LargeImage")));
+            this.btnOffices.Name = "btnOffices";
+            this.btnOffices.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOffices_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
             this.ribbonPageGroup2,
             this.ribbonPageGroup5,
-            this.ribbonPageGroup3});
+            this.homeOpt});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Home";
             // 
@@ -266,15 +303,11 @@
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "Purchase Request";
             // 
-            // ribbonPageGroup3
+            // homeOpt
             // 
-            this.ribbonPageGroup3.ItemLinks.Add(this.btnPayees);
-            this.ribbonPageGroup3.ItemLinks.Add(this.btnYear);
-            this.ribbonPageGroup3.ItemLinks.Add(this.btnDefaultSettings);
-            this.ribbonPageGroup3.ItemLinks.Add(this.btnSignatories);
-            this.ribbonPageGroup3.ItemLinks.Add(this.btnDefaultAccounts);
-            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
-            this.ribbonPageGroup3.Text = "Options";
+            this.homeOpt.Name = "homeOpt";
+            this.homeOpt.Text = "Options";
+            this.homeOpt.Visible = false;
             // 
             // ribbonPage2
             // 
@@ -293,9 +326,21 @@
             // ribbonPage3
             // 
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.maintenanceOpt,
             this.ribbonPageGroup6});
             this.ribbonPage3.Name = "ribbonPage3";
             this.ribbonPage3.Text = "Maintenance";
+            // 
+            // maintenanceOpt
+            // 
+            this.maintenanceOpt.ItemLinks.Add(this.btnPayees);
+            this.maintenanceOpt.ItemLinks.Add(this.btnYear);
+            this.maintenanceOpt.ItemLinks.Add(this.btnDefaultSettings);
+            this.maintenanceOpt.ItemLinks.Add(this.btnSignatories);
+            this.maintenanceOpt.ItemLinks.Add(this.btnDefaultAccounts);
+            this.maintenanceOpt.ItemLinks.Add(this.btnOffices);
+            this.maintenanceOpt.Name = "maintenanceOpt";
+            this.maintenanceOpt.Text = "Options";
             // 
             // ribbonPageGroup6
             // 
@@ -313,26 +358,10 @@
             // pnlMain
             // 
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 154);
+            this.pnlMain.Location = new System.Drawing.Point(0, 156);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(981, 491);
+            this.pnlMain.Size = new System.Drawing.Size(981, 489);
             this.pnlMain.TabIndex = 4;
-            // 
-            // backstageViewControl1
-            // 
-            this.backstageViewControl1.Items.Add(this.btnClose);
-            this.backstageViewControl1.Location = new System.Drawing.Point(77, 231);
-            this.backstageViewControl1.Name = "backstageViewControl1";
-            this.backstageViewControl1.OwnerControl = this.ribbonControl1;
-            this.backstageViewControl1.Size = new System.Drawing.Size(480, 229);
-            this.backstageViewControl1.TabIndex = 7;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Caption = "Close";
-            this.btnClose.ImageOptions.ItemNormal.Image = ((System.Drawing.Image)(resources.GetObject("backstageViewButtonItem1.ImageOptions.ItemNormal.Image")));
-            this.btnClose.Name = "btnClose";
-            this.btnClose.ItemClick += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(this.btnClose_ItemClick);
             // 
             // Main
             // 
@@ -352,8 +381,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -372,7 +401,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
         private DevExpress.XtraEditors.PanelControl pnlMain;
         private DevExpress.XtraBars.BarButtonItem btnYear;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup homeOpt;
         private DevExpress.XtraBars.BarButtonItem btnDefaultSettings;
         private DevExpress.XtraBars.BarButtonItem btnSignatories;
         private DevExpress.XtraBars.BarButtonItem btnORReports;
@@ -391,6 +420,9 @@
         private DevExpress.XtraBars.BarButtonItem btnDefaultAccounts;
         private DevExpress.XtraBars.Ribbon.BackstageViewControl backstageViewControl1;
         private DevExpress.XtraBars.Ribbon.BackstageViewButtonItem btnClose;
+        private DevExpress.XtraBars.Ribbon.BackstageViewButtonItem btnLogout;
+        private DevExpress.XtraBars.BarButtonItem btnOffices;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup maintenanceOpt;
     }
 }
 

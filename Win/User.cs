@@ -14,7 +14,7 @@ namespace Win
     {
         public static string UserName;
         public static string UserId;
-
+        public static int? OfficeId() => new UnitOfWork().UsersRepo.Find(m => m.Id == UserId, false, false).OfficeId;
         public static string GetFullName()
         {
             var fullName = new UnitOfWork().UsersRepo.Fetch(m => m.Id == UserId).FirstOrDefault()?.FullName;
@@ -45,7 +45,7 @@ namespace Win
                     var function = unitOfWork.FunctionsRepo.Find(m => m.Action == action, false);
                     userRoles.Functions.Add(function);
                     unitOfWork.Save();
- 
+
                 }
             }
 

@@ -30,6 +30,7 @@ namespace Models
         public string Purpose { get; set; }
         public Nullable<decimal> TotalAmount { get; set; }
         public string TableName { get; set; }
+        public string OfficeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRDetails> PRDetails { get; set; }

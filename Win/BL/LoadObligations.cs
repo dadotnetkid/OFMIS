@@ -83,8 +83,9 @@ namespace Win.BL
 
         public void Init()
         {
+            var staticSettings = new StaticSettings();
             uc.OBGridControl.DataSource = new EntityServerModeSource()
-            { QueryableSource = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year) };
+            { QueryableSource = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year).Where(x => x.OfficeId == staticSettings.OfficeId) };
             if (uc.OBGridView.GetFocusedRow() is Obligations item)
             {
                 Detail(new UnitOfWork().ObligationsRepo.Find(m => m.Id == item.Id));
@@ -123,6 +124,7 @@ namespace Win.BL
 
         public void Search(string search)
         {
+            var staticSettings = new StaticSettings();
             var ob = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year);
             if (ob.Any(x => x.Description.Contains(search)))
                 ob = ob.Where(x => x.Description.Contains(search));
@@ -136,7 +138,7 @@ namespace Win.BL
                 ob = ob.Where(x => x.Status.Contains(uc.cboStatus.Text));
             this.uc.OBGridControl.DataSource = new EntityServerModeSource()
             {
-                QueryableSource = ob
+                QueryableSource = ob.Where(x => x.OfficeId == staticSettings.OfficeId)
             };
         }
     }

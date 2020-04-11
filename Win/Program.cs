@@ -15,17 +15,17 @@ namespace Win
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] param)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             BonusSkins.Register();
 
- 
 
+           
 
-            Application.Run(new Main());
+            Application.Run(new Main(param));
         }
     }
 }

@@ -136,7 +136,7 @@ namespace Win.BL
                     Year = obligations.Year ?? new StaticSettings().Year,
                     ResponsibilityCenter = new StaticSettings().ResponsibilityCenter,
                     ResponsibilityCenterCode = new StaticSettings().ResponsibilityCenterCode,
-
+                    OfficeId = new StaticSettings().OfficeId
 
 
                 };
@@ -189,8 +189,8 @@ namespace Win.BL
                 frm.ORDetailGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails.ToList());
                 frm.txtBudgetOfficer.Text = string.IsNullOrWhiteSpace(item.PBO) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "Provincial Budget Office")?.Person : item.PBO;
                 frm.txtPBOPos.Text = string.IsNullOrWhiteSpace(item.PBOPos) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "Provincial Budget Office")?.Position : item.PBOPos;
-                frm.txtChiefOfficer.Text = string.IsNullOrWhiteSpace(item.Chief) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "PITD")?.Person : item.Chief;
-                frm.txtChiefPosition.Text = string.IsNullOrWhiteSpace(item.ChiefPosition) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "PITD")?.Position : item.ChiefPosition;
+                frm.txtChiefOfficer.Text = string.IsNullOrWhiteSpace(item.Chief) ? staticSetting.Head : item.Chief;
+                frm.txtChiefPosition.Text = string.IsNullOrWhiteSpace(item.ChiefPosition) ? staticSetting.HeadPos : item.ChiefPosition;
 
             }
             catch (Exception e)

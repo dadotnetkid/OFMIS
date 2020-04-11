@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.Entity;
+using DevExpress.Data.Linq;
 using Helpers;
 using Models;
 using Models.Repository;
@@ -47,12 +48,14 @@ namespace Win.Usr
 
 
                 UnitOfWork unitOfWork = new UnitOfWork();
-                user = new UnitOfWork().UsersRepo.Find(m => m.Id == user.Id, includeProperties: "UserRoles");
+                user = unitOfWork.UsersRepo.Find(m => m.Id == user.Id);
                 user.SecurityStamp = Guid.NewGuid().ToString();
                 user.FirstName = txtFirstName.Text;
                 user.MiddleName = txtMiddleName.Text;
+                user.LastName = txtLastName.Text;
                 user.UserName = txtUserName.Text;
                 user.PasswordHash = Cryptography.Encrypt(txtPassword.Text, user.SecurityStamp);
+                user.OfficeId = cboDepartment.EditValue.ToInt(true);
                 unitOfWork.Save();
 
 
@@ -60,9 +63,9 @@ namespace Win.Usr
                     new ApplicationUserManager(new UserStores(new ModelDb()));
                 var roles = await applicationUserManager.GetRolesAsync(user.Id);
                 await applicationUserManager.RemoveFromRolesAsync(user.Id, roles.ToArray());
-                foreach (string i in cboUserRole.Properties.GetItems().GetCheckedValues())
+                foreach (string i in cboUserRole.EditValue.ToString().Split(','))
                 {
-                    await applicationUserManager.AddToRoleAsync(user.Id, i);
+                    await applicationUserManager.AddToRoleAsync(user.Id, i.Trim());
                 }
 
 
@@ -89,6 +92,10 @@ namespace Win.Usr
             cboUserRole.EditValue = user.UserRole;
 
             userRolesBindingSource.DataSource = new BindingList<UserRoles>(new UnitOfWork().UserRolesRepo.Get());
+            var offices = new List<Offices>() { new Offices() { OfficeName = "" } };
+            offices.AddRange(new UnitOfWork().OfficesRepo.Get());
+            cboDepartment.Properties.DataSource = new BindingList<Offices>(offices);
+            cboDepartment.EditValue = user.OfficeId;
         }
 
         public void Init()

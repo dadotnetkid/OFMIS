@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditObligation));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.txtChiefPosition = new DevExpress.XtraEditors.TextEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.txtChiefOfficer = new DevExpress.XtraEditors.TextEdit();
@@ -129,9 +129,9 @@
             // 
             this.labelControl8.Location = new System.Drawing.Point(6, 270);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(61, 13);
+            this.labelControl8.Size = new System.Drawing.Size(55, 13);
             this.labelControl8.TabIndex = 23;
-            this.labelControl8.Text = "Chief Officer";
+            this.labelControl8.Text = "Chief Office";
             // 
             // txtBudgetOfficer
             // 
@@ -146,7 +146,7 @@
             // 
             this.labelControl7.Location = new System.Drawing.Point(6, 226);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(70, 13);
+            this.labelControl7.Size = new System.Drawing.Size(68, 13);
             this.labelControl7.TabIndex = 22;
             this.labelControl7.Text = "Budget Officer";
             // 
@@ -186,7 +186,7 @@
             // 
             this.labelControl6.Location = new System.Drawing.Point(6, 204);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(71, 13);
+            this.labelControl6.Size = new System.Drawing.Size(72, 13);
             this.labelControl6.TabIndex = 15;
             this.labelControl6.Text = "OR Description";
             // 
@@ -194,7 +194,7 @@
             // 
             this.labelControl5.Location = new System.Drawing.Point(6, 181);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(39, 13);
+            this.labelControl5.Size = new System.Drawing.Size(38, 13);
             this.labelControl5.TabIndex = 14;
             this.labelControl5.Text = "Address";
             // 
@@ -202,7 +202,7 @@
             // 
             this.labelControl4.Location = new System.Drawing.Point(6, 159);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(29, 13);
+            this.labelControl4.Size = new System.Drawing.Size(28, 13);
             this.labelControl4.TabIndex = 13;
             this.labelControl4.Text = "Office";
             // 
@@ -218,7 +218,7 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(7, 93);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(78, 13);
+            this.labelControl2.Size = new System.Drawing.Size(74, 13);
             this.labelControl2.TabIndex = 11;
             this.labelControl2.Text = "Office Control #";
             // 
@@ -270,7 +270,7 @@
             // 
             this.labelControl10.Location = new System.Drawing.Point(6, 115);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(69, 13);
+            this.labelControl10.Size = new System.Drawing.Size(68, 13);
             this.labelControl10.TabIndex = 11;
             this.labelControl10.Text = "PBO Control #";
             // 
@@ -398,9 +398,9 @@
             // btnDelORDetailRepo
             // 
             this.btnDelORDetailRepo.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
             this.btnDelORDetailRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelORDetailRepo.Name = "btnDelORDetailRepo";
             this.btnDelORDetailRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCPayrolls));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -39,6 +38,12 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCPayrolls));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnEditNew = new DevExpress.XtraEditors.SimpleButton();
             this.PayrollGridControl = new DevExpress.XtraGrid.GridControl();
@@ -55,6 +60,9 @@
             this.spinTotalRepo = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.colTitle2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPrint = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnPrintRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PayrollGridControl)).BeginInit();
@@ -63,10 +71,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnDeletePayrollRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinItemNumberRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinTotalRepo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrintRepo)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnPreview);
             this.panelControl1.Controls.Add(this.btnEditNew);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
@@ -76,7 +86,7 @@
             // 
             // btnEditNew
             // 
-            this.btnEditNew.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnEditNew.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnEditNew.Appearance.Options.UseFont = true;
             this.btnEditNew.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnEditNew.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
@@ -97,7 +107,8 @@
             this.btnEditPayrollRepo,
             this.btnDeletePayrollRepo,
             this.spinTotalRepo,
-            this.spinItemNumberRepo});
+            this.spinItemNumberRepo,
+            this.btnPrintRepo});
             this.PayrollGridControl.Size = new System.Drawing.Size(912, 327);
             this.PayrollGridControl.TabIndex = 4;
             this.PayrollGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -113,7 +124,8 @@
             this.colDesignation,
             this.colTItle1,
             this.colTitle2,
-            this.colTotal});
+            this.colTotal,
+            this.colPrint});
             this.PayrollGridView.GridControl = this.PayrollGridControl;
             this.PayrollGridView.Name = "PayrollGridView";
             this.PayrollGridView.OptionsView.ShowGroupPanel = false;
@@ -212,6 +224,34 @@
             this.colTotal.Visible = true;
             this.colTotal.VisibleIndex = 5;
             // 
+            // colPrint
+            // 
+            this.colPrint.ColumnEdit = this.btnPrintRepo;
+            this.colPrint.Name = "colPrint";
+            // 
+            // btnPrintRepo
+            // 
+            this.btnPrintRepo.AutoHeight = false;
+            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
+            this.btnPrintRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnPrintRepo.Name = "btnPrintRepo";
+            this.btnPrintRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnPrintRepo.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnPrintRepo_ButtonClick);
+            // 
+            // btnPreview
+            // 
+            this.btnPreview.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnPreview.Appearance.Options.UseFont = true;
+            this.btnPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnPreview.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.btnPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnPreview.Location = new System.Drawing.Point(113, 5);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(102, 23);
+            this.btnPreview.TabIndex = 13;
+            this.btnPreview.Text = "Preview";
+            // 
             // UCPayrolls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,6 +268,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnDeletePayrollRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinItemNumberRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinTotalRepo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrintRepo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -250,5 +291,8 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit spinTotalRepo;
         private DevExpress.XtraGrid.Columns.GridColumn colTitle2;
         private DevExpress.XtraGrid.Columns.GridColumn colTotal;
+        private DevExpress.XtraGrid.Columns.GridColumn colPrint;
+        public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnPrintRepo;
+        public DevExpress.XtraEditors.SimpleButton btnPreview;
     }
 }

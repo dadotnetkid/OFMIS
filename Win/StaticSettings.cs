@@ -11,12 +11,13 @@ namespace Win
 {
     public class StaticSettings
     {
-        private  UnitOfWork unitOfWork = new UnitOfWork();
-        private  Years activeYear => unitOfWork.YearsRepo.Find(m => m.IsActive == true);
-        public  DefaultSettings settings() => unitOfWork.DefaultSettingsRepo.Fetch(m => m.Year == activeYear.Year).FirstOrDefault() ?? new DefaultSettings();
-        public List<Signatories> chiefOfOffice=>      new UnitOfWork().ChiefOfOfficesRepo.Get(m => m.Year == Year);
-        public  int Year => activeYear.Year.ToInt();
-        public  int Id => settings().Id;
+        private UnitOfWork unitOfWork = new UnitOfWork();
+        int? officeId = User.OfficeId();
+        private Years activeYear => unitOfWork.YearsRepo.Find(m => m.IsActive == true);
+        public Offices settings() => unitOfWork.OfficesRepo.Fetch(m => m.Id == officeId).FirstOrDefault();
+        public List<Signatories> chiefOfOffice => new UnitOfWork().ChiefOfOfficesRepo.Get(m => m.Year == Year);
+        public int Year => activeYear.Year.ToInt();
+        public int Id => settings().Id;
         //public  string PG => settings().PG;
         //public  string PGPos => settings().PGPos;
         //public  string PA => settings().PA;
@@ -29,12 +30,12 @@ namespace Win
         //public  string PAccountantPos => settings().PAccountantPos;
         //public  string PGSO => settings().PGSO;
         //public  string PGSOPosition => settings().PGSOPosition;
-        //public  string Department => settings().Department;
-        //public  string ChiefOfOffice => settings().ChiefOfOffice;
-        //public  string ChiefOfOfficePos => settings().ChiefOfOfficePos;
-        public  string ResponsibilityCenter => settings().ResponsibilityCenter;
-        public  string ResponsibilityCenterCode => settings().ResponsibilityCenterCode;
-        public  string OfficeId => settings().OfficeId;
+        public string OfficeName => settings().OfficeName;
+        public string Head => settings().Chief;
+        public string HeadPos => settings().ChiefPosition;
+        public string ResponsibilityCenter => settings().ResponsibilityCenter;
+        public string ResponsibilityCenterCode => settings().ResponsibilityCenterCode;
+        public int OfficeId => settings().Id;
 
 
 

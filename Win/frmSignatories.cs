@@ -21,6 +21,7 @@ namespace Win
         {
             InitializeComponent();
             Init();
+            btnDeleteSignatory.ButtonClick += btnDeleteSignatory_ButtonClick;
         }
 
         private void btnDeleteSignatory_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -51,7 +52,7 @@ namespace Win
             if (e.Row is Signatories item)
             {
 
-              
+
 
                 UnitOfWork unitOfWork = new UnitOfWork();
                 item.Year = item.Year ?? new StaticSettings().Year;

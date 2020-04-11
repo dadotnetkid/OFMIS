@@ -104,10 +104,11 @@
             this.btnDeleteItemRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnEditItemRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.PQTabPage = new DevExpress.XtraTab.XtraTabPage();
+            this.tabPO = new DevExpress.XtraTab.XtraTabPage();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.txtAmount = new DevExpress.XtraEditors.SpinEdit();
             this.txtAccountCode = new DevExpress.XtraEditors.TextEdit();
-            this.tabPO = new DevExpress.XtraTab.XtraTabPage();
+            this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PRGridControl)).BeginInit();
@@ -217,7 +218,7 @@
             this.colAmount.Caption = "Amount";
             this.colAmount.DisplayFormat.FormatString = "n2";
             this.colAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.colAmount.FieldName = "Amount";
+            this.colAmount.FieldName = "TotalAmount";
             this.colAmount.Name = "colAmount";
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 3;
@@ -264,7 +265,7 @@
             // 
             // btnViewAll
             // 
-            this.btnViewAll.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.btnViewAll.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnViewAll.Appearance.Options.UseFont = true;
             this.btnViewAll.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnViewAll.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
@@ -277,7 +278,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.btnSearch.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnSearch.Appearance.Options.UseFont = true;
             this.btnSearch.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSearch.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
@@ -347,6 +348,7 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(205)))), ((int)(((byte)(221)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lblHeader);
+            this.panel1.Controls.Add(this.btnPreview);
             this.panel1.Controls.Add(this.btnNew);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(438, 0);
@@ -369,7 +371,7 @@
             // lblHeader
             // 
             this.lblHeader.Appearance.BackColor = System.Drawing.Color.White;
-            this.lblHeader.Appearance.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
+            this.lblHeader.Appearance.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblHeader.Appearance.ForeColor = System.Drawing.Color.Black;
             this.lblHeader.Appearance.Options.UseBackColor = true;
             this.lblHeader.Appearance.Options.UseFont = true;
@@ -386,7 +388,7 @@
             // 
             // btnNew
             // 
-            this.btnNew.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnNew.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnNew.Appearance.Options.UseFont = true;
             this.btnNew.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnNew.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
@@ -529,8 +531,8 @@
             this.PRTabControl.TabIndex = 68;
             this.PRTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
-            this.tabPO,
-            this.PQTabPage});
+            this.PQTabPage,
+            this.tabPO});
             // 
             // xtraTabPage1
             // 
@@ -695,6 +697,12 @@
             this.PQTabPage.Size = new System.Drawing.Size(858, 330);
             this.PQTabPage.Text = "Price Quotation";
             // 
+            // tabPO
+            // 
+            this.tabPO.Name = "tabPO";
+            this.tabPO.Size = new System.Drawing.Size(858, 330);
+            this.tabPO.Text = "Purchase Orders";
+            // 
             // labelControl5
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -739,11 +747,18 @@
             this.txtAccountCode.Size = new System.Drawing.Size(605, 20);
             this.txtAccountCode.TabIndex = 66;
             // 
-            // tabPO
+            // btnPreview
             // 
-            this.tabPO.Name = "tabPO";
-            this.tabPO.Size = new System.Drawing.Size(0, 0);
-            this.tabPO.Text = "Purchase Orders";
+            this.btnPreview.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnPreview.Appearance.Options.UseFont = true;
+            this.btnPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnPreview.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.btnPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnPreview.Location = new System.Drawing.Point(372, 11);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(102, 23);
+            this.btnPreview.TabIndex = 12;
+            this.btnPreview.Text = "Preview";
             // 
             // UCPurchaseRequest
             // 
@@ -858,5 +873,6 @@
         public DevExpress.XtraEditors.TextEdit txtAccountCode;
         public DevExpress.XtraTab.XtraTabPage PQTabPage;
         public DevExpress.XtraTab.XtraTabPage tabPO;
+        public DevExpress.XtraEditors.SimpleButton btnPreview;
     }
 }

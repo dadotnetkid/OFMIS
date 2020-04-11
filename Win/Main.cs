@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Models.Repository;
 using Win.Accnts;
 using Win.OB;
+using Win.Ofcs;
 using Win.PR;
 using Win.Pyee;
 using Win.Rprts;
@@ -18,24 +19,34 @@ namespace Win
 {
     public partial class Main : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        public Main()
+        private string[] param;
+
+        public Main(string[] param)
         {
             new frmSplashScreen().ShowDialog();
             InitializeComponent();
-
-
+            this.param = param;
+            if (param.Any())
+                Impersonate(param);
+            else
+                Init();
         }
 
-        private void btnObligation_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        void Impersonate(string[] param)
         {
-            if (!User.UserInAction("Obligations"))
-                return;
-            pnlMain.Controls.Clear();
-            pnlMain.Controls.Add(new ucObligations() { Dock = DockStyle.Fill });
-
+            User.UserId = param[0];
+            lblUsername.Caption = $"Name: {User.GetFullName() }";
+            lblUserLevel.Caption = $"User Level: {User.GetUserLevel()}";
+            var unitOfWork = new UnitOfWork();
+            if (!unitOfWork.YearsRepo.Fetch().Any(x => x.IsActive == true))
+            {
+                MessageBox.Show("No Default Year Selected", "Default Year", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                var frm = new frmYears();
+                frm.ShowDialog();
+            }
         }
-
-        private void Main_Load(object sender, EventArgs e)
+        void Init()
         {
             Form frm = new frmLogin();
             frm.ShowDialog();
@@ -49,6 +60,19 @@ namespace Win
                 frm = new frmYears();
                 frm.ShowDialog();
             }
+        }
+        private void btnObligation_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!User.UserInAction("Obligations"))
+                return;
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new ucObligations() { Dock = DockStyle.Fill });
+
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void btnAccounts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -154,12 +178,7 @@ namespace Win
             frm.ShowDialog();
         }
 
-        private void btnLogout_ItemPressed(object sender, DevExpress.XtraBars.Ribbon.BackstageViewItemEventArgs e)
-        {
-            backstageViewControl1.Close();
-            frmLogin frm = new frmLogin();
-            frm.ShowDialog();
-        }
+
 
         private void btnClose_ItemClick(object sender, DevExpress.XtraBars.Ribbon.BackstageViewItemEventArgs e)
         {
@@ -167,6 +186,21 @@ namespace Win
             if (MessageBox.Show("Do you want to close this application?", "Close Application", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
             Application.Exit();
+        }
+
+        private void btnLogout_ItemClick(object sender, DevExpress.XtraBars.Ribbon.BackstageViewItemEventArgs e)
+        {
+            backstageViewControl1.Close();
+            frmLogin frm = new frmLogin();
+            frm.ShowDialog();
+        }
+
+        private void btnOffices_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!User.UserInAction("Offices"))
+                return;
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new UCOffices() { Dock = DockStyle.Fill });
         }
     }
 }

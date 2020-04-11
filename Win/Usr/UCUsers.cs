@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.Data.Linq;
+using DevExpress.UserSkins;
 using DevExpress.XtraEditors;
 using Models;
 using Models.Repository;
@@ -36,10 +40,8 @@ namespace Win.Usr
 
         public void Init()
         {
-            UserGridControl.DataSource = new EntityServerModeSource()
-            {
-                QueryableSource = new UnitOfWork().UsersRepo.Fetch()
-            };
+            var u = new UnitOfWork();
+            UserGridControl.DataSource = new BindingList<Users>(u.UsersRepo.Get());
         }
 
         public void Detail(Users item)
@@ -82,6 +84,24 @@ namespace Win.Usr
             frm.ShowDialog();
             Init();
 
+        }
+
+        private void btnImpersonateRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (UserGridView.GetFocusedRow() is Users item)
+            {
+                var th = new Thread(() =>
+                {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+
+                    BonusSkins.Register();
+
+                    Application.Run(new Main(new string[] { item.Id }));
+                });
+                th.ApartmentState = ApartmentState.STA;
+                th.Start();
+            }
         }
     }
 }

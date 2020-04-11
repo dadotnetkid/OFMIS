@@ -31,19 +31,15 @@ namespace Models
         public virtual DbSet<UserClaims> UserClaims { get; set; }
         public virtual DbSet<UserLogins> UserLogins { get; set; }
         public virtual DbSet<UserRoles> UserRoles { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
-        public virtual DbSet<Offices> Offices { get; set; }
         public virtual DbSet<Payees> Payees { get; set; }
         public virtual DbSet<Appropriations> Appropriations { get; set; }
         public virtual DbSet<FundTypes> FundTypes { get; set; }
         public virtual DbSet<Allotments> Allotments { get; set; }
         public virtual DbSet<ORDetails> ORDetails { get; set; }
-        public virtual DbSet<Obligations> Obligations { get; set; }
         public virtual DbSet<ReAlignments> ReAlignments { get; set; }
         public virtual DbSet<Years> Years { get; set; }
-        public virtual DbSet<DefaultSettings> DefaultSettings { get; set; }
         public virtual DbSet<Signatories> Signatories { get; set; }
         public virtual DbSet<Items> Items { get; set; }
         public virtual DbSet<PurchaseRequests> PurchaseRequests { get; set; }
@@ -59,5 +55,9 @@ namespace Models
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<PayrollDetails> PayrollDetails { get; set; }
         public virtual DbSet<Payrolls> Payrolls { get; set; }
+        public virtual DbSet<DefaultSettings> DefaultSettings { get; set; }
+        public virtual DbSet<Offices> Offices { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Obligations> Obligations { get; set; }
     }
 }

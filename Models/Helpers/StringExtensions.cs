@@ -39,6 +39,19 @@ namespace Helpers
                 return 0;
             }
         }
+        public static int? ToInt(this object obj, bool isNullable)
+        {
+            try
+            {
+                if (isNullable && obj.ToInt() == 0)
+                    return null;
+                return Convert.ToInt32(obj);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
         public static Boolean ToBool(this object obj)
         {
             try

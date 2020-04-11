@@ -48,16 +48,17 @@
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPurpose = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEdit = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnEditPQRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.btnEditPORepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDeletePQRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.entityServerModeSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.POGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.entityServerModeSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.POGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditPQRepo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditPORepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeletePQRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -77,7 +78,7 @@
             this.POGridControl.MainView = this.POGridView;
             this.POGridControl.Name = "POGridControl";
             this.POGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.btnEditPQRepo,
+            this.btnEditPORepo,
             this.btnDeletePQRepo});
             this.POGridControl.Size = new System.Drawing.Size(931, 346);
             this.POGridControl.TabIndex = 3;
@@ -134,20 +135,20 @@
             // 
             // colEdit
             // 
-            this.colEdit.ColumnEdit = this.btnEditPQRepo;
+            this.colEdit.ColumnEdit = this.btnEditPORepo;
             this.colEdit.Name = "colEdit";
             this.colEdit.Visible = true;
             this.colEdit.VisibleIndex = 1;
             this.colEdit.Width = 20;
             // 
-            // btnEditPQRepo
+            // btnEditPORepo
             // 
-            this.btnEditPQRepo.AutoHeight = false;
+            this.btnEditPORepo.AutoHeight = false;
             editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
-            this.btnEditPQRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.btnEditPORepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.btnEditPQRepo.Name = "btnEditPQRepo";
-            this.btnEditPQRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnEditPORepo.Name = "btnEditPORepo";
+            this.btnEditPORepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // colDelete
             // 
@@ -168,6 +169,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnPreview);
             this.panelControl1.Controls.Add(this.btnNew);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
@@ -177,7 +179,7 @@
             // 
             // btnNew
             // 
-            this.btnNew.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnNew.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnNew.Appearance.Options.UseFont = true;
             this.btnNew.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnNew.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
@@ -187,6 +189,19 @@
             this.btnNew.Size = new System.Drawing.Size(102, 23);
             this.btnNew.TabIndex = 13;
             this.btnNew.Text = "Add New";
+            // 
+            // btnPreview
+            // 
+            this.btnPreview.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnPreview.Appearance.Options.UseFont = true;
+            this.btnPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnPreview.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.btnPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview.ImageOptions.Image")));
+            this.btnPreview.Location = new System.Drawing.Point(113, 5);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(102, 23);
+            this.btnPreview.TabIndex = 15;
+            this.btnPreview.Text = "Preview";
             // 
             // UCPO
             // 
@@ -200,7 +215,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.POGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.entityServerModeSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.POGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditPQRepo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditPORepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeletePQRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -218,10 +233,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDescription;
         private DevExpress.XtraGrid.Columns.GridColumn colPurpose;
         private DevExpress.XtraGrid.Columns.GridColumn colEdit;
-        public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditPQRepo;
+        public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditPORepo;
         private DevExpress.XtraGrid.Columns.GridColumn colDelete;
         public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDeletePQRepo;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         public DevExpress.XtraEditors.SimpleButton btnNew;
+        public DevExpress.XtraEditors.SimpleButton btnPreview;
     }
 }

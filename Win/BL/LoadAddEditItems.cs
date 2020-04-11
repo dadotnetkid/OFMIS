@@ -52,6 +52,7 @@ namespace Win.BL
                 items.Item = frmAddEditItems.txtItem.Text;
                 items.Category = frmAddEditItems.cboCategory.Text;
                 items.UOM = frmAddEditItems.cboUOM.Text;
+
                 unitOfWork.Save();
                 isClose = true;
                 frmAddEditItems.Close();
@@ -139,6 +140,7 @@ namespace Win.BL
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             var pr = unitOfWork.PurchaseRequestsRepo.Find(m => m.Id == purchaseRequests.Id);
+            var count = 1;
             foreach (var i in frmItems.ItemsGridView.GetSelectedRows())
             {
                 if (frmItems.ItemsGridView.GetRow(i) is Items item)
@@ -149,13 +151,18 @@ namespace Win.BL
                         UOM = item.UOM,
                         Item = item.Item,
                         Cost = item.Cost,
+                        Quantity = 1,
+                        ItemNo = count,
+                        TotalAmount = item.Cost
 
                     });
                     unitOfWork.Save();
                 }
+
+                count++;
             }
 
-    
+
             frmItems.Close();
         }
 

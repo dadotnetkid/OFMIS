@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Models;
 using Models.Repository;
+using Models.ViewModels;
 using Win.BL;
 using Win.Rprts;
 
@@ -61,6 +62,18 @@ namespace Win.OB
                 frm.ShowDialog();
             }
 
+        }
+
+        private void btnDVPreview_Click(object sender, EventArgs e)
+        {
+            if (OBGridView.GetFocusedRow() is Obligations item)
+            {
+                frmReportViewer frm = new frmReportViewer(new rptDV()
+                {
+                    DataSource = new List<DvReportViewModel>() {new  DvReportViewModel(item.Id) }
+                });
+                frm.ShowDialog();
+            }
         }
     }
 }

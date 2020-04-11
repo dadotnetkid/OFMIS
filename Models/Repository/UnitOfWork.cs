@@ -23,6 +23,17 @@ namespace Models.Repository
 
         }
 
+        private GenericRepository<Categories> _CategoriesRepo;
+        public GenericRepository<Categories> CategoriesRepo
+        {
+            get
+            {
+                if (this._CategoriesRepo == null)
+                    this._CategoriesRepo = new GenericRepository<Categories>(context);
+                return _CategoriesRepo;
+            }
+            set { _CategoriesRepo = value; }
+        }
 
         private GenericRepository<PayrollDetails> _PayrollDetailsRepo;
         public GenericRepository<PayrollDetails> PayrollDetailsRepo

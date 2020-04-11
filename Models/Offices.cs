@@ -18,18 +18,31 @@ namespace Models
         public Offices()
         {
             this.Employees = new HashSet<Employees>();
+            this.OfficesUnderOf = new HashSet<Offices>();
+            this.Obligations = new HashSet<Obligations>();
+            this.Users = new HashSet<Users>();
         }
     
         public int Id { get; set; }
-        public Nullable<int> BoxNo { get; set; }
         public string OffcAcr { get; set; }
         public string OfficeName { get; set; }
         public string Chief { get; set; }
-        public string TelNo { get; set; }
+        public string ChiefPosition { get; set; }
+        public string ResponsibilityCenter { get; set; }
+        public string ResponsibilityCenterCode { get; set; }
+        public Nullable<bool> IsDivision { get; set; }
+        public Nullable<int> UnderOf { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employees> Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Offices> OfficesUnderOf { get; set; }
+        public virtual Offices UnderOfOffice { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Obligations> Obligations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

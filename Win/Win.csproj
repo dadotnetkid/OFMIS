@@ -16,7 +16,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>ftp://66.42.60.93/wwwroot/</PublishUrl>
+    <PublishUrl>\\plgunv_adserver\c%24\Installers\OFMIS\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -26,10 +26,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://ofmis.nuevavizcayagov.ml/</InstallUrl>
+    <InstallUrl>http://plgunv_adserver/ofmis/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -152,6 +152,12 @@
     <Compile Include="Accnts\UcAccounts.Designer.cs">
       <DependentUpon>UcAccounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="AIRpt\UCAIReports.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AIRpt\UCAIReports.Designer.cs">
+      <DependentUpon>UCAIReports.cs</DependentUpon>
+    </Compile>
     <Compile Include="BL\AddEditAllotment.cs" />
     <Compile Include="BL\AddEditAppropriation.cs" />
     <Compile Include="BL\AddEditObligations.cs" />
@@ -223,6 +229,12 @@
     <Compile Include="OB\frmEditDisbursementVoucher.Designer.cs">
       <DependentUpon>frmEditDisbursementVoucher.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ofcs\UCOffices.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ofcs\UCOffices.Designer.cs">
+      <DependentUpon>UCOffices.cs</DependentUpon>
+    </Compile>
     <Compile Include="PO\frmAddEditPO.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -283,11 +295,35 @@
     <Compile Include="Pyrll\UCPayrolls.Designer.cs">
       <DependentUpon>UCPayrolls.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rprts\rptDV.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptDV.Designer.cs">
+      <DependentUpon>rptDV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rprts\rptObligationRequestPreview.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Rprts\rptObligationRequestPreview.Designer.cs">
       <DependentUpon>rptObligationRequestPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptOBRPayroll.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptOBRPayroll.Designer.cs">
+      <DependentUpon>rptOBRPayroll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptPO.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptPO.Designer.cs">
+      <DependentUpon>rptPO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptPurchaseQuotation.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptPurchaseQuotation.Designer.cs">
+      <DependentUpon>rptPurchaseQuotation.cs</DependentUpon>
     </Compile>
     <Compile Include="Rprts\rptPurchaseRequest.cs">
       <SubType>Component</SubType>
@@ -401,6 +437,9 @@
     <EmbeddedResource Include="Accnts\UcAccounts.resx">
       <DependentUpon>UcAccounts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AIRpt\UCAIReports.resx">
+      <DependentUpon>UCAIReports.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDefaultAccounts.resx">
       <DependentUpon>frmDefaultAccounts.cs</DependentUpon>
     </EmbeddedResource>
@@ -427,6 +466,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OB\frmEditDisbursementVoucher.resx">
       <DependentUpon>frmEditDisbursementVoucher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ofcs\UCOffices.resx">
+      <DependentUpon>UCOffices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PO\frmAddEditPO.resx">
       <DependentUpon>frmAddEditPO.cs</DependentUpon>
@@ -458,8 +500,20 @@
     <EmbeddedResource Include="Pyrll\UCPayrolls.resx">
       <DependentUpon>UCPayrolls.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptDV.resx">
+      <DependentUpon>rptDV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptObligationRequestPreview.resx">
       <DependentUpon>rptObligationRequestPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptOBRPayroll.resx">
+      <DependentUpon>rptOBRPayroll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptPO.resx">
+      <DependentUpon>rptPO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptPurchaseQuotation.resx">
+      <DependentUpon>rptPurchaseQuotation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptPurchaseRequest.resx">
       <DependentUpon>rptPurchaseRequest.cs</DependentUpon>

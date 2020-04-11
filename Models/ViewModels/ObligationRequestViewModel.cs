@@ -10,7 +10,7 @@ namespace Models.ViewModels
     public class ObligationRequestViewModel
     {
         private List<Obligations> _obligations;
-
+        
         public void GenerateReport(int year)
         {
             this.Obligations = new UnitOfWork().ObligationsRepo.Get(m => m.Year == year);

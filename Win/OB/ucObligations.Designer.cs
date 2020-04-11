@@ -104,11 +104,12 @@
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.colAccountCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cboAppropriationLookUpRepo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.tabPayroll = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.btnEditDV = new DevExpress.XtraEditors.SimpleButton();
             this.txtParticular = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
-            this.tabPayroll = new DevExpress.XtraTab.XtraTabPage();
+            this.btnDVPreview = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OBGridControl)).BeginInit();
@@ -278,7 +279,7 @@
             // 
             // btnViewAll
             // 
-            this.btnViewAll.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.btnViewAll.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnViewAll.Appearance.Options.UseFont = true;
             this.btnViewAll.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnViewAll.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
@@ -292,7 +293,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.btnSearch.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnSearch.Appearance.Options.UseFont = true;
             this.btnSearch.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSearch.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
@@ -361,7 +362,7 @@
             // 
             // btnNew
             // 
-            this.btnNew.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnNew.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnNew.Appearance.Options.UseFont = true;
             this.btnNew.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnNew.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
@@ -676,7 +677,7 @@
             // lblHeader
             // 
             this.lblHeader.Appearance.BackColor = System.Drawing.Color.White;
-            this.lblHeader.Appearance.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
+            this.lblHeader.Appearance.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblHeader.Appearance.ForeColor = System.Drawing.Color.Black;
             this.lblHeader.Appearance.Options.UseBackColor = true;
             this.lblHeader.Appearance.Options.UseFont = true;
@@ -718,7 +719,7 @@
             // 
             // btnPreview
             // 
-            this.btnPreview.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnPreview.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnPreview.Appearance.Options.UseFont = true;
             this.btnPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnPreview.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
@@ -862,8 +863,15 @@
             this.cboAppropriationLookUpRepo.NullText = "";
             this.cboAppropriationLookUpRepo.ValueMember = "Id";
             // 
+            // tabPayroll
+            // 
+            this.tabPayroll.Name = "tabPayroll";
+            this.tabPayroll.Size = new System.Drawing.Size(791, 259);
+            this.tabPayroll.Text = "Payroll";
+            // 
             // xtraTabPage2
             // 
+            this.xtraTabPage2.Controls.Add(this.btnDVPreview);
             this.xtraTabPage2.Controls.Add(this.btnEditDV);
             this.xtraTabPage2.Controls.Add(this.txtParticular);
             this.xtraTabPage2.Controls.Add(this.labelControl15);
@@ -873,7 +881,7 @@
             // 
             // btnEditDV
             // 
-            this.btnEditDV.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnEditDV.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnEditDV.Appearance.Options.UseFont = true;
             this.btnEditDV.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnEditDV.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
@@ -903,11 +911,19 @@
             this.labelControl15.TabIndex = 0;
             this.labelControl15.Text = "Particulars";
             // 
-            // tabPayroll
+            // btnDVPreview
             // 
-            this.tabPayroll.Name = "tabPayroll";
-            this.tabPayroll.Size = new System.Drawing.Size(791, 259);
-            this.tabPayroll.Text = "Payroll";
+            this.btnDVPreview.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnDVPreview.Appearance.Options.UseFont = true;
+            this.btnDVPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnDVPreview.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.btnDVPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnDVPreview.Location = new System.Drawing.Point(158, 7);
+            this.btnDVPreview.Name = "btnDVPreview";
+            this.btnDVPreview.Size = new System.Drawing.Size(86, 23);
+            this.btnDVPreview.TabIndex = 13;
+            this.btnDVPreview.Text = "Preview";
+            this.btnDVPreview.Click += new System.EventHandler(this.btnDVPreview_Click);
             // 
             // ucObligations
             // 
@@ -1054,5 +1070,6 @@
         public DevExpress.XtraEditors.SimpleButton btnEditDV;
         private DevExpress.XtraEditors.SimpleButton btnPreview;
         public DevExpress.XtraTab.XtraTabPage tabPayroll;
+        public DevExpress.XtraEditors.SimpleButton btnDVPreview;
     }
 }

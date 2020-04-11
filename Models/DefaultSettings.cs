@@ -16,23 +16,13 @@ namespace Models
     {
         public int Id { get; set; }
         public Nullable<int> Year { get; set; }
-        public string PG { get; set; }
-        public string PGPos { get; set; }
-        public string PA { get; set; }
-        public string PAPos { get; set; }
-        public string PBO { get; set; }
-        public string PBOPos { get; set; }
-        public string PT { get; set; }
-        public string PTPos { get; set; }
-        public string PAccountant { get; set; }
-        public string PAccountantPos { get; set; }
-        public string PGSO { get; set; }
-        public string PGSOPosition { get; set; }
         public string Department { get; set; }
         public string ChiefOfOffice { get; set; }
         public string ChiefOfOfficePos { get; set; }
         public string ResponsibilityCenter { get; set; }
         public string ResponsibilityCenterCode { get; set; }
         public string OfficeId { get; set; }
+        public Nullable<bool> IsDepartment { get; set; }
+        public string UnderOf { get; set; }
     }
 }
