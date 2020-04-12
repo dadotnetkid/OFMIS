@@ -15,15 +15,10 @@
         <EntityTypeShape EntityType="Model.Employees" Width="1.5" PointX="8" PointY="13" />
         <EntityTypeShape EntityType="Model.Suppliers" Width="1.5" PointX="7.75" PointY="0.75" />
         <EntityTypeShape EntityType="Model.Payees" Width="1.5" PointX="1.5" PointY="11.875" />
-        <EntityTypeShape EntityType="Model.Appropriations" Width="1.5" PointX="0.75" PointY="4.25" />
         <EntityTypeShape EntityType="Model.FundTypes" Width="1.5" PointX="5.75" PointY="8.75" />
         <EntityTypeShape EntityType="Model.Allotments" Width="1.5" PointX="3" PointY="2.875" />
-        <AssociationConnector Association="Model.FK_Allotments_Appropriations" />
         <EntityTypeShape EntityType="Model.ORDetails" Width="1.5" PointX="6" PointY="4.75" />
-        <AssociationConnector Association="Model.FK_ORDetails_Appropriations" />
         <EntityTypeShape EntityType="Model.ReAlignments" Width="1.5" PointX="3" PointY="6.125" />
-        <AssociationConnector Association="Model.FK_ReAlignments_Appropriations" />
-        <AssociationConnector Association="Model.FK_ReAlignments_TargetSource" />
         <EntityTypeShape EntityType="Model.Years" Width="1.5" PointX="0.75" PointY="15.75" />
         <EntityTypeShape EntityType="Model.Signatories" Width="1.5" PointX="15.375" PointY="6.75" />
         <EntityTypeShape EntityType="Model.Items" Width="1.5" PointX="15.375" PointY="9.75" />
@@ -31,7 +26,6 @@
         <EntityTypeShape EntityType="Model.Categories" Width="1.5" PointX="15.375" PointY="12.75" />
         <EntityTypeShape EntityType="Model.PRDetails" Width="1.5" PointX="12.375" PointY="15.75" />
         <AssociationConnector Association="Model.FK_PRDetails_PurchaseRequests" />
-        <AssociationConnector Association="Model.FK_PurchaseRequests_Appropriations" />
         <EntityTypeShape EntityType="Model.PQDetails" Width="1.5" PointX="16.625" PointY="16" />
         <EntityTypeShape EntityType="Model.PriceQuotations" Width="1.5" PointX="12.625" PointY="20" />
         <AssociationConnector Association="Model.FK_PQDetails_PurchaseQuotations" />
@@ -63,6 +57,12 @@
         <AssociationConnector Association="Model.FK_ORDetails_Obligations" />
         <AssociationConnector Association="Model.FK_Payrolls_Obligations" />
         <AssociationConnector Association="Model.FK_Users_Offices" />
+        <EntityTypeShape EntityType="Model.Appropriations" Width="1.5" PointX="0.75" PointY="7.125" />
+        <AssociationConnector Association="Model.FK_Allotments_Appropriations" />
+        <AssociationConnector Association="Model.FK_ORDetails_Appropriations" />
+        <AssociationConnector Association="Model.FK_PurchaseRequests_Appropriations" />
+        <AssociationConnector Association="Model.FK_ReAlignments_Appropriations" />
+        <AssociationConnector Association="Model.FK_ReAlignments_TargetSource" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

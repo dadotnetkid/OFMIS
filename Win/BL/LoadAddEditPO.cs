@@ -31,6 +31,7 @@ namespace Win.BL
             uCPO.btnDeletePQRepo.ButtonClick += BtnDeletePQRepo_ButtonClick;
             uCPO.btnEditPORepo.ButtonClick += BtnEditPORepo_ButtonClick;
             uCPO.btnPreview.Click += BtnPreview_Click;
+
         }
 
         private void BtnPreview_Click(object sender, EventArgs e)
@@ -96,6 +97,14 @@ namespace Win.BL
             frm.FormClosing += Frm_FormClosing;
             frm.ItemsGridView.RowUpdated += ItemsGridView_RowUpdated;
             frm.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_ButtonClick;
+            frm.btnAddItems.Click += BtnAddItems_Click;
+        }
+
+        private void BtnAddItems_Click(object sender, EventArgs e)
+        {
+            frmPriceQuotations frmPriceQuotations = new frmPriceQuotations(this.purchaseOrders.PurchaseRequests, this.purchaseOrders.Id);
+            frmPriceQuotations.ShowDialog();
+            ((ITransactions<PurchaseOrders>)this).Init();
         }
 
         private void BtnDeleteItemRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -309,7 +318,28 @@ namespace Win.BL
 
         public void Close(FormClosingEventArgs eventArgs)
         {
+            try
+            {
+                if (isClosed)
+                    return;
+                if (methodType == MethodType.Edit)
+                    return;
 
+                if (MessageBox.Show("Do you want to close this?", "Close", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    eventArgs.Cancel = true;
+                    return;
+                }
+                UnitOfWork unitOfWork = new UnitOfWork();
+                unitOfWork.PurchaseOrdersRepo.Delete(m => m.Id == purchaseOrders.Id);
+                unitOfWork.Save();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         void ILoad<PurchaseOrders>.Init()

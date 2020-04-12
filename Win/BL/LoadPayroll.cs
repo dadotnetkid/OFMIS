@@ -34,7 +34,7 @@ namespace Win.BL
         {
             var res = new UnitOfWork().PayrollsRepo.Find(m => m.Id == obId);
             frmReportViewer frm =
-                new frmReportViewer(new rptOBRPayroll(res.Obligations.ResponsibilityCenter + " - " + res.ControlNo)
+                new frmReportViewer(new rptOBRPayroll(res?.Obligations.ResponsibilityCenter + " - " + res?.ControlNo)
             {
                 DataSource = new List<Payrolls>() { res }
             });

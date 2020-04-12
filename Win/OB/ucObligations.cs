@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
 using Models;
 using Models.Repository;
 using Models.ViewModels;
@@ -70,10 +71,30 @@ namespace Win.OB
             {
                 frmReportViewer frm = new frmReportViewer(new rptDV()
                 {
-                    DataSource = new List<DvReportViewModel>() {new  DvReportViewModel(item.Id) }
+                    DataSource = new List<DvReportViewModel>() { new DvReportViewModel(item.Id) }
                 });
                 frm.ShowDialog();
             }
+        }
+
+        private void OBGridView_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+
+        }
+
+        private void OBGridView_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+
+
+            if (e.Column.Name == "colDescription" )
+            {
+                Obligations mark = view.GetRow(e.RowHandle) as Obligations;
+                if(mark.Earmarked == true)
+                    e.Appearance.ForeColor = Color.Red;
+                //                e.Appearance.TextOptions.HAlignment = _mark ? HorzAlignment.Far : HorzAlignment.Near;
+            }
+
         }
     }
 }

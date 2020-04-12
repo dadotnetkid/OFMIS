@@ -106,10 +106,10 @@
             this.cboAppropriationLookUpRepo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.tabPayroll = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.btnDVPreview = new DevExpress.XtraEditors.SimpleButton();
             this.btnEditDV = new DevExpress.XtraEditors.SimpleButton();
             this.txtParticular = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
-            this.btnDVPreview = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OBGridControl)).BeginInit();
@@ -179,6 +179,8 @@
             // 
             // OBGridView
             // 
+            this.OBGridView.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(247)))), ((int)(((byte)(249)))));
+            this.OBGridView.Appearance.OddRow.Options.UseBackColor = true;
             this.OBGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colId,
             this.colDel,
@@ -194,6 +196,8 @@
             this.OBGridView.OptionsLayout.Columns.AddNewColumns = false;
             this.OBGridView.OptionsView.ShowGroupPanel = false;
             this.OBGridView.OptionsView.ShowPreviewRowLines = DevExpress.Utils.DefaultBoolean.False;
+            this.OBGridView.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.OBGridView_CustomDrawCell);
+            this.OBGridView.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.OBGridView_RowCellStyle);
             // 
             // colId
             // 
@@ -843,8 +847,7 @@
             // colAccountCode
             // 
             this.colAccountCode.Caption = "Account Code";
-            this.colAccountCode.ColumnEdit = this.cboAppropriationLookUpRepo;
-            this.colAccountCode.FieldName = "AppropriationId";
+            this.colAccountCode.FieldName = "Appropriations.AccountCode";
             this.colAccountCode.Name = "colAccountCode";
             this.colAccountCode.Visible = true;
             this.colAccountCode.VisibleIndex = 2;
@@ -879,6 +882,20 @@
             this.xtraTabPage2.Size = new System.Drawing.Size(791, 259);
             this.xtraTabPage2.Text = "Disbursement Voucher";
             // 
+            // btnDVPreview
+            // 
+            this.btnDVPreview.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnDVPreview.Appearance.Options.UseFont = true;
+            this.btnDVPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnDVPreview.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.btnDVPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDVPreview.ImageOptions.Image")));
+            this.btnDVPreview.Location = new System.Drawing.Point(158, 7);
+            this.btnDVPreview.Name = "btnDVPreview";
+            this.btnDVPreview.Size = new System.Drawing.Size(86, 23);
+            this.btnDVPreview.TabIndex = 13;
+            this.btnDVPreview.Text = "Preview";
+            this.btnDVPreview.Click += new System.EventHandler(this.btnDVPreview_Click);
+            // 
             // btnEditDV
             // 
             this.btnEditDV.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -907,23 +924,9 @@
             // 
             this.labelControl15.Location = new System.Drawing.Point(10, 38);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(49, 13);
+            this.labelControl15.Size = new System.Drawing.Size(53, 13);
             this.labelControl15.TabIndex = 0;
             this.labelControl15.Text = "Particulars";
-            // 
-            // btnDVPreview
-            // 
-            this.btnDVPreview.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnDVPreview.Appearance.Options.UseFont = true;
-            this.btnDVPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.btnDVPreview.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.btnDVPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.btnDVPreview.Location = new System.Drawing.Point(158, 7);
-            this.btnDVPreview.Name = "btnDVPreview";
-            this.btnDVPreview.Size = new System.Drawing.Size(86, 23);
-            this.btnDVPreview.TabIndex = 13;
-            this.btnDVPreview.Text = "Preview";
-            this.btnDVPreview.Click += new System.EventHandler(this.btnDVPreview_Click);
             // 
             // ucObligations
             // 

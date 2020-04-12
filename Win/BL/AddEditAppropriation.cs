@@ -66,7 +66,8 @@ namespace Win.BL
                     AccountName = frm.txtAccountName.Text,
                     Appropriation = frm.txtAppropriationAmount.EditValue.ToDecimal(),
                     Id = appropriation.Id,
-                    Year = appropriation.Year ?? new StaticSettings().Year
+                    Year = appropriation.Year ?? new StaticSettings().Year,
+                    OfficeId = appropriation.OfficeId ?? new StaticSettings().OfficeId
                 });
                 unitOfWork.Save();
                 isClosed = true;

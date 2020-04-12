@@ -10,6 +10,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using Helpers;
 using Models;
 using Models.Repository;
+using Win.OB;
 using Win.PO;
 using Win.PQ;
 using Win.PR;
@@ -27,6 +28,7 @@ namespace Win.BL
             ucPR.btnDeleteRepoPR.ButtonClick += BtnDeleteRepoPR_ButtonClick;
             ucPR.btnEditRepoPR.ButtonClick += BtnEditRepoPR_ButtonClick;
             ucPR.btnPreview.Click += BtnPreview_Click;
+
 
         }
 
@@ -85,9 +87,41 @@ namespace Win.BL
         {
             this.frmAddEditPurchaseRequest = frm;
             this.item = item;
-            frmAddEditPurchaseRequest.btnAddItems.Click += BtnAddItems_Click;
-            frmAddEditPurchaseRequest.ItemsGridView.RowUpdated += ItemsGridView_RowUpdated;
-            frmAddEditPurchaseRequest.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_ButtonClick;
+            frm.btnAddItems.Click += BtnAddItems_Click;
+            frm.ItemsGridView.RowUpdated += ItemsGridView_RowUpdated;
+            frm.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_ButtonClick;
+            frm.btnAppropriations.Click += BtnAppropriations_Click;
+
+        }
+
+        private void BtnAppropriations_Click(object sender, EventArgs e)
+        {
+            {
+                item.AppropriationId = frmAddEditPurchaseRequest.cboAccountCode.EditValue.ToInt();
+                if (item.AppropriationId == 0 || item.AppropriationId == null)
+                {
+                    MessageBox.Show("Enter Account Code", "Incomplete Data", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+
+                var pr = new UnitOfWork().ObligationsRepo.Fetch(m => m.PRNo == item.Id);
+                if (pr.Any())
+                {
+                    MessageBox.Show($@"Purchase request has already an obligation request with control no {pr.FirstOrDefault()?.ControlNo }.", @"Existing", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+                frmAddEditObligation frmOBR = new frmAddEditObligation(MethodType.Add, new Obligations()
+                {
+                    Earmarked = true,
+                    ORDetails = new List<ORDetails>() { new ORDetails() { AppropriationId = item.AppropriationId, Particulars = "PR Description" } },
+                    PRNo = item.Id,
+                });
+                this.Save();
+                frmOBR.ShowDialog();
+                ((ITransactions<PurchaseRequests>)this).Detail();
+            };
         }
 
         private void BtnDeleteItemRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -158,9 +192,9 @@ namespace Win.BL
                 item.AppropriationId = frmAddEditPurchaseRequest.cboAccountCode.EditValue?.ToInt();
                 item.Purpose = frmAddEditPurchaseRequest.txtPurpose.Text;
                 item.TotalAmount = item.PRDetails.Sum(m => m.TotalAmount);
+                item.TotalAmount = item.PRDetails.Sum(m => m.TotalAmount);
                 unitOfWork.Save();
                 isClosed = true;
-                frmAddEditPurchaseRequest.Close();
 
             }
             catch (Exception e)
@@ -173,8 +207,9 @@ namespace Win.BL
         public void Detail()
         {
             UnitOfWork unitOfWork = new UnitOfWork();
+            var staticSettings = new StaticSettings();
             frmAddEditPurchaseRequest.cboAccountCode.Properties.DataSource =
-                new BindingList<Appropriations>(unitOfWork.AppropriationsRepoRepo.Get());
+                new BindingList<Appropriations>(unitOfWork.AppropriationsRepoRepo.Get(m => m.Year == staticSettings.Year && m.OfficeId == staticSettings.OfficeId));
             item = unitOfWork.PurchaseRequestsRepo.Find(m => m.Id == item.Id);
             frmAddEditPurchaseRequest.dtDate.EditValue = item.Date ?? DateTime.Now;
             frmAddEditPurchaseRequest.txtControlNumber.Text = item.ControlNo;

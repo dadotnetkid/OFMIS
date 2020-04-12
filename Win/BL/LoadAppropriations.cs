@@ -94,9 +94,10 @@ namespace Win.BL
 
         public void Init()
         {
+            var staticSettings = new StaticSettings();
             uc.appropriationGridControl.DataSource = new EntityServerModeSource()
             {
-                QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch(m => m.Year == year)
+                QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch(m => m.Year == staticSettings.Year && m.OfficeId == staticSettings.OfficeId)
             };
 
         }

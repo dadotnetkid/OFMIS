@@ -15,11 +15,17 @@ namespace Win.PO
 {
     public partial class frmAddEditPO : DevExpress.XtraEditors.XtraForm
     {
+        private ITransactions<PurchaseOrders> purchaseOrder;
         public frmAddEditPO(MethodType methodType, PurchaseOrders purchaseOrders)
         {
             InitializeComponent();
-            ITransactions<PurchaseOrders> purchaseOrder = new LoadAddEditPO(this, purchaseOrders) { methodType = methodType };
+            purchaseOrder = new LoadAddEditPO(this, purchaseOrders) { methodType = methodType };
             purchaseOrder.Init();
+        }
+
+        private void frmAddEditPO_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            purchaseOrder.Close(e);
         }
     }
 }

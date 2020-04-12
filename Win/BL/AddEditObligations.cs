@@ -136,7 +136,9 @@ namespace Win.BL
                     Year = obligations.Year ?? new StaticSettings().Year,
                     ResponsibilityCenter = new StaticSettings().ResponsibilityCenter,
                     ResponsibilityCenterCode = new StaticSettings().ResponsibilityCenterCode,
-                    OfficeId = new StaticSettings().OfficeId
+                    OfficeId = new StaticSettings().OfficeId,
+                    PRNo = obligations.PRNo,
+
 
 
                 };
@@ -212,12 +214,20 @@ namespace Win.BL
                 this.obId =
                     (unitOfWork.ObligationsRepo.Fetch().OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0) + 1;
                 this.controlNo = DateTime.Now.ToString("yyyy-MM-") + obId.ToString("0000");
+                var payee = unitOfWork.PayeesRepo.Find(m => m.Name == "Earmarked PR");
                 this.obligations = new Obligations()
                 {
                     Id = obId,
                     ControlNo = controlNo,
                     Year = new StaticSettings().Year,
-                    Date = DateTime.Now
+                    Date = DateTime.Now,
+                    Earmarked = obligations.Earmarked,
+                    PayeeId = payee?.Id,
+                    PayeeOffice = payee?.Office,
+                    PayeeAddress = payee?.Address,
+                    Description = payee?.Description,
+                    ORDetails = obligations.ORDetails,
+                    PRNo = obligations.PRNo
                 };
                 unitOfWork.ObligationsRepo.Insert(obligations);
                 unitOfWork.Save();

@@ -20,7 +20,7 @@ namespace Models
         public string Particulars { get; set; }
         public Nullable<decimal> Amount { get; set; }
     
-        public virtual Appropriations Appropriations { get; set; }
         public virtual Obligations Obligations { get; set; }
+        public virtual Appropriations Appropriations { get; set; }
     }
 }

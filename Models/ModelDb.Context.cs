@@ -34,7 +34,6 @@ namespace Models
         public virtual DbSet<Employees> Employees { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<Payees> Payees { get; set; }
-        public virtual DbSet<Appropriations> Appropriations { get; set; }
         public virtual DbSet<FundTypes> FundTypes { get; set; }
         public virtual DbSet<Allotments> Allotments { get; set; }
         public virtual DbSet<ORDetails> ORDetails { get; set; }
@@ -59,5 +58,6 @@ namespace Models
         public virtual DbSet<Offices> Offices { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Obligations> Obligations { get; set; }
+        public virtual DbSet<Appropriations> Appropriations { get; set; }
     }
 }

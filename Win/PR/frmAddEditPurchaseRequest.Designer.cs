@@ -543,7 +543,7 @@
         public DevExpress.XtraEditors.MemoEdit txtDescription;
         public DevExpress.XtraEditors.MemoEdit txtPurpose;
         public DevExpress.XtraEditors.DateEdit dtDate;
-        private DevExpress.XtraEditors.SimpleButton btnAppropriations;
+        public DevExpress.XtraEditors.SimpleButton btnAppropriations;
         public DevExpress.XtraEditors.SimpleButton btnAddItems;
         public DevExpress.XtraGrid.GridControl ItemsGridControl;
         public DevExpress.XtraGrid.Views.Grid.GridView ItemsGridView;

@@ -28,6 +28,8 @@ namespace Win.PR
         private void btnSave_Click(object sender, EventArgs e)
         {
             transaction.Save();
+            this.Close();
+
         }
 
         private void frmAddEditPurchaseRequest_FormClosing(object sender, FormClosingEventArgs e)

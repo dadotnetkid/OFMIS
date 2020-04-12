@@ -261,7 +261,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.btnSearch.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnSearch.Appearance.Options.UseFont = true;
             this.btnSearch.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSearch.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
@@ -299,12 +299,12 @@
             // 
             // btnAllotments
             // 
-            this.btnAllotments.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnAllotments.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnAllotments.Appearance.Options.UseFont = true;
             this.btnAllotments.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnAllotments.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.btnAllotments.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAllotments.ImageOptions.Image")));
-            this.btnAllotments.Location = new System.Drawing.Point(372, 11);
+            this.btnAllotments.Location = new System.Drawing.Point(400, 11);
             this.btnAllotments.Name = "btnAllotments";
             this.btnAllotments.Size = new System.Drawing.Size(102, 23);
             this.btnAllotments.TabIndex = 14;
@@ -312,14 +312,14 @@
             // 
             // btnAppropriations
             // 
-            this.btnAppropriations.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnAppropriations.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnAppropriations.Appearance.Options.UseFont = true;
             this.btnAppropriations.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnAppropriations.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.btnAppropriations.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAppropriations.ImageOptions.Image")));
             this.btnAppropriations.Location = new System.Drawing.Point(264, 11);
             this.btnAppropriations.Name = "btnAppropriations";
-            this.btnAppropriations.Size = new System.Drawing.Size(102, 23);
+            this.btnAppropriations.Size = new System.Drawing.Size(130, 23);
             this.btnAppropriations.TabIndex = 13;
             this.btnAppropriations.Text = "&Appropriation";
             this.btnAppropriations.Click += new System.EventHandler(this.btnAppropriations_Click);
@@ -665,7 +665,7 @@
             // colAllotmentDate
             // 
             this.colAllotmentDate.Caption = "Date";
-            this.colAllotmentDate.FieldName = "Date";
+            this.colAllotmentDate.FieldName = "AllotmentDate";
             this.colAllotmentDate.Name = "colAllotmentDate";
             this.colAllotmentDate.Visible = true;
             this.colAllotmentDate.VisibleIndex = 2;
@@ -676,7 +676,7 @@
             this.colAllotmentAmount.Caption = "Allotment";
             this.colAllotmentAmount.DisplayFormat.FormatString = "n2";
             this.colAllotmentAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.colAllotmentAmount.FieldName = "Amount";
+            this.colAllotmentAmount.FieldName = "AllotmentAmount";
             this.colAllotmentAmount.Name = "colAllotmentAmount";
             this.colAllotmentAmount.Visible = true;
             this.colAllotmentAmount.VisibleIndex = 3;
@@ -822,21 +822,21 @@
             // 
             // btnRealigment
             // 
-            this.btnRealigment.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnRealigment.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnRealigment.Appearance.Options.UseFont = true;
             this.btnRealigment.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnRealigment.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.btnRealigment.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRealigment.ImageOptions.Image")));
-            this.btnRealigment.Location = new System.Drawing.Point(480, 11);
+            this.btnRealigment.Location = new System.Drawing.Point(508, 11);
             this.btnRealigment.Name = "btnRealigment";
             this.btnRealigment.Size = new System.Drawing.Size(102, 23);
             this.btnRealigment.TabIndex = 16;
-            this.btnRealigment.Text = "Realign";
+            this.btnRealigment.Text = "Realignment";
             // 
             // lblHeader
             // 
             this.lblHeader.Appearance.BackColor = System.Drawing.Color.White;
-            this.lblHeader.Appearance.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
+            this.lblHeader.Appearance.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblHeader.Appearance.ForeColor = System.Drawing.Color.Black;
             this.lblHeader.Appearance.Options.UseBackColor = true;
             this.lblHeader.Appearance.Options.UseFont = true;

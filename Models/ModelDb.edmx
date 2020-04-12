@@ -30,7 +30,7 @@
           <Property Name="Year" Type="int" />
           <Property Name="DateCreated" Type="datetime2" Precision="7" />
           <Property Name="Createdby" Type="nvarchar" MaxLength="128" />
-          <Property Name="OfficeId" Type="nvarchar(max)" />
+          <Property Name="OfficeId" Type="int" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -276,6 +276,7 @@
           <Property Name="TotalAmount" Type="money" />
           <Property Name="PGSOfficer" Type="nvarchar(max)" />
           <Property Name="Position" Type="nvarchar(max)" />
+          <Property Name="Office" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Provinces">
           <Key>
@@ -963,27 +964,10 @@
           <EntitySet Name="Employees" EntityType="Model.Employees" />
           <EntitySet Name="Suppliers" EntityType="Model.Suppliers" />
           <EntitySet Name="Payees" EntityType="Model.Payees" />
-          <EntitySet Name="Appropriations" EntityType="Model.Appropriations" />
           <EntitySet Name="FundTypes" EntityType="Model.FundTypes" />
           <EntitySet Name="Allotments" EntityType="Model.Allotments" />
-          <AssociationSet Name="FK_Allotments_Appropriations" Association="Model.FK_Allotments_Appropriations">
-            <End Role="Appropriations" EntitySet="Appropriations" />
-            <End Role="Allotments" EntitySet="Allotments" />
-          </AssociationSet>
           <EntitySet Name="ORDetails" EntityType="Model.ORDetails" />
-          <AssociationSet Name="FK_ORDetails_Appropriations" Association="Model.FK_ORDetails_Appropriations">
-            <End Role="Appropriations" EntitySet="Appropriations" />
-            <End Role="ORDetails" EntitySet="ORDetails" />
-          </AssociationSet>
           <EntitySet Name="ReAlignments" EntityType="Model.ReAlignments" />
-          <AssociationSet Name="FK_ReAlignments_Appropriations" Association="Model.FK_ReAlignments_Appropriations">
-            <End Role="Appropriations" EntitySet="Appropriations" />
-            <End Role="ReAlignments" EntitySet="ReAlignments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReAlignments_TargetSource" Association="Model.FK_ReAlignments_TargetSource">
-            <End Role="Appropriations" EntitySet="Appropriations" />
-            <End Role="ReAlignments" EntitySet="ReAlignments" />
-          </AssociationSet>
           <EntitySet Name="Years" EntityType="Model.Years" />
           <EntitySet Name="Signatories" EntityType="Model.Signatories" />
           <EntitySet Name="Items" EntityType="Model.Items" />
@@ -993,10 +977,6 @@
           <AssociationSet Name="FK_PRDetails_PurchaseRequests" Association="Model.FK_PRDetails_PurchaseRequests">
             <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
             <End Role="PRDetails" EntitySet="PRDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PurchaseRequests_Appropriations" Association="Model.FK_PurchaseRequests_Appropriations">
-            <End Role="Appropriations" EntitySet="Appropriations" />
-            <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
           </AssociationSet>
           <EntitySet Name="PQDetails" EntityType="Model.PQDetails" />
           <EntitySet Name="PriceQuotations" EntityType="Model.PriceQuotations" />
@@ -1079,6 +1059,27 @@
           <AssociationSet Name="FK_Users_Offices" Association="Model.FK_Users_Offices">
             <End Role="Offices" EntitySet="Offices" />
             <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Appropriations" EntityType="Model.Appropriations" />
+          <AssociationSet Name="FK_Allotments_Appropriations" Association="Model.FK_Allotments_Appropriations">
+            <End Role="Appropriations" EntitySet="Appropriations" />
+            <End Role="Allotments" EntitySet="Allotments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDetails_Appropriations" Association="Model.FK_ORDetails_Appropriations">
+            <End Role="Appropriations" EntitySet="Appropriations" />
+            <End Role="ORDetails" EntitySet="ORDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseRequests_Appropriations" Association="Model.FK_PurchaseRequests_Appropriations">
+            <End Role="Appropriations" EntitySet="Appropriations" />
+            <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReAlignments_Appropriations" Association="Model.FK_ReAlignments_Appropriations">
+            <End Role="Appropriations" EntitySet="Appropriations" />
+            <End Role="ReAlignments" EntitySet="ReAlignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReAlignments_TargetSource" Association="Model.FK_ReAlignments_TargetSource">
+            <End Role="Appropriations" EntitySet="Appropriations" />
+            <End Role="ReAlignments" EntitySet="ReAlignments" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Logs">
@@ -1194,26 +1195,6 @@
           <Property Name="Note" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Obligations" Relationship="Model.FK_Obligations_Payees" FromRole="Payees" ToRole="Obligations" />
         </EntityType>
-        <EntityType Name="Appropriations">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AccountCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="AccountCodeText" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="FundType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AccountName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Appropriation" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Year" Type="Int32" />
-          <Property Name="DateCreated" Type="DateTime" Precision="7" />
-          <Property Name="Createdby" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Allotments" Relationship="Model.FK_Allotments_Appropriations" FromRole="Appropriations" ToRole="Allotments" />
-          <NavigationProperty Name="ORDetails" Relationship="Model.FK_ORDetails_Appropriations" FromRole="Appropriations" ToRole="ORDetails" />
-          <NavigationProperty Name="SourceReAlignments" Relationship="Model.FK_ReAlignments_Appropriations" FromRole="Appropriations" ToRole="ReAlignments" />
-          <NavigationProperty Name="TargetReAlignments" Relationship="Model.FK_ReAlignments_TargetSource" FromRole="Appropriations" ToRole="ReAlignments" />
-          <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_PurchaseRequests_Appropriations" FromRole="Appropriations" ToRole="PurchaseRequests" />
-          <Property Name="OfficeId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="FundTypes">
           <Key>
             <PropertyRef Name="Id" />
@@ -1235,18 +1216,6 @@
           <Property Name="CreatedB" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Appropriations" Relationship="Model.FK_Allotments_Appropriations" FromRole="Allotments" ToRole="Appropriations" />
         </EntityType>
-        <Association Name="FK_Allotments_Appropriations">
-          <End Type="Model.Appropriations" Role="Appropriations" Multiplicity="0..1" />
-          <End Type="Model.Allotments" Role="Allotments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Appropriations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Allotments">
-              <PropertyRef Name="AppropriationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="ORDetails">
           <Key>
             <PropertyRef Name="Id" />
@@ -1256,23 +1225,9 @@
           <Property Name="ObligationId" Type="Int32" />
           <Property Name="Particulars" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="Appropriations" Relationship="Model.FK_ORDetails_Appropriations" FromRole="ORDetails" ToRole="Appropriations" />
           <NavigationProperty Name="Obligations" Relationship="Model.FK_ORDetails_Obligations" FromRole="ORDetails" ToRole="Obligations" />
+          <NavigationProperty Name="Appropriations" Relationship="Model.FK_ORDetails_Appropriations" FromRole="ORDetails" ToRole="Appropriations" />
         </EntityType>
-        <Association Name="FK_ORDetails_Appropriations">
-          <End Type="Model.Appropriations" Role="Appropriations" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.ORDetails" Role="ORDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Appropriations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ORDetails">
-              <PropertyRef Name="AppropriationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="ReAlignments">
           <Key>
             <PropertyRef Name="Id" />
@@ -1287,31 +1242,7 @@
           <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SourceAppropriations" Relationship="Model.FK_ReAlignments_Appropriations" FromRole="ReAlignments" ToRole="Appropriations" />
           <NavigationProperty Name="TargetAppropriations" Relationship="Model.FK_ReAlignments_TargetSource" FromRole="ReAlignments" ToRole="Appropriations" />
-        </EntityType>
-        <Association Name="FK_ReAlignments_Appropriations">
-          <End Type="Model.Appropriations" Role="Appropriations" Multiplicity="0..1" />
-          <End Type="Model.ReAlignments" Role="ReAlignments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Appropriations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ReAlignments">
-              <PropertyRef Name="SourceAppropriationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReAlignments_TargetSource">
-          <End Type="Model.Appropriations" Role="Appropriations" Multiplicity="0..1" />
-          <End Type="Model.ReAlignments" Role="ReAlignments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Appropriations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ReAlignments">
-              <PropertyRef Name="TargetAppropriationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+          </EntityType>
         <EntityType Name="Years">
           <Key>
             <PropertyRef Name="Id" />
@@ -1354,11 +1285,11 @@
           <Property Name="Purpose" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PRDetails" Relationship="Model.FK_PRDetails_PurchaseRequests" FromRole="PurchaseRequests" ToRole="PRDetails" />
           <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="Appropriations" Relationship="Model.FK_PurchaseRequests_Appropriations" FromRole="PurchaseRequests" ToRole="Appropriations" />
           <Property Name="TableName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PriceQuotations" Relationship="Model.FK_PurchaseQuotations_PurchaseRequests" FromRole="PurchaseRequests" ToRole="PriceQuotations" />
           <NavigationProperty Name="PurchaseOrders" Relationship="Model.FK_PurchaseOrders_PurchaseRequests" FromRole="PurchaseRequests" ToRole="PurchaseOrders" />
           <Property Name="OfficeId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Appropriations" Relationship="Model.FK_PurchaseRequests_Appropriations" FromRole="PurchaseRequests" ToRole="Appropriations" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -1395,20 +1326,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PurchaseRequests_Appropriations">
-          <End Type="Model.Appropriations" Role="Appropriations" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.PurchaseRequests" Role="PurchaseRequests" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Appropriations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseRequests">
-              <PropertyRef Name="AppropriationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="PQDetails">
           <Key>
             <PropertyRef Name="Id" />
@@ -1439,6 +1356,7 @@
           <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_PurchaseQuotations_PurchaseRequests" FromRole="PriceQuotations" ToRole="PurchaseRequests" />
           <Property Name="PGSOfficer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Position" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Office" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_PQDetails_PurchaseQuotations">
           <End Type="Model.PriceQuotations" Role="PriceQuotations" Multiplicity="0..1">
@@ -1867,6 +1785,90 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Appropriations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AccountCodeText" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FundType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccountName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Appropriation" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="7" />
+          <Property Name="Createdby" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeId" Type="Int32" />
+          <NavigationProperty Name="Allotments" Relationship="Model.FK_Allotments_Appropriations" FromRole="Appropriations" ToRole="Allotments" />
+          <NavigationProperty Name="ORDetails" Relationship="Model.FK_ORDetails_Appropriations" FromRole="Appropriations" ToRole="ORDetails" />
+          <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_PurchaseRequests_Appropriations" FromRole="Appropriations" ToRole="PurchaseRequests" />
+          <NavigationProperty Name="SourceReAlignments" Relationship="Model.FK_ReAlignments_Appropriations" FromRole="Appropriations" ToRole="ReAlignments" />
+          <NavigationProperty Name="TargetReAlignments" Relationship="Model.FK_ReAlignments_TargetSource" FromRole="Appropriations" ToRole="ReAlignments" />
+        </EntityType>
+        <Association Name="FK_Allotments_Appropriations">
+          <End Type="Model.Appropriations" Role="Appropriations" Multiplicity="0..1" />
+          <End Type="Model.Allotments" Role="Allotments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appropriations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Allotments">
+              <PropertyRef Name="AppropriationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDetails_Appropriations">
+          <End Type="Model.Appropriations" Role="Appropriations" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.ORDetails" Role="ORDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appropriations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ORDetails">
+              <PropertyRef Name="AppropriationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseRequests_Appropriations">
+          <End Type="Model.Appropriations" Role="Appropriations" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.PurchaseRequests" Role="PurchaseRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appropriations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseRequests">
+              <PropertyRef Name="AppropriationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReAlignments_Appropriations">
+          <End Type="Model.Appropriations" Role="Appropriations" Multiplicity="0..1" />
+          <End Type="Model.ReAlignments" Role="ReAlignments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appropriations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReAlignments">
+              <PropertyRef Name="SourceAppropriationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReAlignments_TargetSource">
+          <End Type="Model.Appropriations" Role="Appropriations" Multiplicity="0..1" />
+          <End Type="Model.ReAlignments" Role="ReAlignments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appropriations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReAlignments">
+              <PropertyRef Name="TargetAppropriationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1968,22 +1970,6 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Office" ColumnName="Office" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Appropriations">
-            <EntityTypeMapping TypeName="Model.Appropriations">
-              <MappingFragment StoreEntitySet="Appropriations">
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Appropriation" ColumnName="Appropriation" />
-                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
-                <ScalarProperty Name="FundType" ColumnName="FundType" />
-                <ScalarProperty Name="AccountCodeText" ColumnName="AccountCodeText" />
-                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2125,6 +2111,7 @@
           <EntitySetMapping Name="PriceQuotations">
             <EntityTypeMapping TypeName="Model.PriceQuotations">
               <MappingFragment StoreEntitySet="PriceQuotations">
+                <ScalarProperty Name="Office" ColumnName="Office" />
                 <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="PGSOfficer" ColumnName="PGSOfficer" />
                 <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
@@ -2363,6 +2350,22 @@
                 <ScalarProperty Name="BudgetControlNo" ColumnName="BudgetControlNo" />
                 <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Appropriations">
+            <EntityTypeMapping TypeName="Model.Appropriations">
+              <MappingFragment StoreEntitySet="Appropriations">
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Appropriation" ColumnName="Appropriation" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="FundType" ColumnName="FundType" />
+                <ScalarProperty Name="AccountCodeText" ColumnName="AccountCodeText" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -19,9 +19,9 @@ namespace Models
         {
             this.Allotments = new HashSet<Allotments>();
             this.ORDetails = new HashSet<ORDetails>();
+            this.PurchaseRequests = new HashSet<PurchaseRequests>();
             this.SourceReAlignments = new HashSet<ReAlignments>();
             this.TargetReAlignments = new HashSet<ReAlignments>();
-            this.PurchaseRequests = new HashSet<PurchaseRequests>();
         }
     
         public int Id { get; set; }
@@ -33,17 +33,17 @@ namespace Models
         public Nullable<int> Year { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public string Createdby { get; set; }
-        public string OfficeId { get; set; }
+        public Nullable<int> OfficeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Allotments> Allotments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDetails> ORDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PurchaseRequests> PurchaseRequests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReAlignments> SourceReAlignments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReAlignments> TargetReAlignments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseRequests> PurchaseRequests { get; set; }
     }
 }

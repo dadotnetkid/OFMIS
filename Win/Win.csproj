@@ -241,6 +241,12 @@
     <Compile Include="PO\frmAddEditPO.Designer.cs">
       <DependentUpon>frmAddEditPO.cs</DependentUpon>
     </Compile>
+    <Compile Include="PO\frmPriceQuotations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PO\frmPriceQuotations.Designer.cs">
+      <DependentUpon>frmPriceQuotations.cs</DependentUpon>
+    </Compile>
     <Compile Include="PO\UCPO.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -472,6 +478,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PO\frmAddEditPO.resx">
       <DependentUpon>frmAddEditPO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PO\frmPriceQuotations.resx">
+      <DependentUpon>frmPriceQuotations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PO\UCPO.resx">
       <DependentUpon>UCPO.cs</DependentUpon>
