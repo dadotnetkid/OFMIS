@@ -14,15 +14,25 @@ namespace Models
     
     public partial class Employees
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Employees()
+        {
+            this.Payees = new HashSet<Payees>();
+            this.PayrollDetails = new HashSet<PayrollDetails>();
+        }
+    
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public Nullable<int> OfficeId { get; set; }
         public string Position { get; set; }
-        public string OfcAcr { get; set; }
-        public string Status { get; set; }
+        public string OfficeName { get; set; }
+        public string OffcAcr { get; set; }
+        public Nullable<int> OfficeId { get; set; }
     
-        public virtual Offices Offices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Payees> Payees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PayrollDetails> PayrollDetails { get; set; }
     }
 }

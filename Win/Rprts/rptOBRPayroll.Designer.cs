@@ -34,15 +34,11 @@
             this.lblControlId = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
-            this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.tblPayrollDetailsHeader = new DevExpress.XtraReports.UI.XRTable();
+            this.tblRowPayrollDetailHeader = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
@@ -53,31 +49,21 @@
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.DetailReport = new DevExpress.XtraReports.UI.DetailReportBand();
             this.Detail1 = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
-            this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.colColumnTitle1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.tblPayrollDetails = new DevExpress.XtraReports.UI.XRTable();
+            this.tblRowPayrollDetails = new DevExpress.XtraReports.UI.XRTableRow();
+            this.colItemNo = new DevExpress.XtraReports.UI.XRTableCell();
+            this.colName = new DevExpress.XtraReports.UI.XRTableCell();
+            this.colDesignation = new DevExpress.XtraReports.UI.XRTableCell();
+            this.objectDataSource2 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable4 = new DevExpress.XtraReports.UI.XRTable();
-            this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.tblGrandTotalRow = new DevExpress.XtraReports.UI.XRTableRow();
             this.colGrandTotalLabel = new DevExpress.XtraReports.UI.XRTableCell();
-            this.colGrandTotalTitle1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.colGrandTotalTitle2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.colGrandTotal = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
-            this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.colTotalTitle1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.colTotalTitle2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.colTotal = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tblPageTotal = new DevExpress.XtraReports.UI.XRTable();
+            this.tblPageTotalRow = new DevExpress.XtraReports.UI.XRTableRow();
+            this.colPageTotal = new DevExpress.XtraReports.UI.XRTableCell();
             this.groupFooter2 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.lblPT = new DevExpress.XtraReports.UI.XRLabel();
             this.lblPTPOS = new DevExpress.XtraReports.UI.XRLabel();
@@ -93,11 +79,13 @@
             this.lblHeadDivisionPos = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.lblHeadDivision = new DevExpress.XtraReports.UI.XRLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.tblPayrollDetailsHeader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblPayrollDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblPageTotal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
@@ -127,31 +115,34 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrTable1});
+            this.tblPayrollDetailsHeader});
             this.Detail.HeightF = 25F;
             this.Detail.Name = "Detail";
             // 
-            // xrTable1
+            // tblPayrollDetailsHeader
             // 
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrTable1.Name = "xrTable1";
-            this.xrTable1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.xrTableRow1});
-            this.xrTable1.SizeF = new System.Drawing.SizeF(1050F, 25F);
+            this.tblPayrollDetailsHeader.AnchorHorizontal = ((DevExpress.XtraReports.UI.HorizontalAnchorStyles)((DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left | DevExpress.XtraReports.UI.HorizontalAnchorStyles.Right)));
+            this.tblPayrollDetailsHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(185)))), ((int)(((byte)(184)))));
+            this.tblPayrollDetailsHeader.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.tblPayrollDetailsHeader.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.tblPayrollDetailsHeader.Name = "tblPayrollDetailsHeader";
+            this.tblPayrollDetailsHeader.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.tblPayrollDetailsHeader.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.tblRowPayrollDetailHeader});
+            this.tblPayrollDetailsHeader.SizeF = new System.Drawing.SizeF(1050F, 25F);
+            this.tblPayrollDetailsHeader.StylePriority.UseBackColor = false;
+            this.tblPayrollDetailsHeader.StylePriority.UseBorders = false;
             // 
-            // xrTableRow1
+            // tblRowPayrollDetailHeader
             // 
-            this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.tblRowPayrollDetailHeader.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell1,
             this.xrTableCell2,
-            this.xrTableCell3,
-            this.xrTableCell4,
-            this.xrTableCell5,
-            this.xrTableCell6,
-            this.xrTableCell7});
-            this.xrTableRow1.Name = "xrTableRow1";
-            this.xrTableRow1.Weight = 1D;
+            this.xrTableCell3});
+            this.tblRowPayrollDetailHeader.Name = "tblRowPayrollDetailHeader";
+            this.tblRowPayrollDetailHeader.Weight = 1D;
             // 
             // xrTableCell1
             // 
@@ -173,36 +164,6 @@
             this.xrTableCell3.Name = "xrTableCell3";
             this.xrTableCell3.Text = "Designation";
             this.xrTableCell3.Weight = 1D;
-            // 
-            // xrTableCell4
-            // 
-            this.xrTableCell4.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ColumnTitle1]")});
-            this.xrTableCell4.Multiline = true;
-            this.xrTableCell4.Name = "xrTableCell4";
-            this.xrTableCell4.Weight = 1D;
-            // 
-            // xrTableCell5
-            // 
-            this.xrTableCell5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ColumnTitle2]")});
-            this.xrTableCell5.Multiline = true;
-            this.xrTableCell5.Name = "xrTableCell5";
-            this.xrTableCell5.Weight = 1D;
-            // 
-            // xrTableCell6
-            // 
-            this.xrTableCell6.Multiline = true;
-            this.xrTableCell6.Name = "xrTableCell6";
-            this.xrTableCell6.Text = "TOTAL";
-            this.xrTableCell6.Weight = 1D;
-            // 
-            // xrTableCell7
-            // 
-            this.xrTableCell7.Multiline = true;
-            this.xrTableCell7.Name = "xrTableCell7";
-            this.xrTableCell7.Text = "Signature";
-            this.xrTableCell7.Weight = 1D;
             // 
             // ReportHeader
             // 
@@ -299,108 +260,74 @@
             // 
             this.DetailReport.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail1});
-            this.DetailReport.DataMember = "PayrollDetails";
-            this.DetailReport.DataSource = this.objectDataSource1;
+            this.DetailReport.DataMember = "Payrolls.Payrolls_PayrollDetails";
+            this.DetailReport.DataSource = this.objectDataSource2;
             this.DetailReport.Level = 0;
             this.DetailReport.Name = "DetailReport";
             // 
             // Detail1
             // 
             this.Detail1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrTable2});
+            this.tblPayrollDetails});
             this.Detail1.HeightF = 25F;
             this.Detail1.Name = "Detail1";
             // 
-            // xrTable2
+            // tblPayrollDetails
             // 
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrTable2.Name = "xrTable2";
-            this.xrTable2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.xrTableRow2});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(1050F, 25F);
-            this.xrTable2.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTable2_PrintOnPage);
+            this.tblPayrollDetails.AnchorHorizontal = ((DevExpress.XtraReports.UI.HorizontalAnchorStyles)((DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left | DevExpress.XtraReports.UI.HorizontalAnchorStyles.Right)));
+            this.tblPayrollDetails.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.tblPayrollDetails.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.tblPayrollDetails.Name = "tblPayrollDetails";
+            this.tblPayrollDetails.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.tblPayrollDetails.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.tblRowPayrollDetails});
+            this.tblPayrollDetails.SizeF = new System.Drawing.SizeF(1050F, 25F);
+            this.tblPayrollDetails.StylePriority.UseBorders = false;
+            this.tblPayrollDetails.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTable2_PrintOnPage);
             // 
-            // xrTableRow2
+            // tblRowPayrollDetails
             // 
-            this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell8,
-            this.xrTableCell9,
-            this.xrTableCell10,
-            this.colColumnTitle1,
-            this.xrTableCell12,
-            this.xrTableCell13,
-            this.xrTableCell14});
-            this.xrTableRow2.Name = "xrTableRow2";
-            this.xrTableRow2.Weight = 1D;
-            this.xrTableRow2.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableRow2_PrintOnPage);
+            this.tblRowPayrollDetails.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.colItemNo,
+            this.colName,
+            this.colDesignation});
+            this.tblRowPayrollDetails.Name = "tblRowPayrollDetails";
+            this.tblRowPayrollDetails.Weight = 1D;
+            this.tblRowPayrollDetails.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableRow2_PrintOnPage);
             // 
-            // xrTableCell8
+            // colItemNo
             // 
-            this.xrTableCell8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            this.colItemNo.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ItemNumber]")});
-            this.xrTableCell8.Multiline = true;
-            this.xrTableCell8.Name = "xrTableCell8";
-            this.xrTableCell8.Text = "No,";
-            this.xrTableCell8.Weight = 0.44444442749023438D;
+            this.colItemNo.Multiline = true;
+            this.colItemNo.Name = "colItemNo";
+            this.colItemNo.Text = "No,";
+            this.colItemNo.Weight = 0.44444442749023438D;
             // 
-            // xrTableCell9
+            // colName
             // 
-            this.xrTableCell9.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            this.colName.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Name]")});
-            this.xrTableCell9.Multiline = true;
-            this.xrTableCell9.Name = "xrTableCell9";
-            this.xrTableCell9.Text = "Name";
-            this.xrTableCell9.Weight = 1.5555555725097656D;
+            this.colName.Multiline = true;
+            this.colName.Name = "colName";
+            this.colName.Text = "Name";
+            this.colName.Weight = 1.5555555725097656D;
             // 
-            // xrTableCell10
+            // colDesignation
             // 
-            this.xrTableCell10.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            this.colDesignation.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Designation]")});
-            this.xrTableCell10.Multiline = true;
-            this.xrTableCell10.Name = "xrTableCell10";
-            this.xrTableCell10.Text = "Designation";
-            this.xrTableCell10.Weight = 1D;
+            this.colDesignation.Multiline = true;
+            this.colDesignation.Name = "colDesignation";
+            this.colDesignation.Text = "Designation";
+            this.colDesignation.Weight = 1D;
             // 
-            // colColumnTitle1
+            // objectDataSource2
             // 
-            this.colColumnTitle1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ColumnTitle1]")});
-            this.colColumnTitle1.Multiline = true;
-            this.colColumnTitle1.Name = "colColumnTitle1";
-            this.colColumnTitle1.Weight = 1D;
-            this.colColumnTitle1.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.colColumnTitle1_PrintOnPage);
-            // 
-            // xrTableCell12
-            // 
-            this.xrTableCell12.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ColumnTitle2]")});
-            this.xrTableCell12.Multiline = true;
-            this.xrTableCell12.Name = "xrTableCell12";
-            this.xrTableCell12.Weight = 1D;
-            this.xrTableCell12.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell12_BeforePrint);
-            this.xrTableCell12.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell12_PrintOnPage);
-            // 
-            // xrTableCell13
-            // 
-            this.xrTableCell13.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Total]")});
-            this.xrTableCell13.Multiline = true;
-            this.xrTableCell13.Name = "xrTableCell13";
-            this.xrTableCell13.Text = "TOTAL";
-            this.xrTableCell13.Weight = 1D;
-            this.xrTableCell13.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrTableCell13_PrintOnPage);
-            // 
-            // xrTableCell14
-            // 
-            this.xrTableCell14.Multiline = true;
-            this.xrTableCell14.Name = "xrTableCell14";
-            this.xrTableCell14.Weight = 1D;
-            // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(Models.Payrolls);
-            this.objectDataSource1.Name = "objectDataSource1";
+            this.objectDataSource2.DataSource = typeof(Models.DataTables.dsPayroll);
+            this.objectDataSource2.Name = "objectDataSource2";
             // 
             // GroupFooter1
             // 
@@ -408,7 +335,7 @@
             this.xrLabel8,
             this.xrLabel7,
             this.xrTable4,
-            this.xrTable3});
+            this.tblPageTotal});
             this.GroupFooter1.HeightF = 73F;
             this.GroupFooter1.Name = "GroupFooter1";
             this.GroupFooter1.PrintAtBottom = true;
@@ -434,26 +361,24 @@
             // 
             // xrTable4
             // 
+            this.xrTable4.AnchorHorizontal = ((DevExpress.XtraReports.UI.HorizontalAnchorStyles)((DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left | DevExpress.XtraReports.UI.HorizontalAnchorStyles.Right)));
             this.xrTable4.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(3.194809E-05F, 25F);
+            this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(3.178914E-05F, 25F);
             this.xrTable4.Name = "xrTable4";
             this.xrTable4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.xrTableRow4});
+            this.tblGrandTotalRow});
             this.xrTable4.SizeF = new System.Drawing.SizeF(1050F, 25F);
             this.xrTable4.StylePriority.UseBorders = false;
             // 
-            // xrTableRow4
+            // tblGrandTotalRow
             // 
-            this.xrTableRow4.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.colGrandTotalLabel,
-            this.colGrandTotalTitle1,
-            this.colGrandTotalTitle2,
-            this.colGrandTotal});
-            this.xrTableRow4.Name = "xrTableRow4";
-            this.xrTableRow4.Weight = 1D;
+            this.tblGrandTotalRow.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.colGrandTotalLabel});
+            this.tblGrandTotalRow.Name = "tblGrandTotalRow";
+            this.tblGrandTotalRow.Weight = 1D;
             // 
             // colGrandTotalLabel
             // 
@@ -465,83 +390,35 @@
             this.colGrandTotalLabel.Weight = 0.76190474122435181D;
             this.colGrandTotalLabel.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.colGrandTotal_PrintOnPage);
             // 
-            // colGrandTotalTitle1
+            // tblPageTotal
             // 
-            this.colGrandTotalTitle1.Multiline = true;
-            this.colGrandTotalTitle1.Name = "colGrandTotalTitle1";
-            this.colGrandTotalTitle1.Weight = 0.25396826272482403D;
-            this.colGrandTotalTitle1.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.colGrandTotal_PrintOnPage);
-            // 
-            // colGrandTotalTitle2
-            // 
-            this.colGrandTotalTitle2.Multiline = true;
-            this.colGrandTotalTitle2.Name = "colGrandTotalTitle2";
-            this.colGrandTotalTitle2.Text = "colTotalTitle2";
-            this.colGrandTotalTitle2.Weight = 0.25396826272482403D;
-            this.colGrandTotalTitle2.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.colGrandTotal_PrintOnPage);
-            // 
-            // colGrandTotal
-            // 
-            this.colGrandTotal.Multiline = true;
-            this.colGrandTotal.Name = "colGrandTotal";
-            this.colGrandTotal.Text = "colTotal";
-            this.colGrandTotal.Weight = 0.5079364142846805D;
-            this.colGrandTotal.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.colGrandTotal_PrintOnPage);
-            // 
-            // xrTable3
-            // 
-            this.xrTable3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.tblPageTotal.AnchorHorizontal = ((DevExpress.XtraReports.UI.HorizontalAnchorStyles)((DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left | DevExpress.XtraReports.UI.HorizontalAnchorStyles.Right)));
+            this.tblPageTotal.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrTable3.Name = "xrTable3";
-            this.xrTable3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrTable3.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.xrTableRow3});
-            this.xrTable3.SizeF = new System.Drawing.SizeF(1050F, 25F);
-            this.xrTable3.StylePriority.UseBorders = false;
+            this.tblPageTotal.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.tblPageTotal.Name = "tblPageTotal";
+            this.tblPageTotal.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.tblPageTotal.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.tblPageTotalRow});
+            this.tblPageTotal.SizeF = new System.Drawing.SizeF(1050F, 25F);
+            this.tblPageTotal.StylePriority.UseBorders = false;
             // 
-            // xrTableRow3
+            // tblPageTotalRow
             // 
-            this.xrTableRow3.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell15,
-            this.colTotalTitle1,
-            this.colTotalTitle2,
-            this.colTotal});
-            this.xrTableRow3.Name = "xrTableRow3";
-            this.xrTableRow3.Weight = 1D;
+            this.tblPageTotalRow.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.colPageTotal});
+            this.tblPageTotalRow.Name = "tblPageTotalRow";
+            this.tblPageTotalRow.Weight = 1D;
             // 
-            // xrTableCell15
+            // colPageTotal
             // 
-            this.xrTableCell15.Multiline = true;
-            this.xrTableCell15.Name = "xrTableCell15";
-            this.xrTableCell15.StylePriority.UseTextAlignment = false;
-            this.xrTableCell15.Text = "PAGE TOTAL";
-            this.xrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell15.Weight = 0.76190474122435181D;
-            // 
-            // colTotalTitle1
-            // 
-            this.colTotalTitle1.Multiline = true;
-            this.colTotalTitle1.Name = "colTotalTitle1";
-            this.colTotalTitle1.Weight = 0.25396826272482403D;
-            this.colTotalTitle1.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.colTotalTitle1_PrintOnPage);
-            // 
-            // colTotalTitle2
-            // 
-            this.colTotalTitle2.Multiline = true;
-            this.colTotalTitle2.Name = "colTotalTitle2";
-            this.colTotalTitle2.Text = "colTotalTitle2";
-            this.colTotalTitle2.Weight = 0.25396826272482403D;
-            this.colTotalTitle2.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.colTotalTitle2_PrintOnPage);
-            // 
-            // colTotal
-            // 
-            this.colTotal.Multiline = true;
-            this.colTotal.Name = "colTotal";
-            this.colTotal.Text = "colTotal";
-            this.colTotal.Weight = 0.50793631094473313D;
-            this.colTotal.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.colTotal_PrintOnPage);
+            this.colPageTotal.Multiline = true;
+            this.colPageTotal.Name = "colPageTotal";
+            this.colPageTotal.StylePriority.UseTextAlignment = false;
+            this.colPageTotal.Text = "PAGE TOTAL";
+            this.colPageTotal.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.colPageTotal.Weight = 0.76190474122435181D;
             // 
             // groupFooter2
             // 
@@ -560,7 +437,7 @@
             this.lblHeadDivisionPos,
             this.xrLabel10,
             this.lblHeadDivision});
-            this.groupFooter2.HeightF = 231.9583F;
+            this.groupFooter2.HeightF = 313.9166F;
             this.groupFooter2.Level = 1;
             this.groupFooter2.Name = "groupFooter2";
             this.groupFooter2.PrintAtBottom = true;
@@ -568,8 +445,10 @@
             // 
             // lblPT
             // 
+            this.lblPT.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Payrolls].[Treasurer]")});
             this.lblPT.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lblPT.LocationFloat = new DevExpress.Utils.PointFloat(524.9998F, 175F);
+            this.lblPT.LocationFloat = new DevExpress.Utils.PointFloat(524.9998F, 267.9166F);
             this.lblPT.Multiline = true;
             this.lblPT.Name = "lblPT";
             this.lblPT.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -581,7 +460,9 @@
             // 
             // lblPTPOS
             // 
-            this.lblPTPOS.LocationFloat = new DevExpress.Utils.PointFloat(524.9998F, 198F);
+            this.lblPTPOS.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Payrolls].[TreasurerPOS]")});
+            this.lblPTPOS.LocationFloat = new DevExpress.Utils.PointFloat(524.9998F, 290.9166F);
             this.lblPTPOS.Multiline = true;
             this.lblPTPOS.Name = "lblPTPOS";
             this.lblPTPOS.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -592,6 +473,8 @@
             // 
             // lblPAPOS
             // 
+            this.lblPAPOS.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Payrolls].[GovernorPOS]")});
             this.lblPAPOS.LocationFloat = new DevExpress.Utils.PointFloat(525F, 127F);
             this.lblPAPOS.Multiline = true;
             this.lblPAPOS.Name = "lblPAPOS";
@@ -603,6 +486,8 @@
             // 
             // lblPA
             // 
+            this.lblPA.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Payrolls].[Governor]")});
             this.lblPA.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
             this.lblPA.LocationFloat = new DevExpress.Utils.PointFloat(525F, 104F);
             this.lblPA.Multiline = true;
@@ -616,7 +501,9 @@
             // 
             // lblAccountantPOS
             // 
-            this.lblAccountantPOS.LocationFloat = new DevExpress.Utils.PointFloat(0F, 198F);
+            this.lblAccountantPOS.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Payrolls].[AccountantPOS]")});
+            this.lblAccountantPOS.LocationFloat = new DevExpress.Utils.PointFloat(0F, 290.9166F);
             this.lblAccountantPOS.Multiline = true;
             this.lblAccountantPOS.Name = "lblAccountantPOS";
             this.lblAccountantPOS.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -627,8 +514,10 @@
             // 
             // lblAccountant
             // 
+            this.lblAccountant.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Payrolls].[Accountant]")});
             this.lblAccountant.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lblAccountant.LocationFloat = new DevExpress.Utils.PointFloat(0F, 175F);
+            this.lblAccountant.LocationFloat = new DevExpress.Utils.PointFloat(0F, 267.9166F);
             this.lblAccountant.Multiline = true;
             this.lblAccountant.Name = "lblAccountant";
             this.lblAccountant.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -640,14 +529,14 @@
             // 
             // xrCheckBox2
             // 
-            this.xrCheckBox2.LocationFloat = new DevExpress.Utils.PointFloat(27.65156F, 127F);
+            this.xrCheckBox2.LocationFloat = new DevExpress.Utils.PointFloat(28.69323F, 222.8333F);
             this.xrCheckBox2.Name = "xrCheckBox2";
             this.xrCheckBox2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrCheckBox2.SizeF = new System.Drawing.SizeF(21.875F, 23F);
             // 
             // xrLabel14
             // 
-            this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(49.52657F, 127F);
+            this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(50.56823F, 222.8333F);
             this.xrLabel14.Multiline = true;
             this.xrLabel14.Name = "xrLabel14";
             this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -658,7 +547,7 @@
             // 
             // xrLabel13
             // 
-            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(49.52657F, 104F);
+            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(546.4016F, 222.8333F);
             this.xrLabel13.Multiline = true;
             this.xrLabel13.Name = "xrLabel13";
             this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -669,14 +558,14 @@
             // 
             // xrCheckBox1
             // 
-            this.xrCheckBox1.LocationFloat = new DevExpress.Utils.PointFloat(27.65156F, 104F);
+            this.xrCheckBox1.LocationFloat = new DevExpress.Utils.PointFloat(524.5266F, 222.8333F);
             this.xrCheckBox1.Name = "xrCheckBox1";
             this.xrCheckBox1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrCheckBox1.SizeF = new System.Drawing.SizeF(21.875F, 23F);
             // 
             // xrLabel12
             // 
-            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(0F, 81.00003F);
+            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(0F, 172.6667F);
             this.xrLabel12.Multiline = true;
             this.xrLabel12.Name = "xrLabel12";
             this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -687,6 +576,8 @@
             // 
             // lblHeadDivisionPos
             // 
+            this.lblHeadDivisionPos.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Payrolls].[HeadPos]")});
             this.lblHeadDivisionPos.LocationFloat = new DevExpress.Utils.PointFloat(0F, 48.00002F);
             this.lblHeadDivisionPos.Multiline = true;
             this.lblHeadDivisionPos.Name = "lblHeadDivisionPos";
@@ -708,6 +599,8 @@
             // 
             // lblHeadDivision
             // 
+            this.lblHeadDivision.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Payrolls].[Head]")});
             this.lblHeadDivision.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
             this.lblHeadDivision.LocationFloat = new DevExpress.Utils.PointFloat(0F, 25F);
             this.lblHeadDivision.Multiline = true;
@@ -718,6 +611,11 @@
             this.lblHeadDivision.StylePriority.UseTextAlignment = false;
             this.lblHeadDivision.Text = "SHERLYN B. FERNANDEZ";
             this.lblHeadDivision.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(Models.Payrolls);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // rptOBRPayroll
             // 
@@ -731,8 +629,9 @@
             this.GroupFooter1,
             this.groupFooter2});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
-            this.objectDataSource1});
-            this.DataSource = this.objectDataSource1;
+            this.objectDataSource1,
+            this.objectDataSource2});
+            this.DataSource = this.objectDataSource2;
             this.Font = new System.Drawing.Font("Calibri", 9.75F);
             this.Landscape = true;
             this.Margins = new System.Drawing.Printing.Margins(25, 25, 25, 25);
@@ -741,11 +640,12 @@
             this.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.Version = "18.2";
             this.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.rptOBRPayroll_BeforePrint);
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblPayrollDetailsHeader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblPayrollDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblPageTotal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -766,38 +666,20 @@
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
         private DevExpress.XtraReports.UI.DetailReportBand DetailReport;
         private DevExpress.XtraReports.UI.DetailBand Detail1;
-        private DevExpress.XtraReports.UI.XRTable xrTable2;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
-        private DevExpress.XtraReports.UI.XRTableCell colColumnTitle1;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell13;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell14;
+        public DevExpress.XtraReports.UI.XRTable tblPayrollDetails;
+        private DevExpress.XtraReports.UI.XRTableCell colItemNo;
+        private DevExpress.XtraReports.UI.XRTableCell colName;
+        private DevExpress.XtraReports.UI.XRTableCell colDesignation;
         private DevExpress.XtraReports.UI.XRLabel lblControlId;
-        private DevExpress.XtraReports.UI.XRTable xrTable1;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell2;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell3;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell4;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell5;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell6;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell7;
         private DevExpress.XtraReports.UI.GroupFooterBand GroupFooter1;
-        private DevExpress.XtraReports.UI.XRTable xrTable3;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow3;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
-        private DevExpress.XtraReports.UI.XRTableCell colTotalTitle1;
-        private DevExpress.XtraReports.UI.XRTableCell colTotalTitle2;
-        private DevExpress.XtraReports.UI.XRTableCell colTotal;
+        public DevExpress.XtraReports.UI.XRTable tblPageTotal;
+        public DevExpress.XtraReports.UI.XRTableRow tblPageTotalRow;
+        public DevExpress.XtraReports.UI.XRTableCell colPageTotal;
         private DevExpress.XtraReports.UI.XRTable xrTable4;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow4;
-        private DevExpress.XtraReports.UI.XRTableCell colGrandTotalLabel;
-        private DevExpress.XtraReports.UI.XRTableCell colGrandTotalTitle1;
-        private DevExpress.XtraReports.UI.XRTableCell colGrandTotalTitle2;
-        private DevExpress.XtraReports.UI.XRTableCell colGrandTotal;
+        public DevExpress.XtraReports.UI.XRTableCell colGrandTotalLabel;
         private DevExpress.XtraReports.UI.XRLabel xrLabel8;
         private DevExpress.XtraReports.UI.XRLabel xrLabel7;
         private DevExpress.XtraReports.UI.GroupFooterBand groupFooter2;
@@ -815,5 +697,10 @@
         private DevExpress.XtraReports.UI.XRLabel lblPA;
         private DevExpress.XtraReports.UI.XRLabel lblPT;
         private DevExpress.XtraReports.UI.XRLabel lblPTPOS;
+        public DevExpress.XtraReports.UI.XRTable tblPayrollDetailsHeader;
+        public DevExpress.XtraReports.UI.XRTableRow tblRowPayrollDetails;
+        public DevExpress.XtraReports.UI.XRTableRow tblRowPayrollDetailHeader;
+        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource2;
+        public DevExpress.XtraReports.UI.XRTableRow tblGrandTotalRow;
     }
 }

@@ -25,6 +25,26 @@ namespace Win.BL
             uc.btnEditRepoOBR.ButtonClick += BtnEditRepoOBR_ButtonClick;
             uc.OBGridView.FocusedRowChanged += GridObligation_FocusedRowChanged;
             uc.btnEditDV.Click += BtnEditDV_Click;
+            uc.btnDelORDetailRepo.ButtonClick += BtnDelORDetailRepo_ButtonClick;
+        }
+
+        private void BtnDelORDetailRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            try
+            {
+                if (sender is GridView gridView)
+                    if (gridView.GetFocusedRow() is ORDetails item)
+                    {
+                        UnitOfWork unitOfWork = new UnitOfWork();
+                        unitOfWork.ORDetailsRepo.Delete(m => m.Id == item.Id);
+                        unitOfWork.Save();
+                        Detail(item.Obligations);
+                    }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnEditDV_Click(object sender, EventArgs e)
@@ -141,5 +161,6 @@ namespace Win.BL
                 QueryableSource = ob.Where(x => x.OfficeId == staticSettings.OfficeId)
             };
         }
+
     }
 }

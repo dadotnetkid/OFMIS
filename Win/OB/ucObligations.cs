@@ -96,5 +96,26 @@ namespace Win.OB
             }
 
         }
+
+        private void btnEditORDetails_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            try
+            {
+                if (ORDetailsGridView.GetFocusedRow() is ORDetails item)
+                {
+                    frmAddEditObligation frm = new frmAddEditObligation(MethodType.Edit, item.Obligations);
+                    frm.ShowDialog();
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDelORDetailRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+          
+        }
     }
 }

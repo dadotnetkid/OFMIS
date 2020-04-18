@@ -33,7 +33,6 @@
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.txtAddress = new DevExpress.XtraEditors.TextEdit();
-            this.txtOffice = new DevExpress.XtraEditors.TextEdit();
             this.txtName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -42,12 +41,16 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.txtOffice = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.cboMembers = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOffice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOffice.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboMembers.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -93,14 +96,6 @@
             this.txtAddress.Size = new System.Drawing.Size(397, 20);
             this.txtAddress.TabIndex = 32;
             // 
-            // txtOffice
-            // 
-            this.txtOffice.Location = new System.Drawing.Point(77, 83);
-            this.txtOffice.Name = "txtOffice";
-            this.txtOffice.Properties.UseReadOnlyAppearance = false;
-            this.txtOffice.Size = new System.Drawing.Size(397, 20);
-            this.txtOffice.TabIndex = 31;
-            // 
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(77, 61);
@@ -113,7 +108,7 @@
             // 
             this.labelControl10.Location = new System.Drawing.Point(12, 107);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(39, 13);
+            this.labelControl10.Size = new System.Drawing.Size(41, 13);
             this.labelControl10.TabIndex = 34;
             this.labelControl10.Text = "Address";
             // 
@@ -121,7 +116,7 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(13, 85);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(29, 13);
+            this.labelControl2.Size = new System.Drawing.Size(31, 13);
             this.labelControl2.TabIndex = 35;
             this.labelControl2.Text = "Office";
             // 
@@ -129,7 +124,7 @@
             // 
             this.labelControl1.Location = new System.Drawing.Point(13, 61);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(27, 13);
+            this.labelControl1.Size = new System.Drawing.Size(29, 13);
             this.labelControl1.TabIndex = 33;
             this.labelControl1.Text = "Name";
             // 
@@ -144,17 +139,17 @@
             // 
             this.labelControl3.Location = new System.Drawing.Point(12, 129);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(23, 13);
+            this.labelControl3.Size = new System.Drawing.Size(25, 13);
             this.labelControl3.TabIndex = 34;
             this.labelControl3.Text = "Note";
             // 
             // btnClose
             // 
-            this.btnClose.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
-            this.btnClose.Location = new System.Drawing.Point(369, 225);
+            this.btnClose.Location = new System.Drawing.Point(369, 251);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(105, 31);
             this.btnClose.TabIndex = 38;
@@ -163,33 +158,71 @@
             // 
             // btnSave
             // 
-            this.btnSave.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(262, 225);
+            this.btnSave.Location = new System.Drawing.Point(262, 251);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(101, 31);
             this.btnSave.TabIndex = 37;
             this.btnSave.Text = "Save ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // txtOffice
+            // 
+            this.txtOffice.Location = new System.Drawing.Point(77, 83);
+            this.txtOffice.Name = "txtOffice";
+            this.txtOffice.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtOffice.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OfficeName", "Office Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Address", "Address")});
+            this.txtOffice.Properties.DisplayMember = "OfficeName";
+            this.txtOffice.Properties.NullText = "";
+            this.txtOffice.Properties.UseReadOnlyAppearance = false;
+            this.txtOffice.Properties.ValueMember = "OfficeName";
+            this.txtOffice.Size = new System.Drawing.Size(397, 20);
+            this.txtOffice.TabIndex = 31;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(12, 227);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(47, 13);
+            this.labelControl4.TabIndex = 34;
+            this.labelControl4.Text = "Members";
+            // 
+            // cboMembers
+            // 
+            this.cboMembers.Location = new System.Drawing.Point(77, 225);
+            this.cboMembers.Name = "cboMembers";
+            this.cboMembers.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboMembers.Properties.DisplayMember = "EmployeeName";
+            this.cboMembers.Properties.UseReadOnlyAppearance = false;
+            this.cboMembers.Properties.ValueMember = "Id";
+            this.cboMembers.Size = new System.Drawing.Size(397, 20);
+            this.cboMembers.TabIndex = 32;
+            // 
             // frmAddEditPayee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(486, 268);
+            this.ClientSize = new System.Drawing.Size(486, 292);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtNote);
             this.Controls.Add(this.txtAddress);
-            this.Controls.Add(this.txtOffice);
             this.Controls.Add(this.txtName);
+            this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl10);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.txtOffice);
+            this.Controls.Add(this.cboMembers);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -202,9 +235,10 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOffice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOffice.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboMembers.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,7 +250,6 @@
         public DevExpress.XtraEditors.LabelControl lblHeader;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         public DevExpress.XtraEditors.TextEdit txtAddress;
-        public DevExpress.XtraEditors.TextEdit txtOffice;
         public DevExpress.XtraEditors.TextEdit txtName;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.LabelControl labelControl2;
@@ -225,5 +258,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraEditors.SimpleButton btnSave;
+        public DevExpress.XtraEditors.LookUpEdit txtOffice;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        public DevExpress.XtraEditors.CheckedComboBoxEdit cboMembers;
     }
 }

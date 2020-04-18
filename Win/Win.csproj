@@ -29,7 +29,7 @@
     <InstallUrl>http://plgunv_adserver/ofmis/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>12</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -175,6 +175,12 @@
     <Compile Include="BL\LoadObligations.cs" />
     <Compile Include="BL\LoadPayroll.cs" />
     <Compile Include="ConnectionDialog.cs" />
+    <Compile Include="Emps\UCEmployees.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Emps\UCEmployees.Designer.cs">
+      <DependentUpon>UCEmployees.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDefaultAccounts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -445,6 +451,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AIRpt\UCAIReports.resx">
       <DependentUpon>UCAIReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Emps\UCEmployees.resx">
+      <DependentUpon>UCEmployees.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDefaultAccounts.resx">
       <DependentUpon>frmDefaultAccounts.cs</DependentUpon>

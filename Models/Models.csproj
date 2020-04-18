@@ -152,6 +152,14 @@
     </Compile>
     <Compile Include="ControllersActionsPartial.cs" />
     <Compile Include="Controllers\IdentityController.cs" />
+    <Compile Include="DataTables\dsPayroll.cs">
+      <DependentUpon>dsPayroll.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataTables\dsPayroll.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPayroll.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DefaultAccounts.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
@@ -296,6 +304,17 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelDb.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="DataTables\dsPayroll.xsc">
+      <DependentUpon>dsPayroll.xsd</DependentUpon>
+    </None>
+    <None Include="DataTables\dsPayroll.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPayroll.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataTables\dsPayroll.xss">
+      <DependentUpon>dsPayroll.xsd</DependentUpon>
+    </None>
     <None Include="Locations\cities.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

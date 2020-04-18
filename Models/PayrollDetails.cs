@@ -22,7 +22,10 @@ namespace Models
         public Nullable<decimal> ColumnTitle1 { get; set; }
         public Nullable<decimal> ColumnTitle2 { get; set; }
         public Nullable<decimal> Total { get; set; }
+        public string ColumnTitle { get; set; }
+        public Nullable<int> EmployeeId { get; set; }
     
         public virtual Payrolls Payrolls { get; set; }
+        public virtual Employees Employees { get; set; }
     }
 }

@@ -47,6 +47,10 @@ namespace Models
         public string ResponsibilityCenter { get; set; }
         public string ResponsibilityCenterCode { get; set; }
         public Nullable<int> OfficeId { get; set; }
+        public string Treasurer { get; set; }
+        public string TreasurerPos { get; set; }
+        public string Accountant { get; set; }
+        public string AccountantPos { get; set; }
     
         public virtual Offices Offices { get; set; }
         public virtual Payees Payees { get; set; }

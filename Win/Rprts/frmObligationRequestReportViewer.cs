@@ -30,7 +30,7 @@ namespace Win.Rprts
             if (cboYearList.GetSelectedDataRow() is Years item)
             {
                 ObligationRequestViewModel model = new ObligationRequestViewModel();
-                model.GenerateReport(item.Year.ToInt());
+                model.GenerateReport(item.Year.ToInt(), new StaticSettings().OfficeId);
                 frmReportViewer frm = new frmReportViewer(new rptObligationRequests()
                 {
                     DataSource = new List<ObligationRequestViewModel>() { model }

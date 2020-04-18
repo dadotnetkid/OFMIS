@@ -49,6 +49,7 @@
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.txtAccountCode = new DevExpress.XtraEditors.LookUpEdit();
+            this.btnNewAccount = new DevExpress.XtraEditors.SimpleButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountCodeText.Properties)).BeginInit();
@@ -148,22 +149,22 @@
             // 
             this.txtAccountCodeText.Location = new System.Drawing.Point(170, 109);
             this.txtAccountCodeText.Name = "txtAccountCodeText";
-            this.txtAccountCodeText.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtAccountCodeText.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtAccountCodeText.Properties.Appearance.Options.UseFont = true;
             this.txtAccountCodeText.Properties.ReadOnly = true;
             this.txtAccountCodeText.Properties.UseReadOnlyAppearance = false;
-            this.txtAccountCodeText.Size = new System.Drawing.Size(300, 22);
+            this.txtAccountCodeText.Size = new System.Drawing.Size(300, 24);
             this.txtAccountCodeText.TabIndex = 1;
             // 
             // txtAccountName
             // 
             this.txtAccountName.Location = new System.Drawing.Point(170, 161);
             this.txtAccountName.Name = "txtAccountName";
-            this.txtAccountName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtAccountName.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtAccountName.Properties.Appearance.Options.UseFont = true;
             this.txtAccountName.Properties.ReadOnly = true;
             this.txtAccountName.Properties.UseReadOnlyAppearance = false;
-            this.txtAccountName.Size = new System.Drawing.Size(300, 22);
+            this.txtAccountName.Size = new System.Drawing.Size(300, 24);
             this.txtAccountName.TabIndex = 3;
             // 
             // txtAppropriationAmount
@@ -175,7 +176,7 @@
             0});
             this.txtAppropriationAmount.Location = new System.Drawing.Point(170, 187);
             this.txtAppropriationAmount.Name = "txtAppropriationAmount";
-            this.txtAppropriationAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtAppropriationAmount.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtAppropriationAmount.Properties.Appearance.Options.UseFont = true;
             this.txtAppropriationAmount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
@@ -185,14 +186,14 @@
             this.txtAppropriationAmount.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.txtAppropriationAmount.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.txtAppropriationAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.txtAppropriationAmount.Size = new System.Drawing.Size(300, 22);
+            this.txtAppropriationAmount.Size = new System.Drawing.Size(300, 24);
             this.txtAppropriationAmount.TabIndex = 4;
             // 
             // cboFundType
             // 
             this.cboFundType.Location = new System.Drawing.Point(170, 135);
             this.cboFundType.Name = "cboFundType";
-            this.cboFundType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.cboFundType.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cboFundType.Properties.Appearance.Options.UseFont = true;
             this.cboFundType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -205,14 +206,15 @@
             this.cboFundType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cboFundType.Properties.UseReadOnlyAppearance = false;
             this.cboFundType.Properties.ValueMember = "FundType";
-            this.cboFundType.Size = new System.Drawing.Size(300, 22);
+            this.cboFundType.Size = new System.Drawing.Size(300, 24);
             this.cboFundType.TabIndex = 2;
             // 
             // btnClose
             // 
-            this.btnClose.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
             this.btnClose.Location = new System.Drawing.Point(365, 215);
             this.btnClose.Name = "btnClose";
@@ -223,9 +225,10 @@
             // 
             // btnSave
             // 
-            this.btnSave.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.Location = new System.Drawing.Point(258, 215);
             this.btnSave.Name = "btnSave";
@@ -238,25 +241,38 @@
             // 
             this.txtAccountCode.Location = new System.Drawing.Point(170, 83);
             this.txtAccountCode.Name = "txtAccountCode";
-            this.txtAccountCode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtAccountCode.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtAccountCode.Properties.Appearance.Options.UseFont = true;
             this.txtAccountCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtAccountCode.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AccountCode", "Account Code"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AccountName", "Account Name")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AccountName", "Account Name", 50, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.txtAccountCode.Properties.DisplayMember = "AccountCode";
             this.txtAccountCode.Properties.NullText = "";
+            this.txtAccountCode.Properties.PopupWidth = 200;
             this.txtAccountCode.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.txtAccountCode.Properties.ValueMember = "AccountCode";
-            this.txtAccountCode.Size = new System.Drawing.Size(300, 22);
+            this.txtAccountCode.Size = new System.Drawing.Size(280, 24);
             this.txtAccountCode.TabIndex = 0;
+            // 
+            // btnNewAccount
+            // 
+            this.btnNewAccount.AutoSize = true;
+            this.btnNewAccount.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddPayee.ImageOptions.Image")));
+            this.btnNewAccount.Location = new System.Drawing.Point(450, 84);
+            this.btnNewAccount.Name = "btnNewAccount";
+            this.btnNewAccount.Size = new System.Drawing.Size(22, 22);
+            this.btnNewAccount.TabIndex = 32;
             // 
             // frmAddEditAppropriation
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(482, 255);
+            this.Controls.Add(this.btnNewAccount);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtAccountName);
@@ -273,6 +289,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(484, 287);
             this.Name = "frmAddEditAppropriation";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -308,5 +325,6 @@
         public DevExpress.XtraEditors.SpinEdit txtAppropriationAmount;
         public DevExpress.XtraEditors.LookUpEdit cboFundType;
         public DevExpress.XtraEditors.LookUpEdit txtAccountCode;
+        public DevExpress.XtraEditors.SimpleButton btnNewAccount;
     }
 }

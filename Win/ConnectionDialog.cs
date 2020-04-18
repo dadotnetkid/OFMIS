@@ -8,9 +8,8 @@ using Win.Properties;
 
 namespace Win
 {
-    public class ConnectionDialog 
+    public class ConnectionDialog
     {
-
 
         public static string ShowDialog()
         {
@@ -19,11 +18,17 @@ namespace Win
             cd.SelectedDataSource = DataSource.SqlDataSource;
             cd.ConnectionString = Settings.Default.ConnectionString;
             cd.SelectedDataProvider = DataProvider.SqlDataProvider;
-            DataConnectionDialog.Show(cd);
+
+            if (DataConnectionDialog.Show(cd) == System.Windows.Forms.DialogResult.Cancel)
+                return Settings.Default.ConnectionString;
             Settings.Default.ConnectionString = cd.ConnectionString;
             Settings.Default.Save();
-            Models.DataSource.ConnectionString= cd.ConnectionString;
+            Models.DataSource.ConnectionString = cd.ConnectionString;
             return cd.ConnectionString;
+        }
+
+        private static void Cd_Shown(object sender, EventArgs e)
+        {
         }
     }
 }

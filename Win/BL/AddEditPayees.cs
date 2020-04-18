@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraEditors.Controls;
+using Helpers;
 using Models;
 using Models.Repository;
 using Win.OB;
@@ -16,12 +19,15 @@ namespace Win.BL
         public bool isClosed;
         private Payees payees;
         private int payeeId;
-
+        private StaticSettings staticSettings = new StaticSettings();
         public AddEditPayees(frmAddEditPayee frm, Payees payees)
         {
             this.frm = frm;
             this.payees = payees;
-
+            this.frm.txtOffice.Properties.DataSource = new BindingList<Offices>(new UnitOfWork().OfficesRepo.Get(m => m.Id == staticSettings.OfficeId));
+            this.frm.cboMembers.Properties.DataSource =
+                new BindingList<Employees>(
+                    new UnitOfWork().EmployeesRepo.Get(m => m.OfficeId == staticSettings.OfficeId));
 
         }
         public MethodType methodType { get; set; }
@@ -32,14 +38,22 @@ namespace Win.BL
             try
             {
                 var unitOfWork = new UnitOfWork();
-                unitOfWork.PayeesRepo.Update(new Payees()
+                var office = frm.txtOffice.GetSelectedDataRow() as Offices;
+                payees = unitOfWork.PayeesRepo.Find(m => m.Id == payees.Id, includeProperties: "Employees");
+
+                payees.Id = payees.Id;
+                payees.Name = frm.txtName.Text;
+                payees.Office = office?.OfficeName;
+                payees.Address = office?.Address;
+                payees.Note = frm.txtNote.Text;
+                var res = frm.cboMembers.Properties.GetCheckedItems();
+                payees.Employees.Clear();
+                foreach (var i in res.ToString()?.Split(','))
                 {
-                    Id = payeeId,
-                    Name = frm.txtName.Text,
-                    Office = frm.txtOffice.Text,
-                    Address = frm.txtAddress.Text,
-                    Note = frm.txtNote.Text
-                });
+                    var id = i.Trim().ToInt();
+                    payees.Employees.Add(unitOfWork.EmployeesRepo.Find(m => m.Id == id));
+
+                }
                 unitOfWork.Save();
 
             }
@@ -61,6 +75,15 @@ namespace Win.BL
                 frm.txtAddress.Text = item.Address;
                 frm.txtOffice.Text = item.Office;
                 frm.txtNote.Text = item.Note;
+                foreach (var i in frm.cboMembers.Properties.GetItems().Cast<CheckedListBoxItem>())
+                {
+                    var id = i.Value.ToInt();
+                    if (item.Employees.Any(x => x.Id == id))
+                        i.CheckState = CheckState.Checked;
+                }
+              //  frm.cboMembers.EditValue = string.Join(",", item.Employees.Select(x => x.EmployeeName));
+
+
             }
             catch (Exception e)
             {
@@ -78,12 +101,10 @@ namespace Win.BL
                     return;
                 }
                 var unitOfWork = new UnitOfWork();
-                var payeee = new Payees()
-                {
-                };
-                unitOfWork.PayeesRepo.Insert(payeee);
+                payees = new Payees();
+                unitOfWork.PayeesRepo.Insert(payees);
                 unitOfWork.Save();
-                payeeId = payeee.Id;
+                payeeId = payees.Id;
                 return;
             }
             catch (Exception e)

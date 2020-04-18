@@ -92,6 +92,7 @@ namespace Win.Ofcs
                             ResponsibilityCenter = item.ResponsibilityCenter,
                             ResponsibilityCenterCode = item.ResponsibilityCenterCode,
                             UnderOf = item.UnderOf == 0 ? null : item.UnderOf,
+                            Address = item.Address
                         });
                     unitOfWork.Save();
                     Init();

@@ -29,7 +29,7 @@ namespace Win.Rprts
             if (cboYearList.GetSelectedDataRow() is Years item)
             {
                 AOBViewModel model = new AOBViewModel();
-                model.GenerateReport(item.Year.ToInt());
+                model.GenerateReport(item.Year.ToInt(), new StaticSettings().OfficeId);
                 frmReportViewer frm = new frmReportViewer(new rptAccountOutstandingBalance()
                 {
                     DataSource = new List<AOBViewModel>() { model }

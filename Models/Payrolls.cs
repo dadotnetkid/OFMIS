@@ -31,6 +31,10 @@ namespace Models
         public string Position { get; set; }
         public string Accountant { get; set; }
         public string Treasurer { get; set; }
+        public string AccountantPos { get; set; }
+        public string TreasurerPos { get; set; }
+        public string Governor { get; set; }
+        public string GovernorPos { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayrollDetails> PayrollDetails { get; set; }

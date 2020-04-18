@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Models.Repository;
 using Win.Accnts;
+using Win.Emps;
 using Win.OB;
 using Win.Ofcs;
 using Win.PR;
@@ -193,6 +194,7 @@ namespace Win
             backstageViewControl1.Close();
             frmLogin frm = new frmLogin();
             frm.ShowDialog();
+            Init();
         }
 
         private void btnOffices_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -201,6 +203,14 @@ namespace Win
                 return;
             pnlMain.Controls.Clear();
             pnlMain.Controls.Add(new UCOffices() { Dock = DockStyle.Fill });
+        }
+
+        private void btnEmployees_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!User.UserInAction("Employees"))
+                return;
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new UCEmployees() { Dock = DockStyle.Fill });
         }
     }
 }

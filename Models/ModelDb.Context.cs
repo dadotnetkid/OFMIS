@@ -31,7 +31,6 @@ namespace Models
         public virtual DbSet<UserClaims> UserClaims { get; set; }
         public virtual DbSet<UserLogins> UserLogins { get; set; }
         public virtual DbSet<UserRoles> UserRoles { get; set; }
-        public virtual DbSet<Employees> Employees { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<Payees> Payees { get; set; }
         public virtual DbSet<FundTypes> FundTypes { get; set; }
@@ -59,5 +58,6 @@ namespace Models
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Obligations> Obligations { get; set; }
         public virtual DbSet<Appropriations> Appropriations { get; set; }
+        public virtual DbSet<Employees> Employees { get; set; }
     }
 }

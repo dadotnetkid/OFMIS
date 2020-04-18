@@ -580,7 +580,7 @@
             // colObligationPayee
             // 
             this.colObligationPayee.Caption = "Payee";
-            this.colObligationPayee.FieldName = "Payees.Name";
+            this.colObligationPayee.FieldName = "Obligations.Payees.Name";
             this.colObligationPayee.Name = "colObligationPayee";
             this.colObligationPayee.Visible = true;
             this.colObligationPayee.VisibleIndex = 2;

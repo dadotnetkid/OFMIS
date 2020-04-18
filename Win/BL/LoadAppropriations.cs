@@ -28,6 +28,16 @@ namespace Win.BL
             uc.BtnAllotmentEditRepo.ButtonClick += BtnEditAllotmentRepo_ButtonClick;
             uc.btnReAlignmentEditRepo.ButtonClick += BtnReAlignmentEditRepo_ButtonClick;
             uc.btnReAlignmentDeleteRepo.ButtonClick += BtnReAlignmentDeleteRepo_ButtonClick;
+            uc.btnAccountEditRepo.ButtonClick += BtnAccountEditRepo_ButtonClick;
+        }
+
+        private void BtnAccountEditRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (uc.AppropriationGrid.GetFocusedRow() is Appropriations item)
+            {
+                UnitOfWork unitOfWork = new UnitOfWork();
+                Detail(new UnitOfWork().AppropriationsRepoRepo.Find(m => m.Id == item.Id));
+            }
         }
 
         private void BtnReAlignmentDeleteRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -128,7 +138,7 @@ namespace Win.BL
                 uc.lblHeader.Text = item.AccountCode + " - " + item.AccountName;
 
                 uc.AllotmentGridControl.DataSource = new BindingList<Allotments>(item.Allotments.ToList());
-                uc.ObligationGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails.ToList());
+                uc.ObligationGridControl.DataSource = new BindingList<ORDetails>(new UnitOfWork().ORDetailsRepo.Get(m=>m.AppropriationId==item.Id,includeProperties: "Obligations,Obligations.Payees"));
                 uc.ReAlignmentGridControl.DataSource = new BindingList<ReAlignments>(new UnitOfWork().ReAlignmentsRepo.Get(m => m.SourceAppropriationId == item.Id || m.TargetAppropriationId == item.Id).ToList());
             }
             catch (Exception e)

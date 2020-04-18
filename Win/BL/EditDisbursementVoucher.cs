@@ -86,7 +86,7 @@ namespace Win.BL
                 if (lookUpEdit.GetSelectedDataRow() is Signatories signatories)
                 {
                     frm.txtPosition.Text = string.IsNullOrWhiteSpace(item.DVApprovedByPosition) ? signatories.Position : item.DVApprovedByPosition;
-                    frm.txtNote.Text = string.IsNullOrWhiteSpace(item.DVNote) ? signatories.Note : item.DVNote;
+                    frm.txtNote.Text = signatories.Note;
                 }
             }
         }

@@ -112,10 +112,26 @@ namespace Win.BL
                         MessageBoxIcon.Error);
                     return;
                 }
+
+                var unitOfWork = new UnitOfWork();
+                var payee = unitOfWork.PayeesRepo.Find(m => m.Name == "Earmarked PR");
+                if (payee == null)
+                {
+                    payee = new Payees()
+                    {
+                        Name = "Earmarked PR",
+
+                    };
+                    unitOfWork.PayeesRepo.Insert(payee);
+                    unitOfWork.Save();
+                }
                 frmAddEditObligation frmOBR = new frmAddEditObligation(MethodType.Add, new Obligations()
                 {
                     Earmarked = true,
                     ORDetails = new List<ORDetails>() { new ORDetails() { AppropriationId = item.AppropriationId, Particulars = "PR Description" } },
+                    PayeeId = payee?.Id,
+                    PayeeAddress = payee?.Address,
+                    PayeeOffice = payee?.Office,
                     PRNo = item.Id,
                 });
                 this.Save();
@@ -193,6 +209,7 @@ namespace Win.BL
                 item.Purpose = frmAddEditPurchaseRequest.txtPurpose.Text;
                 item.TotalAmount = item.PRDetails.Sum(m => m.TotalAmount);
                 item.TotalAmount = item.PRDetails.Sum(m => m.TotalAmount);
+                item.OfficeId = new StaticSettings().OfficeId;
                 unitOfWork.Save();
                 isClosed = true;
 
@@ -236,7 +253,8 @@ namespace Win.BL
                     item = new PurchaseRequests()
                     {
                         ControlNo = controlNo,
-                        Id = id
+                        Id = id,
+                        OfficeId = new StaticSettings().OfficeId
                     };
                     unitOfWork.PurchaseRequestsRepo.Insert(item);
                     unitOfWork.Save();
@@ -282,9 +300,10 @@ namespace Win.BL
 
         void ILoad<PurchaseRequests>.Init()
         {
+            var staticSetting = new StaticSettings();
             ucPR.PRGridControl.DataSource = new EntityServerModeSource()
             {
-                QueryableSource = new UnitOfWork().PurchaseRequestsRepo.Fetch(),
+                QueryableSource = new UnitOfWork().PurchaseRequestsRepo.Fetch(m => m.OfficeId == staticSetting.OfficeId),
                 DefaultSorting = "Id ASC"
             };
 

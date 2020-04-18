@@ -24,6 +24,21 @@ namespace Win.BL
             this.frm = frm;
             this.appropriation = appropriation;
             frm.txtAccountCode.EditValueChanged += TxtAccountCode_EditValueChanged;
+            frm.btnNewAccount.Click += BtnNewAccount_Click;
+        }
+
+        private void BtnNewAccount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmDefaultAccounts frm = new frmDefaultAccounts();
+                frm.ShowDialog();
+                Init();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void TxtAccountCode_EditValueChanged(object sender, EventArgs e)
@@ -70,6 +85,7 @@ namespace Win.BL
                     OfficeId = appropriation.OfficeId ?? new StaticSettings().OfficeId
                 });
                 unitOfWork.Save();
+                Init();
                 isClosed = true;
                 frm.Close();
             }
@@ -85,6 +101,7 @@ namespace Win.BL
             {
 
                 if (appropriation == null) return;
+                appropriation = new UnitOfWork().AppropriationsRepoRepo.Find(m => m.Id == appropriation.Id);
                 frm.txtAccountCode.Properties.DataSource = new EntityServerModeSource()
                 {
                     QueryableSource = new UnitOfWork().DefaultAccountsRepo.Fetch()

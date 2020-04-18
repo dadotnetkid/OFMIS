@@ -10,10 +10,10 @@ namespace Models.ViewModels
     public class ObligationRequestViewModel
     {
         private List<Obligations> _obligations;
-        
-        public void GenerateReport(int year)
+
+        public void GenerateReport(int year, int officeId)
         {
-            this.Obligations = new UnitOfWork().ObligationsRepo.Get(m => m.Year == year);
+            this.Obligations = new UnitOfWork().ObligationsRepo.Get(m => m.Year == year && m.OfficeId == officeId);
             this.Year = year;
         }
 

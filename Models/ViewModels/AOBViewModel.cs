@@ -11,12 +11,12 @@ namespace Models.ViewModels
     {
 
 
-        public void GenerateReport(int year)
+        public void GenerateReport(int year, int officeId)
         {
             this.FundTypesRepo = new UnitOfWork().FundTypesRepo.Get().ToList();
             this.FundTypesRepo.ForEach(x => x.Year = year);
             this.Year = year;
-            this.FundTypesRepo = FundTypesRepo.Where(x => x.Appropriations.Any()).ToList();
+            this.FundTypesRepo = FundTypesRepo.Where(x => x.Appropriations.Any(m => m.OfficeId == officeId)).ToList();
         }
 
         public int Year { get; set; }

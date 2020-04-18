@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="Model.UserLogins" Width="1.5" PointX="13.25" PointY="1.375" />
         <EntityTypeShape EntityType="Model.UserRoles" Width="1.5" PointX="8.75" PointY="5.5" />
         <AssociationConnector Association="Model.FK_Towns_Towns" />
-        <EntityTypeShape EntityType="Model.Employees" Width="1.5" PointX="8" PointY="13" />
         <EntityTypeShape EntityType="Model.Suppliers" Width="1.5" PointX="7.75" PointY="0.75" />
         <EntityTypeShape EntityType="Model.Payees" Width="1.5" PointX="1.5" PointY="11.875" />
         <EntityTypeShape EntityType="Model.FundTypes" Width="1.5" PointX="5.75" PointY="8.75" />
@@ -44,7 +43,6 @@
         <AssociationConnector Association="Model.FK_PayrollDetails_Payrolls" />
         <EntityTypeShape EntityType="Model.DefaultSettings" Width="1.5" PointX="3.375" PointY="17.75" />
         <EntityTypeShape EntityType="Model.Offices" Width="1.5" PointX="5.75" PointY="28.5" />
-        <AssociationConnector Association="Model.FK_Employees_Offices" />
         <AssociationConnector Association="Model.FK_Offices_Offices" />
         <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="11" PointY="2.5" />
         <AssociationConnector Association="Model.FK_Logs_Users" />
@@ -63,6 +61,10 @@
         <AssociationConnector Association="Model.FK_PurchaseRequests_Appropriations" />
         <AssociationConnector Association="Model.FK_ReAlignments_Appropriations" />
         <AssociationConnector Association="Model.FK_ReAlignments_TargetSource" />
+        <EntityTypeShape EntityType="Model.Employees" Width="1.5" PointX="0.75" PointY="18.625" />
+        <AssociationConnector Association="Model.EmployeesInPayee" />
+        <AssociationConnector Association="Model.FK_PayrollDetails_Employees" />
+        <AssociationConnector Association="Model.FK_Payees_Offices" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

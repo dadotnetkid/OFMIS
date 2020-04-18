@@ -100,8 +100,8 @@ namespace Win
                 QueryableSource = new UnitOfWork().DefaultSettingsRepo.Fetch()
             };
             txtResponsibilityCenter.Text = i.ResponsibilityCenterCode;
-            txtResponsibilityCenterCode.Text = i.ResponsibilityCenterCode;
-            txtOfficeId.Text = i.Id.ToString();
+            txtResponsibilityCenterCode.Text = i.ResponsibilityCenter;
+            txtOfficeId.Text = i.OffcAcr.ToString();
             txtHead.Text = i.Chief;
             txtPosition.Text = i.ChiefPosition;
             chkIsDivision.Checked = i.IsDivision.ToBool();

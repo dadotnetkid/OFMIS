@@ -62,6 +62,7 @@
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.pnlMain = new DevExpress.XtraEditors.PanelControl();
+            this.btnEmployees = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
@@ -89,9 +90,10 @@
             this.btnUserlevel,
             this.btnPayees,
             this.btnDefaultAccounts,
-            this.btnOffices});
+            this.btnOffices,
+            this.btnEmployees});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 14;
+            this.ribbonControl1.MaxItemId = 15;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -339,6 +341,7 @@
             this.maintenanceOpt.ItemLinks.Add(this.btnSignatories);
             this.maintenanceOpt.ItemLinks.Add(this.btnDefaultAccounts);
             this.maintenanceOpt.ItemLinks.Add(this.btnOffices);
+            this.maintenanceOpt.ItemLinks.Add(this.btnEmployees);
             this.maintenanceOpt.Name = "maintenanceOpt";
             this.maintenanceOpt.Text = "Options";
             // 
@@ -362,6 +365,14 @@
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(981, 489);
             this.pnlMain.TabIndex = 4;
+            // 
+            // btnEmployees
+            // 
+            this.btnEmployees.Caption = "Employees";
+            this.btnEmployees.Id = 14;
+            this.btnEmployees.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.btnEmployees.Name = "btnEmployees";
+            this.btnEmployees.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEmployees_ItemClick);
             // 
             // Main
             // 
@@ -423,6 +434,7 @@
         private DevExpress.XtraBars.Ribbon.BackstageViewButtonItem btnLogout;
         private DevExpress.XtraBars.BarButtonItem btnOffices;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup maintenanceOpt;
+        private DevExpress.XtraBars.BarButtonItem btnEmployees;
     }
 }
 

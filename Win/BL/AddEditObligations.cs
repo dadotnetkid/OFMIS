@@ -138,7 +138,15 @@ namespace Win.BL
                     ResponsibilityCenterCode = new StaticSettings().ResponsibilityCenterCode,
                     OfficeId = new StaticSettings().OfficeId,
                     PRNo = obligations.PRNo,
-
+                    Accountant = (frm.cboAccountant.GetSelectedDataRow() as Signatories)?.Person,
+                    AccountantPos = (frm.cboAccountant.GetSelectedDataRow() as Signatories)?.Position,
+                    Treasurer = (frm.cboTreasurer.GetSelectedDataRow() as Signatories)?.Person,
+                    TreasurerPos = (frm.cboTreasurer.GetSelectedDataRow() as Signatories)?.Position,
+                    DateClosed = obligations.DateClosed,
+                    DVApprovedBy = obligations.DVApprovedBy,
+                    DVApprovedByPosition = obligations.DVApprovedByPosition,
+                    DVNote = obligations.DVNote,
+                    DVParticular = obligations.DVParticular,
 
 
                 };
@@ -149,7 +157,7 @@ namespace Win.BL
 
                 unitOfWork.ObligationsRepo.Update(obligations);
                 unitOfWork.Save();
-
+      
             }
             catch (Exception e)
             {
@@ -167,8 +175,8 @@ namespace Win.BL
             {
 
                 var staticSetting = new StaticSettings();
-
-                var chiefOfOffice = new UnitOfWork().ChiefOfOfficesRepo.Find(m => m.Year == staticSetting.Year);
+                UnitOfWork unitOfWork = new UnitOfWork();
+                var chiefOfOffice = unitOfWork.ChiefOfOfficesRepo.Find(m => m.Year == staticSetting.Year);
                 var item = obligations;
                 if (item == null) return;
                 frm.txtDate.EditValue = item.Date;
@@ -188,12 +196,16 @@ namespace Win.BL
                 frm.txtControl.EditValue = controlNo;
                 frm.chkClosed.CheckState = item.Status == "Closed" ? CheckState.Checked : CheckState.Unchecked;
                 frm.chkEarmarked.Checked = item.Earmarked ?? false;
-                frm.ORDetailGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails.ToList());
+                frm.ORDetailGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails?.ToList());
                 frm.txtBudgetOfficer.Text = string.IsNullOrWhiteSpace(item.PBO) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "Provincial Budget Office")?.Person : item.PBO;
                 frm.txtPBOPos.Text = string.IsNullOrWhiteSpace(item.PBOPos) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "Provincial Budget Office")?.Position : item.PBOPos;
                 frm.txtChiefOfficer.Text = string.IsNullOrWhiteSpace(item.Chief) ? staticSetting.Head : item.Chief;
                 frm.txtChiefPosition.Text = string.IsNullOrWhiteSpace(item.ChiefPosition) ? staticSetting.HeadPos : item.ChiefPosition;
-
+                frm.cboAccountant.EditValue = unitOfWork.ChiefOfOfficesRepo
+                    .Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")).FirstOrDefault()
+                    ?.Person;
+                frm.cboTreasurer.EditValue = unitOfWork.ChiefOfOfficesRepo
+                    .Get(m => m.Office.Contains("Treasurer") || m.Office.Contains("Treasury")).FirstOrDefault()?.Person;
             }
             catch (Exception e)
             {
@@ -214,20 +226,20 @@ namespace Win.BL
                 this.obId =
                     (unitOfWork.ObligationsRepo.Fetch().OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0) + 1;
                 this.controlNo = DateTime.Now.ToString("yyyy-MM-") + obId.ToString("0000");
-                var payee = unitOfWork.PayeesRepo.Find(m => m.Name == "Earmarked PR");
+                //var payee = unitOfWork.PayeesRepo.Find(m => m.Name == "Earmarked PR");
                 this.obligations = new Obligations()
                 {
                     Id = obId,
                     ControlNo = controlNo,
                     Year = new StaticSettings().Year,
                     Date = DateTime.Now,
-                    Earmarked = obligations.Earmarked,
-                    PayeeId = payee?.Id,
-                    PayeeOffice = payee?.Office,
-                    PayeeAddress = payee?.Address,
-                    Description = payee?.Description,
-                    ORDetails = obligations.ORDetails,
-                    PRNo = obligations.PRNo
+                    Earmarked = obligations?.Earmarked,
+                    PayeeId = obligations?.PayeeId,
+                    PayeeOffice = obligations?.PayeeOffice,
+                    PayeeAddress = obligations?.PayeeAddress,
+                    Description = obligations?.Description,
+                    ORDetails = obligations?.ORDetails ?? new List<ORDetails>(),
+                    PRNo = obligations?.PRNo
                 };
                 unitOfWork.ObligationsRepo.Insert(obligations);
                 unitOfWork.Save();
@@ -270,18 +282,24 @@ namespace Win.BL
 
         public void LoadPayees()
         {
+            UnitOfWork unitOfWork = new UnitOfWork();
             frm.cboPayee.Properties.DataSource = new EntityServerModeSource()
             {
-                QueryableSource = new UnitOfWork().PayeesRepo.Fetch()
+                QueryableSource = unitOfWork.PayeesRepo.Fetch()
             };
+            frm.cboAccountant.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo
+                .Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")));
+            frm.cboTreasurer.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo
+                .Get(m => m.Office.Contains("Treasurer") || m.Office.Contains("Treasury")));
         }
 
         public void LoadAppropriation()
         {
             var year = new StaticSettings().Year;
+            var staticSettings = new StaticSettings();
             frm.cboAppropriationLookUpRepo.DataSource = new EntityServerModeSource()
             {
-                QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch(m => m.Year == year)
+                QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch(m => m.Year == year && m.OfficeId == staticSettings.OfficeId)
             };
         }
 
