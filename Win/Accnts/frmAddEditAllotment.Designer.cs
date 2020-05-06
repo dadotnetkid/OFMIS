@@ -94,7 +94,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
@@ -107,7 +107,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
@@ -151,9 +151,10 @@
             // dtAllotmentDate
             // 
             this.dtAllotmentDate.EditValue = null;
+            this.dtAllotmentDate.EnterMoveNextControl = true;
             this.dtAllotmentDate.Location = new System.Drawing.Point(161, 60);
             this.dtAllotmentDate.Name = "dtAllotmentDate";
-            this.dtAllotmentDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.dtAllotmentDate.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.dtAllotmentDate.Properties.Appearance.Options.UseFont = true;
             this.dtAllotmentDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -165,8 +166,9 @@
             this.dtAllotmentDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dtAllotmentDate.Properties.Mask.EditMask = "";
             this.dtAllotmentDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.dtAllotmentDate.Size = new System.Drawing.Size(300, 22);
+            this.dtAllotmentDate.Size = new System.Drawing.Size(300, 24);
             this.dtAllotmentDate.TabIndex = 32;
+            this.dtAllotmentDate.Tag = "Date is Required";
             // 
             // txtAllotmentAmount
             // 
@@ -175,9 +177,10 @@
             0,
             0,
             0});
+            this.txtAllotmentAmount.EnterMoveNextControl = true;
             this.txtAllotmentAmount.Location = new System.Drawing.Point(161, 86);
             this.txtAllotmentAmount.Name = "txtAllotmentAmount";
-            this.txtAllotmentAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtAllotmentAmount.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtAllotmentAmount.Properties.Appearance.Options.UseFont = true;
             this.txtAllotmentAmount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
@@ -187,14 +190,16 @@
             this.txtAllotmentAmount.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.txtAllotmentAmount.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.txtAllotmentAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.txtAllotmentAmount.Size = new System.Drawing.Size(300, 22);
+            this.txtAllotmentAmount.Size = new System.Drawing.Size(300, 24);
             this.txtAllotmentAmount.TabIndex = 33;
+            this.txtAllotmentAmount.Tag = "Amount is Required";
             // 
             // txtRemarks
             // 
+            this.txtRemarks.EnterMoveNextControl = true;
             this.txtRemarks.Location = new System.Drawing.Point(161, 112);
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtRemarks.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtRemarks.Properties.Appearance.Options.UseFont = true;
             this.txtRemarks.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtRemarks.Size = new System.Drawing.Size(300, 74);

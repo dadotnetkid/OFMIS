@@ -30,14 +30,17 @@ namespace Models
         public string ChiefOfOffice { get; set; }
         public string Position { get; set; }
         public string Accountant { get; set; }
-        public string Treasurer { get; set; }
         public string AccountantPos { get; set; }
+        public string Treasurer { get; set; }
         public string TreasurerPos { get; set; }
-        public string Governor { get; set; }
-        public string GovernorPos { get; set; }
+        public string ApprovedBy { get; set; }
+        public string ApprovedByPos { get; set; }
+        public Nullable<int> ApprovedById { get; set; }
+        public string DeptHead { get; set; }
+        public string DeptHeadPos { get; set; }
     
+        public virtual Obligations Obligations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayrollDetails> PayrollDetails { get; set; }
-        public virtual Obligations Obligations { get; set; }
     }
 }

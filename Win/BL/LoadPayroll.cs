@@ -142,14 +142,21 @@ namespace Win.BL
             pRow["ControlNo"] = res.ControlNo;
             pRow["Description"] = res.Description;
             pRow["Title"] = res.Title;
-            pRow["Head"] = res.ChiefOfOffice;
-            pRow["HeadPos"] = res.Position;
+            pRow["DivisionHead"] = res.ChiefOfOffice;
+            pRow["DivisionHeadPos"] = res.Position;
             pRow["Accountant"] = res.Accountant;
             pRow["AccountantPOS"] = res.AccountantPos;
             pRow["Treasurer"] = res.Treasurer;
             pRow["TreasurerPOS"] = res.TreasurerPos;
-            pRow["Governor"] = res.Governor;
-            pRow["GovernorPOS"] = res.GovernorPos;
+            pRow["Head"] = res.DeptHead;
+            pRow["HeadPos"] = res.DeptHeadPos;
+            pRow["Governor"] = res.Governor?.Person;
+            pRow["GovernorPOS"] = res.Governor?.Position;
+            pRow["Note"] = res.Note;
+            pRow["ApprovedBy"] = res.ApprovedBy;
+            pRow["ApprovedByPos"] = res.ApprovedByPos;
+            pRow["PANote"] = res.ProvincialAdministrator?.Note;
+
             foreach (var i in customColumn)
             {
                 pRow[i] = i;
@@ -248,19 +255,19 @@ namespace Win.BL
             {
                 //
                 Name = "colGrandTotal",
- 
+
             };
             xrCell.PrintOnPage += (s, e) =>
             {
                 var cell = s as XRTableCell;
                 cell.Visible = (e.PageCount - 1) == e.PageIndex;
-                cell.Text = oBRPayrollViewModels.Where(x=>x.ColumnName=="Total").Sum(m => m.Value)?.ToString("Php #,00.#0");
+                cell.Text = oBRPayrollViewModels.Where(x => x.ColumnName == "Total").Sum(m => m.Value)?.ToString("Php #,00.#0");
             };
             rpt.tblGrandTotalRow.Cells.Add(xrCell);
             xrCell = new XRTableCell()
             {
                 Name = "colSigGrandTotal",
-                
+
             };
             xrCell.PrintOnPage += (s, e) =>
             {

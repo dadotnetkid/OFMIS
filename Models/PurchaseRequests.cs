@@ -31,13 +31,19 @@ namespace Models
         public Nullable<decimal> TotalAmount { get; set; }
         public string TableName { get; set; }
         public Nullable<int> OfficeId { get; set; }
+        public string PA { get; set; }
+        public string PAPos { get; set; }
+        public string DeptHead { get; set; }
+        public string DeptHeadPos { get; set; }
+        public string DivisionHead { get; set; }
+        public string DivisionHeadPos { get; set; }
     
+        public virtual Appropriations Appropriations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRDetails> PRDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PriceQuotations> PriceQuotations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseOrders> PurchaseOrders { get; set; }
-        public virtual Appropriations Appropriations { get; set; }
     }
 }

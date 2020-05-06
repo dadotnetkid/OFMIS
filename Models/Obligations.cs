@@ -51,11 +51,15 @@ namespace Models
         public string TreasurerPos { get; set; }
         public string Accountant { get; set; }
         public string AccountantPos { get; set; }
+        public string OBRApprovedBy { get; set; }
+        public string OBRApprovedByPos { get; set; }
+        public string DMSNo { get; set; }
     
         public virtual Offices Offices { get; set; }
         public virtual Payees Payees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDetails> ORDetails { get; set; }
         public virtual Payrolls Payrolls { get; set; }
+        public virtual PayrollWages PayrollWages { get; set; }
     }
 }

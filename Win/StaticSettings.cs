@@ -15,6 +15,7 @@ namespace Win
         int? officeId = User.OfficeId();
         private Years activeYear => unitOfWork.YearsRepo.Find(m => m.IsActive == true);
         public Offices settings() => unitOfWork.OfficesRepo.Fetch(m => m.Id == officeId).FirstOrDefault();
+        public Offices Offices => settings();
         public List<Signatories> chiefOfOffice => new UnitOfWork().ChiefOfOfficesRepo.Get(m => m.Year == Year);
         public int Year => activeYear.Year.ToInt();
         public int Id => settings().Id;

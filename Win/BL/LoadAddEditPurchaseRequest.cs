@@ -105,13 +105,13 @@ namespace Win.BL
                     return;
                 }
 
-                var pr = new UnitOfWork().ObligationsRepo.Fetch(m => m.PRNo == item.Id);
-                if (pr.Any())
-                {
-                    MessageBox.Show($@"Purchase request has already an obligation request with control no {pr.FirstOrDefault()?.ControlNo }.", @"Existing", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
+                //var pr = new UnitOfWork().ObligationsRepo.Fetch(m => m.PRNo == item.Id);
+                //if (pr.Any())
+                //{
+                //    MessageBox.Show($@"Purchase request has already an obligation request with control no {pr.FirstOrDefault()?.ControlNo }.", @"Existing", MessageBoxButtons.OK,
+                //        MessageBoxIcon.Error);
+                //    return;
+                //}
 
                 var unitOfWork = new UnitOfWork();
                 var payee = unitOfWork.PayeesRepo.Find(m => m.Name == "Earmarked PR");
@@ -200,6 +200,7 @@ namespace Win.BL
         {
             try
             {
+                StaticSettings staticSettings = new StaticSettings();
                 UnitOfWork unitOfWork = new UnitOfWork();
                 item = unitOfWork.PurchaseRequestsRepo.Find(m => m.Id == item.Id);
                 item.Date = frmAddEditPurchaseRequest.dtDate.DateTime;
@@ -210,6 +211,17 @@ namespace Win.BL
                 item.TotalAmount = item.PRDetails.Sum(m => m.TotalAmount);
                 item.TotalAmount = item.PRDetails.Sum(m => m.TotalAmount);
                 item.OfficeId = new StaticSettings().OfficeId;
+
+                item.PA = unitOfWork.ChiefOfOfficesRepo.Find(m => m.Position == "Public Administrator")?.Person;
+                item.PAPos = unitOfWork.ChiefOfOfficesRepo.Find(m => m.Position == "Public Administrator")?.Position;
+                item.DivisionHead = staticSettings.Head;
+                item.DivisionHeadPos = staticSettings.HeadPos;
+
+                if (frmAddEditPurchaseRequest.cboApprovedBy.GetSelectedDataRow() is Signatories signatories)
+                {
+                    item.DeptHead = signatories.Person;
+                    item.DeptHeadPos = signatories.Position;
+                }
                 unitOfWork.Save();
                 isClosed = true;
 
@@ -225,6 +237,7 @@ namespace Win.BL
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             var staticSettings = new StaticSettings();
+
             frmAddEditPurchaseRequest.cboAccountCode.Properties.DataSource =
                 new BindingList<Appropriations>(unitOfWork.AppropriationsRepoRepo.Get(m => m.Year == staticSettings.Year && m.OfficeId == staticSettings.OfficeId));
             item = unitOfWork.PurchaseRequestsRepo.Find(m => m.Id == item.Id);
@@ -233,10 +246,18 @@ namespace Win.BL
             frmAddEditPurchaseRequest.txtDescription.Text = item.Description;
             frmAddEditPurchaseRequest.cboAccountCode.EditValue = item.AppropriationId;
             frmAddEditPurchaseRequest.txtPurpose.Text = item.Purpose;
+            frmAddEditPurchaseRequest.cboApprovedBy.Properties.DataSource =
+                new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office == staticSettings.Offices.UnderOfOffice.OfficeName));
+            frmAddEditPurchaseRequest.txtChiefOfficer.Text = string.IsNullOrWhiteSpace(item.DivisionHead) ? staticSettings.Head : item.DivisionHead;
+            frmAddEditPurchaseRequest.cboApprovedBy.EditValue = item.DeptHead ?? unitOfWork.ChiefOfOfficesRepo
+                .Get(m => m.Office == staticSettings.Offices.UnderOfOffice.OfficeName).FirstOrDefault()?.Person;
 
             frmAddEditPurchaseRequest.ItemsGridControl.DataSource =
                 new BindingList<PRDetails>(unitOfWork.PRDetailsRepo.Get(m => m.PRId == item.Id));
 
+            frmAddEditPurchaseRequest.cboUOMRepo.DataSource =
+                unitOfWork.ItemsRepo.Fetch().GroupBy(x => x.UOM).Select(x => new { UOM = x.Key }).ToList();
+            frmAddEditPurchaseRequest.cboCategoryRepo.DataSource = unitOfWork.CategoriesRepo.Get();
         }
 
         void ITransactions<PurchaseRequests>.Init()

@@ -17,10 +17,10 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Offices()
         {
-            this.OfficesUnderOf = new HashSet<Offices>();
             this.Obligations = new HashSet<Obligations>();
-            this.Users = new HashSet<Users>();
+            this.Offices1 = new HashSet<Offices>();
             this.Payees = new HashSet<Payees>();
+            this.Users = new HashSet<Users>();
         }
     
         public int Id { get; set; }
@@ -37,13 +37,13 @@ namespace Models
         public string Address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Offices> OfficesUnderOf { get; set; }
-        public virtual Offices UnderOfOffice { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Obligations> Obligations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
+        public virtual ICollection<Offices> Offices1 { get; set; }
+        public virtual Offices UnderOfOffice { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payees> Payees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

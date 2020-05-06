@@ -10,6 +10,8 @@ using DevExpress.XtraGrid.Views.Grid;
 using Models;
 using Models.Repository;
 using Win.Accnts;
+using Win.OB;
+using Win.Rprts;
 
 namespace Win.BL
 {
@@ -29,6 +31,49 @@ namespace Win.BL
             uc.btnReAlignmentEditRepo.ButtonClick += BtnReAlignmentEditRepo_ButtonClick;
             uc.btnReAlignmentDeleteRepo.ButtonClick += BtnReAlignmentDeleteRepo_ButtonClick;
             uc.btnAccountEditRepo.ButtonClick += BtnAccountEditRepo_ButtonClick;
+            uc.btnOBREdit.ButtonClick += BtnOBREdit_ButtonClick;
+            uc.btnAccountDel.ButtonClick += BtnAccountDel_ButtonClick;
+            uc.btnSOA.Click += BtnSOA_Click;
+        }
+
+        private void BtnSOA_Click(object sender, EventArgs e)
+        {
+            if (uc.AppropriationGrid.GetFocusedRow() is Appropriations item)
+            {
+                frmReportViewer frm = new frmReportViewer(new rptSOA()
+                {
+                    DataSource = new UnitOfWork().AppropriationsRepoRepo.Get(m => m.Id == item.Id)
+                });
+                frm.ShowDialog();
+            }
+        }
+
+        private void BtnAccountDel_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (uc.AppropriationGrid.GetFocusedRow() is Appropriations item)
+            {
+                UnitOfWork unitOfWork = new UnitOfWork();
+
+                if (MessageBox.Show($@"Do you want to Delete this account? { item.AccountCode}", $@"Delete {item.AccountCode}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+                unitOfWork.AppropriationsRepoRepo.Delete(m => m.Id == item.Id);
+                unitOfWork.Save();
+                Init();
+            }
+        }
+
+        private void BtnOBREdit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (uc.ObligationGridView.GetFocusedRow() is ORDetails item)
+            {
+                frmAddEditObligation frm = new frmAddEditObligation(MethodType.Edit, item.Obligations);
+                frm.ShowDialog();
+                if (uc.AppropriationGrid.GetFocusedRow() is Appropriations account)
+                {
+                    UnitOfWork unitOfWork = new UnitOfWork();
+                    Detail(new UnitOfWork().AppropriationsRepoRepo.Find(m => m.Id == account.Id));
+                }
+            }
         }
 
         private void BtnAccountEditRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -134,11 +179,11 @@ namespace Win.BL
                 uc.txtObligationOffice.Text = item.ObligationsOffice?.ToString("n2");
                 uc.txtAllotmentBalanceIncEM.Text = item.AllotmentBalanceIncEM?.ToString("n2");
                 uc.txtAllotmentBalanceExcEM.Text = item.AllotmentBalanceExcEM?.ToString("n2");
-                uc.txtReAlignment.Text = item.ReAligment?.ToString("n2");
+                uc.txtReAlignment.Text = item.ReAlignment?.ToString("n2");
                 uc.lblHeader.Text = item.AccountCode + " - " + item.AccountName;
-
+                uc.txtObligationBudget.Text = item.BudgetAccountBalance?.ToString("n2");
                 uc.AllotmentGridControl.DataSource = new BindingList<Allotments>(item.Allotments.ToList());
-                uc.ObligationGridControl.DataSource = new BindingList<ORDetails>(new UnitOfWork().ORDetailsRepo.Get(m=>m.AppropriationId==item.Id,includeProperties: "Obligations,Obligations.Payees"));
+                uc.ObligationGridControl.DataSource = new BindingList<ORDetails>(new UnitOfWork().ORDetailsRepo.Get(m => m.AppropriationId == item.Id, includeProperties: "Obligations,Obligations.Payees"));
                 uc.ReAlignmentGridControl.DataSource = new BindingList<ReAlignments>(new UnitOfWork().ReAlignmentsRepo.Get(m => m.SourceAppropriationId == item.Id || m.TargetAppropriationId == item.Id).ToList());
             }
             catch (Exception e)

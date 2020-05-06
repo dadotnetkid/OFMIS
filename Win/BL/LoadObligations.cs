@@ -26,6 +26,18 @@ namespace Win.BL
             uc.OBGridView.FocusedRowChanged += GridObligation_FocusedRowChanged;
             uc.btnEditDV.Click += BtnEditDV_Click;
             uc.btnDelORDetailRepo.ButtonClick += BtnDelORDetailRepo_ButtonClick;
+            uc.ORDetailsGridView.FocusedRowChanged += ORDetailsGridView_FocusedRowChanged;
+        }
+
+        private void ORDetailsGridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (sender is GridView grid)
+            {
+                if (grid.GetFocusedRow() is ORDetails item)
+                {
+                    uc.lblParticulars.Text = item.Particulars;
+                }
+            }
         }
 
         private void BtnDelORDetailRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -65,6 +77,8 @@ namespace Win.BL
                 frmAddEditObligation frm = new frmAddEditObligation(MethodType.Edit, item);
                 frm.ShowDialog();
                 Init();
+                Detail(new UnitOfWork().ObligationsRepo.Find(m => m.Id == item.Id));
+
             }
 
         }
@@ -110,6 +124,9 @@ namespace Win.BL
             {
                 Detail(new UnitOfWork().ObligationsRepo.Find(m => m.Id == item.Id));
             }
+
+            uc.lblTotalOf.Text =
+                $@"Total of: {new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year).Count(x => x.OfficeId == staticSettings.OfficeId)}";
         }
 
         public void Detail(Obligations item)
@@ -135,6 +152,13 @@ namespace Win.BL
                 uc.ORDetailGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails.ToList());
                 uc.tabPayroll.Controls.Clear();
                 uc.tabPayroll.Controls.Add(new UCPayrolls(item.Id) { Dock = DockStyle.Fill });
+                uc.tabPayrollWages.Controls.Clear();
+                uc.tabPayrollWages.Controls.Add(new UCPayrollWages(item) { Dock = DockStyle.Fill });
+                uc.lblTotal.Text = item.TotalAmount?.ToString("#,#.0#");
+                if (uc.ORDetailsGridView.GetFocusedRow() is ORDetails obr)
+                {
+                    uc.lblParticulars.Text = obr.Particulars;
+                }
             }
             catch (Exception exception)
             {

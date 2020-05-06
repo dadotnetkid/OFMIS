@@ -71,9 +71,19 @@
             this.colItemNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Total = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtControlNumber = new DevExpress.XtraEditors.TextEdit();
-            this.cboAccountCode = new DevExpress.XtraEditors.LookUpEdit();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.cboAccountCode = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colAccountCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAccountCodeText = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAccountName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cboApprovedBy = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.txtChiefOfficer = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.cboUOMRepo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.cboCategoryRepo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
@@ -89,13 +99,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.spinNumberRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControlNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAccountCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboApprovedBy.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtChiefOfficer.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboUOMRepo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboCategoryRepo)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(12, 153);
+            this.labelControl3.Location = new System.Drawing.Point(6, 153);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(72, 14);
             this.labelControl3.TabIndex = 51;
@@ -105,7 +120,7 @@
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(12, 107);
+            this.labelControl10.Location = new System.Drawing.Point(6, 107);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(72, 14);
             this.labelControl10.TabIndex = 52;
@@ -115,7 +130,7 @@
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(13, 85);
+            this.labelControl2.Location = new System.Drawing.Point(7, 85);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(60, 14);
             this.labelControl2.TabIndex = 53;
@@ -125,7 +140,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(13, 61);
+            this.labelControl1.Location = new System.Drawing.Point(7, 61);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(30, 14);
             this.labelControl1.TabIndex = 50;
@@ -171,7 +186,7 @@
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(12, 175);
+            this.labelControl4.Location = new System.Drawing.Point(6, 175);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(44, 14);
             this.labelControl4.TabIndex = 51;
@@ -238,7 +253,7 @@
             this.btnAppropriations.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnAppropriations.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.btnAppropriations.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAppropriations.ImageOptions.Image")));
-            this.btnAppropriations.Location = new System.Drawing.Point(121, 226);
+            this.btnAppropriations.Location = new System.Drawing.Point(121, 279);
             this.btnAppropriations.Name = "btnAppropriations";
             this.btnAppropriations.Size = new System.Drawing.Size(102, 23);
             this.btnAppropriations.TabIndex = 57;
@@ -251,7 +266,7 @@
             this.btnAddItems.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnAddItems.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.btnAddItems.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddItems.ImageOptions.Image")));
-            this.btnAddItems.Location = new System.Drawing.Point(13, 226);
+            this.btnAddItems.Location = new System.Drawing.Point(13, 279);
             this.btnAddItems.Name = "btnAddItems";
             this.btnAddItems.Size = new System.Drawing.Size(102, 23);
             this.btnAddItems.TabIndex = 58;
@@ -262,15 +277,17 @@
             this.ItemsGridControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ItemsGridControl.Location = new System.Drawing.Point(13, 255);
+            this.ItemsGridControl.Location = new System.Drawing.Point(13, 308);
             this.ItemsGridControl.MainView = this.ItemsGridView;
             this.ItemsGridControl.Name = "ItemsGridControl";
             this.ItemsGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDeleteItemRepo,
             this.btnEditItemRepo,
             this.spinNumberRepo,
-            this.spinAmountRepo});
-            this.ItemsGridControl.Size = new System.Drawing.Size(958, 342);
+            this.spinAmountRepo,
+            this.cboUOMRepo,
+            this.cboCategoryRepo});
+            this.ItemsGridControl.Size = new System.Drawing.Size(958, 289);
             this.ItemsGridControl.TabIndex = 60;
             this.ItemsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ItemsGridView});
@@ -306,6 +323,7 @@
             // 
             // colCategory
             // 
+            this.colCategory.ColumnEdit = this.cboCategoryRepo;
             this.colCategory.FieldName = "Category";
             this.colCategory.Name = "colCategory";
             this.colCategory.Visible = true;
@@ -322,6 +340,7 @@
             // 
             // colUOM
             // 
+            this.colUOM.ColumnEdit = this.cboUOMRepo;
             this.colUOM.FieldName = "UOM";
             this.colUOM.Name = "colUOM";
             this.colUOM.Visible = true;
@@ -437,26 +456,9 @@
             this.txtControlNumber.Size = new System.Drawing.Size(278, 20);
             this.txtControlNumber.TabIndex = 48;
             // 
-            // cboAccountCode
-            // 
-            this.cboAccountCode.Location = new System.Drawing.Point(97, 150);
-            this.cboAccountCode.Name = "cboAccountCode";
-            this.cboAccountCode.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboAccountCode.Properties.Appearance.Options.UseFont = true;
-            this.cboAccountCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboAccountCode.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AccountCode", "Account Code"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AccountName", "Account Name")});
-            this.cboAccountCode.Properties.DisplayMember = "AccountCode";
-            this.cboAccountCode.Properties.NullText = "";
-            this.cboAccountCode.Properties.ValueMember = "Id";
-            this.cboAccountCode.Size = new System.Drawing.Size(605, 20);
-            this.cboAccountCode.TabIndex = 54;
-            // 
             // btnClose
             // 
-            this.btnClose.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
@@ -469,7 +471,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
@@ -480,11 +482,131 @@
             this.btnSave.Text = "Save ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // cboAccountCode
+            // 
+            this.cboAccountCode.Location = new System.Drawing.Point(97, 150);
+            this.cboAccountCode.Name = "cboAccountCode";
+            this.cboAccountCode.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboAccountCode.Properties.Appearance.Options.UseFont = true;
+            this.cboAccountCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboAccountCode.Properties.DisplayMember = "AccountCode";
+            this.cboAccountCode.Properties.NullText = "";
+            this.cboAccountCode.Properties.PopupView = this.searchLookUpEdit1View;
+            this.cboAccountCode.Properties.ValueMember = "Id";
+            this.cboAccountCode.Size = new System.Drawing.Size(605, 20);
+            this.cboAccountCode.TabIndex = 54;
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colAccountCode,
+            this.colAccountCodeText,
+            this.colAccountName});
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // colAccountCode
+            // 
+            this.colAccountCode.Caption = "Account Code";
+            this.colAccountCode.FieldName = "AccountCode";
+            this.colAccountCode.Name = "colAccountCode";
+            this.colAccountCode.Visible = true;
+            this.colAccountCode.VisibleIndex = 0;
+            // 
+            // colAccountCodeText
+            // 
+            this.colAccountCodeText.Caption = "Account Code Text";
+            this.colAccountCodeText.FieldName = "AccountCodeText";
+            this.colAccountCodeText.Name = "colAccountCodeText";
+            this.colAccountCodeText.Visible = true;
+            this.colAccountCodeText.VisibleIndex = 1;
+            // 
+            // colAccountName
+            // 
+            this.colAccountName.Caption = "Account Name";
+            this.colAccountName.FieldName = "AccountName";
+            this.colAccountName.Name = "colAccountName";
+            this.colAccountName.Visible = true;
+            this.colAccountName.VisibleIndex = 2;
+            // 
+            // cboApprovedBy
+            // 
+            this.cboApprovedBy.EnterMoveNextControl = true;
+            this.cboApprovedBy.Location = new System.Drawing.Point(97, 244);
+            this.cboApprovedBy.Name = "cboApprovedBy";
+            this.cboApprovedBy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboApprovedBy.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Person", "Person"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Position", "Position")});
+            this.cboApprovedBy.Properties.DisplayMember = "Person";
+            this.cboApprovedBy.Properties.NullText = "";
+            this.cboApprovedBy.Properties.UseReadOnlyAppearance = false;
+            this.cboApprovedBy.Properties.ValueMember = "Person";
+            this.cboApprovedBy.Size = new System.Drawing.Size(605, 20);
+            this.cboApprovedBy.TabIndex = 64;
+            this.cboApprovedBy.Tag = "";
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Location = new System.Drawing.Point(6, 247);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(58, 13);
+            this.labelControl7.TabIndex = 66;
+            this.labelControl7.Text = "Dept. Head";
+            // 
+            // txtChiefOfficer
+            // 
+            this.txtChiefOfficer.EnterMoveNextControl = true;
+            this.txtChiefOfficer.Location = new System.Drawing.Point(97, 222);
+            this.txtChiefOfficer.Name = "txtChiefOfficer";
+            this.txtChiefOfficer.Properties.UseReadOnlyAppearance = false;
+            this.txtChiefOfficer.Size = new System.Drawing.Size(605, 20);
+            this.txtChiefOfficer.TabIndex = 63;
+            this.txtChiefOfficer.Tag = "1";
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Location = new System.Drawing.Point(6, 225);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(85, 13);
+            this.labelControl8.TabIndex = 65;
+            this.labelControl8.Text = "Head of Division";
+            // 
+            // cboUOMRepo
+            // 
+            this.cboUOMRepo.AutoHeight = false;
+            this.cboUOMRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboUOMRepo.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("UOM", "UOM")});
+            this.cboUOMRepo.DisplayMember = "UOM";
+            this.cboUOMRepo.Name = "cboUOMRepo";
+            this.cboUOMRepo.ValueMember = "UOM";
+            // 
+            // cboCategoryRepo
+            // 
+            this.cboCategoryRepo.AutoHeight = false;
+            this.cboCategoryRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboCategoryRepo.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Category", "Category")});
+            this.cboCategoryRepo.DisplayMember = "Category";
+            this.cboCategoryRepo.Name = "cboCategoryRepo";
+            this.cboCategoryRepo.ValueMember = "Category";
+            // 
             // frmAddEditPurchaseRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 646);
+            this.Controls.Add(this.cboApprovedBy);
+            this.Controls.Add(this.labelControl7);
+            this.Controls.Add(this.txtChiefOfficer);
+            this.Controls.Add(this.labelControl8);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.ItemsGridControl);
@@ -526,6 +648,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.spinNumberRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControlNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAccountCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboApprovedBy.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtChiefOfficer.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboUOMRepo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboCategoryRepo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -563,9 +690,19 @@
         private DevExpress.XtraGrid.Columns.GridColumn colItemNo;
         private DevExpress.XtraGrid.Columns.GridColumn Total;
         public DevExpress.XtraEditors.TextEdit txtControlNumber;
-        public DevExpress.XtraEditors.LookUpEdit cboAccountCode;
         public DevExpress.XtraEditors.CheckEdit chkIsClosed;
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraEditors.SimpleButton btnSave;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
+        public DevExpress.XtraEditors.SearchLookUpEdit cboAccountCode;
+        public DevExpress.XtraEditors.LookUpEdit cboApprovedBy;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        public DevExpress.XtraEditors.TextEdit txtChiefOfficer;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraGrid.Columns.GridColumn colAccountCode;
+        private DevExpress.XtraGrid.Columns.GridColumn colAccountCodeText;
+        private DevExpress.XtraGrid.Columns.GridColumn colAccountName;
+        public DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cboCategoryRepo;
+        public DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cboUOMRepo;
     }
 }

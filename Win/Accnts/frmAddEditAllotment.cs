@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Models;
 using Win.BL;
-
+using Helpers;
 namespace Win.Accnts
 {
     public partial class frmAddEditAllotment : DevExpress.XtraEditors.XtraForm
@@ -26,7 +26,11 @@ namespace Win.Accnts
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            addEditAllotment.Save();
+            if (((XtraForm) this).ValidateForm())
+            {
+                addEditAllotment.Save();
+            }
+            
         }
 
         private void btnClose_Click(object sender, EventArgs e)

@@ -48,7 +48,7 @@ namespace Win
         {
             try
             {
-                DefaultAccountsGridControl.DataSource = new BindingList<DefaultAccounts>(new UnitOfWork().DefaultAccountsRepo.Get());
+                DefaultAccountsGridControl.DataSource = new BindingList<DefaultAccounts>(new UnitOfWork().DefaultAccountsRepo.Fetch().OrderBy(x => x.FundTypes.ItemNumber).ToList());
 
                 cboFundTypeRepo.DataSource = new EntityServerModeSource()
                 {
@@ -85,13 +85,15 @@ namespace Win
                         unitOfWork.DefaultAccountsRepo.Insert(item);
                     else
                     {
+                        var fundType = unitOfWork.FundTypesRepo.Find(m => m.Id == item.FundTypeId);
                         unitOfWork.DefaultAccountsRepo.Update(new DefaultAccounts()
                         {
                             Id = item.Id,
                             AccountCode = item.AccountCode,
                             AccountCodeText = item.AccountCodeText,
                             AccountName = item.AccountName,
-                            FundType = item.FundType
+                            FundType = fundType?.FundType,
+                            FundTypeId = fundType?.Id,
                         });
                     }
 

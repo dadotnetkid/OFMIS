@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using Models;
 using Win.BL;
 using System.Data.Entity;
+using Helpers;
 using Models.Repository;
 
 namespace Win.OB
@@ -33,9 +34,13 @@ namespace Win.OB
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            obligations.Save();
-            this.obligations.isClosed = true;
-            this.Close();
+            if (((XtraForm)this).ValidateForm())
+            {
+                obligations.Save();
+            }
+
+
+            //    this.Close();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -50,7 +55,7 @@ namespace Win.OB
 
         private void btnAddPayee_Click(object sender, EventArgs e)
         {
-            frmAddEditPayee frm = new frmAddEditPayee(MethodType.Add, null);
+            Form frm = new frmAddEditPayee(MethodType.Add, null);
             frm.ShowDialog();
             obligations.LoadPayees();
         }

@@ -17,9 +17,15 @@ using Win.Rprts;
 
 namespace Win.OB
 {
-    public partial class ucObligations : DevExpress.XtraEditors.XtraUserControl
+    public partial class ucObligations : DevExpress.XtraEditors.XtraUserControl, IUserControl
     {
         private LoadObligations loadObligations;
+
+        public override void Refresh()
+        {
+            loadObligations.Init();
+            
+        }
 
         public ucObligations()
         {
@@ -56,10 +62,42 @@ namespace Win.OB
         {
             if (OBGridView.GetFocusedRow() is Obligations item)
             {
-                frmReportViewer frm = new frmReportViewer(new rptObligationRequestPreview()
+                item = new UnitOfWork().ObligationsRepo.Find(m => m.Id == item.Id);
+                var rpt = new rptObligationRequestPreview()
                 {
-                    DataSource = new UnitOfWork().ObligationsRepo.Get(m => m.Id == item.Id)
-                });
+                    DataSource = new List<Obligations>() { item }
+                };
+                if (item.Offices.IsDivision == true)
+                {
+                    rpt.lblDivisionChief.Visible = true;
+                    rpt.lblDivisionChiefPos.Visible = true;
+                    rpt.lblDivisionChief.ExpressionBindings.Clear();
+                    rpt.lblDivisionChiefPos.ExpressionBindings.Clear();
+                    rpt.lblDepartmentChief.ExpressionBindings.Clear();
+                    rpt.lblDepartmentChiefPosition.ExpressionBindings.Clear();
+                    rpt.lblDivisionChief.ExpressionBindings.Add(new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Offices].[Chief]"));
+                    rpt.lblDivisionChiefPos.ExpressionBindings.Add(new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Offices].[ChiefPosition]"));
+                    if (string.IsNullOrEmpty(item.OBRApprovedBy))
+                    {
+                        rpt.lblDepartmentChief.ExpressionBindings.Add(new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Offices].[UnderOfOffice].[Chief]"));
+                        rpt.lblDepartmentChiefPosition.ExpressionBindings.Add(new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Offices].[UnderOfOffice].[ChiefPosition]"));
+                    }
+                    else
+                    {
+                        rpt.lblDepartmentChief.ExpressionBindings.Add(new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[OBRApprovedBy]"));
+                        rpt.lblDepartmentChiefPosition.ExpressionBindings.Add(new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[OBRApprovedByPos]"));
+                    }
+
+
+                }
+                else
+                {
+                    rpt.lblDepartmentChief.ExpressionBindings.Clear();
+                    rpt.lblDepartmentChiefPosition.ExpressionBindings.Clear();
+                    rpt.lblDepartmentChief.ExpressionBindings.Add(new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Offices].[Chief]"));
+                    rpt.lblDepartmentChiefPosition.ExpressionBindings.Add(new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Offices].[ChiefPosition]"));
+                }
+                frmReportViewer frm = new frmReportViewer(rpt);
                 frm.ShowDialog();
             }
 
@@ -87,10 +125,10 @@ namespace Win.OB
             GridView view = sender as GridView;
 
 
-            if (e.Column.Name == "colDescription" )
+            if (e.Column.Name == "colDescription")
             {
                 Obligations mark = view.GetRow(e.RowHandle) as Obligations;
-                if(mark.Earmarked == true)
+                if (mark.Earmarked == true)
                     e.Appearance.ForeColor = Color.Red;
                 //                e.Appearance.TextOptions.HAlignment = _mark ? HorzAlignment.Far : HorzAlignment.Near;
             }
@@ -115,7 +153,20 @@ namespace Win.OB
 
         private void btnDelORDetailRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-          
+
+        }
+
+        private void ucObligations_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F5)
+                loadObligations.Init();
+        }
+
+        private void ucObligations_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.ToString() == Keys.F5.ToString())
+                loadObligations.Init();
+
         }
     }
 }

@@ -12,6 +12,18 @@ namespace Models
         private decimal? _allotment;
         private decimal? _reAligment;
         private decimal? _appropriationBalance;
+        private decimal? _budgetAccountBalance;
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public decimal? BudgetAccountBalance
+        {
+            get
+            {
+                _budgetAccountBalance = this.ORDetails.Where(x => x.Obligations.BudgetControlNo != null)
+                    .Sum(x => x.Amount);
+                return _budgetAccountBalance;
+            }
+            set { _budgetAccountBalance = value; }
+        }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public decimal? Allotment
@@ -25,7 +37,7 @@ namespace Models
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public decimal? ReAligment
+        public decimal? ReAlignment
         {
             get
             {

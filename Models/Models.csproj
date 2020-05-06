@@ -140,6 +140,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AIRDetails.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AIReports.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Allotments.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
@@ -221,9 +227,17 @@
     <Compile Include="PayrollDetails.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="PayrollPartial.cs" />
     <Compile Include="Payrolls.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="PayrollWageDetails.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PayrollWages.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PayrollWagesPartial.cs" />
     <Compile Include="PODetails.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
@@ -246,6 +260,7 @@
     <Compile Include="PurchaseOrders.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="PurchaseRequestPartial.cs" />
     <Compile Include="PurchaseRequests.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
@@ -266,9 +281,6 @@
     <Compile Include="Startups\WebApiConfig.cs" />
     <Compile Include="StringHelpers.cs" />
     <Compile Include="Suppliers.cs">
-      <DependentUpon>ModelDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Towns.cs">

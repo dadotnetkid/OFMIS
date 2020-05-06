@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,13 +44,14 @@ namespace Win.BL
 
         private void TxtAccountCode_EditValueChanged(object sender, EventArgs e)
         {
-            if (sender is LookUpEdit lookUpEdit)
+            if (sender is SearchLookUpEdit lookUpEdit)
             {
                 if (lookUpEdit.GetSelectedDataRow() is DefaultAccounts item)
                 {
                     frm.txtAccountCodeText.Text = item.AccountCodeText;
                     frm.txtAccountName.Text = item.AccountName;
                     frm.cboFundType.EditValue = item.FundType;
+
                 }
             }
 
@@ -82,10 +84,10 @@ namespace Win.BL
                     Appropriation = frm.txtAppropriationAmount.EditValue.ToDecimal(),
                     Id = appropriation.Id,
                     Year = appropriation.Year ?? new StaticSettings().Year,
-                    OfficeId = appropriation.OfficeId ?? new StaticSettings().OfficeId
+                    OfficeId = appropriation.OfficeId ?? new StaticSettings().OfficeId,
+
                 });
                 unitOfWork.Save();
-                Init();
                 isClosed = true;
                 frm.Close();
             }
@@ -102,10 +104,8 @@ namespace Win.BL
 
                 if (appropriation == null) return;
                 appropriation = new UnitOfWork().AppropriationsRepoRepo.Find(m => m.Id == appropriation.Id);
-                frm.txtAccountCode.Properties.DataSource = new EntityServerModeSource()
-                {
-                    QueryableSource = new UnitOfWork().DefaultAccountsRepo.Fetch()
-                };
+                frm.txtAccountCode.Properties.DataSource = new BindingList<DefaultAccounts>(new UnitOfWork()
+                    .DefaultAccountsRepo.Fetch().OrderBy(x => x.FundTypes.ItemNumber).ToList());
                 frm.txtAccountCode.Text = appropriation.AccountCode;
                 frm.txtAccountCodeText.Text = appropriation.AccountCodeText;
                 frm.cboFundType.EditValue = appropriation.FundType;
@@ -148,6 +148,7 @@ namespace Win.BL
                 if (methodType == MethodType.Edit) return;
 
                 if (this.isClosed) return;
+             
 
                 UnitOfWork unitOfWork = new UnitOfWork();
                 unitOfWork.AppropriationsRepoRepo.Delete(m => m.Id == appropriation.Id);

@@ -23,6 +23,30 @@ namespace Models.Repository
 
         }
 
+        private GenericRepository<PayrollWageDetails> _PayrollWageDetailsRepo;
+        public GenericRepository<PayrollWageDetails> PayrollWageDetailsRepo
+        {
+            get
+            {
+                if (this._PayrollWageDetailsRepo == null)
+                    this._PayrollWageDetailsRepo = new GenericRepository<PayrollWageDetails>(context);
+                return _PayrollWageDetailsRepo;
+            }
+            set { _PayrollWageDetailsRepo = value; }
+        }
+
+        private GenericRepository<PayrollWages> _PayrollWagesRepo;
+        public GenericRepository<PayrollWages> PayrollWagesRepo
+        {
+            get
+            {
+                if (this._PayrollWagesRepo == null)
+                    this._PayrollWagesRepo = new GenericRepository<PayrollWages>(context);
+                return _PayrollWagesRepo;
+            }
+            set { _PayrollWagesRepo = value; }
+        }
+
         private GenericRepository<Categories> _CategoriesRepo;
         public GenericRepository<Categories> CategoriesRepo
         {

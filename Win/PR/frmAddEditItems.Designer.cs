@@ -88,7 +88,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
@@ -101,7 +101,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
@@ -124,7 +124,7 @@
             // 
             this.labelControl3.Location = new System.Drawing.Point(13, 129);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(22, 13);
+            this.labelControl3.Size = new System.Drawing.Size(23, 13);
             this.labelControl3.TabIndex = 43;
             this.labelControl3.Text = "Cost";
             // 
@@ -132,7 +132,7 @@
             // 
             this.labelControl10.Location = new System.Drawing.Point(13, 107);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(23, 13);
+            this.labelControl10.Size = new System.Drawing.Size(27, 13);
             this.labelControl10.TabIndex = 44;
             this.labelControl10.Text = "UOM";
             // 
@@ -140,7 +140,7 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(14, 85);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(45, 13);
+            this.labelControl2.Size = new System.Drawing.Size(46, 13);
             this.labelControl2.TabIndex = 45;
             this.labelControl2.Text = "Category";
             // 
@@ -148,7 +148,7 @@
             // 
             this.labelControl1.Location = new System.Drawing.Point(14, 61);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(28, 13);
+            this.labelControl1.Size = new System.Drawing.Size(27, 13);
             this.labelControl1.TabIndex = 42;
             this.labelControl1.Text = "Item*";
             // 
@@ -158,8 +158,11 @@
             this.cboCategory.Name = "cboCategory";
             this.cboCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboCategory.Properties.DisplayMember = "Category";
             this.cboCategory.Properties.NullText = "";
+            this.cboCategory.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cboCategory.Properties.UseReadOnlyAppearance = false;
+            this.cboCategory.Properties.ValueMember = "Category";
             this.cboCategory.Size = new System.Drawing.Size(397, 20);
             this.cboCategory.TabIndex = 40;
             // 
@@ -169,13 +172,21 @@
             this.cboUOM.Name = "cboUOM";
             this.cboUOM.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboUOM.Properties.DisplayMember = "UOM";
             this.cboUOM.Properties.NullText = "";
+            this.cboUOM.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cboUOM.Properties.UseReadOnlyAppearance = false;
+            this.cboUOM.Properties.ValueMember = "UOM";
             this.cboUOM.Size = new System.Drawing.Size(397, 20);
             this.cboUOM.TabIndex = 41;
             // 
             // txtCost
             // 
+            this.txtCost.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.txtCost.Location = new System.Drawing.Point(78, 127);
             this.txtCost.Name = "txtCost";
             this.txtCost.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -201,7 +212,9 @@
             this.Controls.Add(this.cboCategory);
             this.Controls.Add(this.cboUOM);
             this.Controls.Add(this.txtCost);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAddEditItems";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAddEditItems";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAddEditItems_FormClosing);
             this.panel1.ResumeLayout(false);

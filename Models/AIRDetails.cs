@@ -12,12 +12,18 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class AIRDetails
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> AIReportId { get; set; }
+        public int ItemNo { get; set; }
+        public int Quantity { get; set; }
+        public string Category { get; set; }
+        public string Item { get; set; }
+        public string UOM { get; set; }
+        public decimal Cost { get; set; }
+        public decimal TotalAmount { get; set; }
+    
+        public virtual AIReports AIReports { get; set; }
     }
 }

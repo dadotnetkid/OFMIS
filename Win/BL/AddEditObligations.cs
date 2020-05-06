@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.Data.Linq;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
 using Helpers;
 using Models;
 using Models.Repository;
@@ -30,13 +31,15 @@ namespace Win.BL
             frm.txtDate.EditValue = DateTime.Now;
             frm.cboPayee.EditValueChanged += CboPayee_EditValueChanged;
             frm.ORDetailsGridView.RowUpdated += ORDetailsGridView_RowUpdated;
+
             frm.btnDelORDetailRepo.ButtonClick += BtnDelORDetailRepo_ButtonClick;
 
-            frm.ORDetailGridControl.DataSource = new BindingSource() { DataSource = new List<ORDetails>() };
+            frm.ORDetailGridControl.DataSource = new BindingList<ORDetails>(new List<ORDetails>());
             LoadAppropriation();
             LoadPayees();
 
         }
+
 
         private void BtnDelORDetailRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
@@ -63,22 +66,34 @@ namespace Win.BL
         {
             try
             {
+
+
                 if (e.Row is ORDetails item)
                 {
-                    item.ObligationId = obId;
                     var unitOfWork = new UnitOfWork();
+                    var appropriation = unitOfWork.AppropriationsRepoRepo.Find(m => m.Id == item.AppropriationId);
+                    if ((item.Amount + (appropriation.ObligationsOffice ?? 0)) > appropriation.Allotment)
+                    {
+                        var oldItem = new UnitOfWork().ORDetailsRepo.Find(m => m.Id == item.Id);
+                        MessageBox.Show("Amount is greater than the allotment balance!",
+                            @"Insufficient Allotment Balance", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        item.Amount = oldItem?.Amount;
+                        return;
+                    }
+
+                    item.ObligationId = obId;
+
                     if (item.Id == 0)
                         unitOfWork.ORDetailsRepo.Insert(item);
                     else
                     {
-                        unitOfWork.ORDetailsRepo.Update(new ORDetails()
-                        {
-                            Id = item.Id,
-                            Amount = item.Amount,
-                            ObligationId = item.ObligationId,
-                            AppropriationId = item.AppropriationId,
-                            Particulars = item.Particulars
-                        });
+                        var res = unitOfWork.ORDetailsRepo.Find(m => m.Id == item.Id);
+                        res.Id = item.Id;
+                        res.Amount = item.Amount;
+                        res.ObligationId = item.ObligationId;
+                        res.AppropriationId = item.AppropriationId;
+                        res.Particulars = item.Particulars;
+
                     }
                     unitOfWork.Save();
                     LoadOrDetails();
@@ -115,49 +130,50 @@ namespace Win.BL
             try
             {
                 var unitOfWork = new UnitOfWork();
-                obligations = new Obligations()
-                {
-                    Id = obligations.Id,
-                    ControlNo = obligations.ControlNo,
-                    Date = obligations?.Date ?? DateTime.Now,
-                    BudgetControlNo = frm.txtPBOControl.EditValue?.ToString(),
-                    PayeeId = frm.cboPayee.EditValue?.ToInt(),
-                    PayeeAddress = frm.txtAddress.EditValue?.ToString(),
-                    PayeeOffice = frm.txtOffice.EditValue?.ToString(),
-                    Description = frm.txtDescription.EditValue?.ToString(),
-                    Chief = frm.txtChiefOfficer.EditValue?.ToString(),
-                    ChiefPosition = frm.txtChiefPosition.EditValue?.ToString(),
-                    PBO = frm.txtBudgetOfficer.Text,
-                    PBOPos = frm.txtPBOPos.Text,
-                    Amount = unitOfWork.ORDetailsRepo.Fetch(m => m.ObligationId == obId).Sum(x => x.Amount) ?? 0,
-                    Status = frm.chkClosed.CheckState == CheckState.Checked ? "Closed" : "Active",
-                    Earmarked = frm.chkEarmarked.Checked,
-                    Closed = frm.chkClosed.Checked,
-                    Year = obligations.Year ?? new StaticSettings().Year,
-                    ResponsibilityCenter = new StaticSettings().ResponsibilityCenter,
-                    ResponsibilityCenterCode = new StaticSettings().ResponsibilityCenterCode,
-                    OfficeId = new StaticSettings().OfficeId,
-                    PRNo = obligations.PRNo,
-                    Accountant = (frm.cboAccountant.GetSelectedDataRow() as Signatories)?.Person,
-                    AccountantPos = (frm.cboAccountant.GetSelectedDataRow() as Signatories)?.Position,
-                    Treasurer = (frm.cboTreasurer.GetSelectedDataRow() as Signatories)?.Person,
-                    TreasurerPos = (frm.cboTreasurer.GetSelectedDataRow() as Signatories)?.Position,
-                    DateClosed = obligations.DateClosed,
-                    DVApprovedBy = obligations.DVApprovedBy,
-                    DVApprovedByPosition = obligations.DVApprovedByPosition,
-                    DVNote = obligations.DVNote,
-                    DVParticular = obligations.DVParticular,
+                obligations = unitOfWork.ObligationsRepo.Find(m => m.Id == this.obligations.Id);
+                //       obligations.Id = this.obligations.Id;
+                obligations.ControlNo = this.obligations.ControlNo;
+                obligations.Date = frm.txtDate.EditValue?.ToDate() ?? DateTime.Now;
+                obligations.BudgetControlNo = frm.txtPBOControl.EditValue?.ToString();
+                obligations.DMSNo = frm.txtDMSNo.Text;
+                obligations.PayeeId = frm.cboPayee.EditValue?.ToInt();
+                obligations.PayeeAddress = frm.txtAddress.EditValue?.ToString();
+                obligations.PayeeOffice = frm.txtOffice.EditValue?.ToString();
+                obligations.Description = frm.txtDescription.EditValue?.ToString();
+                obligations.Chief = frm.txtChiefOfficer.EditValue?.ToString();
+                obligations.ChiefPosition = new StaticSettings().HeadPos;
+                obligations.PBO = frm.txtBudgetOfficer.Text;
+                obligations.PBOPos = (frm.txtBudgetOfficer.GetSelectedDataRow() as Signatories)?.Position;
+                obligations.OBRApprovedBy = frm.cboApprovedBy.Text;
+                obligations.OBRApprovedByPos = (frm.cboApprovedBy.GetSelectedDataRow() as Signatories)?.Position;
+                obligations.Accountant = (frm.cboAccountant.GetSelectedDataRow() as Signatories)?.Person;
+                obligations.AccountantPos = (frm.cboAccountant.GetSelectedDataRow() as Signatories)?.Position;
+                obligations.Treasurer = (frm.cboTreasurer.GetSelectedDataRow() as Signatories)?.Person;
+                obligations.TreasurerPos = (frm.cboTreasurer.GetSelectedDataRow() as Signatories)?.Position;
 
+                obligations.Amount = unitOfWork.ORDetailsRepo.Fetch(m => m.ObligationId == obId).Sum(x => x.Amount) ?? 0;
+                obligations.Status = frm.chkClosed.CheckState == CheckState.Checked ? "Closed" : "Active";
+                obligations.Earmarked = frm.chkEarmarked.Checked;
+                obligations.Closed = frm.chkClosed.Checked;
+                obligations.Year = this.obligations.Year ?? new StaticSettings().Year;
+                obligations.ResponsibilityCenter = new StaticSettings().ResponsibilityCenter;
+                obligations.ResponsibilityCenterCode = new StaticSettings().ResponsibilityCenterCode;
+                obligations.OfficeId = new StaticSettings().OfficeId;
+                obligations.PRNo = this.obligations.PRNo;
+                obligations.DateClosed = this.obligations.DateClosed;
+                obligations.DVApprovedBy = this.obligations.DVApprovedBy;
+                obligations.DVApprovedByPosition = this.obligations.DVApprovedByPosition;
+                obligations.DVNote = this.obligations.DVNote;
+                obligations.DVParticular = this.obligations.DVParticular;
 
-                };
-                if (obligations.DateClosed == null && frm.chkClosed.Checked)
-                    obligations.DateClosed = DateTime.Now;
-                if (obligations.DateClosed != null && frm.chkClosed.Checked)
-                    obligations.DateClosed = obligations.DateClosed;
+                if (this.obligations.DateClosed == null && frm.chkClosed.Checked)
+                    this.obligations.DateClosed = DateTime.Now;
+                if (this.obligations.DateClosed != null && frm.chkClosed.Checked)
+                    this.obligations.DateClosed = this.obligations.DateClosed;
 
-                unitOfWork.ObligationsRepo.Update(obligations);
                 unitOfWork.Save();
-      
+                this.isClosed = true;
+                frm.Close();
             }
             catch (Exception e)
             {
@@ -177,19 +193,20 @@ namespace Win.BL
                 var staticSetting = new StaticSettings();
                 UnitOfWork unitOfWork = new UnitOfWork();
                 var chiefOfOffice = unitOfWork.ChiefOfOfficesRepo.Find(m => m.Year == staticSetting.Year);
-                var item = obligations;
+                var item = unitOfWork.ObligationsRepo.Find(m => m.Id == obligations.Id);
                 if (item == null) return;
                 frm.txtDate.EditValue = item.Date;
                 frm.txtControl.EditValue = item.ControlNo;
                 frm.txtPBOControl.EditValue = item.BudgetControlNo;
+                frm.txtDMSNo.Text = item.DMSNo;
                 frm.cboPayee.EditValue = item.PayeeId;
                 frm.txtOffice.EditValue = item.PayeeOffice;
                 frm.txtAddress.EditValue = item.PayeeAddress;
                 frm.txtDescription.EditValue = item.Description;
                 frm.txtBudgetOfficer.EditValue = item.PBO;
-                frm.txtPBOPos.EditValue = item.PBOPos;
+                frm.cboApprovedBy.EditValue = item.OBRApprovedBy;
                 frm.txtChiefOfficer.EditValue = item.Chief;
-                frm.txtChiefPosition.EditValue = item.ChiefPosition;
+
                 this.obId = obligations?.Id ?? obId;
                 this.controlNo = obligations?.ControlNo ?? controlNo;
                 frm.lblHeader.Text = methodType == MethodType.Add ? controlNo + " - New Payee" : controlNo + " - " + item?.Payees?.Name;
@@ -197,15 +214,16 @@ namespace Win.BL
                 frm.chkClosed.CheckState = item.Status == "Closed" ? CheckState.Checked : CheckState.Unchecked;
                 frm.chkEarmarked.Checked = item.Earmarked ?? false;
                 frm.ORDetailGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails?.ToList());
-                frm.txtBudgetOfficer.Text = string.IsNullOrWhiteSpace(item.PBO) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "Provincial Budget Office")?.Person : item.PBO;
-                frm.txtPBOPos.Text = string.IsNullOrWhiteSpace(item.PBOPos) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "Provincial Budget Office")?.Position : item.PBOPos;
+                frm.txtBudgetOfficer.EditValue = string.IsNullOrWhiteSpace(item.PBO) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "Provincial Budget Office")?.Person : item.PBO;
                 frm.txtChiefOfficer.Text = string.IsNullOrWhiteSpace(item.Chief) ? staticSetting.Head : item.Chief;
-                frm.txtChiefPosition.Text = string.IsNullOrWhiteSpace(item.ChiefPosition) ? staticSetting.HeadPos : item.ChiefPosition;
+
                 frm.cboAccountant.EditValue = unitOfWork.ChiefOfOfficesRepo
                     .Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")).FirstOrDefault()
                     ?.Person;
                 frm.cboTreasurer.EditValue = unitOfWork.ChiefOfOfficesRepo
                     .Get(m => m.Office.Contains("Treasurer") || m.Office.Contains("Treasury")).FirstOrDefault()?.Person;
+                frm.cboApprovedBy.EditValue = item.OBRApprovedBy ?? unitOfWork.ChiefOfOfficesRepo
+                    .Get(m => m.Office.Contains("Governor Office") || m.Office.Contains("Governor's Office")).FirstOrDefault()?.Person;
             }
             catch (Exception e)
             {
@@ -291,16 +309,26 @@ namespace Win.BL
                 .Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")));
             frm.cboTreasurer.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo
                 .Get(m => m.Office.Contains("Treasurer") || m.Office.Contains("Treasury")));
+            frm.cboApprovedBy.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo
+                .Get(m => m.Office.Contains("Governor Office") || m.Office.Contains("Governor's Office")));
+            frm.txtBudgetOfficer.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo
+                .Get(m => m.Office.Contains("Provincial Budget Office")));
         }
 
         public void LoadAppropriation()
         {
             var year = new StaticSettings().Year;
             var staticSettings = new StaticSettings();
+            UnitOfWork unitOfWork = new UnitOfWork();
             frm.cboAppropriationLookUpRepo.DataSource = new EntityServerModeSource()
             {
-                QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch(m => m.Year == year && m.OfficeId == staticSettings.OfficeId)
+                QueryableSource = unitOfWork.AppropriationsRepoRepo.Fetch(m => m.Year == year && m.OfficeId == staticSettings.OfficeId)
             };
+
+
+            frm.cboAccountRepo.DataSource = new BindingList<Appropriations>(
+                unitOfWork.AppropriationsRepoRepo.Get(m => m.Year == year && m.OfficeId == staticSettings.OfficeId));
+            frm.cboAccountRepo.PopulateViewColumns();
         }
 
         void LoadOrDetails()

@@ -13,7 +13,9 @@ namespace Models.ViewModels
 
         public void GenerateReport(int year, int officeId)
         {
-            this.Obligations = new UnitOfWork().ObligationsRepo.Get(m => m.Year == year && m.OfficeId == officeId);
+            UnitOfWork unitOfWork = new UnitOfWork();
+            this.Obligations = unitOfWork.ObligationsRepo.Get(m => m.Year == year && m.OfficeId == officeId);
+            this.Offices = unitOfWork.OfficesRepo.Find(m => m.Id == officeId);
             this.Year = year;
         }
 
@@ -26,5 +28,6 @@ namespace Models.ViewModels
         }
 
         public decimal? TotalObligations => Obligations.Sum(m => m.TotalAmount);
+        public Offices Offices { get; set; }
     }
 }

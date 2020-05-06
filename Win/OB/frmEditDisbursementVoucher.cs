@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using Helpers;
 using Models;
 using Win.BL;
 
@@ -22,13 +23,14 @@ namespace Win.OB
             InitializeComponent();
             this.EditDV = new EditDisbursementVoucher(this, item);
             EditDV.Init();
-           
+
 
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            EditDV.Save();
+            if (((XtraForm)this).ValidateForm())
+                EditDV.Save();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

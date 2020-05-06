@@ -28,6 +28,7 @@ namespace Models
         public string AccountCode { get; set; }
         public string AccountCodeText { get; set; }
         public string FundType { get; set; }
+        public Nullable<int> FundTypeId { get; set; }
         public string AccountName { get; set; }
         public Nullable<decimal> Appropriation { get; set; }
         public Nullable<int> Year { get; set; }
@@ -37,6 +38,7 @@ namespace Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Allotments> Allotments { get; set; }
+        public virtual FundTypes FundTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDetails> ORDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

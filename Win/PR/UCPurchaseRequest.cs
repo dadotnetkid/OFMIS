@@ -13,12 +13,22 @@ using Win.BL;
 
 namespace Win.PR
 {
-    public partial class UCPurchaseRequest : DevExpress.XtraEditors.XtraUserControl
+    public partial class UCPurchaseRequest : DevExpress.XtraEditors.XtraUserControl, IUserControl
+
     {
+        private LoadAddEditPurchaseRequest loadAddEditPurchaseRequest;
+
+        public override void Refresh()
+        {
+            var frm = Application.OpenForms["Main"] as Main;
+            frm.pnlMain.Controls.Clear();
+            frm.pnlMain.Controls.Add(new UCPurchaseRequest() { Dock = DockStyle.Fill });
+            base.Refresh();
+        }
         public UCPurchaseRequest()
         {
             InitializeComponent();
-            LoadAddEditPurchaseRequest loadAddEditPurchaseRequest = new LoadAddEditPurchaseRequest(this);
+            this.loadAddEditPurchaseRequest = new LoadAddEditPurchaseRequest(this);
             ((ILoad<PurchaseRequests>)loadAddEditPurchaseRequest).Init();
         }
     }

@@ -58,6 +58,9 @@
             this.colOffice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cboOffices = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.colTIN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPagIbig = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPhilHealth = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.panel2.SuspendLayout();
@@ -162,7 +165,10 @@
             this.colMiddleInitial,
             this.colLastName,
             this.colPosition,
-            this.colOffice});
+            this.colOffice,
+            this.colTIN,
+            this.colPagIbig,
+            this.colPhilHealth});
             this.EmployeesGridView.GridControl = this.EmployeesGridControl;
             this.EmployeesGridView.Name = "EmployeesGridView";
             this.EmployeesGridView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -266,6 +272,30 @@
             this.repositoryItemCheckEdit1.AutoHeight = false;
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             // 
+            // colTIN
+            // 
+            this.colTIN.Caption = "TIN";
+            this.colTIN.FieldName = "TIN";
+            this.colTIN.Name = "colTIN";
+            this.colTIN.Visible = true;
+            this.colTIN.VisibleIndex = 6;
+            // 
+            // colPagIbig
+            // 
+            this.colPagIbig.Caption = "Pag Ibig";
+            this.colPagIbig.FieldName = "PagIbig";
+            this.colPagIbig.Name = "colPagIbig";
+            this.colPagIbig.Visible = true;
+            this.colPagIbig.VisibleIndex = 7;
+            // 
+            // colPhilHealth
+            // 
+            this.colPhilHealth.Caption = "Phil Health";
+            this.colPhilHealth.FieldName = "PhilHealth";
+            this.colPhilHealth.Name = "colPhilHealth";
+            this.colPhilHealth.Visible = true;
+            this.colPhilHealth.VisibleIndex = 8;
+            // 
             // UCEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -312,5 +342,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colLastName;
         private DevExpress.XtraGrid.Columns.GridColumn colPosition;
         private DevExpress.XtraGrid.Columns.GridColumn colOffice;
+        private DevExpress.XtraGrid.Columns.GridColumn colTIN;
+        private DevExpress.XtraGrid.Columns.GridColumn colPagIbig;
+        private DevExpress.XtraGrid.Columns.GridColumn colPhilHealth;
     }
 }

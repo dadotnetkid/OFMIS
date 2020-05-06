@@ -30,22 +30,23 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItems));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
-            this.checkedComboBoxEdit1 = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.txtSearch = new DevExpress.XtraEditors.TextEdit();
             this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.entityServerModeSource1 = new DevExpress.Data.Linq.EntityServerModeSource();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnSubmit = new DevExpress.XtraEditors.SimpleButton();
             this.ItemsGridControl = new DevExpress.XtraGrid.GridControl();
             this.ItemsGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -58,9 +59,8 @@
             this.btnDeleteItemRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colEdit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEditItemRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.btnSubmit = new DevExpress.XtraEditors.SimpleButton();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.entityServerModeSource1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -74,7 +74,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.panel1.Controls.Add(this.btnNew);
-            this.panel1.Controls.Add(this.checkedComboBoxEdit1);
+            this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -83,7 +83,7 @@
             // 
             // btnNew
             // 
-            this.btnNew.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnNew.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnNew.Appearance.Options.UseFont = true;
             this.btnNew.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnNew.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
@@ -94,17 +94,16 @@
             this.btnNew.TabIndex = 13;
             this.btnNew.Text = "New Item";
             // 
-            // checkedComboBoxEdit1
+            // txtSearch
             // 
-            this.checkedComboBoxEdit1.Location = new System.Drawing.Point(24, 9);
-            this.checkedComboBoxEdit1.Name = "checkedComboBoxEdit1";
-            this.checkedComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.checkedComboBoxEdit1.Properties.DataSource = this.itemsBindingSource;
-            this.checkedComboBoxEdit1.Properties.DisplayMember = "Category";
-            this.checkedComboBoxEdit1.Properties.ValueMember = "Category";
-            this.checkedComboBoxEdit1.Size = new System.Drawing.Size(218, 20);
-            this.checkedComboBoxEdit1.TabIndex = 0;
+            this.txtSearch.Location = new System.Drawing.Point(24, 9);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Properties.AutoHeight = false;
+            this.txtSearch.Size = new System.Drawing.Size(218, 20);
+            this.txtSearch.TabIndex = 0;
+            this.txtSearch.EditValueChanged += new System.EventHandler(this.txtSearch_EditValueChanged);
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // itemsBindingSource
             // 
@@ -124,6 +123,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(992, 41);
             this.panel2.TabIndex = 1;
+            // 
+            // btnSubmit
+            // 
+            this.btnSubmit.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnSubmit.Appearance.Options.UseFont = true;
+            this.btnSubmit.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnSubmit.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.btnSubmit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSubmit.ImageOptions.Image")));
+            this.btnSubmit.Location = new System.Drawing.Point(878, 6);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(102, 23);
+            this.btnSubmit.TabIndex = 14;
+            this.btnSubmit.Text = "Submit";
             // 
             // ItemsGridControl
             // 
@@ -154,12 +166,12 @@
             this.ItemsGridView.GridControl = this.ItemsGridControl;
             this.ItemsGridView.Name = "ItemsGridView";
             this.ItemsGridView.OptionsSelection.CheckBoxSelectorColumnWidth = 20;
-            this.ItemsGridView.OptionsSelection.CheckBoxSelectorField = "Id";
             this.ItemsGridView.OptionsSelection.MultiSelect = true;
             this.ItemsGridView.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.ItemsGridView.OptionsSelection.ResetSelectionClickOutsideCheckboxSelector = true;
-            this.ItemsGridView.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
             this.ItemsGridView.OptionsView.ShowGroupPanel = false;
+            this.ItemsGridView.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.ItemsGridView_SelectionChanged);
+            this.ItemsGridView.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.ItemsGridView_RowUpdated);
             // 
             // colId
             // 
@@ -214,9 +226,9 @@
             // btnDeleteItemRepo
             // 
             this.btnDeleteItemRepo.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
             this.btnDeleteItemRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDeleteItemRepo.Name = "btnDeleteItemRepo";
             this.btnDeleteItemRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -231,24 +243,11 @@
             // btnEditItemRepo
             // 
             this.btnEditItemRepo.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
             this.btnEditItemRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditItemRepo.Name = "btnEditItemRepo";
             this.btnEditItemRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
-            // btnSubmit
-            // 
-            this.btnSubmit.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnSubmit.Appearance.Options.UseFont = true;
-            this.btnSubmit.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.btnSubmit.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.btnSubmit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.btnSubmit.Location = new System.Drawing.Point(878, 6);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(102, 23);
-            this.btnSubmit.TabIndex = 14;
-            this.btnSubmit.Text = "Submit";
             // 
             // frmItems
             // 
@@ -263,7 +262,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Items";
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.entityServerModeSource1)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -280,7 +279,6 @@
         private System.Windows.Forms.Panel panel1;
         private DevExpress.Data.Linq.EntityServerModeSource entityServerModeSource1;
         private System.Windows.Forms.BindingSource itemsBindingSource;
-        public DevExpress.XtraEditors.CheckedComboBoxEdit checkedComboBoxEdit1;
         public DevExpress.XtraEditors.SimpleButton btnNew;
         private System.Windows.Forms.Panel panel2;
         public DevExpress.XtraEditors.SimpleButton btnSubmit;
@@ -296,5 +294,6 @@
         public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDeleteItemRepo;
         private DevExpress.XtraGrid.Columns.GridColumn colEdit;
         public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditItemRepo;
+        public DevExpress.XtraEditors.TextEdit txtSearch;
     }
 }

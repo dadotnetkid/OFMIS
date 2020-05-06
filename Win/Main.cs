@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Models.Repository;
 using Win.Accnts;
+using Win.BL;
 using Win.Emps;
 using Win.OB;
 using Win.Ofcs;
@@ -47,10 +48,11 @@ namespace Win
                 frm.ShowDialog();
             }
         }
-        void Init()
+        void Init(bool isLogged = false)
         {
             Form frm = new frmLogin();
-            frm.ShowDialog();
+            if (isLogged == false)
+                frm.ShowDialog();
             lblUsername.Caption = $"Name: {User.GetFullName() }";
             lblUserLevel.Caption = $"User Level: {User.GetUserLevel()}";
             var unitOfWork = new UnitOfWork();
@@ -194,7 +196,7 @@ namespace Win
             backstageViewControl1.Close();
             frmLogin frm = new frmLogin();
             frm.ShowDialog();
-            Init();
+            Init(true);
         }
 
         private void btnOffices_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -211,6 +213,24 @@ namespace Win
                 return;
             pnlMain.Controls.Clear();
             pnlMain.Controls.Add(new UCEmployees() { Dock = DockStyle.Fill });
+        }
+
+        private void Main_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.F5)
+            {
+                if (this.pnlMain.Controls.Count > 0)
+                {
+                    var uc = this.pnlMain.Controls[0] as IUserControl;
+                    uc.Refresh();
+                }
+                
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

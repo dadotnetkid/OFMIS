@@ -107,45 +107,46 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(84, 175);
+            this.txtDescription.Location = new System.Drawing.Point(91, 175);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Properties.ReadOnly = true;
             this.txtDescription.Properties.UseReadOnlyAppearance = false;
-            this.txtDescription.Size = new System.Drawing.Size(370, 20);
+            this.txtDescription.Size = new System.Drawing.Size(363, 20);
             this.txtDescription.TabIndex = 5;
+            this.txtDescription.Tag = "Description is Required";
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(84, 153);
+            this.txtAddress.Location = new System.Drawing.Point(91, 153);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Properties.ReadOnly = true;
             this.txtAddress.Properties.UseReadOnlyAppearance = false;
-            this.txtAddress.Size = new System.Drawing.Size(370, 20);
+            this.txtAddress.Size = new System.Drawing.Size(363, 20);
             this.txtAddress.TabIndex = 4;
             // 
             // txtOffice
             // 
-            this.txtOffice.Location = new System.Drawing.Point(85, 131);
+            this.txtOffice.Location = new System.Drawing.Point(92, 131);
             this.txtOffice.Name = "txtOffice";
             this.txtOffice.Properties.ReadOnly = true;
             this.txtOffice.Properties.UseReadOnlyAppearance = false;
-            this.txtOffice.Size = new System.Drawing.Size(370, 20);
+            this.txtOffice.Size = new System.Drawing.Size(363, 20);
             this.txtOffice.TabIndex = 3;
             // 
             // txtControl
             // 
-            this.txtControl.Location = new System.Drawing.Point(84, 83);
+            this.txtControl.Location = new System.Drawing.Point(91, 83);
             this.txtControl.Name = "txtControl";
             this.txtControl.Properties.ReadOnly = true;
             this.txtControl.Properties.UseReadOnlyAppearance = false;
-            this.txtControl.Size = new System.Drawing.Size(370, 20);
+            this.txtControl.Size = new System.Drawing.Size(363, 20);
             this.txtControl.TabIndex = 1;
             // 
             // labelControl6
             // 
             this.labelControl6.Location = new System.Drawing.Point(9, 178);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(71, 13);
+            this.labelControl6.Size = new System.Drawing.Size(78, 13);
             this.labelControl6.TabIndex = 48;
             this.labelControl6.Text = "OR Description";
             // 
@@ -153,7 +154,7 @@
             // 
             this.labelControl5.Location = new System.Drawing.Point(9, 155);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(39, 13);
+            this.labelControl5.Size = new System.Drawing.Size(41, 13);
             this.labelControl5.TabIndex = 47;
             this.labelControl5.Text = "Address";
             // 
@@ -161,7 +162,7 @@
             // 
             this.labelControl4.Location = new System.Drawing.Point(10, 133);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(29, 13);
+            this.labelControl4.Size = new System.Drawing.Size(31, 13);
             this.labelControl4.TabIndex = 46;
             this.labelControl4.Text = "Office";
             // 
@@ -169,7 +170,7 @@
             // 
             this.labelControl3.Location = new System.Drawing.Point(9, 109);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(30, 13);
+            this.labelControl3.Size = new System.Drawing.Size(29, 13);
             this.labelControl3.TabIndex = 45;
             this.labelControl3.Text = "Payee";
             // 
@@ -177,7 +178,7 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(10, 85);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(35, 13);
+            this.labelControl2.Size = new System.Drawing.Size(39, 13);
             this.labelControl2.TabIndex = 43;
             this.labelControl2.Text = "Control";
             // 
@@ -185,23 +186,24 @@
             // 
             this.labelControl1.Location = new System.Drawing.Point(10, 61);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(23, 13);
+            this.labelControl1.Size = new System.Drawing.Size(24, 13);
             this.labelControl1.TabIndex = 42;
             this.labelControl1.Text = "Date";
             // 
             // txtParticulars
             // 
-            this.txtParticulars.Location = new System.Drawing.Point(85, 199);
+            this.txtParticulars.Location = new System.Drawing.Point(92, 199);
             this.txtParticulars.Name = "txtParticulars";
             this.txtParticulars.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtParticulars.Size = new System.Drawing.Size(370, 96);
+            this.txtParticulars.Size = new System.Drawing.Size(363, 96);
             this.txtParticulars.TabIndex = 6;
+            this.txtParticulars.Tag = "Particulars is Required";
             // 
             // labelControl7
             // 
             this.labelControl7.Location = new System.Drawing.Point(9, 200);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(50, 13);
+            this.labelControl7.Size = new System.Drawing.Size(53, 13);
             this.labelControl7.TabIndex = 48;
             this.labelControl7.Text = "Particulars";
             // 
@@ -209,7 +211,7 @@
             // 
             this.labelControl8.Location = new System.Drawing.Point(9, 300);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(62, 13);
+            this.labelControl8.Size = new System.Drawing.Size(64, 13);
             this.labelControl8.TabIndex = 48;
             this.labelControl8.Text = "Approved By";
             // 
@@ -217,7 +219,7 @@
             // 
             this.labelControl9.Location = new System.Drawing.Point(9, 324);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(37, 13);
+            this.labelControl9.Size = new System.Drawing.Size(42, 13);
             this.labelControl9.TabIndex = 48;
             this.labelControl9.Text = "Position";
             // 
@@ -225,27 +227,27 @@
             // 
             this.labelControl10.Location = new System.Drawing.Point(9, 348);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(23, 13);
+            this.labelControl10.Size = new System.Drawing.Size(25, 13);
             this.labelControl10.TabIndex = 48;
             this.labelControl10.Text = "Note";
             // 
             // txtPosition
             // 
-            this.txtPosition.Location = new System.Drawing.Point(85, 321);
+            this.txtPosition.Location = new System.Drawing.Point(92, 321);
             this.txtPosition.Name = "txtPosition";
-            this.txtPosition.Size = new System.Drawing.Size(370, 20);
+            this.txtPosition.Size = new System.Drawing.Size(363, 20);
             this.txtPosition.TabIndex = 8;
             // 
             // txtNote
             // 
-            this.txtNote.Location = new System.Drawing.Point(85, 345);
+            this.txtNote.Location = new System.Drawing.Point(92, 345);
             this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(370, 20);
+            this.txtNote.Size = new System.Drawing.Size(363, 20);
             this.txtNote.TabIndex = 9;
             // 
             // btnClose
             // 
-            this.btnClose.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
@@ -258,7 +260,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
@@ -272,7 +274,7 @@
             // txtDate
             // 
             this.txtDate.EditValue = null;
-            this.txtDate.Location = new System.Drawing.Point(84, 61);
+            this.txtDate.Location = new System.Drawing.Point(91, 61);
             this.txtDate.Name = "txtDate";
             this.txtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -286,21 +288,21 @@
             this.txtDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.txtDate.Properties.ReadOnly = true;
             this.txtDate.Properties.UseReadOnlyAppearance = false;
-            this.txtDate.Size = new System.Drawing.Size(371, 20);
+            this.txtDate.Size = new System.Drawing.Size(364, 20);
             this.txtDate.TabIndex = 0;
             // 
             // cboPayee
             // 
-            this.cboPayee.Location = new System.Drawing.Point(84, 107);
+            this.cboPayee.Location = new System.Drawing.Point(91, 107);
             this.cboPayee.Name = "cboPayee";
             this.cboPayee.Properties.ReadOnly = true;
             this.cboPayee.Properties.UseReadOnlyAppearance = false;
-            this.cboPayee.Size = new System.Drawing.Size(371, 20);
+            this.cboPayee.Size = new System.Drawing.Size(364, 20);
             this.cboPayee.TabIndex = 2;
             // 
             // cboApprovedBy
             // 
-            this.cboApprovedBy.Location = new System.Drawing.Point(85, 297);
+            this.cboApprovedBy.Location = new System.Drawing.Point(92, 297);
             this.cboApprovedBy.Name = "cboApprovedBy";
             this.cboApprovedBy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -314,8 +316,9 @@
             this.cboApprovedBy.Properties.PopupSizeable = false;
             this.cboApprovedBy.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cboApprovedBy.Properties.ValueMember = "Person";
-            this.cboApprovedBy.Size = new System.Drawing.Size(370, 20);
+            this.cboApprovedBy.Size = new System.Drawing.Size(363, 20);
             this.cboApprovedBy.TabIndex = 7;
+            this.cboApprovedBy.Tag = "Approved By is Required";
             // 
             // frmEditDisbursementVoucher
             // 

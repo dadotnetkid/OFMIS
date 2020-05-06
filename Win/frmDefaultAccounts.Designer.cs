@@ -125,6 +125,7 @@
             this.DefaultAccountsGridView.GridControl = this.DefaultAccountsGridControl;
             this.DefaultAccountsGridView.Name = "DefaultAccountsGridView";
             this.DefaultAccountsGridView.OptionsNavigation.AutoFocusNewRow = true;
+            this.DefaultAccountsGridView.OptionsNavigation.EnterMoveNextColumn = true;
             this.DefaultAccountsGridView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.DefaultAccountsGridView.OptionsView.ShowGroupPanel = false;
             this.DefaultAccountsGridView.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.DefaultAccountsGridView_RowUpdated);
@@ -156,7 +157,7 @@
             // colFundType
             // 
             this.colFundType.ColumnEdit = this.cboFundTypeRepo;
-            this.colFundType.FieldName = "FundType";
+            this.colFundType.FieldName = "FundTypeId";
             this.colFundType.Name = "colFundType";
             this.colFundType.Visible = true;
             this.colFundType.VisibleIndex = 3;
@@ -174,7 +175,7 @@
             this.cboFundTypeRepo.Name = "cboFundTypeRepo";
             this.cboFundTypeRepo.NullText = "";
             this.cboFundTypeRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.cboFundTypeRepo.ValueMember = "FundType";
+            this.cboFundTypeRepo.ValueMember = "Id";
             // 
             // colDelete
             // 

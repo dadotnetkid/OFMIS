@@ -50,6 +50,7 @@
             this.btnPayees = new DevExpress.XtraBars.BarButtonItem();
             this.btnDefaultAccounts = new DevExpress.XtraBars.BarButtonItem();
             this.btnOffices = new DevExpress.XtraBars.BarButtonItem();
+            this.btnEmployees = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -62,7 +63,6 @@
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.pnlMain = new DevExpress.XtraEditors.PanelControl();
-            this.btnEmployees = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
@@ -274,6 +274,14 @@
             this.btnOffices.Name = "btnOffices";
             this.btnOffices.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOffices_ItemClick);
             // 
+            // btnEmployees
+            // 
+            this.btnEmployees.Caption = "Employees";
+            this.btnEmployees.Id = 14;
+            this.btnEmployees.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEmployees.ImageOptions.SvgImage")));
+            this.btnEmployees.Name = "btnEmployees";
+            this.btnEmployees.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEmployees_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -366,14 +374,6 @@
             this.pnlMain.Size = new System.Drawing.Size(981, 489);
             this.pnlMain.TabIndex = 4;
             // 
-            // btnEmployees
-            // 
-            this.btnEmployees.Caption = "Employees";
-            this.btnEmployees.Id = 14;
-            this.btnEmployees.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.btnEmployees.Name = "btnEmployees";
-            this.btnEmployees.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEmployees_ItemClick);
-            // 
             // Main
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.True;
@@ -391,6 +391,7 @@
             this.Text = "OFMIS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Main_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).EndInit();
@@ -410,7 +411,7 @@
         private DevExpress.XtraBars.BarButtonItem btnAccounts;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
-        private DevExpress.XtraEditors.PanelControl pnlMain;
+        public DevExpress.XtraEditors.PanelControl pnlMain;
         private DevExpress.XtraBars.BarButtonItem btnYear;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup homeOpt;
         private DevExpress.XtraBars.BarButtonItem btnDefaultSettings;

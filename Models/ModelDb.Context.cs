@@ -25,39 +25,42 @@ namespace Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AIRDetails> AIRDetails { get; set; }
+        public virtual DbSet<AIReports> AIReports { get; set; }
+        public virtual DbSet<Allotments> Allotments { get; set; }
+        public virtual DbSet<Appropriations> Appropriations { get; set; }
+        public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<DefaultAccounts> DefaultAccounts { get; set; }
+        public virtual DbSet<DefaultSettings> DefaultSettings { get; set; }
+        public virtual DbSet<Employees> Employees { get; set; }
+        public virtual DbSet<Functions> Functions { get; set; }
+        public virtual DbSet<FundTypes> FundTypes { get; set; }
+        public virtual DbSet<Items> Items { get; set; }
         public virtual DbSet<Logs> Logs { get; set; }
+        public virtual DbSet<Obligations> Obligations { get; set; }
+        public virtual DbSet<Offices> Offices { get; set; }
+        public virtual DbSet<ORDetails> ORDetails { get; set; }
+        public virtual DbSet<Payees> Payees { get; set; }
+        public virtual DbSet<PayrollDetails> PayrollDetails { get; set; }
+        public virtual DbSet<PODetails> PODetails { get; set; }
+        public virtual DbSet<Positions> Positions { get; set; }
+        public virtual DbSet<PQDetails> PQDetails { get; set; }
+        public virtual DbSet<PRDetails> PRDetails { get; set; }
+        public virtual DbSet<PriceQuotations> PriceQuotations { get; set; }
         public virtual DbSet<Provinces> Provinces { get; set; }
+        public virtual DbSet<PurchaseOrders> PurchaseOrders { get; set; }
+        public virtual DbSet<PurchaseRequests> PurchaseRequests { get; set; }
+        public virtual DbSet<ReAlignments> ReAlignments { get; set; }
+        public virtual DbSet<Signatories> Signatories { get; set; }
+        public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<Towns> Towns { get; set; }
         public virtual DbSet<UserClaims> UserClaims { get; set; }
         public virtual DbSet<UserLogins> UserLogins { get; set; }
         public virtual DbSet<UserRoles> UserRoles { get; set; }
-        public virtual DbSet<Suppliers> Suppliers { get; set; }
-        public virtual DbSet<Payees> Payees { get; set; }
-        public virtual DbSet<FundTypes> FundTypes { get; set; }
-        public virtual DbSet<Allotments> Allotments { get; set; }
-        public virtual DbSet<ORDetails> ORDetails { get; set; }
-        public virtual DbSet<ReAlignments> ReAlignments { get; set; }
-        public virtual DbSet<Years> Years { get; set; }
-        public virtual DbSet<Signatories> Signatories { get; set; }
-        public virtual DbSet<Items> Items { get; set; }
-        public virtual DbSet<PurchaseRequests> PurchaseRequests { get; set; }
-        public virtual DbSet<Categories> Categories { get; set; }
-        public virtual DbSet<PRDetails> PRDetails { get; set; }
-        public virtual DbSet<PQDetails> PQDetails { get; set; }
-        public virtual DbSet<PriceQuotations> PriceQuotations { get; set; }
-        public virtual DbSet<PODetails> PODetails { get; set; }
-        public virtual DbSet<PurchaseOrders> PurchaseOrders { get; set; }
-        public virtual DbSet<DefaultAccounts> DefaultAccounts { get; set; }
-        public virtual DbSet<Positions> Positions { get; set; }
-        public virtual DbSet<Functions> Functions { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<PayrollDetails> PayrollDetails { get; set; }
-        public virtual DbSet<Payrolls> Payrolls { get; set; }
-        public virtual DbSet<DefaultSettings> DefaultSettings { get; set; }
-        public virtual DbSet<Offices> Offices { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<Obligations> Obligations { get; set; }
-        public virtual DbSet<Appropriations> Appropriations { get; set; }
-        public virtual DbSet<Employees> Employees { get; set; }
+        public virtual DbSet<Years> Years { get; set; }
+        public virtual DbSet<Payrolls> Payrolls { get; set; }
+        public virtual DbSet<PayrollWages> PayrollWages { get; set; }
+        public virtual DbSet<PayrollWageDetails> PayrollWageDetails { get; set; }
     }
 }

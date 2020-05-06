@@ -166,7 +166,7 @@
             this.xrTableCell5.Multiline = true;
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.Text = "xrTableCell5";
-            this.xrTableCell5.TextFormatString = "{0:Php #,0.00}";
+            this.xrTableCell5.TextFormatString = "{0:#,#.00}";
             this.xrTableCell5.Weight = 0.66796875D;
             // 
             // GroupFooter1

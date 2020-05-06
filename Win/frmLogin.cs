@@ -46,7 +46,7 @@ namespace Win
                 return;
             }
 
-            if (Cryptography.Encrypt(txtUserName.Text, user.SecurityStamp) != user.PasswordHash)
+            if (Cryptography.Encrypt(txtPassword.Text, user.SecurityStamp) != user.PasswordHash)
             {
                 MessageBox.Show("Invalid UserName", "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

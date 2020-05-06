@@ -343,9 +343,25 @@ namespace Models.DataTables {
             
             private global::System.Data.DataColumn columnTreasurerPOS;
             
+            private global::System.Data.DataColumn columnApprovedBy;
+            
+            private global::System.Data.DataColumn columnApprovedByPOS;
+            
             private global::System.Data.DataColumn columnGovernor;
             
             private global::System.Data.DataColumn columnGovernorPOS;
+            
+            private global::System.Data.DataColumn columnNote;
+            
+            private global::System.Data.DataColumn columnProvincialAdministrator;
+            
+            private global::System.Data.DataColumn columnPAPOS;
+            
+            private global::System.Data.DataColumn columnPANote;
+            
+            private global::System.Data.DataColumn columnDivisionHead;
+            
+            private global::System.Data.DataColumn columnDivisionHeadPos;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -470,6 +486,22 @@ namespace Models.DataTables {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ApprovedByColumn {
+                get {
+                    return this.columnApprovedBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ApprovedByPOSColumn {
+                get {
+                    return this.columnApprovedByPOS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn GovernorColumn {
                 get {
                     return this.columnGovernor;
@@ -481,6 +513,54 @@ namespace Models.DataTables {
             public global::System.Data.DataColumn GovernorPOSColumn {
                 get {
                     return this.columnGovernorPOS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NoteColumn {
+                get {
+                    return this.columnNote;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ProvincialAdministratorColumn {
+                get {
+                    return this.columnProvincialAdministrator;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PAPOSColumn {
+                get {
+                    return this.columnPAPOS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PANoteColumn {
+                get {
+                    return this.columnPANote;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DivisionHeadColumn {
+                get {
+                    return this.columnDivisionHead;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DivisionHeadPosColumn {
+                get {
+                    return this.columnDivisionHeadPos;
                 }
             }
             
@@ -521,7 +601,28 @@ namespace Models.DataTables {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public PayrollsRow AddPayrollsRow(int Id, System.DateTime Date, string ControlNo, string Description, string Title, string Head, string HeadPos, string Accountant, string AccountantPOS, string Treasurer, string TreasurerPOS, string Governor, string GovernorPOS) {
+            public PayrollsRow AddPayrollsRow(
+                        int Id, 
+                        System.DateTime Date, 
+                        string ControlNo, 
+                        string Description, 
+                        string Title, 
+                        string Head, 
+                        string HeadPos, 
+                        string Accountant, 
+                        string AccountantPOS, 
+                        string Treasurer, 
+                        string TreasurerPOS, 
+                        string ApprovedBy, 
+                        string ApprovedByPOS, 
+                        string Governor, 
+                        string GovernorPOS, 
+                        string Note, 
+                        string ProvincialAdministrator, 
+                        string PAPOS, 
+                        string PANote, 
+                        string DivisionHead, 
+                        string DivisionHeadPos) {
                 PayrollsRow rowPayrollsRow = ((PayrollsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
@@ -535,8 +636,16 @@ namespace Models.DataTables {
                         AccountantPOS,
                         Treasurer,
                         TreasurerPOS,
+                        ApprovedBy,
+                        ApprovedByPOS,
                         Governor,
-                        GovernorPOS};
+                        GovernorPOS,
+                        Note,
+                        ProvincialAdministrator,
+                        PAPOS,
+                        PANote,
+                        DivisionHead,
+                        DivisionHeadPos};
                 rowPayrollsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPayrollsRow);
                 return rowPayrollsRow;
@@ -577,8 +686,16 @@ namespace Models.DataTables {
                 this.columnAccountantPOS = base.Columns["AccountantPOS"];
                 this.columnTreasurer = base.Columns["Treasurer"];
                 this.columnTreasurerPOS = base.Columns["TreasurerPOS"];
+                this.columnApprovedBy = base.Columns["ApprovedBy"];
+                this.columnApprovedByPOS = base.Columns["ApprovedByPOS"];
                 this.columnGovernor = base.Columns["Governor"];
                 this.columnGovernorPOS = base.Columns["GovernorPOS"];
+                this.columnNote = base.Columns["Note"];
+                this.columnProvincialAdministrator = base.Columns["ProvincialAdministrator"];
+                this.columnPAPOS = base.Columns["PAPOS"];
+                this.columnPANote = base.Columns["PANote"];
+                this.columnDivisionHead = base.Columns["DivisionHead"];
+                this.columnDivisionHeadPos = base.Columns["DivisionHeadPos"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -606,10 +723,26 @@ namespace Models.DataTables {
                 base.Columns.Add(this.columnTreasurer);
                 this.columnTreasurerPOS = new global::System.Data.DataColumn("TreasurerPOS", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTreasurerPOS);
+                this.columnApprovedBy = new global::System.Data.DataColumn("ApprovedBy", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnApprovedBy);
+                this.columnApprovedByPOS = new global::System.Data.DataColumn("ApprovedByPOS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnApprovedByPOS);
                 this.columnGovernor = new global::System.Data.DataColumn("Governor", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGovernor);
                 this.columnGovernorPOS = new global::System.Data.DataColumn("GovernorPOS", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGovernorPOS);
+                this.columnNote = new global::System.Data.DataColumn("Note", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNote);
+                this.columnProvincialAdministrator = new global::System.Data.DataColumn("ProvincialAdministrator", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProvincialAdministrator);
+                this.columnPAPOS = new global::System.Data.DataColumn("PAPOS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPAPOS);
+                this.columnPANote = new global::System.Data.DataColumn("PANote", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPANote);
+                this.columnDivisionHead = new global::System.Data.DataColumn("DivisionHead", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDivisionHead);
+                this.columnDivisionHeadPos = new global::System.Data.DataColumn("DivisionHeadPos", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDivisionHeadPos);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("PayrollsKey1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AllowDBNull = false;
@@ -1244,6 +1377,38 @@ namespace Models.DataTables {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ApprovedBy {
+                get {
+                    try {
+                        return ((string)(this[this.tablePayrolls.ApprovedByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ApprovedBy\' in table \'Payrolls\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePayrolls.ApprovedByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ApprovedByPOS {
+                get {
+                    try {
+                        return ((string)(this[this.tablePayrolls.ApprovedByPOSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ApprovedByPOS\' in table \'Payrolls\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePayrolls.ApprovedByPOSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string Governor {
                 get {
                     try {
@@ -1271,6 +1436,102 @@ namespace Models.DataTables {
                 }
                 set {
                     this[this.tablePayrolls.GovernorPOSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Note {
+                get {
+                    try {
+                        return ((string)(this[this.tablePayrolls.NoteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Note\' in table \'Payrolls\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePayrolls.NoteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ProvincialAdministrator {
+                get {
+                    try {
+                        return ((string)(this[this.tablePayrolls.ProvincialAdministratorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProvincialAdministrator\' in table \'Payrolls\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePayrolls.ProvincialAdministratorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PAPOS {
+                get {
+                    try {
+                        return ((string)(this[this.tablePayrolls.PAPOSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PAPOS\' in table \'Payrolls\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePayrolls.PAPOSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PANote {
+                get {
+                    try {
+                        return ((string)(this[this.tablePayrolls.PANoteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PANote\' in table \'Payrolls\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePayrolls.PANoteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DivisionHead {
+                get {
+                    try {
+                        return ((string)(this[this.tablePayrolls.DivisionHeadColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DivisionHead\' in table \'Payrolls\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePayrolls.DivisionHeadColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DivisionHeadPos {
+                get {
+                    try {
+                        return ((string)(this[this.tablePayrolls.DivisionHeadPosColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DivisionHeadPos\' in table \'Payrolls\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePayrolls.DivisionHeadPosColumn] = value;
                 }
             }
             
@@ -1396,6 +1657,30 @@ namespace Models.DataTables {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsApprovedByNull() {
+                return this.IsNull(this.tablePayrolls.ApprovedByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetApprovedByNull() {
+                this[this.tablePayrolls.ApprovedByColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsApprovedByPOSNull() {
+                return this.IsNull(this.tablePayrolls.ApprovedByPOSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetApprovedByPOSNull() {
+                this[this.tablePayrolls.ApprovedByPOSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsGovernorNull() {
                 return this.IsNull(this.tablePayrolls.GovernorColumn);
             }
@@ -1416,6 +1701,78 @@ namespace Models.DataTables {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetGovernorPOSNull() {
                 this[this.tablePayrolls.GovernorPOSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNoteNull() {
+                return this.IsNull(this.tablePayrolls.NoteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNoteNull() {
+                this[this.tablePayrolls.NoteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsProvincialAdministratorNull() {
+                return this.IsNull(this.tablePayrolls.ProvincialAdministratorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetProvincialAdministratorNull() {
+                this[this.tablePayrolls.ProvincialAdministratorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPAPOSNull() {
+                return this.IsNull(this.tablePayrolls.PAPOSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPAPOSNull() {
+                this[this.tablePayrolls.PAPOSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPANoteNull() {
+                return this.IsNull(this.tablePayrolls.PANoteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPANoteNull() {
+                this[this.tablePayrolls.PANoteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDivisionHeadNull() {
+                return this.IsNull(this.tablePayrolls.DivisionHeadColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDivisionHeadNull() {
+                this[this.tablePayrolls.DivisionHeadColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDivisionHeadPosNull() {
+                return this.IsNull(this.tablePayrolls.DivisionHeadPosColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDivisionHeadPosNull() {
+                this[this.tablePayrolls.DivisionHeadPosColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

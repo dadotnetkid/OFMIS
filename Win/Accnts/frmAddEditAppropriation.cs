@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using Helpers;
 using Models;
 using Win.BL;
 
@@ -15,6 +16,7 @@ namespace Win.Accnts
 {
     public partial class frmAddEditAppropriation : DevExpress.XtraEditors.XtraForm
     {
+
         public frmAddEditAppropriation(MethodType methodType, Appropriations item)
         {
             InitializeComponent();
@@ -24,10 +26,7 @@ namespace Win.Accnts
 
         public AddEditAppropriation AddEditAppropriation { get; set; }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            AddEditAppropriation.Save();
-        }
+
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -37,6 +36,16 @@ namespace Win.Accnts
         private void frmAddEditAppropriation_FormClosing(object sender, FormClosingEventArgs e)
         {
             AddEditAppropriation.Close(e);
+        }
+
+        private void btnSaveAndClose_Click(object sender, EventArgs e)
+        {
+            AddEditAppropriation.isClosed = false;
+            if (((XtraForm)this).ValidateForm())
+            {
+                AddEditAppropriation.Save();
+                AddEditAppropriation.isClosed = true;
+            }
         }
     }
 }

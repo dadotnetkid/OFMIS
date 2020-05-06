@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.Data.Linq;
+using DevExpress.XtraGrid.Views.Grid;
 using Helpers;
 using Models;
 using Models.Repository;
@@ -19,22 +21,44 @@ namespace Win.BL
         private Items items;
         private bool isClose;
         private PurchaseRequests purchaseRequests;
+        private List<Items> SelectedItems = new List<Items>();
         public LoadAddEditItems(frmItems frmItems, Items items)
         {
             this.frmItems = frmItems;
             this.items = items;
+            frmItems.ItemsGridView.OptionsSelection.MultiSelect = false;
+            frmItems.btnSubmit.Visible = false;
+            frmItems.btnNew.Click += BtnNew_Click;
+            frmItems.btnSubmit.Click += BtnSubmit_Click;
+            frmItems.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_Click;
 
         }
         public LoadAddEditItems(frmItems frmItems, PurchaseRequests purchaseRequests)
         {
             this.frmItems = frmItems;
             this.purchaseRequests = purchaseRequests;
+            frmItems.btnNew.Click += BtnNew_Click;
+            frmItems.btnSubmit.Click += BtnSubmit_Click;
+            frmItems.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_Click;
+            frmItems.ItemsGridView.SelectionChanged += ItemsGridView_SelectionChanged;
+        }
+
+        private void ItemsGridView_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            if (sender is GridView gridView)
+            {
+                var item = gridView.GetRow(e.ControllerRow) as Items;
+                SelectedItems.Add(item);
+                if (e.Action == CollectionChangeAction.Remove)
+                    SelectedItems.RemoveAll(x => x.Id == item.Id);
+            }
         }
 
         public LoadAddEditItems(frmAddEditItems frmAddEditItems, Items items)
         {
             this.frmAddEditItems = frmAddEditItems;
             this.items = items;
+
         }
 
 
@@ -66,6 +90,9 @@ namespace Win.BL
         public void Detail()
         {
             items = new UnitOfWork().ItemsRepo.Find(m => m.Id == items.Id);
+            frmAddEditItems.cboCategory.Properties.DataSource = new UnitOfWork().CategoriesRepo.Get();
+            frmAddEditItems.cboUOM.Properties.DataSource = new UnitOfWork().ItemsRepo.Get().GroupBy(x => x.UOM)
+                .Select(x => new { UOM = x.Key }).ToList();
             frmAddEditItems.txtCost.EditValue = items.Cost;
             frmAddEditItems.txtItem.EditValue = items.Item;
             frmAddEditItems.cboCategory.EditValue = items.Category;
@@ -96,7 +123,7 @@ namespace Win.BL
 
         public void Search(string search)
         {
-            throw new NotImplementedException();
+            frmItems.ItemsGridControl.DataSource = new BindingList<Items>(new UnitOfWork().ItemsRepo.Get(m => m.Item.StartsWith(search) || m.Category.Contains(search)));
         }
 
         public void Close(FormClosingEventArgs eventArgs)
@@ -105,7 +132,7 @@ namespace Win.BL
             {
                 if (this.isClose)
                 {
-                    eventArgs.Cancel = true;
+                    eventArgs.Cancel = false;
                     return;
 
                 }
@@ -128,37 +155,52 @@ namespace Win.BL
 
         void ILoad<Items>.Init()
         {
-            frmItems.ItemsGridControl.DataSource = new EntityServerModeSource()
+            frmItems.ItemsGridControl.DataSource = new BindingList<Items>(new UnitOfWork().ItemsRepo.Get());
+
+        }
+
+        private void BtnDeleteItemRepo_Click(object sender, EventArgs e)
+        {
+            foreach (var i in frmItems.ItemsGridView.GetSelectedRows())
             {
-                QueryableSource = new UnitOfWork().ItemsRepo.Fetch()
-            };
-            frmItems.btnNew.Click += BtnNew_Click;
-            frmItems.btnSubmit.Click += BtnSubmit_Click;
+                if (frmItems.ItemsGridView.GetRow(i) is Items item)
+                {
+                    try
+                    {
+                        UnitOfWork unitOfWork = new UnitOfWork();
+                        unitOfWork.ItemsRepo.Delete(m => m.Id == item.Id);
+                        unitOfWork.Save();
+                        ((ILoad<Items>)this).Init();
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message, exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+
+
         }
 
         private void BtnSubmit_Click(object sender, EventArgs e)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
-            var pr = unitOfWork.PurchaseRequestsRepo.Find(m => m.Id == purchaseRequests.Id);
-            var count = 1;
-            foreach (var i in frmItems.ItemsGridView.GetSelectedRows())
+            var pr = unitOfWork.PurchaseRequestsRepo.Find(m => m.Id == purchaseRequests.Id, includeProperties: "PRDetails");
+
+            var count = pr.PRDetails.Count() + 1;
+            foreach (var item in SelectedItems)
             {
-                if (frmItems.ItemsGridView.GetRow(i) is Items item)
+                pr.PRDetails.Add(new PRDetails()
                 {
-                    pr.PRDetails.Add(new PRDetails()
-                    {
-                        Category = item.Category,
-                        UOM = item.UOM,
-                        Item = item.Item,
-                        Cost = item.Cost,
-                        Quantity = 1,
-                        ItemNo = count,
-                        TotalAmount = item.Cost
-
-                    });
-                    unitOfWork.Save();
-                }
-
+                    Category = item.Category,
+                    UOM = item.UOM,
+                    Item = item.Item,
+                    Cost = item.Cost,
+                    Quantity = 1,
+                    ItemNo = count,
+                    TotalAmount = item.Cost
+                });
+                unitOfWork.Save();
                 count++;
             }
 

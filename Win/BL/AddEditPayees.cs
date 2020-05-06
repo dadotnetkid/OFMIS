@@ -24,10 +24,12 @@ namespace Win.BL
         {
             this.frm = frm;
             this.payees = payees;
-            this.frm.txtOffice.Properties.DataSource = new BindingList<Offices>(new UnitOfWork().OfficesRepo.Get(m => m.Id == staticSettings.OfficeId));
+            UnitOfWork unitOfWork = new UnitOfWork();
+            this.frm.txtOffice.Properties.DataSource = new BindingList<Offices>(unitOfWork.OfficesRepo.Get(m => m.Id == staticSettings.OfficeId));
             this.frm.cboMembers.Properties.DataSource =
                 new BindingList<Employees>(
-                    new UnitOfWork().EmployeesRepo.Get(m => m.OfficeId == staticSettings.OfficeId));
+                    new UnitOfWork().EmployeesRepo.Get());
+            frm.txtName.Properties.DataSource = new BindingList<Payees>(unitOfWork.PayeesRepo.Get());
 
         }
         public MethodType methodType { get; set; }
@@ -44,7 +46,7 @@ namespace Win.BL
                 payees.Id = payees.Id;
                 payees.Name = frm.txtName.Text;
                 payees.Office = office?.OfficeName;
-                payees.Address = office?.Address;
+                payees.Address = office?.Address ?? frm.txtAddress.Text;
                 payees.Note = frm.txtNote.Text;
                 var res = frm.cboMembers.Properties.GetCheckedItems();
                 payees.Employees.Clear();
@@ -55,6 +57,8 @@ namespace Win.BL
 
                 }
                 unitOfWork.Save();
+
+
 
             }
             catch (Exception e)
@@ -81,7 +85,7 @@ namespace Win.BL
                     if (item.Employees.Any(x => x.Id == id))
                         i.CheckState = CheckState.Checked;
                 }
-              //  frm.cboMembers.EditValue = string.Join(",", item.Employees.Select(x => x.EmployeeName));
+                //  frm.cboMembers.EditValue = string.Join(",", item.Employees.Select(x => x.EmployeeName));
 
 
             }
@@ -120,7 +124,12 @@ namespace Win.BL
                 if (methodType == MethodType.Edit)
                     return;
                 if (isClosed)
+                {
                     return;
+                }
+
+                // formClosing.Cancel = !isClosed;
+
                 var unitOfWork = new UnitOfWork();
                 //this.payeeId =
                 //    (unitOfWork.PayeesRepo.Fetch().OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0) + 1;
@@ -131,6 +140,7 @@ namespace Win.BL
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                formClosing.Cancel = false;
             }
         }
     }

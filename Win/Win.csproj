@@ -29,7 +29,7 @@
     <InstallUrl>http://plgunv_adserver/ofmis/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>12</ApplicationRevision>
+    <ApplicationRevision>31</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -165,8 +165,10 @@
     <Compile Include="BL\AddEditPayroll.cs" />
     <Compile Include="BL\AddEditRealignment.cs" />
     <Compile Include="BL\EditDisbursementVoucher.cs" />
+    <Compile Include="BL\IAddEditTransaction.cs" />
     <Compile Include="BL\ILoad.cs" />
     <Compile Include="BL\ITransactions.cs" />
+    <Compile Include="BL\IUserControl.cs" />
     <Compile Include="BL\LoadAddEditItems.cs" />
     <Compile Include="BL\LoadAddEditPO.cs" />
     <Compile Include="BL\LoadAddEditPQ.cs" />
@@ -301,11 +303,23 @@
     <Compile Include="Pyrll\frmAddEditPayroll.Designer.cs">
       <DependentUpon>frmAddEditPayroll.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pyrll\frmAddEditPayrollWages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pyrll\frmAddEditPayrollWages.Designer.cs">
+      <DependentUpon>frmAddEditPayrollWages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pyrll\UCPayrolls.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Pyrll\UCPayrolls.Designer.cs">
       <DependentUpon>UCPayrolls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pyrll\UCPayrollWages.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pyrll\UCPayrollWages.Designer.cs">
+      <DependentUpon>UCPayrollWages.cs</DependentUpon>
     </Compile>
     <Compile Include="Rprts\rptDV.cs">
       <SubType>Component</SubType>
@@ -324,6 +338,12 @@
     </Compile>
     <Compile Include="Rprts\rptOBRPayroll.Designer.cs">
       <DependentUpon>rptOBRPayroll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptOBRPayrollWages.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptOBRPayrollWages.Designer.cs">
+      <DependentUpon>rptOBRPayrollWages.cs</DependentUpon>
     </Compile>
     <Compile Include="Rprts\rptPO.cs">
       <SubType>Component</SubType>
@@ -404,6 +424,12 @@
     </Compile>
     <Compile Include="Rprts\rptObligationRequests.Designer.cs">
       <DependentUpon>rptObligationRequests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptSOA.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptSOA.Designer.cs">
+      <DependentUpon>rptSOA.cs</DependentUpon>
     </Compile>
     <Compile Include="StaticSettings.cs" />
     <Compile Include="User.cs" />
@@ -515,8 +541,14 @@
     <EmbeddedResource Include="Pyrll\frmAddEditPayroll.resx">
       <DependentUpon>frmAddEditPayroll.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pyrll\frmAddEditPayrollWages.resx">
+      <DependentUpon>frmAddEditPayrollWages.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pyrll\UCPayrolls.resx">
       <DependentUpon>UCPayrolls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pyrll\UCPayrollWages.resx">
+      <DependentUpon>UCPayrollWages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptDV.resx">
       <DependentUpon>rptDV.cs</DependentUpon>
@@ -526,6 +558,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptOBRPayroll.resx">
       <DependentUpon>rptOBRPayroll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptOBRPayrollWages.resx">
+      <DependentUpon>rptOBRPayrollWages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptPO.resx">
       <DependentUpon>rptPO.cs</DependentUpon>
@@ -576,6 +611,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptObligationRequests.resx">
       <DependentUpon>rptObligationRequests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptSOA.resx">
+      <DependentUpon>rptSOA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Usr\frmAddEditUser.resx">
       <DependentUpon>frmAddEditUser.cs</DependentUpon>

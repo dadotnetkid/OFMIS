@@ -14,8 +14,21 @@ namespace Models
     
     public partial class FundTypes
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public FundTypes()
+        {
+            this.Appropriations = new HashSet<Appropriations>();
+            this.DefaultAccounts = new HashSet<DefaultAccounts>();
+        }
+    
         public int Id { get; set; }
         public string FundType { get; set; }
         public string Description { get; set; }
+        public Nullable<int> ItemNumber { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Appropriations> Appropriations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DefaultAccounts> DefaultAccounts { get; set; }
     }
 }

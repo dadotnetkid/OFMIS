@@ -48,7 +48,7 @@ namespace Win.Usr
 
 
                 UnitOfWork unitOfWork = new UnitOfWork();
-                user = unitOfWork.UsersRepo.Find(m => m.Id == user.Id);
+                user = unitOfWork.UsersRepo.Find(m => m.Id == user.Id,"UserRoles");
                 user.SecurityStamp = Guid.NewGuid().ToString();
                 user.FirstName = txtFirstName.Text;
                 user.MiddleName = txtMiddleName.Text;
@@ -56,17 +56,13 @@ namespace Win.Usr
                 user.UserName = txtUserName.Text;
                 user.PasswordHash = Cryptography.Encrypt(txtPassword.Text, user.SecurityStamp);
                 user.OfficeId = cboDepartment.EditValue.ToInt(true);
-                unitOfWork.Save();
-
-
-                ApplicationUserManager applicationUserManager =
-                    new ApplicationUserManager(new UserStores(new ModelDb()));
-                var roles = await applicationUserManager.GetRolesAsync(user.Id);
-                await applicationUserManager.RemoveFromRolesAsync(user.Id, roles.ToArray());
+                user.UserRoles.Clear();
                 foreach (string i in cboUserRole.EditValue.ToString().Split(','))
                 {
-                    await applicationUserManager.AddToRoleAsync(user.Id, i.Trim());
+                    user.UserRoles.Add(unitOfWork.UserRolesRepo.Find(m => m.Name == i));
                 }
+                unitOfWork.Save();
+
 
 
                 this.isClosed = true;

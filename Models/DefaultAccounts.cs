@@ -19,5 +19,8 @@ namespace Models
         public string AccountCodeText { get; set; }
         public string AccountName { get; set; }
         public string FundType { get; set; }
+        public Nullable<int> FundTypeId { get; set; }
+    
+        public virtual FundTypes FundTypes { get; set; }
     }
 }

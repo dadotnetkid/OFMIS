@@ -31,10 +31,7 @@ namespace Win.Pyee
                 StaticSettings staticSettings = new StaticSettings();
                 PayeeGridControl.DataSource = new EntityServerModeSource()
                 {
-                    QueryableSource = new UnitOfWork().PayeesRepo.Fetch(m => m.Office == staticSettings.OfficeName),
-                    ElementType = typeof(Payees),
-                    DefaultSorting = "Name ASC",
-                    KeyExpression = "Name"
+                    QueryableSource = new UnitOfWork().PayeesRepo.Fetch(),
 
                 };
             }

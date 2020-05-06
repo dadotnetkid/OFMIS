@@ -61,6 +61,8 @@
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEdit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEditRepoOBR = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblTotalOf = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btnViewAll = new DevExpress.XtraEditors.SimpleButton();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
@@ -107,16 +109,21 @@
             this.colEditORDetails = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEditORDetails = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colParticulars = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.colAccountCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cboAppropriationLookUpRepo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.tabPayroll = new DevExpress.XtraTab.XtraTabPage();
+            this.tabPayrollWages = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.btnDVPreview = new DevExpress.XtraEditors.SimpleButton();
             this.btnEditDV = new DevExpress.XtraEditors.SimpleButton();
             this.txtParticular = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.lblParticulars = new DevExpress.XtraEditors.LabelControl();
+            this.lblTotal = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OBGridControl)).BeginInit();
@@ -124,6 +131,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.OBGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteRepoOBR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditRepoOBR)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).BeginInit();
@@ -148,15 +156,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.ORDetailsGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelORDetailRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditORDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAppropriationLookUpRepo)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtParticular.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.OBGridControl);
+            this.panelControl1.Controls.Add(this.panel2);
             this.panelControl1.Controls.Add(this.panelControl2);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
@@ -174,7 +186,7 @@
             this.OBGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDeleteRepoOBR,
             this.btnEditRepoOBR});
-            this.OBGridControl.Size = new System.Drawing.Size(434, 509);
+            this.OBGridControl.Size = new System.Drawing.Size(434, 471);
             this.OBGridControl.TabIndex = 2;
             this.OBGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.OBGridView});
@@ -202,6 +214,7 @@
             this.OBGridView.OptionsBehavior.ReadOnly = true;
             this.OBGridView.OptionsEditForm.ShowOnDoubleClick = DevExpress.Utils.DefaultBoolean.False;
             this.OBGridView.OptionsLayout.Columns.AddNewColumns = false;
+            this.OBGridView.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.True;
             this.OBGridView.OptionsView.ShowGroupPanel = false;
             this.OBGridView.OptionsView.ShowPreviewRowLines = DevExpress.Utils.DefaultBoolean.False;
             this.OBGridView.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.OBGridView_CustomDrawCell);
@@ -274,6 +287,29 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditRepoOBR.Name = "btnEditRepoOBR";
             this.btnEditRepoOBR.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblTotalOf);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(2, 533);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(434, 38);
+            this.panel2.TabIndex = 1;
+            // 
+            // lblTotalOf
+            // 
+            this.lblTotalOf.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblTotalOf.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.lblTotalOf.Appearance.Options.UseFont = true;
+            this.lblTotalOf.Appearance.Options.UseForeColor = true;
+            this.lblTotalOf.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblTotalOf.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTotalOf.Location = new System.Drawing.Point(0, 0);
+            this.lblTotalOf.Name = "lblTotalOf";
+            this.lblTotalOf.Size = new System.Drawing.Size(434, 38);
+            this.lblTotalOf.TabIndex = 3;
+            this.lblTotalOf.Text = "Total of: ";
             // 
             // panelControl2
             // 
@@ -569,9 +605,9 @@
             this.labelControl8.Appearance.Options.UseForeColor = true;
             this.labelControl8.Location = new System.Drawing.Point(443, 224);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(67, 14);
+            this.labelControl8.Size = new System.Drawing.Size(76, 14);
             this.labelControl8.TabIndex = 8;
-            this.labelControl8.Text = "Chief Officer";
+            this.labelControl8.Text = "Division Chief";
             // 
             // txtChiefOfficer
             // 
@@ -764,18 +800,19 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(445, 288);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(793, 282);
+            this.xtraTabControl1.Size = new System.Drawing.Size(795, 246);
             this.xtraTabControl1.TabIndex = 15;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
             this.tabPayroll,
+            this.tabPayrollWages,
             this.xtraTabPage2});
             // 
             // xtraTabPage1
             // 
             this.xtraTabPage1.Controls.Add(this.ORDetailGridControl);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(791, 259);
+            this.xtraTabPage1.Size = new System.Drawing.Size(793, 223);
             this.xtraTabPage1.Text = "Obligation Request Details";
             // 
             // ORDetailGridControl
@@ -788,8 +825,9 @@
             this.repositoryItemSpinEdit1,
             this.cboAppropriationLookUpRepo,
             this.btnDelORDetailRepo,
-            this.btnEditORDetails});
-            this.ORDetailGridControl.Size = new System.Drawing.Size(791, 259);
+            this.btnEditORDetails,
+            this.repositoryItemMemoEdit1});
+            this.ORDetailGridControl.Size = new System.Drawing.Size(793, 223);
             this.ORDetailGridControl.TabIndex = 31;
             this.ORDetailGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ORDetailsGridView});
@@ -805,6 +843,9 @@
             this.ORDetailsGridView.GridControl = this.ORDetailGridControl;
             this.ORDetailsGridView.Name = "ORDetailsGridView";
             this.ORDetailsGridView.OptionsBehavior.ReadOnly = true;
+            this.ORDetailsGridView.OptionsDetail.SmartDetailHeight = true;
+            this.ORDetailsGridView.OptionsMenu.ShowFooterItem = true;
+            this.ORDetailsGridView.OptionsMenu.ShowGroupSummaryEditorItem = true;
             this.ORDetailsGridView.OptionsNavigation.AutoFocusNewRow = true;
             this.ORDetailsGridView.OptionsView.ShowGroupPanel = false;
             // 
@@ -847,11 +888,16 @@
             // colParticulars
             // 
             this.colParticulars.Caption = "Particulars";
+            this.colParticulars.ColumnEdit = this.repositoryItemMemoEdit1;
             this.colParticulars.FieldName = "Particulars";
             this.colParticulars.Name = "colParticulars";
             this.colParticulars.Visible = true;
             this.colParticulars.VisibleIndex = 2;
             this.colParticulars.Width = 220;
+            // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
             // gridColumn2
             // 
@@ -897,8 +943,14 @@
             // tabPayroll
             // 
             this.tabPayroll.Name = "tabPayroll";
-            this.tabPayroll.Size = new System.Drawing.Size(791, 259);
+            this.tabPayroll.Size = new System.Drawing.Size(793, 223);
             this.tabPayroll.Text = "Payroll";
+            // 
+            // tabPayrollWages
+            // 
+            this.tabPayrollWages.Name = "tabPayrollWages";
+            this.tabPayrollWages.Size = new System.Drawing.Size(793, 223);
+            this.tabPayrollWages.Text = "Payroll (Wages)";
             // 
             // xtraTabPage2
             // 
@@ -907,7 +959,7 @@
             this.xtraTabPage2.Controls.Add(this.txtParticular);
             this.xtraTabPage2.Controls.Add(this.labelControl15);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(791, 259);
+            this.xtraTabPage2.Size = new System.Drawing.Size(793, 223);
             this.xtraTabPage2.Text = "Disbursement Voucher";
             // 
             // btnDVPreview
@@ -956,12 +1008,55 @@
             this.labelControl15.TabIndex = 0;
             this.labelControl15.Text = "Particulars";
             // 
+            // panelControl3
+            // 
+            this.panelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl3.Controls.Add(this.lblParticulars);
+            this.panelControl3.Controls.Add(this.lblTotal);
+            this.panelControl3.Location = new System.Drawing.Point(446, 533);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(794, 37);
+            this.panelControl3.TabIndex = 16;
+            // 
+            // lblParticulars
+            // 
+            this.lblParticulars.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblParticulars.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblParticulars.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.lblParticulars.Appearance.Options.UseFont = true;
+            this.lblParticulars.Appearance.Options.UseForeColor = true;
+            this.lblParticulars.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblParticulars.Location = new System.Drawing.Point(5, 2);
+            this.lblParticulars.Name = "lblParticulars";
+            this.lblParticulars.Size = new System.Drawing.Size(589, 33);
+            this.lblParticulars.TabIndex = 2;
+            this.lblParticulars.Text = "Particulars";
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotal.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblTotal.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.lblTotal.Appearance.Options.UseFont = true;
+            this.lblTotal.Appearance.Options.UseForeColor = true;
+            this.lblTotal.Appearance.Options.UseTextOptions = true;
+            this.lblTotal.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblTotal.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblTotal.Location = new System.Drawing.Point(600, 2);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(192, 33);
+            this.lblTotal.TabIndex = 1;
+            this.lblTotal.Text = "0.0";
+            // 
             // ucObligations
             // 
             this.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtAmount);
@@ -992,6 +1087,8 @@
             this.Name = "ucObligations";
             this.Size = new System.Drawing.Size(1253, 573);
             this.Load += new System.EventHandler(this.ucObligations_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ucObligations_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ucObligations_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.OBGridControl)).EndInit();
@@ -999,6 +1096,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.OBGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteRepoOBR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditRepoOBR)).EndInit();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
@@ -1025,11 +1123,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.ORDetailsGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelORDetailRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditORDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAppropriationLookUpRepo)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
             this.xtraTabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtParticular.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1105,5 +1206,12 @@
         public DevExpress.XtraEditors.SimpleButton btnDVPreview;
         private DevExpress.XtraGrid.Columns.GridColumn colEditORDetails;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditORDetails;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
+        private DevExpress.XtraEditors.PanelControl panelControl3;
+        public DevExpress.XtraTab.XtraTabPage tabPayrollWages;
+        public DevExpress.XtraEditors.LabelControl lblParticulars;
+        public DevExpress.XtraEditors.LabelControl lblTotal;
+        private System.Windows.Forms.Panel panel2;
+        public DevExpress.XtraEditors.LabelControl lblTotalOf;
     }
 }

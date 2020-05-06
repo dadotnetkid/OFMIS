@@ -34,9 +34,16 @@ namespace Win.BL
             frm.PayrollGridView.RowUpdated += PayrollGridView_RowUpdated;
             frm.btnDeletePayrollRepo.ButtonClick += BtnDeletePayrollRepo_ButtonClick;
             frm.btnEditPayrollRepo.ButtonClick += BtnEditPayrollRepo_ButtonClick;
+            if (staticSettings.Offices.IsDivision == true)
+            {
+                var officeName = staticSettings.Offices.UnderOfOffice.OfficeName;
+                frm.txtDeptHead.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office == officeName));
+            }
             frm.txtAccountant.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")));
             frm.txtTreasurer.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains("Treasurer")));
-            frm.txtGovernor.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains("Governor") || m.Office.Contains("Provincial Administration")));
+            frm.cboApprovedBy.Properties.DataSource = new BindingList<Signatories>(
+                unitOfWork.ChiefOfOfficesRepo.Get(x =>
+                    x.Position.Contains("Governor") || x.Position.Contains("Provincial Administrator")));
             frm.lookUpEditEmployees.DataSource =
                 new BindingList<Employees>(unitOfWork.EmployeesRepo.Get(m => m.OfficeId == staticSettings.OfficeId));
             frm.txtAccountant.ItemIndex = 0;
@@ -101,14 +108,17 @@ namespace Win.BL
                 p.Title = frm.txtPayTitle.Text;
                 p.ColumnTitle1 = frm.txtColumnTitle.Text;
                 p.ChiefOfOffice = frm.txtChief.Text;
-                p.Position = frm.txtPosition.Text;
+                p.Position = staticSettings.HeadPos;
+
                 p.Accountant = (frm.txtAccountant.GetSelectedDataRow() as Signatories)?.Person;
                 p.AccountantPos = (frm.txtAccountant.GetSelectedDataRow() as Signatories)?.Position;
                 p.Treasurer = (frm.txtTreasurer.GetSelectedDataRow() as Signatories)?.Person;
                 p.TreasurerPos = (frm.txtTreasurer.GetSelectedDataRow() as Signatories)?.Position;
-                p.Governor = (frm.txtGovernor.GetSelectedDataRow() as Signatories)?.Person;
-                p.GovernorPos = (frm.txtGovernor.GetSelectedDataRow() as Signatories)?.Position;
-
+                p.DeptHead = (frm.txtDeptHead.GetSelectedDataRow() as Signatories)?.Person;
+                p.DeptHeadPos = (frm.txtDeptHead.GetSelectedDataRow() as Signatories)?.Position;
+                p.ApprovedById = (frm.cboApprovedBy.GetSelectedDataRow() as Signatories)?.Id;
+                p.ApprovedBy = (frm.cboApprovedBy.GetSelectedDataRow() as Signatories)?.Person;
+                p.ApprovedByPos = (frm.cboApprovedBy.GetSelectedDataRow() as Signatories)?.Position;
                 unitOfWork.Save();
                 this.isClosed = true;
                 frm.Close();
@@ -131,15 +141,25 @@ namespace Win.BL
                 frm.txtPayTitle.Text = item.Title;
                 frm.txtPayDescription.Text = string.IsNullOrWhiteSpace(item.Description) ? frm.txtPayDescription.Text : item.Description;
                 frm.txtColumnTitle.Text = item.ColumnTitle1;
-                frm.txtChief.Text = item.ChiefOfOffice ?? staticSettings.Head;
-                frm.txtPosition.Text = item.Position ?? staticSettings.HeadPos;
+                if (staticSettings.Offices.IsDivision == true)
+                {
+                    frm.txtChief.Text = item.ChiefOfOffice ?? staticSettings.Head;
+                }
+
 
                 frm.txtAccountant.EditValue = item.Accountant ?? (unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")))?.FirstOrDefault()?.Person;
 
                 frm.txtTreasurer.EditValue = item.Treasurer ?? (unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains("Treasurer")))?.FirstOrDefault()?.Person; ;
-
-                frm.txtGovernor.EditValue = item.Governor ?? (unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains("Governor") || m.Office.Contains("Provincial Administration")))?.FirstOrDefault()?.Person; ;
-
+                if (staticSettings.Offices.IsDivision == true)
+                {
+                    frm.txtDeptHead.EditValue = item.DeptHead ?? (unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains(staticSettings.OfficeName))?.FirstOrDefault()?.Person);
+                }
+                else
+                {
+                    //
+                    frm.txtDeptHead.EditValue = item.DeptHead ?? staticSettings.Head;
+                }
+                frm.cboApprovedBy.EditValue = item.ApprovedBy;
                 frm.lblHeader.Text = frm.txtPayDescription.Text;
                 InitializeGridView(item);
                 frm.txtColumnTitle.Leave += (s, e) => { InitializeGridView(item); };
@@ -308,7 +328,7 @@ namespace Win.BL
                         Id = obId,
                         ControlNo = IdHelper.OfficeControlNo(item?.FirstOrDefault()?.ControlNo),
                         Date = DateTime.Now,
-                        ColumnTitle1="Column Title"
+                        ColumnTitle1 = "Column Title"
                     };
                     int itemNo = 1;
                     foreach (var i in unitOfWork.ObligationsRepo.Find(m => m.Id == obId).Payees.Employees)
@@ -320,7 +340,7 @@ namespace Win.BL
                             Name = i.EmployeeName,
                             Designation = i.Position,
                             Total = 0,
-                            ColumnTitle= "Column Title=0.0"
+                            ColumnTitle = "Column Title=0.0"
 
                         });
                     }

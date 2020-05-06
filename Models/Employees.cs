@@ -17,8 +17,9 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employees()
         {
-            this.Payees = new HashSet<Payees>();
             this.PayrollDetails = new HashSet<PayrollDetails>();
+            this.Payees = new HashSet<Payees>();
+            this.PayrollWageDetails = new HashSet<PayrollWageDetails>();
         }
     
         public int Id { get; set; }
@@ -29,10 +30,15 @@ namespace Models
         public string OfficeName { get; set; }
         public string OffcAcr { get; set; }
         public Nullable<int> OfficeId { get; set; }
+        public string TIN { get; set; }
+        public string PagIbig { get; set; }
+        public string PhilHealth { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PayrollDetails> PayrollDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payees> Payees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PayrollDetails> PayrollDetails { get; set; }
+        public virtual ICollection<PayrollWageDetails> PayrollWageDetails { get; set; }
     }
 }
