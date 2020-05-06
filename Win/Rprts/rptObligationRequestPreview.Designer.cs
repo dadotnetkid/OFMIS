@@ -124,13 +124,14 @@
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.GroupFooter2 = new DevExpress.XtraReports.UI.GroupFooterBand();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.xrCrossBandLine1 = new DevExpress.XtraReports.UI.XRCrossBandLine();
             this.xrCrossBandLine2 = new DevExpress.XtraReports.UI.XRCrossBandLine();
             this.xrCrossBandLine3 = new DevExpress.XtraReports.UI.XRCrossBandLine();
             this.xrCrossBandLine4 = new DevExpress.XtraReports.UI.XRCrossBandLine();
             this.xrCrossBandLine5 = new DevExpress.XtraReports.UI.XRCrossBandLine();
             this.xrCrossBandLine6 = new DevExpress.XtraReports.UI.XRCrossBandLine();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrLabel42 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -693,6 +694,7 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrPanel3.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel42,
             this.lblDepartmentChiefPosition,
             this.xrLabel27,
             this.xrLabel25,
@@ -762,7 +764,7 @@
             this.xrLabel27.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ApprovedBy].[Note]")});
             this.xrLabel27.Font = new System.Drawing.Font("Calibri", 8F);
-            this.xrLabel27.LocationFloat = new DevExpress.Utils.PointFloat(104.9178F, 281.5818F);
+            this.xrLabel27.LocationFloat = new DevExpress.Utils.PointFloat(104.9178F, 285.3483F);
             this.xrLabel27.Multiline = true;
             this.xrLabel27.Name = "xrLabel27";
             this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -779,11 +781,11 @@
             this.xrLabel25.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Governor].[Person]")});
             this.xrLabel25.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold);
-            this.xrLabel25.LocationFloat = new DevExpress.Utils.PointFloat(53.71724F, 259.8152F);
+            this.xrLabel25.LocationFloat = new DevExpress.Utils.PointFloat(53.71724F, 253.8152F);
             this.xrLabel25.Multiline = true;
             this.xrLabel25.Name = "xrLabel25";
             this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel25.SizeF = new System.Drawing.SizeF(342.259F, 21.76656F);
+            this.xrLabel25.SizeF = new System.Drawing.SizeF(342.259F, 16.76657F);
             this.xrLabel25.StylePriority.UseBorders = false;
             this.xrLabel25.StylePriority.UseFont = false;
             this.xrLabel25.StylePriority.UseTextAlignment = false;
@@ -1066,6 +1068,7 @@
             // 
             // xrLine16
             // 
+            this.xrLine16.AnchorVertical = ((DevExpress.XtraReports.UI.VerticalAnchorStyles)((DevExpress.XtraReports.UI.VerticalAnchorStyles.Top | DevExpress.XtraReports.UI.VerticalAnchorStyles.Bottom)));
             this.xrLine16.BorderWidth = 0F;
             this.xrLine16.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
             this.xrLine16.LocationFloat = new DevExpress.Utils.PointFloat(51.48509F, 126.3035F);
@@ -1121,6 +1124,7 @@
             // 
             // xrLine13
             // 
+            this.xrLine13.AnchorVertical = ((DevExpress.XtraReports.UI.VerticalAnchorStyles)((DevExpress.XtraReports.UI.VerticalAnchorStyles.Top | DevExpress.XtraReports.UI.VerticalAnchorStyles.Bottom)));
             this.xrLine13.BorderWidth = 0F;
             this.xrLine13.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
             this.xrLine13.LocationFloat = new DevExpress.Utils.PointFloat(452.4671F, 128.5357F);
@@ -1256,6 +1260,7 @@
             // 
             // xrLine11
             // 
+            this.xrLine11.AnchorVertical = ((DevExpress.XtraReports.UI.VerticalAnchorStyles)((DevExpress.XtraReports.UI.VerticalAnchorStyles.Top | DevExpress.XtraReports.UI.VerticalAnchorStyles.Bottom)));
             this.xrLine11.BorderWidth = 0F;
             this.xrLine11.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
             this.xrLine11.LocationFloat = new DevExpress.Utils.PointFloat(398.9404F, 27.08328F);
@@ -1319,6 +1324,11 @@
             this.GroupFooter2.Name = "GroupFooter2";
             this.GroupFooter2.PrintAtBottom = true;
             // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(Models.Obligations);
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
             // xrCrossBandLine1
             // 
             this.xrCrossBandLine1.AnchorVertical = ((DevExpress.XtraReports.UI.VerticalAnchorStyles)((DevExpress.XtraReports.UI.VerticalAnchorStyles.Top | DevExpress.XtraReports.UI.VerticalAnchorStyles.Bottom)));
@@ -1379,10 +1389,22 @@
             this.xrCrossBandLine6.StartPointFloat = new DevExpress.Utils.PointFloat(798.9177F, 0F);
             this.xrCrossBandLine6.WidthF = 1.082275F;
             // 
-            // objectDataSource1
+            // xrLabel42
             // 
-            this.objectDataSource1.DataSource = typeof(Models.Obligations);
-            this.objectDataSource1.Name = "objectDataSource1";
+            this.xrLabel42.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLabel42.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Governor].[Position]")});
+            this.xrLabel42.Font = new System.Drawing.Font("Calibri", 9F);
+            this.xrLabel42.LocationFloat = new DevExpress.Utils.PointFloat(53.71723F, 270.5818F);
+            this.xrLabel42.Multiline = true;
+            this.xrLabel42.Name = "xrLabel42";
+            this.xrLabel42.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel42.SizeF = new System.Drawing.SizeF(342.259F, 14.76657F);
+            this.xrLabel42.StylePriority.UseBorders = false;
+            this.xrLabel42.StylePriority.UseFont = false;
+            this.xrLabel42.StylePriority.UseTextAlignment = false;
+            this.xrLabel42.Text = "CARLOS M. PADILLA";
+            this.xrLabel42.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // rptObligationRequestPreview
             // 
@@ -1518,5 +1540,6 @@
         public DevExpress.XtraReports.UI.XRLabel lblDepartmentChiefPosition;
         private DevExpress.XtraReports.UI.GroupFooterBand GroupFooter2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel38;
+        public DevExpress.XtraReports.UI.XRLabel xrLabel42;
     }
 }

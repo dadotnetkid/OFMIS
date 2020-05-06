@@ -31,7 +31,7 @@ namespace Win.PR
             InitializeComponent();
             this.loadAddEditItems = new LoadAddEditItems(this, item);
             ((ILoad<Items>)loadAddEditItems).Init();
-
+            
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)

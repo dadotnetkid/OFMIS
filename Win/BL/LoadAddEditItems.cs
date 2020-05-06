@@ -98,6 +98,7 @@ namespace Win.BL
             frmAddEditItems.cboCategory.EditValue = items.Category;
             frmAddEditItems.cboUOM.EditValue = items.UOM;
             frmAddEditItems.lblHeader.Text = string.IsNullOrWhiteSpace(items.Item) ? frmAddEditItems.lblHeader.Text : items.Item;
+            
         }
 
         void ITransactions<Items>.Init()
@@ -156,7 +157,7 @@ namespace Win.BL
         void ILoad<Items>.Init()
         {
             frmItems.ItemsGridControl.DataSource = new BindingList<Items>(new UnitOfWork().ItemsRepo.Get());
-
+            frmItems.txtSearch.Properties.DataSource = new UnitOfWork().ItemsRepo.Get();
         }
 
         private void BtnDeleteItemRepo_Click(object sender, EventArgs e)
