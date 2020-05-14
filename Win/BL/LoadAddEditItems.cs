@@ -22,6 +22,8 @@ namespace Win.BL
         private bool isClose;
         private PurchaseRequests purchaseRequests;
         private List<Items> SelectedItems = new List<Items>();
+        private frmAddEditPurchaseRequest frmAddEditPurchaseRequest;
+
         public LoadAddEditItems(frmItems frmItems, Items items)
         {
             this.frmItems = frmItems;
@@ -33,27 +35,37 @@ namespace Win.BL
             frmItems.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_Click;
 
         }
-        public LoadAddEditItems(frmItems frmItems, PurchaseRequests purchaseRequests)
+        public LoadAddEditItems(frmItems frmItems, PurchaseRequests purchaseRequests, frmAddEditPurchaseRequest frmAddEditPurchaseRequest)
         {
+            this.frmAddEditPurchaseRequest = frmAddEditPurchaseRequest;
             this.frmItems = frmItems;
             this.purchaseRequests = purchaseRequests;
             frmItems.btnNew.Click += BtnNew_Click;
             frmItems.btnSubmit.Click += BtnSubmit_Click;
             frmItems.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_Click;
-            frmItems.ItemsGridView.SelectionChanged += ItemsGridView_SelectionChanged;
+            frmItems.btnSelectItemRepo.ButtonClick += BtnSelectItemRepo_ButtonClick;
         }
-
-        private void ItemsGridView_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        private void BtnSelectItemRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            if (sender is GridView gridView)
+
+            if (frmItems.ItemsGridView.GetFocusedRow() is Items items)
             {
-                var item = gridView.GetRow(e.ControllerRow) as Items;
-                SelectedItems.Add(item);
-                if (e.Action == CollectionChangeAction.Remove)
-                    SelectedItems.RemoveAll(x => x.Id == item.Id);
+                UnitOfWork unitOfWork = new UnitOfWork();
+                unitOfWork.PRDetailsRepo.Insert(new PRDetails()
+                {
+                    Item = items.Item,
+                    PRId = purchaseRequests.Id,
+                    Quantity = 1,
+
+                });
+                unitOfWork.Save();
+
+                frmAddEditPurchaseRequest.ItemsGridControl.DataSource =
+                    new BindingList<PRDetails>(unitOfWork.PRDetailsRepo.Get(x => x.PRId == purchaseRequests.Id));
             }
         }
 
+      
         public LoadAddEditItems(frmAddEditItems frmAddEditItems, Items items)
         {
             this.frmAddEditItems = frmAddEditItems;
@@ -98,7 +110,7 @@ namespace Win.BL
             frmAddEditItems.cboCategory.EditValue = items.Category;
             frmAddEditItems.cboUOM.EditValue = items.UOM;
             frmAddEditItems.lblHeader.Text = string.IsNullOrWhiteSpace(items.Item) ? frmAddEditItems.lblHeader.Text : items.Item;
-            
+
         }
 
         void ITransactions<Items>.Init()
@@ -157,8 +169,11 @@ namespace Win.BL
         void ILoad<Items>.Init()
         {
             frmItems.ItemsGridControl.DataSource = new BindingList<Items>(new UnitOfWork().ItemsRepo.Get());
-            frmItems.txtSearch.Properties.DataSource = new UnitOfWork().ItemsRepo.Get();
+            frmItems.cboCategory.Properties.DataSource = new UnitOfWork().ItemsRepo.Fetch(x => x.Category != null || x.Category != "").GroupBy(x => x.Category).ToList().Select(x => new Items() { Category = x.Key });
+            frmItems.cboSearch.Properties.DataSource = new UnitOfWork().ItemsRepo.Fetch().Select(x => new { x.Item }).ToList().Select(x => new Items() { Item = x.Item });
         }
+
+
 
         private void BtnDeleteItemRepo_Click(object sender, EventArgs e)
         {

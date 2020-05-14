@@ -63,16 +63,18 @@ namespace Win.BL
 
         private void BtnDeletePayrollRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            if (frm.PayrollGridView.GetFocusedRow() is PayrollDetails item)
-            {
 
+            if (frm.PayrollGridView.GetFocusedRow() is DataRowView item)
+            {
                 if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
                 UnitOfWork unitOfWork = new UnitOfWork();
-                unitOfWork.PayrollDetailsRepo.Delete(m => m.Id == item.Id);
+                var id = item["Id"].ToInt();
+                unitOfWork.PayrollDetailsRepo.Delete(m => m.Id == id);
                 unitOfWork.Save();
-                Detail();
+
             }
+            
         }
 
 

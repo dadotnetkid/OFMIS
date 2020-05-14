@@ -46,10 +46,12 @@ namespace Win.BL
                 oBRPayrollViewModels.Add(new OBRPayrollViewModel()
                 {
                     ColumnName = columnName,
-                    Value = columnTitle1.Value?.ToDecimal(),
+                    Value = columnTitle1.Text?.ToDecimal(),
                     PageIndex = e.PageIndex
                 });
+                columnTitle1.Text = columnTitle1.Text?.ToDecimal().ToString("PHP #,#.0#");
             };
+            
         }
 
         void CalculatePageTotalValue(XRTableCell xRTableCell, string columnName, bool sumAll = false)
@@ -102,7 +104,7 @@ namespace Win.BL
                 {
                     Text = i,
                     Name = i,
-                    TextFormatString = "{0:PHP #,##.0#}",
+                    TextFormatString = "{0:#,##.0#}",
                     WidthF = 150
                 };
                 xrCell.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[]
@@ -117,7 +119,7 @@ namespace Win.BL
             {
                 Text = "TOTAL",
                 Name = "colTotal",
-                TextFormatString = "{0:PHP #,##.0#}"
+                TextFormatString = "{0:#,##.0#}"
             };
             totalCell.ExpressionBindings.AddRange(new ExpressionBindingCollection()
                 {new ExpressionBinding("BeforePrint", "Text", $"[Total]")});
@@ -404,7 +406,7 @@ namespace Win.BL
                             .Select(c => new { columnTitle = c }).ToList();
                         row[customCol[x]] =
                             columnTitle?.FirstOrDefault(c => c.columnTitle.Contains(customCol[x]))?.columnTitle
-                                ?.Split('=')[1]?.ToDecimal();
+                                ?.Split('=')[1]?.ToDecimal() ?? 0.0M;
                     }
 
                     dt.Rows.Add(row);

@@ -26,12 +26,12 @@ namespace Win.PR
             ((ILoad<Items>)loadAddEditItems).Init();
         }
 
-        public frmItems(PurchaseRequests item)
+        public frmItems(PurchaseRequests item, frmAddEditPurchaseRequest frmAddEditPurchaseRequest)
         {
             InitializeComponent();
-            this.loadAddEditItems = new LoadAddEditItems(this, item);
+            this.loadAddEditItems = new LoadAddEditItems(this, item, frmAddEditPurchaseRequest);
             ((ILoad<Items>)loadAddEditItems).Init();
-            
+
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
@@ -57,7 +57,8 @@ namespace Win.PR
 
         private void txtSearch_EditValueChanged(object sender, EventArgs e)
         {
-            loadAddEditItems.Search(txtSearch.Text);
+            this.cboSearch.Properties.DataSource = new UnitOfWork().ItemsRepo.Get(x => x.Category == cboCategory.Text);
+
 
         }
 
@@ -70,6 +71,11 @@ namespace Win.PR
         private void ItemsGridView_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void cboSearch_EditValueChanged(object sender, EventArgs e)
+        {
+            loadAddEditItems.Search(cboSearch.Text);
         }
     }
 }

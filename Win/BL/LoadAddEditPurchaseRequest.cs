@@ -91,7 +91,7 @@ namespace Win.BL
             frm.ItemsGridView.RowUpdated += ItemsGridView_RowUpdated;
             frm.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_ButtonClick;
             frm.btnAppropriations.Click += BtnAppropriations_Click;
-
+            
         }
 
         private void BtnAppropriations_Click(object sender, EventArgs e)
@@ -291,9 +291,10 @@ namespace Win.BL
 
         private void BtnAddItems_Click(object sender, EventArgs e)
         {
-            frmItems frmItems = new frmItems(item);
+            frmItems frmItems = new frmItems(item, frmAddEditPurchaseRequest);
             frmItems.ShowDialog();
-            Detail();
+            frmAddEditPurchaseRequest.ItemsGridControl.DataSource =
+                new BindingList<PRDetails>(new UnitOfWork().PRDetailsRepo.Get(m => m.PRId == item.Id));
         }
 
         public void Close(FormClosingEventArgs eventArgs)

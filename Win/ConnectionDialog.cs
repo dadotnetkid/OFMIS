@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.ConnectionUI;
 using Win.Properties;
+using DataProvider = Microsoft.Data.ConnectionUI.DataProvider;
 
 namespace Win
 {

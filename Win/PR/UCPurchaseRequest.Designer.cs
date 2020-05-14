@@ -75,6 +75,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
+            this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.chkIsClosed = new DevExpress.XtraEditors.CheckEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -108,7 +109,6 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.txtAmount = new DevExpress.XtraEditors.SpinEdit();
             this.txtAccountCode = new DevExpress.XtraEditors.TextEdit();
-            this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PRGridControl)).BeginInit();
@@ -386,6 +386,18 @@
             this.lblHeader.TabIndex = 13;
             this.lblHeader.Text = "00000-PITD";
             // 
+            // btnPreview
+            // 
+            this.btnPreview.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnPreview.Appearance.Options.UseFont = true;
+            this.btnPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnPreview.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.btnPreview.Location = new System.Drawing.Point(372, 11);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(102, 23);
+            this.btnPreview.TabIndex = 12;
+            this.btnPreview.Text = "Preview";
+            // 
             // btnNew
             // 
             this.btnNew.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -571,6 +583,7 @@
             this.Total});
             this.ItemsGridView.GridControl = this.ItemsGridControl;
             this.ItemsGridView.Name = "ItemsGridView";
+            this.ItemsGridView.OptionsBehavior.ReadOnly = true;
             this.ItemsGridView.OptionsEditForm.ShowOnDoubleClick = DevExpress.Utils.DefaultBoolean.False;
             this.ItemsGridView.OptionsSelection.CheckBoxSelectorColumnWidth = 20;
             this.ItemsGridView.OptionsSelection.CheckBoxSelectorField = "Id";
@@ -746,19 +759,6 @@
             this.txtAccountCode.Properties.UseReadOnlyAppearance = false;
             this.txtAccountCode.Size = new System.Drawing.Size(605, 20);
             this.txtAccountCode.TabIndex = 66;
-            // 
-            // btnPreview
-            // 
-            this.btnPreview.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnPreview.Appearance.Options.UseFont = true;
-            this.btnPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.btnPreview.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.btnPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.btnPreview.Location = new System.Drawing.Point(372, 11);
-            this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(102, 23);
-            this.btnPreview.TabIndex = 12;
-            this.btnPreview.Text = "Preview";
             // 
             // UCPurchaseRequest
             // 
