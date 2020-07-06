@@ -12,15 +12,27 @@ namespace Win
 {
     public static class User
     {
-        public static string UserName;
+        public static string UserName => GetUserName();
         public static string UserId;
+
+        public static string GetUserName()
+        {
+            var res = new UnitOfWork().UsersRepo.Find(x => x.Id == UserId, false, false)
+                ?.UserName;
+            return res;
+        }
+
         public static int? OfficeId() => new UnitOfWork().UsersRepo.Find(m => m.Id == UserId, false, false).OfficeId;
         public static string GetFullName()
         {
             var fullName = new UnitOfWork().UsersRepo.Fetch(m => m.Id == UserId).FirstOrDefault()?.FullName;
             return fullName;
         }
-
+        public static string GetFullName(string userId)
+        {
+            var fullName = new UnitOfWork().UsersRepo.Fetch(m => m.Id == userId).FirstOrDefault()?.FullName;
+            return fullName;
+        }
         public static string GetUserLevel()
         {
             return new UnitOfWork().UsersRepo.Fetch(m => m.Id == UserId).FirstOrDefault()?.UserRole;
@@ -28,7 +40,7 @@ namespace Win
         public static bool UserInAction(string action)
         {
             var unitOfWork = new UnitOfWork();
-            var x = unitOfWork.UsersRepo.Find(m => m.Id == UserId);
+            var x = unitOfWork.UsersRepo.Find(m => m.Id == UserId, "UserRoles");
             if (!unitOfWork.FunctionsRepo.Fetch(m => m.Action == action).Any())
             {
                 unitOfWork.FunctionsRepo.Insert(new Functions() { Action = action });
@@ -36,7 +48,7 @@ namespace Win
             }
 
 
-            var userRoles = unitOfWork.UserRolesRepo.Find(m => m.Name == "Administratror", "Functions");
+            var userRoles = unitOfWork.UserRolesRepo.Find(m => m.Name == "Administrator", "Functions");
             if (userRoles != null)
             {
 
@@ -57,6 +69,18 @@ namespace Win
                 @"You dont have any permission to access this method 
  Please Contact System Administrator", @"Access Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
+        }
+        public static bool CheckOwner(string createdBy)
+        {
+            if (GetUserLevel() != "Administrator")
+            {
+                if ((createdBy != null && createdBy != UserId))
+                {
+                    MessageBox.Show(@"You cannot edit this item. Please contact the user created this item.", @"Item is not editable", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

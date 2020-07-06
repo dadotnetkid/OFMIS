@@ -21,6 +21,9 @@ namespace Models
             this.UserClaims = new HashSet<UserClaims>();
             this.UserLogins = new HashSet<UserLogins>();
             this.UserRoles = new HashSet<UserRoles>();
+            this.PIS = new HashSet<PIS>();
+            this.Obligations = new HashSet<Obligations>();
+            this.AIReports = new HashSet<AIReports>();
         }
     
         public string Id { get; set; }
@@ -65,5 +68,11 @@ namespace Models
         public virtual ICollection<UserLogins> UserLogins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRoles> UserRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PIS> PIS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Obligations> Obligations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AIReports> AIReports { get; set; }
     }
 }

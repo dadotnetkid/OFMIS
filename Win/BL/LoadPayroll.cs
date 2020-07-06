@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace Win.BL
     {
         private UCPayrolls uCPayrolls;
         private Payrolls payrolls;
-        internal SimpleButton btnEditNew;
+        internal SimpleButton btnEditNew, btnDelete;
         private int obId;
         private DataSet ds;
 
@@ -33,25 +34,32 @@ namespace Win.BL
             this.obId = obId;
             payrolls = new UnitOfWork().PayrollsRepo.Find(m => m.Id == obId);
             btnEditNew = uCPayrolls.btnEditNew;
+            btnDelete = uCPayrolls.btnDelete;
             btnEditNew.Click += BtnEditNew_Click;
             uCPayrolls.btnPreview.Click += BtnPreview_Click;
         }
 
         private List<OBRPayrollViewModel> oBRPayrollViewModels;
+        private PrintOnPageEventHandler printOnPageEventArgs;
+        private XRTableCell xRTableCell;
+
         void AddPageTotalValue(XRTableCell xRTableCell, string columnName)
         {
-            xRTableCell.PrintOnPage += (sender, e) =>
-            {
-                var columnTitle1 = sender as XRTableCell;
-                oBRPayrollViewModels.Add(new OBRPayrollViewModel()
-                {
-                    ColumnName = columnName,
-                    Value = columnTitle1.Text?.ToDecimal(),
-                    PageIndex = e.PageIndex
-                });
-                columnTitle1.Text = columnTitle1.Text?.ToDecimal().ToString("PHP #,#.0#");
-            };
-            
+            this.xRTableCell = xRTableCell;
+            printOnPageEventArgs = (sender, e) =>
+           {
+               var columnTitle1 = sender as XRTableCell;
+               oBRPayrollViewModels.Add(new OBRPayrollViewModel()
+               {
+                   ColumnName = columnName,
+                   Value = columnTitle1.Text?.ToDecimal(),
+                   PageIndex = e.PageIndex
+               });
+               columnTitle1.Text = columnTitle1.Text?.ToDecimal().ToString("n2");
+           };
+            xRTableCell.PrintOnPage += printOnPageEventArgs;
+
+
         }
 
         void CalculatePageTotalValue(XRTableCell xRTableCell, string columnName, bool sumAll = false)
@@ -63,7 +71,7 @@ namespace Win.BL
 
                 if (sumAll)
                     sum = oBRPayrollViewModels.Where(x => x.ColumnName == columnName).Sum(x => x.Value);
-                columnTitle1.Text = sum?.ToString("Php #,00.00");
+                columnTitle1.Text = sum?.ToString("n2");
             };
         }
         //TODO: Method to add column header 
@@ -130,6 +138,8 @@ namespace Win.BL
 
         void InitializePayrollDataset(Payrolls res, string[] customColumn)
         {
+            StaticSettings staticSettings = new StaticSettings();
+
             ds = new dsPayroll();
             var payrollDetails = ds.Tables["PayrollDetails"];
             var payroll = ds.Tables["Payrolls"];
@@ -152,6 +162,12 @@ namespace Win.BL
             pRow["TreasurerPOS"] = res.TreasurerPos;
             pRow["Head"] = res.DeptHead;
             pRow["HeadPos"] = res.DeptHeadPos;
+            if (staticSettings.Offices.IsDivision == false)
+            {
+                pRow["Head"] = staticSettings.Head;
+                pRow["HeadPos"] = staticSettings.HeadPos;
+            }
+
             pRow["Governor"] = res.Governor?.Person;
             pRow["GovernorPOS"] = res.Governor?.Position;
             pRow["Note"] = res.Note;
@@ -179,7 +195,7 @@ namespace Win.BL
             {
                 var row = payrollDetails.NewRow();
                 row["Id"] = res.PayrollDetails.ToList()[i]?.Id;
-                row["Name"] = res.PayrollDetails.ToList()[i]?.Name;
+                row["Name"] = res.PayrollDetails.ToList()[i]?.Employees?.EmployeeNameByLastName;
                 row["ItemNumber"] = res.PayrollDetails.ToList()[i]?.ItemNumber;
                 row["PayrollId"] = res.PayrollDetails.ToList()[i]?.PayrollId;
                 row["Designation"] = res.PayrollDetails.ToList()[i]?.Designation;
@@ -246,7 +262,7 @@ namespace Win.BL
                     var cell = s as XRTableCell;
                     cell.Visible = (e.PageCount - 1) == e.PageIndex;
                     cell.Text = oBRPayrollViewModels.Where(x => x.ColumnName == i).Sum(m => m.Value)
-                        ?.ToString("Php #,00.#0");
+                        ?.ToString("n2");
                 };
                 rpt.tblGrandTotalRow.Cells.Add(xrCell);
                 //Total
@@ -263,7 +279,7 @@ namespace Win.BL
             {
                 var cell = s as XRTableCell;
                 cell.Visible = (e.PageCount - 1) == e.PageIndex;
-                cell.Text = oBRPayrollViewModels.Where(x => x.ColumnName == "Total").Sum(m => m.Value)?.ToString("Php #,00.#0");
+                cell.Text = oBRPayrollViewModels.Where(x => x.ColumnName == "Total").Sum(m => m.Value)?.ToString("n2");
             };
             rpt.tblGrandTotalRow.Cells.Add(xrCell);
             xrCell = new XRTableCell()
@@ -287,6 +303,8 @@ namespace Win.BL
             var res = new UnitOfWork().PayrollsRepo.Find(m => m.Id == obId);
             var xrCell = new XRTableCell();
             var rpt = new rptOBRPayroll(res?.Obligations.ResponsibilityCenter + " - " + res?.ControlNo);
+            if (res.Obligations.ORDetails.Any(x => x.Appropriations.AccountName.ToLower().Contains("casual")))
+                rpt.xrLblPurpose.BackColor = Color.Pink;
             var customColumn = res?.ColumnTitle1?.Split(',');
 
             //Start TODO: adding Header columns
@@ -317,9 +335,25 @@ namespace Win.BL
                 AddGrandTotalColumn(customColumn, xrCell, rpt);
             }
 
+            StaticSettings staticSettings = new StaticSettings();
 
+            if (staticSettings.Offices.IsDivision != true)
+            {
+                foreach (XRControl control in rpt.AllControls<XRControl>().Where(x => x.Tag == "Division"))
+                {
+                    control.Visible = false;
+                }
+                rpt.grpDiv.Visible = false;
+                rpt.grpDept.Visible = true;
+            }
+            else
+            {
+                rpt.grpDiv.Visible = true;
+                rpt.grpDept.Visible = false;
+            }
 
-
+          //  rpt.CreateDocument();
+            //xRTableCell.PrintOnPage -= printOnPageEventArgs;
 
             frmReportViewer frm =
                 new frmReportViewer(rpt);
@@ -354,9 +388,15 @@ namespace Win.BL
             payrolls = new UnitOfWork().PayrollsRepo.Find(m => m.Id == obId);
             InitializeGridView(payrolls);
             if (payrolls == null)
+            {
                 btnEditNew.Text = "New Payroll";
+                btnDelete.Enabled = false;
+            }
             else
+            {
                 btnEditNew.Text = "Edit Payroll";
+                btnDelete.Enabled = true;
+            }
         }
 
         public void Detail(Payrolls item)
@@ -390,6 +430,7 @@ namespace Win.BL
                     dt.Columns.Add(new DataColumn(i, typeof(decimal)) { AllowDBNull = true });
                 }
 
+                item.PayrollDetails = item.PayrollDetails.OrderBy(x => x.ItemNumber).ToList();
                 for (var i = 0; i <= item.PayrollDetails.Count() - 1; i++)
                 {
                     var row = dt.NewRow();

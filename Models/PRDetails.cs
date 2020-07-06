@@ -17,14 +17,16 @@ namespace Models
         public int Id { get; set; }
         public Nullable<int> PRId { get; set; }
         public Nullable<int> ItemNo { get; set; }
-        public Nullable<int> Quantity { get; set; }
+        public Nullable<decimal> Quantity { get; set; }
         public string Category { get; set; }
         public string Item { get; set; }
         public string UOM { get; set; }
         public Nullable<decimal> Cost { get; set; }
         public Nullable<decimal> TotalAmount { get; set; }
         public string TableName { get; set; }
+        public Nullable<int> ItemId { get; set; }
     
+        public virtual Items Items { get; set; }
         public virtual PurchaseRequests PurchaseRequests { get; set; }
     }
 }

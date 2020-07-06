@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\..\.nuget\.cache\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\..\..\.nuget\.cache\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
+  <Import Project="..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -27,9 +27,10 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://plgunv_adserver/ofmis/</InstallUrl>
+    <MinimumRequiredVersion>1.0.0.73</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>36</ApplicationRevision>
+    <ApplicationRevision>179</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -69,6 +70,7 @@
     <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v18.2" />
     <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Images.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v18.2.Core, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v18.2.Core, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.PivotGrid.v18.2.Core, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -85,32 +87,64 @@
     <Reference Include="DevExpress.XtraGauges.v18.2.Core, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPivotGrid.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v18.2.Extensions, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v18.2.Extensions, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\.nuget\.cache\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\.nuget\.cache\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\.nuget\.cache\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.AspNet.SignalR.Core.2.4.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.ConnectionUI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=f4ca07f51760da93, processorArchitecture=MSIL">
-      <HintPath>..\..\..\.nuget\.cache\packages\DataConnectionDialog.1.2\Lib\Microsoft.Data.ConnectionUI.dll</HintPath>
+      <HintPath>..\..\..\Development Cache\.nuget\packages\DataConnectionDialog.1.2\Lib\Microsoft.Data.ConnectionUI.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.ConnectionUI.Dialog, Version=0.0.0.0, Culture=neutral, PublicKeyToken=f4ca07f51760da93, processorArchitecture=MSIL">
-      <HintPath>..\..\..\.nuget\.cache\packages\DataConnectionDialog.1.2\Lib\Microsoft.Data.ConnectionUI.Dialog.dll</HintPath>
+      <HintPath>..\..\..\Development Cache\.nuget\packages\DataConnectionDialog.1.2\Lib\Microsoft.Data.ConnectionUI.Dialog.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.Owin.4.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.Owin.Cors.4.1.0\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Diagnostics, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.Owin.Diagnostics.4.1.0\lib\net45\Microsoft.Owin.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.HttpListener, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.Owin.Host.HttpListener.4.1.0\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Hosting, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.Owin.Hosting.4.1.0\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Development Cache\.nuget\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Development Cache\.nuget\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -146,11 +180,95 @@
     <Compile Include="Accnts\UcAccounts.Designer.cs">
       <DependentUpon>UcAccounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Actns\frmAddEditDocActionTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Actns\frmAddEditDocActionTree.Designer.cs">
+      <DependentUpon>frmAddEditDocActionTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Actns\FrmAddEditPrograms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Actns\FrmAddEditPrograms.designer.cs">
+      <DependentUpon>FrmAddEditPrograms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Actns\frmDocActions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Actns\frmDocActions.designer.cs">
+      <DependentUpon>frmDocActions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Actns\UCActions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Actns\UCActions.Designer.cs">
+      <DependentUpon>UCActions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Actns\UCDocumentActions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Actns\UCDocumentActions.Designer.cs">
+      <DependentUpon>UCDocumentActions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AIRpt\frmAddEditAcceptance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AIRpt\frmAddEditAcceptance.Designer.cs">
+      <DependentUpon>frmAddEditAcceptance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AIRpt\frmAddFromPO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AIRpt\frmAddFromPO.Designer.cs">
+      <DependentUpon>frmAddFromPO.cs</DependentUpon>
+    </Compile>
     <Compile Include="AIRpt\UCAIReports.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AIRpt\UCAIReports.Designer.cs">
       <DependentUpon>UCAIReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AOQ\frmAddEditAOQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AOQ\frmAddEditAOQ.Designer.cs">
+      <DependentUpon>frmAddEditAOQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AOQ\frmAddFromPQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AOQ\frmAddFromPQ.Designer.cs">
+      <DependentUpon>frmAddFromPQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AOQ\frmBACCommittees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AOQ\frmBACCommittees.Designer.cs">
+      <DependentUpon>frmBACCommittees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AOQ\UCAOQ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AOQ\UCAOQ.Designer.cs">
+      <DependentUpon>UCAOQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="APR\frmAddEditAPR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="APR\frmAddEditAPR.Designer.cs">
+      <DependentUpon>frmAddEditAPR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="APR\UCAPRs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="APR\UCAPRs.Designer.cs">
+      <DependentUpon>UCAPRs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BGMembers\UCBACMembers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BGMembers\UCBACMembers.Designer.cs">
+      <DependentUpon>UCBACMembers.cs</DependentUpon>
     </Compile>
     <Compile Include="BL\AddEditAllotment.cs" />
     <Compile Include="BL\AddEditAppropriation.cs" />
@@ -170,7 +288,31 @@
     <Compile Include="BL\LoadAppropriations.cs" />
     <Compile Include="BL\LoadObligations.cs" />
     <Compile Include="BL\LoadPayroll.cs" />
+    <Compile Include="Cnfg\frmConfigurations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cnfg\frmConfigurations.Designer.cs">
+      <DependentUpon>frmConfigurations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cnfg\frmServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cnfg\frmServer.Designer.cs">
+      <DependentUpon>frmServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConnectionDialog.cs" />
+    <Compile Include="BGMembers\frmAddEditBACMembers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BGMembers\frmAddEditBACMembers.Designer.cs">
+      <DependentUpon>frmAddEditBACMembers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ctgry\UCCategory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ctgry\UCCategory.Designer.cs">
+      <DependentUpon>UCCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Emps\UCEmployees.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -213,6 +355,18 @@
     <Compile Include="frmYears.Designer.cs">
       <DependentUpon>frmYears.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ltr\frmAddEditLetters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ltr\frmAddEditLetters.Designer.cs">
+      <DependentUpon>frmAddEditLetters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ltr\UcLetters.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ltr\UcLetters.Designer.cs">
+      <DependentUpon>UcLetters.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +403,12 @@
     <Compile Include="PO\frmPriceQuotations.Designer.cs">
       <DependentUpon>frmPriceQuotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="PO\frmSelectedItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PO\frmSelectedItem.Designer.cs">
+      <DependentUpon>frmSelectedItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="PO\UCPO.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -266,6 +426,36 @@
     </Compile>
     <Compile Include="PQ\UCPQ.Designer.cs">
       <DependentUpon>UCPQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PropAckRcpt\UCPAR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PropAckRcpt\UCPAR.Designer.cs">
+      <DependentUpon>UCPAR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PropIsSlp\frmAddEditPIS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropIsSlp\frmAddEditPIS.Designer.cs">
+      <DependentUpon>frmAddEditPIS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PropIsSlp\frmAddFromPO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropIsSlp\frmAddFromPO.Designer.cs">
+      <DependentUpon>frmAddFromPO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PropIsSlp\UCPIS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PropIsSlp\UCPIS.Designer.cs">
+      <DependentUpon>UCPIS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PR\frmAddEditAllotmentLetter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PR\frmAddEditAllotmentLetter.Designer.cs">
+      <DependentUpon>frmAddEditAllotmentLetter.cs</DependentUpon>
     </Compile>
     <Compile Include="PR\frmAddEditItems.cs">
       <SubType>Form</SubType>
@@ -285,11 +475,23 @@
     <Compile Include="PR\frmItems.Designer.cs">
       <DependentUpon>frmItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="PR\UCAllotmentLetter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PR\UCAllotmentLetter.Designer.cs">
+      <DependentUpon>UCAllotmentLetter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pyee\UCPayees.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Pyee\UCPayees.Designer.cs">
       <DependentUpon>UCPayees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pyee\UCRecipients.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pyee\UCRecipients.Designer.cs">
+      <DependentUpon>UCRecipients.cs</DependentUpon>
     </Compile>
     <Compile Include="Pyrll\frmAddEditPayroll.cs">
       <SubType>Form</SubType>
@@ -297,11 +499,29 @@
     <Compile Include="Pyrll\frmAddEditPayroll.Designer.cs">
       <DependentUpon>frmAddEditPayroll.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pyrll\frmAddEditPayrollDifferentials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pyrll\frmAddEditPayrollDifferentials.Designer.cs">
+      <DependentUpon>frmAddEditPayrollDifferentials.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pyrll\frmAddEditPayrollDynamic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pyrll\frmAddEditPayrollDynamic.Designer.cs">
+      <DependentUpon>frmAddEditPayrollDynamic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pyrll\frmAddEditPayrollWages.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pyrll\frmAddEditPayrollWages.Designer.cs">
       <DependentUpon>frmAddEditPayrollWages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pyrll\UCPayrollDifferentials.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pyrll\UCPayrollDifferentials.Designer.cs">
+      <DependentUpon>UCPayrollDifferentials.cs</DependentUpon>
     </Compile>
     <Compile Include="Pyrll\UCPayrolls.cs">
       <SubType>UserControl</SubType>
@@ -315,11 +535,53 @@
     <Compile Include="Pyrll\UCPayrollWages.Designer.cs">
       <DependentUpon>UCPayrollWages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rprts\frmLARReportViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rprts\frmLARReportViewer.Designer.cs">
+      <DependentUpon>frmLARReportViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptAcceptanceAndInspections.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptAcceptanceAndInspections.Designer.cs">
+      <DependentUpon>rptAcceptanceAndInspections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptAllotmentLetters.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptAllotmentLetters.Designer.cs">
+      <DependentUpon>rptAllotmentLetters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptAOQ.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptAOQ.Designer.cs">
+      <DependentUpon>rptAOQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptAPR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptAPR.Designer.cs">
+      <DependentUpon>rptAPR.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rprts\rptDV.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Rprts\rptDV.Designer.cs">
       <DependentUpon>rptDV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptLAR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptLAR.Designer.cs">
+      <DependentUpon>rptLAR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptLetters.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptLetters.Designer.cs">
+      <DependentUpon>rptLetters.cs</DependentUpon>
     </Compile>
     <Compile Include="Rprts\rptObligationRequestPreview.cs">
       <SubType>Component</SubType>
@@ -338,6 +600,18 @@
     </Compile>
     <Compile Include="Rprts\rptOBRPayrollWages.Designer.cs">
       <DependentUpon>rptOBRPayrollWages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptPayrollDifferential.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptPayrollDifferential.Designer.cs">
+      <DependentUpon>rptPayrollDifferential.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptPIS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptPIS.Designer.cs">
+      <DependentUpon>rptPIS.cs</DependentUpon>
     </Compile>
     <Compile Include="Rprts\rptPO.cs">
       <SubType>Component</SubType>
@@ -419,13 +693,56 @@
     <Compile Include="Rprts\rptObligationRequests.Designer.cs">
       <DependentUpon>rptObligationRequests.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rprts\rptRecipients.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptRecipients.Designer.cs">
+      <DependentUpon>rptRecipients.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rprts\rptSOA.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Rprts\rptSOA.Designer.cs">
       <DependentUpon>rptSOA.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rprts\rptTemplatePreview.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptTemplatePreview.Designer.cs">
+      <DependentUpon>rptTemplatePreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptRecipientLists.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptRecipientLists.Designer.cs">
+      <DependentUpon>rptRecipientLists.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SG\UCSalaryGrade.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SG\UCSalaryGrade.Designer.cs">
+      <DependentUpon>UCSalaryGrade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
     <Compile Include="StaticSettings.cs" />
+    <Compile Include="Tmplts\frmAddEditTemplates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tmplts\frmAddEditTemplates.Designer.cs">
+      <DependentUpon>frmAddEditTemplates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tmplts\frmConfirmationTemplates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tmplts\frmConfirmationTemplates.Designer.cs">
+      <DependentUpon>frmConfirmationTemplates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tmplts\UcTemplates.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tmplts\UcTemplates.Designer.cs">
+      <DependentUpon>UcTemplates.cs</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <Compile Include="Usr\frmAddEditUser.cs">
       <SubType>Form</SubType>
@@ -469,8 +786,62 @@
     <EmbeddedResource Include="Accnts\UcAccounts.resx">
       <DependentUpon>UcAccounts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Actns\frmAddEditDocActionTree.resx">
+      <DependentUpon>frmAddEditDocActionTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Actns\FrmAddEditPrograms.resx">
+      <DependentUpon>FrmAddEditPrograms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Actns\frmDocActions.resx">
+      <DependentUpon>frmDocActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Actns\UCActions.resx">
+      <DependentUpon>UCActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Actns\UCDocumentActions.resx">
+      <DependentUpon>UCDocumentActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AIRpt\frmAddEditAcceptance.resx">
+      <DependentUpon>frmAddEditAcceptance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AIRpt\frmAddFromPO.resx">
+      <DependentUpon>frmAddFromPO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AIRpt\UCAIReports.resx">
       <DependentUpon>UCAIReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AOQ\frmAddEditAOQ.resx">
+      <DependentUpon>frmAddEditAOQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AOQ\frmAddFromPQ.resx">
+      <DependentUpon>frmAddFromPQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AOQ\frmBACCommittees.resx">
+      <DependentUpon>frmBACCommittees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AOQ\UCAOQ.resx">
+      <DependentUpon>UCAOQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="APR\frmAddEditAPR.resx">
+      <DependentUpon>frmAddEditAPR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="APR\UCAPRs.resx">
+      <DependentUpon>UCAPRs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BGMembers\UCBACMembers.resx">
+      <DependentUpon>UCBACMembers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BGMembers\frmAddEditBACMembers.resx">
+      <DependentUpon>frmAddEditBACMembers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cnfg\frmConfigurations.resx">
+      <DependentUpon>frmConfigurations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cnfg\frmServer.resx">
+      <DependentUpon>frmServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ctgry\UCCategory.resx">
+      <DependentUpon>UCCategory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Emps\UCEmployees.resx">
       <DependentUpon>UCEmployees.cs</DependentUpon>
@@ -493,6 +864,12 @@
     <EmbeddedResource Include="frmYears.resx">
       <DependentUpon>frmYears.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ltr\frmAddEditLetters.resx">
+      <DependentUpon>frmAddEditLetters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ltr\UcLetters.resx">
+      <DependentUpon>UcLetters.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -511,6 +888,9 @@
     <EmbeddedResource Include="PO\frmPriceQuotations.resx">
       <DependentUpon>frmPriceQuotations.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PO\frmSelectedItem.resx">
+      <DependentUpon>frmSelectedItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PO\UCPO.resx">
       <DependentUpon>UCPO.cs</DependentUpon>
     </EmbeddedResource>
@@ -519,6 +899,22 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PQ\UCPQ.resx">
       <DependentUpon>UCPQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropAckRcpt\UCPAR.resx">
+      <DependentUpon>UCPAR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="PropIsSlp\frmAddEditPIS.resx">
+      <DependentUpon>frmAddEditPIS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropIsSlp\frmAddFromPO.resx">
+      <DependentUpon>frmAddFromPO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropIsSlp\UCPIS.resx">
+      <DependentUpon>UCPIS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PR\frmAddEditAllotmentLetter.resx">
+      <DependentUpon>frmAddEditAllotmentLetter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PR\frmAddEditItems.resx">
       <DependentUpon>frmAddEditItems.cs</DependentUpon>
@@ -529,14 +925,29 @@
     <EmbeddedResource Include="PR\frmItems.resx">
       <DependentUpon>frmItems.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PR\UCAllotmentLetter.resx">
+      <DependentUpon>UCAllotmentLetter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pyee\UCPayees.resx">
       <DependentUpon>UCPayees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pyee\UCRecipients.resx">
+      <DependentUpon>UCRecipients.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pyrll\frmAddEditPayroll.resx">
       <DependentUpon>frmAddEditPayroll.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pyrll\frmAddEditPayrollDifferentials.resx">
+      <DependentUpon>frmAddEditPayrollDifferentials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pyrll\frmAddEditPayrollDynamic.resx">
+      <DependentUpon>frmAddEditPayrollDynamic.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pyrll\frmAddEditPayrollWages.resx">
       <DependentUpon>frmAddEditPayrollWages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pyrll\UCPayrollDifferentials.resx">
+      <DependentUpon>UCPayrollDifferentials.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pyrll\UCPayrolls.resx">
       <DependentUpon>UCPayrolls.cs</DependentUpon>
@@ -544,8 +955,29 @@
     <EmbeddedResource Include="Pyrll\UCPayrollWages.resx">
       <DependentUpon>UCPayrollWages.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\frmLARReportViewer.resx">
+      <DependentUpon>frmLARReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptAcceptanceAndInspections.resx">
+      <DependentUpon>rptAcceptanceAndInspections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptAllotmentLetters.resx">
+      <DependentUpon>rptAllotmentLetters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptAOQ.resx">
+      <DependentUpon>rptAOQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptAPR.resx">
+      <DependentUpon>rptAPR.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptDV.resx">
       <DependentUpon>rptDV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptLAR.resx">
+      <DependentUpon>rptLAR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptLetters.resx">
+      <DependentUpon>rptLetters.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptObligationRequestPreview.resx">
       <DependentUpon>rptObligationRequestPreview.cs</DependentUpon>
@@ -555,6 +987,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptOBRPayrollWages.resx">
       <DependentUpon>rptOBRPayrollWages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptPayrollDifferential.resx">
+      <DependentUpon>rptPayrollDifferential.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptPIS.resx">
+      <DependentUpon>rptPIS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptPO.resx">
       <DependentUpon>rptPO.cs</DependentUpon>
@@ -574,7 +1012,6 @@
     <EmbeddedResource Include="OB\ucObligations.resx">
       <DependentUpon>ucObligations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -606,8 +1043,29 @@
     <EmbeddedResource Include="Rprts\rptObligationRequests.resx">
       <DependentUpon>rptObligationRequests.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptRecipients.resx">
+      <DependentUpon>rptRecipients.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptSOA.resx">
       <DependentUpon>rptSOA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptTemplatePreview.resx">
+      <DependentUpon>rptTemplatePreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptRecipientLists.resx">
+      <DependentUpon>rptRecipientLists.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SG\UCSalaryGrade.resx">
+      <DependentUpon>UCSalaryGrade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tmplts\frmAddEditTemplates.resx">
+      <DependentUpon>frmAddEditTemplates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tmplts\frmConfirmationTemplates.resx">
+      <DependentUpon>frmConfirmationTemplates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tmplts\UcTemplates.resx">
+      <DependentUpon>UcTemplates.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Usr\frmAddEditUser.resx">
       <DependentUpon>frmAddEditUser.cs</DependentUpon>
@@ -625,7 +1083,14 @@
       <DependentUpon>UCUsers.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="App_Data\APP-CSE 2020 FORM Dwight Revised.xlsx" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Models.Employees.datasource" />
+    <None Include="Properties\DataSources\Models.Letters.datasource" />
+    <None Include="Properties\DataSources\Models.Offices.datasource" />
+    <None Include="Properties\DataSources\Models.Payees.datasource" />
+    <None Include="Properties\DataSources\Models.SalarySchedules.datasource" />
+    <None Include="Properties\DataSources\Models.Signatories.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -638,6 +1103,10 @@
     <None Include="Win_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExistingUser.Models\CMS.Models.csproj">
+      <Project>{67205DA2-03C6-4929-BB9F-F45AE38AAFDA}</Project>
+      <Name>CMS.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Helpers\Helpers.csproj">
       <Project>{E093F1B4-5439-4A4D-ACEA-39566C4B2869}</Project>
       <Name>Helpers</Name>
@@ -673,10 +1142,12 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\.nuget\.cache\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\.nuget\.cache\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\..\..\.nuget\.cache\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\.nuget\.cache\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\..\..\Development Cache\.nuget\packages\EmptyLicensesLicx.2.0.0\build\EmptyLicensesLicx.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\Development Cache\.nuget\packages\EmptyLicensesLicx.2.0.0\build\EmptyLicensesLicx.targets'))" />
+    <Error Condition="!Exists('..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="..\..\..\.nuget\.cache\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\..\..\.nuget\.cache\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+  <Import Project="..\..\..\Development Cache\.nuget\packages\EmptyLicensesLicx.2.0.0\build\EmptyLicensesLicx.targets" Condition="Exists('..\..\..\Development Cache\.nuget\packages\EmptyLicensesLicx.2.0.0\build\EmptyLicensesLicx.targets')" />
+  <Import Project="..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

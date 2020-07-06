@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCPayrollWages));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
             this.btnEditNew = new DevExpress.XtraEditors.SimpleButton();
@@ -61,7 +61,19 @@
             this.colPHGS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPIPS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPIGS = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMPLLoan = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSSSLoan = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNVPEA = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLBP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDBP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBIR = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colGSISPOL = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colGSISCon = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPIFCalLoan = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lookUpEditEmployees = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colSSS = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSSSPS = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOT = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PayrollGridControl)).BeginInit();
@@ -79,8 +91,9 @@
             this.panelControl1.Controls.Add(this.btnEditNew);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(916, 32);
+            this.panelControl1.Size = new System.Drawing.Size(1069, 42);
             this.panelControl1.TabIndex = 4;
             // 
             // btnPreview
@@ -90,9 +103,10 @@
             this.btnPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnPreview.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.btnPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview.ImageOptions.Image")));
-            this.btnPreview.Location = new System.Drawing.Point(113, 5);
+            this.btnPreview.Location = new System.Drawing.Point(132, 7);
+            this.btnPreview.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(102, 23);
+            this.btnPreview.Size = new System.Drawing.Size(119, 30);
             this.btnPreview.TabIndex = 13;
             this.btnPreview.Text = "Preview";
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
@@ -104,9 +118,10 @@
             this.btnEditNew.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnEditNew.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.btnEditNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEditNew.ImageOptions.Image")));
-            this.btnEditNew.Location = new System.Drawing.Point(5, 5);
+            this.btnEditNew.Location = new System.Drawing.Point(6, 7);
+            this.btnEditNew.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditNew.Name = "btnEditNew";
-            this.btnEditNew.Size = new System.Drawing.Size(102, 23);
+            this.btnEditNew.Size = new System.Drawing.Size(119, 30);
             this.btnEditNew.TabIndex = 13;
             this.btnEditNew.Text = "Add New";
             this.btnEditNew.Click += new System.EventHandler(this.btnEditNew_Click);
@@ -114,8 +129,10 @@
             // PayrollGridControl
             // 
             this.PayrollGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PayrollGridControl.Location = new System.Drawing.Point(0, 32);
+            this.PayrollGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.PayrollGridControl.Location = new System.Drawing.Point(0, 42);
             this.PayrollGridControl.MainView = this.PayrollGridView;
+            this.PayrollGridControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.PayrollGridControl.Name = "PayrollGridControl";
             this.PayrollGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEditPayrollRepo,
@@ -123,13 +140,16 @@
             this.spinTotalRepo,
             this.spinItemNumberRepo,
             this.lookUpEditEmployees});
-            this.PayrollGridControl.Size = new System.Drawing.Size(916, 486);
+            this.PayrollGridControl.Size = new System.Drawing.Size(1069, 635);
             this.PayrollGridControl.TabIndex = 76;
             this.PayrollGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.PayrollGridView});
             // 
             // PayrollGridView
             // 
+            this.PayrollGridView.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.PayrollGridView.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.PayrollGridView.ColumnPanelRowHeight = 65;
             this.PayrollGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colEdit,
             this.colDelete,
@@ -143,42 +163,63 @@
             this.colPHPS,
             this.colPHGS,
             this.colPIPS,
-            this.colPIGS});
+            this.colPIGS,
+            this.colMPLLoan,
+            this.colSSSLoan,
+            this.colNVPEA,
+            this.colLBP,
+            this.colDBP,
+            this.colBIR,
+            this.colGSISPOL,
+            this.colGSISCon,
+            this.colPIFCalLoan,
+            this.colSSS,
+            this.colSSSPS,
+            this.colOT});
+            this.PayrollGridView.DetailHeight = 458;
+            this.PayrollGridView.FixedLineWidth = 3;
             this.PayrollGridView.GridControl = this.PayrollGridControl;
             this.PayrollGridView.Name = "PayrollGridView";
             this.PayrollGridView.OptionsBehavior.ReadOnly = true;
+            this.PayrollGridView.OptionsCustomization.AllowRowSizing = true;
             this.PayrollGridView.OptionsNavigation.AutoFocusNewRow = true;
+            this.PayrollGridView.OptionsNavigation.EnterMoveNextColumn = true;
+            this.PayrollGridView.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
+            this.PayrollGridView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.PayrollGridView.OptionsView.ShowGroupPanel = false;
+            this.PayrollGridView.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             // 
             // colEdit
             // 
             this.colEdit.ColumnEdit = this.btnEditPayrollRepo;
+            this.colEdit.MinWidth = 23;
             this.colEdit.Name = "colEdit";
-            this.colEdit.Width = 20;
+            this.colEdit.Width = 23;
             // 
             // btnEditPayrollRepo
             // 
             this.btnEditPayrollRepo.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
             this.btnEditPayrollRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditPayrollRepo.Name = "btnEditPayrollRepo";
             this.btnEditPayrollRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // colDelete
             // 
             this.colDelete.ColumnEdit = this.btnDeletePayrollRepo;
+            this.colDelete.MinWidth = 23;
             this.colDelete.Name = "colDelete";
             this.colDelete.Visible = true;
             this.colDelete.VisibleIndex = 0;
-            this.colDelete.Width = 66;
+            this.colDelete.Width = 25;
             // 
             // btnDeletePayrollRepo
             // 
             this.btnDeletePayrollRepo.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
             this.btnDeletePayrollRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDeletePayrollRepo.Name = "btnDeletePayrollRepo";
             this.btnDeletePayrollRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -187,8 +228,11 @@
             this.colNo.Caption = "No.";
             this.colNo.ColumnEdit = this.spinItemNumberRepo;
             this.colNo.FieldName = "ItemNumber";
+            this.colNo.MinWidth = 23;
             this.colNo.Name = "colNo";
-            this.colNo.Width = 53;
+            this.colNo.Visible = true;
+            this.colNo.VisibleIndex = 1;
+            this.colNo.Width = 32;
             // 
             // spinItemNumberRepo
             // 
@@ -201,17 +245,19 @@
             // 
             this.colName.Caption = "Name";
             this.colName.FieldName = "Employees.EmployeeName";
+            this.colName.MinWidth = 23;
             this.colName.Name = "colName";
             this.colName.Visible = true;
-            this.colName.VisibleIndex = 1;
-            this.colName.Width = 196;
+            this.colName.VisibleIndex = 2;
+            this.colName.Width = 74;
             // 
             // colDesignation
             // 
             this.colDesignation.Caption = "Designation";
             this.colDesignation.FieldName = "Designation";
+            this.colDesignation.MinWidth = 23;
             this.colDesignation.Name = "colDesignation";
-            this.colDesignation.Width = 80;
+            this.colDesignation.Width = 93;
             // 
             // colTotal
             // 
@@ -220,12 +266,13 @@
             this.colTotal.DisplayFormat.FormatString = "n2";
             this.colTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colTotal.FieldName = "Total";
+            this.colTotal.MinWidth = 23;
             this.colTotal.Name = "colTotal";
             this.colTotal.OptionsColumn.ReadOnly = true;
             this.colTotal.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.colTotal.Visible = true;
-            this.colTotal.VisibleIndex = 9;
-            this.colTotal.Width = 196;
+            this.colTotal.VisibleIndex = 21;
+            this.colTotal.Width = 136;
             // 
             // spinTotalRepo
             // 
@@ -243,70 +290,175 @@
             this.colNoOfdays.Caption = "No of Days";
             this.colNoOfdays.ColumnEdit = this.spinItemNumberRepo;
             this.colNoOfdays.FieldName = "NoOfdays";
+            this.colNoOfdays.MinWidth = 23;
             this.colNoOfdays.Name = "colNoOfdays";
             this.colNoOfdays.Visible = true;
-            this.colNoOfdays.VisibleIndex = 2;
-            this.colNoOfdays.Width = 80;
+            this.colNoOfdays.VisibleIndex = 3;
+            this.colNoOfdays.Width = 30;
             // 
             // colRatePerDay
             // 
             this.colRatePerDay.Caption = "Rate Per Day";
             this.colRatePerDay.ColumnEdit = this.spinTotalRepo;
             this.colRatePerDay.FieldName = "RatePerDay";
+            this.colRatePerDay.MinWidth = 23;
             this.colRatePerDay.Name = "colRatePerDay";
             this.colRatePerDay.Visible = true;
-            this.colRatePerDay.VisibleIndex = 3;
-            this.colRatePerDay.Width = 132;
+            this.colRatePerDay.VisibleIndex = 5;
+            this.colRatePerDay.Width = 35;
             // 
             // colPERA
             // 
             this.colPERA.Caption = "PERA";
             this.colPERA.ColumnEdit = this.spinTotalRepo;
             this.colPERA.FieldName = "PERA";
+            this.colPERA.MinWidth = 23;
             this.colPERA.Name = "colPERA";
             this.colPERA.Visible = true;
-            this.colPERA.VisibleIndex = 4;
-            this.colPERA.Width = 132;
+            this.colPERA.VisibleIndex = 6;
+            this.colPERA.Width = 33;
             // 
             // colPHPS
             // 
-            this.colPHPS.Caption = "Phil Health PS";
+            this.colPHPS.Caption = "PHIC PS";
             this.colPHPS.ColumnEdit = this.spinTotalRepo;
             this.colPHPS.FieldName = "PHPS";
+            this.colPHPS.MinWidth = 23;
             this.colPHPS.Name = "colPHPS";
             this.colPHPS.Visible = true;
-            this.colPHPS.VisibleIndex = 5;
-            this.colPHPS.Width = 132;
+            this.colPHPS.VisibleIndex = 8;
+            this.colPHPS.Width = 39;
             // 
             // colPHGS
             // 
-            this.colPHGS.Caption = "Phil Health GS";
+            this.colPHGS.Caption = "PHIC GS";
             this.colPHGS.ColumnEdit = this.spinTotalRepo;
             this.colPHGS.FieldName = "PHGS";
+            this.colPHGS.MinWidth = 23;
             this.colPHGS.Name = "colPHGS";
             this.colPHGS.Visible = true;
-            this.colPHGS.VisibleIndex = 6;
-            this.colPHGS.Width = 132;
+            this.colPHGS.VisibleIndex = 9;
+            this.colPHGS.Width = 27;
             // 
             // colPIPS
             // 
-            this.colPIPS.Caption = "Pag Ibig PS";
+            this.colPIPS.Caption = "PIF PS";
             this.colPIPS.ColumnEdit = this.spinTotalRepo;
             this.colPIPS.FieldName = "PIPS";
+            this.colPIPS.MinWidth = 23;
             this.colPIPS.Name = "colPIPS";
             this.colPIPS.Visible = true;
-            this.colPIPS.VisibleIndex = 7;
-            this.colPIPS.Width = 132;
+            this.colPIPS.VisibleIndex = 10;
+            this.colPIPS.Width = 51;
             // 
             // colPIGS
             // 
-            this.colPIGS.Caption = "Pag Ibig GS";
+            this.colPIGS.Caption = "PIF GS";
             this.colPIGS.ColumnEdit = this.spinTotalRepo;
             this.colPIGS.FieldName = "PIGS";
+            this.colPIGS.MinWidth = 23;
             this.colPIGS.Name = "colPIGS";
             this.colPIGS.Visible = true;
-            this.colPIGS.VisibleIndex = 8;
-            this.colPIGS.Width = 132;
+            this.colPIGS.VisibleIndex = 11;
+            this.colPIGS.Width = 46;
+            // 
+            // colMPLLoan
+            // 
+            this.colMPLLoan.Caption = "MPL";
+            this.colMPLLoan.ColumnEdit = this.spinTotalRepo;
+            this.colMPLLoan.FieldName = "MPL";
+            this.colMPLLoan.MinWidth = 23;
+            this.colMPLLoan.Name = "colMPLLoan";
+            this.colMPLLoan.Visible = true;
+            this.colMPLLoan.VisibleIndex = 12;
+            this.colMPLLoan.Width = 28;
+            // 
+            // colSSSLoan
+            // 
+            this.colSSSLoan.Caption = "SSS Loan";
+            this.colSSSLoan.ColumnEdit = this.spinTotalRepo;
+            this.colSSSLoan.FieldName = "SSSLoan";
+            this.colSSSLoan.MinWidth = 23;
+            this.colSSSLoan.Name = "colSSSLoan";
+            this.colSSSLoan.Visible = true;
+            this.colSSSLoan.VisibleIndex = 15;
+            this.colSSSLoan.Width = 28;
+            // 
+            // colNVPEA
+            // 
+            this.colNVPEA.Caption = "NVPEA Loan";
+            this.colNVPEA.ColumnEdit = this.spinTotalRepo;
+            this.colNVPEA.FieldName = "NVPEA";
+            this.colNVPEA.MinWidth = 23;
+            this.colNVPEA.Name = "colNVPEA";
+            this.colNVPEA.Visible = true;
+            this.colNVPEA.VisibleIndex = 14;
+            this.colNVPEA.Width = 35;
+            // 
+            // colLBP
+            // 
+            this.colLBP.Caption = "LBP Loan";
+            this.colLBP.ColumnEdit = this.spinTotalRepo;
+            this.colLBP.FieldName = "LBP";
+            this.colLBP.MinWidth = 23;
+            this.colLBP.Name = "colLBP";
+            this.colLBP.Visible = true;
+            this.colLBP.VisibleIndex = 16;
+            this.colLBP.Width = 28;
+            // 
+            // colDBP
+            // 
+            this.colDBP.Caption = "DBP";
+            this.colDBP.ColumnEdit = this.spinItemNumberRepo;
+            this.colDBP.FieldName = "DBP";
+            this.colDBP.MinWidth = 23;
+            this.colDBP.Name = "colDBP";
+            this.colDBP.Visible = true;
+            this.colDBP.VisibleIndex = 17;
+            this.colDBP.Width = 28;
+            // 
+            // colBIR
+            // 
+            this.colBIR.Caption = "BIR WH";
+            this.colBIR.ColumnEdit = this.spinTotalRepo;
+            this.colBIR.FieldName = "BIRWH";
+            this.colBIR.MinWidth = 23;
+            this.colBIR.Name = "colBIR";
+            this.colBIR.Visible = true;
+            this.colBIR.VisibleIndex = 18;
+            this.colBIR.Width = 28;
+            // 
+            // colGSISPOL
+            // 
+            this.colGSISPOL.Caption = "GSIS Pol";
+            this.colGSISPOL.ColumnEdit = this.spinTotalRepo;
+            this.colGSISPOL.FieldName = "GSISPolicy";
+            this.colGSISPOL.MinWidth = 23;
+            this.colGSISPOL.Name = "colGSISPOL";
+            this.colGSISPOL.Visible = true;
+            this.colGSISPOL.VisibleIndex = 19;
+            this.colGSISPOL.Width = 34;
+            // 
+            // colGSISCon
+            // 
+            this.colGSISCon.Caption = "GSIS Con";
+            this.colGSISCon.ColumnEdit = this.spinTotalRepo;
+            this.colGSISCon.FieldName = "GSISConsol";
+            this.colGSISCon.MinWidth = 23;
+            this.colGSISCon.Name = "colGSISCon";
+            this.colGSISCon.Visible = true;
+            this.colGSISCon.VisibleIndex = 20;
+            this.colGSISCon.Width = 58;
+            // 
+            // colPIFCalLoan
+            // 
+            this.colPIFCalLoan.Caption = "PIF Cal Loan";
+            this.colPIFCalLoan.FieldName = "PIFCalLoan";
+            this.colPIFCalLoan.MinWidth = 23;
+            this.colPIFCalLoan.Name = "colPIFCalLoan";
+            this.colPIFCalLoan.Visible = true;
+            this.colPIFCalLoan.VisibleIndex = 13;
+            this.colPIFCalLoan.Width = 95;
             // 
             // lookUpEditEmployees
             // 
@@ -322,14 +474,43 @@
             this.lookUpEditEmployees.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lookUpEditEmployees.ValueMember = "Id";
             // 
+            // colSSS
+            // 
+            this.colSSS.Caption = "SSS";
+            this.colSSS.FieldName = "SSS";
+            this.colSSS.MinWidth = 25;
+            this.colSSS.Name = "colSSS";
+            this.colSSS.Width = 94;
+            // 
+            // colSSSPS
+            // 
+            this.colSSSPS.Caption = "SSSPS";
+            this.colSSSPS.FieldName = "SSSPS";
+            this.colSSSPS.MinWidth = 25;
+            this.colSSSPS.Name = "colSSSPS";
+            this.colSSSPS.Visible = true;
+            this.colSSSPS.VisibleIndex = 7;
+            this.colSSSPS.Width = 78;
+            // 
+            // colOT
+            // 
+            this.colOT.Caption = "OT";
+            this.colOT.FieldName = "OT";
+            this.colOT.MinWidth = 25;
+            this.colOT.Name = "colOT";
+            this.colOT.Visible = true;
+            this.colOT.VisibleIndex = 4;
+            this.colOT.Width = 50;
+            // 
             // UCPayrollWages
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.PayrollGridControl);
             this.Controls.Add(this.panelControl1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UCPayrollWages";
-            this.Size = new System.Drawing.Size(916, 518);
+            this.Size = new System.Drawing.Size(1069, 677);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PayrollGridControl)).EndInit();
@@ -368,5 +549,17 @@
         private DevExpress.XtraGrid.Columns.GridColumn colPHGS;
         private DevExpress.XtraGrid.Columns.GridColumn colPIPS;
         private DevExpress.XtraGrid.Columns.GridColumn colPIGS;
+        private DevExpress.XtraGrid.Columns.GridColumn colMPLLoan;
+        private DevExpress.XtraGrid.Columns.GridColumn colSSSLoan;
+        private DevExpress.XtraGrid.Columns.GridColumn colNVPEA;
+        private DevExpress.XtraGrid.Columns.GridColumn colLBP;
+        private DevExpress.XtraGrid.Columns.GridColumn colDBP;
+        private DevExpress.XtraGrid.Columns.GridColumn colBIR;
+        private DevExpress.XtraGrid.Columns.GridColumn colGSISPOL;
+        private DevExpress.XtraGrid.Columns.GridColumn colGSISCon;
+        private DevExpress.XtraGrid.Columns.GridColumn colPIFCalLoan;
+        private DevExpress.XtraGrid.Columns.GridColumn colSSS;
+        private DevExpress.XtraGrid.Columns.GridColumn colSSSPS;
+        private DevExpress.XtraGrid.Columns.GridColumn colOT;
     }
 }

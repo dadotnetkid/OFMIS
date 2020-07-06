@@ -6,13 +6,14 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Helpers
 {
     public static class ModelState
     {
         public static List<string> ErrorMessages = new List<string>();
-        public static bool IsValid<TEntity,TEntityMeta>(TEntity model)
+        public static bool IsValid<TEntity, TEntityMeta>(TEntity model)
         {
             var validationContext = new ValidationContext(model, null, null);
             var results = new List<ValidationResult>();
@@ -31,5 +32,7 @@ namespace Helpers
                 return false;
             }
         }
+
+        
     }
 }

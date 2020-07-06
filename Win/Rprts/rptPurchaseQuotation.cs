@@ -18,12 +18,22 @@ namespace Win.Rprts
             officeId.PrintOnPage += OfficeId_PrintOnPage;
         }
 
-     
+
 
         private void OfficeId_PrintOnPage(object sender, PrintOnPageEventArgs e)
         {
             var lbl = sender as XRLabel;
-            lbl.Text = new StaticSettings().OfficeId + "-" + item.ControlNo;
+            lbl.Text = new StaticSettings().Offices.OffcAcr + "-" + item.ControlNo;
+        }
+
+        private void xrLabel63_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            if (sender is XRLabel lbl)
+            {
+                StaticSettings staticSettings = new StaticSettings();
+                lbl.Text = "[" + staticSettings.Offices.OffcAcr + "]Office Management Information System" +
+                           User.UserName;
+            }
         }
     }
 }

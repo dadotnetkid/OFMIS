@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Grid;
 using Helpers;
 using Models;
 using Models.Repository;
@@ -37,15 +38,15 @@ namespace Win.BL
             if (staticSettings.Offices.IsDivision == true)
             {
                 var officeName = staticSettings.Offices.UnderOfOffice.OfficeName;
-                frm.txtDeptHead.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office == officeName));
+                frm.txtDeptHead.Properties.DataSource = new BindingList<Signatories>(unitOfWork.Signatories.Get(m => m.Office == officeName));
             }
-            frm.txtAccountant.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")));
-            frm.txtTreasurer.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains("Treasurer")));
+            frm.txtAccountant.Properties.DataSource = new BindingList<Signatories>(unitOfWork.Signatories.Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")));
+            frm.txtTreasurer.Properties.DataSource = new BindingList<Signatories>(unitOfWork.Signatories.Get(m => m.Office.Contains("Treasurer")));
             frm.cboApprovedBy.Properties.DataSource = new BindingList<Signatories>(
-                unitOfWork.ChiefOfOfficesRepo.Get(x =>
+                unitOfWork.Signatories.Get(x =>
                     x.Position.Contains("Governor") || x.Position.Contains("Provincial Administrator")));
             frm.lookUpEditEmployees.DataSource =
-                new BindingList<Employees>(unitOfWork.EmployeesRepo.Get(m => m.OfficeId == staticSettings.OfficeId));
+                new BindingList<Employees>(unitOfWork.EmployeesRepo.Get());
             frm.txtAccountant.ItemIndex = 0;
         }
 
@@ -72,9 +73,9 @@ namespace Win.BL
                 var id = item["Id"].ToInt();
                 unitOfWork.PayrollDetailsRepo.Delete(m => m.Id == id);
                 unitOfWork.Save();
-
+                InitializeGridView(unitOfWork.PayrollsRepo.Find(x => x.Id == obId));
             }
-            
+
         }
 
 
@@ -143,18 +144,19 @@ namespace Win.BL
                 frm.txtPayTitle.Text = item.Title;
                 frm.txtPayDescription.Text = string.IsNullOrWhiteSpace(item.Description) ? frm.txtPayDescription.Text : item.Description;
                 frm.txtColumnTitle.Text = item.ColumnTitle1;
+                frm.txtDeptHead.Properties.DataSource = new BindingList<Signatories>(unitOfWork.Signatories.Get());
                 if (staticSettings.Offices.IsDivision == true)
                 {
                     frm.txtChief.Text = item.ChiefOfOffice ?? staticSettings.Head;
                 }
 
 
-                frm.txtAccountant.EditValue = item.Accountant ?? (unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")))?.FirstOrDefault()?.Person;
+                frm.txtAccountant.EditValue = item.Accountant ?? (unitOfWork.Signatories.Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")))?.FirstOrDefault()?.Person;
 
-                frm.txtTreasurer.EditValue = item.Treasurer ?? (unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains("Treasurer")))?.FirstOrDefault()?.Person; ;
+                frm.txtTreasurer.EditValue = item.Treasurer ?? (unitOfWork.Signatories.Get(m => m.Office.Contains("Treasurer")))?.FirstOrDefault()?.Person; ;
                 if (staticSettings.Offices.IsDivision == true)
                 {
-                    frm.txtDeptHead.EditValue = item.DeptHead ?? (unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains(staticSettings.OfficeName))?.FirstOrDefault()?.Person);
+                    frm.txtDeptHead.EditValue = item.DeptHead ?? (unitOfWork.Signatories.Get(m => m.Office.Contains(staticSettings.OfficeName))?.FirstOrDefault()?.Person);
                 }
                 else
                 {
@@ -280,7 +282,16 @@ namespace Win.BL
                 {
                     UnitOfWork unitOfWork = new UnitOfWork();
                     var employeeId = row["EmployeeId"]?.ToInt();
+
                     var employee = unitOfWork.EmployeesRepo.Find(m => m.Id == employeeId);
+                    if (employee == null)
+                    {
+                        if (sender is GridView gridView)
+                        {
+                            gridView.SetFocusedRowModified();
+                            return;
+                        }
+                    }
                     var item = new PayrollDetails()
                     {
                         Id = row["Id"].ToInt(),
@@ -304,6 +315,7 @@ namespace Win.BL
                     else
                         unitOfWork.PayrollDetailsRepo.Update(item);
                     unitOfWork.Save();
+                    InitializeGridView(unitOfWork.PayrollsRepo.Find(x => x.Id == obId));
                 }
 
 
@@ -324,13 +336,19 @@ namespace Win.BL
                 {
                     var item = unitOfWork.PayrollsRepo.Fetch().OrderByDescending(m => m.Id);
                     var id = (item.FirstOrDefault()?.Id ?? 0) + 1;
+                    var approvedBy = unitOfWork.Signatories.Find(x => x.Position =="Governor");
+
+                   
 
                     payrolls = new Payrolls()
                     {
                         Id = obId,
                         ControlNo = IdHelper.OfficeControlNo(item?.FirstOrDefault()?.ControlNo),
                         Date = DateTime.Now,
-                        ColumnTitle1 = "Column Title"
+                        ColumnTitle1 = "Column Title",
+                        ApprovedBy = approvedBy?.Person,
+                        ApprovedById = approvedBy?.Id,
+                        ApprovedByPos = approvedBy?.Position
                     };
                     int itemNo = 1;
                     foreach (var i in unitOfWork.ObligationsRepo.Find(m => m.Id == obId).Payees.Employees)

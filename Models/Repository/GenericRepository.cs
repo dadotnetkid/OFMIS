@@ -26,11 +26,11 @@ namespace Models.Repository
     }
     public partial class GenericRepository<TEntity> where TEntity : class
     {
-        internal ModelDb context;
+        internal DbContext context;
         internal DbSet<TEntity> dbSet;
 
        
-        public GenericRepository(ModelDb context)
+        public GenericRepository(DbContext context)
         {
             this.context = context;
             context.Database.Log = (s) => { Debug.WriteLine(s); };

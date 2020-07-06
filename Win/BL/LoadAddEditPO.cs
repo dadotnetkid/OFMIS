@@ -39,6 +39,17 @@ namespace Win.BL
             if (uCPO.POGridView.GetFocusedRow() is PurchaseOrders item)
             {
                 item = new UnitOfWork().PurchaseOrdersRepo.Find(m => m.Id == item.Id);
+                item.PODetails = item.PODetails.OrderBy(x => x.ItemNo).ToList();
+                if (item.PODetails.Count < 15)
+                {
+                    var counter = 15 - item.PODetails.Count;
+                    for (var i = 1; i <= counter; i++)
+                    {
+                        item.PODetails.Add(new PODetails());
+                    }
+                }
+
+
                 frmReportViewer frm = new frmReportViewer(new rptPO(item)
                 {
                     DataSource = new List<PurchaseOrders>() { item }
@@ -98,13 +109,70 @@ namespace Win.BL
             frm.ItemsGridView.RowUpdated += ItemsGridView_RowUpdated;
             frm.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_ButtonClick;
             frm.btnAddItems.Click += BtnAddItems_Click;
+            frm.btnSelectItemFromAbstract.Click += BtnSelectItemFromAbstract_Click;
+        }
+
+        private void BtnSelectItemFromAbstract_Click(object sender, EventArgs e)
+        {
+            purchaseOrders = new UnitOfWork().PurchaseOrdersRepo.Find(x => x.Id == purchaseOrders.Id);
+            frmSelectedItem frms = new frmSelectedItem(purchaseOrders.PurchaseRequests, this.purchaseOrders, frm);
+            frms.ShowDialog();
         }
 
         private void BtnAddItems_Click(object sender, EventArgs e)
         {
-            frmPriceQuotations frmPriceQuotations = new frmPriceQuotations(this.purchaseOrders.PurchaseRequests, this.purchaseOrders.Id);
-            frmPriceQuotations.ShowDialog();
-            ((ITransactions<PurchaseOrders>)this).Init();
+            //frmPriceQuotations frmPriceQuotations = new frmPriceQuotations(this.purchaseOrders.PurchaseRequests, this.purchaseOrders.Id);
+            //frmPriceQuotations.ShowDialog();
+            UnitOfWork unitOfWork = new UnitOfWork();
+            try
+            {
+
+                if (unitOfWork.PODetailsRepo.Fetch(x => x.POId == purchaseOrders.Id).Any())
+                {
+
+                    if (MessageBox.Show("Purchase Detail has already item do you want to add this?", "Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        return;
+                }
+
+                if (MessageBox.Show("Do you want to submit this?", "Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+
+                var itemNo = 1;
+                var item = unitOfWork.PurchaseRequestsRepo.Find(x => x.Id == purchaseOrders.PRId)?.AOQ.FirstOrDefault();
+                if (item == null)
+                {
+                    MessageBox.Show("No Abstract created!", "Empty", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                foreach (var i in item.AOQDetails)
+                {
+                    unitOfWork.PODetailsRepo.Insert(new PODetails()
+                    {
+                        Category = i.Category ?? "",
+                        Cost = i.Cost ?? 0,
+                        Item = i.Item,
+                        ItemNo = i.ItemNo ?? itemNo,
+                        POId = purchaseOrders.Id,
+                        Quantity = i.Quantity ?? 1,
+                        UOM = i.UOM ?? "",
+                        TotalAmount = (i.Cost ?? 0) * (i.Quantity ?? 1)
+                    });
+                    itemNo++;
+
+                }
+                unitOfWork.Save();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            //var item = unitOfWork.PurchaseOrdersRepo.Find(m => m.Id == purchaseOrders.Id);
+            frm.ItemsGridControl.DataSource = new BindingList<PODetails>(unitOfWork.PurchaseOrdersRepo.Find(x => x.Id == purchaseOrders.Id).PODetails.ToList());
+
+
+
+
         }
 
         private void BtnDeleteItemRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -119,7 +187,8 @@ namespace Win.BL
                     UnitOfWork unitOfWork = new UnitOfWork();
                     unitOfWork.PODetailsRepo.Delete(m => m.Id == item.Id);
                     unitOfWork.Save();
-                    Detail();
+                    frm.ItemsGridControl.DataSource = new BindingList<PODetails>(unitOfWork.PurchaseOrdersRepo.Find(x => x.Id == purchaseOrders.Id).PODetails.ToList());
+                    //Detail();
                 }
             }
             catch (Exception exception)
@@ -140,18 +209,17 @@ namespace Win.BL
                     if (item.Id == 0)
                         unitOfWork.PODetailsRepo.Insert(item);
                     else
-                        unitOfWork.PODetailsRepo.Update(new PODetails()
-                        {
-                            Id = item.Id,
-                            Category = item.Category,
-                            Cost = item.Cost,
-                            Item = item.Item,
-                            ItemNo = item.ItemNo,
-                            POId = item.POId,
-                            Quantity = item.Quantity,
-                            TotalAmount = item.TotalAmount,
-                            UOM = item.UOM
-                        });
+                    {
+                        var res = unitOfWork.PODetailsRepo.Find(x => x.Id == item.Id);
+                        res.Category = item.Category ?? "";
+                        res.Cost = item.Cost;
+                        res.Item = item.Item;
+                        res.ItemNo = item.ItemNo;
+                        res.Quantity = item.Quantity;
+                        res.TotalAmount = item.TotalAmount;
+                        res.UOM = item.UOM;
+                    }
+
                     unitOfWork.Save();
                     Detail();
                 }
@@ -165,7 +233,9 @@ namespace Win.BL
         private void Frm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (methodType == MethodType.Edit)
+            {
                 return;
+            }
             if (isClosed)
                 return;
 
@@ -245,6 +315,8 @@ namespace Win.BL
                     return;
                 po.Supplier = frm.cboSuppliers.Text;
                 po.SupplierAddress = frm.txtAddress.Text;
+                po.TotalAmount = po.PODetails.Sum(x => x.TotalAmount);
+                po.Description = frm.txtDescription.Text;
                 unitOfWork.Save();
                 this.isClosed = true;
                 frm.Close();
@@ -272,8 +344,8 @@ namespace Win.BL
                 var item = unitOfWork.PurchaseOrdersRepo.Find(m => m.Id == purchaseOrders.Id);
                 frm.dtDate.DateTime = item.Date ?? DateTime.Now;
                 frm.txtControlNumber.Text = item.ControlNo;
-                frm.txtDescription.Text = item.Description;
-                frm.cboSuppliers.Text = item.Supplier;
+                frm.txtDescription.Text = item.Description ?? item.PurchaseRequests?.Description;
+                frm.cboSuppliers.EditValue = item.Supplier;
                 frm.txtAddress.Text = item.SupplierAddress;
                 frm.ItemsGridControl.DataSource = new BindingList<PODetails>(item.PODetails.ToList());
 
@@ -299,7 +371,7 @@ namespace Win.BL
                         Id = id,
                         PRId = purchaseOrders.PRId,
                         Date = DateTime.Now,
-
+                        Description = unitOfWork.PurchaseRequestsRepo.Find(x => x.Id == purchaseOrders.PRId)?.Description,
                         PODate = DateTime.Now,
                         ControlNo = IdHelper.OfficeControlNo(po.FirstOrDefault()?.ControlNo)
                     };
@@ -365,6 +437,14 @@ namespace Win.BL
         public void Search(string search)
         {
             throw new NotImplementedException();
+        }
+
+        public void LoadPayees()
+        {
+            frm.cboSuppliers.Properties.DataSource = new EntityServerModeSource()
+            {
+                QueryableSource = new UnitOfWork().PayeesRepo.Fetch()
+            };
         }
     }
 }

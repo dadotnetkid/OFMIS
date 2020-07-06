@@ -10,7 +10,7 @@ namespace Helpers
 {
     public class Cryptography
     {
-        public static string Encrypt(string encryptString, string encryptionKey)
+        public static string Encrypt(string encryptString, string encryptionKey="0ram@1234xxxxxxxxxxtttttuuuuuiiiiio")
         {
             if (string.IsNullOrEmpty(encryptString) || string.IsNullOrEmpty(encryptionKey))
                 return "";
@@ -36,7 +36,7 @@ namespace Helpers
             return encryptString;
         }
 
-        public static string Decrypt(string cipherText, string encryptionKey)
+        public static string Decrypt(string cipherText, string encryptionKey= "0ram@1234xxxxxxxxxxtttttuuuuuiiiiio")
         {
             if (string.IsNullOrEmpty(cipherText) || string.IsNullOrEmpty(encryptionKey))
                 return "";

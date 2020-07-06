@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditPayrollWages));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions5 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions6 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
@@ -64,12 +64,23 @@
             this.colPHGS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPIPS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPIGS = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMPLLoan = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSSSLoan = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNVPEA = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLBP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDBP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBIR = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colGSISPOL = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colGSISCon = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPIFCalLoan = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSSSPS = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.txtPosition = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.txtChief = new DevExpress.XtraEditors.TextEdit();
+            this.txtDivisionChief = new DevExpress.XtraEditors.TextEdit();
             this.txtPayDescription = new DevExpress.XtraEditors.TextEdit();
             this.txtControl = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -82,6 +93,10 @@
             this.txtGovernor = new DevExpress.XtraEditors.LookUpEdit();
             this.txtAccountant = new DevExpress.XtraEditors.LookUpEdit();
             this.txtTreasurer = new DevExpress.XtraEditors.LookUpEdit();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PayrollGridControl)).BeginInit();
@@ -92,7 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEditEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinTotalRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtChief.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDivisionChief.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -101,6 +116,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtGovernor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountant.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTreasurer.Properties)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -147,25 +166,24 @@
             // 
             // btnClose
             // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
-            this.btnClose.Location = new System.Drawing.Point(1258, 553);
+            this.btnClose.Location = new System.Drawing.Point(110, 169);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(105, 31);
             this.btnClose.TabIndex = 77;
             this.btnClose.Text = "&Close";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(1151, 553);
+            this.btnSave.Location = new System.Drawing.Point(3, 169);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(101, 31);
             this.btnSave.TabIndex = 76;
@@ -177,7 +195,7 @@
             this.PayrollGridControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PayrollGridControl.Location = new System.Drawing.Point(10, 263);
+            this.PayrollGridControl.Location = new System.Drawing.Point(3, 221);
             this.PayrollGridControl.MainView = this.PayrollGridView;
             this.PayrollGridControl.Name = "PayrollGridControl";
             this.PayrollGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -186,13 +204,16 @@
             this.spinTotalRepo,
             this.spinItemNumberRepo,
             this.lookUpEditEmployees});
-            this.PayrollGridControl.Size = new System.Drawing.Size(1355, 284);
+            this.PayrollGridControl.Size = new System.Drawing.Size(1371, 326);
             this.PayrollGridControl.TabIndex = 75;
             this.PayrollGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.PayrollGridView});
             // 
             // PayrollGridView
             // 
+            this.PayrollGridView.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.PayrollGridView.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.PayrollGridView.ColumnPanelRowHeight = 50;
             this.PayrollGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colEdit,
             this.colDelete,
@@ -206,13 +227,27 @@
             this.colPHPS,
             this.colPHGS,
             this.colPIPS,
-            this.colPIGS});
+            this.colPIGS,
+            this.colMPLLoan,
+            this.colSSSLoan,
+            this.colNVPEA,
+            this.colLBP,
+            this.colDBP,
+            this.colBIR,
+            this.colGSISPOL,
+            this.colGSISCon,
+            this.colPIFCalLoan,
+            this.colSSSPS,
+            this.colOT});
             this.PayrollGridView.GridControl = this.PayrollGridControl;
             this.PayrollGridView.Name = "PayrollGridView";
+            this.PayrollGridView.OptionsCustomization.AllowRowSizing = true;
             this.PayrollGridView.OptionsNavigation.AutoFocusNewRow = true;
             this.PayrollGridView.OptionsNavigation.EnterMoveNextColumn = true;
-            this.PayrollGridView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+            this.PayrollGridView.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
+            this.PayrollGridView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.PayrollGridView.OptionsView.ShowGroupPanel = false;
+            this.PayrollGridView.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             // 
             // colEdit
             // 
@@ -223,9 +258,9 @@
             // btnEditPayrollRepo
             // 
             this.btnEditPayrollRepo.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            editorButtonImageOptions5.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions5.Image")));
             this.btnEditPayrollRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditPayrollRepo.Name = "btnEditPayrollRepo";
             this.btnEditPayrollRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -235,16 +270,17 @@
             this.colDelete.Name = "colDelete";
             this.colDelete.Visible = true;
             this.colDelete.VisibleIndex = 0;
-            this.colDelete.Width = 66;
+            this.colDelete.Width = 33;
             // 
             // btnDeletePayrollRepo
             // 
             this.btnDeletePayrollRepo.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            editorButtonImageOptions6.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions6.Image")));
             this.btnDeletePayrollRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDeletePayrollRepo.Name = "btnDeletePayrollRepo";
             this.btnDeletePayrollRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnDeletePayrollRepo.Click += new System.EventHandler(this.btnDeletePayrollRepo_Click);
             // 
             // colNo
             // 
@@ -254,7 +290,7 @@
             this.colNo.Name = "colNo";
             this.colNo.Visible = true;
             this.colNo.VisibleIndex = 1;
-            this.colNo.Width = 53;
+            this.colNo.Width = 28;
             // 
             // spinItemNumberRepo
             // 
@@ -271,7 +307,7 @@
             this.colName.Name = "colName";
             this.colName.Visible = true;
             this.colName.VisibleIndex = 2;
-            this.colName.Width = 196;
+            this.colName.Width = 99;
             // 
             // lookUpEditEmployees
             // 
@@ -305,8 +341,8 @@
             this.colTotal.OptionsColumn.ReadOnly = true;
             this.colTotal.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.colTotal.Visible = true;
-            this.colTotal.VisibleIndex = 10;
-            this.colTotal.Width = 196;
+            this.colTotal.VisibleIndex = 21;
+            this.colTotal.Width = 213;
             // 
             // spinTotalRepo
             // 
@@ -327,7 +363,7 @@
             this.colNoOfdays.Name = "colNoOfdays";
             this.colNoOfdays.Visible = true;
             this.colNoOfdays.VisibleIndex = 3;
-            this.colNoOfdays.Width = 80;
+            this.colNoOfdays.Width = 41;
             // 
             // colRatePerDay
             // 
@@ -336,8 +372,8 @@
             this.colRatePerDay.FieldName = "RatePerDay";
             this.colRatePerDay.Name = "colRatePerDay";
             this.colRatePerDay.Visible = true;
-            this.colRatePerDay.VisibleIndex = 4;
-            this.colRatePerDay.Width = 132;
+            this.colRatePerDay.VisibleIndex = 5;
+            this.colRatePerDay.Width = 45;
             // 
             // colPERA
             // 
@@ -346,54 +382,164 @@
             this.colPERA.FieldName = "PERA";
             this.colPERA.Name = "colPERA";
             this.colPERA.Visible = true;
-            this.colPERA.VisibleIndex = 5;
-            this.colPERA.Width = 132;
+            this.colPERA.VisibleIndex = 6;
+            this.colPERA.Width = 45;
             // 
             // colPHPS
             // 
-            this.colPHPS.Caption = "Phil Health PS";
+            this.colPHPS.Caption = "PHIC PS";
             this.colPHPS.ColumnEdit = this.spinTotalRepo;
             this.colPHPS.FieldName = "PHPS";
             this.colPHPS.Name = "colPHPS";
             this.colPHPS.Visible = true;
-            this.colPHPS.VisibleIndex = 6;
-            this.colPHPS.Width = 132;
+            this.colPHPS.VisibleIndex = 8;
+            this.colPHPS.Width = 54;
             // 
             // colPHGS
             // 
-            this.colPHGS.Caption = "Phil Health GS";
+            this.colPHGS.Caption = "PHIC GS";
             this.colPHGS.ColumnEdit = this.spinTotalRepo;
             this.colPHGS.FieldName = "PHGS";
             this.colPHGS.Name = "colPHGS";
             this.colPHGS.Visible = true;
-            this.colPHGS.VisibleIndex = 7;
-            this.colPHGS.Width = 132;
+            this.colPHGS.VisibleIndex = 9;
+            this.colPHGS.Width = 38;
             // 
             // colPIPS
             // 
-            this.colPIPS.Caption = "Pag Ibig PS";
+            this.colPIPS.Caption = "PIF PS";
             this.colPIPS.ColumnEdit = this.spinTotalRepo;
             this.colPIPS.FieldName = "PIPS";
             this.colPIPS.Name = "colPIPS";
             this.colPIPS.Visible = true;
-            this.colPIPS.VisibleIndex = 8;
-            this.colPIPS.Width = 132;
+            this.colPIPS.VisibleIndex = 10;
+            this.colPIPS.Width = 73;
             // 
             // colPIGS
             // 
-            this.colPIGS.Caption = "Pag Ibig GS";
+            this.colPIGS.Caption = "PIF GS";
             this.colPIGS.ColumnEdit = this.spinTotalRepo;
             this.colPIGS.FieldName = "PIGS";
             this.colPIGS.Name = "colPIGS";
             this.colPIGS.Visible = true;
-            this.colPIGS.VisibleIndex = 9;
-            this.colPIGS.Width = 132;
+            this.colPIGS.VisibleIndex = 11;
+            this.colPIGS.Width = 65;
+            // 
+            // colMPLLoan
+            // 
+            this.colMPLLoan.Caption = "MPL";
+            this.colMPLLoan.ColumnEdit = this.spinTotalRepo;
+            this.colMPLLoan.FieldName = "MPL";
+            this.colMPLLoan.Name = "colMPLLoan";
+            this.colMPLLoan.Visible = true;
+            this.colMPLLoan.VisibleIndex = 12;
+            this.colMPLLoan.Width = 49;
+            // 
+            // colSSSLoan
+            // 
+            this.colSSSLoan.Caption = "SSS Loan";
+            this.colSSSLoan.ColumnEdit = this.spinTotalRepo;
+            this.colSSSLoan.FieldName = "SSSLoan";
+            this.colSSSLoan.Name = "colSSSLoan";
+            this.colSSSLoan.Visible = true;
+            this.colSSSLoan.VisibleIndex = 15;
+            this.colSSSLoan.Width = 40;
+            // 
+            // colNVPEA
+            // 
+            this.colNVPEA.Caption = "NVPEA Loan";
+            this.colNVPEA.ColumnEdit = this.spinTotalRepo;
+            this.colNVPEA.FieldName = "NVPEA";
+            this.colNVPEA.Name = "colNVPEA";
+            this.colNVPEA.Visible = true;
+            this.colNVPEA.VisibleIndex = 14;
+            this.colNVPEA.Width = 49;
+            // 
+            // colLBP
+            // 
+            this.colLBP.Caption = "LBP Loan";
+            this.colLBP.ColumnEdit = this.spinTotalRepo;
+            this.colLBP.FieldName = "LBP";
+            this.colLBP.Name = "colLBP";
+            this.colLBP.Visible = true;
+            this.colLBP.VisibleIndex = 16;
+            this.colLBP.Width = 40;
+            // 
+            // colDBP
+            // 
+            this.colDBP.Caption = "DBP";
+            this.colDBP.ColumnEdit = this.spinItemNumberRepo;
+            this.colDBP.FieldName = "DBP";
+            this.colDBP.Name = "colDBP";
+            this.colDBP.Visible = true;
+            this.colDBP.VisibleIndex = 17;
+            this.colDBP.Width = 40;
+            // 
+            // colBIR
+            // 
+            this.colBIR.Caption = "BIR WH";
+            this.colBIR.ColumnEdit = this.spinTotalRepo;
+            this.colBIR.FieldName = "BIRWH";
+            this.colBIR.Name = "colBIR";
+            this.colBIR.Visible = true;
+            this.colBIR.VisibleIndex = 18;
+            this.colBIR.Width = 40;
+            // 
+            // colGSISPOL
+            // 
+            this.colGSISPOL.Caption = "GSIS Pol";
+            this.colGSISPOL.ColumnEdit = this.spinTotalRepo;
+            this.colGSISPOL.FieldName = "GSISPolicy";
+            this.colGSISPOL.Name = "colGSISPOL";
+            this.colGSISPOL.Visible = true;
+            this.colGSISPOL.VisibleIndex = 19;
+            this.colGSISPOL.Width = 49;
+            // 
+            // colGSISCon
+            // 
+            this.colGSISCon.Caption = "GSIS Con";
+            this.colGSISCon.ColumnEdit = this.spinTotalRepo;
+            this.colGSISCon.FieldName = "GSISConsol";
+            this.colGSISCon.Name = "colGSISCon";
+            this.colGSISCon.Visible = true;
+            this.colGSISCon.VisibleIndex = 20;
+            this.colGSISCon.Width = 85;
+            // 
+            // colPIFCalLoan
+            // 
+            this.colPIFCalLoan.Caption = "PIF Cal Loan";
+            this.colPIFCalLoan.FieldName = "PIFCalLoan";
+            this.colPIFCalLoan.Name = "colPIFCalLoan";
+            this.colPIFCalLoan.Visible = true;
+            this.colPIFCalLoan.VisibleIndex = 13;
+            this.colPIFCalLoan.Width = 68;
+            // 
+            // colSSSPS
+            // 
+            this.colSSSPS.Caption = "SSS PS";
+            this.colSSSPS.FieldName = "SSSPS";
+            this.colSSSPS.MinWidth = 21;
+            this.colSSSPS.Name = "colSSSPS";
+            this.colSSSPS.Visible = true;
+            this.colSSSPS.VisibleIndex = 7;
+            this.colSSSPS.Width = 55;
+            // 
+            // colOT
+            // 
+            this.colOT.Caption = "OT";
+            this.colOT.ColumnEdit = this.spinItemNumberRepo;
+            this.colOT.FieldName = "OT";
+            this.colOT.MinWidth = 21;
+            this.colOT.Name = "colOT";
+            this.colOT.Visible = true;
+            this.colOT.VisibleIndex = 4;
+            this.colOT.Width = 62;
             // 
             // labelControl9
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Location = new System.Drawing.Point(11, 237);
+            this.labelControl9.Location = new System.Drawing.Point(2, 180);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(53, 15);
             this.labelControl9.TabIndex = 74;
@@ -403,7 +549,7 @@
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(10, 218);
+            this.labelControl8.Location = new System.Drawing.Point(1, 161);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(62, 15);
             this.labelControl8.TabIndex = 73;
@@ -413,15 +559,15 @@
             // 
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(10, 196);
+            this.labelControl11.Location = new System.Drawing.Point(1, 139);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(51, 15);
+            this.labelControl11.Size = new System.Drawing.Size(56, 15);
             this.labelControl11.TabIndex = 71;
-            this.labelControl11.Text = "Governor";
+            this.labelControl11.Text = "Dept Head";
             // 
             // txtPosition
             // 
-            this.txtPosition.Location = new System.Drawing.Point(101, 171);
+            this.txtPosition.Location = new System.Drawing.Point(92, 114);
             this.txtPosition.Name = "txtPosition";
             this.txtPosition.Properties.ReadOnly = true;
             this.txtPosition.Properties.UseReadOnlyAppearance = false;
@@ -432,25 +578,25 @@
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(11, 174);
+            this.labelControl7.Location = new System.Drawing.Point(2, 117);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(46, 15);
             this.labelControl7.TabIndex = 72;
             this.labelControl7.Text = "Position";
             // 
-            // txtChief
+            // txtDivisionChief
             // 
-            this.txtChief.Location = new System.Drawing.Point(101, 149);
-            this.txtChief.Name = "txtChief";
-            this.txtChief.Properties.UseReadOnlyAppearance = false;
-            this.txtChief.Size = new System.Drawing.Size(716, 20);
-            this.txtChief.TabIndex = 60;
+            this.txtDivisionChief.Location = new System.Drawing.Point(92, 92);
+            this.txtDivisionChief.Name = "txtDivisionChief";
+            this.txtDivisionChief.Properties.UseReadOnlyAppearance = false;
+            this.txtDivisionChief.Size = new System.Drawing.Size(716, 20);
+            this.txtDivisionChief.TabIndex = 60;
             // 
             // txtPayDescription
             // 
             this.txtPayDescription.EditValue = "WE HEREBY ACKNOWLEDGE RECEIPT of the sum shown opposite our names as full compens" +
     "ation for the services rendered to the period stated";
-            this.txtPayDescription.Location = new System.Drawing.Point(101, 104);
+            this.txtPayDescription.Location = new System.Drawing.Point(92, 47);
             this.txtPayDescription.Name = "txtPayDescription";
             this.txtPayDescription.Properties.UseReadOnlyAppearance = false;
             this.txtPayDescription.Size = new System.Drawing.Size(716, 20);
@@ -458,7 +604,7 @@
             // 
             // txtControl
             // 
-            this.txtControl.Location = new System.Drawing.Point(101, 82);
+            this.txtControl.Location = new System.Drawing.Point(92, 25);
             this.txtControl.Name = "txtControl";
             this.txtControl.Properties.UseReadOnlyAppearance = false;
             this.txtControl.Size = new System.Drawing.Size(716, 20);
@@ -468,17 +614,17 @@
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(10, 152);
+            this.labelControl6.Location = new System.Drawing.Point(1, 95);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(78, 15);
             this.labelControl6.TabIndex = 70;
-            this.labelControl6.Text = "Chief of Office";
+            this.labelControl6.Text = "Division Chief";
             // 
             // labelControl10
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(10, 106);
+            this.labelControl10.Location = new System.Drawing.Point(1, 49);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(87, 15);
             this.labelControl10.TabIndex = 66;
@@ -488,7 +634,7 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(10, 128);
+            this.labelControl3.Location = new System.Drawing.Point(1, 71);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(47, 15);
             this.labelControl3.TabIndex = 68;
@@ -498,7 +644,7 @@
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(11, 84);
+            this.labelControl2.Location = new System.Drawing.Point(2, 27);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(87, 15);
             this.labelControl2.TabIndex = 67;
@@ -508,7 +654,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(11, 60);
+            this.labelControl1.Location = new System.Drawing.Point(2, 3);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(26, 15);
             this.labelControl1.TabIndex = 64;
@@ -517,7 +663,7 @@
             // txtDate
             // 
             this.txtDate.EditValue = null;
-            this.txtDate.Location = new System.Drawing.Point(101, 60);
+            this.txtDate.Location = new System.Drawing.Point(92, 3);
             this.txtDate.Name = "txtDate";
             this.txtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -535,7 +681,7 @@
             // 
             // txtPayTitle
             // 
-            this.txtPayTitle.Location = new System.Drawing.Point(101, 126);
+            this.txtPayTitle.Location = new System.Drawing.Point(92, 69);
             this.txtPayTitle.Name = "txtPayTitle";
             this.txtPayTitle.Properties.UseReadOnlyAppearance = false;
             this.txtPayTitle.Size = new System.Drawing.Size(716, 20);
@@ -543,7 +689,7 @@
             // 
             // txtGovernor
             // 
-            this.txtGovernor.Location = new System.Drawing.Point(101, 193);
+            this.txtGovernor.Location = new System.Drawing.Point(92, 136);
             this.txtGovernor.Name = "txtGovernor";
             this.txtGovernor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -560,7 +706,7 @@
             // 
             // txtAccountant
             // 
-            this.txtAccountant.Location = new System.Drawing.Point(101, 215);
+            this.txtAccountant.Location = new System.Drawing.Point(92, 158);
             this.txtAccountant.Name = "txtAccountant";
             this.txtAccountant.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -577,7 +723,7 @@
             // 
             // txtTreasurer
             // 
-            this.txtTreasurer.Location = new System.Drawing.Point(101, 237);
+            this.txtTreasurer.Location = new System.Drawing.Point(92, 180);
             this.txtTreasurer.Name = "txtTreasurer";
             this.txtTreasurer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -592,32 +738,78 @@
             this.txtTreasurer.Size = new System.Drawing.Size(716, 20);
             this.txtTreasurer.TabIndex = 65;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.PayrollGridControl, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 54);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1377, 550);
+            this.tableLayoutPanel1.TabIndex = 78;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 83.3698F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.6302F));
+            this.tableLayoutPanel2.Controls.Add(this.panel3, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.panel2, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1371, 212);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.btnClose);
+            this.panel3.Controls.Add(this.btnSave);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(1146, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(222, 206);
+            this.panel3.TabIndex = 79;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.txtDate);
+            this.panel2.Controls.Add(this.txtTreasurer);
+            this.panel2.Controls.Add(this.txtAccountant);
+            this.panel2.Controls.Add(this.txtGovernor);
+            this.panel2.Controls.Add(this.labelControl9);
+            this.panel2.Controls.Add(this.txtPayTitle);
+            this.panel2.Controls.Add(this.labelControl8);
+            this.panel2.Controls.Add(this.labelControl1);
+            this.panel2.Controls.Add(this.labelControl11);
+            this.panel2.Controls.Add(this.labelControl2);
+            this.panel2.Controls.Add(this.txtPosition);
+            this.panel2.Controls.Add(this.labelControl3);
+            this.panel2.Controls.Add(this.labelControl7);
+            this.panel2.Controls.Add(this.labelControl10);
+            this.panel2.Controls.Add(this.txtDivisionChief);
+            this.panel2.Controls.Add(this.labelControl6);
+            this.panel2.Controls.Add(this.txtPayDescription);
+            this.panel2.Controls.Add(this.txtControl);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1137, 206);
+            this.panel2.TabIndex = 79;
+            // 
             // frmAddEditPayrollWages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1377, 604);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.PayrollGridControl);
-            this.Controls.Add(this.labelControl9);
-            this.Controls.Add(this.labelControl8);
-            this.Controls.Add(this.labelControl11);
-            this.Controls.Add(this.txtPosition);
-            this.Controls.Add(this.labelControl7);
-            this.Controls.Add(this.txtChief);
-            this.Controls.Add(this.txtPayDescription);
-            this.Controls.Add(this.txtControl);
-            this.Controls.Add(this.labelControl6);
-            this.Controls.Add(this.labelControl10);
-            this.Controls.Add(this.labelControl3);
-            this.Controls.Add(this.labelControl2);
-            this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.txtDate);
-            this.Controls.Add(this.txtPayTitle);
-            this.Controls.Add(this.txtGovernor);
-            this.Controls.Add(this.txtAccountant);
-            this.Controls.Add(this.txtTreasurer);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAddEditPayrollWages";
@@ -634,7 +826,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEditEmployees)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinTotalRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtChief.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDivisionChief.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayDescription.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties.CalendarTimeProperties)).EndInit();
@@ -643,8 +835,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtGovernor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountant.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTreasurer.Properties)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -673,7 +869,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl11;
         public DevExpress.XtraEditors.TextEdit txtPosition;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        public DevExpress.XtraEditors.TextEdit txtChief;
+        public DevExpress.XtraEditors.TextEdit txtDivisionChief;
         public DevExpress.XtraEditors.TextEdit txtPayDescription;
         public DevExpress.XtraEditors.TextEdit txtControl;
         private DevExpress.XtraEditors.LabelControl labelControl6;
@@ -693,5 +889,20 @@
         private DevExpress.XtraGrid.Columns.GridColumn colPHGS;
         private DevExpress.XtraGrid.Columns.GridColumn colPIPS;
         private DevExpress.XtraGrid.Columns.GridColumn colPIGS;
+        private DevExpress.XtraGrid.Columns.GridColumn colMPLLoan;
+        private DevExpress.XtraGrid.Columns.GridColumn colSSSLoan;
+        private DevExpress.XtraGrid.Columns.GridColumn colNVPEA;
+        private DevExpress.XtraGrid.Columns.GridColumn colLBP;
+        private DevExpress.XtraGrid.Columns.GridColumn colDBP;
+        private DevExpress.XtraGrid.Columns.GridColumn colBIR;
+        private DevExpress.XtraGrid.Columns.GridColumn colGSISPOL;
+        private DevExpress.XtraGrid.Columns.GridColumn colGSISCon;
+        private DevExpress.XtraGrid.Columns.GridColumn colPIFCalLoan;
+        private DevExpress.XtraGrid.Columns.GridColumn colSSSPS;
+        private DevExpress.XtraGrid.Columns.GridColumn colOT;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel2;
     }
 }

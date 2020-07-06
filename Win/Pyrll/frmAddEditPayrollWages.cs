@@ -21,13 +21,14 @@ namespace Win.Pyrll
         private PayrollWages payrollWages;
         private bool isClosed;
         StaticSettings staticSettings = new StaticSettings();
+        private Obligations obligations;
 
 
-        public frmAddEditPayrollWages(MethodType methodType, PayrollWages payrollWages)
+        public frmAddEditPayrollWages(MethodType methodType, Obligations obligations)
         {
             InitializeComponent();
             this.methodType = methodType;
-            this.payrollWages = payrollWages;
+            this.obligations = obligations;
             Init();
             PayrollGridView.RowUpdated += PayrollGridView_RowUpdated;
         }
@@ -38,12 +39,12 @@ namespace Win.Pyrll
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
-                var item = unitOfWork.PayrollWagesRepo.Find(m => m.Id == payrollWages.Id);
+                var item = unitOfWork.PayrollWagesRepo.Find(m => m.Id == obligations.Id);
                 item.Date = txtDate.DateTime;
                 item.ControlNo = txtControl.Text;
                 item.Description = txtPayDescription.Text;
                 item.Title = txtPayTitle.Text;
-                item.ChiefOfOffice = txtChief.Text;
+                item.ChiefOfOffice = txtDivisionChief.Text;
                 item.Position = txtPosition.Text;
                 item.ApprovedBy = (txtGovernor.GetSelectedDataRow() as Signatories)?.Person;
                 item.ApprovedByPos = (txtGovernor.GetSelectedDataRow() as Signatories)?.Position;
@@ -68,17 +69,26 @@ namespace Win.Pyrll
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
-                payrollWages = unitOfWork.PayrollWagesRepo.Find(m => m.Id == payrollWages.Id);
-                txtAccountant.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo.Get());
-                txtGovernor.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo.Get());
-                txtTreasurer.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo.Get());
+
+                payrollWages = unitOfWork.PayrollWagesRepo.Find(m => m.Id == obligations.Id);
+                txtAccountant.Properties.DataSource = new BindingList<Signatories>(unitOfWork.Signatories.Get());
+                txtGovernor.Properties.DataSource = new BindingList<Signatories>(unitOfWork.Signatories.Get());
+                txtTreasurer.Properties.DataSource = new BindingList<Signatories>(unitOfWork.Signatories.Get());
                 txtDate.EditValue = payrollWages.Date;
                 txtControl.EditValue = payrollWages.ControlNo;
                 txtPayTitle.EditValue = payrollWages.Title;
                 txtPayDescription.EditValue = payrollWages.Description;
-                txtChief.EditValue = payrollWages.ChiefOfOffice;
+                txtDivisionChief.EditValue = payrollWages.ChiefOfOffice;
                 txtPosition.EditValue = payrollWages.Position;
-                txtGovernor.EditValue = payrollWages.ApprovedBy;
+                if (staticSettings.Offices.IsDivision == true && (staticSettings.Offices.UnderOfOffice.OfficeName == "Governor's Office" || staticSettings.Offices.UnderOfOffice.OfficeName == "GO" || staticSettings.Offices.UnderOfOffice.OfficeName == "Governor Office" || staticSettings.Offices.UnderOfOffice.OfficeName == "Governors Office"))
+                {
+                    txtGovernor.EditValue = payrollWages.ApprovedBy ?? unitOfWork.Signatories.Find(x => x.Position == "Governor")?.Person;
+                }
+                else
+                {
+                    txtGovernor.EditValue = staticSettings.Head;
+                }
+
                 txtAccountant.EditValue = payrollWages.Accountant;
                 txtTreasurer.EditValue = payrollWages.Treasurer;
                 PayrollGridControl.DataSource =
@@ -102,7 +112,9 @@ namespace Win.Pyrll
                 if (e.Row is PayrollWageDetails item)
                 {
                     var wages = item.NoOfdays * item.RatePerDay;
-                    var total = (wages + (item.PERA ?? 0)) - ((item.PHPS ?? 0)+  (item.PIPS ?? 0));
+                    var ot = (item.OT ?? 0) * (item.RatePerDay ?? 0);
+                    var deduction = (item.SSSPS ?? 0) + (item.MPL ?? 0) + (item.PIFCalLoan ?? 0) + (item.SSSLoan ?? 0) + (item.NVPEA ?? 0) + (item.LBP ?? 0) + (item.DBP ?? 0) + (item.BIRWH ?? 0);
+                    var total = (wages + ot + (item.PERA ?? 0)) - ((item.PHPS ?? 0) + (item.PIPS ?? 0)) - deduction;
                     item.Total = total;
                     item.GrossAmount = wages;
                     item.PayrollWageId = payrollWages.Id;
@@ -127,8 +139,18 @@ namespace Win.Pyrll
                             PHPS = item.PHPS,
                             PIGS = item.PIGS,
                             PIPS = item.PIPS,
+                            SSSPS = item.SSSPS,
                             RatePerDay = item.RatePerDay,
-                            Total = item.Total
+                            Total = item.Total,
+                            BIRWH = item.BIRWH,
+                            DBP = item.DBP,
+                            GSISConsol = item.GSISConsol,
+                            GSISPolicy = item.GSISPolicy,
+                            LBP = item.LBP,
+                            MPL = item.MPL,
+                            NVPEA = item.NVPEA,
+                            PIFCalLoan = item.PIFCalLoan,
+                            SSSLoan = item.SSSLoan
                         });
                     }
 
@@ -157,14 +179,15 @@ namespace Win.Pyrll
                 payrollWages = new PayrollWages()
                 {
                     ControlNo = IdHelper.OfficeControlNo(res?.ControlNo),
-                    Id = (res?.Id ?? 0) + 1,
+                    Id = obligations.Id,
                     Date = DateTime.Now,
-                    Accountant = (unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")))?.FirstOrDefault()?.Person,
-                    AccountantPos = (unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")))?.FirstOrDefault()?.Position,
-                    Treasurer = (unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains("Treasurer")))?.FirstOrDefault()?.Person,
-                    TreasurerPos = (unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office.Contains("Treasurer")))?.FirstOrDefault()?.Position,
+                    Accountant = (unitOfWork.Signatories.Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")))?.FirstOrDefault()?.Person,
+                    AccountantPos = (unitOfWork.Signatories.Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")))?.FirstOrDefault()?.Position,
+                    Treasurer = (unitOfWork.Signatories.Get(m => m.Office.Contains("Treasurer")))?.FirstOrDefault()?.Person,
+                    TreasurerPos = (unitOfWork.Signatories.Get(m => m.Office.Contains("Treasurer")))?.FirstOrDefault()?.Position,
                     ChiefOfOffice = staticSettings.Head,
                     Position = staticSettings.HeadPos,
+                    Description = "WE HEREBY ACKNOWLEDGE RECEIPT of the sum shown opposite our names as full compensation for the services rendered to the period stated",
                     PayrollWageDetails = new List<PayrollWageDetails>()
 
                 };
@@ -227,6 +250,31 @@ namespace Win.Pyrll
             }
 
             ;
+        }
+
+        private void btnDeletePayrollRepo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (PayrollGridView.GetFocusedRow() is PayrollWages item)
+                {
+                    UnitOfWork unitOfWork = new UnitOfWork();
+                    unitOfWork.PayrollWageDetailsRepo.Delete(x => x.Id == item.Id);
+                    unitOfWork.Save();
+                    PayrollGridControl.DataSource =
+                        new BindingList<PayrollWageDetails>(payrollWages.PayrollWageDetails?.ToList() ??
+                                                            new List<PayrollWageDetails>());
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

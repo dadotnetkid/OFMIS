@@ -70,6 +70,7 @@
             this.colAccountCodeRepo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAccountFuntTypeRepo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAccountNameRepo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAdjustedAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cboAppropriationLookUpRepo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.chkClosed = new DevExpress.XtraEditors.CheckEdit();
             this.chkEarmarked = new DevExpress.XtraEditors.CheckEdit();
@@ -122,7 +123,7 @@
             this.txtChiefOfficer.Properties.UseReadOnlyAppearance = false;
             this.txtChiefOfficer.Size = new System.Drawing.Size(417, 20);
             this.txtChiefOfficer.TabIndex = 8;
-            this.txtChiefOfficer.Tag = "1";
+            this.txtChiefOfficer.Tag = "";
             // 
             // labelControl8
             // 
@@ -150,7 +151,7 @@
             this.txtAddress.Properties.UseReadOnlyAppearance = false;
             this.txtAddress.Size = new System.Drawing.Size(417, 20);
             this.txtAddress.TabIndex = 6;
-            this.txtAddress.Tag = "Address is Required";
+            this.txtAddress.Tag = "";
             // 
             // txtOffice
             // 
@@ -160,7 +161,7 @@
             this.txtOffice.Properties.UseReadOnlyAppearance = false;
             this.txtOffice.Size = new System.Drawing.Size(417, 20);
             this.txtOffice.TabIndex = 5;
-            this.txtOffice.Tag = "Office is Required";
+            this.txtOffice.Tag = "";
             // 
             // txtControl
             // 
@@ -228,7 +229,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(521, 54);
+            this.panel1.Size = new System.Drawing.Size(817, 54);
             this.panel1.TabIndex = 28;
             // 
             // lblHeader
@@ -312,7 +313,7 @@
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
-            this.btnClose.Location = new System.Drawing.Point(409, 585);
+            this.btnClose.Location = new System.Drawing.Point(700, 347);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(105, 31);
             this.btnClose.TabIndex = 14;
@@ -331,7 +332,7 @@
             this.btnDelORDetailRepo,
             this.repositoryItemMemoEdit1,
             this.cboAccountRepo});
-            this.ORDetailGridControl.Size = new System.Drawing.Size(508, 195);
+            this.ORDetailGridControl.Size = new System.Drawing.Size(799, 232);
             this.ORDetailGridControl.TabIndex = 30;
             this.ORDetailGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ORDetailsGridView});
@@ -346,7 +347,8 @@
             this.colDelORDetails,
             this.colParticulars,
             this.colAmount,
-            this.colAccountCode});
+            this.colAccountCode,
+            this.colAdjustedAmount});
             this.ORDetailsGridView.GridControl = this.ORDetailGridControl;
             this.ORDetailsGridView.Name = "ORDetailsGridView";
             this.ORDetailsGridView.OptionsEditForm.ShowOnEnterKey = DevExpress.Utils.DefaultBoolean.True;
@@ -354,6 +356,7 @@
             this.ORDetailsGridView.OptionsNavigation.EnterMoveNextColumn = true;
             this.ORDetailsGridView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.ORDetailsGridView.OptionsView.ShowGroupPanel = false;
+            this.ORDetailsGridView.RowHeight = 60;
             // 
             // colDelORDetails
             // 
@@ -361,7 +364,7 @@
             this.colDelORDetails.Name = "colDelORDetails";
             this.colDelORDetails.Visible = true;
             this.colDelORDetails.VisibleIndex = 0;
-            this.colDelORDetails.Width = 20;
+            this.colDelORDetails.Width = 29;
             // 
             // btnDelORDetailRepo
             // 
@@ -380,7 +383,7 @@
             this.colParticulars.Name = "colParticulars";
             this.colParticulars.Visible = true;
             this.colParticulars.VisibleIndex = 1;
-            this.colParticulars.Width = 143;
+            this.colParticulars.Width = 307;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -396,7 +399,7 @@
             this.colAmount.Name = "colAmount";
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 3;
-            this.colAmount.Width = 111;
+            this.colAmount.Width = 145;
             // 
             // repositoryItemSpinEdit1
             // 
@@ -413,7 +416,7 @@
             this.colAccountCode.Name = "colAccountCode";
             this.colAccountCode.Visible = true;
             this.colAccountCode.VisibleIndex = 2;
-            this.colAccountCode.Width = 209;
+            this.colAccountCode.Width = 175;
             // 
             // cboAccountRepo
             // 
@@ -466,6 +469,16 @@
             this.colAccountNameRepo.Visible = true;
             this.colAccountNameRepo.VisibleIndex = 2;
             // 
+            // colAdjustedAmount
+            // 
+            this.colAdjustedAmount.Caption = "Adjusted Amount";
+            this.colAdjustedAmount.ColumnEdit = this.repositoryItemSpinEdit1;
+            this.colAdjustedAmount.FieldName = "AdjustedAmount";
+            this.colAdjustedAmount.Name = "colAdjustedAmount";
+            this.colAdjustedAmount.Visible = true;
+            this.colAdjustedAmount.VisibleIndex = 4;
+            this.colAdjustedAmount.Width = 118;
+            // 
             // cboAppropriationLookUpRepo
             // 
             this.cboAppropriationLookUpRepo.AutoHeight = false;
@@ -514,9 +527,9 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtDate.Properties.DisplayFormat.FormatString = "";
+            this.txtDate.Properties.DisplayFormat.FormatString = "MM/dd/yyyy";
             this.txtDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.txtDate.Properties.EditFormat.FormatString = "";
+            this.txtDate.Properties.EditFormat.FormatString = "MM/dd/yyyy";
             this.txtDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.txtDate.Properties.Mask.EditMask = "";
             this.txtDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
@@ -635,7 +648,7 @@
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(302, 585);
+            this.btnSave.Location = new System.Drawing.Point(593, 347);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(101, 31);
             this.btnSave.TabIndex = 13;
@@ -665,7 +678,7 @@
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 628);
+            this.ClientSize = new System.Drawing.Size(817, 628);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.chkEarmarked);
             this.Controls.Add(this.cboApprovedBy);
@@ -792,5 +805,6 @@
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         public DevExpress.XtraEditors.TextEdit txtDMSNo;
+        private DevExpress.XtraGrid.Columns.GridColumn colAdjustedAmount;
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraReports.UI;
 using Models;
 using Models.Repository;
 using Models.ViewModels;
@@ -19,12 +20,13 @@ namespace Win.OB
 {
     public partial class ucObligations : DevExpress.XtraEditors.XtraUserControl, IUserControl
     {
-        private LoadObligations loadObligations;
+        public LoadObligations loadObligations;
+        public Obligations obligations;
 
         public override void Refresh()
         {
             loadObligations.Init();
-            
+
         }
 
         public ucObligations()
@@ -38,9 +40,11 @@ namespace Win.OB
         {
             if (!User.UserInAction("Add Obligations"))
                 return;
-            frmAddEditObligation frm = new frmAddEditObligation(MethodType.Add, null);
+            var item = new Obligations();
+            frmAddEditObligation frm = new frmAddEditObligation(MethodType.Add, item);
             frm.ShowDialog();
             loadObligations.Init();
+            loadObligations.Detail(obligations);
         }
 
         private void ucObligations_Load(object sender, EventArgs e)
@@ -92,6 +96,10 @@ namespace Win.OB
                 }
                 else
                 {
+                    foreach (XRControl control in rpt.AllControls<XRControl>().Where(x => x.Tag == "division"))
+                    {
+                        control.Visible = false;
+                    }
                     rpt.lblDepartmentChief.ExpressionBindings.Clear();
                     rpt.lblDepartmentChiefPosition.ExpressionBindings.Clear();
                     rpt.lblDepartmentChief.ExpressionBindings.Add(new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Offices].[Chief]"));
@@ -107,10 +115,18 @@ namespace Win.OB
         {
             if (OBGridView.GetFocusedRow() is Obligations item)
             {
-                frmReportViewer frm = new frmReportViewer(new rptDV()
+                var rpt = new rptDV()
                 {
-                    DataSource = new List<DvReportViewModel>() { new DvReportViewModel(item.Id) }
-                });
+                    DataSource = new List<DvReportViewModel>() {new DvReportViewModel(item.Id)}
+                };
+                //if (new StaticSettings().Offices.IsDivision != true)
+                //{
+                //    foreach (XRControl control in rpt.AllControls<XRControl>().Where(x => x.Tag == "Division"))
+                //    {
+                //        control.Visible = false;
+                //    }
+                //}
+                frmReportViewer frm = new frmReportViewer(rpt);
                 frm.ShowDialog();
             }
         }
@@ -143,6 +159,7 @@ namespace Win.OB
                 {
                     frmAddEditObligation frm = new frmAddEditObligation(MethodType.Edit, item.Obligations);
                     frm.ShowDialog();
+                    loadObligations.Detail(item.Obligations);
                 }
             }
             catch (Exception exception)
@@ -167,6 +184,12 @@ namespace Win.OB
             if (e.KeyChar.ToString() == Keys.F5.ToString())
                 loadObligations.Init();
 
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                loadObligations.Search(txtSearch.Text);
         }
     }
 }

@@ -25,11 +25,13 @@ namespace Win.BL
             this.frm = frm;
             this.payees = payees;
             UnitOfWork unitOfWork = new UnitOfWork();
-            this.frm.txtOffice.Properties.DataSource = new BindingList<Offices>(unitOfWork.OfficesRepo.Get(m => m.Id == staticSettings.OfficeId));
+            this.frm.txtOffice.Properties.DataSource = new BindingList<Offices>(unitOfWork.OfficesRepo.Get());
             this.frm.cboMembers.Properties.DataSource =
                 new BindingList<Employees>(
                     new UnitOfWork().EmployeesRepo.Get());
-            frm.txtName.Properties.DataSource = new BindingList<Payees>(unitOfWork.PayeesRepo.Get());
+            var list = new List<Payees>() { new Payees() { } };
+            list.AddRange(unitOfWork.PayeesRepo.Get());
+            frm.txtName.Properties.DataSource = new BindingList<Payees>(list);
 
         }
         public MethodType methodType { get; set; }
@@ -44,7 +46,7 @@ namespace Win.BL
                 payees = unitOfWork.PayeesRepo.Find(m => m.Id == payees.Id, includeProperties: "Employees");
 
                 payees.Id = payees.Id;
-                payees.Name = frm.txtName.Text;
+                payees.Name = frm.txtName.Text?.ToUpper();
                 payees.Office = office?.OfficeName;
                 payees.Address = office?.Address ?? frm.txtAddress.Text;
                 payees.Note = frm.txtNote.Text;
@@ -69,15 +71,14 @@ namespace Win.BL
 
         public void Detail()
         {
-            if (methodType == MethodType.Add)
-                return;
+
             try
             {
                 var item = payees; //?? new UnitOfWork().PayeesRepo.Find(m => m.Id == this.pay);
                 if (item == null) return;
                 frm.txtName.Text = item.Name;
-                frm.txtAddress.Text = item.Address;
-                frm.txtOffice.Text = item.Office;
+                frm.txtAddress.EditValue = item.Address;
+                frm.txtOffice.EditValue = item.Office;
                 frm.txtNote.Text = item.Note;
                 foreach (var i in frm.cboMembers.Properties.GetItems().Cast<CheckedListBoxItem>())
                 {
@@ -105,10 +106,17 @@ namespace Win.BL
                     return;
                 }
                 var unitOfWork = new UnitOfWork();
-                payees = new Payees();
+
+                payees = new Payees()
+                {
+
+
+                };
+
                 unitOfWork.PayeesRepo.Insert(payees);
                 unitOfWork.Save();
                 payeeId = payees.Id;
+                Detail();
                 return;
             }
             catch (Exception e)

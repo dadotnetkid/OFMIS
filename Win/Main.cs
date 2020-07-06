@@ -6,21 +6,26 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DevExpress.XtraBars.ToastNotifications;
 using Models.Repository;
 using Win.Accnts;
+using Win.BGMembers;
 using Win.BL;
 using Win.Emps;
+using Win.Ltr;
 using Win.OB;
 using Win.Ofcs;
 using Win.PR;
 using Win.Pyee;
 using Win.Rprts;
+using Win.Tmplts;
 using Win.Usr;
 
 namespace Win
 {
     public partial class Main : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+
         private string[] param;
 
         public Main(string[] param)
@@ -161,6 +166,8 @@ namespace Win
 
         private void btnUserlevel_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!User.UserInAction("User Level"))
+                return;
             pnlMain.Controls.Clear();
             pnlMain.Controls.Add(new UCUserLevels() { Dock = DockStyle.Fill });
         }
@@ -228,9 +235,55 @@ namespace Win
                     var uc = this.pnlMain.Controls[0] as IUserControl;
                     uc.Refresh();
                 }
-                
+
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void btnBACMembers_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!User.UserInAction("BAC Members"))
+                return;
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new UCBACMembers() { Dock = DockStyle.Fill });
+        }
+
+        private void btnTemplates_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!User.UserInAction("Templates"))
+                return;
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new UcTemplates() { Dock = DockStyle.Fill });
+        }
+
+        private void btnLetter_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!User.UserInAction("Letter"))
+                return;
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new UcLetters() { Dock = DockStyle.Fill });
+        }
+
+        private void btnLAR_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmLARReportViewer frm = new frmLARReportViewer();
+            frm.Show();
+        }
+
+        private void btnActionTree_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!User.UserInAction("Action Tree"))
+                return;
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new Actns.UCActions() { Dock = DockStyle.Fill });
+        }
+
+        private void btnRecipientLists_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (!User.UserInAction("Recipient Lists"))
+                return;
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new Pyee.UCRecipients() { Dock = DockStyle.Fill });
         }
     }
 }

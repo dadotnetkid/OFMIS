@@ -63,12 +63,26 @@ namespace Win
 
         public void Detail(DefaultAccounts item)
         {
-            throw new NotImplementedException();
+
         }
 
         public void Search(string search)
         {
-            throw new NotImplementedException();
+            try
+            {
+                IQueryable<DefaultAccounts> defaultAccounts = new UnitOfWork().DefaultAccountsRepo.Fetch()
+                    .OrderBy(x => x.FundTypes.ItemNumber);
+                if (defaultAccounts.Select(x => new { x.AccountName }).Any(x => x.AccountName.Contains(search)))
+                    defaultAccounts = defaultAccounts.Where(x => x.AccountName.Contains(search));
+                else if (defaultAccounts.Select(x => new { x.AccountCode }).Any(x => x.AccountCode.Contains(search)))
+                    defaultAccounts = defaultAccounts.Where(x => x.AccountCode.Contains(search));
+                DefaultAccountsGridControl.DataSource = new BindingList<DefaultAccounts>(defaultAccounts.ToList());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         private void DefaultAccountsGridView_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
@@ -81,11 +95,17 @@ namespace Win
                 if (e.Row is DefaultAccounts item)
                 {
                     UnitOfWork unitOfWork = new UnitOfWork();
+                    var fundType = unitOfWork.FundTypesRepo.Find(m => m.Id == item.FundTypeId);
+
                     if (item.Id == 0)
+                    {
+                        item.FundType = fundType.FundType;
                         unitOfWork.DefaultAccountsRepo.Insert(item);
+                    }
+
                     else
                     {
-                        var fundType = unitOfWork.FundTypesRepo.Find(m => m.Id == item.FundTypeId);
+
                         unitOfWork.DefaultAccountsRepo.Update(new DefaultAccounts()
                         {
                             Id = item.Id,
@@ -107,6 +127,11 @@ namespace Win
             {
                 MessageBox.Show(exception.Message, exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtSearch_EditValueChanged(object sender, EventArgs e)
+        {
+            Search(txtSearch.Text);
         }
     }
 }

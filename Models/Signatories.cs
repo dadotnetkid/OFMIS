@@ -14,11 +14,25 @@ namespace Models
     
     public partial class Signatories
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Signatories()
+        {
+            this.BACMembers = new HashSet<AOQ>();
+            this.BACChairperson = new HashSet<AOQ>();
+        }
+    
         public int Id { get; set; }
         public string Person { get; set; }
         public string Position { get; set; }
         public string Note { get; set; }
         public Nullable<int> Year { get; set; }
         public string Office { get; set; }
+        public Nullable<bool> IsBacMember { get; set; }
+        public string BacPosition { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AOQ> BACMembers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AOQ> BACChairperson { get; set; }
     }
 }

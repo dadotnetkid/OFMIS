@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCPayrolls));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -43,8 +44,9 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCPayrolls));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnEditNew = new DevExpress.XtraEditors.SimpleButton();
             this.PayrollGridControl = new DevExpress.XtraGrid.GridControl();
             this.PayrollGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -62,7 +64,6 @@
             this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrint = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnPrintRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PayrollGridControl)).BeginInit();
@@ -77,12 +78,43 @@
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.btnPreview);
+            this.panelControl1.Controls.Add(this.btnDelete);
             this.panelControl1.Controls.Add(this.btnEditNew);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(912, 32);
+            this.panelControl1.Size = new System.Drawing.Size(1064, 42);
             this.panelControl1.TabIndex = 3;
+            // 
+            // btnPreview
+            // 
+            this.btnPreview.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnPreview.Appearance.Options.UseFont = true;
+            this.btnPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnPreview.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.btnPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview.ImageOptions.Image")));
+            this.btnPreview.Location = new System.Drawing.Point(258, 7);
+            this.btnPreview.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(119, 30);
+            this.btnPreview.TabIndex = 13;
+            this.btnPreview.Text = "Preview";
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnDelete.Appearance.Options.UseFont = true;
+            this.btnDelete.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnDelete.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(132, 8);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(119, 30);
+            this.btnDelete.TabIndex = 13;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEditNew
             // 
@@ -91,17 +123,20 @@
             this.btnEditNew.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnEditNew.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.btnEditNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEditNew.ImageOptions.Image")));
-            this.btnEditNew.Location = new System.Drawing.Point(5, 5);
+            this.btnEditNew.Location = new System.Drawing.Point(6, 7);
+            this.btnEditNew.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditNew.Name = "btnEditNew";
-            this.btnEditNew.Size = new System.Drawing.Size(102, 23);
+            this.btnEditNew.Size = new System.Drawing.Size(119, 30);
             this.btnEditNew.TabIndex = 13;
             this.btnEditNew.Text = "Add New";
             // 
             // PayrollGridControl
             // 
             this.PayrollGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PayrollGridControl.Location = new System.Drawing.Point(0, 32);
+            this.PayrollGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.PayrollGridControl.Location = new System.Drawing.Point(0, 42);
             this.PayrollGridControl.MainView = this.PayrollGridView;
+            this.PayrollGridControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.PayrollGridControl.Name = "PayrollGridControl";
             this.PayrollGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEditPayrollRepo,
@@ -109,7 +144,7 @@
             this.spinTotalRepo,
             this.spinItemNumberRepo,
             this.btnPrintRepo});
-            this.PayrollGridControl.Size = new System.Drawing.Size(912, 327);
+            this.PayrollGridControl.Size = new System.Drawing.Size(1064, 427);
             this.PayrollGridControl.TabIndex = 4;
             this.PayrollGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.PayrollGridView});
@@ -126,15 +161,20 @@
             this.colTitle2,
             this.colTotal,
             this.colPrint});
+            this.PayrollGridView.DetailHeight = 458;
+            this.PayrollGridView.FixedLineWidth = 3;
             this.PayrollGridView.GridControl = this.PayrollGridControl;
             this.PayrollGridView.Name = "PayrollGridView";
+            this.PayrollGridView.OptionsBehavior.ReadOnly = true;
+            this.PayrollGridView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.PayrollGridView.OptionsView.ShowGroupPanel = false;
             // 
             // colEdit
             // 
             this.colEdit.ColumnEdit = this.btnEditPayrollRepo;
+            this.colEdit.MinWidth = 23;
             this.colEdit.Name = "colEdit";
-            this.colEdit.Width = 20;
+            this.colEdit.Width = 23;
             // 
             // btnEditPayrollRepo
             // 
@@ -148,8 +188,9 @@
             // colDelete
             // 
             this.colDelete.ColumnEdit = this.btnDeletePayrollRepo;
+            this.colDelete.MinWidth = 23;
             this.colDelete.Name = "colDelete";
-            this.colDelete.Width = 20;
+            this.colDelete.Width = 23;
             // 
             // btnDeletePayrollRepo
             // 
@@ -165,9 +206,11 @@
             this.colNo.Caption = "No.";
             this.colNo.ColumnEdit = this.spinItemNumberRepo;
             this.colNo.FieldName = "ItemNumber";
+            this.colNo.MinWidth = 23;
             this.colNo.Name = "colNo";
             this.colNo.Visible = true;
             this.colNo.VisibleIndex = 0;
+            this.colNo.Width = 87;
             // 
             // spinItemNumberRepo
             // 
@@ -180,26 +223,32 @@
             // 
             this.colName.Caption = "Name";
             this.colName.FieldName = "Name";
+            this.colName.MinWidth = 23;
             this.colName.Name = "colName";
             this.colName.Visible = true;
             this.colName.VisibleIndex = 1;
+            this.colName.Width = 87;
             // 
             // colDesignation
             // 
             this.colDesignation.Caption = "Designation";
             this.colDesignation.FieldName = "Designation";
+            this.colDesignation.MinWidth = 23;
             this.colDesignation.Name = "colDesignation";
             this.colDesignation.Visible = true;
             this.colDesignation.VisibleIndex = 2;
+            this.colDesignation.Width = 87;
             // 
             // colTItle1
             // 
             this.colTItle1.Caption = "Column Title1";
             this.colTItle1.ColumnEdit = this.spinTotalRepo;
             this.colTItle1.FieldName = "ColumnTitle1";
+            this.colTItle1.MinWidth = 23;
             this.colTItle1.Name = "colTItle1";
             this.colTItle1.Visible = true;
             this.colTItle1.VisibleIndex = 3;
+            this.colTItle1.Width = 87;
             // 
             // spinTotalRepo
             // 
@@ -212,22 +261,28 @@
             // 
             this.colTitle2.Caption = "Column Title 2";
             this.colTitle2.FieldName = "ColumnTitle2";
+            this.colTitle2.MinWidth = 23;
             this.colTitle2.Name = "colTitle2";
             this.colTitle2.Visible = true;
             this.colTitle2.VisibleIndex = 4;
+            this.colTitle2.Width = 87;
             // 
             // colTotal
             // 
             this.colTotal.Caption = "Total";
             this.colTotal.FieldName = "Total";
+            this.colTotal.MinWidth = 23;
             this.colTotal.Name = "colTotal";
             this.colTotal.Visible = true;
             this.colTotal.VisibleIndex = 5;
+            this.colTotal.Width = 87;
             // 
             // colPrint
             // 
             this.colPrint.ColumnEdit = this.btnPrintRepo;
+            this.colPrint.MinWidth = 23;
             this.colPrint.Name = "colPrint";
+            this.colPrint.Width = 87;
             // 
             // btnPrintRepo
             // 
@@ -239,27 +294,15 @@
             this.btnPrintRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnPrintRepo.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnPrintRepo_ButtonClick);
             // 
-            // btnPreview
-            // 
-            this.btnPreview.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnPreview.Appearance.Options.UseFont = true;
-            this.btnPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.btnPreview.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.btnPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.btnPreview.Location = new System.Drawing.Point(113, 5);
-            this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(102, 23);
-            this.btnPreview.TabIndex = 13;
-            this.btnPreview.Text = "Preview";
-            // 
             // UCPayrolls
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.PayrollGridControl);
             this.Controls.Add(this.panelControl1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UCPayrolls";
-            this.Size = new System.Drawing.Size(912, 359);
+            this.Size = new System.Drawing.Size(1064, 469);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PayrollGridControl)).EndInit();
@@ -294,5 +337,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colPrint;
         public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnPrintRepo;
         public DevExpress.XtraEditors.SimpleButton btnPreview;
+        public DevExpress.XtraEditors.SimpleButton btnDelete;
     }
 }

@@ -41,6 +41,7 @@ namespace Win.BL
         }
 
 
+
         private void BtnDelORDetailRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             try
@@ -74,11 +75,11 @@ namespace Win.BL
                     var appropriation = unitOfWork.AppropriationsRepoRepo.Find(m => m.Id == item.AppropriationId);
                     if ((item.Amount + (appropriation.ObligationsOffice ?? 0)) > appropriation.Allotment)
                     {
-                        var oldItem = new UnitOfWork().ORDetailsRepo.Find(m => m.Id == item.Id);
+                        //    var oldItem = new UnitOfWork().ORDetailsRepo.Find(m => m.Id == item.Id);
                         MessageBox.Show("Amount is greater than the allotment balance!",
                             @"Insufficient Allotment Balance", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        item.Amount = oldItem?.Amount;
-                        return;
+                        //  item.Amount = oldItem?.Amount;
+                        //return;
                     }
 
                     item.ObligationId = obId;
@@ -93,6 +94,7 @@ namespace Win.BL
                         res.ObligationId = item.ObligationId;
                         res.AppropriationId = item.AppropriationId;
                         res.Particulars = item.Particulars;
+                        res.AdjustedAmount = item.AdjustedAmount;
 
                     }
                     unitOfWork.Save();
@@ -130,9 +132,15 @@ namespace Win.BL
             try
             {
                 var unitOfWork = new UnitOfWork();
+                //    var oldData = unitOfWork.ObligationsRepo.Find(m => m.Id == this.obligations.Id);
                 obligations = unitOfWork.ObligationsRepo.Find(m => m.Id == this.obligations.Id);
+                if (obligations == null)
+                {
+                    ReInit();
+                    obligations = unitOfWork.ObligationsRepo.Find(m => m.Id == this.obligations.Id);
+                }
                 //       obligations.Id = this.obligations.Id;
-                obligations.ControlNo = this.obligations.ControlNo;
+                //obligations.ControlNo = this.obligations.ControlNo;
                 obligations.Date = frm.txtDate.EditValue?.ToDate() ?? DateTime.Now;
                 obligations.BudgetControlNo = frm.txtPBOControl.EditValue?.ToString();
                 obligations.DMSNo = frm.txtDMSNo.Text;
@@ -166,13 +174,25 @@ namespace Win.BL
                 obligations.DVNote = this.obligations.DVNote;
                 obligations.DVParticular = this.obligations.DVParticular;
 
+                obligations.TotalAdjustedAmount = this.obligations.ORDetails?.Sum(x => x.AdjustedAmount) ?? 0;
+
                 if (this.obligations.DateClosed == null && frm.chkClosed.Checked)
                     this.obligations.DateClosed = DateTime.Now;
                 if (this.obligations.DateClosed != null && frm.chkClosed.Checked)
                     this.obligations.DateClosed = this.obligations.DateClosed;
-
+                if (methodType == MethodType.Add)
+                {
+                    obligations.DateCreated = DateTime.Now;
+                    obligations.CreatedBy = User.UserId;
+                }
+                else
+                {
+                    obligations.DateModified = DateTime.Now;
+                    obligations.ModifiedBy = User.UserId;
+                }
                 unitOfWork.Save();
                 this.isClosed = true;
+
                 frm.Close();
             }
             catch (Exception e)
@@ -192,7 +212,7 @@ namespace Win.BL
 
                 var staticSetting = new StaticSettings();
                 UnitOfWork unitOfWork = new UnitOfWork();
-                var chiefOfOffice = unitOfWork.ChiefOfOfficesRepo.Find(m => m.Year == staticSetting.Year);
+                var chiefOfOffice = unitOfWork.Signatories.Find(m => m.Year == staticSetting.Year);
                 var item = unitOfWork.ObligationsRepo.Find(m => m.Id == obligations.Id);
                 if (item == null) return;
                 frm.txtDate.EditValue = item.Date;
@@ -215,15 +235,26 @@ namespace Win.BL
                 frm.chkEarmarked.Checked = item.Earmarked ?? false;
                 frm.ORDetailGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails?.ToList());
                 frm.txtBudgetOfficer.EditValue = string.IsNullOrWhiteSpace(item.PBO) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "Provincial Budget Office")?.Person : item.PBO;
-                frm.txtChiefOfficer.Text = string.IsNullOrWhiteSpace(item.Chief) ? staticSetting.Head : item.Chief;
+                //frm.txtChiefOfficer.Text = string.IsNullOrWhiteSpace(item.Chief) ? staticSetting.Head : item.Chief;
 
-                frm.cboAccountant.EditValue = unitOfWork.ChiefOfOfficesRepo
+                frm.cboAccountant.EditValue = unitOfWork.Signatories
                     .Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")).FirstOrDefault()
                     ?.Person;
-                frm.cboTreasurer.EditValue = unitOfWork.ChiefOfOfficesRepo
+                frm.cboTreasurer.EditValue = unitOfWork.Signatories
                     .Get(m => m.Office.Contains("Treasurer") || m.Office.Contains("Treasury")).FirstOrDefault()?.Person;
-                frm.cboApprovedBy.EditValue = item.OBRApprovedBy ?? unitOfWork.ChiefOfOfficesRepo
-                    .Get(m => m.Office.Contains("Governor Office") || m.Office.Contains("Governor's Office")).FirstOrDefault()?.Person;
+                if (staticSetting.Offices.IsDivision == true)
+                {
+
+                    frm.cboApprovedBy.EditValue = item.OBRApprovedBy ?? unitOfWork.Signatories
+                        .Get(m => m.Office.Contains("Governor Office") || m.Office.Contains("Governor's Office")).FirstOrDefault()?.Person;
+                    frm.txtChiefOfficer.Text = string.IsNullOrWhiteSpace(item.Chief) ? staticSetting.Head : item.Chief;
+                }
+                else
+                {
+                    frm.cboApprovedBy.EditValue = item.OBRApprovedBy ?? unitOfWork.Signatories
+                                                      .Get(m => m.Office.Contains(staticSetting.OfficeName)).FirstOrDefault()?.Person;
+                    frm.txtChiefOfficer.Tag = null;
+                }
             }
             catch (Exception e)
             {
@@ -235,20 +266,20 @@ namespace Win.BL
         {
             try
             {
+                var staticSttings = new StaticSettings();
                 if (methodType == MethodType.Edit)
                 {
                     Detail();
                     return;
                 }
                 var unitOfWork = new UnitOfWork();
-                this.obId =
-                    (unitOfWork.ObligationsRepo.Fetch().OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0) + 1;
-                this.controlNo = DateTime.Now.ToString("yyyy-MM-") + obId.ToString("0000");
+                var ob = unitOfWork.ObligationsRepo.Fetch(m => m.OfficeId == staticSttings.OfficeId).OrderByDescending(x => x.Id).FirstOrDefault();
+                //  this.obId = (ob?.Id ?? 0) + 1;
+                // this.controlNo = DateTime.Now.ToString("yyyy-MM-") + obId.ToString("0000");
                 //var payee = unitOfWork.PayeesRepo.Find(m => m.Name == "Earmarked PR");
                 this.obligations = new Obligations()
                 {
-                    Id = obId,
-                    ControlNo = controlNo,
+                    ControlNo = IdHelper.OfficeControlNo(ob?.ControlNo, staticSttings.OfficeId,"ObR", "Obligations"),
                     Year = new StaticSettings().Year,
                     Date = DateTime.Now,
                     Earmarked = obligations?.Earmarked,
@@ -257,11 +288,12 @@ namespace Win.BL
                     PayeeAddress = obligations?.PayeeAddress,
                     Description = obligations?.Description,
                     ORDetails = obligations?.ORDetails ?? new List<ORDetails>(),
-                    PRNo = obligations?.PRNo
+                    PRNo = obligations?.PRNo,
+                    OfficeId = new StaticSettings().OfficeId,
                 };
                 unitOfWork.ObligationsRepo.Insert(obligations);
                 unitOfWork.Save();
-
+                this.obId = obligations.Id;
                 Detail();
                 return;
             }
@@ -269,10 +301,43 @@ namespace Win.BL
             {
                 MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            this.controlNo = DateTime.Now.ToString("yyyy-MM-") + "0001";
+            ///this.controlNo = DateTime.Now.ToString("yyyy-MM-") + "0001";
 
         }
 
+        void ReInit()
+        {
+            try
+            {
+                var unitOfWork = new UnitOfWork();
+                var staticSttings = new StaticSettings();
+                var ob = unitOfWork.ObligationsRepo.Fetch(m => m.OfficeId == staticSttings.OfficeId).OrderByDescending(x => x.Id).FirstOrDefault();
+                //  this.obId = (ob?.Id ?? 0) + 1;
+                // this.controlNo = DateTime.Now.ToString("yyyy-MM-") + obId.ToString("0000");
+                //var payee = unitOfWork.PayeesRepo.Find(m => m.Name == "Earmarked PR");
+                this.obligations = new Obligations()
+                {
+                    ControlNo = IdHelper.OfficeControlNo(ob?.ControlNo, staticSttings.OfficeId,"ObR", "Obligations"),
+                    Year = new StaticSettings().Year,
+                    Date = DateTime.Now,
+                    Earmarked = obligations?.Earmarked,
+                    PayeeId = obligations?.PayeeId,
+                    PayeeOffice = obligations?.PayeeOffice,
+                    PayeeAddress = obligations?.PayeeAddress,
+                    Description = obligations?.Description,
+                    ORDetails = obligations?.ORDetails ?? new List<ORDetails>(),
+                    PRNo = obligations?.PRNo,
+                    OfficeId = new StaticSettings().OfficeId,
+                };
+                unitOfWork.ObligationsRepo.Insert(obligations);
+                unitOfWork.Save();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
         public void Close(FormClosingEventArgs formClosingEventArgs)
         {
             try
@@ -301,18 +366,24 @@ namespace Win.BL
         public void LoadPayees()
         {
             UnitOfWork unitOfWork = new UnitOfWork();
+            StaticSettings staticSettings = new StaticSettings();
             frm.cboPayee.Properties.DataSource = new EntityServerModeSource()
             {
                 QueryableSource = unitOfWork.PayeesRepo.Fetch()
             };
-            frm.cboAccountant.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo
+            frm.cboAccountant.Properties.DataSource = new BindingList<Signatories>(unitOfWork.Signatories
                 .Get(m => m.Office.Contains("Accounting") || m.Office.Contains("Accountant")));
-            frm.cboTreasurer.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo
+            frm.cboTreasurer.Properties.DataSource = new BindingList<Signatories>(unitOfWork.Signatories
                 .Get(m => m.Office.Contains("Treasurer") || m.Office.Contains("Treasury")));
-            frm.cboApprovedBy.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo
-                .Get(m => m.Office.Contains("Governor Office") || m.Office.Contains("Governor's Office")));
-            frm.txtBudgetOfficer.Properties.DataSource = new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo
+
+            frm.txtBudgetOfficer.Properties.DataSource = new BindingList<Signatories>(unitOfWork.Signatories
                 .Get(m => m.Office.Contains("Provincial Budget Office")));
+            if (staticSettings.Offices.IsDivision == true)
+                frm.cboApprovedBy.Properties.DataSource = new BindingList<Signatories>(unitOfWork.Signatories
+                    .Get(m => m.Office.Contains("Governor Office") || m.Office.Contains("Governor's Office")));
+            else
+                frm.cboApprovedBy.Properties.DataSource = new BindingList<Signatories>(unitOfWork.Signatories
+                    .Get(m => m.Office.Contains(staticSettings.OfficeName)));
         }
 
         public void LoadAppropriation()

@@ -89,7 +89,7 @@
             // 
             this.labelControl1.Location = new System.Drawing.Point(144, 21);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(37, 13);
+            this.labelControl1.Size = new System.Drawing.Size(35, 13);
             this.labelControl1.TabIndex = 10;
             this.labelControl1.Text = "TODAY";
             // 
@@ -97,17 +97,17 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(121, 49);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(61, 13);
+            this.labelControl2.Size = new System.Drawing.Size(58, 13);
             this.labelControl2.TabIndex = 10;
             this.labelControl2.Text = "USERNAME";
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(128, 77);
+            this.labelControl3.Location = new System.Drawing.Point(119, 77);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(55, 13);
+            this.labelControl3.Size = new System.Drawing.Size(60, 13);
             this.labelControl3.TabIndex = 11;
-            this.labelControl3.Text = "PASSWRD";
+            this.labelControl3.Text = "PASSWORD";
             // 
             // btnLogin
             // 

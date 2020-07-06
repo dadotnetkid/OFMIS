@@ -43,20 +43,28 @@
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDeleteSignatory = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colPerson = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cboHead = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colPosition = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cboPosition = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colNote = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colYear = new DevExpress.XtraGrid.Columns.GridColumn();
             this.spinEditYearRepo = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.colOffice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsBacMember = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chkIsBACMemberRepo = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.colBACPosition = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cboPosition = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.cboOfficeRepo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.entityServerModeSource1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SignatoriesGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteSignatory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboPosition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditYearRepo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsBACMemberRepo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboPosition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboOfficeRepo)).BeginInit();
             this.SuspendLayout();
             // 
             // entityServerModeSource1
@@ -74,7 +82,7 @@
             this.panel1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(854, 54);
+            this.panel1.Size = new System.Drawing.Size(1113, 54);
             this.panel1.TabIndex = 30;
             // 
             // lblHeader
@@ -85,9 +93,9 @@
             this.lblHeader.Appearance.Options.UseForeColor = true;
             this.lblHeader.Location = new System.Drawing.Point(97, 13);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(165, 27);
+            this.lblHeader.Size = new System.Drawing.Size(120, 27);
             this.lblHeader.TabIndex = 12;
-            this.lblHeader.Text = "Chief of Offices";
+            this.lblHeader.Text = "Signatories";
             // 
             // pictureEdit1
             // 
@@ -112,8 +120,11 @@
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDeleteSignatory,
             this.cboPosition,
-            this.spinEditYearRepo});
-            this.gridControl1.Size = new System.Drawing.Size(854, 478);
+            this.spinEditYearRepo,
+            this.chkIsBACMemberRepo,
+            this.cboOfficeRepo,
+            this.cboHead});
+            this.gridControl1.Size = new System.Drawing.Size(1113, 478);
             this.gridControl1.TabIndex = 31;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.SignatoriesGridView});
@@ -126,12 +137,17 @@
             this.colPosition,
             this.colNote,
             this.colYear,
-            this.colOffice});
+            this.colOffice,
+            this.colIsBacMember,
+            this.colBACPosition});
             this.SignatoriesGridView.GridControl = this.gridControl1;
             this.SignatoriesGridView.Name = "SignatoriesGridView";
             this.SignatoriesGridView.OptionsNavigation.AutoFocusNewRow = true;
             this.SignatoriesGridView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.SignatoriesGridView.OptionsView.ShowGroupPanel = false;
+            this.SignatoriesGridView.ShownEditor += new System.EventHandler(this.SignatoriesGridView_ShownEditor);
+            this.SignatoriesGridView.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.SignatoriesGridView_CellValueChanged);
+            this.SignatoriesGridView.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.SignatoriesGridView_CellValueChanging);
             this.SignatoriesGridView.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.SignatoriesGridView_RowUpdated);
             // 
             // colDelete
@@ -140,7 +156,7 @@
             this.colDelete.Name = "colDelete";
             this.colDelete.Visible = true;
             this.colDelete.VisibleIndex = 0;
-            this.colDelete.Width = 26;
+            this.colDelete.Width = 36;
             // 
             // btnDeleteSignatory
             // 
@@ -153,34 +169,34 @@
             // 
             // colPerson
             // 
+            this.colPerson.ColumnEdit = this.cboHead;
             this.colPerson.FieldName = "Person";
             this.colPerson.Name = "colPerson";
             this.colPerson.Visible = true;
             this.colPerson.VisibleIndex = 1;
             this.colPerson.Width = 134;
             // 
+            // cboHead
+            // 
+            this.cboHead.AutoHeight = false;
+            this.cboHead.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboHead.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Chief", "Head"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ChiefPosition", "Position")});
+            this.cboHead.DisplayMember = "Chief";
+            this.cboHead.Name = "cboHead";
+            this.cboHead.NullText = "";
+            this.cboHead.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.cboHead.ValueMember = "Chief";
+            // 
             // colPosition
             // 
-            this.colPosition.ColumnEdit = this.cboPosition;
             this.colPosition.FieldName = "Position";
             this.colPosition.Name = "colPosition";
             this.colPosition.Visible = true;
             this.colPosition.VisibleIndex = 3;
-            this.colPosition.Width = 170;
-            // 
-            // cboPosition
-            // 
-            this.cboPosition.AutoHeight = false;
-            this.cboPosition.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboPosition.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Position", "Position"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Description", "Description")});
-            this.cboPosition.DisplayMember = "Position";
-            this.cboPosition.Name = "cboPosition";
-            this.cboPosition.NullText = "";
-            this.cboPosition.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.cboPosition.ValueMember = "Position";
+            this.colPosition.Width = 235;
             // 
             // colNote
             // 
@@ -197,7 +213,7 @@
             this.colYear.Name = "colYear";
             this.colYear.Visible = true;
             this.colYear.VisibleIndex = 5;
-            this.colYear.Width = 96;
+            this.colYear.Width = 64;
             // 
             // spinEditYearRepo
             // 
@@ -213,11 +229,62 @@
             this.colOffice.Visible = true;
             this.colOffice.VisibleIndex = 2;
             // 
+            // colIsBacMember
+            // 
+            this.colIsBacMember.Caption = "is BAC Member";
+            this.colIsBacMember.ColumnEdit = this.chkIsBACMemberRepo;
+            this.colIsBacMember.FieldName = "IsBacMember";
+            this.colIsBacMember.Name = "colIsBacMember";
+            this.colIsBacMember.Visible = true;
+            this.colIsBacMember.VisibleIndex = 6;
+            this.colIsBacMember.Width = 100;
+            // 
+            // chkIsBACMemberRepo
+            // 
+            this.chkIsBACMemberRepo.AutoHeight = false;
+            this.chkIsBACMemberRepo.Name = "chkIsBACMemberRepo";
+            // 
+            // colBACPosition
+            // 
+            this.colBACPosition.Caption = "BAC Position";
+            this.colBACPosition.FieldName = "BacPosition";
+            this.colBACPosition.Name = "colBACPosition";
+            this.colBACPosition.Visible = true;
+            this.colBACPosition.VisibleIndex = 7;
+            // 
+            // cboPosition
+            // 
+            this.cboPosition.AutoHeight = false;
+            this.cboPosition.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboPosition.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Position", "Position"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Description", "Description")});
+            this.cboPosition.DisplayMember = "Position";
+            this.cboPosition.Name = "cboPosition";
+            this.cboPosition.NullText = "";
+            this.cboPosition.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.cboPosition.ValueMember = "Position";
+            // 
+            // cboOfficeRepo
+            // 
+            this.cboOfficeRepo.AutoHeight = false;
+            this.cboOfficeRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboOfficeRepo.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Chief", "Chief"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ChiefPosition", "Position")});
+            this.cboOfficeRepo.DisplayMember = "OfficeName";
+            this.cboOfficeRepo.Name = "cboOfficeRepo";
+            this.cboOfficeRepo.NullText = "";
+            this.cboOfficeRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.cboOfficeRepo.ValueMember = "Id";
+            // 
             // frmSignatories
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(854, 532);
+            this.ClientSize = new System.Drawing.Size(1113, 532);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -234,8 +301,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SignatoriesGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteSignatory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboPosition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditYearRepo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsBACMemberRepo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboPosition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboOfficeRepo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -256,5 +326,10 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cboPosition;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit spinEditYearRepo;
         private DevExpress.XtraGrid.Columns.GridColumn colOffice;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsBacMember;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit chkIsBACMemberRepo;
+        private DevExpress.XtraGrid.Columns.GridColumn colBACPosition;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cboOfficeRepo;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cboHead;
     }
 }

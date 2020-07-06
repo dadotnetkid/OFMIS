@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditPO));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
@@ -55,6 +55,7 @@
             this.colCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cboCategoryRepo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colItem = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemRichTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit();
             this.colUOM = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
             this.spinAmountRepo = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
@@ -62,11 +63,14 @@
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDeleteItemRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.spinNumberRepo = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.spinQuantityRepo = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.colItemNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.spinNumberRepo = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.Total = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAddPayee = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSelectItemFromAbstract = new DevExpress.XtraEditors.SimpleButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControlNumber.Properties)).BeginInit();
@@ -79,8 +83,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCategoryRepo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinAmountRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteItemRepo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinQuantityRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinNumberRepo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,9 +111,9 @@
             this.lblHeader.Appearance.Options.UseForeColor = true;
             this.lblHeader.Location = new System.Drawing.Point(97, 13);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(268, 27);
+            this.lblHeader.Size = new System.Drawing.Size(237, 27);
             this.lblHeader.TabIndex = 12;
-            this.lblHeader.Text = "New Purchase Quotation";
+            this.lblHeader.Text = "New Purchase Orders";
             // 
             // pictureEdit1
             // 
@@ -237,6 +243,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Address", "Address")});
             this.cboSuppliers.Properties.DisplayMember = "Name";
             this.cboSuppliers.Properties.NullText = "";
+            this.cboSuppliers.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cboSuppliers.Properties.UseReadOnlyAppearance = false;
             this.cboSuppliers.Properties.ValueMember = "Name";
             this.cboSuppliers.Size = new System.Drawing.Size(352, 20);
@@ -264,7 +271,7 @@
             this.btnAddItems.Name = "btnAddItems";
             this.btnAddItems.Size = new System.Drawing.Size(150, 23);
             this.btnAddItems.TabIndex = 86;
-            this.btnAddItems.Text = "Add Item from PQ";
+            this.btnAddItems.Text = "Add Item from Abstract";
             // 
             // ItemsGridControl
             // 
@@ -278,8 +285,10 @@
             this.btnDeleteItemRepo,
             this.spinNumberRepo,
             this.spinAmountRepo,
-            this.cboCategoryRepo});
-            this.ItemsGridControl.Size = new System.Drawing.Size(957, 349);
+            this.cboCategoryRepo,
+            this.spinQuantityRepo,
+            this.repositoryItemRichTextEdit1});
+            this.ItemsGridControl.Size = new System.Drawing.Size(957, 281);
             this.ItemsGridControl.TabIndex = 87;
             this.ItemsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ItemsGridView});
@@ -300,6 +309,7 @@
             this.ItemsGridView.GridControl = this.ItemsGridControl;
             this.ItemsGridView.Name = "ItemsGridView";
             this.ItemsGridView.OptionsEditForm.ShowOnDoubleClick = DevExpress.Utils.DefaultBoolean.False;
+            this.ItemsGridView.OptionsNavigation.AutoFocusNewRow = true;
             this.ItemsGridView.OptionsSelection.CheckBoxSelectorColumnWidth = 20;
             this.ItemsGridView.OptionsSelection.CheckBoxSelectorField = "Id";
             this.ItemsGridView.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
@@ -336,11 +346,17 @@
             // 
             // colItem
             // 
+            this.colItem.ColumnEdit = this.repositoryItemRichTextEdit1;
             this.colItem.FieldName = "Item";
             this.colItem.Name = "colItem";
             this.colItem.Visible = true;
             this.colItem.VisibleIndex = 4;
             this.colItem.Width = 377;
+            // 
+            // repositoryItemRichTextEdit1
+            // 
+            this.repositoryItemRichTextEdit1.Name = "repositoryItemRichTextEdit1";
+            this.repositoryItemRichTextEdit1.ShowCaretInReadOnly = false;
             // 
             // colUOM
             // 
@@ -386,30 +402,28 @@
             // btnDeleteItemRepo
             // 
             this.btnDeleteItemRepo.AutoHeight = false;
-            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.btnDeleteItemRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDeleteItemRepo.Name = "btnDeleteItemRepo";
             this.btnDeleteItemRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // colQuantity
             // 
             this.colQuantity.Caption = "Quantity";
-            this.colQuantity.ColumnEdit = this.spinNumberRepo;
+            this.colQuantity.ColumnEdit = this.spinQuantityRepo;
             this.colQuantity.FieldName = "Quantity";
             this.colQuantity.Name = "colQuantity";
             this.colQuantity.Visible = true;
             this.colQuantity.VisibleIndex = 2;
             this.colQuantity.Width = 56;
             // 
-            // spinNumberRepo
+            // spinQuantityRepo
             // 
-            this.spinNumberRepo.AutoHeight = false;
-            this.spinNumberRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.spinQuantityRepo.AutoHeight = false;
+            this.spinQuantityRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinNumberRepo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spinNumberRepo.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spinNumberRepo.Name = "spinNumberRepo";
+            this.spinQuantityRepo.Name = "spinQuantityRepo";
             // 
             // colItemNo
             // 
@@ -420,6 +434,15 @@
             this.colItemNo.Visible = true;
             this.colItemNo.VisibleIndex = 1;
             this.colItemNo.Width = 60;
+            // 
+            // spinNumberRepo
+            // 
+            this.spinNumberRepo.AutoHeight = false;
+            this.spinNumberRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinNumberRepo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.spinNumberRepo.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.spinNumberRepo.Name = "spinNumberRepo";
             // 
             // Total
             // 
@@ -438,7 +461,7 @@
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
-            this.btnClose.Location = new System.Drawing.Point(864, 598);
+            this.btnClose.Location = new System.Drawing.Point(863, 206);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(105, 31);
             this.btnClose.TabIndex = 89;
@@ -450,20 +473,45 @@
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(757, 598);
+            this.btnSave.Location = new System.Drawing.Point(756, 206);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(101, 31);
             this.btnSave.TabIndex = 88;
             this.btnSave.Text = "Save ";
             // 
+            // btnAddPayee
+            // 
+            this.btnAddPayee.AutoSize = true;
+            this.btnAddPayee.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddPayee.ImageOptions.Image")));
+            this.btnAddPayee.Location = new System.Drawing.Point(449, 103);
+            this.btnAddPayee.Name = "btnAddPayee";
+            this.btnAddPayee.Size = new System.Drawing.Size(22, 22);
+            this.btnAddPayee.TabIndex = 90;
+            this.btnAddPayee.Click += new System.EventHandler(this.btnAddPayee_Click);
+            // 
+            // btnSelectItemFromAbstract
+            // 
+            this.btnSelectItemFromAbstract.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectItemFromAbstract.Appearance.Options.UseFont = true;
+            this.btnSelectItemFromAbstract.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnSelectItemFromAbstract.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.btnSelectItemFromAbstract.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSelectItemFromAbstract.ImageOptions.Image")));
+            this.btnSelectItemFromAbstract.Location = new System.Drawing.Point(167, 214);
+            this.btnSelectItemFromAbstract.Name = "btnSelectItemFromAbstract";
+            this.btnSelectItemFromAbstract.Size = new System.Drawing.Size(161, 23);
+            this.btnSelectItemFromAbstract.TabIndex = 86;
+            this.btnSelectItemFromAbstract.Text = "Select item from Abstract";
+            // 
             // frmAddEditPO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 641);
+            this.ClientSize = new System.Drawing.Size(980, 535);
+            this.Controls.Add(this.btnAddPayee);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.ItemsGridControl);
+            this.Controls.Add(this.btnSelectItemFromAbstract);
             this.Controls.Add(this.btnAddItems);
             this.Controls.Add(this.txtControlNumber);
             this.Controls.Add(this.chkIsClosed);
@@ -479,11 +527,11 @@
             this.Controls.Add(this.txtDescription);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(984, 673);
+            this.MaximumSize = new System.Drawing.Size(1145, 876);
             this.Name = "frmAddEditPO";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add/Edit Purchase Order";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAddEditPO_FormClosing);
+            this.Load += new System.EventHandler(this.frmAddEditPO_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
@@ -497,8 +545,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCategoryRepo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinAmountRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteItemRepo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinQuantityRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinNumberRepo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -540,5 +590,9 @@
         public DevExpress.XtraEditors.LookUpEdit cboSuppliers;
         public DevExpress.XtraEditors.MemoEdit txtDescription;
         public DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cboCategoryRepo;
+        private DevExpress.XtraEditors.SimpleButton btnAddPayee;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit spinQuantityRepo;
+        private DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit repositoryItemRichTextEdit1;
+        public DevExpress.XtraEditors.SimpleButton btnSelectItemFromAbstract;
     }
 }

@@ -21,17 +21,31 @@ namespace Models
         }
     
         public int Id { get; set; }
+        public Nullable<int> POId { get; set; }
+        public Nullable<int> PRId { get; set; }
         public string ControlNo { get; set; }
-        public string Office { get; set; }
-        public string Division { get; set; }
-        public string Center { get; set; }
-        public string Code { get; set; }
         public Nullable<int> RISNo { get; set; }
-        public Nullable<int> SAINo { get; set; }
         public Nullable<System.DateTime> RISDate { get; set; }
-        public Nullable<System.DateTime> SAIDate { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public string PropertyInspector { get; set; }
+        public string PropertyInspectorPosition { get; set; }
+        public string PropertyInspector2 { get; set; }
+        public string PropertyInspector2Position { get; set; }
+        public string PGSOfficer { get; set; }
+        public string PGSOfficerPosition { get; set; }
+        public string Head { get; set; }
+        public string HeadPosition { get; set; }
+        public string PreparedBy { get; set; }
+        public string PropertyOfficer2 { get; set; }
+        public string PropertyOfficerPosition2 { get; set; }
+        public string NotedBy { get; set; }
+        public string NotedByPosition { get; set; }
+        public string PropertyOfficer { get; set; }
+        public string PropertyOfficerPosition { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AIRDetails> AIRDetails { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual PurchaseRequests PurchaseRequests { get; set; }
     }
 }

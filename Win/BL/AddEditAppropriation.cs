@@ -50,7 +50,7 @@ namespace Win.BL
                 {
                     frm.txtAccountCodeText.Text = item.AccountCodeText;
                     frm.txtAccountName.Text = item.AccountName;
-                    frm.cboFundType.EditValue = item.FundType;
+                    frm.cboFundType.EditValue = item.FundType ?? item.FundTypes.FundType;
 
                 }
             }
@@ -75,18 +75,24 @@ namespace Win.BL
                     return;
 
                 var unitOfWork = new UnitOfWork();
-                unitOfWork.AppropriationsRepoRepo.Update(new Appropriations()
-                {
-                    AccountCode = frm.txtAccountCode.Text,
-                    AccountCodeText = frm.txtAccountCodeText.Text,
-                    FundType = frm.cboFundType.Text,
-                    AccountName = frm.txtAccountName.Text,
-                    Appropriation = frm.txtAppropriationAmount.EditValue.ToDecimal(),
-                    Id = appropriation.Id,
-                    Year = appropriation.Year ?? new StaticSettings().Year,
-                    OfficeId = appropriation.OfficeId ?? new StaticSettings().OfficeId,
+                var item = unitOfWork.AppropriationsRepoRepo.Find(x => x.Id == appropriation.Id);
 
-                });
+                if (unitOfWork.AppropriationsRepoRepo.Fetch(x => x.AccountCode == frm.txtAccountCode.Text).Any())
+                {
+
+                    if (MessageBox.Show($@"Duplicate Entry for { frm.txtAccountCode.Text} - {frm.txtAccountName.Text}, Do you want to submit this?", "Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                         return;
+                }
+
+                item.AccountCode = frm.txtAccountCode.Text;
+                item.AccountCodeText = frm.txtAccountCodeText.Text;
+                item.FundType = frm.cboFundType.Text;
+                item.AccountName = frm.txtAccountName.Text;
+                item.Appropriation = frm.txtAppropriationAmount.EditValue.ToDecimal();
+                item.Year = appropriation.Year ?? new StaticSettings().Year;
+                item.FundTypeId = (frm.cboFundType.GetSelectedDataRow() as FundTypes)?.Id;
+                item.Createdby = User.UserName;
+                item.OfficeId = new StaticSettings().OfficeId;
                 unitOfWork.Save();
                 isClosed = true;
                 frm.Close();
@@ -131,6 +137,7 @@ namespace Win.BL
                 }
                 UnitOfWork unitOfWork = new UnitOfWork();
                 appropriation = new Appropriations();
+                appropriation.DateCreated = DateTime.Now;
                 unitOfWork.AppropriationsRepoRepo.Insert(appropriation);
                 unitOfWork.Save();
                 Detail();
@@ -148,7 +155,7 @@ namespace Win.BL
                 if (methodType == MethodType.Edit) return;
 
                 if (this.isClosed) return;
-             
+
 
                 UnitOfWork unitOfWork = new UnitOfWork();
                 unitOfWork.AppropriationsRepoRepo.Delete(m => m.Id == appropriation.Id);

@@ -16,9 +16,7 @@ namespace Models
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int? Year { get; set; }
 
-        public decimal? TotalAppropriation => Appropriations.Where(x=>x.Year==Year).Sum(x => x.Appropriation);
-        public decimal? TotalAllotment => Appropriations.Where(x => x.Year == Year).Sum(x => x.Allotment);
-        public decimal? TotalAppBalance => Appropriations.Where(x => x.Year == Year).Sum(x => x.AppropriationBalance);
-        public decimal? TotalAllotmentBalance => Appropriations.Where(x => x.Year == Year).Sum(x => x.AllotmentBalanceIncEM);
+
+        public int OfficeId { get; set; }
     }
 }

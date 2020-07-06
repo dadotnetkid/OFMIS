@@ -13,12 +13,13 @@ namespace Models
         private decimal? _reAligment;
         private decimal? _appropriationBalance;
         private decimal? _budgetAccountBalance;
+
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public decimal? BudgetAccountBalance
         {
             get
             {
-                _budgetAccountBalance = this.ORDetails.Where(x => x.Obligations.BudgetControlNo != null)
+                _budgetAccountBalance = this.ORDetails.Where(x => x.Obligations.BudgetControlNo != null && x.Obligations.OfficeId == this.OfficeId)
                     .Sum(x => x.Amount);
                 return _budgetAccountBalance;
             }
@@ -64,7 +65,7 @@ namespace Models
         public decimal? AllotmentBalanceExcEM => (Allotment ?? 0) - (this.ObligationsOffice ?? 0);
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public decimal? ObligationsOffice => this.ORDetails.Sum(x => x.Amount);
+        public decimal? ObligationsOffice => this.ORDetails.Where(x => x.Obligations.Year == Year && x.Obligations.OfficeId == OfficeId).Sum(x => x.Amount);
 
     }
 }

@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.Data.Linq;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraReports.UI;
+using DevExpress.XtraRichEdit;
 using Helpers;
 using Models;
 using Models.Repository;
+using Win.Actns;
+using Win.AIRpt;
+using Win.AOQ;
+using Win.APR;
 using Win.OB;
 using Win.PO;
 using Win.PQ;
+using Win.PropIsSlp;
 using Win.PR;
 using Win.Rprts;
 
@@ -36,10 +44,52 @@ namespace Win.BL
         {
             if (ucPR.PRGrid.GetFocusedRow() is PurchaseRequests pr)
             {
-                frmReportViewer frm = new frmReportViewer(new rptPurchaseRequest()
+                UnitOfWork unitOfWork = new UnitOfWork();
+                var model = unitOfWork.PurchaseRequestsRepo.Find(m => m.Id == pr.Id);
+                var officeId = User.OfficeId();
+                var office = unitOfWork.OfficesRepo.Find(x => x.Id == officeId);
+                model.PRDetails = model?.PRDetails.OrderBy(x => x.ItemNo).ToList();
+                model.ControlNo = IdHelper.ReplaceOldControlNo(officeId, "PR", model.ControlNo);
+                foreach (var i in model.PRDetails)
                 {
-                    DataSource = new UnitOfWork().PurchaseRequestsRepo.Get(m => m.Id == pr.Id)
-                });
+                    var rtf = new RichEditControl();
+                    //rtf.Font = new Font("Calibri", 9.5f);
+                    rtf.RtfText = i.Item;
+                    if (string.IsNullOrEmpty(rtf.Text))
+                    {
+                        RichEditDocumentServer server = new RichEditDocumentServer();
+                        server.Text = i.Item;
+                        i.Item = server.RtfText;
+                    }
+
+
+                }
+
+                unitOfWork.Save();
+                var rpt = new rptPurchaseRequest()
+                {
+                    DataSource = new List<PurchaseRequests>() { model }
+                };
+                if (office.IsDivision != true)
+                {
+                    foreach (XRControl control in rpt.AllControls<XRControl>().Where(x => x.Tag == "Division"))
+                    {
+                        control.Visible = false;
+                    }
+
+                    rpt.lblDepName.DataBindings.Clear();
+                    rpt.lblDepName.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+                        new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Offices].[OfficeName]")});
+                }
+
+                rpt.CreateDocument();
+                if (rpt.Pages.Count == 1)
+                {
+                    rpt.grpFooter.PrintAtBottom = true;
+                }
+
+
+                frmReportViewer frm = new frmReportViewer(rpt);
                 frm.ShowDialog();
             }
         }
@@ -50,16 +100,22 @@ namespace Win.BL
             {
                 if (ucPR.PRGrid.GetFocusedRow() is PurchaseRequests pr)
                 {
+                    var rowHandle = ucPR.PRGrid.FocusedRowHandle;
+                    if (!User.CheckOwner(pr.CreatedBy))
+                        return;
                     frmAddEditPurchaseRequest frm = new frmAddEditPurchaseRequest(MethodType.Edit, pr);
                     frm.ShowDialog();
+                    // ((ILoad<PurchaseRequests>) this).Init();
                     Detail(pr);
+                    ucPR.PRGrid.FocusedRowHandle = rowHandle;
+                    ucPR.PRGrid.MakeRowVisible(rowHandle);
                 }
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message, exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            ((ILoad<PurchaseRequests>)this).Init();
+            //       ;
         }
 
         private void BtnDeleteRepoPR_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -74,6 +130,7 @@ namespace Win.BL
                     UnitOfWork unitOfWork = new UnitOfWork();
                     unitOfWork.PurchaseRequestsRepo.Delete(m => m.Id == pr.Id);
                     unitOfWork.Save();
+
                 }
             }
             catch (Exception exception)
@@ -90,11 +147,11 @@ namespace Win.BL
             frm.btnAddItems.Click += BtnAddItems_Click;
             frm.ItemsGridView.RowUpdated += ItemsGridView_RowUpdated;
             frm.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_ButtonClick;
-            frm.btnAppropriations.Click += BtnAppropriations_Click;
-            
+            frm.btnCreateObR.Click += btnCreateObR_Click;
+
         }
 
-        private void BtnAppropriations_Click(object sender, EventArgs e)
+        private void btnCreateObR_Click(object sender, EventArgs e)
         {
             {
                 item.AppropriationId = frmAddEditPurchaseRequest.cboAccountCode.EditValue.ToInt();
@@ -150,7 +207,16 @@ namespace Win.BL
                     if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         return;
                     UnitOfWork unitOfWork = new UnitOfWork();
+                    var prId = pr.Id;
                     unitOfWork.PRDetailsRepo.Delete(m => m.Id == pr.Id);
+                    unitOfWork.Save();
+                    int counter = 1;
+                    foreach (var i in unitOfWork.PRDetailsRepo.Get(x => x.PRId == prId))
+                    {
+
+                        i.ItemNo = counter;
+                        counter++;
+                    }
                     unitOfWork.Save();
                     Detail();
                 }
@@ -170,6 +236,7 @@ namespace Win.BL
                 i.TotalAmount = i.Quantity * i.Cost;
                 if (i.Id == 0)
                 {
+                    i.PRId = item.Id;
                     unitOfWork.PRDetailsRepo.Insert(i);
                 }
                 else
@@ -184,6 +251,7 @@ namespace Win.BL
                         ItemNo = i.ItemNo,
                         Quantity = i.Quantity,
                         TotalAmount = i.TotalAmount,
+
                         UOM = i.UOM
                     });
                 }
@@ -191,9 +259,9 @@ namespace Win.BL
             }
         }
 
-        private bool isClosed;
+        public bool isClosed;
         private frmAddEditPurchaseRequest frmAddEditPurchaseRequest;
-        private PurchaseRequests item;
+        public PurchaseRequests item;
         private UCPurchaseRequest ucPR;
         public MethodType methodType { get; set; }
         public void Save()
@@ -202,6 +270,7 @@ namespace Win.BL
             {
                 StaticSettings staticSettings = new StaticSettings();
                 UnitOfWork unitOfWork = new UnitOfWork();
+
                 item = unitOfWork.PurchaseRequestsRepo.Find(m => m.Id == item.Id);
                 item.Date = frmAddEditPurchaseRequest.dtDate.DateTime;
                 item.ControlNo = frmAddEditPurchaseRequest.txtControlNumber.Text;
@@ -211,19 +280,44 @@ namespace Win.BL
                 item.TotalAmount = item.PRDetails.Sum(m => m.TotalAmount);
                 item.TotalAmount = item.PRDetails.Sum(m => m.TotalAmount);
                 item.OfficeId = new StaticSettings().OfficeId;
+                if (frmAddEditPurchaseRequest.cboApprovedBy.GetSelectedDataRow() is Signatories pa)
+                {
+                    item.PA = pa.Person; //unitOfWork.Signatories.Find(m => m.Position == "Provincial Administrator")?.Person;
+                    item.PAPos = pa.Position;//unitOfWork.Signatories.Find(m => m.Position == "Provincial Administrator")?.Position;
+                }
 
-                item.PA = unitOfWork.ChiefOfOfficesRepo.Find(m => m.Position == "Public Administrator")?.Person;
-                item.PAPos = unitOfWork.ChiefOfOfficesRepo.Find(m => m.Position == "Public Administrator")?.Position;
                 item.DivisionHead = staticSettings.Head;
                 item.DivisionHeadPos = staticSettings.HeadPos;
+                item.IsEarmark = frmAddEditPurchaseRequest.chkEarmarked.EditValue?.ToBool();
 
-                if (frmAddEditPurchaseRequest.cboApprovedBy.GetSelectedDataRow() is Signatories signatories)
+                var appropriation = unitOfWork.AppropriationsRepoRepo.Find(x => x.Id == item.AppropriationId);
+
+                /* item.Purpose =
+                     item?.Purpose?.Replace($" charged to {appropriation?.AccountName} - {appropriation?.AccountCode}", "") + $" charged to {appropriation?.AccountName} - {appropriation?.AccountCodeText}";*/
+                if (frmAddEditPurchaseRequest.cboDeptHead.GetSelectedDataRow() is Signatories signatories)
                 {
                     item.DeptHead = signatories.Person;
                     item.DeptHeadPos = signatories.Position;
                 }
+
+                if (frmAddEditPurchaseRequest.cboObRNo.GetSelectedDataRow() is Obligations obr)
+                {
+                    if (obr.PRNo != null)
+                    {
+
+                        if (MessageBox.Show("Do you want to submit this?", "Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                            return;
+                    }
+
+                    if (item.Obligations.Any())
+                    {
+                        item.Obligations.Clear();
+                    }
+                    obr = unitOfWork.ObligationsRepo.Find(x => x.Id == obr.Id);
+                    obr.PRNo = item.Id;
+                }
                 unitOfWork.Save();
-                isClosed = true;
+
 
             }
             catch (Exception e)
@@ -240,24 +334,30 @@ namespace Win.BL
 
             frmAddEditPurchaseRequest.cboAccountCode.Properties.DataSource =
                 new BindingList<Appropriations>(unitOfWork.AppropriationsRepoRepo.Get(m => m.Year == staticSettings.Year && m.OfficeId == staticSettings.OfficeId));
+            this.frmAddEditPurchaseRequest.cboObRNo.Properties.DataSource = unitOfWork.ObligationsRepo.Get(m => m.OfficeId == staticSettings.OfficeId);
+            this.frmAddEditPurchaseRequest.cboApprovedBy.Properties.DataSource = unitOfWork.Signatories.Get(x => x.Position == "Provincial Administrator" || x.Position == "Governor");
             item = unitOfWork.PurchaseRequestsRepo.Find(m => m.Id == item.Id);
             frmAddEditPurchaseRequest.dtDate.EditValue = item.Date ?? DateTime.Now;
             frmAddEditPurchaseRequest.txtControlNumber.Text = item.ControlNo;
             frmAddEditPurchaseRequest.txtDescription.Text = item.Description;
             frmAddEditPurchaseRequest.cboAccountCode.EditValue = item.AppropriationId;
             frmAddEditPurchaseRequest.txtPurpose.Text = item.Purpose;
-            frmAddEditPurchaseRequest.cboApprovedBy.Properties.DataSource =
-                new BindingList<Signatories>(unitOfWork.ChiefOfOfficesRepo.Get(m => m.Office == staticSettings.Offices.UnderOfOffice.OfficeName));
-            frmAddEditPurchaseRequest.txtChiefOfficer.Text = string.IsNullOrWhiteSpace(item.DivisionHead) ? staticSettings.Head : item.DivisionHead;
-            frmAddEditPurchaseRequest.cboApprovedBy.EditValue = item.DeptHead ?? unitOfWork.ChiefOfOfficesRepo
-                .Get(m => m.Office == staticSettings.Offices.UnderOfOffice.OfficeName).FirstOrDefault()?.Person;
+            var officeName = staticSettings.Offices?.UnderOfOffice?.OfficeName ?? staticSettings.OfficeName;
+            frmAddEditPurchaseRequest.cboDeptHead.Properties.DataSource =
+                new BindingList<Signatories>(unitOfWork.Signatories.Get(m => m.Office == officeName));
+
+            frmAddEditPurchaseRequest.txtChiefOfficer.Text = item.DivisionHead?.ToUpper();
+            frmAddEditPurchaseRequest.cboDeptHead.EditValue = item.DeptHead ?? unitOfWork.Signatories
+                .Get(m => m.Office == officeName).FirstOrDefault()?.Person;
 
             frmAddEditPurchaseRequest.ItemsGridControl.DataSource =
-                new BindingList<PRDetails>(unitOfWork.PRDetailsRepo.Get(m => m.PRId == item.Id));
+                new BindingList<PRDetails>(unitOfWork.PRDetailsRepo.Get(m => m.PRId == item.Id).OrderBy(x => x.ItemNo).ToList());
 
             frmAddEditPurchaseRequest.cboUOMRepo.DataSource =
                 unitOfWork.ItemsRepo.Fetch().GroupBy(x => x.UOM).Select(x => new { UOM = x.Key }).ToList();
             frmAddEditPurchaseRequest.cboCategoryRepo.DataSource = unitOfWork.CategoriesRepo.Get();
+            frmAddEditPurchaseRequest.chkEarmarked.EditValue = item.IsEarmark;
+            frmAddEditPurchaseRequest.cboApprovedBy.EditValue = item.PA;
         }
 
         void ITransactions<PurchaseRequests>.Init()
@@ -267,15 +367,17 @@ namespace Win.BL
                 if (methodType == MethodType.Add)
                 {
                     UnitOfWork unitOfWork = new UnitOfWork();
-
-                    var id = ((unitOfWork.PurchaseRequestsRepo.Fetch().OrderByDescending(m => m.Id).FirstOrDefault()
-                                   ?.Id ?? 0) + 1);
-                    var controlNo = DateTime.Now.ToString("yyyy-MM-") + id.ToString("0000");
+                    StaticSettings staticSettings = new StaticSettings();
+                    var pr = unitOfWork.PurchaseRequestsRepo.Fetch(m => m.OfficeId == staticSettings.OfficeId)
+                        .OrderByDescending(m => m.Id).FirstOrDefault();
                     item = new PurchaseRequests()
                     {
-                        ControlNo = controlNo,
-                        Id = id,
-                        OfficeId = new StaticSettings().OfficeId
+                        ControlNo = IdHelper.OfficeControlNo(pr?.ControlNo, staticSettings.OfficeId, "PR", "PurchaseRequests"),
+                        DivisionHead = staticSettings.Offices.IsDivision == true ? staticSettings.Head : "",
+                        DivisionHeadPos = staticSettings.Offices.IsDivision == true ? staticSettings.Head : "",
+                        OfficeId = staticSettings.OfficeId,
+                        CreatedBy = User.UserId
+
                     };
                     unitOfWork.PurchaseRequestsRepo.Insert(item);
                     unitOfWork.Save();
@@ -295,6 +397,8 @@ namespace Win.BL
             frmItems.ShowDialog();
             frmAddEditPurchaseRequest.ItemsGridControl.DataSource =
                 new BindingList<PRDetails>(new UnitOfWork().PRDetailsRepo.Get(m => m.PRId == item.Id));
+            Save();
+            Detail();
         }
 
         public void Close(FormClosingEventArgs eventArgs)
@@ -331,12 +435,30 @@ namespace Win.BL
 
 
         }
+        void Init(PurchaseRequests pr)
+        {
+            var staticSetting = new StaticSettings();
+            ucPR.PRGridControl.DataSource = new EntityServerModeSource()
+            {
+                QueryableSource = new UnitOfWork().PurchaseRequestsRepo
+                    .Fetch(m => m.OfficeId == staticSetting.OfficeId)
+            };
 
+            /*new BindingList<PurchaseRequests>(new UnitOfWork().PurchaseRequestsRepo
+            .Fetch(m => m.OfficeId == staticSetting.OfficeId).ToList());*/
+
+            var id = ucPR.PRGrid.LocateByValue("Id", pr.Id);
+            ucPR.PRGrid.FocusedRowHandle = id;
+            ucPR.PRGrid.MakeRowVisible(id);
+        }
         private void BtnNew_Click(object sender, EventArgs e)
         {
             frmAddEditPurchaseRequest frmAddEditPurchaseRequest = new frmAddEditPurchaseRequest(MethodType.Add, new PurchaseRequests());
-            frmAddEditPurchaseRequest.ShowDialog();
-            ((ILoad<PurchaseRequests>)this).Init();
+            frmAddEditPurchaseRequest res = (frmAddEditPurchaseRequest)frmAddEditPurchaseRequest.ShowDialogBox();
+            Init(res.Item);
+            //res.Item
+
+            Detail(res.Item);
         }
 
         private void PRGrid_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -355,6 +477,7 @@ namespace Win.BL
             pr = new UnitOfWork().PurchaseRequestsRepo.Find(m => m.Id == pr.Id);
             if (pr == null)
                 return;
+
             ucPR.lblHeader.Text = pr.ControlNo + " - " + pr.Description;
             ucPR.dtDate.EditValue = pr.Date;
             ucPR.txtControlNumber.Text = pr.ControlNo;
@@ -362,11 +485,23 @@ namespace Win.BL
             ucPR.txtPurpose.Text = pr.Purpose;
             ucPR.txtAmount.EditValue = pr.TotalAmount;
             ucPR.txtAccountCode.EditValue = pr.Appropriations?.AccountCode + " - " + pr.Appropriations?.AccountName;
-            ucPR.ItemsGridControl.DataSource = new BindingList<PRDetails>(pr.PRDetails.ToList());
+            ucPR.ItemsGridControl.DataSource = new BindingList<PRDetails>(pr.PRDetails.OrderBy(x => x.ItemNo).ToList());
             ucPR.PQTabPage.Controls.Clear();
             ucPR.PQTabPage.Controls.Add(new UCPQ(pr) { Dock = DockStyle.Fill });
             ucPR.tabPO.Controls.Clear();
             ucPR.tabPO.Controls.Add(new UCPO(pr) { Dock = DockStyle.Fill });
+            ucPR.tabAOQ.Controls.Clear();
+            ucPR.tabAOQ.Controls.Add(new UCAOQ(pr) { Dock = DockStyle.Fill });
+            ucPR.LetterTabPage.Controls.Clear();
+            ucPR.LetterTabPage.Controls.Add(new UCAllotmentLetter(pr) { Dock = DockStyle.Fill });
+            ucPR.tabAPR.Controls.Clear();
+            ucPR.tabAPR.Controls.Add(new UCAPRs(pr) { Dock = DockStyle.Fill });
+            ucPR.tabActions.Controls.Clear();
+            ucPR.tabActions.Controls.Add(new UCDocumentActions(pr.Id, "PurchaseRequests") { Dock = DockStyle.Fill });
+            ucPR.tabAcceptance.Controls.Clear();
+            ucPR.tabAcceptance.Controls.Add(new UCAIReports(pr) { Dock = DockStyle.Fill });
+            ucPR.tabPIS.Controls.Clear();
+            ucPR.tabPIS.Controls.Add(new UCPIS(pr) { Dock = DockStyle.Fill });
         }
 
         public void Search(string search)

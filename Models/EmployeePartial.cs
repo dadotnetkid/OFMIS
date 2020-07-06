@@ -10,6 +10,7 @@ namespace Models
     [MetadataType(typeof(EmployeeMeta))]
     public partial class Employees
     {
+        public string EmployeeNameByLastName => this.LastName + ", " + this.FirstName + " " + this.MiddleName[0] + ".";
 
         private string _EmployeeName;
 
@@ -18,7 +19,7 @@ namespace Models
             get
             {
                 if (_EmployeeName == null)
-                    _EmployeeName = this.FirstName + " " + this.LastName;
+                    _EmployeeName = this.FirstName + " " + this.MiddleName[0] + ". " + this.LastName + " " + this.ExtName;
                 return _EmployeeName;
             }
             set { _EmployeeName = value; }

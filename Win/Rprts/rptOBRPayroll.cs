@@ -40,7 +40,7 @@ namespace Win.Rprts
         {
             pageCount = this.Pages.Count();
             //var sum = oBRPayrolls.Where(x => x.PageIndex == e.PageIndex).Sum(x => x.ColumnTitle1);
-      //      colTotalTitle1.Text = sum?.ToString("PHP #,##.#0");
+      //      colTotalTitle1.Text = sum?.ToString("#,##.00##");
         }
 
         private void xrTable2_PrintOnPage(object sender, PrintOnPageEventArgs e)
@@ -60,7 +60,7 @@ namespace Win.Rprts
                 //ColumnTitle1 = columnTitle1?.Text?.ToDecimal(),
 
             });
-            columnTitle1.Text = columnTitle1?.Text?.ToDecimal().ToString("PHP #,##.#0");
+            columnTitle1.Text = columnTitle1?.Text?.ToDecimal().ToString("#,##.00");
         }
         private void xrTableCell12_PrintOnPage(object sender, PrintOnPageEventArgs e)
         {
@@ -72,7 +72,7 @@ namespace Win.Rprts
                 //ColumnTitle2 = columnTitle2?.Text?.ToDecimal(),
 
             });
-            columnTitle2.Text = columnTitle2?.Text?.ToDecimal().ToString("PHP #,##.#0");
+            columnTitle2.Text = columnTitle2?.Text?.ToDecimal().ToString("#,##.00##");
         }
 
         private void xrTableCell13_PrintOnPage(object sender, PrintOnPageEventArgs e)
@@ -85,7 +85,7 @@ namespace Win.Rprts
                 PageIndex = e.PageIndex,
            //     Total = total?.Text?.ToDecimal(),
             });
-            total.Text = total?.Text?.ToDecimal().ToString("PHP #,##.#0");
+            total.Text = total?.Text?.ToDecimal().ToString("#,##.00##");
         }
         private void rptOBRPayroll_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
@@ -97,7 +97,7 @@ namespace Win.Rprts
         private void colTotalTitle2_PrintOnPage(object sender, PrintOnPageEventArgs e)
         {
             //var sum = oBRPayrolls.Where(x => x.PageIndex == e.PageIndex).Sum(x => x.ColumnTitle2);
-            //colTotalTitle2.Text = sum?.ToString("PHP #,##.#0");
+            //colTotalTitle2.Text = sum?.ToString("#,##.00##");
         }
 
 
@@ -105,7 +105,7 @@ namespace Win.Rprts
         private void colTotal_PrintOnPage(object sender, PrintOnPageEventArgs e)
         {
             //var sum = oBRPayrolls.Where(x => x.PageIndex == e.PageIndex).Sum(x => x.Total);
-            //colTotal.Text = sum?.ToString("PHP #,##.#0");
+            //colTotal.Text = sum?.ToString("#,##.00##");
         }
 
         private void colGrandTotal_PrintOnPage(object sender, PrintOnPageEventArgs e)
@@ -113,9 +113,9 @@ namespace Win.Rprts
             if (sender is XRTableCell cell)
             {
                 cell.Visible = e.PageIndex == (Pages.Count() - 1) ? true : false;
-               // colGrandTotalTitle1.Text = oBRPayrolls.Sum(x => x.ColumnTitle1)?.ToString("PHP #,##.#0");
-                //colGrandTotalTitle2.Text = oBRPayrolls.Sum(x => x.ColumnTitle2)?.ToString("PHP #,##.#0");
-                //colGrandTotal.Text = oBRPayrolls.Sum(x => x.Total)?.ToString("PHP #,##.#0");
+               // colGrandTotalTitle1.Text = oBRPayrolls.Sum(x => x.ColumnTitle1)?.ToString("#,##.00##");
+                //colGrandTotalTitle2.Text = oBRPayrolls.Sum(x => x.ColumnTitle2)?.ToString("#,##.00##");
+                //colGrandTotal.Text = oBRPayrolls.Sum(x => x.Total)?.ToString("#,##.00##");
                 //if (cell.Name == "colGrandTotalLabel")
                 //    cell.Visible = e.PageCount == Pages.Count() ? true : false;
             }
@@ -124,6 +124,15 @@ namespace Win.Rprts
         private void xrTableCell12_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
 
+        }
+
+        private void xrLabel44_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            if (sender is XRLabel lbl)
+            {
+                StaticSettings staticSettings = new StaticSettings();
+                lbl.Text = $"[{staticSettings.Offices.OffcAcr}]Office Management Information System({User.UserName})";
+            }
         }
     }
 }

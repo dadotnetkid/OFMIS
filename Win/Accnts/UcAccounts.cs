@@ -12,8 +12,15 @@ using Win.BL;
 
 namespace Win.Accnts
 {
-    public partial class UcAccounts : DevExpress.XtraEditors.XtraUserControl
+    public partial class UcAccounts : DevExpress.XtraEditors.XtraUserControl, IUserControl
     {
+        public override void Refresh()
+        {
+            var frm = Application.OpenForms["Main"] as Main;
+            frm.pnlMain.Controls.Clear();
+            frm.pnlMain.Controls.Add(new UcAccounts() { Dock = DockStyle.Fill });
+            base.Refresh();
+        }
         private LoadAppropriations loadAppropriations;
 
         public UcAccounts()

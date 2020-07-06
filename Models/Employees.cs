@@ -19,7 +19,9 @@ namespace Models
         {
             this.PayrollDetails = new HashSet<PayrollDetails>();
             this.Payees = new HashSet<Payees>();
+            this.BACMembers = new HashSet<BACMembers>();
             this.PayrollWageDetails = new HashSet<PayrollWageDetails>();
+            this.PayrollDifferentialDetails = new HashSet<PayrollDifferentialDetails>();
         }
     
         public int Id { get; set; }
@@ -33,12 +35,21 @@ namespace Models
         public string TIN { get; set; }
         public string PagIbig { get; set; }
         public string PhilHealth { get; set; }
+        public string Status { get; set; }
+        public string Salutation { get; set; }
+        public string SG { get; set; }
+        public string SSS { get; set; }
+        public string ExtName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayrollDetails> PayrollDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payees> Payees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BACMembers> BACMembers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayrollWageDetails> PayrollWageDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PayrollDifferentialDetails> PayrollDifferentialDetails { get; set; }
     }
 }

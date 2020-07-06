@@ -48,7 +48,18 @@ namespace Win.Pyee
 
         public void Search(string search)
         {
-            throw new NotImplementedException();
+            try
+            {
+                UnitOfWork unitOfWork = new UnitOfWork();
+                PayeeGridControl.DataSource = new EntityServerModeSource()
+                {
+                    QueryableSource = new UnitOfWork().PayeesRepo.Fetch(x => x.Name.Contains(search)),
+                };}
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         private void btnEditRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -90,6 +101,14 @@ namespace Win.Pyee
                 frmAddEditPayee frm = new frmAddEditPayee(MethodType.Edit, item);
                 frm.ShowDialog();
                 Init();
+            }
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                Search(txtSearch.Text);
             }
         }
     }

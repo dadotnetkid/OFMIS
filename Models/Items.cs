@@ -14,11 +14,20 @@ namespace Models
     
     public partial class Items
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Items()
+        {
+            this.PRDetails = new HashSet<PRDetails>();
+        }
+    
         public int Id { get; set; }
         public string Category { get; set; }
         public string Item { get; set; }
         public string UOM { get; set; }
         public Nullable<decimal> Cost { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PRDetails> PRDetails { get; set; }
     }
 }

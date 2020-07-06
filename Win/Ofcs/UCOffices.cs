@@ -92,7 +92,9 @@ namespace Win.Ofcs
                             ResponsibilityCenter = item.ResponsibilityCenter,
                             ResponsibilityCenterCode = item.ResponsibilityCenterCode,
                             UnderOf = item.UnderOf == 0 ? null : item.UnderOf,
-                            Address = item.Address
+                            Address = item.Address,
+                            TelNo = item.TelNo,
+
                         });
                     unitOfWork.Save();
                     Init();
@@ -111,6 +113,7 @@ namespace Win.Ofcs
             res.AddRange(new UnitOfWork().OfficesRepo.Get());
             OfficesGridControl.DataSource = new BindingList<Offices>(new UnitOfWork().OfficesRepo.Get());
             cboOffices.DataSource = new BindingList<Offices>(res);
+            cboChief.DataSource = new BindingList<Employees>(new UnitOfWork().EmployeesRepo.Get());
         }
 
         public void Detail(Offices item)
@@ -137,6 +140,19 @@ namespace Win.Ofcs
 
             OfficesGridControl.DataSource = new BindingList<Offices>(offices.ToList());
 
+        }
+
+        private void OfficesGridView_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.Name == "colChief")
+                if (OfficesGridView.GetRow(e.RowHandle) is Offices item)
+                {
+                    var employees = new UnitOfWork().EmployeesRepo.Get()
+                        .FirstOrDefault(x => x.EmployeeName == item.Chief);
+                    if (employees == null)
+                        return;
+                    item.ChiefPosition = item.ChiefPosition;
+                }
         }
     }
 }

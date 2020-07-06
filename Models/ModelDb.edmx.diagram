@@ -4,46 +4,37 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2d3af104b4f046ac8514e78536113cee" Name="Diagram1" ZoomLevel="91">
-        <EntityTypeShape EntityType="Model.AIRDetails" Width="1.5" PointX="15" PointY="1.125" />
-        <EntityTypeShape EntityType="Model.AIReports" Width="1.5" PointX="12.75" PointY="1" />
-        <EntityTypeShape EntityType="Model.Allotments" Width="1.5" PointX="5.25" PointY="6.75" />
-        <EntityTypeShape EntityType="Model.Appropriations" Width="1.5" PointX="3" PointY="14.625" />
-        <EntityTypeShape EntityType="Model.Categories" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Model.DefaultAccounts" Width="1.5" PointX="3" PointY="3.75" />
-        <EntityTypeShape EntityType="Model.DefaultSettings" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="Model.Employees" Width="1.5" PointX="1.5" PointY="28.875" />
-        <EntityTypeShape EntityType="Model.Functions" Width="1.5" PointX="7.75" PointY="4.5" />
-        <EntityTypeShape EntityType="Model.FundTypes" Width="1.5" PointX="0.75" PointY="14.125" />
-        <EntityTypeShape EntityType="Model.Items" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Model.Logs" Width="1.5" PointX="14.5" PointY="10.25" />
-        <EntityTypeShape EntityType="Model.Obligations" Width="1.5" PointX="3" PointY="19.75" />
-        <EntityTypeShape EntityType="Model.Offices" Width="1.5" PointX="0.75" PointY="19.875" />
-        <EntityTypeShape EntityType="Model.ORDetails" Width="1.5" PointX="5.25" PointY="15.625" />
-        <EntityTypeShape EntityType="Model.Payees" Width="1.5" PointX="0.75" PointY="25" />
-        <EntityTypeShape EntityType="Model.PayrollDetails" Width="1.5" PointX="10.5" PointY="30.625" />
-        <EntityTypeShape EntityType="Model.PODetails" Width="1.5" PointX="9.75" PointY="26" />
-        <EntityTypeShape EntityType="Model.Positions" Width="1.5" PointX="7.75" PointY="7.75" />
-        <EntityTypeShape EntityType="Model.PQDetails" Width="1.5" PointX="9.75" PointY="17.125" />
-        <EntityTypeShape EntityType="Model.PRDetails" Width="1.5" PointX="7.5" PointY="21" />
-        <EntityTypeShape EntityType="Model.PriceQuotations" Width="1.5" PointX="7.5" PointY="16.875" />
-        <EntityTypeShape EntityType="Model.Provinces" Width="1.5" PointX="5.75" PointY="1" />
-        <EntityTypeShape EntityType="Model.PurchaseOrders" Width="1.5" PointX="7.5" PointY="24.875" />
-        <EntityTypeShape EntityType="Model.PurchaseRequests" Width="1.5" PointX="5.25" PointY="21.625" />
-        <EntityTypeShape EntityType="Model.ReAlignments" Width="1.5" PointX="5.25" PointY="10.125" />
-        <EntityTypeShape EntityType="Model.Signatories" Width="1.5" PointX="7.75" PointY="10.75" />
-        <EntityTypeShape EntityType="Model.Suppliers" Width="1.5" PointX="12.75" PointY="5.75" />
-        <EntityTypeShape EntityType="Model.Towns" Width="1.5" PointX="8" PointY="0.875" />
-        <EntityTypeShape EntityType="Model.UserClaims" Width="1.5" PointX="14.5" PointY="13.625" />
-        <EntityTypeShape EntityType="Model.UserLogins" Width="1.5" PointX="14.5" PointY="16.375" />
-        <EntityTypeShape EntityType="Model.UserRoles" Width="1.5" PointX="10" PointY="4.25" />
-        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="12.25" PointY="10.125" />
-        <EntityTypeShape EntityType="Model.Years" Width="1.5" PointX="9.75" PointY="7.75" />
-        <AssociationConnector Association="Model.FK_AIRDetails_AIReports" />
+      <Diagram DiagramId="2d3af104b4f046ac8514e78536113cee" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="Model.Allotments" Width="1.5" PointX="16.5" PointY="27.75" />
+        <EntityTypeShape EntityType="Model.Appropriations" Width="1.5" PointX="14.25" PointY="28.625" />
+        <EntityTypeShape EntityType="Model.Categories" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Model.DefaultAccounts" Width="1.5" PointX="14.25" PointY="25.25" />
+        <EntityTypeShape EntityType="Model.DefaultSettings" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Model.Employees" Width="1.5" PointX="3.75" PointY="34.75" />
+        <EntityTypeShape EntityType="Model.Functions" Width="1.5" PointX="4.5" PointY="31.375" />
+        <EntityTypeShape EntityType="Model.FundTypes" Width="1.5" PointX="12" PointY="29.875" />
+        <EntityTypeShape EntityType="Model.Items" Width="1.5" PointX="6" PointY="51" />
+        <EntityTypeShape EntityType="Model.Logs" Width="1.5" PointX="11.25" PointY="34.25" />
+        <EntityTypeShape EntityType="Model.Obligations" Width="1.5" PointX="11.25" PointY="38" />
+        <EntityTypeShape EntityType="Model.Offices" Width="1.5" PointX="0.75" PointY="42.375" />
+        <EntityTypeShape EntityType="Model.Payees" Width="1.5" PointX="6" PointY="37.875" />
+        <EntityTypeShape EntityType="Model.PayrollDetails" Width="1.5" PointX="15.75" PointY="36.25" />
+        <EntityTypeShape EntityType="Model.Positions" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Model.PRDetails" Width="1.5" PointX="8.25" PointY="50.375" />
+        <EntityTypeShape EntityType="Model.PriceQuotations" Width="1.5" PointX="8.25" PointY="55.375" />
+        <EntityTypeShape EntityType="Model.Provinces" Width="1.5" PointX="2.75" PointY="1" />
+        <EntityTypeShape EntityType="Model.PurchaseOrders" Width="1.5" PointX="8.25" PointY="63.125" />
+        <EntityTypeShape EntityType="Model.ReAlignments" Width="1.5" PointX="16.5" PointY="31.125" />
+        <EntityTypeShape EntityType="Model.Signatories" Width="1.5" PointX="18.5" PointY="55.625" />
+        <EntityTypeShape EntityType="Model.Suppliers" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Model.Towns" Width="1.5" PointX="5" PointY="0.875" />
+        <EntityTypeShape EntityType="Model.UserClaims" Width="1.5" PointX="11.25" PointY="49.625" />
+        <EntityTypeShape EntityType="Model.UserLogins" Width="1.5" PointX="11.25" PointY="52.375" />
+        <EntityTypeShape EntityType="Model.UserRoles" Width="1.5" PointX="6.75" PointY="31.25" />
+        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="9" PointY="41.125" />
+        <EntityTypeShape EntityType="Model.Years" Width="1.5" PointX="7.75" PointY="0.75" />
         <AssociationConnector Association="Model.FK_Allotments_Appropriations" />
         <AssociationConnector Association="Model.FK_Appropriations_FundTypes" />
-        <AssociationConnector Association="Model.FK_ORDetails_Appropriations" />
-        <AssociationConnector Association="Model.FK_PurchaseRequests_Appropriations" />
         <AssociationConnector Association="Model.FK_ReAlignments_Appropriations" />
         <AssociationConnector Association="Model.FK_ReAlignments_TargetSource" />
         <AssociationConnector Association="Model.FK_DefaultAccounts_FundTypes" />
@@ -51,29 +42,102 @@
         <AssociationConnector Association="Model.FK_Logs_Users" />
         <AssociationConnector Association="Model.FK_Obligations_Offices" />
         <AssociationConnector Association="Model.FK_Obligations_Payees" />
-        <AssociationConnector Association="Model.FK_ORDetails_Obligations" />
         <AssociationConnector Association="Model.FK_Offices_Offices" />
         <AssociationConnector Association="Model.FK_Payees_Offices" />
         <AssociationConnector Association="Model.FK_Users_Offices" />
-        <AssociationConnector Association="Model.FK_PODetails_PurchaseOrders" />
-        <AssociationConnector Association="Model.FK_PQDetails_PurchaseQuotations" />
-        <AssociationConnector Association="Model.FK_PRDetails_PurchaseRequests" />
-        <AssociationConnector Association="Model.FK_PurchaseQuotations_PurchaseRequests" />
         <AssociationConnector Association="Model.FK_Towns_Towns" />
-        <AssociationConnector Association="Model.FK_PurchaseOrders_PurchaseRequests" />
         <AssociationConnector Association="Model.FK_UserClaims_Users" />
         <AssociationConnector Association="Model.FK_UserLogins_Users" />
         <AssociationConnector Association="Model.EmployeesInPayee" />
         <AssociationConnector Association="Model.UserRolesInFunctions" />
         <AssociationConnector Association="Model.UsersInRoles" />
-        <EntityTypeShape EntityType="Model.Payrolls" Width="1.5" PointX="5.25" PointY="26.625" />
+        <EntityTypeShape EntityType="Model.Payrolls" Width="1.5" PointX="13.5" PointY="35.5" />
         <AssociationConnector Association="Model.FK_Payrolls_Obligations" />
         <AssociationConnector Association="Model.FK_PayrollDetails_Payrolls" />
-        <EntityTypeShape EntityType="Model.PayrollWages" Width="1.5" PointX="5.25" PointY="32" />
+        <EntityTypeShape EntityType="Model.PayrollWages" Width="1.5" PointX="13.5" PointY="44.125" />
         <AssociationConnector Association="Model.FK_PayrollWage_Obligations" />
-        <EntityTypeShape EntityType="Model.PayrollWageDetails" Width="1.5" PointX="7.5" PointY="31.5" />
-        <AssociationConnector Association="Model.FK_PayrollWages_Employees" />
+        <AssociationConnector Association="Model.FK_PRDetails_Items" />
+        <EntityTypeShape EntityType="Model.BACMembers" Width="1.5" PointX="3" PointY="47.625" />
+        <AssociationConnector Association="Model.FK_BACMembers_Employees" />
+        <AssociationConnector Association="Model.FK_BACMembers_Offices" />
+        <EntityTypeShape EntityType="Model.AllotmentLetter" Width="1.5" PointX="8.25" PointY="36.25" />
+        <AssociationConnector Association="Model.FK_AllotmentLetter_Appropriations" />
+        <EntityTypeShape EntityType="Model.ControlNumbers" Width="1.5" PointX="3" PointY="97.375" />
+        <AssociationConnector Association="Model.FK_ControlNumbers_Offices" />
+        <EntityTypeShape EntityType="Model.PayrollWageDetails" Width="1.5" PointX="15.75" PointY="45.25" />
+        <AssociationConnector Association="Model.FK_PayrollWages_Employees" ManuallyRouted="true" >
+          <ConnectorPoint PointX="5.25" PointY="37.28012594959489" />
+          <ConnectorPoint PointX="5.6678289074499082" PointY="39.905371111994668" />
+          <ConnectorPoint PointX="5.8321710925500918" PointY="39.905371111994668" />
+          <ConnectorPoint PointX="7.6678289074499082" PointY="40.27830078125001" />
+          <ConnectorPoint PointX="7.697916666666667" PointY="40.27830078125001" />
+          <ConnectorPoint PointX="8.2083333333333339" PointY="40.27830078125001" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="40.27830078125001" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="40.27830078125001" />
+          <ConnectorPoint PointX="10.791666666666666" PointY="40.27830078125001" />
+          <ConnectorPoint PointX="10.958333333333334" PointY="40.27830078125001" />
+          <ConnectorPoint PointX="11" PointY="40.27830078125001" />
+          <ConnectorPoint PointX="11" PointY="48.871136426377646" />
+          <ConnectorPoint PointX="13.291666666666666" PointY="48.871136426377646" />
+          <ConnectorPoint PointX="13.291666666666666" PointY="41.5" />
+          <ConnectorPoint PointX="15.291666666666666" PointY="41.5" />
+          <ConnectorPoint PointX="15.458333333333334" PointY="41.5" />
+          <ConnectorPoint PointX="16.25" PointY="41.5" />
+          <ConnectorPoint PointX="16.25" PointY="44.875" />
+          <ConnectorPoint PointX="16.5" PointY="44.875" />
+          <ConnectorPoint PointX="16.5" PointY="45.25" />
+        </AssociationConnector>
         <AssociationConnector Association="Model.FK_PayrollWageDetails_PayrollWages" />
+        <EntityTypeShape EntityType="Model.Templates" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Model.SalarySchedules" Width="1.5" PointX="4.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Model.PayrollDifferentials" Width="1.5" PointX="13.5" PointY="49.25" />
+        <EntityTypeShape EntityType="Model.ORDetails" Width="1.5" PointX="16.5" PointY="41.75" />
+        <EntityTypeShape EntityType="Model.PODetails" Width="1.5" PointX="10.5" PointY="64.25" />
+        <EntityTypeShape EntityType="Model.PQDetails" Width="1.5" PointX="10.5" PointY="55.625" />
+        <AssociationConnector Association="Model.FK_ORDetails_Appropriations" />
+        <AssociationConnector Association="Model.FK_ORDetails_Obligations" />
+        <AssociationConnector Association="Model.FK_PayrollDifferentials_Obligations" />
+        <AssociationConnector Association="Model.FK_PODetails_PurchaseOrders" />
+        <AssociationConnector Association="Model.FK_PQDetails_PurchaseQuotations" />
+        <EntityTypeShape EntityType="Model.AOQ" Width="1.5" PointX="16.25" PointY="52.625" />
+        <AssociationConnector Association="Model.BACInAOQ" />
+        <EntityTypeShape EntityType="Model.AOQDetails" Width="1.5" PointX="18.5" PointY="59.375" />
+        <AssociationConnector Association="Model.FK_AOQDetails_AOQ" />
+        <AssociationConnector Association="Model.FK_AOQ_Signatories" />
+        <AssociationConnector Association="Model.FK_AOQ_Offices" />
+        <EntityTypeShape EntityType="Model.Letters" Width="1.5" PointX="3" PointY="41.25" />
+        <AssociationConnector Association="Model.OBRInLetters" />
+        <AssociationConnector Association="Model.FK_Letters_Offices" />
+        <EntityTypeShape EntityType="Model.APRs" Width="1.5" PointX="8.25" PointY="69.75" />
+        <EntityTypeShape EntityType="Model.APRDetails" Width="1.5" PointX="10.5" PointY="70.25" />
+        <AssociationConnector Association="Model.FK_APRDetails_APRs" />
+        <EntityTypeShape EntityType="Model.Actions" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="Model.FK_Actions_Actions" />
+        <EntityTypeShape EntityType="Model.DocumentActions" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Model.PayrollDifferentialDetails" Width="1.5" PointX="18.75" PointY="48.75" />
+        <AssociationConnector Association="Model.FK_PayrollDifferentialDetails_Employees" />
+        <AssociationConnector Association="Model.FK_PayrollDifferentialDetails_PayrollDifferentials" />
+        <EntityTypeShape EntityType="Model.AIRDetails" Width="1.5" PointX="12.75" PointY="75.5" />
+        <EntityTypeShape EntityType="Model.PIS" Width="1.5" PointX="18.25" PointY="44.875" />
+        <EntityTypeShape EntityType="Model.PISDetails" Width="1.5" PointX="20.5" PointY="44.875" />
+        <AssociationConnector Association="Model.FK_PIS_Users" />
+        <AssociationConnector Association="Model.FK_PISDetails_PIS" />
+        <AssociationConnector Association="Model.FK_Obligations_Users" />
+        <EntityTypeShape EntityType="Model.AIReports" Width="1.5" PointX="19.25" PointY="37.625" />
+        <AssociationConnector Association="Model.FK_AIRDetails_AIReports" />
+        <AssociationConnector Association="Model.FK_AIReports_Users" />
+        <EntityTypeShape EntityType="Model.PurchaseRequests" Width="1.5" PointX="19.5" PointY="30.125" />
+        <AssociationConnector Association="Model.FK_AIReports_PurchaseRequests" />
+        <AssociationConnector Association="Model.FK_AllotmentLetter_PurchaseRequests" />
+        <AssociationConnector Association="Model.FK_AOQ_PurchaseRequests" />
+        <AssociationConnector Association="Model.FK_PurchaseRequests_Appropriations" />
+        <AssociationConnector Association="Model.FK_APRs_PurchaseRequests" />
+        <AssociationConnector Association="Model.FK_Obligations_PurchaseRequests" />
+        <AssociationConnector Association="Model.FK_PurchaseRequests_Offices" />
+        <AssociationConnector Association="Model.FK_PIS_PurchaseRequests" />
+        <AssociationConnector Association="Model.FK_PRDetails_PurchaseRequests" />
+        <AssociationConnector Association="Model.FK_PurchaseQuotations_PurchaseRequests" />
+        <AssociationConnector Association="Model.FK_PurchaseOrders_PurchaseRequests" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

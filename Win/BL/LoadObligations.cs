@@ -9,6 +9,7 @@ using DevExpress.Data.Linq;
 using DevExpress.XtraGrid.Views.Grid;
 using Models;
 using Models.Repository;
+using Win.Actns;
 using Win.OB;
 using Win.Pyrll;
 
@@ -63,9 +64,16 @@ namespace Win.BL
         {
             if (uc.OBGridView.GetFocusedRow() is Obligations item)
             {
-                frmEditDisbursementVoucher frm = new frmEditDisbursementVoucher(item);
+                var rowHandle = uc.OBGridView.FocusedRowHandle;
+
+                if (!User.CheckOwner(item.CreatedBy))
+                    return;
+
+                frmEditDisbursementVoucher frm = new frmEditDisbursementVoucher(new UnitOfWork().ObligationsRepo.Find(x => x.Id == item.Id));
                 frm.ShowDialog();
-                this.Init();
+                Detail(new UnitOfWork().ObligationsRepo.Find(x => x.Id == item.Id));
+                uc.OBGridView.FocusedRowHandle = rowHandle;
+                uc.OBGridView.MakeRowVisible(rowHandle);
             }
         }
 
@@ -74,11 +82,16 @@ namespace Win.BL
 
             if (uc.OBGridView.GetFocusedRow() is Obligations item)
             {
+                if (!User.CheckOwner(item.CreatedBy))
+                    return;
+
+                var rowHandle = uc.OBGridView.FocusedRowHandle;
                 frmAddEditObligation frm = new frmAddEditObligation(MethodType.Edit, item);
                 frm.ShowDialog();
-                Init();
+                //    Init();
                 Detail(new UnitOfWork().ObligationsRepo.Find(m => m.Id == item.Id));
-
+                uc.OBGridView.FocusedRowHandle = rowHandle;
+                uc.OBGridView.MakeRowVisible(rowHandle);
             }
 
         }
@@ -149,12 +162,18 @@ namespace Win.BL
                 uc.txtStatus.Text = item.Status;
                 uc.txtBudgetCtl.Text = item.BudgetControlNo;
                 uc.txtParticular.Text = item.DVParticular;
+                uc.txtAdjustedAmount.Text = item.TotalAdjustedAmount?.ToString("n2");
                 uc.ORDetailGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails.ToList());
                 uc.tabPayroll.Controls.Clear();
                 uc.tabPayroll.Controls.Add(new UCPayrolls(item.Id) { Dock = DockStyle.Fill });
                 uc.tabPayrollWages.Controls.Clear();
                 uc.tabPayrollWages.Controls.Add(new UCPayrollWages(item) { Dock = DockStyle.Fill });
+                uc.tabPayrollDiff.Controls.Clear();
+                uc.tabPayrollDiff.Controls.Add(new UCPayrollDifferentials(item) { Dock = DockStyle.Fill });
+                uc.tabActions.Controls.Clear();
+                uc.tabActions.Controls.Add(new UCDocumentActions(item.Id, "Obligatins") { Dock = DockStyle.Fill });
                 uc.lblTotal.Text = item.TotalAmount?.ToString("#,#.0#");
+                uc.txtCreatedBy.Text = User.GetFullName(item.CreatedBy);
                 if (uc.ORDetailsGridView.GetFocusedRow() is ORDetails obr)
                 {
                     uc.lblParticulars.Text = obr.Particulars;
@@ -169,7 +188,7 @@ namespace Win.BL
         public void Search(string search)
         {
             var staticSettings = new StaticSettings();
-            var ob = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year);
+            var ob = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year && m.OfficeId == staticSettings.OfficeId);
             if (ob.Any(x => x.Description.Contains(search)))
                 ob = ob.Where(x => x.Description.Contains(search));
             else if (ob.Any(x => x.ControlNo.Contains(search)))
@@ -177,13 +196,14 @@ namespace Win.BL
             else if (ob.Any(x => x.Payees.Name.Contains(search)))
                 ob = ob.Where(x => x.Payees.Name.Contains(search));
             else
-                ob = null;
+                ob = new List<Obligations>().AsQueryable();
             if (uc.cboStatus.Text != "All")
                 ob = ob.Where(x => x.Status.Contains(uc.cboStatus.Text));
             this.uc.OBGridControl.DataSource = new EntityServerModeSource()
             {
                 QueryableSource = ob.Where(x => x.OfficeId == staticSettings.OfficeId)
             };
+            Detail(ob.FirstOrDefault());
         }
 
     }

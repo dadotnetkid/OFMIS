@@ -48,7 +48,7 @@ namespace Win.Usr
 
 
                 UnitOfWork unitOfWork = new UnitOfWork();
-                user = unitOfWork.UsersRepo.Find(m => m.Id == user.Id,"UserRoles");
+                user = unitOfWork.UsersRepo.Find(m => m.Id == user.Id, "UserRoles");
                 user.SecurityStamp = Guid.NewGuid().ToString();
                 user.FirstName = txtFirstName.Text;
                 user.MiddleName = txtMiddleName.Text;
@@ -57,6 +57,7 @@ namespace Win.Usr
                 user.PasswordHash = Cryptography.Encrypt(txtPassword.Text, user.SecurityStamp);
                 user.OfficeId = cboDepartment.EditValue.ToInt(true);
                 user.UserRoles.Clear();
+                user.Position = txtPosition.Text;
                 foreach (string i in cboUserRole.EditValue.ToString().Split(','))
                 {
                     user.UserRoles.Add(unitOfWork.UserRolesRepo.Find(m => m.Name == i));
@@ -84,7 +85,7 @@ namespace Win.Usr
             txtMiddleName.Text = user.MiddleName;
             txtLastName.Text = user.LastName;
             txtPassword.Text = Cryptography.Decrypt(user.PasswordHash, user.SecurityStamp);
-
+            txtPosition.Text = user.Position;
             cboUserRole.EditValue = user.UserRole;
 
             userRolesBindingSource.DataSource = new BindingList<UserRoles>(new UnitOfWork().UserRolesRepo.Get());

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.Data.Linq;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using Models;
 using Models.Repository;
@@ -34,7 +35,21 @@ namespace Win.BL
             uc.btnOBREdit.ButtonClick += BtnOBREdit_ButtonClick;
             uc.btnAccountDel.ButtonClick += BtnAccountDel_ButtonClick;
             uc.btnSOA.Click += BtnSOA_Click;
+            //   uc.txtSearch.TextChanged += TxtSearch_TextChanged;
+            uc.txtSearch.KeyDown += TxtSearch_KeyDown;
         }
+
+        private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                if (sender is TextEdit item)
+                {
+                    Search(item.Text);
+                }
+            }
+        }
+
 
         private void BtnSOA_Click(object sender, EventArgs e)
         {
@@ -52,6 +67,7 @@ namespace Win.BL
         {
             if (uc.AppropriationGrid.GetFocusedRow() is Appropriations item)
             {
+
                 UnitOfWork unitOfWork = new UnitOfWork();
 
                 if (MessageBox.Show($@"Do you want to Delete this account? { item.AccountCode}", $@"Delete {item.AccountCode}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -59,6 +75,7 @@ namespace Win.BL
                 unitOfWork.AppropriationsRepoRepo.Delete(m => m.Id == item.Id);
                 unitOfWork.Save();
                 Init();
+
             }
         }
 
@@ -66,6 +83,7 @@ namespace Win.BL
         {
             if (uc.ObligationGridView.GetFocusedRow() is ORDetails item)
             {
+                var rowHandle = uc.ObligationGridView.FocusedRowHandle;
                 frmAddEditObligation frm = new frmAddEditObligation(MethodType.Edit, item.Obligations);
                 frm.ShowDialog();
                 if (uc.AppropriationGrid.GetFocusedRow() is Appropriations account)
@@ -73,6 +91,7 @@ namespace Win.BL
                     UnitOfWork unitOfWork = new UnitOfWork();
                     Detail(new UnitOfWork().AppropriationsRepoRepo.Find(m => m.Id == account.Id));
                 }
+
             }
         }
 
@@ -139,6 +158,7 @@ namespace Win.BL
 
         private void BtnAllotments_Click(object sender, EventArgs e)
         {
+
             frmAddEditAllotment frm = new frmAddEditAllotment(Models.MethodType.Add,
                 new Models.Allotments() { Appropriations = this.Appropriations });
             frm.ShowDialog();
@@ -196,18 +216,23 @@ namespace Win.BL
         {
 
             var unitOfWork = new UnitOfWork();
-            IQueryable<Appropriations> obj = unitOfWork.AppropriationsRepoRepo.Fetch(m => m.Year == year);
+            StaticSettings staticSettings = new StaticSettings();
+            IQueryable<Appropriations> obj = unitOfWork.AppropriationsRepoRepo.Fetch(m => m.Year == year && m.OfficeId == staticSettings.OfficeId);
             if (obj.Any(x => x.AccountCode.Contains(search)))
                 obj = obj.Where(x => x.AccountCode.Contains(search));
             else if (obj.Any(x => x.AccountCodeText.Contains(search)))
                 obj = obj.Where(x => x.AccountCodeText.Contains(search));
             else if (obj.Any(x => x.AccountName.Contains(search)))
                 obj = obj.Where(x => x.AccountName.Contains(search));
-
+            else if (obj.Any(x => x.ORDetails.Any(m => m.Obligations.BudgetControlNo.Contains(search))))
+                obj = obj.Where(x => x.ORDetails.Any(m => m.Obligations.BudgetControlNo.Contains(search)));
+            else if (obj.Any(x => x.ORDetails.Any(m => m.Particulars.Contains(search))))
+                obj = obj.Where(x => x.ORDetails.Any(m => m.Particulars.Contains(search)));
             uc.appropriationGridControl.DataSource = new EntityServerModeSource()
             {
                 QueryableSource = obj
             };
+            Detail(obj.FirstOrDefault());
         }
 
 

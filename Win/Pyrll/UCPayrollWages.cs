@@ -30,7 +30,7 @@ namespace Win.Pyrll
         private void btnEditNew_Click(object sender, EventArgs e)
         {
 
-            frmAddEditPayrollWages frm = new frmAddEditPayrollWages(methodType, obligations.PayrollWages);
+            frmAddEditPayrollWages frm = new frmAddEditPayrollWages(methodType, obligations);
             frm.ShowDialog();
             Init();
 
@@ -73,14 +73,38 @@ namespace Win.Pyrll
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
-            var res = new UnitOfWork().PayrollWagesRepo.Get(x => x.Id == obligations.Id);
+            var res = new UnitOfWork().PayrollWagesRepo.Find(x => x.Id == obligations.Id);
 
-
-            frmReportViewer frm = new frmReportViewer(new rptOBRPayrollWages()
+            res.PayrollWageDetails = res.PayrollWageDetails.Where(x => !string.IsNullOrEmpty(x.Employees?.TIN)).ToList();
+            var rpt = new rptOBRPayrollWages()
             {
-                DataSource = res
-            });
+                DataSource = new List<PayrollWages>() { res }
+            };
+            if (res.Obligations.ORDetails.Any(x => x.Appropriations.AccountCode == "50211990"))
+                rpt.lblDescription.BackColor = Color.White;
+            frmReportViewer frm = new frmReportViewer(rpt);
             frm.ShowDialog();
+        }
+
+        private void btnDeletePayrollRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (PayrollGridView.GetFocusedRow() is PayrollWageDetails item)
+            {
+                try
+                {
+
+                    if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        return;
+                    UnitOfWork unitOfWork = new UnitOfWork();
+                    unitOfWork.PayrollWagesRepo.Delete(x => x.Id == item.PayrollWageId);
+                    unitOfWork.Save();
+                    Init();
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

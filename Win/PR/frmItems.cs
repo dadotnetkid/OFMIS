@@ -58,7 +58,7 @@ namespace Win.PR
         private void txtSearch_EditValueChanged(object sender, EventArgs e)
         {
             this.cboSearch.Properties.DataSource = new UnitOfWork().ItemsRepo.Get(x => x.Category == cboCategory.Text);
-
+            loadAddEditItems.Search(cboCategory.Text);
 
         }
 

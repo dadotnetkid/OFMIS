@@ -4,8 +4,10 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.UserSkins;
 using DevExpress.Skins;
+using Helpers;
 using Models.Repository;
 using Win.Properties;
+using Win.Tmplts;
 
 namespace Win
 {
@@ -22,10 +24,11 @@ namespace Win
 
             BonusSkins.Register();
 
+            // var res = Cryptography.Decrypt("LQzNKovDgd5lrVJO1gypjDqxF4cqbri6uKOYkra19ko=");
 
-           
 
             Application.Run(new Main(param));
+            //Application.Run(new frmConfirmationTemplates(new Models.Templates(), Models.MethodType.Add));
         }
     }
 }

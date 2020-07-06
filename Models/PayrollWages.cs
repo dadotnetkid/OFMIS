@@ -34,6 +34,7 @@ namespace Models
         public string ApprovedBy { get; set; }
         public string ApprovedByPos { get; set; }
         public Nullable<int> ApprovedById { get; set; }
+        public string ColumnTitles { get; set; }
     
         public virtual Obligations Obligations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

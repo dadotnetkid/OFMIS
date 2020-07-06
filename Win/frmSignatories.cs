@@ -34,7 +34,7 @@ namespace Win
                 if (SignatoriesGridView.GetFocusedRow() is Signatories item)
                 {
                     UnitOfWork unitOfWork = new UnitOfWork();
-                    unitOfWork.ChiefOfOfficesRepo.Delete(item);
+                    unitOfWork.Signatories.Delete(m=>m.Id==item.Id);
                     unitOfWork.Save();
                     Init();
                 }
@@ -56,14 +56,22 @@ namespace Win
 
                 UnitOfWork unitOfWork = new UnitOfWork();
                 item.Year = item.Year ?? new StaticSettings().Year;
+                item.Person = item.Person.ToUpper();
                 if (item.Id == 0)
                 {
 
-                    unitOfWork.ChiefOfOfficesRepo.Insert(item);
+                    unitOfWork.Signatories.Insert(item);
                 }
                 else
                 {
-                    unitOfWork.ChiefOfOfficesRepo.Update(item);
+                    var res = unitOfWork.Signatories.Find(x => x.Id == item.Id);
+                    res.Person = item.Person;
+                    res.Position = item.Position;
+                    res.Note = item.Note;
+                    res.Year = item.Year;
+                    res.Office = item.Office;
+                    res.IsBacMember = item.IsBacMember;
+                    res.BacPosition = item.BacPosition;
                 }
 
                 unitOfWork.Save();
@@ -74,12 +82,14 @@ namespace Win
         public void Init()
         {
             var year = new StaticSettings().Year;
-            gridControl1.DataSource = new BindingList<Signatories>(new UnitOfWork().ChiefOfOfficesRepo.Get(m => m.Year == year));
+            gridControl1.DataSource = new BindingList<Signatories>(new UnitOfWork().Signatories.Get(m => m.Year == year));
             cboPosition.DataSource = new EntityServerModeSource()
             {
                 QueryableSource = new UnitOfWork().PositionsRepo.Fetch(),
                 ElementType = typeof(Signatories)
             };
+          //  cboOfficeRepo.DataSource = new UnitOfWork().OfficesRepo.Get();
+            cboHead.DataSource = new UnitOfWork().OfficesRepo.Get();
         }
 
         public void Detail(Signatories item)
@@ -90,6 +100,46 @@ namespace Win
         public void Search(string search)
         {
             throw new NotImplementedException();
+        }
+
+        private void SignatoriesGridView_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+
+
+        }
+
+        private void SignatoriesGridView_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.Name == "colPerson")
+            {
+                if (SignatoriesGridView.GetRow(e.RowHandle) is Signatories item)
+                {
+                    UnitOfWork unitOfWork = new UnitOfWork();
+                    var office = unitOfWork.OfficesRepo.Find(x => x.Chief == item.Person);
+                    item.Office = office.OfficeName;
+                    item.Position = office.ChiefPosition;
+                }
+            }
+
+        }
+
+        private void SignatoriesGridView_ShownEditor(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SignatoriesGridView_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.Name == "colPerson")
+            {
+                if (SignatoriesGridView.GetRow(e.RowHandle) is Signatories item)
+                {
+                    UnitOfWork unitOfWork = new UnitOfWork();
+                    var office = unitOfWork.OfficesRepo.Find(x => x.Chief == item.Person);
+                    item.Office = office.OfficeName;
+                    item.Position = office.ChiefPosition;
+                }
+            }
         }
     }
 }

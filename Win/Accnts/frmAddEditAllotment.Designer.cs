@@ -160,12 +160,13 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtAllotmentDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtAllotmentDate.Properties.DisplayFormat.FormatString = "";
+            this.dtAllotmentDate.Properties.DisplayFormat.FormatString = "MM/dd/yyyy";
             this.dtAllotmentDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dtAllotmentDate.Properties.EditFormat.FormatString = "";
+            this.dtAllotmentDate.Properties.EditFormat.FormatString = "MM/dd/yyyy";
             this.dtAllotmentDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dtAllotmentDate.Properties.Mask.EditMask = "";
             this.dtAllotmentDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.dtAllotmentDate.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.dtAllotmentDate.Size = new System.Drawing.Size(300, 24);
             this.dtAllotmentDate.TabIndex = 32;
             this.dtAllotmentDate.Tag = "Date is Required";

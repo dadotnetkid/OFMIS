@@ -18,25 +18,39 @@ namespace Win.OB
 {
     public partial class frmAddEditObligation : XtraForm
     {
-        private AddEditObligations obligations;
+        public AddEditObligations addEditObligations;
+
+        private ucObligations ucObligations;
+        public Obligations obligations;
+
         //private List<ORDetails> oRDetails = new List<ORDetails>();
         public frmAddEditObligation(MethodType methodType, Obligations obligations)
         {
             InitializeComponent();
-            this.obligations = new AddEditObligations(this, obligations) { methodType = methodType };
+            this.addEditObligations = new AddEditObligations(this, obligations) { methodType = methodType };
 
+
+        }
+        public frmAddEditObligation(ucObligations ucObligations, MethodType methodType, Obligations obligations)
+        {
+            InitializeComponent();
+            this.addEditObligations = new AddEditObligations(this, obligations) { methodType = methodType };
+            this.ucObligations = ucObligations;
+            this.obligations = obligations;
         }
 
         private void frmAddEditObligation_Load(object sender, EventArgs e)
         {
-            obligations.Init();
+            addEditObligations.Init();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (((XtraForm)this).ValidateForm())
             {
-                obligations.Save();
+                addEditObligations.Save();
+         //       ucObligations.obligations = obligations;
+
             }
 
 
@@ -50,14 +64,14 @@ namespace Win.OB
 
         private void frmAddEditObligation_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.obligations.Close(e);
+            this.addEditObligations.Close(e);
         }
 
         private void btnAddPayee_Click(object sender, EventArgs e)
         {
             Form frm = new frmAddEditPayee(MethodType.Add, null);
             frm.ShowDialog();
-            obligations.LoadPayees();
+            addEditObligations.LoadPayees();
         }
     }
 }

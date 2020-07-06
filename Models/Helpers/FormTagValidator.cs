@@ -9,7 +9,7 @@ using DevExpress.XtraEditors.DXErrorProvider;
 
 namespace Helpers
 {
-    public static class FormTagValidator
+    public static class FormHelper
     {
         static DXErrorProvider dXErrorProvider = new DXErrorProvider();
         public static bool ValidateForm(this XtraForm frm)
@@ -34,6 +34,12 @@ namespace Helpers
             }
 
             return true;
+        }
+
+        public static XtraForm ShowDialogBox(this XtraForm frm)
+        {
+            frm.ShowDialog();
+            return frm;
         }
     }
 }

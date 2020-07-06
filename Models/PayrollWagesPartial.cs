@@ -10,10 +10,22 @@ namespace Models
     public partial class PayrollWages
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
-        public Signatories Governor => Signatories.Position != "Governor" ? unitOfWork.ChiefOfOfficesRepo.Find(m => m.Position == "Governor") : null;
-        public Signatories Signatories => unitOfWork.ChiefOfOfficesRepo.Find(m => m.Id == ApprovedById);
+
+        public Signatories Governor
+        {
+            get
+            {
+                if (this.Obligations.Offices.IsDivision == true)
+                    return Signatories?.Position != "Governor" ? unitOfWork.Signatories.Find(m => m.Position == "Governor") : null;
+                return null;
+            }
+        }
+        public Signatories Signatories => unitOfWork.Signatories.Find(m => m.Id == ApprovedById);
 
         public Signatories ProvincialAdministrator =>
-            unitOfWork.ChiefOfOfficesRepo.Find(m => m.Position == "Provincial Administrator");
+            unitOfWork.Signatories.Find(m => m.Position == "Provincial Administrator");
+
+        public Signatories UnderSignPA => unitOfWork.Signatories.Find(m => m.Position == "Governor");
+        public Signatories GovernorSig => unitOfWork.Signatories.Find(m => m.Position == "Governor");
     }
 }

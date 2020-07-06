@@ -17,7 +17,7 @@ namespace Models
         public int Id { get; set; }
         public int POId { get; set; }
         public int ItemNo { get; set; }
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
         public string Category { get; set; }
         public string Item { get; set; }
         public string UOM { get; set; }

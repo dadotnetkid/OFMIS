@@ -17,7 +17,7 @@ namespace Models
         public int Id { get; set; }
         public Nullable<int> PQId { get; set; }
         public Nullable<int> ItemNo { get; set; }
-        public Nullable<int> Quantity { get; set; }
+        public Nullable<decimal> Quantity { get; set; }
         public string Category { get; set; }
         public string Item { get; set; }
         public string UOM { get; set; }

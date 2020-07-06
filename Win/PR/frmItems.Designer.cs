@@ -53,8 +53,6 @@
             this.cboCategory = new DevExpress.XtraEditors.LookUpEdit();
             this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.entityServerModeSource1 = new DevExpress.Data.Linq.EntityServerModeSource();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnSubmit = new DevExpress.XtraEditors.SimpleButton();
             this.ItemsGridControl = new DevExpress.XtraGrid.GridControl();
             this.ItemsGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -74,7 +72,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.entityServerModeSource1)).BeginInit();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteItemRepo)).BeginInit();
@@ -94,7 +91,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(992, 65);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 9999;
             // 
             // labelControl2
             // 
@@ -122,7 +119,7 @@
             this.btnNew.Location = new System.Drawing.Point(303, 4);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(102, 23);
-            this.btnNew.TabIndex = 13;
+            this.btnNew.TabIndex = 2;
             this.btnNew.Text = "New Item";
             // 
             // cboSearch
@@ -140,7 +137,7 @@
             this.cboSearch.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cboSearch.Properties.ValueMember = "Item";
             this.cboSearch.Size = new System.Drawing.Size(218, 20);
-            this.cboSearch.TabIndex = 0;
+            this.cboSearch.TabIndex = 1;
             this.cboSearch.EditValueChanged += new System.EventHandler(this.cboSearch_EditValueChanged);
             this.cboSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             this.cboSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
@@ -175,28 +172,6 @@
             this.entityServerModeSource1.ElementType = typeof(Models.Items);
             this.entityServerModeSource1.KeyExpression = "Id";
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnSubmit);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 519);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(992, 47);
-            this.panel2.TabIndex = 1;
-            // 
-            // btnSubmit
-            // 
-            this.btnSubmit.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnSubmit.Appearance.Options.UseFont = true;
-            this.btnSubmit.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.btnSubmit.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.btnSubmit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSubmit.ImageOptions.Image")));
-            this.btnSubmit.Location = new System.Drawing.Point(878, 6);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(102, 23);
-            this.btnSubmit.TabIndex = 14;
-            this.btnSubmit.Text = "Submit";
-            // 
             // ItemsGridControl
             // 
             this.ItemsGridControl.DataSource = this.entityServerModeSource1;
@@ -208,8 +183,8 @@
             this.btnDeleteItemRepo,
             this.btnEditItemRepo,
             this.btnSelectItemRepo});
-            this.ItemsGridControl.Size = new System.Drawing.Size(992, 454);
-            this.ItemsGridControl.TabIndex = 2;
+            this.ItemsGridControl.Size = new System.Drawing.Size(992, 501);
+            this.ItemsGridControl.TabIndex = 3;
             this.ItemsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ItemsGridView});
             // 
@@ -332,7 +307,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(992, 566);
             this.Controls.Add(this.ItemsGridControl);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmItems";
@@ -344,7 +318,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.entityServerModeSource1)).EndInit();
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteItemRepo)).EndInit();
@@ -360,8 +333,6 @@
         private DevExpress.Data.Linq.EntityServerModeSource entityServerModeSource1;
         private System.Windows.Forms.BindingSource itemsBindingSource;
         public DevExpress.XtraEditors.SimpleButton btnNew;
-        private System.Windows.Forms.Panel panel2;
-        public DevExpress.XtraEditors.SimpleButton btnSubmit;
         public DevExpress.XtraGrid.GridControl ItemsGridControl;
         public DevExpress.XtraGrid.Views.Grid.GridView ItemsGridView;
         private DevExpress.XtraGrid.Columns.GridColumn colId;

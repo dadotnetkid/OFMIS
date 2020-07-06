@@ -50,6 +50,8 @@
             this.cboDepartment = new DevExpress.XtraEditors.LookUpEdit();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtPosition = new DevExpress.XtraEditors.TextEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFirstName.Properties)).BeginInit();
@@ -60,6 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboUserRole.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRolesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDepartment.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -144,7 +147,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 174);
+            this.label5.Location = new System.Drawing.Point(9, 196);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 58;
@@ -173,7 +176,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(123, 149);
+            this.txtPassword.Location = new System.Drawing.Point(123, 171);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(310, 20);
             this.txtPassword.TabIndex = 63;
@@ -181,7 +184,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 152);
+            this.label6.Location = new System.Drawing.Point(9, 174);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(56, 13);
             this.label6.TabIndex = 58;
@@ -190,7 +193,7 @@
             // cboUserRole
             // 
             this.cboUserRole.EditValue = "";
-            this.cboUserRole.Location = new System.Drawing.Point(123, 171);
+            this.cboUserRole.Location = new System.Drawing.Point(123, 193);
             this.cboUserRole.Name = "cboUserRole";
             this.cboUserRole.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -208,7 +211,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 197);
+            this.label7.Location = new System.Drawing.Point(9, 219);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(113, 13);
             this.label7.TabIndex = 58;
@@ -216,7 +219,7 @@
             // 
             // cboDepartment
             // 
-            this.cboDepartment.Location = new System.Drawing.Point(123, 194);
+            this.cboDepartment.Location = new System.Drawing.Point(123, 216);
             this.cboDepartment.Name = "cboDepartment";
             this.cboDepartment.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.cboDepartment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -241,7 +244,7 @@
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
-            this.btnClose.Location = new System.Drawing.Point(328, 220);
+            this.btnClose.Location = new System.Drawing.Point(328, 242);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(105, 31);
             this.btnClose.TabIndex = 66;
@@ -254,21 +257,38 @@
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(221, 220);
+            this.btnSave.Location = new System.Drawing.Point(221, 242);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(101, 31);
             this.btnSave.TabIndex = 65;
             this.btnSave.Text = "Save ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(9, 152);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 13);
+            this.label8.TabIndex = 58;
+            this.label8.Text = "Position";
+            // 
+            // txtPosition
+            // 
+            this.txtPosition.Location = new System.Drawing.Point(123, 149);
+            this.txtPosition.Name = "txtPosition";
+            this.txtPosition.Size = new System.Drawing.Size(310, 20);
+            this.txtPosition.TabIndex = 62;
+            // 
             // frmAddEditUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(445, 255);
+            this.ClientSize = new System.Drawing.Size(445, 281);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.txtPosition);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.txtMiddleName);
@@ -276,6 +296,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -302,6 +323,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboUserRole.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userRolesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDepartment.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,5 +351,7 @@
         private DevExpress.XtraEditors.CheckedComboBoxEdit cboUserRole;
         private System.Windows.Forms.Label label7;
         private DevExpress.XtraEditors.LookUpEdit cboDepartment;
+        private System.Windows.Forms.Label label8;
+        private DevExpress.XtraEditors.TextEdit txtPosition;
     }
 }

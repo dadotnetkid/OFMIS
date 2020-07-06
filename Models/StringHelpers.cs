@@ -10,7 +10,8 @@ namespace Models
     {
         public static string NumberToWords(this string amount)
         {
-            var res = amount.Split('.').Select(int.Parse).ToList();
+  
+            var res = amount.Split('.')?.Select(int.Parse)?.ToList();
             return NumberToWords(res[0]) + $" and {(res[1] == 0 ? "No" : NumberToWords(res[1]))} Centavos";
         }
         private static string NumberToWords(int number)

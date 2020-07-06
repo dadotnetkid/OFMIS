@@ -17,6 +17,12 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PurchaseRequests()
         {
+            this.AIReports = new HashSet<AIReports>();
+            this.AllotmentLetter = new HashSet<AllotmentLetter>();
+            this.AOQ = new HashSet<AOQ>();
+            this.APRs = new HashSet<APRs>();
+            this.Obligations = new HashSet<Obligations>();
+            this.PIS = new HashSet<PIS>();
             this.PRDetails = new HashSet<PRDetails>();
             this.PriceQuotations = new HashSet<PriceQuotations>();
             this.PurchaseOrders = new HashSet<PurchaseOrders>();
@@ -37,8 +43,23 @@ namespace Models
         public string DeptHeadPos { get; set; }
         public string DivisionHead { get; set; }
         public string DivisionHeadPos { get; set; }
+        public string CreatedBy { get; set; }
+        public Nullable<bool> IsEarmark { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AIReports> AIReports { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AllotmentLetter> AllotmentLetter { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AOQ> AOQ { get; set; }
         public virtual Appropriations Appropriations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<APRs> APRs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Obligations> Obligations { get; set; }
+        public virtual Offices Offices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PIS> PIS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRDetails> PRDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

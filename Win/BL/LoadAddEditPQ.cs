@@ -31,6 +31,7 @@ namespace Win.BL
             uCPQ.btnNew.Click += BtnNew_Click;
             uCPQ.btnPreview.Click += BtnPreview_Click;
 
+
         }
 
         private void BtnPreview_Click(object sender, EventArgs e)
@@ -54,6 +55,8 @@ namespace Win.BL
             frmAddEditPQ.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_ButtonClick;
             frmAddEditPQ.ItemsGridView.RowUpdated += ItemsGridView_RowUpdated;
             frmAddEditPQ.txtPGSOfficer.EditValueChanged += TxtPGSOfficer_EditValueChanged;
+
+
         }
 
         private void TxtPGSOfficer_EditValueChanged(object sender, EventArgs e)
@@ -104,13 +107,14 @@ namespace Win.BL
             {
                 unitOfWork.PQDetailsRepo.Insert(new PQDetails()
                 {
+
                     PQId = priceQuotations.Id,
                     Item = item.Item,
                     ItemNo = item.ItemNo,
                     Category = item.Category,
-                    Cost = item.Cost,
+                    Cost = null,
                     Quantity = item.Quantity,
-                    TotalAmount = item.TotalAmount,
+                    TotalAmount = null,
                     UOM = item.UOM,
                 });
                 unitOfWork.Save();
@@ -126,7 +130,9 @@ namespace Win.BL
                 UnitOfWork unitOfWork = new UnitOfWork();
                 if (e.Row is PQDetails item)
                 {
-                    item.TotalAmount = (item.Quantity ?? 0) * (item.Cost ?? 0);
+                    item.TotalAmount = null;
+                    item.Cost = null;
+
                     if (item.Id == 0)
                         unitOfWork.PQDetailsRepo.Insert(item);
                     else
@@ -137,9 +143,7 @@ namespace Win.BL
                             Item = item.Item,
                             ItemNo = item.ItemNo,
                             Category = item.Category,
-                            Cost = item.Cost,
                             Quantity = item.Quantity,
-                            TotalAmount = item.TotalAmount,
                             UOM = item.UOM,
                             Id = item.Id
                         };
@@ -213,6 +217,7 @@ namespace Win.BL
                 //this.frmAddEditPQ.dtDate.EditValue
                 var unitOfWork = new UnitOfWork();
                 var pq = unitOfWork.PriceQuotationsRepo.Find(m => m.Id == priceQuotations.Id);
+
                 pq.Date = frmAddEditPQ.dtDate.DateTime;
                 pq.ControlNo = frmAddEditPQ.txtControlNumber.Text;
                 pq.Description = frmAddEditPQ.txtDescription.Text;
@@ -230,15 +235,16 @@ namespace Win.BL
 
         public void Detail()
         {
+            var offices = new string[] { "Provincial Legal Office" };
             priceQuotations = new UnitOfWork().PriceQuotationsRepo.Find(m => m.Id == priceQuotations.Id);
             if (priceQuotations == null) return;
             var staticSetting = new StaticSettings();
             frmAddEditPQ.dtDate.EditValue = priceQuotations.Date ?? DateTime.Now;
             frmAddEditPQ.txtControlNumber.Text = priceQuotations.ControlNo;
-            frmAddEditPQ.txtDescription.Text = priceQuotations.Description;
-            frmAddEditPQ.txtPGSOfficer.Properties.DataSource = new EntityServerModeSource() { QueryableSource = new UnitOfWork().ChiefOfOfficesRepo.Fetch().Where(x => x.Office.Contains("BAC") || x.Office.Contains("PGSO")) };
-            frmAddEditPQ.txtPGSOfficer.Text = string.IsNullOrEmpty(priceQuotations.PGSOfficer) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "BAC")?.Person : priceQuotations.PGSOfficer;
-            frmAddEditPQ.txtPGSOPosition.Text = string.IsNullOrEmpty(priceQuotations.Position) ? staticSetting.chiefOfOffice.FirstOrDefault(m => m.Office == "BAC")?.Position : priceQuotations.Position;
+            frmAddEditPQ.txtDescription.Text = priceQuotations.Description ?? priceQuotations.PurchaseRequests?.Description;
+            frmAddEditPQ.txtPGSOfficer.Properties.DataSource = new EntityServerModeSource() { QueryableSource = new UnitOfWork().Signatories.Fetch().Where(x => offices.Contains(x.Office)) };
+            frmAddEditPQ.txtPGSOfficer.Text = priceQuotations.PGSOfficer;
+            frmAddEditPQ.txtPGSOPosition.Text = priceQuotations.Position;
             frmAddEditPQ.ItemsGridControl.DataSource =
                 new BindingList<PQDetails>(new UnitOfWork().PQDetailsRepo.Get(m => m.PQId == priceQuotations.Id));
         }
@@ -257,7 +263,7 @@ namespace Win.BL
                         Id = id,
                         PRId = priceQuotations.PRId,
                         ControlNo = controlNo,
-
+                        Description = unitOfWork.PurchaseRequestsRepo.Find(x => x.Id == priceQuotations.PRId)?.Description
                     };
                     unitOfWork.PriceQuotationsRepo.Insert(priceQuotations);
                     unitOfWork.Save();
@@ -303,6 +309,9 @@ namespace Win.BL
                 {
                     QueryableSource = new UnitOfWork().PriceQuotationsRepo.Fetch(m => m.PRId == pr.Id)
                 };
+                uCPQ.btnPreview.Enabled = true;
+                if (!new UnitOfWork().PriceQuotationsRepo.Fetch(m => m.PRId == pr.Id).Any())
+                    uCPQ.btnPreview.Enabled = false;
             }
             catch (Exception e)
             {

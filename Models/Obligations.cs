@@ -18,6 +18,8 @@ namespace Models
         public Obligations()
         {
             this.ORDetails = new HashSet<ORDetails>();
+            this.PayrollDifferentials = new HashSet<PayrollDifferentials>();
+            this.Letters = new HashSet<Letters>();
         }
     
         public int Id { get; set; }
@@ -54,12 +56,24 @@ namespace Models
         public string OBRApprovedBy { get; set; }
         public string OBRApprovedByPos { get; set; }
         public string DMSNo { get; set; }
+        public string CreatedBy { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
+        public string ModifiedBy { get; set; }
+        public Nullable<System.DateTime> DateModified { get; set; }
+        public string ModifiedData { get; set; }
+        public Nullable<decimal> TotalAdjustedAmount { get; set; }
     
         public virtual Offices Offices { get; set; }
         public virtual Payees Payees { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ORDetails> ORDetails { get; set; }
         public virtual Payrolls Payrolls { get; set; }
         public virtual PayrollWages PayrollWages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ORDetails> ORDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PayrollDifferentials> PayrollDifferentials { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Letters> Letters { get; set; }
+        public virtual Users CreatedByUser { get; set; }
+        public virtual PurchaseRequests PurchaseRequests { get; set; }
     }
 }

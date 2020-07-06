@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions9 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucObligations));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject33 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject34 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject35 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject36 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions10 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject37 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject38 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject39 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject40 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions11 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject41 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject42 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject43 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject44 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions12 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject45 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject46 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject47 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject48 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.OBGridControl = new DevExpress.XtraGrid.GridControl();
             this.entityServerModeSource1 = new DevExpress.Data.Linq.EntityServerModeSource();
@@ -61,6 +61,8 @@
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEdit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEditRepoOBR = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colControlNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCreatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotalOf = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -116,14 +118,21 @@
             this.cboAppropriationLookUpRepo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.tabPayroll = new DevExpress.XtraTab.XtraTabPage();
             this.tabPayrollWages = new DevExpress.XtraTab.XtraTabPage();
+            this.tabPayrollDiff = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.btnDVPreview = new DevExpress.XtraEditors.SimpleButton();
             this.btnEditDV = new DevExpress.XtraEditors.SimpleButton();
             this.txtParticular = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.tabActions = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.lblParticulars = new DevExpress.XtraEditors.LabelControl();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
+            this.txtCreatedBy = new DevExpress.XtraEditors.TextEdit();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
+            this.txtAdjustedAmount = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OBGridControl)).BeginInit();
@@ -163,6 +172,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtParticular.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreatedBy.Properties)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAdjustedAmount.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -173,7 +185,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(438, 573);
+            this.panelControl1.Size = new System.Drawing.Size(586, 573);
             this.panelControl1.TabIndex = 0;
             // 
             // OBGridControl
@@ -186,7 +198,7 @@
             this.OBGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDeleteRepoOBR,
             this.btnEditRepoOBR});
-            this.OBGridControl.Size = new System.Drawing.Size(434, 471);
+            this.OBGridControl.Size = new System.Drawing.Size(582, 471);
             this.OBGridControl.TabIndex = 2;
             this.OBGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.OBGridView});
@@ -207,7 +219,9 @@
             this.colDate,
             this.colAmount,
             this.colDescription,
-            this.colEdit});
+            this.colEdit,
+            this.colControlNo,
+            this.colCreatedBy});
             this.OBGridView.GridControl = this.OBGridControl;
             this.OBGridView.Name = "OBGridView";
             this.OBGridView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -231,24 +245,26 @@
             this.colDel.Name = "colDel";
             this.colDel.Visible = true;
             this.colDel.VisibleIndex = 1;
-            this.colDel.Width = 22;
+            this.colDel.Width = 20;
             // 
             // btnDeleteRepoOBR
             // 
             this.btnDeleteRepoOBR.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            editorButtonImageOptions9.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions9.Image")));
             this.btnDeleteRepoOBR.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions9, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject33, serializableAppearanceObject34, serializableAppearanceObject35, serializableAppearanceObject36, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDeleteRepoOBR.Name = "btnDeleteRepoOBR";
             this.btnDeleteRepoOBR.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // colDate
             // 
+            this.colDate.DisplayFormat.FormatString = "MM/dd/yyyy";
+            this.colDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colDate.FieldName = "Date";
             this.colDate.Name = "colDate";
             this.colDate.Visible = true;
             this.colDate.VisibleIndex = 2;
-            this.colDate.Width = 122;
+            this.colDate.Width = 60;
             // 
             // colAmount
             // 
@@ -260,16 +276,16 @@
             this.colAmount.FieldName = "Amount";
             this.colAmount.Name = "colAmount";
             this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 3;
-            this.colAmount.Width = 122;
+            this.colAmount.VisibleIndex = 4;
+            this.colAmount.Width = 106;
             // 
             // colDescription
             // 
             this.colDescription.FieldName = "Description";
             this.colDescription.Name = "colDescription";
             this.colDescription.Visible = true;
-            this.colDescription.VisibleIndex = 4;
-            this.colDescription.Width = 123;
+            this.colDescription.VisibleIndex = 5;
+            this.colDescription.Width = 237;
             // 
             // colEdit
             // 
@@ -282,11 +298,29 @@
             // btnEditRepoOBR
             // 
             this.btnEditRepoOBR.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            editorButtonImageOptions10.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions10.Image")));
             this.btnEditRepoOBR.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions10, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject37, serializableAppearanceObject38, serializableAppearanceObject39, serializableAppearanceObject40, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditRepoOBR.Name = "btnEditRepoOBR";
             this.btnEditRepoOBR.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // colControlNo
+            // 
+            this.colControlNo.Caption = "Control No";
+            this.colControlNo.FieldName = "ControlNo";
+            this.colControlNo.Name = "colControlNo";
+            this.colControlNo.Visible = true;
+            this.colControlNo.VisibleIndex = 3;
+            this.colControlNo.Width = 108;
+            // 
+            // colCreatedBy
+            // 
+            this.colCreatedBy.Caption = "Created By";
+            this.colCreatedBy.FieldName = "CreatedByUser.FullName";
+            this.colCreatedBy.Name = "colCreatedBy";
+            this.colCreatedBy.Visible = true;
+            this.colCreatedBy.VisibleIndex = 6;
+            this.colCreatedBy.Width = 76;
             // 
             // panel2
             // 
@@ -294,7 +328,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(2, 533);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(434, 38);
+            this.panel2.Size = new System.Drawing.Size(582, 38);
             this.panel2.TabIndex = 1;
             // 
             // lblTotalOf
@@ -307,7 +341,7 @@
             this.lblTotalOf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTotalOf.Location = new System.Drawing.Point(0, 0);
             this.lblTotalOf.Name = "lblTotalOf";
-            this.lblTotalOf.Size = new System.Drawing.Size(434, 38);
+            this.lblTotalOf.Size = new System.Drawing.Size(582, 38);
             this.lblTotalOf.TabIndex = 3;
             this.lblTotalOf.Text = "Total of: ";
             // 
@@ -322,7 +356,7 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl2.Location = new System.Drawing.Point(2, 2);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(434, 60);
+            this.panelControl2.Size = new System.Drawing.Size(582, 60);
             this.panelControl2.TabIndex = 0;
             // 
             // btnViewAll
@@ -388,6 +422,7 @@
             new DevExpress.XtraEditors.Repository.SearchButton()});
             this.txtSearch.Size = new System.Drawing.Size(263, 22);
             this.txtSearch.TabIndex = 0;
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // cboStatus
             // 
@@ -428,7 +463,7 @@
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(443, 67);
+            this.labelControl1.Location = new System.Drawing.Point(3, 3);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(26, 14);
             this.labelControl1.TabIndex = 2;
@@ -440,7 +475,7 @@
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.Location = new System.Drawing.Point(443, 91);
+            this.labelControl2.Location = new System.Drawing.Point(3, 27);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(39, 14);
             this.labelControl2.TabIndex = 3;
@@ -452,7 +487,7 @@
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl3.Appearance.Options.UseFont = true;
             this.labelControl3.Appearance.Options.UseForeColor = true;
-            this.labelControl3.Location = new System.Drawing.Point(443, 113);
+            this.labelControl3.Location = new System.Drawing.Point(3, 49);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(32, 14);
             this.labelControl3.TabIndex = 4;
@@ -464,7 +499,7 @@
             this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl4.Appearance.Options.UseFont = true;
             this.labelControl4.Appearance.Options.UseForeColor = true;
-            this.labelControl4.Location = new System.Drawing.Point(443, 135);
+            this.labelControl4.Location = new System.Drawing.Point(3, 71);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(32, 14);
             this.labelControl4.TabIndex = 5;
@@ -476,7 +511,7 @@
             this.labelControl5.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl5.Appearance.Options.UseFont = true;
             this.labelControl5.Appearance.Options.UseForeColor = true;
-            this.labelControl5.Location = new System.Drawing.Point(443, 157);
+            this.labelControl5.Location = new System.Drawing.Point(3, 93);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(44, 14);
             this.labelControl5.TabIndex = 6;
@@ -488,7 +523,7 @@
             this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl6.Appearance.Options.UseFont = true;
             this.labelControl6.Appearance.Options.UseForeColor = true;
-            this.labelControl6.Location = new System.Drawing.Point(443, 180);
+            this.labelControl6.Location = new System.Drawing.Point(3, 116);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(81, 14);
             this.labelControl6.TabIndex = 6;
@@ -496,7 +531,7 @@
             // 
             // txtDate
             // 
-            this.txtDate.Location = new System.Drawing.Point(528, 66);
+            this.txtDate.Location = new System.Drawing.Point(88, 2);
             this.txtDate.Name = "txtDate";
             this.txtDate.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
             this.txtDate.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -509,7 +544,7 @@
             // 
             // txtControl
             // 
-            this.txtControl.Location = new System.Drawing.Point(528, 88);
+            this.txtControl.Location = new System.Drawing.Point(88, 24);
             this.txtControl.Name = "txtControl";
             this.txtControl.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
             this.txtControl.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -522,7 +557,7 @@
             // 
             // txtPayee
             // 
-            this.txtPayee.Location = new System.Drawing.Point(528, 110);
+            this.txtPayee.Location = new System.Drawing.Point(88, 46);
             this.txtPayee.Name = "txtPayee";
             this.txtPayee.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
             this.txtPayee.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -530,12 +565,12 @@
             this.txtPayee.Properties.Appearance.Options.UseForeColor = true;
             this.txtPayee.Properties.ReadOnly = true;
             this.txtPayee.Properties.UseReadOnlyAppearance = false;
-            this.txtPayee.Size = new System.Drawing.Size(433, 20);
+            this.txtPayee.Size = new System.Drawing.Size(496, 20);
             this.txtPayee.TabIndex = 7;
             // 
             // txtOffice
             // 
-            this.txtOffice.Location = new System.Drawing.Point(528, 132);
+            this.txtOffice.Location = new System.Drawing.Point(88, 68);
             this.txtOffice.Name = "txtOffice";
             this.txtOffice.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
             this.txtOffice.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -543,12 +578,12 @@
             this.txtOffice.Properties.Appearance.Options.UseForeColor = true;
             this.txtOffice.Properties.ReadOnly = true;
             this.txtOffice.Properties.UseReadOnlyAppearance = false;
-            this.txtOffice.Size = new System.Drawing.Size(433, 20);
+            this.txtOffice.Size = new System.Drawing.Size(496, 20);
             this.txtOffice.TabIndex = 7;
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(528, 154);
+            this.txtAddress.Location = new System.Drawing.Point(88, 90);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
             this.txtAddress.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -556,12 +591,12 @@
             this.txtAddress.Properties.Appearance.Options.UseForeColor = true;
             this.txtAddress.Properties.ReadOnly = true;
             this.txtAddress.Properties.UseReadOnlyAppearance = false;
-            this.txtAddress.Size = new System.Drawing.Size(433, 20);
+            this.txtAddress.Size = new System.Drawing.Size(496, 20);
             this.txtAddress.TabIndex = 7;
             // 
             // txtORDescription
             // 
-            this.txtORDescription.Location = new System.Drawing.Point(528, 176);
+            this.txtORDescription.Location = new System.Drawing.Point(88, 112);
             this.txtORDescription.Name = "txtORDescription";
             this.txtORDescription.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
             this.txtORDescription.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -569,12 +604,12 @@
             this.txtORDescription.Properties.Appearance.Options.UseForeColor = true;
             this.txtORDescription.Properties.ReadOnly = true;
             this.txtORDescription.Properties.UseReadOnlyAppearance = false;
-            this.txtORDescription.Size = new System.Drawing.Size(433, 20);
+            this.txtORDescription.Size = new System.Drawing.Size(496, 20);
             this.txtORDescription.TabIndex = 7;
             // 
             // txtBudgetOfficer
             // 
-            this.txtBudgetOfficer.Location = new System.Drawing.Point(528, 198);
+            this.txtBudgetOfficer.Location = new System.Drawing.Point(88, 134);
             this.txtBudgetOfficer.Name = "txtBudgetOfficer";
             this.txtBudgetOfficer.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
             this.txtBudgetOfficer.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -582,7 +617,7 @@
             this.txtBudgetOfficer.Properties.Appearance.Options.UseForeColor = true;
             this.txtBudgetOfficer.Properties.ReadOnly = true;
             this.txtBudgetOfficer.Properties.UseReadOnlyAppearance = false;
-            this.txtBudgetOfficer.Size = new System.Drawing.Size(433, 20);
+            this.txtBudgetOfficer.Size = new System.Drawing.Size(496, 20);
             this.txtBudgetOfficer.TabIndex = 9;
             // 
             // labelControl7
@@ -591,7 +626,7 @@
             this.labelControl7.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl7.Appearance.Options.UseFont = true;
             this.labelControl7.Appearance.Options.UseForeColor = true;
-            this.labelControl7.Location = new System.Drawing.Point(443, 202);
+            this.labelControl7.Location = new System.Drawing.Point(3, 138);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(77, 14);
             this.labelControl7.TabIndex = 8;
@@ -603,7 +638,7 @@
             this.labelControl8.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl8.Appearance.Options.UseFont = true;
             this.labelControl8.Appearance.Options.UseForeColor = true;
-            this.labelControl8.Location = new System.Drawing.Point(443, 224);
+            this.labelControl8.Location = new System.Drawing.Point(3, 160);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(76, 14);
             this.labelControl8.TabIndex = 8;
@@ -611,7 +646,7 @@
             // 
             // txtChiefOfficer
             // 
-            this.txtChiefOfficer.Location = new System.Drawing.Point(528, 220);
+            this.txtChiefOfficer.Location = new System.Drawing.Point(88, 156);
             this.txtChiefOfficer.Name = "txtChiefOfficer";
             this.txtChiefOfficer.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
             this.txtChiefOfficer.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -619,7 +654,7 @@
             this.txtChiefOfficer.Properties.Appearance.Options.UseForeColor = true;
             this.txtChiefOfficer.Properties.ReadOnly = true;
             this.txtChiefOfficer.Properties.UseReadOnlyAppearance = false;
-            this.txtChiefOfficer.Size = new System.Drawing.Size(433, 20);
+            this.txtChiefOfficer.Size = new System.Drawing.Size(496, 20);
             this.txtChiefOfficer.TabIndex = 9;
             // 
             // labelControl9
@@ -628,7 +663,7 @@
             this.labelControl9.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl9.Appearance.Options.UseFont = true;
             this.labelControl9.Appearance.Options.UseForeColor = true;
-            this.labelControl9.Location = new System.Drawing.Point(443, 243);
+            this.labelControl9.Location = new System.Drawing.Point(3, 179);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(45, 14);
             this.labelControl9.TabIndex = 8;
@@ -636,7 +671,7 @@
             // 
             // txtPosition
             // 
-            this.txtPosition.Location = new System.Drawing.Point(528, 242);
+            this.txtPosition.Location = new System.Drawing.Point(88, 178);
             this.txtPosition.Name = "txtPosition";
             this.txtPosition.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
             this.txtPosition.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -644,7 +679,7 @@
             this.txtPosition.Properties.Appearance.Options.UseForeColor = true;
             this.txtPosition.Properties.ReadOnly = true;
             this.txtPosition.Properties.UseReadOnlyAppearance = false;
-            this.txtPosition.Size = new System.Drawing.Size(433, 20);
+            this.txtPosition.Size = new System.Drawing.Size(496, 20);
             this.txtPosition.TabIndex = 9;
             // 
             // labelControl10
@@ -653,7 +688,7 @@
             this.labelControl10.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl10.Appearance.Options.UseFont = true;
             this.labelControl10.Appearance.Options.UseForeColor = true;
-            this.labelControl10.Location = new System.Drawing.Point(758, 67);
+            this.labelControl10.Location = new System.Drawing.Point(318, 3);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(34, 14);
             this.labelControl10.TabIndex = 2;
@@ -661,7 +696,7 @@
             // 
             // txtStatus
             // 
-            this.txtStatus.Location = new System.Drawing.Point(822, 66);
+            this.txtStatus.Location = new System.Drawing.Point(382, 2);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
             this.txtStatus.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -669,7 +704,7 @@
             this.txtStatus.Properties.Appearance.Options.UseForeColor = true;
             this.txtStatus.Properties.ReadOnly = true;
             this.txtStatus.Properties.UseReadOnlyAppearance = false;
-            this.txtStatus.Size = new System.Drawing.Size(139, 20);
+            this.txtStatus.Size = new System.Drawing.Size(202, 20);
             this.txtStatus.TabIndex = 7;
             // 
             // labelControl11
@@ -678,7 +713,7 @@
             this.labelControl11.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl11.Appearance.Options.UseFont = true;
             this.labelControl11.Appearance.Options.UseForeColor = true;
-            this.labelControl11.Location = new System.Drawing.Point(758, 89);
+            this.labelControl11.Location = new System.Drawing.Point(318, 25);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(61, 14);
             this.labelControl11.TabIndex = 2;
@@ -686,7 +721,7 @@
             // 
             // txtBudgetCtl
             // 
-            this.txtBudgetCtl.Location = new System.Drawing.Point(822, 88);
+            this.txtBudgetCtl.Location = new System.Drawing.Point(382, 24);
             this.txtBudgetCtl.Name = "txtBudgetCtl";
             this.txtBudgetCtl.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
             this.txtBudgetCtl.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -694,7 +729,7 @@
             this.txtBudgetCtl.Properties.Appearance.Options.UseForeColor = true;
             this.txtBudgetCtl.Properties.ReadOnly = true;
             this.txtBudgetCtl.Properties.UseReadOnlyAppearance = false;
-            this.txtBudgetCtl.Size = new System.Drawing.Size(139, 20);
+            this.txtBudgetCtl.Size = new System.Drawing.Size(202, 20);
             this.txtBudgetCtl.TabIndex = 7;
             // 
             // labelControl12
@@ -703,7 +738,7 @@
             this.labelControl12.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl12.Appearance.Options.UseFont = true;
             this.labelControl12.Appearance.Options.UseForeColor = true;
-            this.labelControl12.Location = new System.Drawing.Point(758, 268);
+            this.labelControl12.Location = new System.Drawing.Point(264, 204);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(42, 14);
             this.labelControl12.TabIndex = 8;
@@ -711,7 +746,7 @@
             // 
             // txtAmount
             // 
-            this.txtAmount.Location = new System.Drawing.Point(822, 264);
+            this.txtAmount.Location = new System.Drawing.Point(328, 200);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
             this.txtAmount.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -719,7 +754,7 @@
             this.txtAmount.Properties.Appearance.Options.UseForeColor = true;
             this.txtAmount.Properties.ReadOnly = true;
             this.txtAmount.Properties.UseReadOnlyAppearance = false;
-            this.txtAmount.Size = new System.Drawing.Size(139, 20);
+            this.txtAmount.Size = new System.Drawing.Size(87, 20);
             this.txtAmount.TabIndex = 9;
             // 
             // lblHeader
@@ -738,7 +773,7 @@
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(258, 43);
             this.lblHeader.TabIndex = 13;
-            this.lblHeader.Text = "00000-PITD";
+            this.lblHeader.Text = "00000";
             // 
             // panel1
             // 
@@ -748,9 +783,9 @@
             this.panel1.Controls.Add(this.btnPreview);
             this.panel1.Controls.Add(this.btnNew);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(438, 0);
+            this.panel1.Location = new System.Drawing.Point(586, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(815, 43);
+            this.panel1.Size = new System.Drawing.Size(667, 43);
             this.panel1.TabIndex = 14;
             // 
             // label1
@@ -759,7 +794,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(548, 7);
+            this.label1.Location = new System.Drawing.Point(400, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(267, 27);
             this.label1.TabIndex = 14;
@@ -797,22 +832,24 @@
             this.xtraTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.xtraTabControl1.Location = new System.Drawing.Point(445, 288);
+            this.xtraTabControl1.Location = new System.Drawing.Point(5, 224);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(795, 246);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1262, 676);
             this.xtraTabControl1.TabIndex = 15;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
             this.tabPayroll,
             this.tabPayrollWages,
-            this.xtraTabPage2});
+            this.tabPayrollDiff,
+            this.xtraTabPage2,
+            this.tabActions});
             // 
             // xtraTabPage1
             // 
             this.xtraTabPage1.Controls.Add(this.ORDetailGridControl);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(793, 223);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1260, 653);
             this.xtraTabPage1.Text = "Obligation Request Details";
             // 
             // ORDetailGridControl
@@ -827,7 +864,7 @@
             this.btnDelORDetailRepo,
             this.btnEditORDetails,
             this.repositoryItemMemoEdit1});
-            this.ORDetailGridControl.Size = new System.Drawing.Size(793, 223);
+            this.ORDetailGridControl.Size = new System.Drawing.Size(1260, 653);
             this.ORDetailGridControl.TabIndex = 31;
             this.ORDetailGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ORDetailsGridView});
@@ -860,9 +897,9 @@
             // btnDelORDetailRepo
             // 
             this.btnDelORDetailRepo.AutoHeight = false;
-            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
+            editorButtonImageOptions11.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions11.Image")));
             this.btnDelORDetailRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions11, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject41, serializableAppearanceObject42, serializableAppearanceObject43, serializableAppearanceObject44, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelORDetailRepo.Name = "btnDelORDetailRepo";
             this.btnDelORDetailRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelORDetailRepo.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelORDetailRepo_ButtonClick);
@@ -878,9 +915,9 @@
             // btnEditORDetails
             // 
             this.btnEditORDetails.AutoHeight = false;
-            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
+            editorButtonImageOptions12.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions12.Image")));
             this.btnEditORDetails.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions12, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject45, serializableAppearanceObject46, serializableAppearanceObject47, serializableAppearanceObject48, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditORDetails.Name = "btnEditORDetails";
             this.btnEditORDetails.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnEditORDetails.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEditORDetails_ButtonClick);
@@ -943,14 +980,20 @@
             // tabPayroll
             // 
             this.tabPayroll.Name = "tabPayroll";
-            this.tabPayroll.Size = new System.Drawing.Size(793, 223);
+            this.tabPayroll.Size = new System.Drawing.Size(1260, 653);
             this.tabPayroll.Text = "Payroll";
             // 
             // tabPayrollWages
             // 
             this.tabPayrollWages.Name = "tabPayrollWages";
-            this.tabPayrollWages.Size = new System.Drawing.Size(793, 223);
+            this.tabPayrollWages.Size = new System.Drawing.Size(1260, 653);
             this.tabPayrollWages.Text = "Payroll (Wages)";
+            // 
+            // tabPayrollDiff
+            // 
+            this.tabPayrollDiff.Name = "tabPayrollDiff";
+            this.tabPayrollDiff.Size = new System.Drawing.Size(1260, 653);
+            this.tabPayrollDiff.Text = "Payroll Differential";
             // 
             // xtraTabPage2
             // 
@@ -959,7 +1002,7 @@
             this.xtraTabPage2.Controls.Add(this.txtParticular);
             this.xtraTabPage2.Controls.Add(this.labelControl15);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(793, 223);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1260, 653);
             this.xtraTabPage2.Text = "Disbursement Voucher";
             // 
             // btnDVPreview
@@ -1008,15 +1051,21 @@
             this.labelControl15.TabIndex = 0;
             this.labelControl15.Text = "Particulars";
             // 
+            // tabActions
+            // 
+            this.tabActions.Name = "tabActions";
+            this.tabActions.Size = new System.Drawing.Size(1260, 653);
+            this.tabActions.Text = "Actions";
+            // 
             // panelControl3
             // 
             this.panelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl3.Controls.Add(this.lblParticulars);
             this.panelControl3.Controls.Add(this.lblTotal);
-            this.panelControl3.Location = new System.Drawing.Point(446, 533);
+            this.panelControl3.Location = new System.Drawing.Point(6, 899);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(794, 37);
+            this.panelControl3.Size = new System.Drawing.Size(1261, 37);
             this.panelControl3.TabIndex = 16;
             // 
             // lblParticulars
@@ -1030,7 +1079,7 @@
             this.lblParticulars.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblParticulars.Location = new System.Drawing.Point(5, 2);
             this.lblParticulars.Name = "lblParticulars";
-            this.lblParticulars.Size = new System.Drawing.Size(589, 33);
+            this.lblParticulars.Size = new System.Drawing.Size(1056, 33);
             this.lblParticulars.TabIndex = 2;
             this.lblParticulars.Text = "Particulars";
             // 
@@ -1044,11 +1093,99 @@
             this.lblTotal.Appearance.Options.UseTextOptions = true;
             this.lblTotal.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.lblTotal.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblTotal.Location = new System.Drawing.Point(600, 2);
+            this.lblTotal.Location = new System.Drawing.Point(1067, 2);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(192, 33);
             this.lblTotal.TabIndex = 1;
             this.lblTotal.Text = "0.0";
+            // 
+            // labelControl16
+            // 
+            this.labelControl16.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
+            this.labelControl16.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.labelControl16.Appearance.Options.UseFont = true;
+            this.labelControl16.Appearance.Options.UseForeColor = true;
+            this.labelControl16.Location = new System.Drawing.Point(3, 202);
+            this.labelControl16.Name = "labelControl16";
+            this.labelControl16.Size = new System.Drawing.Size(58, 14);
+            this.labelControl16.TabIndex = 8;
+            this.labelControl16.Text = "Created By";
+            // 
+            // txtCreatedBy
+            // 
+            this.txtCreatedBy.Location = new System.Drawing.Point(88, 200);
+            this.txtCreatedBy.Name = "txtCreatedBy";
+            this.txtCreatedBy.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
+            this.txtCreatedBy.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.txtCreatedBy.Properties.Appearance.Options.UseFont = true;
+            this.txtCreatedBy.Properties.Appearance.Options.UseForeColor = true;
+            this.txtCreatedBy.Properties.ReadOnly = true;
+            this.txtCreatedBy.Properties.UseReadOnlyAppearance = false;
+            this.txtCreatedBy.Size = new System.Drawing.Size(170, 20);
+            this.txtCreatedBy.TabIndex = 9;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.labelControl1);
+            this.panel3.Controls.Add(this.panelControl3);
+            this.panel3.Controls.Add(this.labelControl2);
+            this.panel3.Controls.Add(this.xtraTabControl1);
+            this.panel3.Controls.Add(this.labelControl10);
+            this.panel3.Controls.Add(this.labelControl3);
+            this.panel3.Controls.Add(this.txtCreatedBy);
+            this.panel3.Controls.Add(this.labelControl11);
+            this.panel3.Controls.Add(this.txtAdjustedAmount);
+            this.panel3.Controls.Add(this.txtAmount);
+            this.panel3.Controls.Add(this.labelControl17);
+            this.panel3.Controls.Add(this.labelControl4);
+            this.panel3.Controls.Add(this.labelControl12);
+            this.panel3.Controls.Add(this.labelControl5);
+            this.panel3.Controls.Add(this.txtPosition);
+            this.panel3.Controls.Add(this.labelControl6);
+            this.panel3.Controls.Add(this.labelControl16);
+            this.panel3.Controls.Add(this.txtDate);
+            this.panel3.Controls.Add(this.labelControl9);
+            this.panel3.Controls.Add(this.txtStatus);
+            this.panel3.Controls.Add(this.txtChiefOfficer);
+            this.panel3.Controls.Add(this.txtBudgetCtl);
+            this.panel3.Controls.Add(this.labelControl8);
+            this.panel3.Controls.Add(this.txtControl);
+            this.panel3.Controls.Add(this.txtBudgetOfficer);
+            this.panel3.Controls.Add(this.txtPayee);
+            this.panel3.Controls.Add(this.labelControl7);
+            this.panel3.Controls.Add(this.txtOffice);
+            this.panel3.Controls.Add(this.txtORDescription);
+            this.panel3.Controls.Add(this.txtAddress);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(586, 43);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(667, 530);
+            this.panel3.TabIndex = 17;
+            // 
+            // labelControl17
+            // 
+            this.labelControl17.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
+            this.labelControl17.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.labelControl17.Appearance.Options.UseFont = true;
+            this.labelControl17.Appearance.Options.UseForeColor = true;
+            this.labelControl17.Location = new System.Drawing.Point(425, 204);
+            this.labelControl17.Name = "labelControl17";
+            this.labelControl17.Size = new System.Drawing.Size(65, 14);
+            this.labelControl17.TabIndex = 8;
+            this.labelControl17.Text = "Adj. Amount";
+            // 
+            // txtAdjustedAmount
+            // 
+            this.txtAdjustedAmount.Location = new System.Drawing.Point(497, 200);
+            this.txtAdjustedAmount.Name = "txtAdjustedAmount";
+            this.txtAdjustedAmount.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F);
+            this.txtAdjustedAmount.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.txtAdjustedAmount.Properties.Appearance.Options.UseFont = true;
+            this.txtAdjustedAmount.Properties.Appearance.Options.UseForeColor = true;
+            this.txtAdjustedAmount.Properties.ReadOnly = true;
+            this.txtAdjustedAmount.Properties.UseReadOnlyAppearance = false;
+            this.txtAdjustedAmount.Size = new System.Drawing.Size(87, 20);
+            this.txtAdjustedAmount.TabIndex = 9;
             // 
             // ucObligations
             // 
@@ -1056,33 +1193,8 @@
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panelControl3);
-            this.Controls.Add(this.xtraTabControl1);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.txtAmount);
-            this.Controls.Add(this.labelControl12);
-            this.Controls.Add(this.txtPosition);
-            this.Controls.Add(this.labelControl9);
-            this.Controls.Add(this.txtChiefOfficer);
-            this.Controls.Add(this.labelControl8);
-            this.Controls.Add(this.txtBudgetOfficer);
-            this.Controls.Add(this.labelControl7);
-            this.Controls.Add(this.txtORDescription);
-            this.Controls.Add(this.txtAddress);
-            this.Controls.Add(this.txtOffice);
-            this.Controls.Add(this.txtPayee);
-            this.Controls.Add(this.txtControl);
-            this.Controls.Add(this.txtBudgetCtl);
-            this.Controls.Add(this.txtStatus);
-            this.Controls.Add(this.txtDate);
-            this.Controls.Add(this.labelControl6);
-            this.Controls.Add(this.labelControl5);
-            this.Controls.Add(this.labelControl4);
-            this.Controls.Add(this.labelControl11);
-            this.Controls.Add(this.labelControl3);
-            this.Controls.Add(this.labelControl10);
-            this.Controls.Add(this.labelControl2);
-            this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.panelControl1);
             this.Name = "ucObligations";
             this.Size = new System.Drawing.Size(1253, 573);
@@ -1131,8 +1243,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtParticular.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreatedBy.Properties)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAdjustedAmount.Properties)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1164,7 +1279,7 @@
         public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDeleteRepoOBR;
         private DevExpress.XtraGrid.Columns.GridColumn colEdit;
         public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditRepoOBR;
-        private DevExpress.XtraEditors.SearchControl txtSearch;
+        public DevExpress.XtraEditors.SearchControl txtSearch;
         public DevExpress.XtraEditors.LabelControl lblHeader;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
@@ -1213,5 +1328,14 @@
         public DevExpress.XtraEditors.LabelControl lblTotal;
         private System.Windows.Forms.Panel panel2;
         public DevExpress.XtraEditors.LabelControl lblTotalOf;
+        public DevExpress.XtraTab.XtraTabPage tabPayrollDiff;
+        private DevExpress.XtraGrid.Columns.GridColumn colControlNo;
+        public DevExpress.XtraTab.XtraTabPage tabActions;
+        private DevExpress.XtraEditors.LabelControl labelControl16;
+        public DevExpress.XtraEditors.TextEdit txtCreatedBy;
+        private DevExpress.XtraGrid.Columns.GridColumn colCreatedBy;
+        private System.Windows.Forms.Panel panel3;
+        public DevExpress.XtraEditors.TextEdit txtAdjustedAmount;
+        private DevExpress.XtraEditors.LabelControl labelControl17;
     }
 }

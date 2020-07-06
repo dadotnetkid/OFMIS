@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCEmployees));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -43,6 +44,8 @@
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cboOfficeSearch = new DevExpress.XtraEditors.LookUpEdit();
+            this.officesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtSearch = new DevExpress.XtraEditors.TextEdit();
             this.EmployeesGridControl = new DevExpress.XtraGrid.GridControl();
@@ -54,22 +57,30 @@
             this.colFirstName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMiddleInitial = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLastName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colExtName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPosition = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colOffice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cboOffices = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.colTIN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPagIbig = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPhilHealth = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cboStatusRepo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colSG = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSSS = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboOfficeSearch.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.officesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmployeesGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmployeesGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditUserRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboOffices)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboStatusRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,6 +123,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(98)))), ((int)(((byte)(135)))));
+            this.panel2.Controls.Add(this.cboOfficeSearch);
             this.panel2.Controls.Add(this.labelControl1);
             this.panel2.Controls.Add(this.txtSearch);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -119,6 +131,28 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(988, 34);
             this.panel2.TabIndex = 60;
+            // 
+            // cboOfficeSearch
+            // 
+            this.cboOfficeSearch.Location = new System.Drawing.Point(54, 9);
+            this.cboOfficeSearch.Name = "cboOfficeSearch";
+            this.cboOfficeSearch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboOfficeSearch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OffcAcr", "Offc Acr", 51, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OfficeName", "Office Name", 73, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.cboOfficeSearch.Properties.DataSource = this.officesBindingSource;
+            this.cboOfficeSearch.Properties.DisplayMember = "OfficeName";
+            this.cboOfficeSearch.Properties.NullText = "Search Office Name";
+            this.cboOfficeSearch.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.cboOfficeSearch.Properties.ValueMember = "Id";
+            this.cboOfficeSearch.Size = new System.Drawing.Size(151, 20);
+            this.cboOfficeSearch.TabIndex = 2;
+            this.cboOfficeSearch.EditValueChanged += new System.EventHandler(this.cboOfficeSearch_EditValueChanged);
+            // 
+            // officesBindingSource
+            // 
+            this.officesBindingSource.DataSource = typeof(Models.Offices);
             // 
             // labelControl1
             // 
@@ -134,8 +168,9 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(54, 8);
+            this.txtSearch.Location = new System.Drawing.Point(211, 9);
             this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Properties.NullText = "Search employees";
             this.txtSearch.Size = new System.Drawing.Size(241, 20);
             this.txtSearch.TabIndex = 0;
             // 
@@ -150,7 +185,8 @@
             this.btnEditUserRepo,
             this.btnDeleteRepo,
             this.repositoryItemCheckEdit1,
-            this.cboOffices});
+            this.cboOffices,
+            this.cboStatusRepo});
             this.EmployeesGridControl.Size = new System.Drawing.Size(988, 299);
             this.EmployeesGridControl.TabIndex = 63;
             this.EmployeesGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -164,11 +200,15 @@
             this.colFirstName,
             this.colMiddleInitial,
             this.colLastName,
+            this.colExtName,
             this.colPosition,
             this.colOffice,
             this.colTIN,
             this.colPagIbig,
-            this.colPhilHealth});
+            this.colPhilHealth,
+            this.colStatus,
+            this.colSG,
+            this.colSSS});
             this.EmployeesGridView.GridControl = this.EmployeesGridControl;
             this.EmployeesGridView.Name = "EmployeesGridView";
             this.EmployeesGridView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -231,22 +271,31 @@
             this.colLastName.Visible = true;
             this.colLastName.VisibleIndex = 3;
             // 
+            // colExtName
+            // 
+            this.colExtName.Caption = "ExtName";
+            this.colExtName.FieldName = "ExtName";
+            this.colExtName.Name = "colExtName";
+            this.colExtName.Visible = true;
+            this.colExtName.VisibleIndex = 4;
+            this.colExtName.Width = 64;
+            // 
             // colPosition
             // 
             this.colPosition.Caption = "Position";
             this.colPosition.FieldName = "Position";
             this.colPosition.Name = "colPosition";
             this.colPosition.Visible = true;
-            this.colPosition.VisibleIndex = 4;
+            this.colPosition.VisibleIndex = 5;
             // 
             // colOffice
             // 
             this.colOffice.Caption = "Office";
             this.colOffice.ColumnEdit = this.cboOffices;
-            this.colOffice.FieldName = "OfficeName";
+            this.colOffice.FieldName = "OfficeId";
             this.colOffice.Name = "colOffice";
             this.colOffice.Visible = true;
-            this.colOffice.VisibleIndex = 5;
+            this.colOffice.VisibleIndex = 8;
             // 
             // cboOffices
             // 
@@ -265,12 +314,7 @@
             this.cboOffices.Name = "cboOffices";
             this.cboOffices.NullText = "";
             this.cboOffices.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.cboOffices.ValueMember = "OfficeName";
-            // 
-            // repositoryItemCheckEdit1
-            // 
-            this.repositoryItemCheckEdit1.AutoHeight = false;
-            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            this.cboOffices.ValueMember = "Id";
             // 
             // colTIN
             // 
@@ -278,7 +322,7 @@
             this.colTIN.FieldName = "TIN";
             this.colTIN.Name = "colTIN";
             this.colTIN.Visible = true;
-            this.colTIN.VisibleIndex = 6;
+            this.colTIN.VisibleIndex = 9;
             // 
             // colPagIbig
             // 
@@ -286,7 +330,7 @@
             this.colPagIbig.FieldName = "PagIbig";
             this.colPagIbig.Name = "colPagIbig";
             this.colPagIbig.Visible = true;
-            this.colPagIbig.VisibleIndex = 7;
+            this.colPagIbig.VisibleIndex = 10;
             // 
             // colPhilHealth
             // 
@@ -294,7 +338,52 @@
             this.colPhilHealth.FieldName = "PhilHealth";
             this.colPhilHealth.Name = "colPhilHealth";
             this.colPhilHealth.Visible = true;
-            this.colPhilHealth.VisibleIndex = 8;
+            this.colPhilHealth.VisibleIndex = 11;
+            // 
+            // colStatus
+            // 
+            this.colStatus.Caption = "Status";
+            this.colStatus.ColumnEdit = this.cboStatusRepo;
+            this.colStatus.FieldName = "Status";
+            this.colStatus.Name = "colStatus";
+            this.colStatus.Visible = true;
+            this.colStatus.VisibleIndex = 6;
+            // 
+            // cboStatusRepo
+            // 
+            this.cboStatusRepo.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.cboStatusRepo.AutoHeight = false;
+            this.cboStatusRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboStatusRepo.DisplayMember = "Status";
+            this.cboStatusRepo.Name = "cboStatusRepo";
+            this.cboStatusRepo.NullText = "";
+            this.cboStatusRepo.NullValuePrompt = "Permanent,Casual,COS";
+            this.cboStatusRepo.NullValuePromptShowForEmptyValue = true;
+            this.cboStatusRepo.ValueMember = "Status";
+            // 
+            // colSG
+            // 
+            this.colSG.Caption = "Salary Grade";
+            this.colSG.FieldName = "SG";
+            this.colSG.Name = "colSG";
+            this.colSG.Visible = true;
+            this.colSG.VisibleIndex = 7;
+            // 
+            // colSSS
+            // 
+            this.colSSS.Caption = "SSS";
+            this.colSSS.FieldName = "SSS";
+            this.colSSS.MinWidth = 21;
+            this.colSSS.Name = "colSSS";
+            this.colSSS.Visible = true;
+            this.colSSS.VisibleIndex = 12;
+            this.colSSS.Width = 93;
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             // 
             // UCEmployees
             // 
@@ -310,12 +399,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboOfficeSearch.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.officesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmployeesGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmployeesGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditUserRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboOffices)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboStatusRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             this.ResumeLayout(false);
 
@@ -345,5 +437,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn colTIN;
         private DevExpress.XtraGrid.Columns.GridColumn colPagIbig;
         private DevExpress.XtraGrid.Columns.GridColumn colPhilHealth;
+        private DevExpress.XtraGrid.Columns.GridColumn colStatus;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cboStatusRepo;
+        private DevExpress.XtraGrid.Columns.GridColumn colSG;
+        private DevExpress.XtraGrid.Columns.GridColumn colSSS;
+        private DevExpress.XtraGrid.Columns.GridColumn colExtName;
+        private DevExpress.XtraEditors.LookUpEdit cboOfficeSearch;
+        private System.Windows.Forms.BindingSource officesBindingSource;
     }
 }

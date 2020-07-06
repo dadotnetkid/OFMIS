@@ -155,6 +155,9 @@
             this.xrCrossBandLine1 = new DevExpress.XtraReports.UI.XRCrossBandLine();
             this.xrCrossBandLine3 = new DevExpress.XtraReports.UI.XRCrossBandLine();
             this.xrCrossBandLine2 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
+            this.xrLabel63 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel62 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -648,7 +651,7 @@
             this.xrTableCell2.StylePriority.UseTextAlignment = false;
             this.xrTableCell2.Text = "xrTableCell2";
             this.xrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            this.xrTableCell2.TextFormatString = "{0:PHP #,##.0#}";
+            this.xrTableCell2.TextFormatString = "{0:PHP #,##.00##}";
             this.xrTableCell2.Weight = 0.6276043701171875D;
             // 
             // GroupHeader2
@@ -723,7 +726,7 @@
             this.xrLabel49.StylePriority.UseTextAlignment = false;
             this.xrLabel49.Text = "xrLabel49";
             this.xrLabel49.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrLabel49.TextFormatString = "{0:PHP #,##.0#}";
+            this.xrLabel49.TextFormatString = "{0:PHP #,##.00##}";
             // 
             // xrLabel47
             // 
@@ -822,7 +825,7 @@
             // xrLabel61
             // 
             this.xrLabel61.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Obligations].[Governor].[Position]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Obligations].[DVGovernor].[Position]")});
             this.xrLabel61.Font = new System.Drawing.Font("Calibri", 9F);
             this.xrLabel61.LocationFloat = new DevExpress.Utils.PointFloat(85.58114F, 276.3896F);
             this.xrLabel61.Multiline = true;
@@ -831,13 +834,14 @@
             this.xrLabel61.SizeF = new System.Drawing.SizeF(311.23F, 15F);
             this.xrLabel61.StylePriority.UseFont = false;
             this.xrLabel61.StylePriority.UseTextAlignment = false;
+            this.xrLabel61.Tag = "Division";
             this.xrLabel61.Text = "xrLabel61";
             this.xrLabel61.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrLabel60
             // 
             this.xrLabel60.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Obligations].[Governor].[Person]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Obligations].[DVGovernor].[Person]")});
             this.xrLabel60.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold);
             this.xrLabel60.LocationFloat = new DevExpress.Utils.PointFloat(85.58114F, 261.3897F);
             this.xrLabel60.Multiline = true;
@@ -846,6 +850,7 @@
             this.xrLabel60.SizeF = new System.Drawing.SizeF(311.227F, 14.99998F);
             this.xrLabel60.StylePriority.UseFont = false;
             this.xrLabel60.StylePriority.UseTextAlignment = false;
+            this.xrLabel60.Tag = "Division";
             this.xrLabel60.Text = "xrLabel60";
             this.xrLabel60.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
@@ -867,7 +872,7 @@
             // xrLabel58
             // 
             this.xrLabel58.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Obligations].[DVNote]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Obligations].[DVApproved].[Note]")});
             this.xrLabel58.Font = new System.Drawing.Font("Calibri", 9F);
             this.xrLabel58.LocationFloat = new DevExpress.Utils.PointFloat(85.58115F, 291.3896F);
             this.xrLabel58.Multiline = true;
@@ -876,6 +881,7 @@
             this.xrLabel58.SizeF = new System.Drawing.SizeF(311.227F, 18.70377F);
             this.xrLabel58.StylePriority.UseFont = false;
             this.xrLabel58.StylePriority.UseTextAlignment = false;
+            this.xrLabel58.Tag = "Division";
             this.xrLabel58.Text = "xrLabel58";
             this.xrLabel58.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
@@ -1561,6 +1567,41 @@
             this.xrCrossBandLine2.StartPointFloat = new DevExpress.Utils.PointFloat(797.9745F, 0F);
             this.xrCrossBandLine2.WidthF = 1.15741F;
             // 
+            // PageFooter
+            // 
+            this.PageFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel63,
+            this.xrLabel62});
+            this.PageFooter.HeightF = 14.98716F;
+            this.PageFooter.Name = "PageFooter";
+            // 
+            // xrLabel63
+            // 
+            this.xrLabel63.Font = new System.Drawing.Font("Calibri", 9.75F);
+            this.xrLabel63.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrLabel63.Multiline = true;
+            this.xrLabel63.Name = "xrLabel63";
+            this.xrLabel63.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel63.SizeF = new System.Drawing.SizeF(400.5F, 14.98716F);
+            this.xrLabel63.StylePriority.UseFont = false;
+            this.xrLabel63.StylePriority.UseTextAlignment = false;
+            this.xrLabel63.Text = "Office Management Information System";
+            this.xrLabel63.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel63.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel63_BeforePrint);
+            // 
+            // xrLabel62
+            // 
+            this.xrLabel62.Font = new System.Drawing.Font("Calibri", 9.75F);
+            this.xrLabel62.LocationFloat = new DevExpress.Utils.PointFloat(700.782F, 0F);
+            this.xrLabel62.Multiline = true;
+            this.xrLabel62.Name = "xrLabel62";
+            this.xrLabel62.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel62.SizeF = new System.Drawing.SizeF(99.21796F, 14.98716F);
+            this.xrLabel62.StylePriority.UseFont = false;
+            this.xrLabel62.StylePriority.UseTextAlignment = false;
+            this.xrLabel62.Text = "GO-PITD";
+            this.xrLabel62.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            // 
             // rptDV
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1569,7 +1610,8 @@
             this.Detail,
             this.GroupHeader1,
             this.DetailReport,
-            this.GroupFooter1});
+            this.GroupFooter1,
+            this.PageFooter});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.CrossBandControls.AddRange(new DevExpress.XtraReports.UI.XRCrossBandControl[] {
@@ -1717,5 +1759,8 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel60;
         private DevExpress.XtraReports.UI.XRLabel xrLabel59;
         private DevExpress.XtraReports.UI.XRLabel xrLabel61;
+        private DevExpress.XtraReports.UI.PageFooterBand PageFooter;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel63;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel62;
     }
 }

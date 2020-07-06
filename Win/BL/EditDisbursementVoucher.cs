@@ -69,7 +69,7 @@ namespace Win.BL
         {
             try
             {
-                frm.cboApprovedBy.Properties.DataSource = new BindingList<Signatories>(new UnitOfWork().ChiefOfOfficesRepo.Get());
+                frm.cboApprovedBy.Properties.DataSource = new BindingList<Signatories>(new UnitOfWork().Signatories.Get());
                 frm.cboApprovedBy.EditValueChanged += CboApprovedBy_EditValueChanged;
                 Detail();
             }

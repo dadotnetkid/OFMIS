@@ -18,5 +18,15 @@ namespace Win.Rprts
         {
    
         }
+
+        private void xrLabel44_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            if (sender is XRLabel lbl)
+            {
+                StaticSettings staticSettings = new StaticSettings();
+                var user = User.GetUserName();
+                lbl.Text = $"[{staticSettings.Offices.OffcAcr}]Office Management Information System({user})";
+            }
+        }
     }
 }

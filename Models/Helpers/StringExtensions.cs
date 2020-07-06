@@ -53,7 +53,7 @@ namespace Helpers
             }
         }
         public static Boolean ToBool(this object obj)
-        {
+       {
             try
             {
                 return Convert.ToBoolean(obj);

@@ -29,9 +29,7 @@ namespace Win.BL
             this.frmItems = frmItems;
             this.items = items;
             frmItems.ItemsGridView.OptionsSelection.MultiSelect = false;
-            frmItems.btnSubmit.Visible = false;
             frmItems.btnNew.Click += BtnNew_Click;
-            frmItems.btnSubmit.Click += BtnSubmit_Click;
             frmItems.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_Click;
 
         }
@@ -41,31 +39,50 @@ namespace Win.BL
             this.frmItems = frmItems;
             this.purchaseRequests = purchaseRequests;
             frmItems.btnNew.Click += BtnNew_Click;
-            frmItems.btnSubmit.Click += BtnSubmit_Click;
             frmItems.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_Click;
             frmItems.btnSelectItemRepo.ButtonClick += BtnSelectItemRepo_ButtonClick;
         }
         private void BtnSelectItemRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
+            UnitOfWork unitOfWork = new UnitOfWork();
 
             if (frmItems.ItemsGridView.GetFocusedRow() is Items items)
             {
-                UnitOfWork unitOfWork = new UnitOfWork();
+
+
                 unitOfWork.PRDetailsRepo.Insert(new PRDetails()
                 {
                     Item = items.Item,
                     PRId = purchaseRequests.Id,
                     Quantity = 1,
-
+                    Cost = items.Cost,
+                    UOM = items.UOM,
+                    Category = items.Category,
+                    ItemId = items.Id,
+                    TotalAmount = items.Cost,
                 });
                 unitOfWork.Save();
-
-                frmAddEditPurchaseRequest.ItemsGridControl.DataSource =
-                    new BindingList<PRDetails>(unitOfWork.PRDetailsRepo.Get(x => x.PRId == purchaseRequests.Id));
             }
+            var itemNo = 1;
+            unitOfWork = new UnitOfWork();
+            foreach (var i in unitOfWork.PRDetailsRepo.Get(x => x.PRId == purchaseRequests.Id))
+            {
+                i.ItemNo = itemNo;
+                itemNo++;
+                unitOfWork.Save();
+            }
+            frmAddEditPurchaseRequest.ItemsGridControl.DataSource =
+                    new BindingList<PRDetails>(unitOfWork.PRDetailsRepo.Get(x => x.PRId == purchaseRequests.Id));
+            if (frmItems.cboSearch.Text == "")
+            {
+                Search(frmItems.cboCategory.Text);
+                return;
+            }
+            Search(frmItems.cboSearch.Text);
+
         }
 
-      
+
         public LoadAddEditItems(frmAddEditItems frmAddEditItems, Items items)
         {
             this.frmAddEditItems = frmAddEditItems;
@@ -136,7 +153,13 @@ namespace Win.BL
 
         public void Search(string search)
         {
-            frmItems.ItemsGridControl.DataSource = new BindingList<Items>(new UnitOfWork().ItemsRepo.Get(m => m.Item.StartsWith(search) || m.Category.Contains(search)));
+            if (purchaseRequests == null)
+            {
+                frmItems.ItemsGridControl.DataSource = new BindingList<Items>(new UnitOfWork().ItemsRepo.Get(x => (x.Item.StartsWith(search) || x.Category.Contains(search))));
+                return;
+            }
+            var itemsSelected = new UnitOfWork().PRDetailsRepo.Get(m => m.PRId == purchaseRequests.Id).Select(x => x.ItemId);
+            frmItems.ItemsGridControl.DataSource = new BindingList<Items>(new UnitOfWork().ItemsRepo.Get(x => itemsSelected.All(m => m != x.Id) && (x.Item.StartsWith(search) || x.Category.Contains(search))));
         }
 
         public void Close(FormClosingEventArgs eventArgs)
@@ -168,7 +191,16 @@ namespace Win.BL
 
         void ILoad<Items>.Init()
         {
-            frmItems.ItemsGridControl.DataSource = new BindingList<Items>(new UnitOfWork().ItemsRepo.Get());
+            if (purchaseRequests == null)
+            {
+                frmItems.ItemsGridControl.DataSource = new BindingList<Items>(new UnitOfWork().ItemsRepo.Get());
+                frmItems.cboCategory.Properties.DataSource =
+                    new EntityServerModeSource() { QueryableSource = new UnitOfWork().CategoriesRepo.Fetch() };
+                frmItems.cboSearch.Properties.DataSource = new EntityServerModeSource() { QueryableSource = new UnitOfWork().ItemsRepo.Fetch() };
+                return;
+            }
+            var itemsSelected = new UnitOfWork().PRDetailsRepo.Get(m => m.PRId == purchaseRequests.Id).Select(x => x.ItemId);
+            frmItems.ItemsGridControl.DataSource = new BindingList<Items>(new UnitOfWork().ItemsRepo.Get(x => itemsSelected.All(m => m != x.Id)));
             frmItems.cboCategory.Properties.DataSource = new UnitOfWork().ItemsRepo.Fetch(x => x.Category != null || x.Category != "").GroupBy(x => x.Category).ToList().Select(x => new Items() { Category = x.Key });
             frmItems.cboSearch.Properties.DataSource = new UnitOfWork().ItemsRepo.Fetch().Select(x => new { x.Item }).ToList().Select(x => new Items() { Item = x.Item });
         }

@@ -19,6 +19,7 @@ namespace Models
         public Nullable<int> ObligationId { get; set; }
         public string Particulars { get; set; }
         public Nullable<decimal> Amount { get; set; }
+        public Nullable<decimal> AdjustedAmount { get; set; }
     
         public virtual Appropriations Appropriations { get; set; }
         public virtual Obligations Obligations { get; set; }
