@@ -8,19 +8,20 @@ using System.Windows.Forms;
 
 namespace Helpers
 {
-    class UpdateHelpers
+    public static class UpdateHelpers
     {
-        private bool InstallUpdateSyncWithInfo()
+        public static ApplicationDeployment applicationDeployment;
+        public static bool InstallUpdateSyncWithInfo()
         {
             UpdateCheckInfo info = null;
             //var retval = false;
             if (ApplicationDeployment.IsNetworkDeployed)
             {
-                ApplicationDeployment ad = ApplicationDeployment.CurrentDeployment;
+                applicationDeployment = ApplicationDeployment.CurrentDeployment;
 
                 try
                 {
-                    info = ad.CheckForDetailedUpdate();
+                    info = applicationDeployment.CheckForDetailedUpdate();
 
                 }
                 catch (DeploymentDownloadException dde)
@@ -41,6 +42,7 @@ namespace Helpers
 
                 if (info.UpdateAvailable)
                 {
+
                     return true;
                 }
                 return false;

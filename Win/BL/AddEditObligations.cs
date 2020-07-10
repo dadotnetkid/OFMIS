@@ -143,7 +143,6 @@ namespace Win.BL
                 //obligations.ControlNo = this.obligations.ControlNo;
                 obligations.Date = frm.txtDate.EditValue?.ToDate() ?? DateTime.Now;
                 obligations.BudgetControlNo = frm.txtPBOControl.EditValue?.ToString();
-                obligations.DMSNo = frm.txtDMSNo.Text;
                 obligations.PayeeId = frm.cboPayee.EditValue?.ToInt();
                 obligations.PayeeAddress = frm.txtAddress.EditValue?.ToString();
                 obligations.PayeeOffice = frm.txtOffice.EditValue?.ToString();
@@ -218,7 +217,6 @@ namespace Win.BL
                 frm.txtDate.EditValue = item.Date;
                 frm.txtControl.EditValue = item.ControlNo;
                 frm.txtPBOControl.EditValue = item.BudgetControlNo;
-                frm.txtDMSNo.Text = item.DMSNo;
                 frm.cboPayee.EditValue = item.PayeeId;
                 frm.txtOffice.EditValue = item.PayeeOffice;
                 frm.txtAddress.EditValue = item.PayeeAddress;

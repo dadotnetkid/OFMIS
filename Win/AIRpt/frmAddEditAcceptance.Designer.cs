@@ -265,7 +265,6 @@
             this.colCost.ColumnEdit = this.spinAmountRepo;
             this.colCost.FieldName = "Cost";
             this.colCost.Name = "colCost";
-            this.colCost.OptionsColumn.ReadOnly = true;
             this.colCost.Visible = true;
             this.colCost.VisibleIndex = 6;
             this.colCost.Width = 65;
@@ -280,7 +279,6 @@
             this.spinAmountRepo.EditFormat.FormatString = "#,#.#0";
             this.spinAmountRepo.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.spinAmountRepo.Name = "spinAmountRepo";
-            this.spinAmountRepo.ReadOnly = true;
             // 
             // colDateCreated
             // 
@@ -390,7 +388,7 @@
             this.labelControl2.Appearance.Options.UseTextOptions = true;
             this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Location = new System.Drawing.Point(15, 86);
+            this.labelControl2.Location = new System.Drawing.Point(36, 86);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(110, 14);
             this.labelControl2.TabIndex = 89;
@@ -403,7 +401,7 @@
             this.labelControl1.Appearance.Options.UseTextOptions = true;
             this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(15, 62);
+            this.labelControl1.Location = new System.Drawing.Point(36, 62);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(110, 14);
             this.labelControl1.TabIndex = 88;
@@ -412,7 +410,7 @@
             // dtDate
             // 
             this.dtDate.EditValue = null;
-            this.dtDate.Location = new System.Drawing.Point(131, 61);
+            this.dtDate.Location = new System.Drawing.Point(152, 61);
             this.dtDate.Name = "dtDate";
             this.dtDate.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDate.Properties.Appearance.Options.UseFont = true;
@@ -432,7 +430,7 @@
             // 
             // txtControlNumber
             // 
-            this.txtControlNumber.Location = new System.Drawing.Point(131, 83);
+            this.txtControlNumber.Location = new System.Drawing.Point(152, 83);
             this.txtControlNumber.Name = "txtControlNumber";
             this.txtControlNumber.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtControlNumber.Properties.Appearance.Options.UseFont = true;
@@ -483,7 +481,7 @@
             this.labelControl3.Appearance.Options.UseTextOptions = true;
             this.labelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl3.Location = new System.Drawing.Point(15, 108);
+            this.labelControl3.Location = new System.Drawing.Point(36, 108);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(110, 14);
             this.labelControl3.TabIndex = 90;
@@ -496,11 +494,11 @@
             this.labelControl4.Appearance.Options.UseTextOptions = true;
             this.labelControl4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl4.Location = new System.Drawing.Point(15, 130);
+            this.labelControl4.Location = new System.Drawing.Point(12, 130);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(110, 14);
+            this.labelControl4.Size = new System.Drawing.Size(134, 16);
             this.labelControl4.TabIndex = 90;
-            this.labelControl4.Text = "Property Inspector 2";
+            this.labelControl4.Text = "Property Inspector 2(AO)";
             // 
             // labelControl6
             // 
@@ -509,7 +507,7 @@
             this.labelControl6.Appearance.Options.UseTextOptions = true;
             this.labelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl6.Location = new System.Drawing.Point(15, 152);
+            this.labelControl6.Location = new System.Drawing.Point(36, 152);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(110, 14);
             this.labelControl6.TabIndex = 90;
@@ -522,7 +520,7 @@
             this.labelControl5.Appearance.Options.UseTextOptions = true;
             this.labelControl5.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl5.Location = new System.Drawing.Point(423, 64);
+            this.labelControl5.Location = new System.Drawing.Point(451, 62);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(110, 14);
             this.labelControl5.TabIndex = 89;
@@ -535,7 +533,7 @@
             this.labelControl7.Appearance.Options.UseTextOptions = true;
             this.labelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl7.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl7.Location = new System.Drawing.Point(423, 86);
+            this.labelControl7.Location = new System.Drawing.Point(451, 84);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(110, 14);
             this.labelControl7.TabIndex = 89;
@@ -548,7 +546,7 @@
             this.labelControl8.Appearance.Options.UseTextOptions = true;
             this.labelControl8.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl8.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl8.Location = new System.Drawing.Point(423, 108);
+            this.labelControl8.Location = new System.Drawing.Point(451, 106);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(110, 14);
             this.labelControl8.TabIndex = 89;
@@ -561,7 +559,7 @@
             this.labelControl10.Appearance.Options.UseTextOptions = true;
             this.labelControl10.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl10.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl10.Location = new System.Drawing.Point(423, 130);
+            this.labelControl10.Location = new System.Drawing.Point(451, 128);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(110, 14);
             this.labelControl10.TabIndex = 89;
@@ -574,7 +572,7 @@
             this.labelControl11.Appearance.Options.UseTextOptions = true;
             this.labelControl11.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl11.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl11.Location = new System.Drawing.Point(423, 152);
+            this.labelControl11.Location = new System.Drawing.Point(451, 150);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(110, 14);
             this.labelControl11.TabIndex = 89;
@@ -583,7 +581,7 @@
             // dtRISDate
             // 
             this.dtRISDate.EditValue = null;
-            this.dtRISDate.Location = new System.Drawing.Point(539, 83);
+            this.dtRISDate.Location = new System.Drawing.Point(567, 81);
             this.dtRISDate.Name = "dtRISDate";
             this.dtRISDate.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtRISDate.Properties.Appearance.Options.UseFont = true;
@@ -603,7 +601,7 @@
             // 
             // cboPropertyInspector
             // 
-            this.cboPropertyInspector.Location = new System.Drawing.Point(131, 105);
+            this.cboPropertyInspector.Location = new System.Drawing.Point(152, 105);
             this.cboPropertyInspector.Name = "cboPropertyInspector";
             this.cboPropertyInspector.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPropertyInspector.Properties.Appearance.Options.UseFont = true;
@@ -628,15 +626,16 @@
             // 
             // cboPropertyInspector2
             // 
-            this.cboPropertyInspector2.Location = new System.Drawing.Point(131, 127);
+            this.cboPropertyInspector2.Location = new System.Drawing.Point(152, 127);
             this.cboPropertyInspector2.Name = "cboPropertyInspector2";
             this.cboPropertyInspector2.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPropertyInspector2.Properties.Appearance.Options.UseFont = true;
             this.cboPropertyInspector2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboPropertyInspector2.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Person", "Person", 47, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Position", "Position", 55, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EmployeeName", "Employee Name", 98, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Position", "Position", 55, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OfficeName", "Office Name", 77, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cboPropertyInspector2.Properties.DataSource = this.employeesBindingSource;
             this.cboPropertyInspector2.Properties.DisplayMember = "Person";
             this.cboPropertyInspector2.Properties.NullText = "";
@@ -652,7 +651,7 @@
             // 
             // cboHeadOffice
             // 
-            this.cboHeadOffice.Location = new System.Drawing.Point(131, 149);
+            this.cboHeadOffice.Location = new System.Drawing.Point(152, 149);
             this.cboHeadOffice.Name = "cboHeadOffice";
             this.cboHeadOffice.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboHeadOffice.Properties.Appearance.Options.UseFont = true;
@@ -678,7 +677,7 @@
             0,
             0,
             0});
-            this.txtRIS.Location = new System.Drawing.Point(539, 61);
+            this.txtRIS.Location = new System.Drawing.Point(567, 59);
             this.txtRIS.Name = "txtRIS";
             this.txtRIS.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRIS.Properties.Appearance.Options.UseFont = true;
@@ -692,7 +691,7 @@
             // 
             // cboPropertyOfficer
             // 
-            this.cboPropertyOfficer.Location = new System.Drawing.Point(539, 105);
+            this.cboPropertyOfficer.Location = new System.Drawing.Point(567, 103);
             this.cboPropertyOfficer.Name = "cboPropertyOfficer";
             this.cboPropertyOfficer.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPropertyOfficer.Properties.Appearance.Options.UseFont = true;
@@ -713,7 +712,7 @@
             // 
             // cboPGSO
             // 
-            this.cboPGSO.Location = new System.Drawing.Point(539, 149);
+            this.cboPGSO.Location = new System.Drawing.Point(567, 147);
             this.cboPGSO.Name = "cboPGSO";
             this.cboPGSO.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPGSO.Properties.Appearance.Options.UseFont = true;
@@ -732,7 +731,7 @@
             // 
             // cboPropertyOfficer2
             // 
-            this.cboPropertyOfficer2.Location = new System.Drawing.Point(539, 127);
+            this.cboPropertyOfficer2.Location = new System.Drawing.Point(567, 125);
             this.cboPropertyOfficer2.Name = "cboPropertyOfficer2";
             this.cboPropertyOfficer2.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPropertyOfficer2.Properties.Appearance.Options.UseFont = true;

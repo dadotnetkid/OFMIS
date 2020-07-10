@@ -631,7 +631,7 @@
             this.xrLine4,
             this.xrLabel36,
             this.xrLabel35});
-            this.GroupFooter1.HeightF = 54.61707F;
+            this.GroupFooter1.HeightF = 29.45474F;
             this.GroupFooter1.Name = "GroupFooter1";
             // 
             // xrLine4
@@ -917,7 +917,7 @@
             // 
             // xrLabel38
             // 
-            this.xrLabel38.LocationFloat = new DevExpress.Utils.PointFloat(701.7821F, 0F);
+            this.xrLabel38.LocationFloat = new DevExpress.Utils.PointFloat(700.7821F, 0F);
             this.xrLabel38.Multiline = true;
             this.xrLabel38.Name = "xrLabel38";
             this.xrLabel38.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -1023,9 +1023,8 @@
             this.xrCrossBandBox1});
             this.DataSource = this.objectDataSource1;
             this.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margins = new System.Drawing.Printing.Margins(23, 23, 50, 25);
+            this.Margins = new System.Drawing.Printing.Margins(25, 25, 50, 25);
             this.PageHeight = 1300;
-            this.PageWidth = 847;
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
             this.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.Version = "18.2";

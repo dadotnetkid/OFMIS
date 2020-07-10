@@ -66,18 +66,22 @@
         <AssociationConnector Association="Model.FK_ControlNumbers_Offices" />
         <EntityTypeShape EntityType="Model.PayrollWageDetails" Width="1.5" PointX="15.75" PointY="45.25" />
         <AssociationConnector Association="Model.FK_PayrollWages_Employees" ManuallyRouted="true" >
-          <ConnectorPoint PointX="5.25" PointY="37.28012594959489" />
+          <ConnectorPoint PointX="5.25" PointY="37.281776276856249" />
+          <ConnectorPoint PointX="5.4868936544421745" PointY="38.769258251391641" />
+          <ConnectorPoint PointX="5.5131063455578255" PointY="38.933850695331977" />
           <ConnectorPoint PointX="5.6678289074499082" PointY="39.905371111994668" />
           <ConnectorPoint PointX="5.8321710925500918" PointY="39.905371111994668" />
-          <ConnectorPoint PointX="7.6678289074499082" PointY="40.27830078125001" />
           <ConnectorPoint PointX="7.697916666666667" PointY="40.27830078125001" />
-          <ConnectorPoint PointX="8.2083333333333339" PointY="40.27830078125001" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="40.27830078125001" />
+          <ConnectorPoint PointX="8.2708333333333339" PointY="40.27830078125001" />
           <ConnectorPoint PointX="10.072916666666666" PointY="40.27830078125001" />
           <ConnectorPoint PointX="10.239583333333334" PointY="40.27830078125001" />
-          <ConnectorPoint PointX="10.791666666666666" PointY="40.27830078125001" />
-          <ConnectorPoint PointX="10.958333333333334" PointY="40.27830078125001" />
-          <ConnectorPoint PointX="11" PointY="40.27830078125001" />
-          <ConnectorPoint PointX="11" PointY="48.871136426377646" />
+          <ConnectorPoint PointX="10.729166666666666" PointY="40.27830078125001" />
+          <ConnectorPoint PointX="11.020833333333334" PointY="40.27830078125001" />
+          <ConnectorPoint PointX="11.041666666666666" PointY="40.27830078125001" />
+          <ConnectorPoint PointX="11.041666666666666" PointY="48.871136426377646" />
+          <ConnectorPoint PointX="12.916666666666666" PointY="48.871136426377646" />
+          <ConnectorPoint PointX="13.083333333333334" PointY="48.871136426377646" />
           <ConnectorPoint PointX="13.291666666666666" PointY="48.871136426377646" />
           <ConnectorPoint PointX="13.291666666666666" PointY="41.5" />
           <ConnectorPoint PointX="15.291666666666666" PointY="41.5" />
@@ -138,6 +142,14 @@
         <AssociationConnector Association="Model.FK_PRDetails_PurchaseRequests" />
         <AssociationConnector Association="Model.FK_PurchaseQuotations_PurchaseRequests" />
         <AssociationConnector Association="Model.FK_PurchaseOrders_PurchaseRequests" />
+        <AssociationConnector Association="Model.FK_Obligations_PurchaseOrders" />
+        <EntityTypeShape EntityType="Model.Liquidations" Width="1.5" PointX="21.5" PointY="39.5" />
+        <AssociationConnector Association="Model.FK_Liquidations_Obligations" />
+        <AssociationConnector Association="Model.FK_Liquidations_Payees" />
+        <AssociationConnector Association="Model.FK_Liquidations_Accountant" />
+        <AssociationConnector Association="Model.FK_Liquidations_Head" />
+        <AssociationConnector Association="Model.FK_Liquidations_Employees" />
+        <AssociationConnector Association="Model.FK_Employees_Offices" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

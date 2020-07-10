@@ -78,5 +78,6 @@ namespace Models
         public virtual DbSet<PISDetails> PISDetails { get; set; }
         public virtual DbSet<AIReports> AIReports { get; set; }
         public virtual DbSet<PurchaseRequests> PurchaseRequests { get; set; }
+        public virtual DbSet<Liquidations> Liquidations { get; set; }
     }
 }

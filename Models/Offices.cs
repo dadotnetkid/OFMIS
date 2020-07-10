@@ -26,6 +26,7 @@ namespace Models
             this.AOQ = new HashSet<AOQ>();
             this.Letters = new HashSet<Letters>();
             this.PurchaseRequests = new HashSet<PurchaseRequests>();
+            this.Employees = new HashSet<Employees>();
         }
     
         public int Id { get; set; }
@@ -62,5 +63,7 @@ namespace Models
         public virtual ICollection<Letters> Letters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseRequests> PurchaseRequests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Employees> Employees { get; set; }
     }
 }

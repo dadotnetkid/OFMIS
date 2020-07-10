@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XR.Test", "XR.Test\XR.Test.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Models", "ExistingUser.Models\CMS.Models.csproj", "{67205DA2-03C6-4929-BB9F-F45AE38AAFDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win.PurchaseOrders", "Win.PurchaseOrders\Win.PurchaseOrders.csproj", "{F569C9DF-A62E-4010-9647-C4DDE00DF9F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		All|Any CPU = All|Any CPU
@@ -50,6 +52,12 @@ Global
 		{67205DA2-03C6-4929-BB9F-F45AE38AAFDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67205DA2-03C6-4929-BB9F-F45AE38AAFDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67205DA2-03C6-4929-BB9F-F45AE38AAFDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F569C9DF-A62E-4010-9647-C4DDE00DF9F6}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{F569C9DF-A62E-4010-9647-C4DDE00DF9F6}.All|Any CPU.Build.0 = Release|Any CPU
+		{F569C9DF-A62E-4010-9647-C4DDE00DF9F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F569C9DF-A62E-4010-9647-C4DDE00DF9F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F569C9DF-A62E-4010-9647-C4DDE00DF9F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F569C9DF-A62E-4010-9647-C4DDE00DF9F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

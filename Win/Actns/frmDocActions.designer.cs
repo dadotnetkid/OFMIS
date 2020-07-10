@@ -37,10 +37,8 @@
             this.cboStatus = new DevExpress.XtraEditors.LookUpEdit();
             this.StatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cboUsers = new DevExpress.XtraEditors.LookUpEdit();
-            this.UserBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.cboPrograms = new DevExpress.XtraEditors.LookUpEdit();
-            this.DropdownBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.cboMain = new DevExpress.XtraEditors.LookUpEdit();
@@ -58,14 +56,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboStatus.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StatusBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboUsers.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UserBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPrograms.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DropdownBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboMain.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboSub.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboActivity.Properties)).BeginInit();
@@ -74,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtActionTaken.Properties)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -162,25 +160,23 @@
             this.cboUsers.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 34, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FullName", "Full Name", 68, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.cboUsers.Properties.DataSource = this.UserBindingSource;
+            this.cboUsers.Properties.DataSource = this.usersBindingSource;
             this.cboUsers.Properties.DisplayMember = "FullName";
             this.cboUsers.Properties.NullText = "";
             this.cboUsers.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cboUsers.Properties.ValueMember = "Id";
             this.cboUsers.Size = new System.Drawing.Size(504, 24);
             this.cboUsers.TabIndex = 6;
-            this.cboUsers.Visible = false;
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(3, 318);
+            this.labelControl4.Location = new System.Drawing.Point(25, 318);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(78, 17);
+            this.labelControl4.Size = new System.Drawing.Size(56, 17);
             this.labelControl4.TabIndex = 0;
-            this.labelControl4.Text = "Endorsed To:";
-            this.labelControl4.Visible = false;
+            this.labelControl4.Text = "Route To:";
             // 
             // cboPrograms
             // 
@@ -199,7 +195,6 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 34, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ActionValue", "", 108, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ItemOrder", "Order", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.Ascending, DevExpress.Utils.DefaultBoolean.True)});
-            this.cboPrograms.Properties.DataSource = this.DropdownBindingSource;
             this.cboPrograms.Properties.DisplayMember = "ActionValue";
             this.cboPrograms.Properties.NullText = "";
             this.cboPrograms.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
@@ -245,7 +240,6 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 34, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ActionValue", "", 108, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ItemOrder", "Order", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.Ascending, DevExpress.Utils.DefaultBoolean.True)});
-            this.cboMain.Properties.DataSource = this.DropdownBindingSource;
             this.cboMain.Properties.DisplayMember = "ActionValue";
             this.cboMain.Properties.NullText = "";
             this.cboMain.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.StartsWith;
@@ -282,7 +276,6 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 34, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ActionValue", "", 108, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Order", "Order", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.Ascending, DevExpress.Utils.DefaultBoolean.True)});
-            this.cboSub.Properties.DataSource = this.DropdownBindingSource;
             this.cboSub.Properties.DisplayMember = "ActionValue";
             this.cboSub.Properties.NullText = "";
             this.cboSub.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
@@ -444,6 +437,10 @@
             this.pictureEdit1.Size = new System.Drawing.Size(78, 52);
             this.pictureEdit1.TabIndex = 0;
             // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataSource = typeof(Models.Users);
+            // 
             // frmDocActions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,9 +480,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboStatus.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StatusBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboUsers.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UserBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPrograms.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DropdownBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboMain.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboSub.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboActivity.Properties)).EndInit();
@@ -495,6 +490,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -512,14 +508,12 @@
         private System.Windows.Forms.BindingSource StatusBindingSource;
         private DevExpress.XtraEditors.LookUpEdit cboUsers;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private System.Windows.Forms.BindingSource UserBindingSource;
         private DevExpress.XtraEditors.LookUpEdit cboPrograms;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LookUpEdit cboMain;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LookUpEdit cboSub;
-        private System.Windows.Forms.BindingSource DropdownBindingSource;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.LookUpEdit cboActivity;
         private System.Windows.Forms.BindingSource ActionTakenBindingSource;
@@ -530,5 +524,6 @@
         private System.Windows.Forms.Panel panel1;
         public DevExpress.XtraEditors.LabelControl lblHeader;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private System.Windows.Forms.BindingSource usersBindingSource;
     }
 }

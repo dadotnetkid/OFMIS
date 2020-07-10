@@ -20,6 +20,7 @@ namespace Models
             this.ORDetails = new HashSet<ORDetails>();
             this.PayrollDifferentials = new HashSet<PayrollDifferentials>();
             this.Letters = new HashSet<Letters>();
+            this.Liquidations = new HashSet<Liquidations>();
         }
     
         public int Id { get; set; }
@@ -62,6 +63,7 @@ namespace Models
         public Nullable<System.DateTime> DateModified { get; set; }
         public string ModifiedData { get; set; }
         public Nullable<decimal> TotalAdjustedAmount { get; set; }
+        public Nullable<int> POId { get; set; }
     
         public virtual Offices Offices { get; set; }
         public virtual Payees Payees { get; set; }
@@ -74,6 +76,8 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Letters> Letters { get; set; }
         public virtual Users CreatedByUser { get; set; }
-        public virtual PurchaseRequests PurchaseRequests { get; set; }
+        public virtual PurchaseOrders PurchaseOrders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Liquidations> Liquidations { get; set; }
     }
 }

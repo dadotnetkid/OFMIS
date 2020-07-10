@@ -32,7 +32,7 @@ namespace Win.Actns
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
-                esms.QueryableSource = unitOfWork.DocumentActionsRepo.Fetch();
+                esms.QueryableSource = unitOfWork.DocumentActionsRepo.Fetch(x => x.RefId == refId && x.TableName == tableName);
             }
             catch (Exception e)
             {

@@ -19,7 +19,13 @@ namespace Models
             get
             {
                 if (_EmployeeName == null)
-                    _EmployeeName = this.FirstName + " " + this.MiddleName[0] + ". " + this.LastName + " " + this.ExtName;
+                {
+                    if (FirstName != null && MiddleName != null && LastName != null)
+                    {
+                        _EmployeeName = this.FirstName + " " + this.MiddleName?[0] + ". " + this.LastName + " " + this.ExtName;
+                    }
+                }
+                 
                 return _EmployeeName;
             }
             set { _EmployeeName = value; }

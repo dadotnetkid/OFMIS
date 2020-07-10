@@ -226,6 +226,9 @@
     <Compile Include="Letters.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Liquidations.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Logs.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>

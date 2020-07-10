@@ -71,6 +71,7 @@
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddPayee = new DevExpress.XtraEditors.SimpleButton();
             this.btnSelectItemFromAbstract = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCreateObR = new DevExpress.XtraEditors.SimpleButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControlNumber.Properties)).BeginInit();
@@ -502,6 +503,20 @@
             this.btnSelectItemFromAbstract.TabIndex = 86;
             this.btnSelectItemFromAbstract.Text = "Select item from Abstract";
             // 
+            // btnCreateObR
+            // 
+            this.btnCreateObR.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateObR.Appearance.Options.UseFont = true;
+            this.btnCreateObR.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnCreateObR.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.btnCreateObR.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCreateObR.ImageOptions.Image")));
+            this.btnCreateObR.Location = new System.Drawing.Point(334, 214);
+            this.btnCreateObR.Name = "btnCreateObR";
+            this.btnCreateObR.Size = new System.Drawing.Size(90, 23);
+            this.btnCreateObR.TabIndex = 86;
+            this.btnCreateObR.Text = "Add ObR";
+            this.btnCreateObR.Click += new System.EventHandler(this.btnCreateObR_Click);
+            // 
             // frmAddEditPO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -511,6 +526,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.ItemsGridControl);
+            this.Controls.Add(this.btnCreateObR);
             this.Controls.Add(this.btnSelectItemFromAbstract);
             this.Controls.Add(this.btnAddItems);
             this.Controls.Add(this.txtControlNumber);
@@ -594,5 +610,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit spinQuantityRepo;
         private DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit repositoryItemRichTextEdit1;
         public DevExpress.XtraEditors.SimpleButton btnSelectItemFromAbstract;
+        public DevExpress.XtraEditors.SimpleButton btnCreateObR;
     }
 }

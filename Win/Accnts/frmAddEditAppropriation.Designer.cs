@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditAppropriation));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
@@ -50,10 +50,10 @@
             this.btnNewAccount = new DevExpress.XtraEditors.SimpleButton();
             this.txtAccountCode = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btnSaveAndClose = new DevExpress.XtraEditors.SimpleButton();
             this.colAccountCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFundType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAccountName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnSaveAndClose = new DevExpress.XtraEditors.SimpleButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountCodeText.Properties)).BeginInit();
@@ -185,7 +185,7 @@
             this.txtAppropriationAmount.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtAppropriationAmount.Properties.Appearance.Options.UseFont = true;
             this.txtAppropriationAmount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.txtAppropriationAmount.Properties.DisplayFormat.FormatString = "n2";
             this.txtAppropriationAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.txtAppropriationAmount.Properties.EditFormat.FormatString = "n2";
@@ -269,6 +269,19 @@
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
+            // btnSaveAndClose
+            // 
+            this.btnSaveAndClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnSaveAndClose.Appearance.Options.UseFont = true;
+            this.btnSaveAndClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnSaveAndClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveAndClose.ImageOptions.Image")));
+            this.btnSaveAndClose.Location = new System.Drawing.Point(258, 215);
+            this.btnSaveAndClose.Name = "btnSaveAndClose";
+            this.btnSaveAndClose.Size = new System.Drawing.Size(101, 31);
+            this.btnSaveAndClose.TabIndex = 5;
+            this.btnSaveAndClose.Text = "Save ";
+            this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
+            // 
             // colAccountCode
             // 
             this.colAccountCode.Caption = "Account Code";
@@ -298,19 +311,6 @@
             this.colAccountName.Name = "colAccountName";
             this.colAccountName.Visible = true;
             this.colAccountName.VisibleIndex = 2;
-            // 
-            // btnSaveAndClose
-            // 
-            this.btnSaveAndClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnSaveAndClose.Appearance.Options.UseFont = true;
-            this.btnSaveAndClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.btnSaveAndClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.btnSaveAndClose.Location = new System.Drawing.Point(258, 215);
-            this.btnSaveAndClose.Name = "btnSaveAndClose";
-            this.btnSaveAndClose.Size = new System.Drawing.Size(101, 31);
-            this.btnSaveAndClose.TabIndex = 5;
-            this.btnSaveAndClose.Text = "Save ";
-            this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
             // 
             // frmAddEditAppropriation
             // 

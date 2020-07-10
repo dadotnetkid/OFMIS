@@ -18,6 +18,7 @@ namespace Models
         public PurchaseOrders()
         {
             this.PODetails = new HashSet<PODetails>();
+            this.Obligations = new HashSet<Obligations>();
         }
     
         public int Id { get; set; }
@@ -43,5 +44,7 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PODetails> PODetails { get; set; }
         public virtual PurchaseRequests PurchaseRequests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Obligations> Obligations { get; set; }
     }
 }

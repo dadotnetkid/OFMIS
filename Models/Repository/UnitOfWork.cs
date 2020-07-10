@@ -35,6 +35,18 @@ namespace Models.Repository
             this.context.Configuration.ProxyCreationEnabled = proxyCreationEnabled;
         }
 
+        private GenericRepository<Liquidations> _LiquidationsRepo;
+        public GenericRepository<Liquidations> LiquidationsRepo
+        {
+            get
+            {
+                if (this._LiquidationsRepo == null)
+                    this._LiquidationsRepo = new GenericRepository<Liquidations>(context);
+                return _LiquidationsRepo;
+            }
+            set { _LiquidationsRepo = value; }
+        }
+
         private GenericRepository<PISDetails> _PISDetailsRepo;
         public GenericRepository<PISDetails> PISDetailsRepo
         {

@@ -26,6 +26,8 @@ namespace Win.PO
             this.po = purchaseOrders;
             purchaseOrder = new LoadAddEditPO(this, purchaseOrders) { methodType = methodType };
             purchaseOrder.Init();
+            if (methodType == MethodType.Add)
+                btnCreateObR.Enabled = false;
         }
 
         private void frmAddEditPO_FormClosing(object sender, FormClosingEventArgs e)
@@ -47,7 +49,12 @@ namespace Win.PO
 
         private void btnSelectItemFromAbstract_Click(object sender, EventArgs e)
         {
-          
+
+        }
+
+        private void btnCreateObR_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

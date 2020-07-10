@@ -14,6 +14,7 @@
           <Property Name="Category" Type="nvarchar" MaxLength="50" />
           <Property Name="Value" Type="nvarchar(max)" />
           <Property Name="ParentId" Type="int" />
+          <Property Name="OfficeId" Type="int" />
         </EntityType>
         <EntityType Name="AIRDetails">
           <Key>
@@ -335,6 +336,28 @@
           <Property Name="OfficeName" Type="nvarchar(max)" />
           <Property Name="OfficeNameUnderOf" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Liquidations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ObRId" Type="int" />
+          <Property Name="PayeeId" Type="int" />
+          <Property Name="PayeeName" Type="nvarchar(max)" />
+          <Property Name="PayeeAddress" Type="nvarchar(max)" />
+          <Property Name="PAId" Type="int" />
+          <Property Name="AccountantName" Type="nvarchar" MaxLength="128" />
+          <Property Name="AccountantPosition" Type="nvarchar" MaxLength="128" />
+          <Property Name="HeadOfDep" Type="int" />
+          <Property Name="HeadName" Type="nvarchar" MaxLength="128" />
+          <Property Name="HeadPosition" Type="nvarchar" MaxLength="128" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
+          <Property Name="Particulars" Type="nvarchar(max)" />
+          <Property Name="Amount" Type="money" />
+          <Property Name="EmployeeId" Type="int" />
+        </EntityType>
         <EntityType Name="Logs">
           <Key>
             <PropertyRef Name="Id" />
@@ -391,6 +414,7 @@
           <Property Name="DateModified" Type="datetime2" Precision="7" />
           <Property Name="ModifiedData" Type="nvarchar(max)" />
           <Property Name="TotalAdjustedAmount" Type="money" />
+          <Property Name="POId" Type="int" />
         </EntityType>
         <EntityType Name="OBRInLetters">
           <Key>
@@ -1130,6 +1154,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Employees_Offices">
+          <End Role="Offices" Type="Self.Offices" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EmployeesInPayee_Employees">
           <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
           <End Role="EmployeesInPayee" Type="Self.EmployeesInPayee" Multiplicity="*" />
@@ -1163,6 +1199,70 @@
             </Principal>
             <Dependent Role="Letters">
               <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liquidations_Accountant">
+          <End Role="Signatories" Type="Self.Signatories" Multiplicity="0..1" />
+          <End Role="Liquidations" Type="Self.Liquidations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Signatories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Liquidations">
+              <PropertyRef Name="PAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liquidations_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Liquidations" Type="Self.Liquidations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Liquidations">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liquidations_Head">
+          <End Role="Signatories" Type="Self.Signatories" Multiplicity="0..1" />
+          <End Role="Liquidations" Type="Self.Liquidations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Signatories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Liquidations">
+              <PropertyRef Name="HeadOfDep" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liquidations_Obligations">
+          <End Role="Obligations" Type="Self.Obligations" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Liquidations" Type="Self.Liquidations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obligations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Liquidations">
+              <PropertyRef Name="ObRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liquidations_Payees">
+          <End Role="Payees" Type="Self.Payees" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Liquidations" Type="Self.Liquidations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Liquidations">
+              <PropertyRef Name="PayeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1202,15 +1302,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Obligations_PurchaseRequests">
-          <End Role="PurchaseRequests" Type="Self.PurchaseRequests" Multiplicity="0..1" />
+        <Association Name="FK_Obligations_PurchaseOrders">
+          <End Role="PurchaseOrders" Type="Self.PurchaseOrders" Multiplicity="0..1" />
           <End Role="Obligations" Type="Self.Obligations" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PurchaseRequests">
+            <Principal Role="PurchaseOrders">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Obligations">
-              <PropertyRef Name="PRNo" />
+              <PropertyRef Name="POId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1720,6 +1820,7 @@
           <EntitySet Name="FundTypes" EntityType="Self.FundTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Letters" EntityType="Self.Letters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Liquidations" EntityType="Self.Liquidations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Obligations" EntityType="Self.Obligations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OBRInLetters" EntityType="Self.OBRInLetters" Schema="dbo" store:Type="Tables" />
@@ -1835,6 +1936,10 @@
             <End Role="FundTypes" EntitySet="FundTypes" />
             <End Role="DefaultAccounts" EntitySet="DefaultAccounts" />
           </AssociationSet>
+          <AssociationSet Name="FK_Employees_Offices" Association="Self.FK_Employees_Offices">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
           <AssociationSet Name="FK_EmployeesInPayee_Employees" Association="Self.FK_EmployeesInPayee_Employees">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="EmployeesInPayee" EntitySet="EmployeesInPayee" />
@@ -1846,6 +1951,26 @@
           <AssociationSet Name="FK_Letters_Offices" Association="Self.FK_Letters_Offices">
             <End Role="Offices" EntitySet="Offices" />
             <End Role="Letters" EntitySet="Letters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liquidations_Accountant" Association="Self.FK_Liquidations_Accountant">
+            <End Role="Signatories" EntitySet="Signatories" />
+            <End Role="Liquidations" EntitySet="Liquidations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liquidations_Employees" Association="Self.FK_Liquidations_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Liquidations" EntitySet="Liquidations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liquidations_Head" Association="Self.FK_Liquidations_Head">
+            <End Role="Signatories" EntitySet="Signatories" />
+            <End Role="Liquidations" EntitySet="Liquidations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liquidations_Obligations" Association="Self.FK_Liquidations_Obligations">
+            <End Role="Obligations" EntitySet="Obligations" />
+            <End Role="Liquidations" EntitySet="Liquidations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liquidations_Payees" Association="Self.FK_Liquidations_Payees">
+            <End Role="Payees" EntitySet="Payees" />
+            <End Role="Liquidations" EntitySet="Liquidations" />
           </AssociationSet>
           <AssociationSet Name="FK_Logs_Users" Association="Self.FK_Logs_Users">
             <End Role="Users" EntitySet="Users" />
@@ -1859,8 +1984,8 @@
             <End Role="Payees" EntitySet="Payees" />
             <End Role="Obligations" EntitySet="Obligations" />
           </AssociationSet>
-          <AssociationSet Name="FK_Obligations_PurchaseRequests" Association="Self.FK_Obligations_PurchaseRequests">
-            <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
+          <AssociationSet Name="FK_Obligations_PurchaseOrders" Association="Self.FK_Obligations_PurchaseOrders">
+            <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
             <End Role="Obligations" EntitySet="Obligations" />
           </AssociationSet>
           <AssociationSet Name="FK_Obligations_Users" Association="Self.FK_Obligations_Users">
@@ -2306,6 +2431,35 @@
             <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
             <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
           </AssociationSet>
+          <AssociationSet Name="FK_Obligations_PurchaseOrders" Association="Model.FK_Obligations_PurchaseOrders">
+            <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
+            <End Role="Obligations" EntitySet="Obligations" />
+          </AssociationSet>
+          <EntitySet Name="Liquidations" EntityType="Model.Liquidations" />
+          <AssociationSet Name="FK_Liquidations_Obligations" Association="Model.FK_Liquidations_Obligations">
+            <End Role="Obligations" EntitySet="Obligations" />
+            <End Role="Liquidations" EntitySet="Liquidations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liquidations_Payees" Association="Model.FK_Liquidations_Payees">
+            <End Role="Payees" EntitySet="Payees" />
+            <End Role="Liquidations" EntitySet="Liquidations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liquidations_Accountant" Association="Model.FK_Liquidations_Accountant">
+            <End Role="Signatories" EntitySet="Signatories" />
+            <End Role="Liquidations" EntitySet="Liquidations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liquidations_Head" Association="Model.FK_Liquidations_Head">
+            <End Role="Signatories" EntitySet="Signatories" />
+            <End Role="Liquidations" EntitySet="Liquidations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liquidations_Employees" Association="Model.FK_Liquidations_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Liquidations" EntitySet="Liquidations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Offices" Association="Model.FK_Employees_Offices">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Allotments">
           <Key>
@@ -2402,6 +2556,8 @@
           <Property Name="SSS" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PayrollDifferentialDetails" Relationship="Model.FK_PayrollDifferentialDetails_Employees" FromRole="Employees" ToRole="PayrollDifferentialDetails" />
           <Property Name="ExtName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Liquidations" Relationship="Model.FK_Liquidations_Employees" FromRole="Employees" ToRole="Liquidations" />
+          <NavigationProperty Name="Offices" Relationship="Model.FK_Employees_Offices" FromRole="Employees" ToRole="Offices" />
         </EntityType>
         <EntityType Name="Functions">
           <Key>
@@ -2499,7 +2655,9 @@
           <Property Name="ModifiedData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TotalAdjustedAmount" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="CreatedByUser" Relationship="Model.FK_Obligations_Users" FromRole="Obligations" ToRole="Users" />
-          <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_Obligations_PurchaseRequests" FromRole="Obligations" ToRole="PurchaseRequests" />
+          <Property Name="POId" Type="Int32" />
+          <NavigationProperty Name="PurchaseOrders" Relationship="Model.FK_Obligations_PurchaseOrders" FromRole="Obligations" ToRole="PurchaseOrders" />
+          <NavigationProperty Name="Liquidations" Relationship="Model.FK_Liquidations_Obligations" FromRole="Obligations" ToRole="Liquidations" />
         </EntityType>
         <EntityType Name="Offices">
           <Key>
@@ -2529,6 +2687,7 @@
           <NavigationProperty Name="AOQ" Relationship="Model.FK_AOQ_Offices" FromRole="Offices" ToRole="AOQ" />
           <NavigationProperty Name="Letters" Relationship="Model.FK_Letters_Offices" FromRole="Offices" ToRole="Letters" />
           <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_PurchaseRequests_Offices" FromRole="Offices" ToRole="PurchaseRequests" />
+          <NavigationProperty Name="Employees" Relationship="Model.FK_Employees_Offices" FromRole="Offices" ToRole="Employees" />
         </EntityType>
         <EntityType Name="Payees">
           <Key>
@@ -2543,6 +2702,7 @@
           <NavigationProperty Name="Obligations" Relationship="Model.FK_Obligations_Payees" FromRole="Payees" ToRole="Obligations" />
           <NavigationProperty Name="Offices" Relationship="Model.FK_Payees_Offices" FromRole="Payees" ToRole="Offices" />
           <NavigationProperty Name="Employees" Relationship="Model.EmployeesInPayee" FromRole="Payees" ToRole="Employees" />
+          <NavigationProperty Name="Liquidations" Relationship="Model.FK_Liquidations_Payees" FromRole="Payees" ToRole="Liquidations" />
         </EntityType>
         <EntityType Name="PayrollDetails">
           <Key>
@@ -2638,6 +2798,7 @@
           <Property Name="PaymentTerm" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PODetails" Relationship="Model.FK_PODetails_PurchaseOrders" FromRole="PurchaseOrders" ToRole="PODetails" />
           <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_PurchaseOrders_PurchaseRequests" FromRole="PurchaseOrders" ToRole="PurchaseRequests" />
+          <NavigationProperty Name="Obligations" Relationship="Model.FK_Obligations_PurchaseOrders" FromRole="PurchaseOrders" ToRole="Obligations" />
         </EntityType>
         <EntityType Name="ReAlignments">
           <Key>
@@ -2668,6 +2829,8 @@
           <Property Name="BacPosition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BACMembers" Relationship="Model.BACInAOQ" FromRole="Signatories" ToRole="AOQ" />
           <NavigationProperty Name="BACChairperson" Relationship="Model.FK_AOQ_Signatories" FromRole="Signatories" ToRole="AOQ" />
+          <NavigationProperty Name="Liquidations" Relationship="Model.FK_Liquidations_Accountant" FromRole="Signatories" ToRole="Liquidations" />
+          <NavigationProperty Name="Liquidations1" Relationship="Model.FK_Liquidations_Head" FromRole="Signatories" ToRole="Liquidations" />
         </EntityType>
         <EntityType Name="Suppliers">
           <Key>
@@ -3567,6 +3730,7 @@
           <Property Name="ParentId" Type="Int32" />
           <NavigationProperty Name="Actions1" Relationship="Model.FK_Actions_Actions" FromRole="Actions" ToRole="Actions1" />
           <NavigationProperty Name="Actions2" Relationship="Model.FK_Actions_Actions" FromRole="Actions1" ToRole="Actions" />
+          <Property Name="OfficeId" Type="Int32" />
         </EntityType>
         <Association Name="FK_Actions_Actions">
           <End Type="Model.Actions" Role="Actions" Multiplicity="0..1" />
@@ -3966,6 +4130,121 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Obligations_PurchaseOrders">
+          <End Type="Model.PurchaseOrders" Role="PurchaseOrders" Multiplicity="0..1" />
+          <End Type="Model.Obligations" Role="Obligations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Obligations">
+              <PropertyRef Name="POId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Liquidations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ObRId" Type="Int32" />
+          <Property Name="PayeeId" Type="Int32" />
+          <Property Name="PayeeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PayeeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PAId" Type="Int32" />
+          <Property Name="HeadOfDep" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="7" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Obligations" Relationship="Model.FK_Liquidations_Obligations" FromRole="Liquidations" ToRole="Obligations" />
+          <NavigationProperty Name="Payees" Relationship="Model.FK_Liquidations_Payees" FromRole="Liquidations" ToRole="Payees" />
+          <Property Name="Particulars" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AccountantName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AccountantPosition" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="HeadName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="HeadPosition" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Accountant" Relationship="Model.FK_Liquidations_Accountant" FromRole="Liquidations" ToRole="Signatories" />
+          <NavigationProperty Name="Head" Relationship="Model.FK_Liquidations_Head" FromRole="Liquidations" ToRole="Signatories" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <NavigationProperty Name="Employees" Relationship="Model.FK_Liquidations_Employees" FromRole="Liquidations" ToRole="Employees" />
+        </EntityType>
+        <Association Name="FK_Liquidations_Obligations">
+          <End Type="Model.Obligations" Role="Obligations" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Liquidations" Role="Liquidations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obligations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Liquidations">
+              <PropertyRef Name="ObRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liquidations_Payees">
+          <End Type="Model.Payees" Role="Payees" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Liquidations" Role="Liquidations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Liquidations">
+              <PropertyRef Name="PayeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liquidations_Accountant">
+          <End Type="Model.Signatories" Role="Signatories" Multiplicity="0..1" />
+          <End Type="Model.Liquidations" Role="Liquidations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Signatories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Liquidations">
+              <PropertyRef Name="PAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liquidations_Head">
+          <End Type="Model.Signatories" Role="Signatories" Multiplicity="0..1" />
+          <End Type="Model.Liquidations" Role="Liquidations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Signatories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Liquidations">
+              <PropertyRef Name="HeadOfDep" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liquidations_Employees">
+          <End Type="Model.Employees" Role="Employees" Multiplicity="0..1" />
+          <End Type="Model.Liquidations" Role="Liquidations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Liquidations">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Offices">
+          <End Type="Model.Offices" Role="Offices" Multiplicity="0..1" />
+          <End Type="Model.Employees" Role="Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4106,6 +4385,7 @@
           <EntitySetMapping Name="Obligations">
             <EntityTypeMapping TypeName="Model.Obligations">
               <MappingFragment StoreEntitySet="Obligations">
+                <ScalarProperty Name="POId" ColumnName="POId" />
                 <ScalarProperty Name="TotalAdjustedAmount" ColumnName="TotalAdjustedAmount" />
                 <ScalarProperty Name="ModifiedData" ColumnName="ModifiedData" />
                 <ScalarProperty Name="DateModified" ColumnName="DateModified" />
@@ -4744,6 +5024,7 @@
           <EntitySetMapping Name="Actions">
             <EntityTypeMapping TypeName="Model.Actions">
               <MappingFragment StoreEntitySet="Actions">
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
@@ -4888,6 +5169,29 @@
                 <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="AppropriationId" ColumnName="AppropriationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Liquidations">
+            <EntityTypeMapping TypeName="Model.Liquidations">
+              <MappingFragment StoreEntitySet="Liquidations">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="HeadPosition" ColumnName="HeadPosition" />
+                <ScalarProperty Name="HeadName" ColumnName="HeadName" />
+                <ScalarProperty Name="AccountantPosition" ColumnName="AccountantPosition" />
+                <ScalarProperty Name="AccountantName" ColumnName="AccountantName" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Particulars" ColumnName="Particulars" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="HeadOfDep" ColumnName="HeadOfDep" />
+                <ScalarProperty Name="PAId" ColumnName="PAId" />
+                <ScalarProperty Name="PayeeAddress" ColumnName="PayeeAddress" />
+                <ScalarProperty Name="PayeeName" ColumnName="PayeeName" />
+                <ScalarProperty Name="PayeeId" ColumnName="PayeeId" />
+                <ScalarProperty Name="ObRId" ColumnName="ObRId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

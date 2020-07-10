@@ -32,10 +32,19 @@ namespace Models
             get
             {
                 _allotment = Allotments.Sum(x => x.AllotmentAmount);
-                return _allotment;
+                return _allotment - this.PurchaseRequestEarmarked;
             }
             set => _allotment = value;
         }
+
+        public decimal PurchaseRequestEarmarked
+        {
+            get
+            {
+                return this.PurchaseRequests.Where(x => x.IsEarmark == true).Sum(x => x.TotalAmount) ?? 0;
+            }
+        }
+
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public decimal? ReAlignment
@@ -58,14 +67,17 @@ namespace Models
             }
             set => _appropriationBalance = value;
         }
+        //pr without obr + 
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public decimal? AllotmentBalanceIncEM => (this.PurchaseRequests.Where(x => !x.Obligations.Any()).Sum(x => x.TotalAmount) ?? 0) + (PurchaseRequests.Where(x => x.Obligations.Any())
+            .Sum(x => x.Obligations.Sum(m => m.TotalAmount)) ?? 0);
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public decimal? AllotmentBalanceIncEM => (Allotment ?? 0) - (this.ObligationsOffice ?? 0);
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public decimal? AllotmentBalanceExcEM => (Allotment ?? 0) - (this.ObligationsOffice ?? 0);
+        public decimal? AllotmentBalanceExcEM => Allotments.Sum(x => x.AllotmentAmount) - this.ObligationsOffice;
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public decimal? ObligationsOffice => this.ORDetails.Where(x => x.Obligations.Year == Year && x.Obligations.OfficeId == OfficeId).Sum(x => x.Amount);
+
 
     }
 }

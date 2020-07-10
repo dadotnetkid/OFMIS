@@ -53,7 +53,7 @@ namespace Helpers
                 }
                 else
                 {
-                    id = DateTime.Now.ToString($"{office?.OffcAcr}-{documentType }-yyyy-MM-") + (ids[0].ToInt() + 1).ToString("0000");
+                    id = $"{office?.OffcAcr}-{documentType }-" +DateTime.Now.ToString($"yyyy-MM-") + (ids[0].ToInt() + 1).ToString("0000");
                 }
             }
 

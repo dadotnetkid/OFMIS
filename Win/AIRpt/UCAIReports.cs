@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
 using Models;
 using Models.Repository;
 using Win.BL;
@@ -103,18 +104,35 @@ namespace Win.AIRpt
                 {
                     item = unitOfWork.AIReportsRepo.Find(x => x.Id == item.Id);
                     item.AIRDetails = item.AIRDetails.OrderBy(x => x.ItemNo).ToList();
-                    if (item.AIRDetails.Count < 25)
-                    {
-                        var counter = 25 - item.AIRDetails.Count;
-                        for (var i = 1; i <= counter; i++)
-                        {
-                            item.AIRDetails.Add(new AIRDetails());
-                        }
-                    }
-                    frmReportViewer frm = new frmReportViewer(new rptAcceptanceAndInspections()
+                    //if (item.AIRDetails.Count < 25)
+                    //{
+                    //    var counter = 25 - item.AIRDetails.Count;
+                    //    for (var i = 1; i <= counter; i++)
+                    //    {
+                    //        item.AIRDetails.Add(new AIRDetails());
+                    //    }
+                    //}
+                    var rpt = new rptAcceptanceAndInspections()
                     {
                         DataSource = new List<AIReports>() { item }
-                    });
+                    };
+                    StaticSettings staticSettings = new StaticSettings();
+                    if (staticSettings.Offices.ResponsibilityCenterCode == "1032" )
+                    {
+                        rpt.grpStandard.Visible = false;
+                        rpt.grpHR.Visible = true;
+
+                    }
+
+                    if (string.IsNullOrEmpty(item.PropertyOfficer2))
+                    {
+                        foreach (var ctrl in rpt.AllControls<XRControl>().Where(x => x.Tag == "hide_isnull"))
+                        {
+                            ctrl.Visible = false;
+                        }
+                    }
+                    frmReportViewer frm = new frmReportViewer(rpt);
+
                     frm.ShowDialog();
                 }
 

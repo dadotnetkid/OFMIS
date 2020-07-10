@@ -84,8 +84,6 @@
             this.cboApprovedBy = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
-            this.txtDMSNo = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtChiefOfficer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
@@ -112,13 +110,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboAccountant.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBudgetOfficer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboApprovedBy.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDMSNo.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtChiefOfficer
             // 
             this.txtChiefOfficer.EnterMoveNextControl = true;
-            this.txtChiefOfficer.Location = new System.Drawing.Point(97, 245);
+            this.txtChiefOfficer.Location = new System.Drawing.Point(97, 223);
             this.txtChiefOfficer.Name = "txtChiefOfficer";
             this.txtChiefOfficer.Properties.UseReadOnlyAppearance = false;
             this.txtChiefOfficer.Size = new System.Drawing.Size(417, 20);
@@ -127,7 +124,7 @@
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(6, 248);
+            this.labelControl8.Location = new System.Drawing.Point(6, 226);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(85, 13);
             this.labelControl8.TabIndex = 23;
@@ -136,7 +133,7 @@
             // txtDescription
             // 
             this.txtDescription.EnterMoveNextControl = true;
-            this.txtDescription.Location = new System.Drawing.Point(97, 223);
+            this.txtDescription.Location = new System.Drawing.Point(97, 201);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Properties.UseReadOnlyAppearance = false;
             this.txtDescription.Size = new System.Drawing.Size(417, 20);
@@ -146,7 +143,7 @@
             // txtAddress
             // 
             this.txtAddress.EnterMoveNextControl = true;
-            this.txtAddress.Location = new System.Drawing.Point(97, 201);
+            this.txtAddress.Location = new System.Drawing.Point(97, 179);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Properties.UseReadOnlyAppearance = false;
             this.txtAddress.Size = new System.Drawing.Size(417, 20);
@@ -156,7 +153,7 @@
             // txtOffice
             // 
             this.txtOffice.EnterMoveNextControl = true;
-            this.txtOffice.Location = new System.Drawing.Point(97, 179);
+            this.txtOffice.Location = new System.Drawing.Point(97, 157);
             this.txtOffice.Name = "txtOffice";
             this.txtOffice.Properties.UseReadOnlyAppearance = false;
             this.txtOffice.Size = new System.Drawing.Size(417, 20);
@@ -175,7 +172,7 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(6, 226);
+            this.labelControl6.Location = new System.Drawing.Point(6, 204);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(78, 13);
             this.labelControl6.TabIndex = 15;
@@ -183,7 +180,7 @@
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(6, 203);
+            this.labelControl5.Location = new System.Drawing.Point(6, 181);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(41, 13);
             this.labelControl5.TabIndex = 14;
@@ -191,7 +188,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(6, 181);
+            this.labelControl4.Location = new System.Drawing.Point(6, 159);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(31, 13);
             this.labelControl4.TabIndex = 13;
@@ -199,7 +196,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(6, 159);
+            this.labelControl3.Location = new System.Drawing.Point(6, 137);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(29, 13);
             this.labelControl3.TabIndex = 12;
@@ -278,7 +275,7 @@
             // cboPayee
             // 
             this.cboPayee.EnterMoveNextControl = true;
-            this.cboPayee.Location = new System.Drawing.Point(97, 157);
+            this.cboPayee.Location = new System.Drawing.Point(97, 135);
             this.cboPayee.Name = "cboPayee";
             this.cboPayee.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -301,7 +298,7 @@
             // 
             this.btnAddPayee.AutoSize = true;
             this.btnAddPayee.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddPayee.ImageOptions.Image")));
-            this.btnAddPayee.Location = new System.Drawing.Point(496, 156);
+            this.btnAddPayee.Location = new System.Drawing.Point(496, 134);
             this.btnAddPayee.Name = "btnAddPayee";
             this.btnAddPayee.Size = new System.Drawing.Size(22, 22);
             this.btnAddPayee.TabIndex = 29;
@@ -313,7 +310,7 @@
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
-            this.btnClose.Location = new System.Drawing.Point(700, 347);
+            this.btnClose.Location = new System.Drawing.Point(700, 325);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(105, 31);
             this.btnClose.TabIndex = 14;
@@ -323,7 +320,7 @@
             // ORDetailGridControl
             // 
             this.ORDetailGridControl.DataSource = this.oRDetailsBindingSource;
-            this.ORDetailGridControl.Location = new System.Drawing.Point(6, 384);
+            this.ORDetailGridControl.Location = new System.Drawing.Point(6, 362);
             this.ORDetailGridControl.MainView = this.ORDetailsGridView;
             this.ORDetailGridControl.Name = "ORDetailGridControl";
             this.ORDetailGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -332,7 +329,7 @@
             this.btnDelORDetailRepo,
             this.repositoryItemMemoEdit1,
             this.cboAccountRepo});
-            this.ORDetailGridControl.Size = new System.Drawing.Size(799, 232);
+            this.ORDetailGridControl.Size = new System.Drawing.Size(799, 254);
             this.ORDetailGridControl.TabIndex = 30;
             this.ORDetailGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ORDetailsGridView});
@@ -495,7 +492,7 @@
             // 
             // chkClosed
             // 
-            this.chkClosed.Location = new System.Drawing.Point(81, 359);
+            this.chkClosed.Location = new System.Drawing.Point(81, 337);
             this.chkClosed.Name = "chkClosed";
             this.chkClosed.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.chkClosed.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -507,7 +504,7 @@
             // 
             // chkEarmarked
             // 
-            this.chkEarmarked.Location = new System.Drawing.Point(191, 359);
+            this.chkEarmarked.Location = new System.Drawing.Point(191, 337);
             this.chkEarmarked.Name = "chkEarmarked";
             this.chkEarmarked.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.chkEarmarked.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -516,6 +513,7 @@
             this.chkEarmarked.Properties.Caption = "Earmarked";
             this.chkEarmarked.Size = new System.Drawing.Size(101, 19);
             this.chkEarmarked.TabIndex = 31;
+            this.chkEarmarked.Visible = false;
             // 
             // txtDate
             // 
@@ -540,7 +538,7 @@
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(6, 314);
+            this.labelControl12.Location = new System.Drawing.Point(6, 292);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(48, 13);
             this.labelControl12.TabIndex = 23;
@@ -548,7 +546,7 @@
             // 
             // labelControl13
             // 
-            this.labelControl13.Location = new System.Drawing.Point(7, 333);
+            this.labelControl13.Location = new System.Drawing.Point(7, 311);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(59, 13);
             this.labelControl13.TabIndex = 24;
@@ -557,7 +555,7 @@
             // cboTreasurer
             // 
             this.cboTreasurer.EnterMoveNextControl = true;
-            this.cboTreasurer.Location = new System.Drawing.Point(97, 311);
+            this.cboTreasurer.Location = new System.Drawing.Point(97, 289);
             this.cboTreasurer.Name = "cboTreasurer";
             this.cboTreasurer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -575,7 +573,7 @@
             // cboAccountant
             // 
             this.cboAccountant.EnterMoveNextControl = true;
-            this.cboAccountant.Location = new System.Drawing.Point(97, 333);
+            this.cboAccountant.Location = new System.Drawing.Point(97, 311);
             this.cboAccountant.Name = "cboAccountant";
             this.cboAccountant.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -592,7 +590,7 @@
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(6, 292);
+            this.labelControl9.Location = new System.Drawing.Point(6, 270);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(75, 13);
             this.labelControl9.TabIndex = 22;
@@ -601,7 +599,7 @@
             // txtBudgetOfficer
             // 
             this.txtBudgetOfficer.EnterMoveNextControl = true;
-            this.txtBudgetOfficer.Location = new System.Drawing.Point(97, 289);
+            this.txtBudgetOfficer.Location = new System.Drawing.Point(97, 267);
             this.txtBudgetOfficer.Name = "txtBudgetOfficer";
             this.txtBudgetOfficer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -619,7 +617,7 @@
             // cboApprovedBy
             // 
             this.cboApprovedBy.EnterMoveNextControl = true;
-            this.cboApprovedBy.Location = new System.Drawing.Point(97, 267);
+            this.cboApprovedBy.Location = new System.Drawing.Point(97, 245);
             this.cboApprovedBy.Name = "cboApprovedBy";
             this.cboApprovedBy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -636,7 +634,7 @@
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(6, 270);
+            this.labelControl7.Location = new System.Drawing.Point(6, 248);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(58, 13);
             this.labelControl7.TabIndex = 24;
@@ -648,30 +646,12 @@
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(593, 347);
+            this.btnSave.Location = new System.Drawing.Point(593, 325);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(101, 31);
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Save ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // labelControl11
-            // 
-            this.labelControl11.Location = new System.Drawing.Point(6, 137);
-            this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(34, 13);
-            this.labelControl11.TabIndex = 11;
-            this.labelControl11.Text = "DMS #";
-            // 
-            // txtDMSNo
-            // 
-            this.txtDMSNo.EnterMoveNextControl = true;
-            this.txtDMSNo.Location = new System.Drawing.Point(97, 135);
-            this.txtDMSNo.Name = "txtDMSNo";
-            this.txtDMSNo.Properties.UseReadOnlyAppearance = false;
-            this.txtDMSNo.Size = new System.Drawing.Size(417, 20);
-            this.txtDMSNo.TabIndex = 3;
-            this.txtDMSNo.Tag = "";
             // 
             // frmAddEditObligation
             // 
@@ -696,12 +676,10 @@
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.txtOffice);
-            this.Controls.Add(this.txtDMSNo);
             this.Controls.Add(this.txtPBOControl);
             this.Controls.Add(this.txtControl);
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.labelControl5);
-            this.Controls.Add(this.labelControl11);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl10);
             this.Controls.Add(this.labelControl3);
@@ -748,7 +726,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboAccountant.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBudgetOfficer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboApprovedBy.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDMSNo.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -803,8 +780,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAccountNameRepo;
         private DevExpress.XtraGrid.Columns.GridColumn colAccountFuntTypeRepo;
         private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.LabelControl labelControl11;
-        public DevExpress.XtraEditors.TextEdit txtDMSNo;
         private DevExpress.XtraGrid.Columns.GridColumn colAdjustedAmount;
     }
 }

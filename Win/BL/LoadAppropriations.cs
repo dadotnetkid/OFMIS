@@ -193,6 +193,7 @@ namespace Win.BL
             {
                 if (item == null)
                     return;
+                uc.txtEarmarked.Text = item.PurchaseRequestEarmarked.ToString("n2");
                 uc.txtAppropriation.Text = item.Appropriation?.ToString("n2");
                 uc.txtAllotment.Text = item.Allotment?.ToString("n2");
                 uc.txtAppropriationBalance.Text = item.AppropriationBalance?.ToString("n2");

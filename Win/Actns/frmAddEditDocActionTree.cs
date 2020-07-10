@@ -20,7 +20,7 @@ namespace Win.Actns
         private string category;
         private Models.Actions item;
         private MethodType methodType;
-
+        private StaticSettings staticSettings = new StaticSettings();
         public frmAddEditDocActionTree(string category, Models.Actions item, MethodType methodType)
         {
             InitializeComponent();
@@ -134,6 +134,7 @@ namespace Win.Actns
                 item.Value = txtValue.Text;
                 item.ItemOrder = txtOrder.EditValue?.ToInt();
                 item.ParentId = txtParent.EditValue?.ToInt();
+                item.OfficeId = staticSettings.OfficeId;
                 //   unitOfWork.ActionsRepo.Update(item);
                 unitOfWork.Save();
             }
@@ -154,7 +155,9 @@ namespace Win.Actns
                     Value = txtValue.Text,
                     ItemOrder = txtOrder.EditValue?.ToInt(),
                     ParentId = txtParent.EditValue?.ToInt(),
-                    Category = this.item.Category
+                    Category = this.item.Category,
+                    OfficeId = staticSettings.OfficeId
+
                 };
 
                 unitOfWork.ActionsRepo.Insert(item);

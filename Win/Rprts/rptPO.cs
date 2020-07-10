@@ -15,7 +15,7 @@ namespace Win.Rprts
             InitializeComponent();
             lblOfficeId.PrintOnPage += (s, e) =>
                 {
-                    lblOfficeId.Text = new StaticSettings().OfficeId + " - " + item.ControlNo;
+                    lblOfficeId.Text = new StaticSettings().Offices?.OffcAcr + " - " + item.ControlNo;
                 };
         }
 

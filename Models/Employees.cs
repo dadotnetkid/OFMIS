@@ -22,6 +22,7 @@ namespace Models
             this.BACMembers = new HashSet<BACMembers>();
             this.PayrollWageDetails = new HashSet<PayrollWageDetails>();
             this.PayrollDifferentialDetails = new HashSet<PayrollDifferentialDetails>();
+            this.Liquidations = new HashSet<Liquidations>();
         }
     
         public int Id { get; set; }
@@ -51,5 +52,8 @@ namespace Models
         public virtual ICollection<PayrollWageDetails> PayrollWageDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayrollDifferentialDetails> PayrollDifferentialDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Liquidations> Liquidations { get; set; }
+        public virtual Offices Offices { get; set; }
     }
 }

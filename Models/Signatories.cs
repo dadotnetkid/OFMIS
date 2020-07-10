@@ -19,6 +19,8 @@ namespace Models
         {
             this.BACMembers = new HashSet<AOQ>();
             this.BACChairperson = new HashSet<AOQ>();
+            this.Liquidations = new HashSet<Liquidations>();
+            this.Liquidations1 = new HashSet<Liquidations>();
         }
     
         public int Id { get; set; }
@@ -34,5 +36,9 @@ namespace Models
         public virtual ICollection<AOQ> BACMembers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AOQ> BACChairperson { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Liquidations> Liquidations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Liquidations> Liquidations1 { get; set; }
     }
 }

@@ -58,8 +58,6 @@
             this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
             this.GroupFooter2 = new DevExpress.XtraReports.UI.GroupFooterBand();
-            this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
@@ -71,6 +69,8 @@
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.xrPanel1 = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
@@ -201,7 +201,9 @@
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[AccountCodeText]")});
             this.xrTableCell9.Multiline = true;
             this.xrTableCell9.Name = "xrTableCell9";
+            this.xrTableCell9.StylePriority.UseTextAlignment = false;
             this.xrTableCell9.Text = "Code";
+            this.xrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell9.Weight = 1.0563569601235627D;
             // 
             // xrTableCell10
@@ -377,28 +379,6 @@
             this.GroupFooter2.Level = 1;
             this.GroupFooter2.Name = "GroupFooter2";
             // 
-            // xrLabel26
-            // 
-            this.xrLabel26.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrLabel26.Multiline = true;
-            this.xrLabel26.Name = "xrLabel26";
-            this.xrLabel26.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel26.SizeF = new System.Drawing.SizeF(400.5F, 14.98716F);
-            this.xrLabel26.StylePriority.UseTextAlignment = false;
-            this.xrLabel26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrLabel26.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel26_BeforePrint);
-            // 
-            // xrLabel27
-            // 
-            this.xrLabel27.LocationFloat = new DevExpress.Utils.PointFloat(1050.782F, 0F);
-            this.xrLabel27.Multiline = true;
-            this.xrLabel27.Name = "xrLabel27";
-            this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel27.SizeF = new System.Drawing.SizeF(99.21796F, 14.98716F);
-            this.xrLabel27.StylePriority.UseTextAlignment = false;
-            this.xrLabel27.Text = "GO-PITD";
-            this.xrLabel27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            // 
             // objectDataSource1
             // 
             this.objectDataSource1.DataSource = typeof(Models.ViewModels.AOBViewModel);
@@ -449,7 +429,9 @@
             // 
             this.xrTableCell2.Multiline = true;
             this.xrTableCell2.Name = "xrTableCell2";
+            this.xrTableCell2.StylePriority.UseTextAlignment = false;
             this.xrTableCell2.Text = "Code";
+            this.xrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell2.Weight = 1.0563569601235627D;
             // 
             // xrTableCell3
@@ -486,6 +468,28 @@
             this.xrTableCell7.Name = "xrTableCell7";
             this.xrTableCell7.Text = "Allotment Balance";
             this.xrTableCell7.Weight = 0.775438652584261D;
+            // 
+            // xrLabel26
+            // 
+            this.xrLabel26.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrLabel26.Multiline = true;
+            this.xrLabel26.Name = "xrLabel26";
+            this.xrLabel26.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel26.SizeF = new System.Drawing.SizeF(400.5F, 14.98716F);
+            this.xrLabel26.StylePriority.UseTextAlignment = false;
+            this.xrLabel26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel26.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel26_BeforePrint);
+            // 
+            // xrLabel27
+            // 
+            this.xrLabel27.LocationFloat = new DevExpress.Utils.PointFloat(1050.782F, 0F);
+            this.xrLabel27.Multiline = true;
+            this.xrLabel27.Name = "xrLabel27";
+            this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel27.SizeF = new System.Drawing.SizeF(99.21796F, 14.98716F);
+            this.xrLabel27.StylePriority.UseTextAlignment = false;
+            this.xrLabel27.Text = "GO-PITD";
+            this.xrLabel27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
             // ReportHeader
             // 

@@ -52,10 +52,10 @@ namespace Win.AIRpt
                     item.PropertyInspectorPosition = emp.Position;
                 }
 
-                if (cboPropertyInspector2.GetSelectedDataRow() is Signatories pgso)
+                if (cboPropertyInspector2.GetSelectedDataRow() is Employees pgso)
                 {
-                    item.PGSOfficer = pgso.Person;
-                    item.PGSOfficerPosition = pgso.Position;
+                    item.PropertyInspector2 = pgso.EmployeeName;
+                    item.PropertyInspector2Position = pgso.Position;
                 }
 
                 if (cboHeadOffice.GetSelectedDataRow() is Signatories ao)
@@ -73,7 +73,7 @@ namespace Win.AIRpt
                 if (cboPGSO.GetSelectedDataRow() is Signatories notedBy)
                 {
                     item.PGSOfficer = notedBy.Person;
-                    item.PGSOfficer = notedBy.Position;
+                    item.PGSOfficerPosition = notedBy.Position;
                 }
 
                 if (cboPropertyOfficer2.GetSelectedDataRow() is Employees po2)
@@ -103,8 +103,12 @@ namespace Win.AIRpt
                 var item = unitOfWork.AIReportsRepo.Find(x => x.Id == aIReports.Id);
                 dtDate.EditValue = item.Date;
                 txtControlNumber.Text = item.ControlNo;
-                employeesBindingSource.DataSource = unitOfWork.EmployeesRepo.Get();
-                signatoriesBindingSource.DataSource = unitOfWork.Signatories.Get();
+                var employees = new List<Employees>() { new Employees() };
+                employees.AddRange(unitOfWork.EmployeesRepo.Get());
+                var signatories = new List<Signatories>() { new Signatories() };
+                signatories.AddRange(unitOfWork.Signatories.Get());
+                employeesBindingSource.DataSource = employees;
+                signatoriesBindingSource.DataSource = signatories;
                 dtRISDate.EditValue = item.RISDate ?? null;
                 txtRIS.EditValue = item.RISNo;
                 cboPropertyInspector.EditValue = item.PropertyInspector;
@@ -112,7 +116,6 @@ namespace Win.AIRpt
                 cboPropertyOfficer.EditValue = item.PropertyOfficer;
                 cboPropertyInspector2.EditValue = item.PropertyInspector2;
                 cboHeadOffice.EditValue = item.Head;
-                cboPGSO.EditValue = item.NotedBy;
                 cboPropertyOfficer2.EditValue = item.PropertyOfficer2;
                 ItemsGridControl.DataSource =
                     new BindingList<AIRDetails>(new UnitOfWork(false, false).AIRDetailsRepo.Get(x => x.AIReportId == item.Id));
@@ -142,7 +145,7 @@ namespace Win.AIRpt
                 {
                     PRId = aIReports.PRId,
                     Date = DateTime.Now,
-                    ControlNo = IdHelper.OfficeControlNo(id?.ControlNo, staticSettings.OfficeId,"APR", "Acceptance"),
+                    ControlNo = IdHelper.OfficeControlNo(id?.ControlNo, staticSettings.OfficeId, "APR", "Acceptance"),
                     PreparedBy = User.UserId,
                 };
                 unitOfWork.AIReportsRepo.Insert(aIReports);
@@ -177,6 +180,9 @@ namespace Win.AIRpt
                         return;
                     item.AIReportId = aIReports.Id;
                     UnitOfWork unitOfWork = new UnitOfWork();
+                    item.TotalAmount = item.Quantity * item.Cost;
+                    item.Category = item.Category ?? "";
+
                     if (item.Id == 0)
                     {
                         unitOfWork.AIRDetailsRepo.Insert(item);

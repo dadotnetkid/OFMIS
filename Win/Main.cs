@@ -5,8 +5,10 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using DevExpress.XtraBars.ToastNotifications;
+using Helpers;
 using Models.Repository;
 using Win.Accnts;
 using Win.BGMembers;
@@ -37,6 +39,8 @@ namespace Win
                 Impersonate(param);
             else
                 Init();
+            if (!backgroundWorker1.IsBusy)
+                backgroundWorker1.RunWorkerAsync();
         }
 
         void Impersonate(string[] param)
@@ -284,6 +288,35 @@ namespace Win
                 return;
             pnlMain.Controls.Clear();
             pnlMain.Controls.Add(new Pyee.UCRecipients() { Dock = DockStyle.Fill });
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            bool updateNow = true;
+            while (updateNow)
+            {
+                Thread.Sleep(1000);
+                if (UpdateHelpers.InstallUpdateSyncWithInfo())
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        updateNow = false;
+                        lblTime.Caption = @"OFMIS: Update available(the system is updating)";
+                        UpdateHelpers.applicationDeployment.UpdateCompleted += (se, ev) =>
+                        {
+                            new frmUpdateNotification().ShowDialog();
+                        };
+                        UpdateHelpers.applicationDeployment.UpdateProgressChanged += (se, ev) =>
+                        {
+                            lblTime.Caption = $@"OFMIS: Update available(the system is updating) {ev.ProgressPercentage}%";
+                        };
+                        UpdateHelpers.applicationDeployment.UpdateAsync();
+
+
+                    }));
+
+                }
+            }
         }
     }
 }

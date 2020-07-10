@@ -110,6 +110,52 @@ namespace Win.BL
             frm.btnDeleteItemRepo.ButtonClick += BtnDeleteItemRepo_ButtonClick;
             frm.btnAddItems.Click += BtnAddItems_Click;
             frm.btnSelectItemFromAbstract.Click += BtnSelectItemFromAbstract_Click;
+            frm.btnCreateObR.Click += BtnCreateObR_Click;
+        }
+
+        private void BtnCreateObR_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UnitOfWork unitOfWork = new UnitOfWork();
+                var staticSttings = new StaticSettings();
+                var item = unitOfWork.PurchaseOrdersRepo.Find(x => x.Id == purchaseOrders.Id);
+                var ob = unitOfWork.ObligationsRepo.Fetch(m => m.OfficeId == staticSttings.OfficeId).OrderByDescending(x => x.Id).FirstOrDefault();
+                var payee = unitOfWork.PayeesRepo.Find(x => x.Name == item.Supplier);
+                var obr = new Obligations()
+                {
+                    ControlNo = IdHelper.OfficeControlNo(ob?.ControlNo, staticSttings.OfficeId, "ObR", "Obligations"),
+                    Year = staticSttings.Year,
+                    Date = DateTime.Now,
+                    Description = "Payment of",
+                    OfficeId = new StaticSettings().OfficeId,
+                    PayeeId = payee?.Id,
+                    PayeeAddress = payee?.Address,
+                    PayeeOffice = payee?.Office,
+                    ORDetails = new List<ORDetails>()
+                     {
+                          new ORDetails()
+                          {
+                              Amount=item.TotalAmount,
+                              AppropriationId=item.PurchaseRequests.AppropriationId ,
+                              Particulars = "Payment of"
+                          }
+                     }
+                };
+                unitOfWork.ObligationsRepo.Insert(obr);
+                unitOfWork.Save();
+                var main = Application.OpenForms["Main"] as Main;
+                var uc = new OB.ucObligations() { Dock = DockStyle.Fill };
+                main.pnlMain.Controls.Add(uc);
+                uc.txtSearch.Text = obr.ControlNo;
+                Search(obr.ControlNo);
+                
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
         }
 
         private void BtnSelectItemFromAbstract_Click(object sender, EventArgs e)

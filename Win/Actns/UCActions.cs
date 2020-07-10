@@ -26,17 +26,10 @@ namespace Win.Actns
 
         void Init()
         {
-            dropdownsBindingSource.DataSource = new BindingList<Actions>(new UnitOfWork().ActionsRepo.Get());
+            StaticSettings staticSettings = new StaticSettings();
+            dropdownsBindingSource.DataSource = new BindingList<Actions>(new UnitOfWork().ActionsRepo.Get(x => x.OfficeId == staticSettings.OfficeId));
             treeActionList.ExpandAll();
-            foreach (TreeListNode node in treeActionList.Nodes)
-            {
-                // The left image displayed when the node is NOT focused.
-                node.ImageIndex = 0;
-                // The left image displayed when the node is focused.
-                node.SelectImageIndex = 1;
-                // The right image that does not depend on the focus.
-                node.StateImageIndex = 2;
-            }
+
         }
 
         private void treeActionList_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
@@ -84,7 +77,7 @@ namespace Win.Actns
                 }
                 frmAddEditDocActionTree frm = new frmAddEditDocActionTree(category, item, MethodType.Edit);
                 frm.ShowDialog();
-    
+
                 treeActionList.ExpandAll();
             }
         }
@@ -105,7 +98,14 @@ namespace Win.Actns
                 return;
             if (treeActionList.GetFocusedRow() is Actions item)
             {
+
                 var unitOfWork = new UnitOfWork();
+                if (unitOfWork.ActionsRepo.Fetch(x => x.ParentId == item.Id).Any())
+                {
+                    MessageBox.Show("Delete child reference first to delete this node", "Cant delete",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
                 unitOfWork.ActionsRepo.Delete(m => m.Id == item.Id);
                 unitOfWork.Save();
 
@@ -116,8 +116,8 @@ namespace Win.Actns
         private void btnNewProgram_Click(object sender, EventArgs e)
         {
             FrmAddEditPrograms frm = new FrmAddEditPrograms(MethodType.Add, new Actions());
-            frm.ShowDialog(); 
-            treeActionList.DataSource= new BindingList<Actions>(new UnitOfWork().ActionsRepo.Get());
+            frm.ShowDialog();
+            treeActionList.DataSource = new BindingList<Actions>(new UnitOfWork().ActionsRepo.Get());
         }
     }
 }

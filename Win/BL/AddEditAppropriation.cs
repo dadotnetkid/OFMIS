@@ -76,8 +76,8 @@ namespace Win.BL
 
                 var unitOfWork = new UnitOfWork();
                 var item = unitOfWork.AppropriationsRepoRepo.Find(x => x.Id == appropriation.Id);
-
-                if (unitOfWork.AppropriationsRepoRepo.Fetch(x => x.AccountCode == frm.txtAccountCode.Text).Any())
+                StaticSettings staticSettings = new StaticSettings();
+                if (unitOfWork.AppropriationsRepoRepo.Fetch(x => x.AccountCode == frm.txtAccountCode.Text && x.OfficeId== staticSettings.OfficeId).Any())
                 {
 
                     if (MessageBox.Show($@"Duplicate Entry for { frm.txtAccountCode.Text} - {frm.txtAccountName.Text}, Do you want to submit this?", "Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -89,10 +89,10 @@ namespace Win.BL
                 item.FundType = frm.cboFundType.Text;
                 item.AccountName = frm.txtAccountName.Text;
                 item.Appropriation = frm.txtAppropriationAmount.EditValue.ToDecimal();
-                item.Year = appropriation.Year ?? new StaticSettings().Year;
+                item.Year = appropriation.Year ?? staticSettings.Year;
                 item.FundTypeId = (frm.cboFundType.GetSelectedDataRow() as FundTypes)?.Id;
                 item.Createdby = User.UserName;
-                item.OfficeId = new StaticSettings().OfficeId;
+                item.OfficeId = staticSettings.OfficeId;
                 unitOfWork.Save();
                 isClosed = true;
                 frm.Close();

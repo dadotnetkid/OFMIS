@@ -20,7 +20,7 @@ namespace Win.Actns
     {
         private DocumentActions documentActions;
         private bool isClosed;
-
+        StaticSettings staticSettings = new StaticSettings();
         public frmDocActions(MethodType methodType, DocumentActions documentActions)
         {
             InitializeComponent();
@@ -45,6 +45,7 @@ namespace Win.Actns
                 item.Status = cboStatus.EditValue?.ToString();
                 item.Remarks = txtRemarks.Text;
                 item.Status = cboStatus.Text;
+                item.ActionTaken = txtActionTaken.Text;
                 unitOfWork.Save();
                 isClosed = true;
                 this.Close();
@@ -60,14 +61,16 @@ namespace Win.Actns
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
+
                 var item = unitOfWork.DocumentActionsRepo.Find(x => x.Id == documentActions.Id);
                 this.cboPrograms.Properties.DataSource =
-                    unitOfWork.ActionsRepo.Get(m => m.Category == "Programs", m => m.OrderBy(x => x.ItemOrder));
+                    unitOfWork.ActionsRepo.Get(m => m.Category == "Programs" && m.OfficeId == staticSettings.OfficeId, m => m.OrderBy(x => x.ItemOrder));
+                this.cboUsers.Properties.DataSource = unitOfWork.UsersRepo.Get(x => x.OfficeId == staticSettings.OfficeId);
                 cboPrograms.EditValue = item.ProgramId;
                 cboMain.EditValue = item.MainActivityId;
                 this.cboActivity.EditValue = item.ActivityId;
                 cboSub.EditValue = item.SubActivityId;
-             
+                txtActionTaken.EditValue = item.ActionTaken;
                 dtDate.EditValue = item.ActionDate;
                 cboStatus.EditValue = item.Status;
                 txtRemarks.Text = item.Remarks;
@@ -142,10 +145,10 @@ namespace Win.Actns
         private void cboPrograms_EditValueChanged(object sender, EventArgs e)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
-            if (cboPrograms.GetSelectedDataRow() is Actions item)
+            if (((LookUpEdit)sender).GetSelectedDataRow() is Actions item)
             {
                 this.cboMain.Properties.DataSource =
-                    unitOfWork.ActionsRepo.Get(m => m.ParentId == item.Id, m => m.OrderBy(x => x.ItemOrder));
+                    unitOfWork.ActionsRepo.Get(m => m.ParentId == item.Id && m.OfficeId == staticSettings.OfficeId, m => m.OrderBy(x => x.ItemOrder));
             }
 
         }
@@ -153,7 +156,7 @@ namespace Win.Actns
         private void cboMain_EditValueChanged(object sender, EventArgs e)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
-            if (cboPrograms.GetSelectedDataRow() is Actions item)
+            if (((LookUpEdit)sender).GetSelectedDataRow() is Actions item)
             {
                 this.cboActivity.Properties.DataSource =
                     unitOfWork.ActionsRepo.Get(m => m.ParentId == item.Id, m => m.OrderBy(x => x.ItemOrder));
@@ -163,10 +166,10 @@ namespace Win.Actns
         private void cboActivity_EditValueChanged(object sender, EventArgs e)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
-            if (cboPrograms.GetSelectedDataRow() is Actions item)
+            if (((LookUpEdit)sender).GetSelectedDataRow() is Actions item)
             {
                 this.cboSub.Properties.DataSource =
-                    unitOfWork.ActionsRepo.Get(m => m.ParentId == item.Id, m => m.OrderBy(x => x.ItemOrder));
+                    unitOfWork.ActionsRepo.Get(m => m.ParentId == item.Id && m.OfficeId == staticSettings.OfficeId, m => m.OrderBy(x => x.ItemOrder));
             }
 
 

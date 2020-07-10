@@ -162,7 +162,6 @@
             this.xrLabel56 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel54 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
@@ -1726,7 +1725,7 @@
             // xrLabel53
             // 
             this.xrLabel53.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrLabel53.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.xrLabel53.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.xrLabel53.LocationFloat = new DevExpress.Utils.PointFloat(910.1633F, 9.999964F);
             this.xrLabel53.Multiline = true;
             this.xrLabel53.Name = "xrLabel53";
@@ -1920,7 +1919,6 @@
             this.xrLabel56,
             this.xrLabel54,
             this.xrLabel13,
-            this.xrLabel12,
             this.xrLabel11,
             this.xrLabel9,
             this.xrLabel10,
@@ -1994,38 +1992,25 @@
             // 
             // xrLabel13
             // 
-            this.xrLabel13.Font = new System.Drawing.Font("Calibri", 8F);
-            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(107.9044F, 78.41446F);
+            this.xrLabel13.Font = new System.Drawing.Font("Calibri", 10F);
+            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(107.9044F, 64.45618F);
             this.xrLabel13.Multiline = true;
             this.xrLabel13.Name = "xrLabel13";
             this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel13.SizeF = new System.Drawing.SizeF(227.4061F, 15F);
+            this.xrLabel13.SizeF = new System.Drawing.SizeF(227.4061F, 16.04169F);
             this.xrLabel13.StylePriority.UseFont = false;
             this.xrLabel13.StylePriority.UseTextAlignment = false;
             this.xrLabel13.Text = "Subject to ADA (where applicable)";
             this.xrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
-            // xrLabel12
-            // 
-            this.xrLabel12.Font = new System.Drawing.Font("Calibri", 8F);
-            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(107.9044F, 63.41449F);
-            this.xrLabel12.Multiline = true;
-            this.xrLabel12.Name = "xrLabel12";
-            this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel12.SizeF = new System.Drawing.SizeF(227.4061F, 15F);
-            this.xrLabel12.StylePriority.UseFont = false;
-            this.xrLabel12.StylePriority.UseTextAlignment = false;
-            this.xrLabel12.Text = "Cash Available";
-            this.xrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
             // xrLabel11
             // 
-            this.xrLabel11.Font = new System.Drawing.Font("Calibri", 8F);
-            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(107.9044F, 48.41447F);
+            this.xrLabel11.Font = new System.Drawing.Font("Calibri", 10F);
+            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(107.9044F, 48.41449F);
             this.xrLabel11.Multiline = true;
             this.xrLabel11.Name = "xrLabel11";
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel11.SizeF = new System.Drawing.SizeF(227.4061F, 15F);
+            this.xrLabel11.SizeF = new System.Drawing.SizeF(227.4061F, 16.04169F);
             this.xrLabel11.StylePriority.UseFont = false;
             this.xrLabel11.StylePriority.UseTextAlignment = false;
             this.xrLabel11.Text = "Supporting documents complete";
@@ -2213,7 +2198,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel8;
         private DevExpress.XtraReports.UI.XRLabel xrLabel7;
         private DevExpress.XtraReports.UI.XRLabel xrLabel13;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel12;
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
         private DevExpress.XtraReports.UI.XRCrossBandBox xrCrossBandBox1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel14;

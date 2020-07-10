@@ -10,6 +10,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using Models;
 using Models.Repository;
 using Win.Actns;
+using Win.LR;
 using Win.OB;
 using Win.Pyrll;
 
@@ -171,13 +172,18 @@ namespace Win.BL
                 uc.tabPayrollDiff.Controls.Clear();
                 uc.tabPayrollDiff.Controls.Add(new UCPayrollDifferentials(item) { Dock = DockStyle.Fill });
                 uc.tabActions.Controls.Clear();
-                uc.tabActions.Controls.Add(new UCDocumentActions(item.Id, "Obligatins") { Dock = DockStyle.Fill });
+                uc.tabActions.Controls.Add(new UCDocumentActions(item.Id, "Obligations") { Dock = DockStyle.Fill });
+                uc.tabLR.Controls.Clear();
+                uc.tabLR.Controls.Add(new UCLR(item) {Dock = DockStyle.Fill});
+
                 uc.lblTotal.Text = item.TotalAmount?.ToString("#,#.0#");
                 uc.txtCreatedBy.Text = User.GetFullName(item.CreatedBy);
+
                 if (uc.ORDetailsGridView.GetFocusedRow() is ORDetails obr)
                 {
                     uc.lblParticulars.Text = obr.Particulars;
                 }
+
             }
             catch (Exception exception)
             {
