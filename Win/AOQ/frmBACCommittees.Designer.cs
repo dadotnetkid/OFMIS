@@ -168,6 +168,7 @@
             this.BACGridView.OptionsSelection.MultiSelect = true;
             this.BACGridView.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.BACGridView.OptionsView.ShowGroupPanel = false;
+            this.BACGridView.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.BACGridView_SelectionChanged);
             // 
             // colPerson
             // 

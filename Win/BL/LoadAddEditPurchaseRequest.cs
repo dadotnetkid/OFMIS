@@ -20,6 +20,7 @@ using Win.APR;
 using Win.OB;
 using Win.PO;
 using Win.PQ;
+using Win.PropAckRcpt;
 using Win.PropIsSlp;
 using Win.PR;
 using Win.Rprts;
@@ -50,19 +51,13 @@ namespace Win.BL
                 var office = unitOfWork.OfficesRepo.Find(x => x.Id == officeId);
                 model.PRDetails = model?.PRDetails.OrderBy(x => x.ItemNo).ToList();
                 model.ControlNo = IdHelper.ReplaceOldControlNo(officeId, "PR", model.ControlNo);
-                foreach (var i in model.PRDetails)
+                foreach (var i in model.PRDetails.Where(x=>!x.Item.Contains("rtf1")))
                 {
-                    var rtf = new RichEditControl();
-                    //rtf.Font = new Font("Calibri", 9.5f);
-                    rtf.RtfText = i.Item;
-                    if (string.IsNullOrEmpty(rtf.Text))
-                    {
-                        RichEditDocumentServer server = new RichEditDocumentServer();
-                        server.Text = i.Item;
-                        i.Item = server.RtfText;
-                    }
-
-
+                    
+                    var rtf = new RichTextBox();
+                    rtf.Font = new Font("Calibri", 9.5f);
+                    rtf.Text = i.Item;
+                    i.Item = rtf.Rtf;
                 }
 
                 unitOfWork.Save();
@@ -122,6 +117,8 @@ namespace Win.BL
         {
             try
             {
+                if (!User.UserInAction("can delete"))
+                    return;
                 if (ucPR.PRGrid.GetFocusedRow() is PurchaseRequests pr)
                 {
 
@@ -497,11 +494,13 @@ namespace Win.BL
             ucPR.tabAPR.Controls.Clear();
             ucPR.tabAPR.Controls.Add(new UCAPRs(pr) { Dock = DockStyle.Fill });
             ucPR.tabActions.Controls.Clear();
-            ucPR.tabActions.Controls.Add(new UCDocumentActions(pr.Id, "PurchaseRequests") { Dock = DockStyle.Fill });
+            ucPR.tabActions.Controls.Add(new UCDocumentActions(pr.Id,pr.ControlNo, "PurchaseRequests") { Dock = DockStyle.Fill });
             ucPR.tabAcceptance.Controls.Clear();
             ucPR.tabAcceptance.Controls.Add(new UCAIReports(pr) { Dock = DockStyle.Fill });
             ucPR.tabPIS.Controls.Clear();
             ucPR.tabPIS.Controls.Add(new UCPIS(pr) { Dock = DockStyle.Fill });
+            ucPR.tabPAR.Controls.Clear();
+            ucPR.tabPAR.Controls.Add(new UCPAR(pr) { Dock = DockStyle.Fill });
         }
 
         public void Search(string search)

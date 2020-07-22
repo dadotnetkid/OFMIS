@@ -14,6 +14,13 @@ namespace Models
     
     public partial class DocumentActions
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DocumentActions()
+        {
+            this.DocumentActions1 = new HashSet<DocumentActions>();
+            this.Users = new HashSet<Users>();
+        }
+    
         public int Id { get; set; }
         public Nullable<int> RefId { get; set; }
         public Nullable<int> ProgramId { get; set; }
@@ -28,5 +35,17 @@ namespace Models
         public string TableName { get; set; }
         public string Remarks { get; set; }
         public string EndorsedTo { get; set; }
+        public Nullable<bool> IsSend { get; set; }
+        public Nullable<bool> isSaved { get; set; }
+        public string ControlNo { get; set; }
+        public Nullable<bool> isDone { get; set; }
+        public Nullable<int> ActionId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentActions> DocumentActions1 { get; set; }
+        public virtual DocumentActions DocumentActions2 { get; set; }
+        public virtual Users CreatedByUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

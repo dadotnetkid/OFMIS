@@ -71,7 +71,6 @@ namespace Models
         public virtual DbSet<APRs> APRs { get; set; }
         public virtual DbSet<APRDetails> APRDetails { get; set; }
         public virtual DbSet<Actions> Actions { get; set; }
-        public virtual DbSet<DocumentActions> DocumentActions { get; set; }
         public virtual DbSet<PayrollDifferentialDetails> PayrollDifferentialDetails { get; set; }
         public virtual DbSet<AIRDetails> AIRDetails { get; set; }
         public virtual DbSet<PIS> PIS { get; set; }
@@ -79,5 +78,10 @@ namespace Models
         public virtual DbSet<AIReports> AIReports { get; set; }
         public virtual DbSet<PurchaseRequests> PurchaseRequests { get; set; }
         public virtual DbSet<Liquidations> Liquidations { get; set; }
+        public virtual DbSet<PARDetails> PARDetails { get; set; }
+        public virtual DbSet<PAR> PAR { get; set; }
+        public virtual DbSet<ICS> ICS { get; set; }
+        public virtual DbSet<ICSDetails> ICSDetails { get; set; }
+        public virtual DbSet<DocumentActions> DocumentActions { get; set; }
     }
 }

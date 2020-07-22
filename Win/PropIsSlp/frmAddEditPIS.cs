@@ -59,7 +59,7 @@ namespace Win.PropIsSlp
                 cboTransferee.EditValue = item.TransfereeId;
                 dtDate.EditValue = item.Date;
                 this.ItemsGridControl.DataSource =
-                    new BindingList<PISDetails>(new UnitOfWork(false,false).PISDetailsRepo.Get(x => x.PISId == item.Id));
+                    new BindingList<PISDetails>(new UnitOfWork(false, false).PISDetailsRepo.Get(x => x.PISId == item.Id));
                 this.cboTransferee.Properties.DataSource = unitOfWork.EmployeesRepo.Get();
                 this.cboTransferror.Properties.DataSource = unitOfWork.EmployeesRepo.Get();
             }
@@ -139,6 +139,28 @@ namespace Win.PropIsSlp
                     else
                         unitOfWork.PISDetailsRepo.Update(item);
                     unitOfWork.Save();
+                }
+            }
+            catch (Exception exception)
+            {
+
+            }
+        }
+
+        private void btnDeleteItemRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            try
+            {
+                UnitOfWork unitOfWork = new UnitOfWork();
+                if (ItemsGridView.GetFocusedRow() is PISDetails item)
+                {
+
+                    if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        return;
+                    unitOfWork.PISDetailsRepo.Delete(x => x.Id == item.Id);
+                    unitOfWork.Save();
+                    this.ItemsGridControl.DataSource =
+                        new BindingList<PISDetails>(unitOfWork.PISDetailsRepo.Get(x => x.PISId == item.PISId));
                 }
             }
             catch (Exception exception)

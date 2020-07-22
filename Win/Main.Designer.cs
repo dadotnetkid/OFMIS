@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
@@ -60,8 +61,10 @@
             this.btnRecipientLists = new DevExpress.XtraBars.BarButtonItem();
             this.barHeaderItem1 = new DevExpress.XtraBars.BarHeaderItem();
             this.lblTime = new DevExpress.XtraBars.BarStaticItem();
+            this.btnDashboard = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbnGrpPR = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.homeOpt = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -74,8 +77,10 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.pnlMain = new DevExpress.XtraEditors.PanelControl();
-            this.toastManager = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager();
+            this.toastManager = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnAccomplishmentReport = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
@@ -114,16 +119,18 @@
             this.btnConfiguration,
             this.btnRecipientLists,
             this.barHeaderItem1,
-            this.lblTime});
+            this.lblTime,
+            this.btnDashboard,
+            this.btnAccomplishmentReport});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 25;
+            this.ribbonControl1.MaxItemId = 27;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPage2,
             this.ribbonPage3});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019;
-            this.ribbonControl1.Size = new System.Drawing.Size(989, 154);
+            this.ribbonControl1.Size = new System.Drawing.Size(989, 156);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // backstageViewControl1
@@ -377,10 +384,20 @@
             this.lblTime.Id = 24;
             this.lblTime.Name = "lblTime";
             // 
+            // btnDashboard
+            // 
+            this.btnDashboard.Caption = "Dashboard";
+            this.btnDashboard.Id = 25;
+            this.btnDashboard.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDashboard.ImageOptions.Image")));
+            this.btnDashboard.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDashboard.ImageOptions.LargeImage")));
+            this.btnDashboard.Name = "btnDashboard";
+            this.btnDashboard.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDashboard_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
+            this.ribbonPageGroup5,
             this.ribbonPageGroup2,
             this.rbnGrpPR,
             this.homeOpt});
@@ -393,6 +410,12 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.lblUserLevel);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Current User";
+            // 
+            // ribbonPageGroup5
+            // 
+            this.ribbonPageGroup5.ItemLinks.Add(this.btnDashboard);
+            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
+            this.ribbonPageGroup5.Text = "Home";
             // 
             // ribbonPageGroup2
             // 
@@ -417,7 +440,8 @@
             // ribbonPage2
             // 
             this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup4});
+            this.ribbonPageGroup4,
+            this.ribbonPageGroup7});
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "Reports";
             // 
@@ -486,9 +510,9 @@
             // pnlMain
             // 
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 154);
+            this.pnlMain.Location = new System.Drawing.Point(0, 156);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(989, 491);
+            this.pnlMain.Size = new System.Drawing.Size(989, 489);
             this.pnlMain.TabIndex = 4;
             // 
             // toastManager
@@ -500,6 +524,20 @@
             // backgroundWorker1
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
+            // ribbonPageGroup7
+            // 
+            this.ribbonPageGroup7.ItemLinks.Add(this.btnAccomplishmentReport);
+            this.ribbonPageGroup7.Name = "ribbonPageGroup7";
+            // 
+            // btnAccomplishmentReport
+            // 
+            this.btnAccomplishmentReport.Caption = "Accomplishment Report";
+            this.btnAccomplishmentReport.Id = 26;
+            this.btnAccomplishmentReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
+            this.btnAccomplishmentReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
+            this.btnAccomplishmentReport.Name = "btnAccomplishmentReport";
+            this.btnAccomplishmentReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAccomplishmentReport_ItemClick);
             // 
             // Main
             // 
@@ -577,6 +615,10 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private DevExpress.XtraBars.BarHeaderItem barHeaderItem1;
         private DevExpress.XtraBars.BarStaticItem lblTime;
+        private DevExpress.XtraBars.BarButtonItem btnDashboard;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
+        private DevExpress.XtraBars.BarButtonItem btnAccomplishmentReport;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
     }
 }
 

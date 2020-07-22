@@ -119,11 +119,12 @@
             this.tabPayroll = new DevExpress.XtraTab.XtraTabPage();
             this.tabPayrollWages = new DevExpress.XtraTab.XtraTabPage();
             this.tabPayrollDiff = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.tabDV = new DevExpress.XtraTab.XtraTabPage();
             this.btnDVPreview = new DevExpress.XtraEditors.SimpleButton();
             this.btnEditDV = new DevExpress.XtraEditors.SimpleButton();
             this.txtParticular = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.tabLR = new DevExpress.XtraTab.XtraTabPage();
             this.tabActions = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.lblParticulars = new DevExpress.XtraEditors.LabelControl();
@@ -133,7 +134,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtAdjustedAmount = new DevExpress.XtraEditors.TextEdit();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
-            this.tabLR = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OBGridControl)).BeginInit();
@@ -169,7 +169,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAppropriationLookUpRepo)).BeginInit();
-            this.xtraTabPage2.SuspendLayout();
+            this.tabDV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtParticular.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
@@ -450,7 +450,6 @@
             this.btnNew.Appearance.Options.UseFont = true;
             this.btnNew.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnNew.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.btnNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
             this.btnNew.Location = new System.Drawing.Point(264, 11);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(108, 23);
@@ -843,7 +842,7 @@
             this.tabPayroll,
             this.tabPayrollWages,
             this.tabPayrollDiff,
-            this.xtraTabPage2,
+            this.tabDV,
             this.tabLR,
             this.tabActions});
             // 
@@ -982,30 +981,30 @@
             // tabPayroll
             // 
             this.tabPayroll.Name = "tabPayroll";
-            this.tabPayroll.Size = new System.Drawing.Size(1260, 653);
+            this.tabPayroll.Size = new System.Drawing.Size(947, 417);
             this.tabPayroll.Text = "Payroll";
             // 
             // tabPayrollWages
             // 
             this.tabPayrollWages.Name = "tabPayrollWages";
-            this.tabPayrollWages.Size = new System.Drawing.Size(1260, 653);
+            this.tabPayrollWages.Size = new System.Drawing.Size(947, 417);
             this.tabPayrollWages.Text = "Payroll (Wages)";
             // 
             // tabPayrollDiff
             // 
             this.tabPayrollDiff.Name = "tabPayrollDiff";
-            this.tabPayrollDiff.Size = new System.Drawing.Size(1260, 653);
+            this.tabPayrollDiff.Size = new System.Drawing.Size(947, 417);
             this.tabPayrollDiff.Text = "Payroll Differential";
             // 
-            // xtraTabPage2
+            // tabDV
             // 
-            this.xtraTabPage2.Controls.Add(this.btnDVPreview);
-            this.xtraTabPage2.Controls.Add(this.btnEditDV);
-            this.xtraTabPage2.Controls.Add(this.txtParticular);
-            this.xtraTabPage2.Controls.Add(this.labelControl15);
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(947, 417);
-            this.xtraTabPage2.Text = "Disbursement Voucher";
+            this.tabDV.Controls.Add(this.btnDVPreview);
+            this.tabDV.Controls.Add(this.btnEditDV);
+            this.tabDV.Controls.Add(this.txtParticular);
+            this.tabDV.Controls.Add(this.labelControl15);
+            this.tabDV.Name = "tabDV";
+            this.tabDV.Size = new System.Drawing.Size(947, 417);
+            this.tabDV.Text = "Disbursement Voucher";
             // 
             // btnDVPreview
             // 
@@ -1042,7 +1041,7 @@
             this.txtParticular.Location = new System.Drawing.Point(66, 36);
             this.txtParticular.Name = "txtParticular";
             this.txtParticular.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtParticular.Size = new System.Drawing.Size(409, 0);
+            this.txtParticular.Size = new System.Drawing.Size(878, 378);
             this.txtParticular.TabIndex = 1;
             // 
             // labelControl15
@@ -1053,10 +1052,16 @@
             this.labelControl15.TabIndex = 0;
             this.labelControl15.Text = "Particulars";
             // 
+            // tabLR
+            // 
+            this.tabLR.Name = "tabLR";
+            this.tabLR.Size = new System.Drawing.Size(947, 417);
+            this.tabLR.Text = "Liquidation";
+            // 
             // tabActions
             // 
             this.tabActions.Name = "tabActions";
-            this.tabActions.Size = new System.Drawing.Size(1260, 653);
+            this.tabActions.Size = new System.Drawing.Size(947, 417);
             this.tabActions.Text = "Actions";
             // 
             // panelControl3
@@ -1189,12 +1194,6 @@
             this.labelControl17.TabIndex = 8;
             this.labelControl17.Text = "Adj. Amount";
             // 
-            // tabLR
-            // 
-            this.tabLR.Name = "tabLR";
-            this.tabLR.Size = new System.Drawing.Size(947, 417);
-            this.tabLR.Text = "Liquidation";
-            // 
             // ucObligations
             // 
             this.Appearance.BackColor = System.Drawing.SystemColors.Control;
@@ -1246,8 +1245,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAppropriationLookUpRepo)).EndInit();
-            this.xtraTabPage2.ResumeLayout(false);
-            this.xtraTabPage2.PerformLayout();
+            this.tabDV.ResumeLayout(false);
+            this.tabDV.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtParticular.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
@@ -1306,7 +1305,7 @@
         public DevExpress.XtraEditors.TextEdit txtAmount;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
+        private DevExpress.XtraTab.XtraTabPage tabDV;
         public DevExpress.XtraGrid.GridControl ORDetailGridControl;
         public DevExpress.XtraGrid.Views.Grid.GridView ORDetailsGridView;
         private DevExpress.XtraGrid.Columns.GridColumn colDelORDetails;

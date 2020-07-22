@@ -30,7 +30,7 @@
     <MinimumRequiredVersion>1.0.0.73</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>211</ApplicationRevision>
+    <ApplicationRevision>244</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -141,6 +141,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
@@ -180,6 +181,12 @@
     <Compile Include="Accnts\UcAccounts.Designer.cs">
       <DependentUpon>UcAccounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Actns\frmActionTaken.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Actns\frmActionTaken.Designer.cs">
+      <DependentUpon>frmActionTaken.cs</DependentUpon>
+    </Compile>
     <Compile Include="Actns\frmAddEditDocActionTree.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,11 +205,29 @@
     <Compile Include="Actns\frmDocActions.designer.cs">
       <DependentUpon>frmDocActions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Actns\frmTaskDone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Actns\frmTaskDone.Designer.cs">
+      <DependentUpon>frmTaskDone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Actns\frmUsersInAccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Actns\frmUsersInAccounts.Designer.cs">
+      <DependentUpon>frmUsersInAccounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Actns\UCActions.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Actns\UCActions.Designer.cs">
       <DependentUpon>UCActions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Actns\UCDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Actns\UCDashboard.Designer.cs">
+      <DependentUpon>UCDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Actns\UCDocumentActions.cs">
       <SubType>UserControl</SubType>
@@ -361,6 +386,18 @@
     <Compile Include="frmYears.Designer.cs">
       <DependentUpon>frmYears.cs</DependentUpon>
     </Compile>
+    <Compile Include="InvCS\frmAddEditICS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvCS\frmAddEditICS.Designer.cs">
+      <DependentUpon>frmAddEditICS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InvCS\UCICS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InvCS\UCICS.Designer.cs">
+      <DependentUpon>UCICS.cs</DependentUpon>
+    </Compile>
     <Compile Include="LR\frmAddEditLR.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -444,6 +481,18 @@
     </Compile>
     <Compile Include="PQ\UCPQ.Designer.cs">
       <DependentUpon>UCPQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PropAckRcpt\frmAddEditPAR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropAckRcpt\frmAddEditPAR.Designer.cs">
+      <DependentUpon>frmAddEditPAR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PropAckRcpt\frmAddFromPO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropAckRcpt\frmAddFromPO.Designer.cs">
+      <DependentUpon>frmAddFromPO.cs</DependentUpon>
     </Compile>
     <Compile Include="PropAckRcpt\UCPAR.cs">
       <SubType>UserControl</SubType>
@@ -553,6 +602,12 @@
     <Compile Include="Pyrll\UCPayrollWages.Designer.cs">
       <DependentUpon>UCPayrollWages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rprts\frmAccomplishmentReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rprts\frmAccomplishmentReport.Designer.cs">
+      <DependentUpon>frmAccomplishmentReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rprts\frmLARReportViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -564,6 +619,12 @@
     </Compile>
     <Compile Include="Rprts\rptAcceptanceAndInspections.Designer.cs">
       <DependentUpon>rptAcceptanceAndInspections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptAccomplishementReports.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptAccomplishementReports.Designer.cs">
+      <DependentUpon>rptAccomplishementReports.cs</DependentUpon>
     </Compile>
     <Compile Include="Rprts\rptAllotmentLetters.cs">
       <SubType>Component</SubType>
@@ -624,6 +685,12 @@
     </Compile>
     <Compile Include="Rprts\rptOBRPayrollWages.Designer.cs">
       <DependentUpon>rptOBRPayrollWages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptPAR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptPAR.Designer.cs">
+      <DependentUpon>rptPAR.cs</DependentUpon>
     </Compile>
     <Compile Include="Rprts\rptPayrollDifferential.cs">
       <SubType>Component</SubType>
@@ -810,6 +877,9 @@
     <EmbeddedResource Include="Accnts\UcAccounts.resx">
       <DependentUpon>UcAccounts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Actns\frmActionTaken.resx">
+      <DependentUpon>frmActionTaken.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Actns\frmAddEditDocActionTree.resx">
       <DependentUpon>frmAddEditDocActionTree.cs</DependentUpon>
     </EmbeddedResource>
@@ -819,8 +889,17 @@
     <EmbeddedResource Include="Actns\frmDocActions.resx">
       <DependentUpon>frmDocActions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Actns\frmTaskDone.resx">
+      <DependentUpon>frmTaskDone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Actns\frmUsersInAccounts.resx">
+      <DependentUpon>frmUsersInAccounts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Actns\UCActions.resx">
       <DependentUpon>UCActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Actns\UCDashboard.resx">
+      <DependentUpon>UCDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Actns\UCDocumentActions.resx">
       <DependentUpon>UCDocumentActions.cs</DependentUpon>
@@ -891,6 +970,12 @@
     <EmbeddedResource Include="frmYears.resx">
       <DependentUpon>frmYears.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InvCS\frmAddEditICS.resx">
+      <DependentUpon>frmAddEditICS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvCS\UCICS.resx">
+      <DependentUpon>UCICS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LR\frmAddEditLR.resx">
       <DependentUpon>frmAddEditLR.cs</DependentUpon>
     </EmbeddedResource>
@@ -932,6 +1017,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PQ\UCPQ.resx">
       <DependentUpon>UCPQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropAckRcpt\frmAddEditPAR.resx">
+      <DependentUpon>frmAddEditPAR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropAckRcpt\frmAddFromPO.resx">
+      <DependentUpon>frmAddFromPO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PropAckRcpt\UCPAR.resx">
       <DependentUpon>UCPAR.cs</DependentUpon>
@@ -988,11 +1079,17 @@
     <EmbeddedResource Include="Pyrll\UCPayrollWages.resx">
       <DependentUpon>UCPayrollWages.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\frmAccomplishmentReport.resx">
+      <DependentUpon>frmAccomplishmentReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rprts\frmLARReportViewer.resx">
       <DependentUpon>frmLARReportViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptAcceptanceAndInspections.resx">
       <DependentUpon>rptAcceptanceAndInspections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptAccomplishementReports.resx">
+      <DependentUpon>rptAccomplishementReports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptAllotmentLetters.resx">
       <DependentUpon>rptAllotmentLetters.cs</DependentUpon>
@@ -1023,6 +1120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptOBRPayrollWages.resx">
       <DependentUpon>rptOBRPayrollWages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptPAR.resx">
+      <DependentUpon>rptPAR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptPayrollDifferential.resx">
       <DependentUpon>rptPayrollDifferential.cs</DependentUpon>
@@ -1121,6 +1221,7 @@
     <None Include="App.config" />
     <None Include="App_Data\APP-CSE 2020 FORM Dwight Revised.xlsx" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Models.DocumentActions.datasource" />
     <None Include="Properties\DataSources\Models.Employees.datasource" />
     <None Include="Properties\DataSources\Models.Letters.datasource" />
     <None Include="Properties\DataSources\Models.Offices.datasource" />

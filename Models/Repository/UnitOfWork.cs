@@ -28,6 +28,52 @@ namespace Models.Repository
 
         }
 
+        private GenericRepository<ICSDetails> _ICSDetailsRepo;
+        public GenericRepository<ICSDetails> ICSDetailsRepo
+        {
+            get
+            {
+                if (this._ICSDetailsRepo == null)
+                    this._ICSDetailsRepo = new GenericRepository<ICSDetails>(context);
+                return _ICSDetailsRepo;
+            }
+            set { _ICSDetailsRepo = value; }
+        }
+        private GenericRepository<ICS> _ICSRepo;
+        public GenericRepository<ICS> ICSRepo
+        {
+            get
+            {
+                if (this._ICSRepo == null)
+                    this._ICSRepo = new GenericRepository<ICS>(context);
+                return _ICSRepo;
+            }
+            set { _ICSRepo = value; }
+        }
+
+        private GenericRepository<PARDetails> _PARDetailsRepo;
+        public GenericRepository<PARDetails> PARDetailsRepo
+        {
+            get
+            {
+                if (this._PARDetailsRepo == null)
+                    this._PARDetailsRepo = new GenericRepository<PARDetails>(context);
+                return _PARDetailsRepo;
+            }
+            set { _PARDetailsRepo = value; }
+        }
+        private GenericRepository<PAR> _PARRepo;
+        public GenericRepository<PAR> PARRepo
+        {
+            get
+            {
+                if (this._PARRepo == null)
+                    this._PARRepo = new GenericRepository<PAR>(context);
+                return _PARRepo;
+            }
+            set { _PARRepo = value; }
+        }
+
         public UnitOfWork(bool lazyLoadingEnabled, bool proxyCreationEnabled)
         {
             context = ModelDb.Create(DataSource.ConnectionString);

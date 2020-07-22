@@ -27,7 +27,7 @@ namespace Win.Actns
         void Init()
         {
             StaticSettings staticSettings = new StaticSettings();
-            dropdownsBindingSource.DataSource = new BindingList<Actions>(new UnitOfWork().ActionsRepo.Get(x => x.OfficeId == staticSettings.OfficeId));
+            dropdownsBindingSource.DataSource = new BindingList<Actions>(new UnitOfWork().ActionsRepo.Get());
             treeActionList.ExpandAll();
 
         }

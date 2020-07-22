@@ -115,7 +115,7 @@
             this.txtFirstName.Location = new System.Drawing.Point(123, 61);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(310, 20);
-            this.txtFirstName.TabIndex = 59;
+            this.txtFirstName.TabIndex = 0;
             // 
             // label2
             // 
@@ -158,28 +158,28 @@
             this.txtMiddleName.Location = new System.Drawing.Point(123, 83);
             this.txtMiddleName.Name = "txtMiddleName";
             this.txtMiddleName.Size = new System.Drawing.Size(310, 20);
-            this.txtMiddleName.TabIndex = 60;
+            this.txtMiddleName.TabIndex = 1;
             // 
             // txtLastName
             // 
             this.txtLastName.Location = new System.Drawing.Point(123, 105);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(310, 20);
-            this.txtLastName.TabIndex = 61;
+            this.txtLastName.TabIndex = 2;
             // 
             // txtUserName
             // 
             this.txtUserName.Location = new System.Drawing.Point(123, 127);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(310, 20);
-            this.txtUserName.TabIndex = 62;
+            this.txtUserName.TabIndex = 3;
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(123, 171);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(310, 20);
-            this.txtPassword.TabIndex = 63;
+            this.txtPassword.TabIndex = 5;
             // 
             // label6
             // 
@@ -202,7 +202,7 @@
             this.cboUserRole.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cboUserRole.Properties.ValueMember = "Name";
             this.cboUserRole.Size = new System.Drawing.Size(310, 20);
-            this.cboUserRole.TabIndex = 64;
+            this.cboUserRole.TabIndex = 6;
             // 
             // userRolesBindingSource
             // 
@@ -236,7 +236,7 @@
             this.cboDepartment.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cboDepartment.Properties.ValueMember = "Id";
             this.cboDepartment.Size = new System.Drawing.Size(310, 20);
-            this.cboDepartment.TabIndex = 64;
+            this.cboDepartment.TabIndex = 7;
             // 
             // btnClose
             // 
@@ -278,7 +278,7 @@
             this.txtPosition.Location = new System.Drawing.Point(123, 149);
             this.txtPosition.Name = "txtPosition";
             this.txtPosition.Size = new System.Drawing.Size(310, 20);
-            this.txtPosition.TabIndex = 62;
+            this.txtPosition.TabIndex = 4;
             // 
             // frmAddEditUser
             // 

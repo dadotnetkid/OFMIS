@@ -53,6 +53,8 @@ namespace Win.PropIsSlp
         {
             try
             {
+                if (!User.UserInAction("can delete"))
+                    return;
                 if (PISGridView.GetFocusedRow() is PIS item)
                 {
 

@@ -126,5 +126,8 @@ namespace Win.AOQ
             unitOfWork.Save();
             this.Close();
         }
-    }
+
+        private void BACGridView_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+        }}
 }

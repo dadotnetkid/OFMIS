@@ -26,6 +26,8 @@ namespace Models
             this.PRDetails = new HashSet<PRDetails>();
             this.PriceQuotations = new HashSet<PriceQuotations>();
             this.PurchaseOrders = new HashSet<PurchaseOrders>();
+            this.PAR = new HashSet<PAR>();
+            this.ICS = new HashSet<ICS>();
         }
     
         public int Id { get; set; }
@@ -66,5 +68,9 @@ namespace Models
         public virtual ICollection<PriceQuotations> PriceQuotations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseOrders> PurchaseOrders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PAR> PAR { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ICS> ICS { get; set; }
     }
 }

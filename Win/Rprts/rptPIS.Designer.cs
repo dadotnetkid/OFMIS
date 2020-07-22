@@ -85,6 +85,8 @@
             this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel38 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel37 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -99,7 +101,10 @@
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 25F;
+            this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel38,
+            this.xrLabel37});
+            this.BottomMargin.HeightF = 43.41672F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
@@ -353,7 +358,6 @@
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable2});
-            this.GroupHeader1.Expanded = false;
             this.GroupHeader1.HeightF = 43.9091F;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
@@ -748,6 +752,29 @@
             this.xrLabel15.SizeF = new System.Drawing.SizeF(759.375F, 23F);
             this.xrLabel15.Text = "Name of Local Government Unit: Provincial Government of Nueva Vizcaya";
             // 
+            // xrLabel38
+            // 
+            this.xrLabel38.LocationFloat = new DevExpress.Utils.PointFloat(700.7821F, 0F);
+            this.xrLabel38.Multiline = true;
+            this.xrLabel38.Name = "xrLabel38";
+            this.xrLabel38.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel38.SizeF = new System.Drawing.SizeF(99.21796F, 14.98716F);
+            this.xrLabel38.StylePriority.UseTextAlignment = false;
+            this.xrLabel38.Text = "GO-PITD";
+            this.xrLabel38.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrLabel38.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel37_BeforePrint);
+            // 
+            // xrLabel37
+            // 
+            this.xrLabel37.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrLabel37.Multiline = true;
+            this.xrLabel37.Name = "xrLabel37";
+            this.xrLabel37.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel37.SizeF = new System.Drawing.SizeF(400.5F, 14.98716F);
+            this.xrLabel37.StylePriority.UseTextAlignment = false;
+            this.xrLabel37.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel37.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel37_BeforePrint);
+            // 
             // rptPIS
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -763,7 +790,7 @@
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
             this.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(23, 23, 25, 25);
+            this.Margins = new System.Drawing.Printing.Margins(23, 23, 25, 43);
             this.PageHeight = 1300;
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
             this.Version = "18.2";
@@ -833,5 +860,7 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel15;
         private DevExpress.XtraReports.UI.XRLabel xrLabel16;
         private DevExpress.XtraReports.UI.XRLabel xrLabel17;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel38;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel37;
     }
 }

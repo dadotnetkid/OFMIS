@@ -31,6 +31,7 @@ namespace Models
         public string HeadName { get; set; }
         public string HeadPosition { get; set; }
         public Nullable<int> EmployeeId { get; set; }
+        public string PeriodCovered { get; set; }
     
         public virtual Obligations Obligations { get; set; }
         public virtual Payees Payees { get; set; }

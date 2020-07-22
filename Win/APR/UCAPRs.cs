@@ -69,6 +69,8 @@ namespace Win.APR
 
         private void btnDeletePQRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
+            if (!User.UserInAction("can delete"))
+                return;
             if (APRGridView.GetFocusedRow() is APRs item)
             {
 

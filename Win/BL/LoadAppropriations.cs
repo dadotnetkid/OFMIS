@@ -65,6 +65,8 @@ namespace Win.BL
 
         private void BtnAccountDel_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
+            if (!User.UserInAction("can delete"))
+                return;
             if (uc.AppropriationGrid.GetFocusedRow() is Appropriations item)
             {
 

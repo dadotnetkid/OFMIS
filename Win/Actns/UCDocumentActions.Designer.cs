@@ -39,16 +39,16 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btnEditPQRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnDeletePQRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.esms = new DevExpress.Data.Linq.EntityServerModeSource();
@@ -63,9 +63,11 @@
             this.colActionDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEdit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colActionBy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRoutedTo = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditPQRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeletePQRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.esms)).BeginInit();
@@ -73,8 +75,8 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DocActionGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DocActionGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEditPQRepo
@@ -163,10 +165,15 @@
             this.colActionDate,
             this.colRemarks,
             this.colEdit,
-            this.colDelete});
+            this.colDelete,
+            this.colActionBy,
+            this.colRoutedTo});
             this.DocActionGridView.GridControl = this.DocActionGridControl;
             this.DocActionGridView.Name = "DocActionGridView";
             this.DocActionGridView.OptionsView.ShowGroupPanel = false;
+            this.DocActionGridView.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colActionDate, DevExpress.Data.ColumnSortOrder.Descending)});
+            this.DocActionGridView.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.DocActionGridView_CustomDrawCell);
             // 
             // colActivityId
             // 
@@ -175,7 +182,7 @@
             this.colActivityId.Name = "colActivityId";
             this.colActivityId.Visible = true;
             this.colActivityId.VisibleIndex = 3;
-            this.colActivityId.Width = 126;
+            this.colActivityId.Width = 152;
             // 
             // colSubActivityId
             // 
@@ -184,7 +191,7 @@
             this.colSubActivityId.Name = "colSubActivityId";
             this.colSubActivityId.Visible = true;
             this.colSubActivityId.VisibleIndex = 4;
-            this.colSubActivityId.Width = 126;
+            this.colSubActivityId.Width = 152;
             // 
             // colActionTaken
             // 
@@ -192,15 +199,16 @@
             this.colActionTaken.Name = "colActionTaken";
             this.colActionTaken.Visible = true;
             this.colActionTaken.VisibleIndex = 5;
-            this.colActionTaken.Width = 126;
+            this.colActionTaken.Width = 152;
             // 
             // colActionDate
             // 
             this.colActionDate.FieldName = "ActionDate";
             this.colActionDate.Name = "colActionDate";
+            this.colActionDate.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
             this.colActionDate.Visible = true;
             this.colActionDate.VisibleIndex = 2;
-            this.colActionDate.Width = 126;
+            this.colActionDate.Width = 90;
             // 
             // colRemarks
             // 
@@ -208,7 +216,7 @@
             this.colRemarks.Name = "colRemarks";
             this.colRemarks.Visible = true;
             this.colRemarks.VisibleIndex = 6;
-            this.colRemarks.Width = 141;
+            this.colRemarks.Width = 181;
             // 
             // colEdit
             // 
@@ -216,7 +224,17 @@
             this.colEdit.Name = "colEdit";
             this.colEdit.Visible = true;
             this.colEdit.VisibleIndex = 1;
-            this.colEdit.Width = 20;
+            this.colEdit.Width = 22;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.AutoHeight = false;
+            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
+            this.btnEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_ButtonClick);
             // 
             // colDelete
             // 
@@ -224,7 +242,7 @@
             this.colDelete.Name = "colDelete";
             this.colDelete.Visible = true;
             this.colDelete.VisibleIndex = 0;
-            this.colDelete.Width = 20;
+            this.colDelete.Width = 22;
             // 
             // btnDelete
             // 
@@ -236,15 +254,21 @@
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
             // 
-            // btnEdit
+            // colActionBy
             // 
-            this.btnEdit.AutoHeight = false;
-            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
-            this.btnEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.btnEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEdit_ButtonClick);
+            this.colActionBy.Caption = "CreatedBYy";
+            this.colActionBy.FieldName = "CreatedByUser.FullName";
+            this.colActionBy.Name = "colActionBy";
+            this.colActionBy.Visible = true;
+            this.colActionBy.VisibleIndex = 7;
+            // 
+            // colRoutedTo
+            // 
+            this.colRoutedTo.Caption = "Routed To";
+            this.colRoutedTo.FieldName = "RoutedToUsers";
+            this.colRoutedTo.Name = "colRoutedTo";
+            this.colRoutedTo.Visible = true;
+            this.colRoutedTo.VisibleIndex = 8;
             // 
             // UCDocumentActions
             // 
@@ -261,8 +285,8 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DocActionGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DocActionGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -286,5 +310,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDeletePQRepo;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEdit;
+        private DevExpress.XtraGrid.Columns.GridColumn colActionBy;
+        private DevExpress.XtraGrid.Columns.GridColumn colRoutedTo;
     }
 }

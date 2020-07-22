@@ -189,6 +189,8 @@ namespace Win.BL
         {
             try
             {
+                if (!User.UserInAction("can delete"))
+                    return;
                 if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
                 if (uCPQ.PQGridView.GetFocusedRow() is PriceQuotations pq)

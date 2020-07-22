@@ -12,7 +12,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">data source=PLGUNV_ADSERVER;initial catalog=OFMIS;persist security info=True;user id=sa;password=Welcome99;multipleactiveresultsets=True;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

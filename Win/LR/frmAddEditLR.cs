@@ -94,6 +94,7 @@ namespace Win.LR
                 dtDate.EditValue = item.Date;
                 txtParticulars.EditValue = item.Particulars;
                 txtAmount.EditValue = item.Amount;
+                txtPeriodCovered.EditValue = item.PeriodCovered;
             }
             catch (Exception e)
             {
@@ -136,6 +137,7 @@ namespace Win.LR
                 item.Date = dtDate.DateTime;
                 item.Amount = this.txtAmount.EditValue?.ToDecimal();
                 item.Particulars = txtParticulars.Text;
+                item.PeriodCovered = txtPeriodCovered.Text;
                 unitOfWork.Save();
                 isClosed = true;
                 Close();

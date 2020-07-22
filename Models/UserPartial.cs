@@ -15,7 +15,7 @@ namespace Models
     [MetadataType(typeof(UsersMeta))]
     public partial class Users : IUser<string>
     {
-   
+        public bool IsSelectedUserInDocuments { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [NotMapped]

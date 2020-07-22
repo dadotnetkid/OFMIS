@@ -219,6 +219,12 @@
     <Compile Include="FundTypes.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="ICS.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ICSDetails.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Items.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
@@ -257,6 +263,12 @@
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="ORDetails.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PAR.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PARDetails.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="PayeePartial.cs" />
@@ -363,6 +375,7 @@
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="UserStores.cs" />
+    <Compile Include="ViewModels\AccomplishmentReportViewModel.cs" />
     <Compile Include="ViewModels\AOBViewModel.cs" />
     <Compile Include="ViewModels\DvReportViewModel.cs" />
     <Compile Include="ViewModels\LARViewModel.cs" />

@@ -61,7 +61,8 @@ namespace Win.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data source=PLGUNV_ADSERVER;initial catalog=OFMIS;persist security info=True;user" +
+            " id=sa;password=Welcome99;multipleactiveresultsets=True;")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));

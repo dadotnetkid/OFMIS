@@ -24,6 +24,8 @@ namespace Models
             this.PIS = new HashSet<PIS>();
             this.Obligations = new HashSet<Obligations>();
             this.AIReports = new HashSet<AIReports>();
+            this.DocumentActions = new HashSet<DocumentActions>();
+            this.DocumentActions1 = new HashSet<DocumentActions>();
         }
     
         public string Id { get; set; }
@@ -74,5 +76,9 @@ namespace Models
         public virtual ICollection<Obligations> Obligations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AIReports> AIReports { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentActions> DocumentActions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentActions> DocumentActions1 { get; set; }
     }
 }

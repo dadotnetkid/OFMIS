@@ -42,13 +42,23 @@ namespace Win.Actns
                 item.SubActivityId = cboSub.EditValue?.ToInt();
                 item.ProgramId = cboPrograms.EditValue?.ToInt();
                 item.ActionDate = dtDate.EditValue?.ToDate();
-                item.Status = cboStatus.EditValue?.ToString();
                 item.Remarks = txtRemarks.Text;
-                item.Status = cboStatus.Text;
                 item.ActionTaken = txtActionTaken.Text;
+
+                item.isSaved = true;
+                //item.Users.Clear();
+                //foreach (var i in cboUsers.Text.Split(','))
+                //{
+                //    var user = i.Trim();
+                //    item.Users.Add(unitOfWork.UsersRepo.Get().FirstOrDefault(x => x.FullName == user));
+                //}
                 unitOfWork.Save();
                 isClosed = true;
-                this.Close();
+                Detail();
+
+                if (MessageBox.Show("Do you want to close this?", "Close", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+                Close();
             }
             catch (Exception e)
             {
@@ -62,18 +72,22 @@ namespace Win.Actns
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
 
-                var item = unitOfWork.DocumentActionsRepo.Find(x => x.Id == documentActions.Id);
+                var item = unitOfWork.DocumentActionsRepo.Find(x => x.Id == documentActions.Id, "Users");
                 this.cboPrograms.Properties.DataSource =
-                    unitOfWork.ActionsRepo.Get(m => m.Category == "Programs" && m.OfficeId == staticSettings.OfficeId, m => m.OrderBy(x => x.ItemOrder));
-                this.cboUsers.Properties.DataSource = unitOfWork.UsersRepo.Get(x => x.OfficeId == staticSettings.OfficeId);
+                    unitOfWork.ActionsRepo.Get(m => m.Category == "Programs", m => m.OrderBy(x => x.ItemOrder));
+                // this.cboUsers.Properties.DataSource = unitOfWork.UsersRepo.Get();
                 cboPrograms.EditValue = item.ProgramId;
                 cboMain.EditValue = item.MainActivityId;
                 this.cboActivity.EditValue = item.ActivityId;
                 cboSub.EditValue = item.SubActivityId;
                 txtActionTaken.EditValue = item.ActionTaken;
                 dtDate.EditValue = item.ActionDate;
-                cboStatus.EditValue = item.Status;
                 txtRemarks.Text = item.Remarks;
+                cboUsers.EditValue = item.RoutedToUsers;
+
+
+                if (item.isSaved == true)
+                    this.btnSend.Enabled = true;
             }
             catch (Exception e)
             {
@@ -96,7 +110,8 @@ namespace Win.Actns
                     ActionDate = DateTime.Now,
                     TableName = documentActions.TableName,
                     RefId = documentActions.RefId,
-                    CreatedBy = documentActions.CreatedBy,
+                    CreatedBy = User.UserId,
+                    ControlNo = documentActions.ControlNo
 
                 };
                 unitOfWork.DocumentActionsRepo.Insert(documentActions);
@@ -148,7 +163,7 @@ namespace Win.Actns
             if (((LookUpEdit)sender).GetSelectedDataRow() is Actions item)
             {
                 this.cboMain.Properties.DataSource =
-                    unitOfWork.ActionsRepo.Get(m => m.ParentId == item.Id && m.OfficeId == staticSettings.OfficeId, m => m.OrderBy(x => x.ItemOrder));
+                    unitOfWork.ActionsRepo.Get(m => m.ParentId == item.Id, m => m.OrderBy(x => x.ItemOrder));
             }
 
         }
@@ -169,7 +184,7 @@ namespace Win.Actns
             if (((LookUpEdit)sender).GetSelectedDataRow() is Actions item)
             {
                 this.cboSub.Properties.DataSource =
-                    unitOfWork.ActionsRepo.Get(m => m.ParentId == item.Id && m.OfficeId == staticSettings.OfficeId, m => m.OrderBy(x => x.ItemOrder));
+                    unitOfWork.ActionsRepo.Get(m => m.ParentId == item.Id, m => m.OrderBy(x => x.ItemOrder));
             }
 
 
@@ -187,6 +202,7 @@ namespace Win.Actns
         private void btnNewPO_Click(object sender, EventArgs e)
         {
             Save();
+
         }
 
         private void frmDocActions_FormClosing(object sender, FormClosingEventArgs e)
@@ -198,6 +214,34 @@ namespace Win.Actns
         private void frmDocActions_Load(object sender, EventArgs e)
         {
             Init();
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (MessageBox.Show("Do you want to send this?", "Send", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+                UnitOfWork unitOfWork = new UnitOfWork();
+                var item = unitOfWork.DocumentActionsRepo.Find(x => x.Id == documentActions.Id, "Users");
+
+                item.IsSend = true;
+                unitOfWork.Save();
+                Close();
+            }
+            catch (Exception exception)
+            {
+
+            }
+        }
+
+        private void btnRouteTo_Click(object sender, EventArgs e)
+        {
+            frmUsersInAccounts frm = new frmUsersInAccounts(new UnitOfWork().DocumentActionsRepo.Find(x => x.Id == documentActions.Id));
+            frm.ShowDialog();
+            var item = new UnitOfWork().DocumentActionsRepo.Find(x => x.Id == documentActions.Id);
+            cboUsers.EditValue = item.RoutedToUsers;
         }
     }
 }

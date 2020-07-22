@@ -46,6 +46,8 @@ namespace Win.BL
         {
             try
             {
+                if (!User.UserInAction("can delete"))
+                    return;
                 if (sender is GridView gridView)
                     if (gridView.GetFocusedRow() is ORDetails item)
                     {
@@ -80,6 +82,12 @@ namespace Win.BL
 
         private void BtnEditRepoOBR_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
+            EditObR();
+
+        }
+
+        public void EditObR()
+        {
 
             if (uc.OBGridView.GetFocusedRow() is Obligations item)
             {
@@ -94,9 +102,22 @@ namespace Win.BL
                 uc.OBGridView.FocusedRowHandle = rowHandle;
                 uc.OBGridView.MakeRowVisible(rowHandle);
             }
-
         }
+        public void EditObR(Obligations item)
+        {
 
+
+            if (!User.CheckOwner(item.CreatedBy))
+                return;
+
+            var rowHandle = uc.OBGridView.FocusedRowHandle;
+            frmAddEditObligation frm = new frmAddEditObligation(MethodType.Edit, item);
+            frm.ShowDialog();
+            //    Init();
+            Detail(new UnitOfWork().ObligationsRepo.Find(m => m.Id == item.Id));
+            uc.OBGridView.FocusedRowHandle = rowHandle;
+            uc.OBGridView.MakeRowVisible(rowHandle);
+        }
         private void GridObligation_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (sender is GridView gridView)
@@ -112,7 +133,8 @@ namespace Win.BL
         {
             try
             {
-
+                if (!User.UserInAction("can delete"))
+                    return;
                 if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
                 if (uc.OBGridView.GetFocusedRow() is Obligations item)
@@ -172,9 +194,9 @@ namespace Win.BL
                 uc.tabPayrollDiff.Controls.Clear();
                 uc.tabPayrollDiff.Controls.Add(new UCPayrollDifferentials(item) { Dock = DockStyle.Fill });
                 uc.tabActions.Controls.Clear();
-                uc.tabActions.Controls.Add(new UCDocumentActions(item.Id, "Obligations") { Dock = DockStyle.Fill });
+                uc.tabActions.Controls.Add(new UCDocumentActions(item.Id, item.ControlNo, "Obligations") { Dock = DockStyle.Fill });
                 uc.tabLR.Controls.Clear();
-                uc.tabLR.Controls.Add(new UCLR(item) {Dock = DockStyle.Fill});
+                uc.tabLR.Controls.Add(new UCLR(item) { Dock = DockStyle.Fill });
 
                 uc.lblTotal.Text = item.TotalAmount?.ToString("#,#.0#");
                 uc.txtCreatedBy.Text = User.GetFullName(item.CreatedBy);

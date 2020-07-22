@@ -27,7 +27,7 @@ namespace Helpers
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             var office = unitOfWork.OfficesRepo.Find(x => x.Id == officeId);
-            var id = DateTime.Now.ToString($"{office?.OffcAcr}-{documentType }-yyyy-MM-") + "0001";
+            var id = $"{office?.OffcAcr}-{documentType }-" + DateTime.Now.ToString($"yyyy-MM-") + "0001";
 
             var controlNo = unitOfWork.ControlNumbersRepo.Fetch(x => x.OfficeId == officeId && x.TableName == tableName)
                 .OrderByDescending(x => x.Id).FirstOrDefault();
@@ -38,7 +38,8 @@ namespace Helpers
             }
 
             if (lastId == null)
-            {InsertOfficeControlNumber(id, officeId, tableName);
+            {
+                InsertOfficeControlNumber(id, officeId, tableName);
                 return id;
             }
 
@@ -49,11 +50,11 @@ namespace Helpers
 
                 if (ids[0].Contains($"{office?.OffcAcr}-{documentType}"))
                 {
-                    id = DateTime.Now.ToString($"{office?.OffcAcr}-{documentType }-yyyy-MM-") + (ids[1].ToInt() + 1).ToString("0000");
+                    id = $"{office?.OffcAcr}-{documentType }-"+DateTime.Now.ToString($"yyyy-MM-") + (ids[1].ToInt() + 1).ToString("0000");
                 }
                 else
                 {
-                    id = $"{office?.OffcAcr}-{documentType }-" +DateTime.Now.ToString($"yyyy-MM-") + (ids[0].ToInt() + 1).ToString("0000");
+                    id = $"{office?.OffcAcr}-{documentType }-" + DateTime.Now.ToString($"yyyy-MM-") + (ids[0].ToInt() + 1).ToString("0000");
                 }
             }
 

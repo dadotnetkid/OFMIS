@@ -84,6 +84,7 @@
             this.cboApprovedBy = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.tmrSaving = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtChiefOfficer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
@@ -280,10 +281,8 @@
             this.cboPayee.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboPayee.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Office", "Office"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Address", "Address"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Description", "Description")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name", 70, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Office", "Office")});
             this.cboPayee.Properties.DisplayMember = "Name";
             this.cboPayee.Properties.NullText = "";
             this.cboPayee.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
@@ -653,6 +652,11 @@
             this.btnSave.Text = "Save ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // tmrSaving
+            // 
+            this.tmrSaving.Interval = 300000;
+            this.tmrSaving.Tick += new System.EventHandler(this.tmrSaving_Tick);
+            // 
             // frmAddEditObligation
             // 
             this.AcceptButton = this.btnSave;
@@ -781,5 +785,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAccountFuntTypeRepo;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraGrid.Columns.GridColumn colAdjustedAmount;
+        private System.Windows.Forms.Timer tmrSaving;
     }
 }

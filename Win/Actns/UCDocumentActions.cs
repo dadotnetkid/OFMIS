@@ -18,12 +18,14 @@ namespace Win.Actns
     {
         private string tableName;
         private int refId;
+        private string controlNo;
 
-        public UCDocumentActions(int refId, string tableName)
+        public UCDocumentActions(int refId, string controlNo, string tableName)
         {
             InitializeComponent();
             this.refId = refId;
             this.tableName = tableName;
+            this.controlNo = controlNo;
             Init();
         }
 
@@ -53,6 +55,7 @@ namespace Win.Actns
         {
             frmDocActions frm = new frmDocActions(MethodType.Add, new DocumentActions()
             {
+                ControlNo = controlNo,
                 TableName = this.tableName,
                 RefId = this.refId
             });
@@ -64,10 +67,12 @@ namespace Win.Actns
 
         private void btnEdit_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-
+            
             if (DocActionGridView.GetFocusedRow() is DocumentActions item)
             {
-                frmDocActions frm = new frmDocActions(MethodType.Edit, item);
+                if (!User.CheckOwner(item.CreatedBy))
+                    return;
+                    frmDocActions frm = new frmDocActions(MethodType.Edit, item);
                 frm.ShowDialog();
                 Init();
             }
@@ -75,10 +80,14 @@ namespace Win.Actns
 
         private void btnDelete_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
+      
             if (DocActionGridView.GetFocusedRow() is DocumentActions item)
             {
                 try
                 {
+                    if (!User.CheckOwner(item.CreatedBy))
+                        return;
+
 
                     if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         return;
@@ -90,6 +99,19 @@ namespace Win.Actns
                 catch (Exception exception)
                 {
                     MessageBox.Show(exception.Message, exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void DocActionGridView_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            if (e.Column.Name == "colRoutedTo")
+            {
+                if (DocActionGridView.GetRow(e.RowHandle) is DocumentActions doc)
+                {
+                    if (doc.IsSend == true)
+                    {
+                        e.Appearance.BackColor = Color.Green;}
                 }
             }
         }

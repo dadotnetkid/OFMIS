@@ -77,6 +77,8 @@ namespace Win.AIRpt
         {
             try
             {
+                if (!User.UserInAction("can delete"))
+                    return;
                 if (AIGridView.GetFocusedRow() is AIReports item)
                 {
 

@@ -80,6 +80,8 @@ namespace Win.BL
         {
             try
             {
+                if (!User.UserInAction("can delete"))
+                    return;
                 if (uCPO.POGridView.GetFocusedRow() is PurchaseOrders item)
                 {
 
@@ -118,6 +120,10 @@ namespace Win.BL
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
+                if (this.purchaseOrders.Obligations.Any())
+                    if (MessageBox.Show("OBR is already created!,Do you want to create new OBR?", "OBR", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        return;
+
                 var staticSttings = new StaticSettings();
                 var item = unitOfWork.PurchaseOrdersRepo.Find(x => x.Id == purchaseOrders.Id);
                 var ob = unitOfWork.ObligationsRepo.Fetch(m => m.OfficeId == staticSttings.OfficeId).OrderByDescending(x => x.Id).FirstOrDefault();
@@ -127,7 +133,7 @@ namespace Win.BL
                     ControlNo = IdHelper.OfficeControlNo(ob?.ControlNo, staticSttings.OfficeId, "ObR", "Obligations"),
                     Year = staticSttings.Year,
                     Date = DateTime.Now,
-                    Description = "Payment of",
+                    Description = "",
                     OfficeId = new StaticSettings().OfficeId,
                     PayeeId = payee?.Id,
                     PayeeAddress = payee?.Address,
@@ -138,18 +144,23 @@ namespace Win.BL
                           {
                               Amount=item.TotalAmount,
                               AppropriationId=item.PurchaseRequests.AppropriationId ,
-                              Particulars = "Payment of"
+                              Particulars = ""
                           }
-                     }
+                     },
+                    CreatedBy = User.UserId,
+                    POId = this.purchaseOrders.Id
                 };
                 unitOfWork.ObligationsRepo.Insert(obr);
                 unitOfWork.Save();
                 var main = Application.OpenForms["Main"] as Main;
                 var uc = new OB.ucObligations() { Dock = DockStyle.Fill };
+                main.pnlMain.Controls.Clear();
                 main.pnlMain.Controls.Add(uc);
                 uc.txtSearch.Text = obr.ControlNo;
-                Search(obr.ControlNo);
-                
+                uc.loadObligations.Search(obr.ControlNo);
+                uc.loadObligations.EditObR(obr);
+                frm.Close();
+
             }
             catch (Exception exception)
             {

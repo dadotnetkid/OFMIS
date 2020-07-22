@@ -228,28 +228,32 @@ namespace Win.Pyrll
                 }
 
 
-                if (e.Column.Name == "colNewRate" || e.Column.Name == "colOldRate")
-                {
+                //if (e.Column.Name == "colNewRate" || e.Column.Name == "colOldRate")
+                //{
 
-                    item.Amount = (item.NewRate ?? 0) - (item.OldRate ?? 0);
+                //    item.Amount = (item.NewRate ?? 0) - (item.OldRate ?? 0);
 
-                }
+                //}
+                item.Amount = (item.NewRate ?? 0) - (item.OldRate ?? 0);
+                //if (e.Column.Name == "colMonth" || e.Column.Name == "colMidYear")
+                //{
+                //    item.DiffBonus = (item.Amount ?? 0) * (item.Month ?? 0);
+                //    item.DiffBonus = item.DiffBonus + (item.DiffMidYearBonus?? 0);
+                //    item.TotalAmount = item.DiffBonus;
+                //}
+                item.DiffBonus = (item.Amount ?? 0) * (item.Month ?? 0);
+                item.DiffBonus = item.DiffBonus + (item.DiffMidYearBonus ?? 0);
+                //string[] deductions = new string[] { "colPHPS", "colPIPS", "colGSISPS" };
+                //if (deductions.Contains(e.Column.Name))
+                //{
+                //    var deduction = (item.GSISPS ?? 0) + (item.PHPS ?? 0) + (item.PIPS ?? 0);
+                //    item.TotalAmount = (item.DiffBonus ?? 0) - deduction;
+                //}
 
-                if (e.Column.Name == "colMonth" || e.Column.Name == "colMidYear")
-                {
-                    item.DiffBonus = (item.Amount ?? 0) * (item.Month ?? 0);
-                    item.DiffBonus = item.DiffBonus + (item.DiffMidYearBonus?? 0);
-                    item.TotalAmount = item.DiffBonus;
-                }
-
-                string[] deductions = new string[] { "colPHPS", "colPIPS", "colGSISPS" };
-                if (deductions.Contains(e.Column.Name))
-                {
-                    var deduction = (item.GSISPS ?? 0) + (item.PHPS ?? 0) + (item.PIPS ?? 0);
-                    item.TotalAmount = (item.DiffBonus ?? 0) - deduction;
-                }
+                item.TotalAmount = (item.DiffBonus ?? 0) - ((item.GSISPS ?? 0) + (item.PHPS ?? 0) + (item.PIPS ?? 0));
             }
         }
+
 
         private void btnClose_Click(object sender, EventArgs e)
         {

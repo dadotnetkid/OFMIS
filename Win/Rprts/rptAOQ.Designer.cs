@@ -102,7 +102,6 @@
             this.GroupFooter2 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.xrLabel36 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel41 = new DevExpress.XtraReports.UI.XRLabel();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPanel1 = new DevExpress.XtraReports.UI.XRPanel();
@@ -133,6 +132,7 @@
             this.xrCrossBandLine7 = new DevExpress.XtraReports.UI.XRCrossBandLine();
             this.xrCrossBandLine8 = new DevExpress.XtraReports.UI.XRCrossBandLine();
             this.xrCrossBandLine9 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -761,6 +761,8 @@
             // 
             // pos5
             // 
+            this.pos5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ViceChairperson].[BacPosition]")});
             this.pos5.Font = new System.Drawing.Font("Times New Roman", 10F);
             this.pos5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 266.5244F);
             this.pos5.Multiline = true;
@@ -841,6 +843,8 @@
             // 
             // lblbacpos5
             // 
+            this.lblbacpos5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ViceChairperson].[Position]")});
             this.lblbacpos5.Font = new System.Drawing.Font("Times New Roman", 10F);
             this.lblbacpos5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 247.5243F);
             this.lblbacpos5.Multiline = true;
@@ -854,6 +858,8 @@
             // lblbac5
             // 
             this.lblbac5.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
+            this.lblbac5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ViceChairperson].[Person]")});
             this.lblbac5.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold);
             this.lblbac5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 228.5243F);
             this.lblbac5.Multiline = true;
@@ -1047,6 +1053,7 @@
             this.GroupFooter2.HeightF = 14.98716F;
             this.GroupFooter2.Level = 2;
             this.GroupFooter2.Name = "GroupFooter2";
+            this.GroupFooter2.PrintAtBottom = true;
             // 
             // xrLabel36
             // 
@@ -1070,11 +1077,6 @@
             this.xrLabel41.StylePriority.UseTextAlignment = false;
             this.xrLabel41.Text = "GO-PITD";
             this.xrLabel41.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(Models.AOQ);
-            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // PageHeader
             // 
@@ -1441,6 +1443,11 @@
             this.xrCrossBandLine9.StartBand = this.Detail1;
             this.xrCrossBandLine9.StartPointFloat = new DevExpress.Utils.PointFloat(742.5756F, 1.321443F);
             this.xrCrossBandLine9.WidthF = 1.116089F;
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(Models.AOQ);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // rptAOQ
             // 

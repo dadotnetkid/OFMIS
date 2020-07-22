@@ -114,6 +114,7 @@
             this.tabAOQ = new DevExpress.XtraTab.XtraTabPage();
             this.tabPO = new DevExpress.XtraTab.XtraTabPage();
             this.tabPIS = new DevExpress.XtraTab.XtraTabPage();
+            this.tabPAR = new DevExpress.XtraTab.XtraTabPage();
             this.tabAcceptance = new DevExpress.XtraTab.XtraTabPage();
             this.LetterTabPage = new DevExpress.XtraTab.XtraTabPage();
             this.tabActions = new DevExpress.XtraTab.XtraTabPage();
@@ -576,6 +577,7 @@
             this.tabAOQ,
             this.tabPO,
             this.tabPIS,
+            this.tabPAR,
             this.tabAcceptance,
             this.LetterTabPage,
             this.tabActions});
@@ -799,6 +801,12 @@
             this.tabPIS.Size = new System.Drawing.Size(824, 330);
             this.tabPIS.Text = "PIS";
             // 
+            // tabPAR
+            // 
+            this.tabPAR.Name = "tabPAR";
+            this.tabPAR.Size = new System.Drawing.Size(824, 330);
+            this.tabPAR.Text = "PAR";
+            // 
             // tabAcceptance
             // 
             this.tabAcceptance.Name = "tabAcceptance";
@@ -947,10 +955,9 @@
         public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditRepoPR;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.SimpleButton btnViewAll;
-        private DevExpress.XtraEditors.SimpleButton btnSearch;
+        public DevExpress.XtraEditors.SimpleButton btnSearch;
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.LabelControl labelControl13;
-        private DevExpress.XtraEditors.SearchControl txtSearch;
         public DevExpress.XtraEditors.ComboBoxEdit cboStatus;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
@@ -1001,5 +1008,7 @@
         public DevExpress.XtraTab.XtraTabPage tabActions;
         public DevExpress.XtraTab.XtraTabPage tabAcceptance;
         public DevExpress.XtraTab.XtraTabPage tabPIS;
+        public DevExpress.XtraTab.XtraTabPage tabPAR;
+        public DevExpress.XtraEditors.SearchControl txtSearch;
     }
 }

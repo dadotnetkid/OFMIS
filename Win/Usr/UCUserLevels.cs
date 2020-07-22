@@ -66,7 +66,8 @@ namespace Win.Usr
             {
                 try
                 {
-
+                    if (!User.UserInAction("can delete"))
+                        return;
                     if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         return;
                     UnitOfWork unitOfWork = new UnitOfWork();

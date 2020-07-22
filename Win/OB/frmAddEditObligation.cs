@@ -41,6 +41,7 @@ namespace Win.OB
 
         private void frmAddEditObligation_Load(object sender, EventArgs e)
         {
+            tmrSaving.Start();
             addEditObligations.Init();
         }
 
@@ -48,8 +49,10 @@ namespace Win.OB
         {
             if (((XtraForm)this).ValidateForm())
             {
+                addEditObligations.isPrompt = true;
                 addEditObligations.Save();
-         //       ucObligations.obligations = obligations;
+                this.Close();
+                //       ucObligations.obligations = obligations;
 
             }
 
@@ -72,6 +75,11 @@ namespace Win.OB
             Form frm = new frmAddEditPayee(MethodType.Add, null);
             frm.ShowDialog();
             addEditObligations.LoadPayees();
+        }
+
+        private void tmrSaving_Tick(object sender, EventArgs e)
+        {
+            addEditObligations.SaveWithoutPromp();
         }
     }
 }

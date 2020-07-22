@@ -37,7 +37,8 @@ namespace Win.Emps
         {
             try
             {
-
+                if (!User.UserInAction("can delete"))
+                    return;
                 if (MessageBox.Show("Do you want to Delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
                 if (EmployeesGridView.GetFocusedRow() is Employees item)

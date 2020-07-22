@@ -51,6 +51,8 @@ namespace Win.AOQ
         {
             try
             {
+                if (!User.UserInAction("can delete"))
+                    return;
                 if (AOQGridView.GetFocusedRow() is Models.AOQ item)
                 {
                     UnitOfWork unitOfWork = new UnitOfWork();
@@ -137,29 +139,33 @@ namespace Win.AOQ
                 {
                     rpt.lblbac1.Text = item.BacMembers.ToList()[0]?.Person;
                     rpt.lblBacPos1.Text = item.BacMembers.ToList()[0]?.Position;
+                    rpt.pos1.Text = item.BacMembers.ToList()[0]?.BacPosition;
                 }
 
                 if (item.BacMembers.Count() > 1)
                 {
                     rpt.lblbac2.Text = item.BacMembers.ToList()[1]?.Person;
                     rpt.lblbacpos2.Text = item.BacMembers.ToList()[1]?.Position;
+                    rpt.pos2.Text = item.BacMembers.ToList()[1]?.BacPosition;
                 }
 
                 if (item.BacMembers.Count() > 2)
                 {
                     rpt.lblbac3.Text = item.BacMembers.ToList()[2]?.Person;
                     rpt.lblbacpos3.Text = item.BacMembers.ToList()[2]?.Position;
+                    rpt.pos3.Text = item.BacMembers.ToList()[2]?.BacPosition;
                 }
                 if (item.BacMembers.Count() > 3)
                 {
                     rpt.lblbac4.Text = item.BacMembers.ToList()[3]?.Person;
                     rpt.lblbacpos4.Text = item.BacMembers.ToList()[3]?.Position;
+                    rpt.pos4.Text = item.BacMembers.ToList()[3]?.BacPosition;
                 }
-                if (item.BacMembers.Count() > 4)
-                {
-                    rpt.lblbac5.Text = item.BacMembers.ToList()[4]?.Person;
-                    rpt.lblbacpos5.Text = item.BacMembers.ToList()[4]?.Position;
-                }
+                //if (item.BacMembers.Count() > 4)
+                //{rpt.lblbac5.Text = item.BacMembers.ToList()[4]?.Person;
+                //    rpt.lblbacpos5.Text = item.BacMembers.ToList()[4]?.Position;
+                //    rpt.pos5.Text = item.BacMembers.ToList()[4]?.BacPosition;
+                //}
 
                 var twg = new UnitOfWork().Signatories.Find(x => x.BacPosition.Contains("TWG-Goods"));
                 rpt.lblTWG.Text = twg.Person;

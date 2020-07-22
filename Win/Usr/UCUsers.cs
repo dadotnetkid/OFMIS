@@ -77,6 +77,8 @@ namespace Win.Usr
         {
             try
             {
+                if (!User.UserInAction("can delete"))
+                    return;
                 var res = UserGridView.GetFocusedRow();
                 if (UserGridView.GetFocusedRow() is Users item)
                 {

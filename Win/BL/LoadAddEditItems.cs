@@ -49,10 +49,14 @@ namespace Win.BL
             if (frmItems.ItemsGridView.GetFocusedRow() is Items items)
             {
 
-
+                RichTextBox richTextBox = new RichTextBox()
+                {
+                    Font = new System.Drawing.Font("Calibri", 9.5f)
+                };
+                richTextBox.Text = items.Item;
                 unitOfWork.PRDetailsRepo.Insert(new PRDetails()
                 {
-                    Item = items.Item,
+                    Item = richTextBox.Rtf,
                     PRId = purchaseRequests.Id,
                     Quantity = 1,
                     Cost = items.Cost,
@@ -72,7 +76,7 @@ namespace Win.BL
                 unitOfWork.Save();
             }
             frmAddEditPurchaseRequest.ItemsGridControl.DataSource =
-                    new BindingList<PRDetails>(unitOfWork.PRDetailsRepo.Get(x => x.PRId == purchaseRequests.Id));
+                            new BindingList<PRDetails>(unitOfWork.PRDetailsRepo.Get(x => x.PRId == purchaseRequests.Id));
             if (frmItems.cboSearch.Text == "")
             {
                 Search(frmItems.cboCategory.Text);

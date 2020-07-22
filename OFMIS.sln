@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Models", "ExistingUser.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win.PurchaseOrders", "Win.PurchaseOrders\Win.PurchaseOrders.csproj", "{F569C9DF-A62E-4010-9647-C4DDE00DF9F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Chat", "Web.Chat\Web.Chat.csproj", "{A3D9D6B5-39B8-4892-8CC7-81C92946CFAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		All|Any CPU = All|Any CPU
@@ -58,6 +60,12 @@ Global
 		{F569C9DF-A62E-4010-9647-C4DDE00DF9F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F569C9DF-A62E-4010-9647-C4DDE00DF9F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F569C9DF-A62E-4010-9647-C4DDE00DF9F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3D9D6B5-39B8-4892-8CC7-81C92946CFAD}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{A3D9D6B5-39B8-4892-8CC7-81C92946CFAD}.All|Any CPU.Build.0 = Release|Any CPU
+		{A3D9D6B5-39B8-4892-8CC7-81C92946CFAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3D9D6B5-39B8-4892-8CC7-81C92946CFAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3D9D6B5-39B8-4892-8CC7-81C92946CFAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3D9D6B5-39B8-4892-8CC7-81C92946CFAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

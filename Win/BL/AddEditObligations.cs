@@ -22,6 +22,7 @@ namespace Win.BL
         private int obId;
         private Obligations obligations;
         public bool isClosed;
+        public bool isPrompt = true;
 
 
         public AddEditObligations(frmAddEditObligation frm, Obligations obligations)
@@ -127,8 +128,11 @@ namespace Win.BL
         public void Save()
         {
 
-            if (MessageBox.Show("Do you want to submit this?", "Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                return;
+            if (this.isPrompt == true)
+            {
+                if (MessageBox.Show("Do you want to submit this?", "Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+            }
             try
             {
                 var unitOfWork = new UnitOfWork();
@@ -191,8 +195,6 @@ namespace Win.BL
                 }
                 unitOfWork.Save();
                 this.isClosed = true;
-
-                frm.Close();
             }
             catch (Exception e)
             {
@@ -277,7 +279,7 @@ namespace Win.BL
                 //var payee = unitOfWork.PayeesRepo.Find(m => m.Name == "Earmarked PR");
                 this.obligations = new Obligations()
                 {
-                    ControlNo = IdHelper.OfficeControlNo(ob?.ControlNo, staticSttings.OfficeId,"ObR", "Obligations"),
+                    ControlNo = IdHelper.OfficeControlNo(ob?.ControlNo, staticSttings.OfficeId, "ObR", "Obligations"),
                     Year = new StaticSettings().Year,
                     Date = DateTime.Now,
                     Earmarked = obligations?.Earmarked,
@@ -315,7 +317,7 @@ namespace Win.BL
                 //var payee = unitOfWork.PayeesRepo.Find(m => m.Name == "Earmarked PR");
                 this.obligations = new Obligations()
                 {
-                    ControlNo = IdHelper.OfficeControlNo(ob?.ControlNo, staticSttings.OfficeId,"ObR", "Obligations"),
+                    ControlNo = IdHelper.OfficeControlNo(ob?.ControlNo, staticSttings.OfficeId, "ObR", "Obligations"),
                     Year = new StaticSettings().Year,
                     Date = DateTime.Now,
                     Earmarked = obligations?.Earmarked,
@@ -404,6 +406,12 @@ namespace Win.BL
         {
             frm.ORDetailGridControl.DataSource =
                 new BindingList<ORDetails>(new UnitOfWork().ORDetailsRepo.Fetch(m => m.ObligationId == obId).ToList());
+        }
+
+        public void SaveWithoutPromp()
+        {
+            isPrompt = false;
+            Save();
         }
     }
 }

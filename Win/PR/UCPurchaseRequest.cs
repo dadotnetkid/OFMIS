@@ -65,7 +65,7 @@ namespace Win.PR
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
                 StaticSettings staticSettings = new StaticSettings();
-                this.PRGridControl.DataSource = new BindingList<PurchaseRequests>(unitOfWork.PurchaseRequestsRepo.Get(x => x.OfficeId == staticSettings.OfficeId && x.Description.Contains(txtSearch.Text)));
+                this.PRGridControl.DataSource = new BindingList<PurchaseRequests>(unitOfWork.PurchaseRequestsRepo.Get(x => (x.OfficeId == staticSettings.OfficeId && (x.Description.Contains(txtSearch.Text) || x.ControlNo == txtSearch.Text))));
             }
             catch (Exception exception)
             {

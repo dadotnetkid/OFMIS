@@ -11,6 +11,7 @@ using DevExpress.XtraBars.ToastNotifications;
 using Helpers;
 using Models.Repository;
 using Win.Accnts;
+using Win.Actns;
 using Win.BGMembers;
 using Win.BL;
 using Win.Emps;
@@ -32,7 +33,7 @@ namespace Win
 
         public Main(string[] param)
         {
-            new frmSplashScreen().ShowDialog();
+            new frmSplashScreen().ShowDialog(this);
             InitializeComponent();
             this.param = param;
             if (param.Any())
@@ -64,6 +65,8 @@ namespace Win
                 frm.ShowDialog();
             lblUsername.Caption = $"Name: {User.GetFullName() }";
             lblUserLevel.Caption = $"User Level: {User.GetUserLevel()}";
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new UCDashboard() { Dock = DockStyle.Fill });
             var unitOfWork = new UnitOfWork();
             if (!unitOfWork.YearsRepo.Fetch().Any(x => x.IsActive == true))
             {
@@ -304,7 +307,7 @@ namespace Win
                         lblTime.Caption = @"OFMIS: Update available(the system is updating)";
                         UpdateHelpers.applicationDeployment.UpdateCompleted += (se, ev) =>
                         {
-                            new frmUpdateNotification().ShowDialog();
+                            new frmUpdateNotification().ShowDialog(this);
                         };
                         UpdateHelpers.applicationDeployment.UpdateProgressChanged += (se, ev) =>
                         {
@@ -317,6 +320,21 @@ namespace Win
 
                 }
             }
+        }
+
+        private void btnDashboard_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.pnlMain.Controls.Clear();
+            this.pnlMain.Controls.Add(new UCDashboard()
+            {
+                Dock = DockStyle.Fill
+            });
+        }
+
+        private void btnAccomplishmentReport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmAccomplishmentReport frm = new frmAccomplishmentReport();
+            frm.ShowDialog();
         }
     }
 }

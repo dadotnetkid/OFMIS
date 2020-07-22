@@ -80,6 +80,7 @@
             this.colGSISPS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colGSISGS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotalAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMidYear = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtDeptHead = new DevExpress.XtraEditors.LookUpEdit();
             this.txtTreasurer = new DevExpress.XtraEditors.LookUpEdit();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -88,7 +89,6 @@
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.txtAccountant = new DevExpress.XtraEditors.LookUpEdit();
-            this.colMidYear = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.spinTotalRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDivisionChief.Properties)).BeginInit();
@@ -116,11 +116,9 @@
             this.colPIPS.Caption = "Pag Ibig PS";
             this.colPIPS.ColumnEdit = this.spinTotalRepo;
             this.colPIPS.FieldName = "PIPS";
-            this.colPIPS.MinWidth = 23;
             this.colPIPS.Name = "colPIPS";
             this.colPIPS.Visible = true;
             this.colPIPS.VisibleIndex = 13;
-            this.colPIPS.Width = 87;
             // 
             // spinTotalRepo
             // 
@@ -138,20 +136,17 @@
             this.colPHPS.Caption = "Phil Health PS";
             this.colPHPS.ColumnEdit = this.spinTotalRepo;
             this.colPHPS.FieldName = "PHPS";
-            this.colPHPS.MinWidth = 23;
             this.colPHPS.Name = "colPHPS";
             this.colPHPS.Visible = true;
             this.colPHPS.VisibleIndex = 11;
-            this.colPHPS.Width = 87;
             // 
             // labelControl9
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Location = new System.Drawing.Point(10, 310);
-            this.labelControl9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl9.Location = new System.Drawing.Point(9, 237);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(63, 19);
+            this.labelControl9.Size = new System.Drawing.Size(53, 15);
             this.labelControl9.TabIndex = 118;
             this.labelControl9.Text = "Treasurer";
             // 
@@ -159,10 +154,9 @@
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(9, 285);
-            this.labelControl8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl8.Location = new System.Drawing.Point(8, 218);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(73, 19);
+            this.labelControl8.Size = new System.Drawing.Size(62, 15);
             this.labelControl8.TabIndex = 117;
             this.labelControl8.Text = "Accountant";
             // 
@@ -170,61 +164,55 @@
             // 
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(9, 256);
-            this.labelControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl11.Location = new System.Drawing.Point(8, 196);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(69, 19);
+            this.labelControl11.Size = new System.Drawing.Size(56, 15);
             this.labelControl11.TabIndex = 115;
             this.labelControl11.Text = "Dept Head";
             // 
             // txtPosition
             // 
-            this.txtPosition.Location = new System.Drawing.Point(115, 224);
-            this.txtPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPosition.Location = new System.Drawing.Point(99, 171);
             this.txtPosition.Name = "txtPosition";
             this.txtPosition.Properties.ReadOnly = true;
             this.txtPosition.Properties.UseReadOnlyAppearance = false;
-            this.txtPosition.Size = new System.Drawing.Size(835, 24);
+            this.txtPosition.Size = new System.Drawing.Size(716, 20);
             this.txtPosition.TabIndex = 106;
             // 
             // labelControl7
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(10, 228);
-            this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl7.Location = new System.Drawing.Point(9, 174);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(52, 19);
+            this.labelControl7.Size = new System.Drawing.Size(46, 15);
             this.labelControl7.TabIndex = 116;
             this.labelControl7.Text = "Position";
             // 
             // txtDivisionChief
             // 
-            this.txtDivisionChief.Location = new System.Drawing.Point(115, 195);
-            this.txtDivisionChief.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtDivisionChief.Location = new System.Drawing.Point(99, 149);
             this.txtDivisionChief.Name = "txtDivisionChief";
             this.txtDivisionChief.Properties.UseReadOnlyAppearance = false;
-            this.txtDivisionChief.Size = new System.Drawing.Size(835, 24);
+            this.txtDivisionChief.Size = new System.Drawing.Size(716, 20);
             this.txtDivisionChief.TabIndex = 105;
             // 
             // txtPayDescription
             // 
             this.txtPayDescription.EditValue = "WE HEREBY ACKNOWLEDGE RECEIPT of the sum shown opposite our names as full compens" +
     "ation for the services rendered to the period stated";
-            this.txtPayDescription.Location = new System.Drawing.Point(115, 136);
-            this.txtPayDescription.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPayDescription.Location = new System.Drawing.Point(99, 104);
             this.txtPayDescription.Name = "txtPayDescription";
             this.txtPayDescription.Properties.UseReadOnlyAppearance = false;
-            this.txtPayDescription.Size = new System.Drawing.Size(835, 24);
+            this.txtPayDescription.Size = new System.Drawing.Size(716, 20);
             this.txtPayDescription.TabIndex = 103;
             // 
             // txtControl
             // 
-            this.txtControl.Location = new System.Drawing.Point(115, 107);
-            this.txtControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtControl.Location = new System.Drawing.Point(99, 82);
             this.txtControl.Name = "txtControl";
             this.txtControl.Properties.UseReadOnlyAppearance = false;
-            this.txtControl.Size = new System.Drawing.Size(835, 24);
+            this.txtControl.Size = new System.Drawing.Size(716, 20);
             this.txtControl.TabIndex = 102;
             // 
             // colDiffAmount
@@ -232,11 +220,9 @@
             this.colDiffAmount.Caption = "Amount";
             this.colDiffAmount.ColumnEdit = this.repositoryItemSpinEdit1;
             this.colDiffAmount.FieldName = "DiffBonus";
-            this.colDiffAmount.MinWidth = 23;
             this.colDiffAmount.Name = "colDiffAmount";
             this.colDiffAmount.Visible = true;
             this.colDiffAmount.VisibleIndex = 9;
-            this.colDiffAmount.Width = 87;
             // 
             // repositoryItemSpinEdit1
             // 
@@ -249,31 +235,26 @@
             // 
             this.colMonth.Caption = "Months";
             this.colMonth.FieldName = "Month";
-            this.colMonth.MinWidth = 23;
             this.colMonth.Name = "colMonth";
             this.colMonth.Visible = true;
             this.colMonth.VisibleIndex = 8;
-            this.colMonth.Width = 87;
             // 
             // colAmount
             // 
             this.colAmount.Caption = "Salary Differential";
             this.colAmount.ColumnEdit = this.spinTotalRepo;
             this.colAmount.FieldName = "Amount";
-            this.colAmount.MinWidth = 23;
             this.colAmount.Name = "colAmount";
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 7;
-            this.colAmount.Width = 87;
             // 
             // labelControl6
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(9, 199);
-            this.labelControl6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl6.Location = new System.Drawing.Point(8, 152);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(91, 19);
+            this.labelControl6.Size = new System.Drawing.Size(78, 15);
             this.labelControl6.TabIndex = 114;
             this.labelControl6.Text = "Division Chief";
             // 
@@ -281,10 +262,9 @@
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(9, 139);
-            this.labelControl10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl10.Location = new System.Drawing.Point(8, 106);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(101, 19);
+            this.labelControl10.Size = new System.Drawing.Size(87, 15);
             this.labelControl10.TabIndex = 111;
             this.labelControl10.Text = "Pay Description";
             // 
@@ -292,10 +272,9 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(9, 167);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl3.Location = new System.Drawing.Point(8, 128);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(56, 19);
+            this.labelControl3.Size = new System.Drawing.Size(47, 15);
             this.labelControl3.TabIndex = 113;
             this.labelControl3.Text = "Pay Title";
             // 
@@ -303,18 +282,16 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(10, 78);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl1.Location = new System.Drawing.Point(9, 60);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(32, 19);
+            this.labelControl1.Size = new System.Drawing.Size(26, 15);
             this.labelControl1.TabIndex = 109;
             this.labelControl1.Text = "Date";
             // 
             // txtDate
             // 
             this.txtDate.EditValue = null;
-            this.txtDate.Location = new System.Drawing.Point(115, 78);
-            this.txtDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtDate.Location = new System.Drawing.Point(99, 60);
             this.txtDate.Name = "txtDate";
             this.txtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -327,7 +304,7 @@
             this.txtDate.Properties.Mask.EditMask = "";
             this.txtDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.txtDate.Properties.UseReadOnlyAppearance = false;
-            this.txtDate.Size = new System.Drawing.Size(835, 24);
+            this.txtDate.Size = new System.Drawing.Size(716, 20);
             this.txtDate.TabIndex = 101;
             // 
             // colPHGS
@@ -335,31 +312,26 @@
             this.colPHGS.Caption = "PhilHealth GS";
             this.colPHGS.ColumnEdit = this.spinTotalRepo;
             this.colPHGS.FieldName = "PHGS";
-            this.colPHGS.MinWidth = 23;
             this.colPHGS.Name = "colPHGS";
             this.colPHGS.Visible = true;
             this.colPHGS.VisibleIndex = 12;
-            this.colPHGS.Width = 87;
             // 
             // colOldRate
             // 
             this.colOldRate.Caption = "Old Rate";
             this.colOldRate.ColumnEdit = this.spinTotalRepo;
             this.colOldRate.FieldName = "OldRate";
-            this.colOldRate.MinWidth = 23;
             this.colOldRate.Name = "colOldRate";
             this.colOldRate.Visible = true;
             this.colOldRate.VisibleIndex = 5;
-            this.colOldRate.Width = 87;
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(10, 110);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl2.Location = new System.Drawing.Point(9, 84);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(103, 19);
+            this.labelControl2.Size = new System.Drawing.Size(87, 15);
             this.labelControl2.TabIndex = 112;
             this.labelControl2.Text = "Office Control #";
             // 
@@ -367,19 +339,16 @@
             // 
             this.colSalaryGrade.Caption = "Salary Grade";
             this.colSalaryGrade.FieldName = "SalaryGrade";
-            this.colSalaryGrade.MinWidth = 23;
             this.colSalaryGrade.Name = "colSalaryGrade";
             this.colSalaryGrade.Visible = true;
             this.colSalaryGrade.VisibleIndex = 4;
-            this.colSalaryGrade.Width = 87;
             // 
             // txtPayTitle
             // 
-            this.txtPayTitle.Location = new System.Drawing.Point(115, 165);
-            this.txtPayTitle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPayTitle.Location = new System.Drawing.Point(99, 126);
             this.txtPayTitle.Name = "txtPayTitle";
             this.txtPayTitle.Properties.UseReadOnlyAppearance = false;
-            this.txtPayTitle.Size = new System.Drawing.Size(835, 24);
+            this.txtPayTitle.Size = new System.Drawing.Size(716, 20);
             this.txtPayTitle.TabIndex = 104;
             // 
             // colPIGS
@@ -387,18 +356,14 @@
             this.colPIGS.Caption = "Pag Ibig GS";
             this.colPIGS.ColumnEdit = this.spinTotalRepo;
             this.colPIGS.FieldName = "PIGS";
-            this.colPIGS.MinWidth = 23;
             this.colPIGS.Name = "colPIGS";
             this.colPIGS.Visible = true;
             this.colPIGS.VisibleIndex = 14;
-            this.colPIGS.Width = 87;
             // 
             // PayrollDiffDetailGridControl
             // 
-            this.PayrollDiffDetailGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.PayrollDiffDetailGridControl.Location = new System.Drawing.Point(9, 344);
+            this.PayrollDiffDetailGridControl.Location = new System.Drawing.Point(8, 263);
             this.PayrollDiffDetailGridControl.MainView = this.PayrollDiffDetailGridView;
-            this.PayrollDiffDetailGridControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.PayrollDiffDetailGridControl.Name = "PayrollDiffDetailGridControl";
             this.PayrollDiffDetailGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEditPayrollRepo,
@@ -407,7 +372,7 @@
             this.spinItemNumberRepo,
             this.lookUpEditEmployees,
             this.repositoryItemSpinEdit1});
-            this.PayrollDiffDetailGridControl.Size = new System.Drawing.Size(1434, 371);
+            this.PayrollDiffDetailGridControl.Size = new System.Drawing.Size(1229, 284);
             this.PayrollDiffDetailGridControl.TabIndex = 119;
             this.PayrollDiffDetailGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.PayrollDiffDetailGridView});
@@ -416,7 +381,7 @@
             // 
             this.PayrollDiffDetailGridView.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.PayrollDiffDetailGridView.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.PayrollDiffDetailGridView.ColumnPanelRowHeight = 65;
+            this.PayrollDiffDetailGridView.ColumnPanelRowHeight = 50;
             this.PayrollDiffDetailGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colEdit,
             this.colDelete,
@@ -437,8 +402,6 @@
             this.colGSISGS,
             this.colTotalAmount,
             this.colMidYear});
-            this.PayrollDiffDetailGridView.DetailHeight = 458;
-            this.PayrollDiffDetailGridView.FixedLineWidth = 3;
             this.PayrollDiffDetailGridView.GridControl = this.PayrollDiffDetailGridControl;
             this.PayrollDiffDetailGridView.Name = "PayrollDiffDetailGridView";
             this.PayrollDiffDetailGridView.OptionsCustomization.AllowRowSizing = true;
@@ -454,9 +417,8 @@
             // colEdit
             // 
             this.colEdit.ColumnEdit = this.btnEditPayrollRepo;
-            this.colEdit.MinWidth = 23;
             this.colEdit.Name = "colEdit";
-            this.colEdit.Width = 23;
+            this.colEdit.Width = 20;
             // 
             // btnEditPayrollRepo
             // 
@@ -470,11 +432,10 @@
             // colDelete
             // 
             this.colDelete.ColumnEdit = this.btnDeletePayrollRepo;
-            this.colDelete.MinWidth = 23;
             this.colDelete.Name = "colDelete";
             this.colDelete.Visible = true;
             this.colDelete.VisibleIndex = 0;
-            this.colDelete.Width = 31;
+            this.colDelete.Width = 27;
             // 
             // btnDeletePayrollRepo
             // 
@@ -491,11 +452,10 @@
             this.colNo.Caption = "No.";
             this.colNo.ColumnEdit = this.spinItemNumberRepo;
             this.colNo.FieldName = "ItemNumber";
-            this.colNo.MinWidth = 23;
             this.colNo.Name = "colNo";
             this.colNo.Visible = true;
             this.colNo.VisibleIndex = 1;
-            this.colNo.Width = 40;
+            this.colNo.Width = 34;
             // 
             // spinItemNumberRepo
             // 
@@ -509,11 +469,10 @@
             this.colName.Caption = "Name";
             this.colName.ColumnEdit = this.lookUpEditEmployees;
             this.colName.FieldName = "EmployeeId";
-            this.colName.MinWidth = 23;
             this.colName.Name = "colName";
             this.colName.Visible = true;
             this.colName.VisibleIndex = 2;
-            this.colName.Width = 92;
+            this.colName.Width = 79;
             // 
             // lookUpEditEmployees
             // 
@@ -533,57 +492,56 @@
             // 
             this.colDesignation.Caption = "Designation";
             this.colDesignation.FieldName = "Designation";
-            this.colDesignation.MinWidth = 23;
             this.colDesignation.Name = "colDesignation";
             this.colDesignation.Visible = true;
             this.colDesignation.VisibleIndex = 3;
-            this.colDesignation.Width = 87;
             // 
             // colNewRate
             // 
             this.colNewRate.Caption = "New Rate";
             this.colNewRate.ColumnEdit = this.spinTotalRepo;
             this.colNewRate.FieldName = "NewRate";
-            this.colNewRate.MinWidth = 23;
             this.colNewRate.Name = "colNewRate";
             this.colNewRate.Visible = true;
             this.colNewRate.VisibleIndex = 6;
-            this.colNewRate.Width = 87;
             // 
             // colGSISPS
             // 
             this.colGSISPS.Caption = "GSIS PS";
             this.colGSISPS.FieldName = "GSISPS";
-            this.colGSISPS.MinWidth = 23;
             this.colGSISPS.Name = "colGSISPS";
             this.colGSISPS.Visible = true;
             this.colGSISPS.VisibleIndex = 15;
-            this.colGSISPS.Width = 87;
             // 
             // colGSISGS
             // 
             this.colGSISGS.Caption = "GSIS GS";
-            this.colGSISGS.FieldName = "GSIS GS";
-            this.colGSISGS.MinWidth = 23;
+            this.colGSISGS.FieldName = "GSISGS";
             this.colGSISGS.Name = "colGSISGS";
             this.colGSISGS.Visible = true;
             this.colGSISGS.VisibleIndex = 16;
-            this.colGSISGS.Width = 87;
             // 
             // colTotalAmount
             // 
             this.colTotalAmount.Caption = "Total Amount";
             this.colTotalAmount.FieldName = "TotalAmount";
-            this.colTotalAmount.MinWidth = 23;
             this.colTotalAmount.Name = "colTotalAmount";
             this.colTotalAmount.Visible = true;
             this.colTotalAmount.VisibleIndex = 17;
-            this.colTotalAmount.Width = 87;
+            // 
+            // colMidYear
+            // 
+            this.colMidYear.Caption = "Mid Year";
+            this.colMidYear.FieldName = "DiffMidYearBonus";
+            this.colMidYear.MinWidth = 21;
+            this.colMidYear.Name = "colMidYear";
+            this.colMidYear.Visible = true;
+            this.colMidYear.VisibleIndex = 10;
+            this.colMidYear.Width = 93;
             // 
             // txtDeptHead
             // 
-            this.txtDeptHead.Location = new System.Drawing.Point(115, 252);
-            this.txtDeptHead.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtDeptHead.Location = new System.Drawing.Point(99, 193);
             this.txtDeptHead.Name = "txtDeptHead";
             this.txtDeptHead.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -595,13 +553,12 @@
             this.txtDeptHead.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.txtDeptHead.Properties.UseReadOnlyAppearance = false;
             this.txtDeptHead.Properties.ValueMember = "Person";
-            this.txtDeptHead.Size = new System.Drawing.Size(835, 24);
+            this.txtDeptHead.Size = new System.Drawing.Size(716, 20);
             this.txtDeptHead.TabIndex = 107;
             // 
             // txtTreasurer
             // 
-            this.txtTreasurer.Location = new System.Drawing.Point(115, 310);
-            this.txtTreasurer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtTreasurer.Location = new System.Drawing.Point(99, 237);
             this.txtTreasurer.Name = "txtTreasurer";
             this.txtTreasurer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -613,7 +570,7 @@
             this.txtTreasurer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.txtTreasurer.Properties.UseReadOnlyAppearance = false;
             this.txtTreasurer.Properties.ValueMember = "Person";
-            this.txtTreasurer.Size = new System.Drawing.Size(835, 24);
+            this.txtTreasurer.Size = new System.Drawing.Size(716, 20);
             this.txtTreasurer.TabIndex = 110;
             // 
             // panel1
@@ -623,9 +580,8 @@
             this.panel1.Controls.Add(this.pictureEdit1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1466, 71);
+            this.panel1.Size = new System.Drawing.Size(1257, 54);
             this.panel1.TabIndex = 100;
             // 
             // lblHeader
@@ -638,10 +594,9 @@
             this.lblHeader.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.lblHeader.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblHeader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblHeader.Location = new System.Drawing.Point(91, 0);
-            this.lblHeader.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblHeader.Location = new System.Drawing.Point(78, 0);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(1375, 71);
+            this.lblHeader.Size = new System.Drawing.Size(1179, 54);
             this.lblHeader.TabIndex = 12;
             this.lblHeader.Text = "WE HEREBY ACKNOWLEDGE RECEIPT of the sum shown opposite our names as full compens" +
     "ation for the services rendered to the period stated";
@@ -651,14 +606,13 @@
             this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureEdit1.EditValue = ((object)(resources.GetObject("pictureEdit1.EditValue")));
             this.pictureEdit1.Location = new System.Drawing.Point(0, 0);
-            this.pictureEdit1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
-            this.pictureEdit1.Size = new System.Drawing.Size(91, 71);
+            this.pictureEdit1.Size = new System.Drawing.Size(78, 54);
             this.pictureEdit1.TabIndex = 0;
             // 
             // btnClose
@@ -667,10 +621,9 @@
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
-            this.btnClose.Location = new System.Drawing.Point(1321, 723);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnClose.Location = new System.Drawing.Point(1132, 553);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(122, 41);
+            this.btnClose.Size = new System.Drawing.Size(105, 31);
             this.btnClose.TabIndex = 121;
             this.btnClose.Text = "&Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -681,18 +634,16 @@
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(1196, 723);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSave.Location = new System.Drawing.Point(1025, 553);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(118, 41);
+            this.btnSave.Size = new System.Drawing.Size(101, 31);
             this.btnSave.TabIndex = 120;
             this.btnSave.Text = "Save ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtAccountant
             // 
-            this.txtAccountant.Location = new System.Drawing.Point(115, 281);
-            this.txtAccountant.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtAccountant.Location = new System.Drawing.Point(99, 215);
             this.txtAccountant.Name = "txtAccountant";
             this.txtAccountant.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -704,24 +655,14 @@
             this.txtAccountant.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.txtAccountant.Properties.UseReadOnlyAppearance = false;
             this.txtAccountant.Properties.ValueMember = "Person";
-            this.txtAccountant.Size = new System.Drawing.Size(835, 24);
+            this.txtAccountant.Size = new System.Drawing.Size(716, 20);
             this.txtAccountant.TabIndex = 108;
-            // 
-            // colMidYear
-            // 
-            this.colMidYear.Caption = "Mid Year";
-            this.colMidYear.FieldName = "DiffMidYearBonus";
-            this.colMidYear.MinWidth = 25;
-            this.colMidYear.Name = "colMidYear";
-            this.colMidYear.Visible = true;
-            this.colMidYear.VisibleIndex = 10;
-            this.colMidYear.Width = 109;
             // 
             // frmAddEditPayrollDifferentials
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1466, 786);
+            this.ClientSize = new System.Drawing.Size(1257, 601);
             this.Controls.Add(this.labelControl9);
             this.Controls.Add(this.labelControl8);
             this.Controls.Add(this.labelControl11);
@@ -744,7 +685,6 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtAccountant);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmAddEditPayrollDifferentials";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAddEditPayrollDifferentials";

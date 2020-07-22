@@ -82,6 +82,7 @@
             this.btnPreview.Size = new System.Drawing.Size(102, 23);
             this.btnPreview.TabIndex = 14;
             this.btnPreview.Text = "Preview";
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // btnNew
             // 
@@ -95,6 +96,7 @@
             this.btnNew.Size = new System.Drawing.Size(102, 23);
             this.btnNew.TabIndex = 13;
             this.btnNew.Text = "Add New";
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // PARGridControl
             // 
@@ -168,6 +170,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditPQRepo.Name = "btnEditPQRepo";
             this.btnEditPQRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnEditPQRepo.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEditPQRepo_ButtonClick);
             // 
             // colDelete
             // 
@@ -185,6 +188,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDeletePQRepo.Name = "btnDeletePQRepo";
             this.btnDeletePQRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnDeletePQRepo.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDeletePQRepo_ButtonClick);
             // 
             // UCPAR
             // 
