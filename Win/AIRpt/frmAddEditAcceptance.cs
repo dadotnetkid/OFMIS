@@ -111,12 +111,14 @@ namespace Win.AIRpt
                 signatoriesBindingSource.DataSource = signatories;
                 dtRISDate.EditValue = item.RISDate ?? null;
                 txtRIS.EditValue = item.RISNo;
+
                 cboPropertyInspector.EditValue = item.PropertyInspector;
-                cboPGSO.EditValue = item.PGSOfficer;
-                cboPropertyOfficer.EditValue = item.PropertyOfficer;
                 cboPropertyInspector2.EditValue = item.PropertyInspector2;
                 cboHeadOffice.EditValue = item.Head;
+                cboPropertyOfficer.EditValue = item.PropertyOfficer;
                 cboPropertyOfficer2.EditValue = item.PropertyOfficer2;
+                cboPGSO.EditValue = item.PGSOfficer;
+
                 ItemsGridControl.DataSource =
                     new BindingList<AIRDetails>(new UnitOfWork(false, false).AIRDetailsRepo.Get(x => x.AIReportId == item.Id));
 

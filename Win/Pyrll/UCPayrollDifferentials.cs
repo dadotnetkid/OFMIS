@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using Helpers;
 using Models;
 using Models.Repository;
 using Win.BL;
@@ -32,7 +33,12 @@ namespace Win.Pyrll
         {
             if (PayrollDiffGridView.GetFocusedRow() is PayrollDifferentials _item)
             {
-                UnitOfWork unitOfWork = new UnitOfWork();
+                UnitOfWork unitOfWork = new UnitOfWork(false, false);
+                TrashbinHelper trashbinHelper = new TrashbinHelper();
+                _item = unitOfWork.PayrollDifferentialsRepo.Find(x => x.Id == _item.Id, false, includeProperties: "PayrollDifferentialDetails");
+                trashbinHelper.Delete(_item, "PayrollDifferentials", _item.Description, User.UserId,
+                    new StaticSettings().OfficeId);
+
                 unitOfWork.PayrollDifferentialsRepo.Delete(x => x.Id == _item.Id);
                 unitOfWork.Save();
                 Init();

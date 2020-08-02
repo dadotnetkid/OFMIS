@@ -14,9 +14,10 @@ namespace Models
         //    public List<Appropriations> Appropriations =>
         //        new UnitOfWork().AppropriationsRepoRepo.Fetch(m => m.FundType == FundType && m.Year == Year).ToList();
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public int? Year { get; set; }
 
-
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public int OfficeId { get; set; }
     }
 }

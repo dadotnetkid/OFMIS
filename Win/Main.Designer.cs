@@ -62,6 +62,7 @@
             this.barHeaderItem1 = new DevExpress.XtraBars.BarHeaderItem();
             this.lblTime = new DevExpress.XtraBars.BarStaticItem();
             this.btnDashboard = new DevExpress.XtraBars.BarButtonItem();
+            this.btnAccomplishmentReport = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -70,6 +71,7 @@
             this.homeOpt = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.maintenanceOpt = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.btnItems = new DevExpress.XtraBars.BarButtonItem();
@@ -79,8 +81,7 @@
             this.pnlMain = new DevExpress.XtraEditors.PanelControl();
             this.toastManager = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnAccomplishmentReport = new DevExpress.XtraBars.BarButtonItem();
+            this.btnTrashbin = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
@@ -121,9 +122,10 @@
             this.barHeaderItem1,
             this.lblTime,
             this.btnDashboard,
-            this.btnAccomplishmentReport});
+            this.btnAccomplishmentReport,
+            this.btnTrashbin});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 27;
+            this.ribbonControl1.MaxItemId = 28;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -329,6 +331,7 @@
             this.btnLetter.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLetter.ImageOptions.Image")));
             this.btnLetter.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnLetter.ImageOptions.LargeImage")));
             this.btnLetter.Name = "btnLetter";
+            this.btnLetter.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnLetter.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLetter_ItemClick);
             // 
             // barButtonItem1
@@ -393,6 +396,15 @@
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDashboard_ItemClick);
             // 
+            // btnAccomplishmentReport
+            // 
+            this.btnAccomplishmentReport.Caption = "Accomplishment Report";
+            this.btnAccomplishmentReport.Id = 26;
+            this.btnAccomplishmentReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAccomplishmentReport.ImageOptions.Image")));
+            this.btnAccomplishmentReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAccomplishmentReport.ImageOptions.LargeImage")));
+            this.btnAccomplishmentReport.Name = "btnAccomplishmentReport";
+            this.btnAccomplishmentReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAccomplishmentReport_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -453,6 +465,11 @@
             this.ribbonPageGroup4.ItemLinks.Add(this.btnLAR);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             // 
+            // ribbonPageGroup7
+            // 
+            this.ribbonPageGroup7.ItemLinks.Add(this.btnAccomplishmentReport);
+            this.ribbonPageGroup7.Name = "ribbonPageGroup7";
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -475,6 +492,7 @@
             this.maintenanceOpt.ItemLinks.Add(this.btnTemplates);
             this.maintenanceOpt.ItemLinks.Add(this.btnItems);
             this.maintenanceOpt.ItemLinks.Add(this.btnActionTree);
+            this.maintenanceOpt.ItemLinks.Add(this.btnTrashbin);
             this.maintenanceOpt.Name = "maintenanceOpt";
             this.maintenanceOpt.Text = "Options";
             // 
@@ -525,19 +543,14 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
-            // ribbonPageGroup7
+            // btnTrashbin
             // 
-            this.ribbonPageGroup7.ItemLinks.Add(this.btnAccomplishmentReport);
-            this.ribbonPageGroup7.Name = "ribbonPageGroup7";
-            // 
-            // btnAccomplishmentReport
-            // 
-            this.btnAccomplishmentReport.Caption = "Accomplishment Report";
-            this.btnAccomplishmentReport.Id = 26;
-            this.btnAccomplishmentReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.btnAccomplishmentReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
-            this.btnAccomplishmentReport.Name = "btnAccomplishmentReport";
-            this.btnAccomplishmentReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAccomplishmentReport_ItemClick);
+            this.btnTrashbin.Caption = "Trash Bin";
+            this.btnTrashbin.Id = 27;
+            this.btnTrashbin.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
+            this.btnTrashbin.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
+            this.btnTrashbin.Name = "btnTrashbin";
+            this.btnTrashbin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTrashbin_ItemClick);
             // 
             // Main
             // 
@@ -619,6 +632,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.BarButtonItem btnAccomplishmentReport;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
+        private DevExpress.XtraBars.BarButtonItem btnTrashbin;
     }
 }
 

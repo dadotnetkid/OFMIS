@@ -9,6 +9,7 @@ namespace Models
 {
     public partial class PriceQuotations
     {
-        public Signatories BACChairperson => new UnitOfWork().Signatories.Find(x => x.Person == this.PGSOfficer);
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public Signatories BACChairperson => new UnitOfWork(false,false).Signatories.Find(x => x.Person == this.PGSOfficer);
     }
 }

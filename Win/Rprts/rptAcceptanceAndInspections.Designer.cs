@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rptAcceptanceAndInspections));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
@@ -120,7 +121,7 @@
             this.xrLabel49 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrCheckBox6 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrLabel50 = new DevExpress.XtraReports.UI.XRLabel();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -144,6 +145,8 @@
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrCrossBandBox2 = new DevExpress.XtraReports.UI.XRCrossBandBox();
+            this.lblHead = new DevExpress.XtraReports.UI.XRLabel();
+            this.lblHeadPos = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
@@ -732,6 +735,8 @@
             // xrTableCell21
             // 
             this.xrTableCell21.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.lblHead,
+            this.lblHeadPos,
             this.xrLabel31,
             this.xrLabel32,
             this.xrLabel24,
@@ -754,7 +759,7 @@
             // 
             this.xrLabel31.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel31.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[HeadPosition]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PropertyInspector2Position]")});
             this.xrLabel31.Font = new System.Drawing.Font("Calibri", 9.2F);
             this.xrLabel31.LocationFloat = new DevExpress.Utils.PointFloat(10.00015F, 149.4103F);
             this.xrLabel31.Multiline = true;
@@ -770,7 +775,7 @@
             // 
             this.xrLabel32.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
             this.xrLabel32.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Head]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PropertyInspector2]")});
             this.xrLabel32.Font = new System.Drawing.Font("Calibri", 9.2F, System.Drawing.FontStyle.Bold);
             this.xrLabel32.LocationFloat = new DevExpress.Utils.PointFloat(10.00015F, 132.4102F);
             this.xrLabel32.Multiline = true;
@@ -1625,6 +1630,40 @@
             this.xrCrossBandBox2.StartPointFloat = new DevExpress.Utils.PointFloat(2.041658F, 0F);
             this.xrCrossBandBox2.WidthF = 799.9583F;
             // 
+            // lblHead
+            // 
+            this.lblHead.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
+            this.lblHead.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Head]")});
+            this.lblHead.Font = new System.Drawing.Font("Calibri", 9.2F, System.Drawing.FontStyle.Bold);
+            this.lblHead.LocationFloat = new DevExpress.Utils.PointFloat(10.00015F, 132.4102F);
+            this.lblHead.Multiline = true;
+            this.lblHead.Name = "lblHead";
+            this.lblHead.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lblHead.SizeF = new System.Drawing.SizeF(181.6798F, 16.99998F);
+            this.lblHead.StylePriority.UseBorders = false;
+            this.lblHead.StylePriority.UseFont = false;
+            this.lblHead.StylePriority.UseTextAlignment = false;
+            this.lblHead.Tag = "Head hide_isnull";
+            this.lblHead.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // lblHeadPos
+            // 
+            this.lblHeadPos.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.lblHeadPos.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[HeadPosition]")});
+            this.lblHeadPos.Font = new System.Drawing.Font("Calibri", 9.2F);
+            this.lblHeadPos.LocationFloat = new DevExpress.Utils.PointFloat(10F, 149.4102F);
+            this.lblHeadPos.Multiline = true;
+            this.lblHeadPos.Name = "lblHeadPos";
+            this.lblHeadPos.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lblHeadPos.SizeF = new System.Drawing.SizeF(181.6798F, 17F);
+            this.lblHeadPos.StylePriority.UseBorders = false;
+            this.lblHeadPos.StylePriority.UseFont = false;
+            this.lblHeadPos.StylePriority.UseTextAlignment = false;
+            this.lblHeadPos.Tag = "Head hide_isnull";
+            this.lblHeadPos.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
             // rptAcceptanceAndInspections
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1775,5 +1814,7 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel52;
         public DevExpress.XtraReports.UI.GroupFooterBand grpHR;
         public DevExpress.XtraReports.UI.GroupFooterBand grpStandard;
+        private DevExpress.XtraReports.UI.XRLabel lblHead;
+        private DevExpress.XtraReports.UI.XRLabel lblHeadPos;
     }
 }

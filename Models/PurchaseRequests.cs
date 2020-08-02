@@ -47,6 +47,7 @@ namespace Models
         public string DivisionHeadPos { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<bool> IsEarmark { get; set; }
+        public string BudgetControlNo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AIReports> AIReports { get; set; }

@@ -33,7 +33,7 @@ namespace Models.Repository
         public GenericRepository(DbContext context)
         {
             this.context = context;
-            context.Database.Log = (s) => { Debug.WriteLine(s); };
+          //  context.Database.Log = (s) => { Debug.WriteLine(s); };
             this.dbSet = context.Set<TEntity>();
 
         }

@@ -1,6 +1,6 @@
 ﻿namespace Win.Ltr
 {
-    partial class frmAddEditLetters
+    partial class frmAddEditLetterV2
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditLetters));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditLetterV2));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
@@ -57,6 +57,7 @@
             this.chkForInTheAbsence = new DevExpress.XtraEditors.CheckEdit();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.letterViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboLetterType.Properties)).BeginInit();
@@ -70,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboClosing.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoCC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkForInTheAbsence.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.letterViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -144,7 +146,7 @@
             this.richEditControl1.Location = new System.Drawing.Point(13, 137);
             this.richEditControl1.MenuManager = this.barManager1;
             this.richEditControl1.Name = "richEditControl1";
-            this.richEditControl1.Options.MailMerge.DataSource = this.lettersBindingSource;
+            this.richEditControl1.Options.MailMerge.DataSource = this.letterViewModelBindingSource;
             this.richEditControl1.Options.MailMerge.ViewMergedData = true;
             this.richEditControl1.Options.Printing.PrintPreviewFormKind = DevExpress.XtraRichEdit.PrintPreviewFormKind.Bars;
             this.richEditControl1.Size = new System.Drawing.Size(1203, 429);
@@ -382,6 +384,10 @@
             this.btnSave.Text = "Save ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // letterViewModelBindingSource
+            // 
+            this.letterViewModelBindingSource.DataSource = typeof(Models.ViewModels.LetterViewModel);
+            // 
             // frmAddEditLetters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -430,6 +436,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboClosing.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoCC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkForInTheAbsence.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.letterViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -464,5 +471,6 @@
         private DevExpress.XtraEditors.CheckEdit chkForInTheAbsence;
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraEditors.SimpleButton btnSave;
+        private System.Windows.Forms.BindingSource letterViewModelBindingSource;
     }
 }

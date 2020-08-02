@@ -16,6 +16,13 @@
           <Property Name="ParentId" Type="int" />
           <Property Name="OfficeId" Type="int" />
         </EntityType>
+        <EntityType Name="ActionTakens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActionTaken" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <EntityType Name="AIRDetails">
           <Key>
             <PropertyRef Name="Id" />
@@ -349,25 +356,24 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RefId" Type="int" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="128" />
+          <Property Name="ControlNo" Type="nvarchar" MaxLength="128" />
+          <Property Name="Template" Type="nvarchar" MaxLength="128" />
+          <Property Name="Type" Type="nvarchar" MaxLength="128" />
+          <Property Name="Title" Type="nvarchar" MaxLength="128" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
           <Property Name="OfficeId" Type="int" />
-          <Property Name="Type" Type="nvarchar" MaxLength="50" />
-          <Property Name="Title" Type="nvarchar(max)" />
           <Property Name="InsideAddress" Type="nvarchar(max)" />
-          <Property Name="Salutation" Type="nvarchar" MaxLength="50" />
-          <Property Name="TemplateId" Type="int" />
+          <Property Name="Salutation" Type="nvarchar" MaxLength="10" />
           <Property Name="Body" Type="nvarchar(max)" />
-          <Property Name="Closing" Type="nvarchar" MaxLength="255" />
-          <Property Name="Signatory" Type="nvarchar" MaxLength="255" />
-          <Property Name="Position" Type="nvarchar" MaxLength="255" />
-          <Property Name="DateCreated" Type="datetime2" Precision="7" />
+          <Property Name="Closing" Type="nvarchar" MaxLength="128" />
+          <Property Name="Signatories" Type="nvarchar" MaxLength="128" />
+          <Property Name="SignatoriesPosition" Type="nvarchar" MaxLength="128" />
+          <Property Name="CC" Type="nvarchar" MaxLength="128" />
+          <Property Name="InTheAbsence" Type="bit" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
-          <Property Name="CC" Type="nvarchar(max)" />
-          <Property Name="ShowInTheAbsenceofthePLO" Type="bit" />
-          <Property Name="DocumentDate" Type="datetime2" Precision="7" />
-          <Property Name="OfficeHead" Type="nvarchar(max)" />
-          <Property Name="OfficeHeadPos" Type="nvarchar(max)" />
-          <Property Name="OfficeName" Type="nvarchar(max)" />
-          <Property Name="OfficeNameUnderOf" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="Liquidations">
           <Key>
@@ -476,6 +482,7 @@
           <Property Name="Address" Type="nvarchar(max)" />
           <Property Name="TelNo" Type="nvarchar(max)" />
           <Property Name="Salutation" Type="nvarchar" MaxLength="50" />
+          <Property Name="InsideAddress" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ORDetails">
           <Key>
@@ -815,6 +822,7 @@
           <Property Name="DivisionHeadPos" Type="nvarchar(max)" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
           <Property Name="IsEarmark" Type="bit" />
+          <Property Name="BudgetControlNo" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="ReAlignments">
           <Key>
@@ -872,6 +880,7 @@
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="TemplateContent" Type="nvarchar(max)" />
           <Property Name="Type" Type="nvarchar(max)" />
+          <Property Name="OfficeId" Type="int" />
         </EntityType>
         <EntityType Name="Towns">
           <Key>
@@ -881,6 +890,18 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="ProvinceId" Type="int" />
           <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="TrashBin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OldValues" Type="nvarchar(max)" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="OfficeId" Type="int" />
         </EntityType>
         <EntityType Name="UserClaims">
           <Key>
@@ -1322,15 +1343,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Letters_Offices">
-          <End Role="Offices" Type="Self.Offices" Multiplicity="0..1" />
+        <Association Name="FK_Letters_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Letters" Type="Self.Letters" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Offices">
+            <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Letters">
-              <PropertyRef Name="OfficeId" />
+              <PropertyRef Name="CreatedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1868,6 +1889,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TrashBin_Offices">
+          <End Role="Offices" Type="Self.Offices" Multiplicity="0..1" />
+          <End Role="TrashBin" Type="Self.TrashBin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrashBin">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrashBin_TrashBin">
+          <End Role="TrashBin" Type="Self.TrashBin" Multiplicity="0..1" />
+          <End Role="TrashBin1" Type="Self.TrashBin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrashBin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrashBin1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserClaims_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="UserClaims" Type="Self.UserClaims" Multiplicity="*" />
@@ -1933,7 +1978,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UsersInDocumentActions_DocumentActions">
-          <End Role="DocumentActions" Type="Self.DocumentActions" Multiplicity="1" />
+          <End Role="DocumentActions" Type="Self.DocumentActions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="UsersInDocumentActions" Type="Self.UsersInDocumentActions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DocumentActions">
@@ -1984,6 +2031,7 @@
         </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Actions" EntityType="Self.Actions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActionTakens" EntityType="Self.ActionTakens" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AIRDetails" EntityType="Self.AIRDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AIReports" EntityType="Self.AIReports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AllotmentLetter" EntityType="Self.AllotmentLetter" Schema="dbo" store:Type="Tables" />
@@ -2039,6 +2087,7 @@
           <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Templates" EntityType="Self.Templates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Towns" EntityType="Self.Towns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrashBin" EntityType="Self.TrashBin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserClaims" EntityType="Self.UserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserLogins" EntityType="Self.UserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
@@ -2155,8 +2204,8 @@
             <End Role="ICS" EntitySet="ICS" />
             <End Role="ICSDetails" EntitySet="ICSDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_Letters_Offices" Association="Self.FK_Letters_Offices">
-            <End Role="Offices" EntitySet="Offices" />
+          <AssociationSet Name="FK_Letters_Users" Association="Self.FK_Letters_Users">
+            <End Role="Users" EntitySet="Users" />
             <End Role="Letters" EntitySet="Letters" />
           </AssociationSet>
           <AssociationSet Name="FK_Liquidations_Accountant" Association="Self.FK_Liquidations_Accountant">
@@ -2322,6 +2371,14 @@
           <AssociationSet Name="FK_Towns_Towns" Association="Self.FK_Towns_Towns">
             <End Role="Provinces" EntitySet="Provinces" />
             <End Role="Towns" EntitySet="Towns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrashBin_Offices" Association="Self.FK_TrashBin_Offices">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="TrashBin" EntitySet="TrashBin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrashBin_TrashBin" Association="Self.FK_TrashBin_TrashBin">
+            <End Role="TrashBin" EntitySet="TrashBin" />
+            <End Role="TrashBin1" EntitySet="TrashBin" />
           </AssociationSet>
           <AssociationSet Name="FK_UserClaims_Users" Association="Self.FK_UserClaims_Users">
             <End Role="Users" EntitySet="Users" />
@@ -2555,15 +2612,6 @@
             <End Role="Offices" EntitySet="Offices" />
             <End Role="AOQ" EntitySet="AOQ" />
           </AssociationSet>
-          <EntitySet Name="Letters" EntityType="Model.Letters" />
-          <AssociationSet Name="OBRInLetters" Association="Model.OBRInLetters">
-            <End Role="Letters" EntitySet="Letters" />
-            <End Role="Obligations" EntitySet="Obligations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Letters_Offices" Association="Model.FK_Letters_Offices">
-            <End Role="Offices" EntitySet="Offices" />
-            <End Role="Letters" EntitySet="Letters" />
-          </AssociationSet>
           <EntitySet Name="APRs" EntityType="Model.APRs" />
           <EntitySet Name="APRDetails" EntityType="Model.APRDetails" />
           <AssociationSet Name="FK_APRDetails_APRs" Association="Model.FK_APRDetails_APRs">
@@ -2715,6 +2763,25 @@
             <End Role="DocumentActions" EntitySet="DocumentActions" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Letters" EntityType="Model.Letters" />
+          <AssociationSet Name="OBRInLetters" Association="Model.OBRInLetters">
+            <End Role="Letters" EntitySet="Letters" />
+            <End Role="Obligations" EntitySet="Obligations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Letters_Users" Association="Model.FK_Letters_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Letters" EntitySet="Letters" />
+          </AssociationSet>
+          <EntitySet Name="TrashBin" EntityType="Model.TrashBin" />
+          <AssociationSet Name="FK_TrashBin_TrashBin" Association="Model.FK_TrashBin_TrashBin">
+            <End Role="TrashBin" EntitySet="TrashBin" />
+            <End Role="TrashBin1" EntitySet="TrashBin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrashBin_Offices" Association="Model.FK_TrashBin_Offices">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="TrashBin" EntitySet="TrashBin" />
+          </AssociationSet>
+          <EntitySet Name="ActionTakens" EntityType="Model.ActionTakens" />
           </EntityContainer>
         <EntityType Name="Allotments">
           <Key>
@@ -2902,7 +2969,6 @@
           <NavigationProperty Name="PayrollWages" Relationship="Model.FK_PayrollWage_Obligations" FromRole="Obligations" ToRole="PayrollWages" />
           <NavigationProperty Name="ORDetails" Relationship="Model.FK_ORDetails_Obligations" FromRole="Obligations" ToRole="ORDetails" />
           <NavigationProperty Name="PayrollDifferentials" Relationship="Model.FK_PayrollDifferentials_Obligations" FromRole="Obligations" ToRole="PayrollDifferentials" />
-          <NavigationProperty Name="Letters" Relationship="Model.OBRInLetters" FromRole="Obligations" ToRole="Letters" />
           <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="DateCreated" Type="DateTime" Precision="7" />
           <Property Name="ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
@@ -2913,6 +2979,7 @@
           <Property Name="POId" Type="Int32" />
           <NavigationProperty Name="PurchaseOrders" Relationship="Model.FK_Obligations_PurchaseOrders" FromRole="Obligations" ToRole="PurchaseOrders" />
           <NavigationProperty Name="Liquidations" Relationship="Model.FK_Liquidations_Obligations" FromRole="Obligations" ToRole="Liquidations" />
+          <NavigationProperty Name="Letters" Relationship="Model.OBRInLetters" FromRole="Obligations" ToRole="Letters" />
         </EntityType>
         <EntityType Name="Offices">
           <Key>
@@ -2940,9 +3007,10 @@
           <NavigationProperty Name="ControlNumbers" Relationship="Model.FK_ControlNumbers_Offices" FromRole="Offices" ToRole="ControlNumbers" />
           <Property Name="Salutation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AOQ" Relationship="Model.FK_AOQ_Offices" FromRole="Offices" ToRole="AOQ" />
-          <NavigationProperty Name="Letters" Relationship="Model.FK_Letters_Offices" FromRole="Offices" ToRole="Letters" />
           <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_PurchaseRequests_Offices" FromRole="Offices" ToRole="PurchaseRequests" />
           <NavigationProperty Name="Employees" Relationship="Model.FK_Employees_Offices" FromRole="Offices" ToRole="Employees" />
+          <Property Name="InsideAddress" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="TrashBin" Relationship="Model.FK_TrashBin_Offices" FromRole="Offices" ToRole="TrashBin" />
         </EntityType>
         <EntityType Name="Payees">
           <Key>
@@ -3187,6 +3255,7 @@
           <NavigationProperty Name="AIReports" Relationship="Model.FK_AIReports_Users" FromRole="Users" ToRole="AIReports" />
           <NavigationProperty Name="DocumentActions" Relationship="Model.FK_DocumentActions_Users" FromRole="Users" ToRole="DocumentActions" />
           <NavigationProperty Name="DocumentActions1" Relationship="Model.UsersInDocumentActions" FromRole="Users" ToRole="DocumentActions" />
+          <NavigationProperty Name="Letters" Relationship="Model.FK_Letters_Users" FromRole="Users" ToRole="Letters" />
         </EntityType>
         <EntityType Name="Years">
           <Key>
@@ -3652,6 +3721,7 @@
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TemplateContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeId" Type="Int32" />
         </EntityType>
         <EntityType Name="SalarySchedules">
           <Key>
@@ -3880,49 +3950,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="AOQ">
-              <PropertyRef Name="OfficeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Letters">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OfficeId" Type="Int32" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="InsideAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Salutation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TemplateId" Type="Int32" />
-          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Closing" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Signatory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Position" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Precision="7" />
-          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ShowInTheAbsenceofthePLO" Type="Boolean" />
-          <NavigationProperty Name="Obligations" Relationship="Model.OBRInLetters" FromRole="Letters" ToRole="Obligations" />
-          <Property Name="DocumentDate" Type="DateTime" Precision="7" />
-          <NavigationProperty Name="Offices" Relationship="Model.FK_Letters_Offices" FromRole="Letters" ToRole="Offices" />
-          <Property Name="OfficeHead" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OfficeHeadPos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OfficeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OfficeNameUnderOf" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <Association Name="OBRInLetters">
-          <End Type="Model.Letters" Role="Letters" Multiplicity="*" />
-          <End Type="Model.Obligations" Role="Obligations" Multiplicity="*" />
-        </Association>
-        <Association Name="FK_Letters_Offices">
-          <End Type="Model.Offices" Role="Offices" Multiplicity="0..1" />
-          <End Type="Model.Letters" Role="Letters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Offices">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Letters">
               <PropertyRef Name="OfficeId" />
             </Dependent>
           </ReferentialConstraint>
@@ -4223,6 +4250,7 @@
           <NavigationProperty Name="PurchaseOrders" Relationship="Model.FK_PurchaseOrders_PurchaseRequests" FromRole="PurchaseRequests" ToRole="PurchaseOrders" />
           <NavigationProperty Name="PAR" Relationship="Model.FK_PAR_PurchaseRequests" FromRole="PurchaseRequests" ToRole="PAR" />
           <NavigationProperty Name="ICS" Relationship="Model.FK_ICS_PurchaseRequests" FromRole="PurchaseRequests" ToRole="ICS" />
+          <Property Name="BudgetControlNo" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_AIReports_PurchaseRequests">
           <End Type="Model.PurchaseRequests" Role="PurchaseRequests" Multiplicity="0..1" />
@@ -4670,6 +4698,94 @@
           <End Type="Model.DocumentActions" Role="DocumentActions" Multiplicity="*" />
           <End Type="Model.Users" Role="Users" Multiplicity="*" />
         </Association>
+        <EntityType Name="Letters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RefId" Type="Int32" />
+          <Property Name="TableName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ControlNo" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Template" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
+          <Property Name="OfficeId" Type="Int32" />
+          <Property Name="InsideAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Salutation" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Closing" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Signatories" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SignatoriesPosition" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CC" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InTheAbsence" Type="Boolean" />
+          <NavigationProperty Name="Obligations" Relationship="Model.OBRInLetters" FromRole="Letters" ToRole="Obligations" />
+          <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Model.FK_Letters_Users" FromRole="Letters" ToRole="Users" />
+          <Property Name="DateCreated" Type="DateTime" Precision="7" />
+        </EntityType>
+        <Association Name="OBRInLetters">
+          <End Type="Model.Letters" Role="Letters" Multiplicity="*" />
+          <End Type="Model.Obligations" Role="Obligations" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Letters_Users">
+          <End Type="Model.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="Model.Letters" Role="Letters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Letters">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TrashBin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OldValues" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Int32" />
+          <NavigationProperty Name="TrashBin1" Relationship="Model.FK_TrashBin_TrashBin" FromRole="TrashBin" ToRole="TrashBin1" />
+          <NavigationProperty Name="TrashBin2" Relationship="Model.FK_TrashBin_TrashBin" FromRole="TrashBin1" ToRole="TrashBin" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeletedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeId" Type="Int32" />
+          <NavigationProperty Name="Offices" Relationship="Model.FK_TrashBin_Offices" FromRole="TrashBin" ToRole="Offices" />
+        </EntityType>
+        <Association Name="FK_TrashBin_TrashBin">
+          <End Type="Model.TrashBin" Role="TrashBin" Multiplicity="0..1" />
+          <End Type="Model.TrashBin" Role="TrashBin1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrashBin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrashBin1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrashBin_Offices">
+          <End Type="Model.Offices" Role="Offices" Multiplicity="0..1" />
+          <End Type="Model.TrashBin" Role="TrashBin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrashBin">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ActionTakens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActionTaken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4857,6 +4973,7 @@
           <EntitySetMapping Name="Offices">
             <EntityTypeMapping TypeName="Model.Offices">
               <MappingFragment StoreEntitySet="Offices">
+                <ScalarProperty Name="InsideAddress" ColumnName="InsideAddress" />
                 <ScalarProperty Name="Salutation" ColumnName="Salutation" />
                 <ScalarProperty Name="TelNo" ColumnName="TelNo" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -5251,6 +5368,7 @@
           <EntitySetMapping Name="Templates">
             <EntityTypeMapping TypeName="Model.Templates">
               <MappingFragment StoreEntitySet="Templates">
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="TemplateContent" ColumnName="TemplateContent" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -5378,40 +5496,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Letters">
-            <EntityTypeMapping TypeName="Model.Letters">
-              <MappingFragment StoreEntitySet="Letters">
-                <ScalarProperty Name="OfficeNameUnderOf" ColumnName="OfficeNameUnderOf" />
-                <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
-                <ScalarProperty Name="OfficeHeadPos" ColumnName="OfficeHeadPos" />
-                <ScalarProperty Name="OfficeHead" ColumnName="OfficeHead" />
-                <ScalarProperty Name="DocumentDate" ColumnName="DocumentDate" />
-                <ScalarProperty Name="ShowInTheAbsenceofthePLO" ColumnName="ShowInTheAbsenceofthePLO" />
-                <ScalarProperty Name="CC" ColumnName="CC" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Signatory" ColumnName="Signatory" />
-                <ScalarProperty Name="Closing" ColumnName="Closing" />
-                <ScalarProperty Name="Body" ColumnName="Body" />
-                <ScalarProperty Name="TemplateId" ColumnName="TemplateId" />
-                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
-                <ScalarProperty Name="InsideAddress" ColumnName="InsideAddress" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="OBRInLetters" TypeName="Model.OBRInLetters" StoreEntitySet="OBRInLetters">
-            <EndProperty Name="Obligations">
-              <ScalarProperty Name="Id" ColumnName="ObrId" />
-            </EndProperty>
-            <EndProperty Name="Letters">
-              <ScalarProperty Name="Id" ColumnName="LetterId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="APRs">
             <EntityTypeMapping TypeName="Model.APRs">
               <MappingFragment StoreEntitySet="APRs">
@@ -5558,6 +5642,7 @@
           <EntitySetMapping Name="PurchaseRequests">
             <EntityTypeMapping TypeName="Model.PurchaseRequests">
               <MappingFragment StoreEntitySet="PurchaseRequests">
+                <ScalarProperty Name="BudgetControlNo" ColumnName="BudgetControlNo" />
                 <ScalarProperty Name="IsEarmark" ColumnName="IsEarmark" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="DivisionHeadPos" ColumnName="DivisionHeadPos" />
@@ -5705,6 +5790,60 @@
               <ScalarProperty Name="Id" ColumnName="DocActId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Letters">
+            <EntityTypeMapping TypeName="Model.Letters">
+              <MappingFragment StoreEntitySet="Letters">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="InTheAbsence" ColumnName="InTheAbsence" />
+                <ScalarProperty Name="CC" ColumnName="CC" />
+                <ScalarProperty Name="SignatoriesPosition" ColumnName="SignatoriesPosition" />
+                <ScalarProperty Name="Signatories" ColumnName="Signatories" />
+                <ScalarProperty Name="Closing" ColumnName="Closing" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="InsideAddress" ColumnName="InsideAddress" />
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Template" ColumnName="Template" />
+                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="RefId" ColumnName="RefId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="OBRInLetters" TypeName="Model.OBRInLetters" StoreEntitySet="OBRInLetters">
+            <EndProperty Name="Obligations">
+              <ScalarProperty Name="Id" ColumnName="ObrId" />
+            </EndProperty>
+            <EndProperty Name="Letters">
+              <ScalarProperty Name="Id" ColumnName="LetterId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="TrashBin">
+            <EntityTypeMapping TypeName="Model.TrashBin">
+              <MappingFragment StoreEntitySet="TrashBin">
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="OldValues" ColumnName="OldValues" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActionTakens">
+            <EntityTypeMapping TypeName="Model.ActionTakens">
+              <MappingFragment StoreEntitySet="ActionTakens">
+                <ScalarProperty Name="ActionTaken" ColumnName="ActionTaken" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

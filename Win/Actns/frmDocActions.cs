@@ -75,6 +75,7 @@ namespace Win.Actns
                 var item = unitOfWork.DocumentActionsRepo.Find(x => x.Id == documentActions.Id, "Users");
                 this.cboPrograms.Properties.DataSource =
                     unitOfWork.ActionsRepo.Get(m => m.Category == "Programs", m => m.OrderBy(x => x.ItemOrder));
+                this.ActionTakenBindingSource.DataSource = new UnitOfWork().ActionTakensRepo.Get();
                 // this.cboUsers.Properties.DataSource = unitOfWork.UsersRepo.Get();
                 cboPrograms.EditValue = item.ProgramId;
                 cboMain.EditValue = item.MainActivityId;
@@ -242,6 +243,13 @@ namespace Win.Actns
             frm.ShowDialog();
             var item = new UnitOfWork().DocumentActionsRepo.Find(x => x.Id == documentActions.Id);
             cboUsers.EditValue = item.RoutedToUsers;
+        }
+
+        private void btnActionTaken_Click(object sender, EventArgs e)
+        {
+            frmActionTaken frm = new frmActionTaken();
+            frm.ShowDialog();
+            this.ActionTakenBindingSource.DataSource = new UnitOfWork().ActionTakensRepo.Get();
         }
     }
 }

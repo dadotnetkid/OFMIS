@@ -94,6 +94,8 @@
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.cboApprovedBy = new DevExpress.XtraEditors.LookUpEdit();
             this.signatoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.txtBudgetControl = new DevExpress.XtraEditors.TextEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
@@ -121,6 +123,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkEarmarked.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboApprovedBy.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.signatoriesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBudgetControl.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl3
@@ -717,6 +720,26 @@
             // 
             this.signatoriesBindingSource.DataSource = typeof(Models.Signatories);
             // 
+            // labelControl8
+            // 
+            this.labelControl8.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl8.Appearance.Options.UseFont = true;
+            this.labelControl8.Location = new System.Drawing.Point(383, 107);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(66, 14);
+            this.labelControl8.TabIndex = 53;
+            this.labelControl8.Text = "Bdgt Ctrl No.";
+            // 
+            // txtBudgetControl
+            // 
+            this.txtBudgetControl.Location = new System.Drawing.Point(473, 104);
+            this.txtBudgetControl.Name = "txtBudgetControl";
+            this.txtBudgetControl.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBudgetControl.Properties.Appearance.Options.UseFont = true;
+            this.txtBudgetControl.Properties.UseReadOnlyAppearance = false;
+            this.txtBudgetControl.Size = new System.Drawing.Size(229, 20);
+            this.txtBudgetControl.TabIndex = 2;
+            // 
             // frmAddEditPurchaseRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -739,6 +762,7 @@
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl10);
+            this.Controls.Add(this.labelControl8);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
@@ -748,6 +772,7 @@
             this.Controls.Add(this.txtControlNumber);
             this.Controls.Add(this.cboAccountCode);
             this.Controls.Add(this.cboObRNo);
+            this.Controls.Add(this.txtBudgetControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -785,6 +810,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkEarmarked.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboApprovedBy.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.signatoriesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBudgetControl.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -845,5 +871,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl6;
         public DevExpress.XtraEditors.LookUpEdit cboApprovedBy;
         private System.Windows.Forms.BindingSource signatoriesBindingSource;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        public DevExpress.XtraEditors.TextEdit txtBudgetControl;
     }
 }

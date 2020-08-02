@@ -27,12 +27,22 @@ namespace Win.Actns
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
-                this.documentActionsBindingSource.DataSource = unitOfWork.DocumentActionsRepo.Get(x => x.Users.Any(m => m.Id == User.UserId) && x.IsSend == true && x.isDone !=true);
+                var documents = unitOfWork.DocumentActionsRepo.Get(x => x.Users.Any(m => m.Id == User.UserId) && x.IsSend == true && x.isDone != true);
+
+                this.documentActionsBindingSource.DataSource = documents;
+                this.Detail(documents.FirstOrDefault());
             }
             catch (Exception e)
             {
 
             }
+        }
+
+        private void Detail(DocumentActions document)
+        {
+            this.ActionTakenGridControl.DataSource =
+                new UnitOfWork().DocumentActionsRepo.Get(x =>
+                    x.RefId == document.RefId && x.TableName == document.TableName,orderBy:x=>x.OrderByDescending(m=>m.DateCreated));
         }
 
         private void lblControlNumber_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -77,7 +87,7 @@ namespace Win.Actns
                     CreatedBy = User.UserId,
                     DateCreated = DateTime.Now,
                     ControlNo = item.ControlNo,
-                    
+
                 });
                 frm.ShowDialog();
                 Init();
@@ -91,6 +101,14 @@ namespace Win.Actns
                 frmTaskDone frm = new frmTaskDone(item);
                 frm.ShowDialog();
                 Init();
+            }
+        }
+
+        private void DashboardGridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (DashboardGridView.GetFocusedRow() is DocumentActions item)
+            {
+                Detail(item);
             }
         }
     }

@@ -17,6 +17,7 @@ using Win.Actns;
 using Win.AIRpt;
 using Win.AOQ;
 using Win.APR;
+using Win.Ltr;
 using Win.OB;
 using Win.PO;
 using Win.PQ;
@@ -51,9 +52,9 @@ namespace Win.BL
                 var office = unitOfWork.OfficesRepo.Find(x => x.Id == officeId);
                 model.PRDetails = model?.PRDetails.OrderBy(x => x.ItemNo).ToList();
                 model.ControlNo = IdHelper.ReplaceOldControlNo(officeId, "PR", model.ControlNo);
-                foreach (var i in model.PRDetails.Where(x=>!x.Item.Contains("rtf1")))
+                foreach (var i in model.PRDetails.Where(x => !x.Item.Contains("rtf1")))
                 {
-                    
+
                     var rtf = new RichTextBox();
                     rtf.Font = new Font("Calibri", 9.5f);
                     rtf.Text = i.Item;
@@ -124,7 +125,10 @@ namespace Win.BL
 
                     if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         return;
-                    UnitOfWork unitOfWork = new UnitOfWork();
+                    UnitOfWork unitOfWork = new UnitOfWork(false, false);
+                    TrashbinHelper trashbinHelper = new TrashbinHelper();
+                    pr = unitOfWork.PurchaseRequestsRepo.Find(x => x.Id == pr.Id, false, includeProperties: "AIReports,AOQ,APRs,PIS,PRDetails,PriceQuotations,PurchaseOrders,PAR,ICS");
+                    trashbinHelper.Delete(pr, "PurchaseRequests", pr.Description, User.UserId, new StaticSettings().OfficeId);
                     unitOfWork.PurchaseRequestsRepo.Delete(m => m.Id == pr.Id);
                     unitOfWork.Save();
 
@@ -277,6 +281,7 @@ namespace Win.BL
                 item.TotalAmount = item.PRDetails.Sum(m => m.TotalAmount);
                 item.TotalAmount = item.PRDetails.Sum(m => m.TotalAmount);
                 item.OfficeId = new StaticSettings().OfficeId;
+                item.BudgetControlNo = frmAddEditPurchaseRequest.txtBudgetControl.Text;
                 if (frmAddEditPurchaseRequest.cboApprovedBy.GetSelectedDataRow() is Signatories pa)
                 {
                     item.PA = pa.Person; //unitOfWork.Signatories.Find(m => m.Position == "Provincial Administrator")?.Person;
@@ -332,13 +337,14 @@ namespace Win.BL
             frmAddEditPurchaseRequest.cboAccountCode.Properties.DataSource =
                 new BindingList<Appropriations>(unitOfWork.AppropriationsRepoRepo.Get(m => m.Year == staticSettings.Year && m.OfficeId == staticSettings.OfficeId));
             this.frmAddEditPurchaseRequest.cboObRNo.Properties.DataSource = unitOfWork.ObligationsRepo.Get(m => m.OfficeId == staticSettings.OfficeId);
-            this.frmAddEditPurchaseRequest.cboApprovedBy.Properties.DataSource = unitOfWork.Signatories.Get(x => x.Position == "Provincial Administrator" || x.Position == "Governor");
+            this.frmAddEditPurchaseRequest.cboApprovedBy.Properties.DataSource = unitOfWork.Signatories.Get(x => x.Position == "Provincial Administrator" || x.Position == "Governor" || x.Office=="Governor's Office");
             item = unitOfWork.PurchaseRequestsRepo.Find(m => m.Id == item.Id);
             frmAddEditPurchaseRequest.dtDate.EditValue = item.Date ?? DateTime.Now;
             frmAddEditPurchaseRequest.txtControlNumber.Text = item.ControlNo;
             frmAddEditPurchaseRequest.txtDescription.Text = item.Description;
             frmAddEditPurchaseRequest.cboAccountCode.EditValue = item.AppropriationId;
             frmAddEditPurchaseRequest.txtPurpose.Text = item.Purpose;
+            frmAddEditPurchaseRequest.txtBudgetControl.Text = item.BudgetControlNo;
             var officeName = staticSettings.Offices?.UnderOfOffice?.OfficeName ?? staticSettings.OfficeName;
             frmAddEditPurchaseRequest.cboDeptHead.Properties.DataSource =
                 new BindingList<Signatories>(unitOfWork.Signatories.Get(m => m.Office == officeName));
@@ -355,6 +361,7 @@ namespace Win.BL
             frmAddEditPurchaseRequest.cboCategoryRepo.DataSource = unitOfWork.CategoriesRepo.Get();
             frmAddEditPurchaseRequest.chkEarmarked.EditValue = item.IsEarmark;
             frmAddEditPurchaseRequest.cboApprovedBy.EditValue = item.PA;
+
         }
 
         void ITransactions<PurchaseRequests>.Init()
@@ -490,11 +497,11 @@ namespace Win.BL
             ucPR.tabAOQ.Controls.Clear();
             ucPR.tabAOQ.Controls.Add(new UCAOQ(pr) { Dock = DockStyle.Fill });
             ucPR.LetterTabPage.Controls.Clear();
-            ucPR.LetterTabPage.Controls.Add(new UCAllotmentLetter(pr) { Dock = DockStyle.Fill });
+            ucPR.LetterTabPage.Controls.Add(new UcLetters(pr.Id, pr.ControlNo, "PurchaseRequest") { Dock = DockStyle.Fill });
             ucPR.tabAPR.Controls.Clear();
             ucPR.tabAPR.Controls.Add(new UCAPRs(pr) { Dock = DockStyle.Fill });
             ucPR.tabActions.Controls.Clear();
-            ucPR.tabActions.Controls.Add(new UCDocumentActions(pr.Id,pr.ControlNo, "PurchaseRequests") { Dock = DockStyle.Fill });
+            ucPR.tabActions.Controls.Add(new UCDocumentActions(pr.Id, pr.ControlNo, "PurchaseRequests") { Dock = DockStyle.Fill });
             ucPR.tabAcceptance.Controls.Clear();
             ucPR.tabAcceptance.Controls.Add(new UCAIReports(pr) { Dock = DockStyle.Fill });
             ucPR.tabPIS.Controls.Clear();

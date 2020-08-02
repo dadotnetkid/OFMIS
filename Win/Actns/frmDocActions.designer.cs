@@ -56,6 +56,7 @@
             this.btnRouteTo = new DevExpress.XtraEditors.SimpleButton();
             this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cboUsers = new DevExpress.XtraEditors.TextEdit();
+            this.btnActionTaken = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StatusBindingSource)).BeginInit();
@@ -326,14 +327,18 @@
             this.txtActionTaken.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtActionTaken.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Action", "Action")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ActionTaken", "Action Taken", 84, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.txtActionTaken.Properties.DataSource = this.ActionTakenBindingSource;
-            this.txtActionTaken.Properties.DisplayMember = "Action";
+            this.txtActionTaken.Properties.DisplayMember = "ActionTaken";
             this.txtActionTaken.Properties.NullText = "";
             this.txtActionTaken.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.txtActionTaken.Properties.ValueMember = "Action";
-            this.txtActionTaken.Size = new System.Drawing.Size(504, 44);
+            this.txtActionTaken.Properties.ValueMember = "ActionTaken";
+            this.txtActionTaken.Size = new System.Drawing.Size(437, 44);
             this.txtActionTaken.TabIndex = 5;
+            // 
+            // ActionTakenBindingSource
+            // 
+            this.ActionTakenBindingSource.DataSource = typeof(Models.ActionTakens);
             // 
             // panel1
             // 
@@ -373,7 +378,7 @@
             // 
             // btnSend
             // 
-            this.btnSend.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnSend.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSend.Appearance.Options.UseFont = true;
             this.btnSend.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
             this.btnSend.Enabled = false;
@@ -388,14 +393,14 @@
             // 
             // btnRouteTo
             // 
-            this.btnRouteTo.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRouteTo.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRouteTo.Appearance.Options.UseFont = true;
-            this.btnRouteTo.AutoSize = true;
             this.btnRouteTo.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
             this.btnRouteTo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRouteTo.ImageOptions.Image")));
-            this.btnRouteTo.Location = new System.Drawing.Point(530, 225);
+            this.btnRouteTo.Location = new System.Drawing.Point(528, 224);
+            this.btnRouteTo.MinimumSize = new System.Drawing.Size(63, 38);
             this.btnRouteTo.Name = "btnRouteTo";
-            this.btnRouteTo.Size = new System.Drawing.Size(61, 34);
+            this.btnRouteTo.Size = new System.Drawing.Size(63, 38);
             this.btnRouteTo.TabIndex = 15;
             this.btnRouteTo.Text = "Staff";
             this.btnRouteTo.Click += new System.EventHandler(this.btnRouteTo_Click);
@@ -421,12 +426,27 @@
             this.cboUsers.Size = new System.Drawing.Size(437, 36);
             this.cboUsers.TabIndex = 8;
             // 
+            // btnActionTaken
+            // 
+            this.btnActionTaken.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActionTaken.Appearance.Options.UseFont = true;
+            this.btnActionTaken.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.btnActionTaken.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnActionTaken.ImageOptions.Image")));
+            this.btnActionTaken.Location = new System.Drawing.Point(528, 184);
+            this.btnActionTaken.MinimumSize = new System.Drawing.Size(63, 38);
+            this.btnActionTaken.Name = "btnActionTaken";
+            this.btnActionTaken.Size = new System.Drawing.Size(63, 38);
+            this.btnActionTaken.TabIndex = 15;
+            this.btnActionTaken.Text = "New";
+            this.btnActionTaken.Click += new System.EventHandler(this.btnActionTaken_Click);
+            // 
             // frmDocActions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(603, 349);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnActionTaken);
             this.Controls.Add(this.btnRouteTo);
             this.Controls.Add(this.cboActivity);
             this.Controls.Add(this.cboSub);
@@ -501,5 +521,6 @@
         private DevExpress.XtraEditors.SimpleButton btnSend;
         private DevExpress.XtraEditors.SimpleButton btnRouteTo;
         private DevExpress.XtraEditors.TextEdit cboUsers;
+        private DevExpress.XtraEditors.SimpleButton btnActionTaken;
     }
 }

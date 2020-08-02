@@ -24,9 +24,9 @@ namespace Models
             this.BACMembers = new HashSet<BACMembers>();
             this.ControlNumbers = new HashSet<ControlNumbers>();
             this.AOQ = new HashSet<AOQ>();
-            this.Letters = new HashSet<Letters>();
             this.PurchaseRequests = new HashSet<PurchaseRequests>();
             this.Employees = new HashSet<Employees>();
+            this.TrashBin = new HashSet<TrashBin>();
         }
     
         public int Id { get; set; }
@@ -43,6 +43,7 @@ namespace Models
         public string Address { get; set; }
         public string TelNo { get; set; }
         public string Salutation { get; set; }
+        public string InsideAddress { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Obligations> Obligations { get; set; }
@@ -60,10 +61,10 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AOQ> AOQ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Letters> Letters { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseRequests> PurchaseRequests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employees> Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TrashBin> TrashBin { get; set; }
     }
 }

@@ -8,6 +8,7 @@ namespace Models
 {
     public partial class Actions
     {
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public string ActionValue => this.ItemOrder + ". " + this.Value;
     }
 }

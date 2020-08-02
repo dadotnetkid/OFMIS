@@ -28,6 +28,28 @@ namespace Models.Repository
 
         }
 
+        private GenericRepository<ActionTakens> _ActionTakensRepo;
+        public GenericRepository<ActionTakens> ActionTakensRepo
+        {
+            get
+            {
+                if (this._ActionTakensRepo == null)
+                    this._ActionTakensRepo = new GenericRepository<ActionTakens>(context);
+                return _ActionTakensRepo;
+            }
+            set { _ActionTakensRepo = value; }
+        }
+        private GenericRepository<TrashBin> _TrashBinRepo;
+        public GenericRepository<TrashBin> TrashBinRepo
+        {
+            get
+            {
+                if (this._TrashBinRepo == null)
+                    this._TrashBinRepo = new GenericRepository<TrashBin>(context);
+                return _TrashBinRepo;
+            }
+            set { _TrashBinRepo = value; }
+        }
         private GenericRepository<ICSDetails> _ICSDetailsRepo;
         public GenericRepository<ICSDetails> ICSDetailsRepo
         {
@@ -76,7 +98,7 @@ namespace Models.Repository
 
         public UnitOfWork(bool lazyLoadingEnabled, bool proxyCreationEnabled)
         {
-            context = ModelDb.Create(DataSource.ConnectionString);
+            context = ModelDb.Create(DataSource.ConnectionString);//(/*DataSource.ConnectionString ?? context.Database.Connection.ConnectionString*/);
             this.context.Configuration.LazyLoadingEnabled = lazyLoadingEnabled;
             this.context.Configuration.ProxyCreationEnabled = proxyCreationEnabled;
         }

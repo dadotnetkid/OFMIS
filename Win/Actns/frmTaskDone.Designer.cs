@@ -37,23 +37,24 @@
             this.txtDocuement = new DevExpress.XtraEditors.MemoEdit();
             this.txtTask = new DevExpress.XtraEditors.MemoEdit();
             this.cboAssignedBy = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colFullName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPosition = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cboActionDone = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btnTaskDone = new DevExpress.XtraEditors.SimpleButton();
-            this.colRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
             this.documentActionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnTaskDone = new DevExpress.XtraEditors.SimpleButton();
+            this.colActionTaken = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.txtDocuement.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTask.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAssignedBy.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboActionDone.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentActionsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -117,6 +118,10 @@
             this.cboAssignedBy.Size = new System.Drawing.Size(496, 20);
             this.cboAssignedBy.TabIndex = 2;
             // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataSource = typeof(Models.Users);
+            // 
             // searchLookUpEdit1View
             // 
             this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -156,14 +161,26 @@
             this.cboActionDone.Size = new System.Drawing.Size(496, 20);
             this.cboActionDone.TabIndex = 2;
             // 
+            // documentActionsBindingSource
+            // 
+            this.documentActionsBindingSource.DataSource = typeof(Models.DocumentActions);
+            // 
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colRemarks});
+            this.colRemarks,
+            this.colActionTaken});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // colRemarks
+            // 
+            this.colRemarks.FieldName = "Remarks";
+            this.colRemarks.Name = "colRemarks";
+            this.colRemarks.Visible = true;
+            this.colRemarks.VisibleIndex = 1;
             // 
             // btnTaskDone
             // 
@@ -171,7 +188,7 @@
             this.btnTaskDone.Appearance.Options.UseFont = true;
             this.btnTaskDone.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnTaskDone.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.btnTaskDone.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
+            this.btnTaskDone.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTaskDone.ImageOptions.Image")));
             this.btnTaskDone.Location = new System.Drawing.Point(469, 148);
             this.btnTaskDone.Name = "btnTaskDone";
             this.btnTaskDone.Size = new System.Drawing.Size(108, 23);
@@ -179,20 +196,13 @@
             this.btnTaskDone.Text = "Task Done";
             this.btnTaskDone.Click += new System.EventHandler(this.btnTaskDone_Click);
             // 
-            // colRemarks
+            // colActionTaken
             // 
-            this.colRemarks.FieldName = "Remarks";
-            this.colRemarks.Name = "colRemarks";
-            this.colRemarks.Visible = true;
-            this.colRemarks.VisibleIndex = 0;
-            // 
-            // documentActionsBindingSource
-            // 
-            this.documentActionsBindingSource.DataSource = typeof(Models.DocumentActions);
-            // 
-            // usersBindingSource
-            // 
-            this.usersBindingSource.DataSource = typeof(Models.Users);
+            this.colActionTaken.Caption = "Action Taken";
+            this.colActionTaken.FieldName = "ActionTaken";
+            this.colActionTaken.Name = "colActionTaken";
+            this.colActionTaken.Visible = true;
+            this.colActionTaken.VisibleIndex = 0;
             // 
             // frmTaskDone
             // 
@@ -216,11 +226,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDocuement.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTask.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAssignedBy.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboActionDone.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentActionsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,5 +254,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.SimpleButton btnTaskDone;
         private DevExpress.XtraGrid.Columns.GridColumn colRemarks;
+        private DevExpress.XtraGrid.Columns.GridColumn colActionTaken;
     }
 }

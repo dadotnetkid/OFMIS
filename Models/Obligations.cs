@@ -19,8 +19,8 @@ namespace Models
         {
             this.ORDetails = new HashSet<ORDetails>();
             this.PayrollDifferentials = new HashSet<PayrollDifferentials>();
-            this.Letters = new HashSet<Letters>();
             this.Liquidations = new HashSet<Liquidations>();
+            this.Letters = new HashSet<Letters>();
         }
     
         public int Id { get; set; }
@@ -73,11 +73,11 @@ namespace Models
         public virtual ICollection<ORDetails> ORDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayrollDifferentials> PayrollDifferentials { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Letters> Letters { get; set; }
         public virtual Users CreatedByUser { get; set; }
         public virtual PurchaseOrders PurchaseOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liquidations> Liquidations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Letters> Letters { get; set; }
     }
 }

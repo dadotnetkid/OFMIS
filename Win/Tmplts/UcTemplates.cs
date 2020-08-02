@@ -77,7 +77,7 @@ namespace Win.Tmplts
 
                 if (TemplateGridView.GetFocusedRow() is Templates item)
                 {
-                    frmConfirmationTemplates frm = new frmConfirmationTemplates(item, Models.MethodType.Edit);
+                    frmAddEditTemplatesV2 frm = new frmAddEditTemplatesV2(item, MethodType.Edit);
                     frm.ShowDialog();
                     Init();
                 }
@@ -90,7 +90,12 @@ namespace Win.Tmplts
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            frmConfirmationTemplates frm = new frmConfirmationTemplates(new Models.Templates(), Models.MethodType.Add);
+            //frmConfirmationTemplates frm = new frmConfirmationTemplates(new Models.Templates(), Models.MethodType.Add);
+            //frm.ShowDialog();
+            //Init();
+        //    frmAddEditTemplateV2 frm = new frmAddEditTemplateV2();
+        //    frm.ShowDialog();
+            frmAddEditTemplatesV2 frm = new frmAddEditTemplatesV2(new Templates() {},MethodType.Add);
             frm.ShowDialog();
             Init();
         }

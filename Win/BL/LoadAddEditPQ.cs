@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.Data.Linq;
 using DevExpress.XtraEditors;
+using Helpers;
 using Models;
 using Models.Repository;
 using Win.PQ;
@@ -195,7 +196,10 @@ namespace Win.BL
                     return;
                 if (uCPQ.PQGridView.GetFocusedRow() is PriceQuotations pq)
                 {
-                    UnitOfWork unitOfWork = new UnitOfWork();
+                    UnitOfWork unitOfWork = new UnitOfWork(false, false);
+                    TrashbinHelper trashbinHelper = new TrashbinHelper();
+                    pq = unitOfWork.PriceQuotationsRepo.Find(x => x.Id == pq.Id, false, includeProperties: "PQDetails");
+                    trashbinHelper.Delete(pq, "PriceQuotations", pq.Description, User.UserId, new StaticSettings().OfficeId);
                     unitOfWork.PriceQuotationsRepo.Delete(m => m.Id == pq.Id);
                     unitOfWork.Save();
                     ((ILoad<PriceQuotations>)this).Init();

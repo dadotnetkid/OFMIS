@@ -30,7 +30,7 @@
     <MinimumRequiredVersion>1.0.0.73</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>244</ApplicationRevision>
+    <ApplicationRevision>265</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -131,8 +131,8 @@
     <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Development Cache\.nuget\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Development Cache\.nuget\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\..\..\Development Cache\.nuget\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -410,11 +410,11 @@
     <Compile Include="LR\UCLR.Designer.cs">
       <DependentUpon>UCLR.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ltr\frmAddEditLetters.cs">
+    <Compile Include="Ltr\frmAddEditLettersV2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Ltr\frmAddEditLetters.Designer.cs">
-      <DependentUpon>frmAddEditLetters.cs</DependentUpon>
+    <Compile Include="Ltr\frmAddEditLettersV2.Designer.cs">
+      <DependentUpon>frmAddEditLettersV2.cs</DependentUpon>
     </Compile>
     <Compile Include="Ltr\UcLetters.cs">
       <SubType>UserControl</SubType>
@@ -439,6 +439,12 @@
     </Compile>
     <Compile Include="OB\frmEditDisbursementVoucher.Designer.cs">
       <DependentUpon>frmEditDisbursementVoucher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ofcs\frmAddEditOffice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ofcs\frmAddEditOffice.Designer.cs">
+      <DependentUpon>frmAddEditOffice.cs</DependentUpon>
     </Compile>
     <Compile Include="Ofcs\UCOffices.cs">
       <SubType>UserControl</SubType>
@@ -644,6 +650,12 @@
     <Compile Include="Rprts\rptAPR.Designer.cs">
       <DependentUpon>rptAPR.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rprts\rptDetailedAccomplishmentReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptDetailedAccomplishmentReport.Designer.cs">
+      <DependentUpon>rptDetailedAccomplishmentReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rprts\rptDV.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -808,6 +820,18 @@
     <Compile Include="Rprts\rptRecipientLists.Designer.cs">
       <DependentUpon>rptRecipientLists.cs</DependentUpon>
     </Compile>
+    <Compile Include="Xcanner\frmListOfScanner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Xcanner\frmListOfScanner.Designer.cs">
+      <DependentUpon>frmListOfScanner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Xcanner\frmScanner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Xcanner\frmScanner.Designer.cs">
+      <DependentUpon>frmScanner.cs</DependentUpon>
+    </Compile>
     <Compile Include="SG\UCSalaryGrade.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -816,11 +840,23 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="StaticSettings.cs" />
+    <Compile Include="TB\UCTrashbin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TB\UCTrashbin.Designer.cs">
+      <DependentUpon>UCTrashbin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tmplts\frmAddEditTemplates.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Tmplts\frmAddEditTemplates.Designer.cs">
       <DependentUpon>frmAddEditTemplates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tmplts\frmAddEditTemplatesV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tmplts\frmAddEditTemplatesV2.Designer.cs">
+      <DependentUpon>frmAddEditTemplatesV2.cs</DependentUpon>
     </Compile>
     <Compile Include="Tmplts\frmConfirmationTemplates.cs">
       <SubType>Form</SubType>
@@ -982,8 +1018,8 @@
     <EmbeddedResource Include="LR\UCLR.resx">
       <DependentUpon>UCLR.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ltr\frmAddEditLetters.resx">
-      <DependentUpon>frmAddEditLetters.cs</DependentUpon>
+    <EmbeddedResource Include="Ltr\frmAddEditLettersV2.resx">
+      <DependentUpon>frmAddEditLettersV2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ltr\UcLetters.resx">
       <DependentUpon>UcLetters.cs</DependentUpon>
@@ -996,6 +1032,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OB\frmEditDisbursementVoucher.resx">
       <DependentUpon>frmEditDisbursementVoucher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ofcs\frmAddEditOffice.resx">
+      <DependentUpon>frmAddEditOffice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ofcs\UCOffices.resx">
       <DependentUpon>UCOffices.cs</DependentUpon>
@@ -1100,6 +1139,9 @@
     <EmbeddedResource Include="Rprts\rptAPR.resx">
       <DependentUpon>rptAPR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptDetailedAccomplishmentReport.resx">
+      <DependentUpon>rptDetailedAccomplishmentReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptDV.resx">
       <DependentUpon>rptDV.cs</DependentUpon>
     </EmbeddedResource>
@@ -1191,11 +1233,23 @@
     <EmbeddedResource Include="Rprts\rptRecipientLists.resx">
       <DependentUpon>rptRecipientLists.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Xcanner\frmListOfScanner.resx">
+      <DependentUpon>frmListOfScanner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xcanner\frmScanner.resx">
+      <DependentUpon>frmScanner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SG\UCSalaryGrade.resx">
       <DependentUpon>UCSalaryGrade.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TB\UCTrashbin.resx">
+      <DependentUpon>UCTrashbin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tmplts\frmAddEditTemplates.resx">
       <DependentUpon>frmAddEditTemplates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tmplts\frmAddEditTemplatesV2.resx">
+      <DependentUpon>frmAddEditTemplatesV2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tmplts\frmConfirmationTemplates.resx">
       <DependentUpon>frmConfirmationTemplates.cs</DependentUpon>
@@ -1221,6 +1275,7 @@
     <None Include="App.config" />
     <None Include="App_Data\APP-CSE 2020 FORM Dwight Revised.xlsx" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Models.ActionTakens.datasource" />
     <None Include="Properties\DataSources\Models.DocumentActions.datasource" />
     <None Include="Properties\DataSources\Models.Employees.datasource" />
     <None Include="Properties\DataSources\Models.Letters.datasource" />
@@ -1228,7 +1283,10 @@
     <None Include="Properties\DataSources\Models.Payees.datasource" />
     <None Include="Properties\DataSources\Models.SalarySchedules.datasource" />
     <None Include="Properties\DataSources\Models.Signatories.datasource" />
+    <None Include="Properties\DataSources\Models.Templates.datasource" />
+    <None Include="Properties\DataSources\Models.TrashBin.datasource" />
     <None Include="Properties\DataSources\Models.Users.datasource" />
+    <None Include="Properties\DataSources\Models.ViewModels.LetterViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

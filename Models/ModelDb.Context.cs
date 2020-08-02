@@ -67,7 +67,6 @@ namespace Models
         public virtual DbSet<PQDetails> PQDetails { get; set; }
         public virtual DbSet<AOQ> AOQ { get; set; }
         public virtual DbSet<AOQDetails> AOQDetails { get; set; }
-        public virtual DbSet<Letters> Letters { get; set; }
         public virtual DbSet<APRs> APRs { get; set; }
         public virtual DbSet<APRDetails> APRDetails { get; set; }
         public virtual DbSet<Actions> Actions { get; set; }
@@ -83,5 +82,8 @@ namespace Models
         public virtual DbSet<ICS> ICS { get; set; }
         public virtual DbSet<ICSDetails> ICSDetails { get; set; }
         public virtual DbSet<DocumentActions> DocumentActions { get; set; }
+        public virtual DbSet<Letters> Letters { get; set; }
+        public virtual DbSet<TrashBin> TrashBin { get; set; }
+        public virtual DbSet<ActionTakens> ActionTakens { get; set; }
     }
 }

@@ -8,8 +8,9 @@ namespace Models
 {
     public partial class BACMembers
     {
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         private string _EmployeeName;
-
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public string EmployeeName
         {
             get

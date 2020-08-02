@@ -54,12 +54,22 @@
             this.btnAddAction = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colDone = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnTaskDone = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.ActionTakenGridControl = new DevExpress.XtraGrid.GridControl();
+            this.ActionTakenGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colDateCreated = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colActionDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCreatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colActionTaken = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRoutedTo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DashboardGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentActionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DashboardGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblControlNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddAction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTaskDone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ActionTakenGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ActionTakenGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // DashboardGridControl
@@ -73,7 +83,7 @@
             this.lblControlNo,
             this.btnAddAction,
             this.btnTaskDone});
-            this.DashboardGridControl.Size = new System.Drawing.Size(1179, 546);
+            this.DashboardGridControl.Size = new System.Drawing.Size(1179, 297);
             this.DashboardGridControl.TabIndex = 0;
             this.DashboardGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.DashboardGridView});
@@ -97,6 +107,7 @@
             this.DashboardGridView.Name = "DashboardGridView";
             this.DashboardGridView.OptionsView.ShowGroupPanel = false;
             this.DashboardGridView.RowHeight = 40;
+            this.DashboardGridView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.DashboardGridView_FocusedRowChanged);
             // 
             // colTalbleName
             // 
@@ -197,11 +208,84 @@
             this.btnTaskDone.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnTaskDone.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnTaskDone_ButtonClick);
             // 
+            // ActionTakenGridControl
+            // 
+            this.ActionTakenGridControl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ActionTakenGridControl.Location = new System.Drawing.Point(0, 297);
+            this.ActionTakenGridControl.MainView = this.ActionTakenGridView;
+            this.ActionTakenGridControl.Name = "ActionTakenGridControl";
+            this.ActionTakenGridControl.Size = new System.Drawing.Size(1179, 249);
+            this.ActionTakenGridControl.TabIndex = 1;
+            this.ActionTakenGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.ActionTakenGridView});
+            // 
+            // ActionTakenGridView
+            // 
+            this.ActionTakenGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colDateCreated,
+            this.colActionDate,
+            this.colCreatedBy,
+            this.colActionTaken,
+            this.colRoutedTo,
+            this.colRemarks});
+            this.ActionTakenGridView.GridControl = this.ActionTakenGridControl;
+            this.ActionTakenGridView.Name = "ActionTakenGridView";
+            this.ActionTakenGridView.OptionsView.ShowGroupPanel = false;
+            // 
+            // colDateCreated
+            // 
+            this.colDateCreated.Caption = "Date Created";
+            this.colDateCreated.FieldName = "DateCreated";
+            this.colDateCreated.Name = "colDateCreated";
+            this.colDateCreated.Visible = true;
+            this.colDateCreated.VisibleIndex = 0;
+            // 
+            // colActionDate
+            // 
+            this.colActionDate.Caption = "Action Date";
+            this.colActionDate.FieldName = "ActionDate";
+            this.colActionDate.Name = "colActionDate";
+            this.colActionDate.Visible = true;
+            this.colActionDate.VisibleIndex = 1;
+            // 
+            // colCreatedBy
+            // 
+            this.colCreatedBy.Caption = "By";
+            this.colCreatedBy.FieldName = "CreatedByUser.FullName";
+            this.colCreatedBy.Name = "colCreatedBy";
+            this.colCreatedBy.Visible = true;
+            this.colCreatedBy.VisibleIndex = 2;
+            // 
+            // colActionTaken
+            // 
+            this.colActionTaken.Caption = "Action";
+            this.colActionTaken.FieldName = "ActionTaken";
+            this.colActionTaken.Name = "colActionTaken";
+            this.colActionTaken.Visible = true;
+            this.colActionTaken.VisibleIndex = 3;
+            // 
+            // colRoutedTo
+            // 
+            this.colRoutedTo.Caption = "Routed To";
+            this.colRoutedTo.FieldName = "RoutedToUsers";
+            this.colRoutedTo.Name = "colRoutedTo";
+            this.colRoutedTo.Visible = true;
+            this.colRoutedTo.VisibleIndex = 4;
+            // 
+            // colRemarks
+            // 
+            this.colRemarks.Caption = "Remarks";
+            this.colRemarks.FieldName = "Remarks";
+            this.colRemarks.Name = "colRemarks";
+            this.colRemarks.Visible = true;
+            this.colRemarks.VisibleIndex = 5;
+            // 
             // UCDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.DashboardGridControl);
+            this.Controls.Add(this.ActionTakenGridControl);
             this.Name = "UCDashboard";
             this.Size = new System.Drawing.Size(1179, 546);
             ((System.ComponentModel.ISupportInitialize)(this.DashboardGridControl)).EndInit();
@@ -210,6 +294,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblControlNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddAction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTaskDone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ActionTakenGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ActionTakenGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -230,5 +316,13 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnAddAction;
         private DevExpress.XtraGrid.Columns.GridColumn colDone;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnTaskDone;
+        private DevExpress.XtraGrid.GridControl ActionTakenGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView ActionTakenGridView;
+        private DevExpress.XtraGrid.Columns.GridColumn colDateCreated;
+        private DevExpress.XtraGrid.Columns.GridColumn colActionDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colCreatedBy;
+        private DevExpress.XtraGrid.Columns.GridColumn colActionTaken;
+        private DevExpress.XtraGrid.Columns.GridColumn colRoutedTo;
+        private DevExpress.XtraGrid.Columns.GridColumn colRemarks;
     }
 }

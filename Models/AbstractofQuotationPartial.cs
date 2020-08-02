@@ -10,8 +10,8 @@ namespace Models
     public partial class AOQ
     {
         public string BACCommittees => string.Join(",", this.BacMembers.Select(x => x.Person));
-
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public Signatories ViceChairperson =>
-            new UnitOfWork().Signatories.Find(x => x.BacPosition == "BAC-Goods, Vice-Chairperson");
+            new UnitOfWork(false,false).Signatories.Find(x => x.BacPosition == "BAC-Goods, Vice-Chairperson");
     }
 }

@@ -94,7 +94,7 @@ namespace Win.Ofcs
                             UnderOf = item.UnderOf == 0 ? null : item.UnderOf,
                             Address = item.Address,
                             TelNo = item.TelNo,
-
+                            InsideAddress = item.InsideAddress
                         });
                     unitOfWork.Save();
                     Init();
@@ -153,6 +153,28 @@ namespace Win.Ofcs
                         return;
                     item.ChiefPosition = item.ChiefPosition;
                 }
+        }
+
+        private void btnEditUserRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+
+        }
+
+        private void btnEditOffice_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (OfficesGridView.GetFocusedRow() is Offices item)
+            {
+                frmAddEditOffice frm = new frmAddEditOffice(item, MethodType.Edit);
+                frm.ShowDialog();
+                Init();
+            }
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            frmAddEditOffice frm = new frmAddEditOffice(new Offices(), MethodType.Edit);
+            frm.ShowDialog();
+            Init();
         }
     }
 }

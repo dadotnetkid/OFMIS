@@ -1389,7 +1389,6 @@
             this.xrLabel44.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel44.SizeF = new System.Drawing.SizeF(400.5F, 14.98716F);
             this.xrLabel44.StylePriority.UseTextAlignment = false;
-            this.xrLabel44.Text = "[Offices.OffcAcr]Office Management Information System";
             this.xrLabel44.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrLabel44.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel44_BeforePrint);
             // 

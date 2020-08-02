@@ -77,7 +77,7 @@ namespace Win.BL
                     if ((item.Amount + (appropriation.ObligationsOffice ?? 0)) > appropriation.Allotment)
                     {
                         //    var oldItem = new UnitOfWork().ORDetailsRepo.Find(m => m.Id == item.Id);
-                        MessageBox.Show("Amount is greater than the allotment balance!",
+                        MessageBox.Show(@"The amount indicated in the ObR is greater than the allotment balance.\nPlease prepare Request of Release of Allotment addressed to the PBO.",
                             @"Insufficient Allotment Balance", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         //  item.Amount = oldItem?.Amount;
                         //return;

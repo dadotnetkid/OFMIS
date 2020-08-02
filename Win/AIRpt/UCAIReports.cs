@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
+using Helpers;
 using Models;
 using Models.Repository;
 using Win.BL;
@@ -84,7 +85,10 @@ namespace Win.AIRpt
 
                     if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         return;
-                    var unitOfWork = new UnitOfWork();
+                    UnitOfWork unitOfWork = new UnitOfWork(false, false);
+                    TrashbinHelper trashbinHelper = new TrashbinHelper();
+                    item = unitOfWork.AIReportsRepo.Find(x => x.Id == item.Id, false, includeProperties: "AIRDetails");
+                    trashbinHelper.Delete(item, "AIReports", "Acceptance and Inspection Report", User.UserId, new StaticSettings().OfficeId);
                     unitOfWork.AIReportsRepo.Delete(x => x.Id == item.Id);
                     unitOfWork.Save();
                     Init();
@@ -129,6 +133,13 @@ namespace Win.AIRpt
                     if (string.IsNullOrEmpty(item.PropertyOfficer2))
                     {
                         foreach (var ctrl in rpt.AllControls<XRControl>().Where(x => x.Tag == "hide_isnull"))
+                        {
+                            ctrl.Visible = false;
+                        }
+                    }
+                    if (string.IsNullOrEmpty(item.Head))
+                    {
+                        foreach (var ctrl in rpt.AllControls<XRControl>().Where(x => x.Tag == "Head hide_isnull"))
                         {
                             ctrl.Visible = false;
                         }

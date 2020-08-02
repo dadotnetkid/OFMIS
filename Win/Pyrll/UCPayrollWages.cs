@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using Helpers;
 using Models;
 using Models.Repository;
 using Win.BL;
@@ -95,7 +96,11 @@ namespace Win.Pyrll
 
                     if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         return;
-                    UnitOfWork unitOfWork = new UnitOfWork();
+                    UnitOfWork unitOfWork = new UnitOfWork(false, false);
+                    TrashbinHelper trashbinHelper = new TrashbinHelper();
+                    item = unitOfWork.PayrollWageDetailsRepo.Find(x => x.Id == item.Id, false);
+                    trashbinHelper.Delete(item, "PayrollWageDetails", "APRs", User.UserId,
+                        new StaticSettings().OfficeId);
                     unitOfWork.PayrollWagesRepo.Delete(x => x.Id == item.PayrollWageId);
                     unitOfWork.Save();
                     Init();

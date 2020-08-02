@@ -15,6 +15,7 @@ namespace Models
     [MetadataType(typeof(UsersMeta))]
     public partial class Users : IUser<string>
     {
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public bool IsSelectedUserInDocuments { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
@@ -23,11 +24,13 @@ namespace Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [NotMapped]
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public string FullName => $"{FirstName} {LastName}";
 
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [NotMapped]
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public string UserRole
         {
             get
@@ -41,6 +44,7 @@ namespace Models
         }
 
         [NotMapped]
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public string Password { get; set; }
 
 

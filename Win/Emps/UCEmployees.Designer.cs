@@ -71,6 +71,7 @@
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.searchOfficeRepo = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btnImport = new DevExpress.XtraEditors.SimpleButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.panel2.SuspendLayout();
@@ -127,6 +128,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(98)))), ((int)(((byte)(135)))));
+            this.panel2.Controls.Add(this.btnImport);
             this.panel2.Controls.Add(this.cboOfficeSearch);
             this.panel2.Controls.Add(this.labelControl1);
             this.panel2.Controls.Add(this.txtSearch);
@@ -405,6 +407,16 @@
             this.repositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
+            // btnImport
+            // 
+            this.btnImport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnImport.Location = new System.Drawing.Point(840, 7);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(145, 23);
+            this.btnImport.TabIndex = 3;
+            this.btnImport.Text = "Import Employees";
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
             // UCEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -468,5 +480,6 @@
         private System.Windows.Forms.BindingSource officesBindingSource;
         private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit searchOfficeRepo;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
+        private DevExpress.XtraEditors.SimpleButton btnImport;
     }
 }

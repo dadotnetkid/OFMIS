@@ -9,8 +9,9 @@ namespace Models
 {
     public partial class Payees
     {
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         private string _description;
-
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string Description
         {

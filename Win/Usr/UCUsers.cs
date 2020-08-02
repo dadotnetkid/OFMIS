@@ -43,6 +43,7 @@ namespace Win.Usr
         {
             var unitOfWork = new UnitOfWork();
             UserGridControl.DataSource = new BindingList<Users>(unitOfWork.UsersRepo.Get());
+            Search(txtSearch.Text);
         }
 
         public void Detail(Users item)
@@ -62,10 +63,11 @@ namespace Win.Usr
                     users = users.Where(x => (x.FirstName + ", " + x.MiddleName + " " + x.LastName).Contains(search));
                 }
 
-                else if (users.Select(x => new {x.UserName}).Any(x => x.UserName.Contains(search)))
+                else if (users.Select(x => new { x.UserName }).Any(x => x.UserName.Contains(search)))
                     users = users.Where(x => x.UserName.Contains(search));
-                
+
                 UserGridControl.DataSource = new BindingList<Users>(users.ToList());
+   
             }
             catch (Exception e)
             {
@@ -152,7 +154,15 @@ namespace Win.Usr
 
         private void txtSearch_EditValueChanged(object sender, EventArgs e)
         {
-            Search(txtSearch.Text);
+     
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Search(txtSearch.Text);
+            }
         }
     }
 }

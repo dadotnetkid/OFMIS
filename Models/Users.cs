@@ -26,6 +26,7 @@ namespace Models
             this.AIReports = new HashSet<AIReports>();
             this.DocumentActions = new HashSet<DocumentActions>();
             this.DocumentActions1 = new HashSet<DocumentActions>();
+            this.Letters = new HashSet<Letters>();
         }
     
         public string Id { get; set; }
@@ -80,5 +81,7 @@ namespace Models
         public virtual ICollection<DocumentActions> DocumentActions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentActions> DocumentActions1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Letters> Letters { get; set; }
     }
 }

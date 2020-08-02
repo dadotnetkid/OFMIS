@@ -134,6 +134,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtAdjustedAmount = new DevExpress.XtraEditors.TextEdit();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
+            this.tabLetters = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OBGridControl)).BeginInit();
@@ -844,7 +845,8 @@
             this.tabPayrollDiff,
             this.tabDV,
             this.tabLR,
-            this.tabActions});
+            this.tabActions,
+            this.tabLetters});
             // 
             // xtraTabPage1
             // 
@@ -1194,6 +1196,12 @@
             this.labelControl17.TabIndex = 8;
             this.labelControl17.Text = "Adj. Amount";
             // 
+            // tabLetters
+            // 
+            this.tabLetters.Name = "tabLetters";
+            this.tabLetters.Size = new System.Drawing.Size(947, 417);
+            this.tabLetters.Text = "Letters";
+            // 
             // ucObligations
             // 
             this.Appearance.BackColor = System.Drawing.SystemColors.Control;
@@ -1345,5 +1353,6 @@
         public DevExpress.XtraEditors.TextEdit txtAdjustedAmount;
         private DevExpress.XtraEditors.LabelControl labelControl17;
         public DevExpress.XtraTab.XtraTabPage tabLR;
+        public DevExpress.XtraTab.XtraTabPage tabLetters;
     }
 }

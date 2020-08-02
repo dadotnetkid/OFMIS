@@ -9,6 +9,7 @@ namespace Models
 {
     public partial class Offices
     {
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public int HeadId => new UnitOfWork().Signatories.Find(x => x.Person == this.Chief)?.Id ?? 0;
     }
 }

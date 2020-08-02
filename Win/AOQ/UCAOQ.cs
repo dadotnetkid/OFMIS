@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit;
+using Helpers;
 using Models;
 using Models.Repository;
 using Win.BL;
@@ -55,7 +56,10 @@ namespace Win.AOQ
                     return;
                 if (AOQGridView.GetFocusedRow() is Models.AOQ item)
                 {
-                    UnitOfWork unitOfWork = new UnitOfWork();
+                    UnitOfWork unitOfWork = new UnitOfWork(false, false);
+                    TrashbinHelper trashbinHelper = new TrashbinHelper();
+                    item = unitOfWork.AOQRepo.Find(x => x.Id == item.Id, false, includeProperties: "AOQDetails,BacMembers");
+                    trashbinHelper.Delete(item, "AOQ", item.Description, User.UserId, new StaticSettings().OfficeId);
                     unitOfWork.AOQRepo.Delete(x => x.Id == item.Id);
                     unitOfWork.Save();
                     Init();

@@ -12,13 +12,17 @@ namespace Models
     public partial class Obligations
     {
         //public string controlId => ResponsibilityCenter + "-" + ControlNo;
+
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public decimal? TotalAmount => this.ORDetails.Sum(m => m.Amount);
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public string AmountToWords => Amount.ToString("0.0###").NumberToWords();
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public string AmountToWords => Amount.ToString("0.00##").NumberToWords();
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [NotMapped]
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public Signatories Governor
         {
             get
@@ -33,6 +37,7 @@ namespace Models
         }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [NotMapped]
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public Signatories DVGovernor
         {
             get
@@ -46,6 +51,7 @@ namespace Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [NotMapped]
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public Signatories DVApproved
         {
             get
@@ -60,6 +66,7 @@ namespace Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [NotMapped]
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public Signatories ApprovedBy => new UnitOfWork().Signatories.Find(m => m.Person == this.OBRApprovedBy);
     }
 }

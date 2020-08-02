@@ -9,7 +9,9 @@ namespace Models
 {
     public partial class AllotmentLetter
     {
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public string ControlNo => this.PurchaseRequests?.ControlNo;
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public string User { get; set; }
     }
 }

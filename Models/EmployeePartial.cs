@@ -10,10 +10,11 @@ namespace Models
     [MetadataType(typeof(EmployeeMeta))]
     public partial class Employees
     {
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public string EmployeeNameByLastName => this.LastName + ", " + this.FirstName + " " + this.MiddleName[0] + ".";
 
         private string _EmployeeName;
-
+        [Newtonsoft.Json.JsonIgnoreAttribute]
         public string EmployeeName
         {
             get

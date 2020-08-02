@@ -29,7 +29,7 @@ namespace Win.Tmplts
 
         private void frmConfirmationTemplates_Load(object sender, EventArgs e)
         {
-
+          
         }
         public MethodType methodType { get; set; }
         public void Save()

@@ -87,7 +87,10 @@ namespace Win.BL
 
                     if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         return;
-                    UnitOfWork unitOfWork = new UnitOfWork();
+                    UnitOfWork unitOfWork = new UnitOfWork(false, false);
+                    TrashbinHelper trashbinHelper = new TrashbinHelper();
+                    item = unitOfWork.PurchaseOrdersRepo.Find(x => x.Id == item.Id, false, includeProperties: "PODetails");
+                    trashbinHelper.Delete(item, "PurchaseOrders", item.Description, User.UserId, new StaticSettings().OfficeId);
                     unitOfWork.PurchaseOrdersRepo.Delete(m => m.Id == item.Id);
                     unitOfWork.Save();
                     ((ILoad<PurchaseOrders>)this).Init();

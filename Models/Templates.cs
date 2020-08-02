@@ -18,5 +18,6 @@ namespace Models
         public string Name { get; set; }
         public string TemplateContent { get; set; }
         public string Type { get; set; }
+        public Nullable<int> OfficeId { get; set; }
     }
 }

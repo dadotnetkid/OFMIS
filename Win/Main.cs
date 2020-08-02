@@ -21,6 +21,7 @@ using Win.Ofcs;
 using Win.PR;
 using Win.Pyee;
 using Win.Rprts;
+using Win.TB;
 using Win.Tmplts;
 using Win.Usr;
 
@@ -265,10 +266,10 @@ namespace Win
 
         private void btnLetter_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (!User.UserInAction("Letter"))
-                return;
-            pnlMain.Controls.Clear();
-            pnlMain.Controls.Add(new UcLetters() { Dock = DockStyle.Fill });
+            //if (!User.UserInAction("Letter"))
+            //    return;
+            //pnlMain.Controls.Clear();
+            //pnlMain.Controls.Add(new UcLetters() { Dock = DockStyle.Fill });
         }
 
         private void btnLAR_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -335,6 +336,15 @@ namespace Win
         {
             frmAccomplishmentReport frm = new frmAccomplishmentReport();
             frm.ShowDialog();
+        }
+
+        private void btnTrashbin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.pnlMain.Controls.Clear();
+            this.pnlMain.Controls.Add(new UCTrashbin()
+            {
+                Dock = DockStyle.Fill
+            });
         }
     }
 }

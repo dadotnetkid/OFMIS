@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.Data.Linq;
 using DevExpress.XtraGrid.Views.Grid;
+using Helpers;
 using Models;
 using Models.Repository;
+using Newtonsoft.Json;
 using Win.Actns;
 using Win.LR;
+using Win.Ltr;
 using Win.OB;
 using Win.Pyrll;
 
@@ -129,6 +132,7 @@ namespace Win.BL
             }
         }
 
+
         private void BtnDeleteRepoOBR_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             try
@@ -139,7 +143,12 @@ namespace Win.BL
                     return;
                 if (uc.OBGridView.GetFocusedRow() is Obligations item)
                 {
-                    UnitOfWork unitOfWork = new UnitOfWork();
+
+                    TrashbinHelper trashbinHelper = new TrashbinHelper();
+                    UnitOfWork unitOfWork = new UnitOfWork(false, false);
+                    item = unitOfWork.ObligationsRepo.Find(x => x.Id == item.Id, false, includeProperties: "PurchaseOrders,ORDetails,Payrolls,PayrollWages,PayrollDifferentials,Liquidations,Letters");
+                    trashbinHelper.Delete(item, "Obligations", item.Description, User.UserId, new StaticSettings().OfficeId);
+
                     unitOfWork.ObligationsRepo.Delete(m => m.Id == item.Id);
                     unitOfWork.Save();
                     Init();
@@ -155,10 +164,13 @@ namespace Win.BL
         {
             var staticSettings = new StaticSettings();
             uc.OBGridControl.DataSource = new EntityServerModeSource()
-            { QueryableSource = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year).Where(x => x.OfficeId == staticSettings.OfficeId) };
+            { QueryableSource = new UnitOfWork(false, false).ObligationsRepo.Fetch(m => m.Year == year).Where(x => x.OfficeId == staticSettings.OfficeId) };
+            //var res = new UnitOfWork(false, false).ObligationsRepo
+            //    .Get(m => m.Year == year).Where(x => x.OfficeId == staticSettings.OfficeId).ToList();
+            //uc.OBGridControl.DataSource = new BindingList<Obligations>(res);
             if (uc.OBGridView.GetFocusedRow() is Obligations item)
             {
-                Detail(new UnitOfWork().ObligationsRepo.Find(m => m.Id == item.Id));
+                Detail(new UnitOfWork(false, false).ObligationsRepo.Find(m => m.Id == item.Id));
             }
 
             uc.lblTotalOf.Text =
@@ -197,7 +209,7 @@ namespace Win.BL
                 uc.tabActions.Controls.Add(new UCDocumentActions(item.Id, item.ControlNo, "Obligations") { Dock = DockStyle.Fill });
                 uc.tabLR.Controls.Clear();
                 uc.tabLR.Controls.Add(new UCLR(item) { Dock = DockStyle.Fill });
-
+                uc.tabLetters.Controls.Add(new UcLetters(item.Id, item.ControlNo, "Obligation") { Dock = DockStyle.Fill });
                 uc.lblTotal.Text = item.TotalAmount?.ToString("#,#.0#");
                 uc.txtCreatedBy.Text = User.GetFullName(item.CreatedBy);
 
@@ -227,10 +239,8 @@ namespace Win.BL
                 ob = new List<Obligations>().AsQueryable();
             if (uc.cboStatus.Text != "All")
                 ob = ob.Where(x => x.Status.Contains(uc.cboStatus.Text));
-            this.uc.OBGridControl.DataSource = new EntityServerModeSource()
-            {
-                QueryableSource = ob.Where(x => x.OfficeId == staticSettings.OfficeId)
-            };
+            this.uc.OBGridControl.DataSource =
+                new BindingList<Obligations>(ob.Where(x => x.OfficeId == staticSettings.OfficeId).ToList());
             Detail(ob.FirstOrDefault());
         }
 
