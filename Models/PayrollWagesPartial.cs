@@ -15,7 +15,7 @@ namespace Models
         {
             get
             {
-                if (this.Obligations.Offices.IsDivision == true)
+                if (this.Obligations?.Offices?.IsDivision == true)
                     return Signatories?.Position != "Governor" ? unitOfWork.Signatories.Find(m => m.Position == "Governor") : null;
                 return null;
             }

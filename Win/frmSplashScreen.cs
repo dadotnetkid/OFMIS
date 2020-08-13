@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraSplashScreen;
+using Helpers;
 using Models.Repository;
 using Win.Properties;
 
@@ -18,6 +19,7 @@ namespace Win
         {
             InitializeComponent();
             this.labelControl1.Text = "PITD Copyright © 1998-" + DateTime.Now.Year.ToString();
+
             BackgroundWorker bg = new BackgroundWorker();
             bg.DoWork += bg_DoWork;
             bg.RunWorkerCompleted += Bg_RunWorkerCompleted;
@@ -35,6 +37,7 @@ namespace Win
             {
                 Models.DataSource.ConnectionString = Settings.Default.ConnectionString;
                 Console.Write(new UnitOfWork().ObligationsRepo.Fetch().Count());
+                MachineTime.UpdateTime();
             }
             catch (Exception exception)
             {

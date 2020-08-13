@@ -52,6 +52,7 @@
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.label8 = new System.Windows.Forms.Label();
             this.txtPosition = new DevExpress.XtraEditors.TextEdit();
+            this.officesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFirstName.Properties)).BeginInit();
@@ -63,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userRolesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDepartment.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.officesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -231,7 +233,8 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ChiefPosition", "ChiefPosition"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ResponsibilityCenter", "Responsibility Center"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ResponsibilityCenterCode", "Code")});
-            this.cboDepartment.Properties.DisplayMember = "OfficeName";
+            this.cboDepartment.Properties.DataSource = this.officesBindingSource;
+            this.cboDepartment.Properties.DisplayMember = "OffcAcr";
             this.cboDepartment.Properties.NullText = "";
             this.cboDepartment.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cboDepartment.Properties.ValueMember = "Id";
@@ -280,6 +283,10 @@
             this.txtPosition.Size = new System.Drawing.Size(310, 20);
             this.txtPosition.TabIndex = 4;
             // 
+            // officesBindingSource
+            // 
+            this.officesBindingSource.DataSource = typeof(Models.Offices);
+            // 
             // frmAddEditUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,6 +331,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userRolesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDepartment.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.officesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,5 +361,6 @@
         private DevExpress.XtraEditors.LookUpEdit cboDepartment;
         private System.Windows.Forms.Label label8;
         private DevExpress.XtraEditors.TextEdit txtPosition;
+        private System.Windows.Forms.BindingSource officesBindingSource;
     }
 }

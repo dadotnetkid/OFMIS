@@ -160,11 +160,14 @@ namespace Win.BL
 
         private void BtnAllotments_Click(object sender, EventArgs e)
         {
-
-            frmAddEditAllotment frm = new frmAddEditAllotment(Models.MethodType.Add,
-                new Models.Allotments() { Appropriations = this.Appropriations });
-            frm.ShowDialog();
-            Detail(new UnitOfWork().AppropriationsRepoRepo.Find(m => m.Id == Appropriations.Id));
+            if (this.uc.AppropriationGrid.GetFocusedRow() is Appropriations item)
+            {
+                frmAddEditAllotment frm = new frmAddEditAllotment(Models.MethodType.Add,
+                    new Models.Allotments() { Appropriations = item });
+                frm.ShowDialog();
+                Detail(new UnitOfWork().AppropriationsRepoRepo.Find(m => m.Id == item.Id));
+            }
+       
         }
 
         public Appropriations Appropriations { get; set; }

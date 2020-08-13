@@ -164,13 +164,13 @@ namespace Win.BL
         {
             var staticSettings = new StaticSettings();
             uc.OBGridControl.DataSource = new EntityServerModeSource()
-            { QueryableSource = new UnitOfWork(false, false).ObligationsRepo.Fetch(m => m.Year == year).Where(x => x.OfficeId == staticSettings.OfficeId) };
+            { QueryableSource = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year && m.OfficeId == staticSettings.OfficeId, "Payees,ORDetails,CreatedByUser") };
             //var res = new UnitOfWork(false, false).ObligationsRepo
             //    .Get(m => m.Year == year).Where(x => x.OfficeId == staticSettings.OfficeId).ToList();
             //uc.OBGridControl.DataSource = new BindingList<Obligations>(res);
             if (uc.OBGridView.GetFocusedRow() is Obligations item)
             {
-                Detail(new UnitOfWork(false, false).ObligationsRepo.Find(m => m.Id == item.Id));
+                Detail(new UnitOfWork(false, false).ObligationsRepo.Find(m => m.Id == item.Id, "Payees,ORDetails,CreatedByUser"));
             }
 
             uc.lblTotalOf.Text =
@@ -206,12 +206,12 @@ namespace Win.BL
                 uc.tabPayrollDiff.Controls.Clear();
                 uc.tabPayrollDiff.Controls.Add(new UCPayrollDifferentials(item) { Dock = DockStyle.Fill });
                 uc.tabActions.Controls.Clear();
-                uc.tabActions.Controls.Add(new UCDocumentActions(item.Id, item.ControlNo, "Obligations") { Dock = DockStyle.Fill });
+                uc.tabActions.Controls.Add(new UCDocumentActions(item.Id, item.ControlNo, item.BudgetControlNo, "Obligations") { Dock = DockStyle.Fill });
                 uc.tabLR.Controls.Clear();
                 uc.tabLR.Controls.Add(new UCLR(item) { Dock = DockStyle.Fill });
                 uc.tabLetters.Controls.Add(new UcLetters(item.Id, item.ControlNo, "Obligation") { Dock = DockStyle.Fill });
                 uc.lblTotal.Text = item.TotalAmount?.ToString("#,#.0#");
-                uc.txtCreatedBy.Text = User.GetFullName(item.CreatedBy);
+                uc.txtCreatedBy.Text = item.CreatedByUser?.FullName;
 
                 if (uc.ORDetailsGridView.GetFocusedRow() is ORDetails obr)
                 {
@@ -227,6 +227,17 @@ namespace Win.BL
 
         public void Search(string search)
         {
+            Search(search, false);
+        }
+
+        public void Search(string search, bool byYear)
+        {
+            if (byYear)
+            {
+                _search(search);
+                return;
+            }
+
             var staticSettings = new StaticSettings();
             var ob = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year && m.OfficeId == staticSettings.OfficeId);
             if (ob.Any(x => x.Description.Contains(search)))
@@ -236,13 +247,28 @@ namespace Win.BL
             else if (ob.Any(x => x.Payees.Name.Contains(search)))
                 ob = ob.Where(x => x.Payees.Name.Contains(search));
             else
-                ob = new List<Obligations>().AsQueryable();
-            if (uc.cboStatus.Text != "All")
+                ob = new List<Obligations>().AsQueryable(); if (uc.cboStatus.Text != "All")
                 ob = ob.Where(x => x.Status.Contains(uc.cboStatus.Text));
             this.uc.OBGridControl.DataSource =
                 new BindingList<Obligations>(ob.Where(x => x.OfficeId == staticSettings.OfficeId).ToList());
             Detail(ob.FirstOrDefault());
         }
-
+        private void _search(string search)
+        {
+            var staticSettings = new StaticSettings();
+            var ob = new UnitOfWork().ObligationsRepo.Fetch(m => m.OfficeId == staticSettings.OfficeId);
+            if (ob.Any(x => x.Description.Contains(search)))
+                ob = ob.Where(x => x.Description.Contains(search));
+            else if (ob.Any(x => x.ControlNo.Contains(search)))
+                ob = ob.Where(x => x.ControlNo.Contains(search));
+            else if (ob.Any(x => x.Payees.Name.Contains(search)))
+                ob = ob.Where(x => x.Payees.Name.Contains(search));
+            else
+                ob = new List<Obligations>().AsQueryable(); if (uc.cboStatus.Text != "All")
+                ob = ob.Where(x => x.Status.Contains(uc.cboStatus.Text));
+            this.uc.OBGridControl.DataSource =
+                new BindingList<Obligations>(ob.Where(x => x.OfficeId == staticSettings.OfficeId).ToList());
+            Detail(ob.FirstOrDefault());
+        }
     }
 }

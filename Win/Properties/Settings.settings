@@ -14,5 +14,17 @@
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">data source=PLGUNV_ADSERVER;initial catalog=OFMIS;persist security info=True;user id=sa;password=Welcome99;multipleactiveresultsets=True;</Value>
     </Setting>
+    <Setting Name="DefaultScanner" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="UserNames" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DefaultYear" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2020</Value>
+    </Setting>
+    <Setting Name="UseDefaultYear" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

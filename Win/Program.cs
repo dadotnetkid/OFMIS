@@ -25,8 +25,8 @@ namespace Win
             BonusSkins.Register();
 
             // var res = Cryptography.Decrypt("LQzNKovDgd5lrVJO1gypjDqxF4cqbri6uKOYkra19ko=");
-
-
+            MachineTime.SetSystemTimeZone("Taipei Standard Time");
+            MachineTime.SetFormat();
             Application.Run(new Main(param));
             //Application.Run(new frmConfirmationTemplates(new Models.Templates(), Models.MethodType.Add));
         }

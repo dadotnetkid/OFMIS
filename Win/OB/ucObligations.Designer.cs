@@ -125,6 +125,7 @@
             this.txtParticular = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.tabLR = new DevExpress.XtraTab.XtraTabPage();
+            this.tabLetters = new DevExpress.XtraTab.XtraTabPage();
             this.tabActions = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.lblParticulars = new DevExpress.XtraEditors.LabelControl();
@@ -134,7 +135,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtAdjustedAmount = new DevExpress.XtraEditors.TextEdit();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
-            this.tabLetters = new DevExpress.XtraTab.XtraTabPage();
+            this.colBudgetControlNo = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OBGridControl)).BeginInit();
@@ -223,7 +224,8 @@
             this.colDescription,
             this.colEdit,
             this.colControlNo,
-            this.colCreatedBy});
+            this.colCreatedBy,
+            this.colBudgetControlNo});
             this.OBGridView.GridControl = this.OBGridControl;
             this.OBGridView.Name = "OBGridView";
             this.OBGridView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -266,7 +268,7 @@
             this.colDate.Name = "colDate";
             this.colDate.Visible = true;
             this.colDate.VisibleIndex = 2;
-            this.colDate.Width = 60;
+            this.colDate.Width = 47;
             // 
             // colAmount
             // 
@@ -278,16 +280,16 @@
             this.colAmount.FieldName = "Amount";
             this.colAmount.Name = "colAmount";
             this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 4;
-            this.colAmount.Width = 106;
+            this.colAmount.VisibleIndex = 5;
+            this.colAmount.Width = 87;
             // 
             // colDescription
             // 
             this.colDescription.FieldName = "Description";
             this.colDescription.Name = "colDescription";
             this.colDescription.Visible = true;
-            this.colDescription.VisibleIndex = 5;
-            this.colDescription.Width = 237;
+            this.colDescription.VisibleIndex = 6;
+            this.colDescription.Width = 154;
             // 
             // colEdit
             // 
@@ -313,7 +315,7 @@
             this.colControlNo.Name = "colControlNo";
             this.colControlNo.Visible = true;
             this.colControlNo.VisibleIndex = 3;
-            this.colControlNo.Width = 108;
+            this.colControlNo.Width = 85;
             // 
             // colCreatedBy
             // 
@@ -321,8 +323,8 @@
             this.colCreatedBy.FieldName = "CreatedByUser.FullName";
             this.colCreatedBy.Name = "colCreatedBy";
             this.colCreatedBy.Visible = true;
-            this.colCreatedBy.VisibleIndex = 6;
-            this.colCreatedBy.Width = 76;
+            this.colCreatedBy.VisibleIndex = 7;
+            this.colCreatedBy.Width = 63;
             // 
             // panel2
             // 
@@ -716,9 +718,9 @@
             this.labelControl11.Appearance.Options.UseForeColor = true;
             this.labelControl11.Location = new System.Drawing.Point(318, 25);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(61, 14);
+            this.labelControl11.Size = new System.Drawing.Size(43, 14);
             this.labelControl11.TabIndex = 2;
-            this.labelControl11.Text = "Budget Ctl. ";
+            this.labelControl11.Text = "ObR No.";
             // 
             // txtBudgetCtl
             // 
@@ -845,8 +847,8 @@
             this.tabPayrollDiff,
             this.tabDV,
             this.tabLR,
-            this.tabActions,
-            this.tabLetters});
+            this.tabLetters,
+            this.tabActions});
             // 
             // xtraTabPage1
             // 
@@ -1060,6 +1062,12 @@
             this.tabLR.Size = new System.Drawing.Size(947, 417);
             this.tabLR.Text = "Liquidation";
             // 
+            // tabLetters
+            // 
+            this.tabLetters.Name = "tabLetters";
+            this.tabLetters.Size = new System.Drawing.Size(947, 417);
+            this.tabLetters.Text = "Letters";
+            // 
             // tabActions
             // 
             this.tabActions.Name = "tabActions";
@@ -1196,11 +1204,14 @@
             this.labelControl17.TabIndex = 8;
             this.labelControl17.Text = "Adj. Amount";
             // 
-            // tabLetters
+            // colBudgetControlNo
             // 
-            this.tabLetters.Name = "tabLetters";
-            this.tabLetters.Size = new System.Drawing.Size(947, 417);
-            this.tabLetters.Text = "Letters";
+            this.colBudgetControlNo.Caption = "OBR No";
+            this.colBudgetControlNo.FieldName = "BudgetControlNo";
+            this.colBudgetControlNo.Name = "colBudgetControlNo";
+            this.colBudgetControlNo.Visible = true;
+            this.colBudgetControlNo.VisibleIndex = 4;
+            this.colBudgetControlNo.Width = 81;
             // 
             // ucObligations
             // 
@@ -1354,5 +1365,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl17;
         public DevExpress.XtraTab.XtraTabPage tabLR;
         public DevExpress.XtraTab.XtraTabPage tabLetters;
+        private DevExpress.XtraGrid.Columns.GridColumn colBudgetControlNo;
     }
 }

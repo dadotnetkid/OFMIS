@@ -25,7 +25,7 @@ namespace Win.Rprts
                 {
                     StaticSettings staticSettings = new StaticSettings();
                     var user = User.GetUserName();
-                    lbl.Text = $"[{staticSettings.Offices.OffcAcr}]Office Management Information System({user}) {res.ControlNo}";
+                    lbl.Text = $"[{staticSettings.Offices.OffcAcr}]Office Fund Management Information System({user}) {res.ControlNo}";
                 }
             }
             

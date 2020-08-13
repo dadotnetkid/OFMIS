@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2d3af104b4f046ac8514e78536113cee" Name="Diagram1" ZoomLevel="94">
+      <Diagram DiagramId="2d3af104b4f046ac8514e78536113cee" Name="Diagram1" ZoomLevel="81">
         <EntityTypeShape EntityType="Model.Allotments" Width="1.5" PointX="5.75" PointY="22.75" />
         <EntityTypeShape EntityType="Model.Appropriations" Width="1.5" PointX="3.5" PointY="23.625" />
         <EntityTypeShape EntityType="Model.Categories" Width="1.5" PointX="2.75" PointY="3.75" />
@@ -31,7 +31,6 @@
         <EntityTypeShape EntityType="Model.UserClaims" Width="1.5" PointX="13.25" PointY="57" />
         <EntityTypeShape EntityType="Model.UserLogins" Width="1.5" PointX="13.25" PointY="76.75" />
         <EntityTypeShape EntityType="Model.UserRoles" Width="1.5" PointX="8.75" PointY="58.625" />
-        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="11" PointY="52" />
         <EntityTypeShape EntityType="Model.Years" Width="1.5" PointX="7.75" PointY="0.75" />
         <AssociationConnector Association="Model.FK_Allotments_Appropriations" />
         <AssociationConnector Association="Model.FK_Appropriations_FundTypes" />
@@ -39,18 +38,13 @@
         <AssociationConnector Association="Model.FK_ReAlignments_TargetSource" />
         <AssociationConnector Association="Model.FK_DefaultAccounts_FundTypes" />
         <AssociationConnector Association="Model.FK_PayrollDetails_Employees" />
-        <AssociationConnector Association="Model.FK_Logs_Users" />
         <AssociationConnector Association="Model.FK_Obligations_Offices" />
         <AssociationConnector Association="Model.FK_Obligations_Payees" />
         <AssociationConnector Association="Model.FK_Offices_Offices" />
         <AssociationConnector Association="Model.FK_Payees_Offices" />
-        <AssociationConnector Association="Model.FK_Users_Offices" />
         <AssociationConnector Association="Model.FK_Towns_Towns" />
-        <AssociationConnector Association="Model.FK_UserClaims_Users" />
-        <AssociationConnector Association="Model.FK_UserLogins_Users" />
         <AssociationConnector Association="Model.EmployeesInPayee" />
         <AssociationConnector Association="Model.UserRolesInFunctions" />
-        <AssociationConnector Association="Model.UsersInRoles" />
         <EntityTypeShape EntityType="Model.Payrolls" Width="1.5" PointX="15.5" PointY="39.375" />
         <AssociationConnector Association="Model.FK_Payrolls_Obligations" />
         <AssociationConnector Association="Model.FK_PayrollDetails_Payrolls" />
@@ -96,12 +90,9 @@
         <EntityTypeShape EntityType="Model.AIRDetails" Width="1.5" PointX="16.25" PointY="28.375" />
         <EntityTypeShape EntityType="Model.PIS" Width="1.5" PointX="11" PointY="29.375" />
         <EntityTypeShape EntityType="Model.PISDetails" Width="1.5" PointX="13.25" PointY="30.375" />
-        <AssociationConnector Association="Model.FK_PIS_Users" />
         <AssociationConnector Association="Model.FK_PISDetails_PIS" />
-        <AssociationConnector Association="Model.FK_Obligations_Users" />
         <EntityTypeShape EntityType="Model.AIReports" Width="1.5" PointX="14" PointY="23" />
         <AssociationConnector Association="Model.FK_AIRDetails_AIReports" />
-        <AssociationConnector Association="Model.FK_AIReports_Users" />
         <EntityTypeShape EntityType="Model.PurchaseRequests" Width="1.5" PointX="8.75" PointY="22.5" />
         <AssociationConnector Association="Model.FK_AIReports_PurchaseRequests" />
         <AssociationConnector Association="Model.FK_AllotmentLetter_PurchaseRequests" />
@@ -132,15 +123,27 @@
         <AssociationConnector Association="Model.FK_ICSDetails_ICS" />
         <EntityTypeShape EntityType="Model.DocumentActions" Width="1.5" PointX="8.75" PointY="52.5" />
         <AssociationConnector Association="Model.FK_DocumentActions_DocumentActions1" />
-        <AssociationConnector Association="Model.FK_DocumentActions_Users" />
-        <AssociationConnector Association="Model.UsersInDocumentActions" />
         <EntityTypeShape EntityType="Model.Letters" Width="1.5" PointX="7.375" PointY="7.75" />
         <AssociationConnector Association="Model.OBRInLetters" />
-        <AssociationConnector Association="Model.FK_Letters_Users" />
         <EntityTypeShape EntityType="Model.TrashBin" Width="1.5" PointX="9.375" PointY="3.75" />
         <AssociationConnector Association="Model.FK_TrashBin_TrashBin" />
         <AssociationConnector Association="Model.FK_TrashBin_Offices" />
         <EntityTypeShape EntityType="Model.ActionTakens" Width="1.5" PointX="9.375" PointY="7.75" />
+        <EntityTypeShape EntityType="Model.Files" Width="1.5" PointX="10.375" PointY="0.75" />
+        <AssociationConnector Association="Model.FK_Signatories_Employees" />
+        <AssociationConnector Association="Model.FK_Years_Offices" />
+        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="20.25" PointY="48.375" />
+        <AssociationConnector Association="Model.FK_AIReports_Users" />
+        <AssociationConnector Association="Model.FK_DocumentActions_Users" />
+        <AssociationConnector Association="Model.FK_Letters_Users" />
+        <AssociationConnector Association="Model.FK_Logs_Users" />
+        <AssociationConnector Association="Model.FK_Obligations_Users" />
+        <AssociationConnector Association="Model.FK_Users_Offices" />
+        <AssociationConnector Association="Model.FK_PIS_Users" />
+        <AssociationConnector Association="Model.FK_UserClaims_Users" />
+        <AssociationConnector Association="Model.FK_UserLogins_Users" />
+        <AssociationConnector Association="Model.UsersInDocumentActions" />
+        <AssociationConnector Association="Model.UsersInRoles" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

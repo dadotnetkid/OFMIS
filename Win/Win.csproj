@@ -30,8 +30,8 @@
     <MinimumRequiredVersion>1.0.0.73</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>265</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>40</ApplicationRevision>
+    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -204,6 +204,12 @@
     </Compile>
     <Compile Include="Actns\frmDocActions.designer.cs">
       <DependentUpon>frmDocActions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Actns\frmInstructionRemarks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Actns\frmInstructionRemarks.Designer.cs">
+      <DependentUpon>frmInstructionRemarks.cs</DependentUpon>
     </Compile>
     <Compile Include="Actns\frmTaskDone.cs">
       <SubType>Form</SubType>
@@ -380,6 +386,12 @@
     <Compile Include="frmUpdateNotification.Designer.cs">
       <DependentUpon>frmUpdateNotification.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUserSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserSettings.Designer.cs">
+      <DependentUpon>frmUserSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmYears.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -554,6 +566,12 @@
     <Compile Include="PR\UCAllotmentLetter.Designer.cs">
       <DependentUpon>UCAllotmentLetter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pyee\frmMembers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pyee\frmMembers.Designer.cs">
+      <DependentUpon>frmMembers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pyee\UCPayees.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -655,6 +673,12 @@
     </Compile>
     <Compile Include="Rprts\rptDetailedAccomplishmentReport.Designer.cs">
       <DependentUpon>rptDetailedAccomplishmentReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptDocumentLedger.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptDocumentLedger.Designer.cs">
+      <DependentUpon>rptDocumentLedger.cs</DependentUpon>
     </Compile>
     <Compile Include="Rprts\rptDV.cs">
       <SubType>Component</SubType>
@@ -826,12 +850,6 @@
     <Compile Include="Xcanner\frmListOfScanner.Designer.cs">
       <DependentUpon>frmListOfScanner.cs</DependentUpon>
     </Compile>
-    <Compile Include="Xcanner\frmScanner.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Xcanner\frmScanner.Designer.cs">
-      <DependentUpon>frmScanner.cs</DependentUpon>
-    </Compile>
     <Compile Include="SG\UCSalaryGrade.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -901,6 +919,24 @@
     <Compile Include="Usr\UCUsers.Designer.cs">
       <DependentUpon>UCUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Xcanner\frmLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Xcanner\frmLoading.Designer.cs">
+      <DependentUpon>frmLoading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Xcanner\frmPreviewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Xcanner\frmPreviewer.Designer.cs">
+      <DependentUpon>frmPreviewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Xcanner\frmScanner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Xcanner\frmScanner.Designer.cs">
+      <DependentUpon>frmScanner.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Accnts\frmAddEditAllotment.resx">
       <DependentUpon>frmAddEditAllotment.cs</DependentUpon>
     </EmbeddedResource>
@@ -924,6 +960,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Actns\frmDocActions.resx">
       <DependentUpon>frmDocActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Actns\frmInstructionRemarks.resx">
+      <DependentUpon>frmInstructionRemarks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Actns\frmTaskDone.resx">
       <DependentUpon>frmTaskDone.cs</DependentUpon>
@@ -1002,6 +1041,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpdateNotification.resx">
       <DependentUpon>frmUpdateNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUserSettings.resx">
+      <DependentUpon>frmUserSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmYears.resx">
       <DependentUpon>frmYears.cs</DependentUpon>
@@ -1091,6 +1133,9 @@
     <EmbeddedResource Include="PR\UCAllotmentLetter.resx">
       <DependentUpon>UCAllotmentLetter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pyee\frmMembers.resx">
+      <DependentUpon>frmMembers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pyee\UCPayees.resx">
       <DependentUpon>UCPayees.cs</DependentUpon>
     </EmbeddedResource>
@@ -1141,6 +1186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptDetailedAccomplishmentReport.resx">
       <DependentUpon>rptDetailedAccomplishmentReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptDocumentLedger.resx">
+      <DependentUpon>rptDocumentLedger.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptDV.resx">
       <DependentUpon>rptDV.cs</DependentUpon>
@@ -1236,9 +1284,6 @@
     <EmbeddedResource Include="Xcanner\frmListOfScanner.resx">
       <DependentUpon>frmListOfScanner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Xcanner\frmScanner.resx">
-      <DependentUpon>frmScanner.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SG\UCSalaryGrade.resx">
       <DependentUpon>UCSalaryGrade.cs</DependentUpon>
     </EmbeddedResource>
@@ -1272,6 +1317,15 @@
     <EmbeddedResource Include="Usr\UCUsers.resx">
       <DependentUpon>UCUsers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Xcanner\frmLoading.resx">
+      <DependentUpon>frmLoading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xcanner\frmPreviewer.resx">
+      <DependentUpon>frmPreviewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xcanner\frmScanner.resx">
+      <DependentUpon>frmScanner.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="App_Data\APP-CSE 2020 FORM Dwight Revised.xlsx" />
     <None Include="packages.config" />
@@ -1287,6 +1341,8 @@
     <None Include="Properties\DataSources\Models.TrashBin.datasource" />
     <None Include="Properties\DataSources\Models.Users.datasource" />
     <None Include="Properties\DataSources\Models.ViewModels.LetterViewModel.datasource" />
+    <None Include="Properties\DataSources\Models.ViewModels.ScannerViewModels.datasource" />
+    <None Include="Properties\DataSources\Models.Years.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1334,6 +1390,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lqdRpt\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WIA">
+      <Guid>{94A0E92D-43C0-494E-AC29-FD45948A5221}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

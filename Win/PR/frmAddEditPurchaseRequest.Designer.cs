@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditPurchaseRequest));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -93,7 +92,7 @@
             this.chkEarmarked = new DevExpress.XtraEditors.CheckEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.cboApprovedBy = new DevExpress.XtraEditors.LookUpEdit();
-            this.signatoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.signatoriesBindingSource = new System.Windows.Forms.BindingSource();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.txtBudgetControl = new DevExpress.XtraEditors.TextEdit();
             this.panel1.SuspendLayout();
@@ -152,9 +151,9 @@
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Location = new System.Drawing.Point(7, 85);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(60, 14);
+            this.labelControl2.Size = new System.Drawing.Size(74, 14);
             this.labelControl2.TabIndex = 53;
-            this.labelControl2.Text = "Control No.";
+            this.labelControl2.Text = "Office Ctrl No.";
             // 
             // labelControl1
             // 
@@ -261,7 +260,7 @@
             this.chkIsClosed.Name = "chkIsClosed";
             this.chkIsClosed.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkIsClosed.Properties.Appearance.Options.UseFont = true;
-            this.chkIsClosed.Properties.Caption = "is Closed";
+            this.chkIsClosed.Properties.Caption = "is Completed";
             this.chkIsClosed.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.chkIsClosed.Size = new System.Drawing.Size(138, 18);
             this.chkIsClosed.TabIndex = 11;
@@ -653,15 +652,16 @@
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(7, 107);
+            this.labelControl5.Location = new System.Drawing.Point(616, 63);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(40, 14);
             this.labelControl5.TabIndex = 53;
             this.labelControl5.Text = "ObR No";
+            this.labelControl5.Visible = false;
             // 
             // cboObRNo
             // 
-            this.cboObRNo.Location = new System.Drawing.Point(97, 104);
+            this.cboObRNo.Location = new System.Drawing.Point(706, 60);
             this.cboObRNo.Name = "cboObRNo";
             this.cboObRNo.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboObRNo.Properties.Appearance.Options.UseFont = true;
@@ -676,6 +676,7 @@
             this.cboObRNo.Properties.ValueMember = "Id";
             this.cboObRNo.Size = new System.Drawing.Size(278, 20);
             this.cboObRNo.TabIndex = 2;
+            this.cboObRNo.Visible = false;
             // 
             // chkEarmarked
             // 
@@ -724,15 +725,15 @@
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(383, 107);
+            this.labelControl8.Location = new System.Drawing.Point(7, 107);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(66, 14);
+            this.labelControl8.Size = new System.Drawing.Size(31, 14);
             this.labelControl8.TabIndex = 53;
-            this.labelControl8.Text = "Bdgt Ctrl No.";
+            this.labelControl8.Text = "PR No";
             // 
             // txtBudgetControl
             // 
-            this.txtBudgetControl.Location = new System.Drawing.Point(473, 104);
+            this.txtBudgetControl.Location = new System.Drawing.Point(97, 104);
             this.txtBudgetControl.Name = "txtBudgetControl";
             this.txtBudgetControl.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBudgetControl.Properties.Appearance.Options.UseFont = true;

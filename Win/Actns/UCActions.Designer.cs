@@ -183,10 +183,10 @@
             // imageCollection1
             // 
             this.imageCollection1.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection1.ImageStream")));
-            this.imageCollection1.Images.SetKeyName(0, "bookmark_16x16.png");
+            this.imageCollection1.Images.SetKeyName(0, "content_16x16.png");
             this.imageCollection1.Images.SetKeyName(1, "notes_16x16.png");
             this.imageCollection1.Images.SetKeyName(2, "unmergecells_16x16.png");
-            this.imageCollection1.Images.SetKeyName(3, "edittask_16x16.png");
+            this.imageCollection1.Images.SetKeyName(3, "edit_16x16.png");
             // 
             // panelControl1
             // 

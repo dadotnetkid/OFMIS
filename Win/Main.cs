@@ -36,11 +36,7 @@ namespace Win
         {
             new frmSplashScreen().ShowDialog(this);
             InitializeComponent();
-            this.param = param;
-            if (param.Any())
-                Impersonate(param);
-            else
-                Init();
+            Init();
             if (!backgroundWorker1.IsBusy)
                 backgroundWorker1.RunWorkerAsync();
         }
@@ -54,7 +50,7 @@ namespace Win
             if (!unitOfWork.YearsRepo.Fetch().Any(x => x.IsActive == true))
             {
                 MessageBox.Show("No Default Year Selected", "Default Year", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                       MessageBoxIcon.Information);
                 var frm = new frmYears();
                 frm.ShowDialog();
             }
@@ -65,17 +61,21 @@ namespace Win
             if (isLogged == false)
                 frm.ShowDialog();
             lblUsername.Caption = $"Name: {User.GetFullName() }";
-            lblUserLevel.Caption = $"User Level: {User.GetUserLevel()}";
-            pnlMain.Controls.Clear();
-            pnlMain.Controls.Add(new UCDashboard() { Dock = DockStyle.Fill });
+            lblUserLevel.Caption = $"User Level: {User.GetUserLevel()} - " + new StaticSettings()?.Offices?.OffcAcr;
             var unitOfWork = new UnitOfWork();
-            if (!unitOfWork.YearsRepo.Fetch().Any(x => x.IsActive == true))
+            StaticSettings staticSettings = new StaticSettings();
+            if (!unitOfWork.YearsRepo.Fetch(x => x.OfficeId == staticSettings.OfficeId).Any(x => x.IsActive == true))
             {
                 MessageBox.Show("No Default Year Selected", "Default Year", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 frm = new frmYears();
                 frm.ShowDialog();
             }
+            this.Text = $"OFMIS[{staticSettings.Year}]";
+            pnlMain.Controls.Clear();
+            pnlMain.Controls.Add(new UCDashboard() { Dock = DockStyle.Fill });
+
+
         }
         private void btnObligation_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -208,6 +208,7 @@ namespace Win
 
         private void btnLogout_ItemClick(object sender, DevExpress.XtraBars.Ribbon.BackstageViewItemEventArgs e)
         {
+            User.UserId = null;
             backstageViewControl1.Close();
             frmLogin frm = new frmLogin();
             frm.ShowDialog();
@@ -240,8 +241,12 @@ namespace Win
             {
                 if (this.pnlMain.Controls.Count > 0)
                 {
-                    var uc = this.pnlMain.Controls[0] as IUserControl;
-                    uc.Refresh();
+                    if (this.pnlMain.Controls[0] is IUserControl uc)
+                    {
+                        uc.Refresh();
+                    }
+
+
                 }
 
             }
@@ -345,6 +350,24 @@ namespace Win
             {
                 Dock = DockStyle.Fill
             });
+        }
+
+        private void btnRemarks_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmInstructionRemarks frmInstructionRemarks = new frmInstructionRemarks();
+            frmInstructionRemarks.ShowDialog();
+        }
+
+        private void btnActionTaken_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmActionTaken frm = new frmActionTaken();
+            frm.ShowDialog();
+        }
+
+        private void btnUserSetting_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmUserSettings frm = new frmUserSettings();
+            frm.ShowDialog();
         }
     }
 }

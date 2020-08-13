@@ -336,9 +336,9 @@ namespace Win.BL
                 {
                     var item = unitOfWork.PayrollsRepo.Fetch().OrderByDescending(m => m.Id);
                     var id = (item.FirstOrDefault()?.Id ?? 0) + 1;
-                    var approvedBy = unitOfWork.Signatories.Find(x => x.Position =="Governor");
+                    var approvedBy = unitOfWork.Signatories.Find(x => x.Position == "Governor");
 
-                   
+
 
                     payrolls = new Payrolls()
                     {
@@ -351,7 +351,7 @@ namespace Win.BL
                         ApprovedByPos = approvedBy?.Position
                     };
                     int itemNo = 1;
-                    foreach (var i in unitOfWork.ObligationsRepo.Find(m => m.Id == obId).Payees.Employees)
+                    foreach (var i in unitOfWork.ObligationsRepo.Find(m => m.Id == obId).Payees.Employees.OrderBy(x => x.LastName))
                     {
                         payrolls.PayrollDetails.Add(new PayrollDetails()
                         {

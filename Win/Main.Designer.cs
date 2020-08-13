@@ -63,6 +63,9 @@
             this.lblTime = new DevExpress.XtraBars.BarStaticItem();
             this.btnDashboard = new DevExpress.XtraBars.BarButtonItem();
             this.btnAccomplishmentReport = new DevExpress.XtraBars.BarButtonItem();
+            this.btnTrashbin = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRemarks = new DevExpress.XtraBars.BarButtonItem();
+            this.btnActionTaken = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -81,7 +84,7 @@
             this.pnlMain = new DevExpress.XtraEditors.PanelControl();
             this.toastManager = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.btnTrashbin = new DevExpress.XtraBars.BarButtonItem();
+            this.btnUserSetting = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
@@ -123,16 +126,19 @@
             this.lblTime,
             this.btnDashboard,
             this.btnAccomplishmentReport,
-            this.btnTrashbin});
+            this.btnTrashbin,
+            this.btnRemarks,
+            this.btnActionTaken,
+            this.btnUserSetting});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 28;
+            this.ribbonControl1.MaxItemId = 31;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPage2,
             this.ribbonPage3});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019;
-            this.ribbonControl1.Size = new System.Drawing.Size(989, 156);
+            this.ribbonControl1.Size = new System.Drawing.Size(1344, 156);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // backstageViewControl1
@@ -405,6 +411,33 @@
             this.btnAccomplishmentReport.Name = "btnAccomplishmentReport";
             this.btnAccomplishmentReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAccomplishmentReport_ItemClick);
             // 
+            // btnTrashbin
+            // 
+            this.btnTrashbin.Caption = "Trash Bin";
+            this.btnTrashbin.Id = 27;
+            this.btnTrashbin.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTrashbin.ImageOptions.Image")));
+            this.btnTrashbin.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnTrashbin.ImageOptions.LargeImage")));
+            this.btnTrashbin.Name = "btnTrashbin";
+            this.btnTrashbin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTrashbin_ItemClick);
+            // 
+            // btnRemarks
+            // 
+            this.btnRemarks.Caption = "Instruction Remarks";
+            this.btnRemarks.Id = 28;
+            this.btnRemarks.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRemarks.ImageOptions.Image")));
+            this.btnRemarks.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnRemarks.ImageOptions.LargeImage")));
+            this.btnRemarks.Name = "btnRemarks";
+            this.btnRemarks.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRemarks_ItemClick);
+            // 
+            // btnActionTaken
+            // 
+            this.btnActionTaken.Caption = "Action Taken";
+            this.btnActionTaken.Id = 29;
+            this.btnActionTaken.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnActionTaken.ImageOptions.Image")));
+            this.btnActionTaken.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnActionTaken.ImageOptions.LargeImage")));
+            this.btnActionTaken.Name = "btnActionTaken";
+            this.btnActionTaken.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnActionTaken_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -493,6 +526,8 @@
             this.maintenanceOpt.ItemLinks.Add(this.btnItems);
             this.maintenanceOpt.ItemLinks.Add(this.btnActionTree);
             this.maintenanceOpt.ItemLinks.Add(this.btnTrashbin);
+            this.maintenanceOpt.ItemLinks.Add(this.btnRemarks);
+            this.maintenanceOpt.ItemLinks.Add(this.btnActionTaken);
             this.maintenanceOpt.Name = "maintenanceOpt";
             this.maintenanceOpt.Text = "Options";
             // 
@@ -509,6 +544,7 @@
             // 
             this.ribbonPageGroup6.ItemLinks.Add(this.btnUsers);
             this.ribbonPageGroup6.ItemLinks.Add(this.btnUserlevel);
+            this.ribbonPageGroup6.ItemLinks.Add(this.btnUserSetting);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
             // 
             // ribbonPageGroup3
@@ -523,14 +559,14 @@
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 645);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(989, 22);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1344, 22);
             // 
             // pnlMain
             // 
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 156);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(989, 489);
+            this.pnlMain.Size = new System.Drawing.Size(1344, 489);
             this.pnlMain.TabIndex = 4;
             // 
             // toastManager
@@ -543,21 +579,21 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
-            // btnTrashbin
+            // btnUserSetting
             // 
-            this.btnTrashbin.Caption = "Trash Bin";
-            this.btnTrashbin.Id = 27;
-            this.btnTrashbin.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.btnTrashbin.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
-            this.btnTrashbin.Name = "btnTrashbin";
-            this.btnTrashbin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTrashbin_ItemClick);
+            this.btnUserSetting.Caption = "User Settings";
+            this.btnUserSetting.Id = 30;
+            this.btnUserSetting.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
+            this.btnUserSetting.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
+            this.btnUserSetting.Name = "btnUserSetting";
+            this.btnUserSetting.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUserSetting_ItemClick);
             // 
             // Main
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.True;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(989, 667);
+            this.ClientSize = new System.Drawing.Size(1344, 667);
             this.Controls.Add(this.backstageViewControl1);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.ribbonStatusBar1);
@@ -633,6 +669,9 @@
         private DevExpress.XtraBars.BarButtonItem btnAccomplishmentReport;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
         private DevExpress.XtraBars.BarButtonItem btnTrashbin;
+        private DevExpress.XtraBars.BarButtonItem btnRemarks;
+        private DevExpress.XtraBars.BarButtonItem btnActionTaken;
+        private DevExpress.XtraBars.BarButtonItem btnUserSetting;
     }
 }
 

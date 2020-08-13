@@ -23,6 +23,7 @@ namespace Models
             this.PayrollWageDetails = new HashSet<PayrollWageDetails>();
             this.PayrollDifferentialDetails = new HashSet<PayrollDifferentialDetails>();
             this.Liquidations = new HashSet<Liquidations>();
+            this.Signatories = new HashSet<Signatories>();
         }
     
         public int Id { get; set; }
@@ -41,6 +42,9 @@ namespace Models
         public string SG { get; set; }
         public string SSS { get; set; }
         public string ExtName { get; set; }
+        public string GSIS { get; set; }
+        public string SalaryGrade { get; set; }
+        public string Steps { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayrollDetails> PayrollDetails { get; set; }
@@ -55,5 +59,7 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liquidations> Liquidations { get; set; }
         public virtual Offices Offices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Signatories> Signatories { get; set; }
     }
 }

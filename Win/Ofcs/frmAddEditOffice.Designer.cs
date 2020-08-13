@@ -38,8 +38,6 @@
             this.txtTelNo = new DevExpress.XtraEditors.TextEdit();
             this.txtOfficeName = new DevExpress.XtraEditors.TextEdit();
             this.txtOfficeAcr = new DevExpress.XtraEditors.TextEdit();
-            this.txtResponsibilityCenter = new DevExpress.XtraEditors.CheckedComboBoxEdit();
-            this.txtCode = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -52,12 +50,14 @@
             this.txtInsideAddress = new DevExpress.XtraRichEdit.RichEditControl();
             this.chkDivision = new DevExpress.XtraEditors.CheckEdit();
             this.cboUnderOf = new DevExpress.XtraEditors.LookUpEdit();
+            this.officesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.officesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtHeadChief = new DevExpress.XtraEditors.LookUpEdit();
             this.employeesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtResponsibilityCenter = new DevExpress.XtraEditors.TextEdit();
+            this.txtCode = new DevExpress.XtraEditors.TextEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).BeginInit();
@@ -65,13 +65,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTelNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOfficeName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOfficeAcr.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtResponsibilityCenter.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkDivision.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboUnderOf.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.officesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeadChief.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtResponsibilityCenter.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -144,40 +144,6 @@
             this.txtOfficeAcr.Name = "txtOfficeAcr";
             this.txtOfficeAcr.Size = new System.Drawing.Size(310, 20);
             this.txtOfficeAcr.TabIndex = 0;
-            // 
-            // txtResponsibilityCenter
-            // 
-            this.txtResponsibilityCenter.EditValue = "";
-            this.txtResponsibilityCenter.Location = new System.Drawing.Point(123, 192);
-            this.txtResponsibilityCenter.Name = "txtResponsibilityCenter";
-            this.txtResponsibilityCenter.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtResponsibilityCenter.Properties.DisplayMember = "Name";
-            this.txtResponsibilityCenter.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.txtResponsibilityCenter.Properties.ValueMember = "Name";
-            this.txtResponsibilityCenter.Size = new System.Drawing.Size(310, 20);
-            this.txtResponsibilityCenter.TabIndex = 6;
-            // 
-            // txtCode
-            // 
-            this.txtCode.Location = new System.Drawing.Point(123, 215);
-            this.txtCode.Name = "txtCode";
-            this.txtCode.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.txtCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtCode.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OffcAcr", "OffcAcr"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("OfficeName", "OfficeName"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Chief", "Chief"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ChiefPosition", "ChiefPosition"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ResponsibilityCenter", "Responsibility Center"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ResponsibilityCenterCode", "Code")});
-            this.txtCode.Properties.DisplayMember = "OfficeName";
-            this.txtCode.Properties.NullText = "";
-            this.txtCode.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.txtCode.Properties.ValueMember = "Id";
-            this.txtCode.Size = new System.Drawing.Size(310, 20);
-            this.txtCode.TabIndex = 7;
             // 
             // labelControl1
             // 
@@ -293,6 +259,10 @@
             this.cboUnderOf.Size = new System.Drawing.Size(310, 20);
             this.cboUnderOf.TabIndex = 10;
             // 
+            // officesBindingSource
+            // 
+            this.officesBindingSource.DataSource = typeof(Models.Offices);
+            // 
             // labelControl10
             // 
             this.labelControl10.Location = new System.Drawing.Point(13, 341);
@@ -327,10 +297,6 @@
             this.btnSave.Text = "Save ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // officesBindingSource
-            // 
-            this.officesBindingSource.DataSource = typeof(Models.Offices);
-            // 
             // txtHeadChief
             // 
             this.txtHeadChief.Location = new System.Drawing.Point(123, 148);
@@ -352,6 +318,22 @@
             // employeesBindingSource
             // 
             this.employeesBindingSource.DataSource = typeof(Models.Employees);
+            // 
+            // txtResponsibilityCenter
+            // 
+            this.txtResponsibilityCenter.EditValue = "";
+            this.txtResponsibilityCenter.Location = new System.Drawing.Point(123, 192);
+            this.txtResponsibilityCenter.Name = "txtResponsibilityCenter";
+            this.txtResponsibilityCenter.Size = new System.Drawing.Size(310, 20);
+            this.txtResponsibilityCenter.TabIndex = 6;
+            // 
+            // txtCode
+            // 
+            this.txtCode.Location = new System.Drawing.Point(123, 215);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.txtCode.Size = new System.Drawing.Size(310, 20);
+            this.txtCode.TabIndex = 7;
             // 
             // frmAddEditOffice
             // 
@@ -376,12 +358,12 @@
             this.Controls.Add(this.txtTelNo);
             this.Controls.Add(this.txtOfficeName);
             this.Controls.Add(this.txtOfficeAcr);
-            this.Controls.Add(this.txtResponsibilityCenter);
             this.Controls.Add(this.cboUnderOf);
-            this.Controls.Add(this.txtCode);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.chkDivision);
             this.Controls.Add(this.txtHeadChief);
+            this.Controls.Add(this.txtResponsibilityCenter);
+            this.Controls.Add(this.txtCode);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAddEditOffice";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -395,13 +377,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTelNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOfficeName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOfficeAcr.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtResponsibilityCenter.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkDivision.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboUnderOf.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.officesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeadChief.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtResponsibilityCenter.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -417,8 +399,6 @@
         private DevExpress.XtraEditors.TextEdit txtTelNo;
         private DevExpress.XtraEditors.TextEdit txtOfficeName;
         private DevExpress.XtraEditors.TextEdit txtOfficeAcr;
-        private DevExpress.XtraEditors.CheckedComboBoxEdit txtResponsibilityCenter;
-        private DevExpress.XtraEditors.LookUpEdit txtCode;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
@@ -437,5 +417,7 @@
         private System.Windows.Forms.BindingSource officesBindingSource;
         private DevExpress.XtraEditors.LookUpEdit txtHeadChief;
         private System.Windows.Forms.BindingSource employeesBindingSource;
+        private DevExpress.XtraEditors.TextEdit txtResponsibilityCenter;
+        private DevExpress.XtraEditors.TextEdit txtCode;
     }
 }

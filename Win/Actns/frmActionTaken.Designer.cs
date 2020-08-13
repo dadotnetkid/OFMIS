@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmActionTaken));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -39,7 +38,7 @@
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.ActionTakenGridControl = new DevExpress.XtraGrid.GridControl();
-            this.actionTakensBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.actionTakensBindingSource = new System.Windows.Forms.BindingSource();
             this.ActionTakenGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colActionTaken = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -113,7 +112,7 @@
             this.colDelete});
             this.ActionTakenGridView.GridControl = this.ActionTakenGridControl;
             this.ActionTakenGridView.Name = "ActionTakenGridView";
-            this.ActionTakenGridView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.ActionTakenGridView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.ActionTakenGridView.OptionsView.ShowGroupPanel = false;
             this.ActionTakenGridView.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.ActionTakenGridView_RowUpdated);
             // 

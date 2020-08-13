@@ -169,7 +169,6 @@ namespace Win.BL
                 obligations.Year = this.obligations.Year ?? new StaticSettings().Year;
                 obligations.ResponsibilityCenter = new StaticSettings().ResponsibilityCenter;
                 obligations.ResponsibilityCenterCode = new StaticSettings().ResponsibilityCenterCode;
-                obligations.OfficeId = new StaticSettings().OfficeId;
                 obligations.PRNo = this.obligations.PRNo;
                 obligations.DateClosed = this.obligations.DateClosed;
                 obligations.DVApprovedBy = this.obligations.DVApprovedBy;
@@ -192,6 +191,21 @@ namespace Win.BL
                 {
                     obligations.DateModified = DateTime.Now;
                     obligations.ModifiedBy = User.UserId;
+                }
+                if (frm.chkClosed.Checked)
+                {
+                    unitOfWork.DocumentActionsRepo.Insert(new DocumentActions()
+                    {
+                        ControlNo = obligations.ControlNo,
+                        ObR_PR_No = obligations.BudgetControlNo,
+                        ActionDate = DateTime.Now,
+                        DateCreated = DateTime.Now,
+                        CreatedBy = User.UserId,
+                        ActionTaken = "Transaction completed",
+                        RefId = obligations.Id,
+                        TableName = "Obligations",
+
+                    });
                 }
                 unitOfWork.Save();
                 this.isClosed = true;
@@ -290,6 +304,8 @@ namespace Win.BL
                     ORDetails = obligations?.ORDetails ?? new List<ORDetails>(),
                     PRNo = obligations?.PRNo,
                     OfficeId = new StaticSettings().OfficeId,
+                    CreatedBy=User.UserId,
+                    DateCreated=DateTime.Now
                 };
                 unitOfWork.ObligationsRepo.Insert(obligations);
                 unitOfWork.Save();

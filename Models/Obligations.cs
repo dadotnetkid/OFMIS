@@ -64,6 +64,7 @@ namespace Models
         public string ModifiedData { get; set; }
         public Nullable<decimal> TotalAdjustedAmount { get; set; }
         public Nullable<int> POId { get; set; }
+        public Nullable<decimal> DVAmount { get; set; }
     
         public virtual Offices Offices { get; set; }
         public virtual Payees Payees { get; set; }
@@ -73,11 +74,11 @@ namespace Models
         public virtual ICollection<ORDetails> ORDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayrollDifferentials> PayrollDifferentials { get; set; }
-        public virtual Users CreatedByUser { get; set; }
         public virtual PurchaseOrders PurchaseOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liquidations> Liquidations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Letters> Letters { get; set; }
+        public virtual Users CreatedByUser { get; set; }
     }
 }

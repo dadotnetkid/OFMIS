@@ -52,8 +52,8 @@
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDeletePQRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
+            this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.entityServerModeSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.POGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.entityServerModeSource2)).BeginInit();
@@ -177,19 +177,6 @@
             this.panelControl1.Size = new System.Drawing.Size(931, 32);
             this.panelControl1.TabIndex = 2;
             // 
-            // btnNew
-            // 
-            this.btnNew.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnNew.Appearance.Options.UseFont = true;
-            this.btnNew.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.btnNew.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.btnNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
-            this.btnNew.Location = new System.Drawing.Point(5, 5);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(102, 23);
-            this.btnNew.TabIndex = 13;
-            this.btnNew.Text = "Add New";
-            // 
             // btnPreview
             // 
             this.btnPreview.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -202,6 +189,19 @@
             this.btnPreview.Size = new System.Drawing.Size(102, 23);
             this.btnPreview.TabIndex = 15;
             this.btnPreview.Text = "Preview";
+            // 
+            // btnNew
+            // 
+            this.btnNew.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnNew.Appearance.Options.UseFont = true;
+            this.btnNew.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnNew.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.btnNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
+            this.btnNew.Location = new System.Drawing.Point(5, 5);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(102, 23);
+            this.btnNew.TabIndex = 13;
+            this.btnNew.Text = "Add New";
             // 
             // UCPO
             // 

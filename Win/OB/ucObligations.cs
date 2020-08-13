@@ -143,9 +143,12 @@ namespace Win.OB
 
             if (e.Column.Name == "colDescription")
             {
-                Obligations mark = view.GetRow(e.RowHandle) as Obligations;
-                if (mark.Earmarked == true)
-                    e.Appearance.ForeColor = Color.Red;
+                if (view.GetRow(e.RowHandle) is Obligations mark)
+                {
+                    if (mark.Earmarked == true)
+                        e.Appearance.ForeColor = Color.Red;
+                }
+             
                 //                e.Appearance.TextOptions.HAlignment = _mark ? HorzAlignment.Far : HorzAlignment.Near;
             }
 

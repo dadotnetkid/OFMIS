@@ -16,20 +16,23 @@ namespace Win.Actns
 {
     public partial class UCDashboard : DevExpress.XtraEditors.XtraUserControl
     {
+        private StaticSettings staticSettings = new StaticSettings();
         public UCDashboard()
         {
             InitializeComponent();
             this.Init();
         }
 
+
         private void Init()
         {
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
-                var documents = unitOfWork.DocumentActionsRepo.Get(x => x.Users.Any(m => m.Id == User.UserId) && x.IsSend == true && x.isDone != true);
-
-                this.documentActionsBindingSource.DataSource = documents;
+                var documents = unitOfWork.DocumentActionsRepo.Get(x => x.RoutedToUsers.Any(m => m.Id == User.UserId) && x.IsSend == true && x.isDone != true);
+                this.usersBindingSource.DataSource =
+                    unitOfWork.UsersRepo.Get(x => x.OfficeId == staticSettings.OfficeId); this.documentActionsBindingSource.DataSource = documents;
+                this.cboUsers.EditValue = User.UserId;
                 this.Detail(documents.FirstOrDefault());
             }
             catch (Exception e)
@@ -40,9 +43,11 @@ namespace Win.Actns
 
         private void Detail(DocumentActions document)
         {
+            if (document == null)
+                return;
             this.ActionTakenGridControl.DataSource =
                 new UnitOfWork().DocumentActionsRepo.Get(x =>
-                    x.RefId == document.RefId && x.TableName == document.TableName,orderBy:x=>x.OrderByDescending(m=>m.DateCreated));
+                    x.RefId == document.RefId && x.TableName == document.TableName, orderBy: x => x.OrderByDescending(m => m.DateCreated));
         }
 
         private void lblControlNumber_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -61,14 +66,18 @@ namespace Win.Actns
                     var obr = new ucObligations() { Dock = DockStyle.Fill };
                     obr.txtSearch.Text = documentActions.ControlNo;
                     frm.pnlMain.Controls.Add(obr);
-                    obr.loadObligations.Search(documentActions.ControlNo);
+                    obr.loadObligations.Search(documentActions.ControlNo, true);
                 }
                 else
                 {
                     Main frm = Application.OpenForms["Main"] as Main;
                     frm.pnlMain.Controls.Clear();
-                    var pr = new PR.UCPurchaseRequest() { Dock = DockStyle.Fill };
-                    pr.txtSearch.Text = documentActions.ControlNo;
+
+
+
+                    var pr = new PR.UCPurchaseRequest(documentActions.ControlNo) { Dock = DockStyle.Fill };
+                    //pr.txtSearch.Text = documentActions.ControlNo;
+                    pr.loadAddEditPurchaseRequest.Search(documentActions.ControlNo, true);
                     frm.pnlMain.Controls.Add(pr);
                     pr.btnSearch.PerformClick();
                 }
@@ -87,7 +96,7 @@ namespace Win.Actns
                     CreatedBy = User.UserId,
                     DateCreated = DateTime.Now,
                     ControlNo = item.ControlNo,
-
+                    Year = item.Year
                 });
                 frm.ShowDialog();
                 Init();
@@ -110,6 +119,44 @@ namespace Win.Actns
             {
                 Detail(item);
             }
+        }
+
+        private void cboUsers_EditValueChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        void Search()
+        {
+            try
+            {
+                UnitOfWork unitOfWork = new UnitOfWork();
+                var documents = unitOfWork.DocumentActionsRepo.Fetch(x => x.RoutedToUsers.Any(m => m.Id == User.UserId) && x.IsSend == true && x.isDone != true);
+                if (cboUsers.EditValue != null)
+                {
+                    var user = cboUsers.EditValue.ToString();
+                    documents = documents.Where(x => x.RoutedToUsers.Any(m => m.Id == user));
+
+                }
+
+                if (dtFrom.EditValue != null && dtTo.EditValue != null)
+                {
+                    var dateTo = dtTo.DateTime.AddHours(11).AddMinutes(59).AddSeconds(59);
+                    documents = documents.Where(x => x.ActionDate >= dtFrom.DateTime && x.ActionDate <= dateTo);
+
+                }
+                this.documentActionsBindingSource.DataSource = documents.ToList();
+                this.Detail(documents.FirstOrDefault());
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        private void dtTo_EditValueChanged(object sender, EventArgs e)
+        {
+            Search();
         }
     }
 }

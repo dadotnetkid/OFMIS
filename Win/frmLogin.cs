@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Helpers;
+using Models;
 using Models.Repository;
 using Win.Properties;
 
@@ -17,21 +18,33 @@ namespace Win
     public partial class frmLogin : DevExpress.XtraEditors.XtraForm
     {
         private bool isClosed;
-
+        private List<Users> users = new List<Users>();
         public frmLogin()
         {
             InitializeComponent();
             txtToday.Text = DateTime.Now.ToString();
+            if (Settings.Default.UserNames == null)
+            {
+                Settings.Default.UserNames = new System.Collections.Specialized.StringCollection();
+            }
+            foreach (var i in Settings.Default.UserNames)
+            {
+                if (users.All(x => x.UserName != i))
+                    users.Add(new Users() { Id = Guid.NewGuid().ToString(), UserName = i });
+            }
+            this.txtUserName.Properties.DataSource = users;
+
         }
 
 
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
+
             if (Settings.Default.RememberMe)
             {
                 txtPassword.Text = Settings.Default.Password;
-                txtUserName.Text = Settings.Default.UserName;
+                txtUserName.EditValue = Settings.Default.UserName;
                 chkRemember.Checked = Settings.Default.RememberMe;
             }
         }
@@ -58,8 +71,9 @@ namespace Win
                             PasswordHash = cms_user.USER_pwd
                         });
                     unitOfWork.Save();
-                }}
-             
+                }
+            }
+
             unitOfWork = new UnitOfWork();
             var user = unitOfWork.UsersRepo.Find(m => m.UserName == txtUserName.Text);
 
@@ -74,7 +88,8 @@ namespace Win
                 MessageBox.Show("Invalid UserName", "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            if (!Settings.Default.UserNames.Contains(txtUserName.Text))
+                Settings.Default.UserNames.Add(txtUserName.Text);
 
             if (chkRemember.Checked)
             {
@@ -90,6 +105,8 @@ namespace Win
                 Settings.Default.RememberMe = false;
                 Settings.Default.Save();
             }
+
+
             User.UserId = user.Id;
             isClosed = true;
             this.Close();

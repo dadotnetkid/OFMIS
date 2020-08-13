@@ -116,6 +116,8 @@ namespace Win
                 {
                     UnitOfWork unitOfWork = new UnitOfWork();
                     var office = unitOfWork.OfficesRepo.Find(x => x.Chief == item.Person);
+                    if (office == null)
+                        return;
                     item.Office = office.OfficeName;
                     item.Position = office.ChiefPosition;
                 }

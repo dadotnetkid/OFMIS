@@ -292,7 +292,7 @@
             this.spinAmountRepo.EditFormat.FormatString = "#,#.#0";
             this.spinAmountRepo.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.spinAmountRepo.Name = "spinAmountRepo";
-            this.spinAmountRepo.ReadOnly = true;
+            this.spinAmountRepo.UseReadOnlyAppearance = false;
             // 
             // colDateCreated
             // 
@@ -386,7 +386,7 @@
             this.chkIsClosed.Properties.Appearance.Options.UseFont = true;
             this.chkIsClosed.Properties.Caption = "is Closed";
             this.chkIsClosed.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.chkIsClosed.Size = new System.Drawing.Size(138, 19);
+            this.chkIsClosed.Size = new System.Drawing.Size(138, 18);
             this.chkIsClosed.TabIndex = 90;
             // 
             // labelControl4

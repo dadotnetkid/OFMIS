@@ -33,7 +33,7 @@ namespace Win.Rprts
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
                 StaticSettings staticSettings = new StaticSettings();
-                cboStaff.Properties.DataSource = unitOfWork.UsersRepo.Get();
+                cboStaff.Properties.DataSource = unitOfWork.UsersRepo.Get(x=>x.OfficeId==staticSettings.OfficeId);
                 cboNotedBy.Properties.DataSource = unitOfWork.EmployeesRepo.Get(x => x.OfficeId == staticSettings.OfficeId);
                 cboReviewedBy.Properties.DataSource =
                                     unitOfWork.EmployeesRepo.Get(x => x.OfficeId == staticSettings.OfficeId);

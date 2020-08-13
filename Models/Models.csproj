@@ -213,6 +213,9 @@
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Enums.cs" />
+    <Compile Include="Files.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="ForgotPassword.cs" />
     <Compile Include="FormProperties.cs" />
     <Compile Include="Functions.cs">

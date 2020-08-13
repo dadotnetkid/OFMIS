@@ -10,6 +10,9 @@ namespace Models
     [MetadataType(typeof(EmployeeMeta))]
     public partial class Employees
     {
+        [Newtonsoft.Json.JsonIgnore]
+        public bool isSelected { get; set; }
+
         [Newtonsoft.Json.JsonIgnoreAttribute]
         public string EmployeeNameByLastName => this.LastName + ", " + this.FirstName + " " + this.MiddleName[0] + ".";
 
@@ -23,15 +26,16 @@ namespace Models
                 {
                     if (FirstName != null && MiddleName != null && LastName != null)
                     {
-                        _EmployeeName = this.FirstName + " " + this.MiddleName?[0] + ". " + this.LastName + " " + this.ExtName;
+                        var MI = string.IsNullOrEmpty(MiddleName) ? "" : MiddleName[0].ToString();
+                        _EmployeeName = this.FirstName + " " + MI + ". " + this.LastName + " " + this.ExtName;
                     }
                 }
-                 
+
                 return _EmployeeName;
             }
             set { _EmployeeName = value; }
         }
-
+        public string EmployeeFullNameWithMiddleName => this.FirstName + " " + MiddleName  + this.LastName + " " + this.ExtName;
     }
 
 

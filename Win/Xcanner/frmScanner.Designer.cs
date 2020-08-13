@@ -30,11 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScanner));
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.pctScanImage = new DevExpress.XtraEditors.PictureEdit();
             this.btnSubmit = new DevExpress.XtraEditors.SimpleButton();
             this.btnScan = new DevExpress.XtraEditors.SimpleButton();
             this.memoExEdit1 = new DevExpress.XtraEditors.MemoEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
+            this.btnTestFileServer = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.pctScanImage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoExEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,38 +47,38 @@
             this.labelControl1.TabIndex = 8;
             this.labelControl1.Text = "Description";
             // 
-            // pictureEdit1
+            // pctScanImage
             // 
-            this.pictureEdit1.Location = new System.Drawing.Point(12, 12);
-            this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.AllowScrollViaMouseDrag = true;
-            this.pictureEdit1.Properties.AllowZoomOnMouseWheel = DevExpress.Utils.DefaultBoolean.True;
-            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
-            this.pictureEdit1.Properties.ZoomAcceleration = 2D;
-            this.pictureEdit1.Properties.ZoomingOperationMode = DevExpress.XtraEditors.Repository.ZoomingOperationMode.ControlMouseWheel;
-            this.pictureEdit1.Size = new System.Drawing.Size(392, 211);
-            this.pictureEdit1.TabIndex = 6;
+            this.pctScanImage.Location = new System.Drawing.Point(12, 12);
+            this.pctScanImage.Name = "pctScanImage";
+            this.pctScanImage.Properties.AllowScrollViaMouseDrag = true;
+            this.pctScanImage.Properties.AllowZoomOnMouseWheel = DevExpress.Utils.DefaultBoolean.True;
+            this.pctScanImage.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pctScanImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
+            this.pctScanImage.Properties.ZoomAcceleration = 2D;
+            this.pctScanImage.Properties.ZoomingOperationMode = DevExpress.XtraEditors.Repository.ZoomingOperationMode.ControlMouseWheel;
+            this.pctScanImage.Size = new System.Drawing.Size(392, 211);
+            this.pctScanImage.TabIndex = 6;
             // 
             // btnSubmit
             // 
             this.btnSubmit.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.btnSubmit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSubmit.ImageOptions.Image")));
             this.btnSubmit.Location = new System.Drawing.Point(301, 385);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(103, 23);
             this.btnSubmit.TabIndex = 4;
             this.btnSubmit.Text = "Submit";
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // btnScan
             // 
             this.btnScan.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.btnScan.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnScan.ImageOptions.Image")));
             this.btnScan.Location = new System.Drawing.Point(192, 385);
             this.btnScan.Name = "btnScan";
             this.btnScan.Size = new System.Drawing.Size(103, 23);
             this.btnScan.TabIndex = 5;
             this.btnScan.Text = "Scan";
+            this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
             // 
             // memoExEdit1
             // 
@@ -87,19 +88,32 @@
             this.memoExEdit1.Size = new System.Drawing.Size(391, 130);
             this.memoExEdit1.TabIndex = 7;
             // 
+            // btnTestFileServer
+            // 
+            this.btnTestFileServer.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnTestFileServer.Location = new System.Drawing.Point(83, 385);
+            this.btnTestFileServer.Name = "btnTestFileServer";
+            this.btnTestFileServer.Size = new System.Drawing.Size(103, 23);
+            this.btnTestFileServer.TabIndex = 5;
+            this.btnTestFileServer.Text = "Test File Server";
+            this.btnTestFileServer.Click += new System.EventHandler(this.btnTestFileServer_Click);
+            // 
             // frmScanner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 417);
+            this.ClientSize = new System.Drawing.Size(423, 423);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.pictureEdit1);
+            this.Controls.Add(this.pctScanImage);
             this.Controls.Add(this.btnSubmit);
+            this.Controls.Add(this.btnTestFileServer);
             this.Controls.Add(this.btnScan);
             this.Controls.Add(this.memoExEdit1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmScanner";
-            this.Text = "frmScanner";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Scanner";
+            ((System.ComponentModel.ISupportInitialize)(this.pctScanImage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoExEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -109,9 +123,10 @@
         #endregion
 
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        public DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        public DevExpress.XtraEditors.PictureEdit pctScanImage;
         private DevExpress.XtraEditors.SimpleButton btnSubmit;
         private DevExpress.XtraEditors.SimpleButton btnScan;
         private DevExpress.XtraEditors.MemoEdit memoExEdit1;
+        private DevExpress.XtraEditors.SimpleButton btnTestFileServer;
     }
 }

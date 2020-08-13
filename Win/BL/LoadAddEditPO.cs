@@ -40,14 +40,14 @@ namespace Win.BL
             {
                 item = new UnitOfWork().PurchaseOrdersRepo.Find(m => m.Id == item.Id);
                 item.PODetails = item.PODetails.OrderBy(x => x.ItemNo).ToList();
-                if (item.PODetails.Count < 15)
-                {
-                    var counter = 15 - item.PODetails.Count;
-                    for (var i = 1; i <= counter; i++)
-                    {
-                        item.PODetails.Add(new PODetails());
-                    }
-                }
+                //if (item.PODetails.Count < 15)
+                //{
+                //    var counter = 15 - item.PODetails.Count;
+                //    for (var i = 1; i <= counter; i++)
+                //    {
+                //        item.PODetails.Add(new PODetails());
+                //    }
+                //}
 
 
                 frmReportViewer frm = new frmReportViewer(new rptPO(item)
@@ -267,7 +267,10 @@ namespace Win.BL
                     item.POId = purchaseOrders.Id;
                     item.TotalAmount = item.Quantity * item.Cost;
                     if (item.Id == 0)
+                    {
+                        item.Category = item.Category ?? "";
                         unitOfWork.PODetailsRepo.Insert(item);
+                    }
                     else
                     {
                         var res = unitOfWork.PODetailsRepo.Find(x => x.Id == item.Id);

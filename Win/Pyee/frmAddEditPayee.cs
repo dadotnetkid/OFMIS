@@ -11,12 +11,16 @@ using DevExpress.XtraEditors;
 using Models;
 using Win.BL;
 using Helpers;
+using Models.Repository;
+using Win.Pyee;
+
 namespace Win.OB
 {
     public partial class frmAddEditPayee : DevExpress.XtraEditors.XtraForm
     {
         private AddEditPayees addEditLoadPayees;
         private MethodType methodType;
+        private Payees payees;
 
         public frmAddEditPayee(MethodType methodType, Payees payees)
         {
@@ -24,6 +28,7 @@ namespace Win.OB
             this.addEditLoadPayees = new AddEditPayees(this, payees) { methodType = methodType };
             addEditLoadPayees.Init();
             this.methodType = methodType;
+            this.payees = payees;
         }
 
         private void frmAddEditPayee_Load(object sender, EventArgs e)
@@ -58,5 +63,13 @@ namespace Win.OB
         {
             addEditLoadPayees.Close(e);
         }
+
+        private void btnMembers_Click(object sender, EventArgs e)
+        {
+            frmMembers frm = new frmMembers(payees);
+            frm.ShowDialog();
+            UnitOfWork unitOfWork = new UnitOfWork();
+            var res = unitOfWork.PayeesRepo.Find(x => x.Id == payees.Id);
+            cboMembers.EditValue = string.Join(",", res.Employees.Select(x => x.EmployeeName));}
     }
 }

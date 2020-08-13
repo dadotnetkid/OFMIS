@@ -19,7 +19,11 @@ namespace Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Newtonsoft.Json.JsonIgnoreAttribute]
-        public string AmountToWords => Amount.ToString("0.00##").NumberToWords();
+        public string AmountToWords => Amount.NumberToText();
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public string DVAmountToWords => DVAmount?.NumberToText();
+
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [NotMapped]
         [Newtonsoft.Json.JsonIgnoreAttribute]

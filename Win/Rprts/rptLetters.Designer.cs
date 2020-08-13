@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rptLetters));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.xrLabel44 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel43 = new DevExpress.XtraReports.UI.XRLabel();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
@@ -53,8 +55,7 @@
             this.GroupFooter2 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.lblCC = new DevExpress.XtraReports.UI.XRLabel();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.xrLabel44 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel43 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText3)).BeginInit();
@@ -69,10 +70,37 @@
             // BottomMargin
             // 
             this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLine2,
             this.xrLabel44,
             this.xrLabel43});
             this.BottomMargin.HeightF = 75F;
             this.BottomMargin.Name = "BottomMargin";
+            // 
+            // xrLabel44
+            // 
+            this.xrLabel44.Font = new System.Drawing.Font("Calibri", 8F);
+            this.xrLabel44.LocationFloat = new DevExpress.Utils.PointFloat(0F, 1.999982F);
+            this.xrLabel44.Multiline = true;
+            this.xrLabel44.Name = "xrLabel44";
+            this.xrLabel44.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel44.SizeF = new System.Drawing.SizeF(575.782F, 14.98716F);
+            this.xrLabel44.StylePriority.UseFont = false;
+            this.xrLabel44.StylePriority.UseTextAlignment = false;
+            this.xrLabel44.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel44.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel44_BeforePrint);
+            // 
+            // xrLabel43
+            // 
+            this.xrLabel43.Font = new System.Drawing.Font("Calibri", 8F);
+            this.xrLabel43.LocationFloat = new DevExpress.Utils.PointFloat(575.782F, 2F);
+            this.xrLabel43.Multiline = true;
+            this.xrLabel43.Name = "xrLabel43";
+            this.xrLabel43.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel43.SizeF = new System.Drawing.SizeF(99.21796F, 14.98716F);
+            this.xrLabel43.StylePriority.UseFont = false;
+            this.xrLabel43.StylePriority.UseTextAlignment = false;
+            this.xrLabel43.Text = "GO-PITD";
+            this.xrLabel43.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
             // Detail
             // 
@@ -99,12 +127,13 @@
             this.xrRichText1.Name = "xrRichText1";
             this.xrRichText1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
-            this.xrRichText1.SizeF = new System.Drawing.SizeF(675F, 100F);
+            this.xrRichText1.SizeF = new System.Drawing.SizeF(675F, 82.99999F);
             // 
             // ReportHeader
             // 
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrRichText1});
+            this.ReportHeader.HeightF = 82.99999F;
             this.ReportHeader.Name = "ReportHeader";
             // 
             // GroupHeader1
@@ -135,7 +164,7 @@
             this.lblAddress,
             this.lblTelno});
             this.GroupHeader2.Font = new System.Drawing.Font("Calibri", 9F);
-            this.GroupHeader2.HeightF = 15F;
+            this.GroupHeader2.HeightF = 51.25001F;
             this.GroupHeader2.Level = 2;
             this.GroupHeader2.Name = "GroupHeader2";
             this.GroupHeader2.StylePriority.UseFont = false;
@@ -143,6 +172,7 @@
             // xrLine1
             // 
             this.xrLine1.BorderWidth = 2F;
+            this.xrLine1.LineWidth = 2F;
             this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 13F);
             this.xrLine1.Name = "xrLine1";
             this.xrLine1.SizeF = new System.Drawing.SizeF(675F, 2F);
@@ -200,7 +230,7 @@
             this.grpAddressing.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrRichText3,
             this.lblDate});
-            this.grpAddressing.HeightF = 131.7084F;
+            this.grpAddressing.HeightF = 131.7085F;
             this.grpAddressing.Name = "grpAddressing";
             // 
             // xrRichText3
@@ -208,11 +238,11 @@
             this.xrRichText3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Html", "[InsideAddress]")});
             this.xrRichText3.Font = new System.Drawing.Font("Calibri", 12F);
-            this.xrRichText3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 37.13699F);
+            this.xrRichText3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 49.63703F);
             this.xrRichText3.Name = "xrRichText3";
             this.xrRichText3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrRichText3.SerializableRtfString = resources.GetString("xrRichText3.SerializableRtfString");
-            this.xrRichText3.SizeF = new System.Drawing.SizeF(674.9998F, 94.57143F);
+            this.xrRichText3.SizeF = new System.Drawing.SizeF(674.9998F, 72.07146F);
             // 
             // lblDate
             // 
@@ -238,7 +268,7 @@
             // 
             this.lblPosition.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SignatoriesPosition]")});
-            this.lblPosition.Font = new System.Drawing.Font("Calibri", 10F);
+            this.lblPosition.Font = new System.Drawing.Font("Calibri", 12F);
             this.lblPosition.LocationFloat = new DevExpress.Utils.PointFloat(0F, 22.99999F);
             this.lblPosition.Multiline = true;
             this.lblPosition.Name = "lblPosition";
@@ -289,31 +319,14 @@
             // 
             this.bindingSource1.DataSource = typeof(Models.Letters);
             // 
-            // xrLabel44
+            // xrLine2
             // 
-            this.xrLabel44.Font = new System.Drawing.Font("Calibri", 8F);
-            this.xrLabel44.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrLabel44.Multiline = true;
-            this.xrLabel44.Name = "xrLabel44";
-            this.xrLabel44.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel44.SizeF = new System.Drawing.SizeF(343.75F, 14.98716F);
-            this.xrLabel44.StylePriority.UseFont = false;
-            this.xrLabel44.StylePriority.UseTextAlignment = false;
-            this.xrLabel44.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrLabel44.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel44_BeforePrint);
-            // 
-            // xrLabel43
-            // 
-            this.xrLabel43.Font = new System.Drawing.Font("Calibri", 8F);
-            this.xrLabel43.LocationFloat = new DevExpress.Utils.PointFloat(575.782F, 0F);
-            this.xrLabel43.Multiline = true;
-            this.xrLabel43.Name = "xrLabel43";
-            this.xrLabel43.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel43.SizeF = new System.Drawing.SizeF(99.21796F, 14.98716F);
-            this.xrLabel43.StylePriority.UseFont = false;
-            this.xrLabel43.StylePriority.UseTextAlignment = false;
-            this.xrLabel43.Text = "GO-PITD";
-            this.xrLabel43.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrLine2.BorderWidth = 2F;
+            this.xrLine2.LineWidth = 2F;
+            this.xrLine2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrLine2.Name = "xrLine2";
+            this.xrLine2.SizeF = new System.Drawing.SizeF(675F, 2F);
+            this.xrLine2.StylePriority.UseBorderWidth = false;
             // 
             // rptLetters
             // 
@@ -372,5 +385,6 @@
         public DevExpress.XtraReports.UI.XRLabel lblCC;
         private DevExpress.XtraReports.UI.XRLabel xrLabel44;
         private DevExpress.XtraReports.UI.XRLabel xrLabel43;
+        private DevExpress.XtraReports.UI.XRLine xrLine2;
     }
 }

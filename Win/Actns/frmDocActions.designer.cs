@@ -33,7 +33,6 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.dtDate = new DevExpress.XtraEditors.DateEdit();
-            this.StatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.cboPrograms = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -44,33 +43,37 @@
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.cboActivity = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.txtRemarks = new DevExpress.XtraEditors.MemoEdit();
             this.btnEditPo = new DevExpress.XtraEditors.SimpleButton();
-            this.btnNewPO = new DevExpress.XtraEditors.SimpleButton();
             this.txtActionTaken = new DevExpress.XtraEditors.LookUpEdit();
             this.ActionTakenBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.btnSend = new DevExpress.XtraEditors.SimpleButton();
-            this.btnRouteTo = new DevExpress.XtraEditors.SimpleButton();
-            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cboUsers = new DevExpress.XtraEditors.TextEdit();
+            this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
+            this.btnScanFiles = new DevExpress.XtraEditors.SimpleButton();
             this.btnActionTaken = new DevExpress.XtraEditors.SimpleButton();
+            this.btnRouteTo = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSend = new DevExpress.XtraEditors.SimpleButton();
+            this.btnNewPO = new DevExpress.XtraEditors.SimpleButton();
+            this.StatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtRemarks = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StatusBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPrograms.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboMain.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboSub.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboActivity.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtActionTaken.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ActionTakenBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboUsers.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StatusBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -272,19 +275,6 @@
             this.labelControl9.TabIndex = 0;
             this.labelControl9.Text = "Remarks/\r\nInstruction";
             // 
-            // txtRemarks
-            // 
-            this.txtRemarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRemarks.Location = new System.Drawing.Point(87, 264);
-            this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.txtRemarks.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtRemarks.Properties.Appearance.Options.UseFont = true;
-            this.txtRemarks.Size = new System.Drawing.Size(437, 39);
-            this.txtRemarks.TabIndex = 6;
-            this.txtRemarks.EditValueChanged += new System.EventHandler(this.cboStatus_EditValueChanged);
-            // 
             // btnEditPo
             // 
             this.btnEditPo.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -295,22 +285,8 @@
             this.btnEditPo.Size = new System.Drawing.Size(75, 26);
             this.btnEditPo.TabIndex = 8;
             this.btnEditPo.TabStop = false;
-            this.btnEditPo.Text = "Cancel";
+            this.btnEditPo.Text = "Closed";
             this.btnEditPo.Click += new System.EventHandler(this.btnEditPo_Click);
-            // 
-            // btnNewPO
-            // 
-            this.btnNewPO.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnNewPO.Appearance.Options.UseFont = true;
-            this.btnNewPO.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.btnNewPO.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNewPO.ImageOptions.Image")));
-            this.btnNewPO.Location = new System.Drawing.Point(435, 313);
-            this.btnNewPO.Name = "btnNewPO";
-            this.btnNewPO.Size = new System.Drawing.Size(75, 26);
-            this.btnNewPO.TabIndex = 7;
-            this.btnNewPO.TabStop = false;
-            this.btnNewPO.Text = "Save";
-            this.btnNewPO.Click += new System.EventHandler(this.btnNewPO_Click);
             // 
             // txtActionTaken
             // 
@@ -327,7 +303,7 @@
             this.txtActionTaken.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtActionTaken.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ActionTaken", "Action Taken", 84, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ActionTaken", "", 84, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.txtActionTaken.Properties.DataSource = this.ActionTakenBindingSource;
             this.txtActionTaken.Properties.DisplayMember = "ActionTaken";
             this.txtActionTaken.Properties.NullText = "";
@@ -376,39 +352,6 @@
             this.pictureEdit1.Size = new System.Drawing.Size(78, 52);
             this.pictureEdit1.TabIndex = 0;
             // 
-            // btnSend
-            // 
-            this.btnSend.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSend.Appearance.Options.UseFont = true;
-            this.btnSend.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.btnSend.Enabled = false;
-            this.btnSend.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSend.ImageOptions.Image")));
-            this.btnSend.Location = new System.Drawing.Point(528, 265);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(63, 38);
-            this.btnSend.TabIndex = 7;
-            this.btnSend.TabStop = false;
-            this.btnSend.Text = "Send";
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
-            // 
-            // btnRouteTo
-            // 
-            this.btnRouteTo.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRouteTo.Appearance.Options.UseFont = true;
-            this.btnRouteTo.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.btnRouteTo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRouteTo.ImageOptions.Image")));
-            this.btnRouteTo.Location = new System.Drawing.Point(528, 224);
-            this.btnRouteTo.MinimumSize = new System.Drawing.Size(63, 38);
-            this.btnRouteTo.Name = "btnRouteTo";
-            this.btnRouteTo.Size = new System.Drawing.Size(63, 38);
-            this.btnRouteTo.TabIndex = 15;
-            this.btnRouteTo.Text = "Staff";
-            this.btnRouteTo.Click += new System.EventHandler(this.btnRouteTo_Click);
-            // 
-            // usersBindingSource
-            // 
-            this.usersBindingSource.DataSource = typeof(Models.Users);
-            // 
             // cboUsers
             // 
             this.cboUsers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -420,11 +363,52 @@
             this.cboUsers.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.cboUsers.Properties.Appearance.BackColor = System.Drawing.Color.Red;
             this.cboUsers.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cboUsers.Properties.Appearance.ForeColor = System.Drawing.Color.White;
             this.cboUsers.Properties.Appearance.Options.UseBackColor = true;
             this.cboUsers.Properties.Appearance.Options.UseFont = true;
+            this.cboUsers.Properties.Appearance.Options.UseForeColor = true;
             this.cboUsers.Properties.AutoHeight = false;
             this.cboUsers.Size = new System.Drawing.Size(437, 36);
             this.cboUsers.TabIndex = 8;
+            // 
+            // btnPreview
+            // 
+            this.btnPreview.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPreview.Appearance.Options.UseFont = true;
+            this.btnPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.btnPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview.ImageOptions.Image")));
+            this.btnPreview.Location = new System.Drawing.Point(219, 313);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(70, 26);
+            this.btnPreview.TabIndex = 15;
+            this.btnPreview.Text = "Preview";
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Appearance.Options.UseFont = true;
+            this.btnDelete.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(153, 313);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(60, 26);
+            this.btnDelete.TabIndex = 15;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnScanFiles
+            // 
+            this.btnScanFiles.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScanFiles.Appearance.Options.UseFont = true;
+            this.btnScanFiles.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.btnScanFiles.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnScanFiles.ImageOptions.Image")));
+            this.btnScanFiles.Location = new System.Drawing.Point(87, 313);
+            this.btnScanFiles.Name = "btnScanFiles";
+            this.btnScanFiles.Size = new System.Drawing.Size(60, 26);
+            this.btnScanFiles.TabIndex = 15;
+            this.btnScanFiles.Text = "Scan";
+            this.btnScanFiles.Click += new System.EventHandler(this.btnScanFiles_Click);
             // 
             // btnActionTaken
             // 
@@ -440,12 +424,85 @@
             this.btnActionTaken.Text = "New";
             this.btnActionTaken.Click += new System.EventHandler(this.btnActionTaken_Click);
             // 
+            // btnRouteTo
+            // 
+            this.btnRouteTo.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRouteTo.Appearance.Options.UseFont = true;
+            this.btnRouteTo.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.btnRouteTo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRouteTo.ImageOptions.Image")));
+            this.btnRouteTo.Location = new System.Drawing.Point(528, 224);
+            this.btnRouteTo.MinimumSize = new System.Drawing.Size(63, 38);
+            this.btnRouteTo.Name = "btnRouteTo";
+            this.btnRouteTo.Size = new System.Drawing.Size(63, 38);
+            this.btnRouteTo.TabIndex = 15;
+            this.btnRouteTo.Text = "Staff";
+            this.btnRouteTo.Click += new System.EventHandler(this.btnRouteTo_Click);
+            // 
+            // btnSend
+            // 
+            this.btnSend.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSend.Appearance.Options.UseFont = true;
+            this.btnSend.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.btnSend.Enabled = false;
+            this.btnSend.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSend.ImageOptions.Image")));
+            this.btnSend.Location = new System.Drawing.Point(528, 265);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(63, 38);
+            this.btnSend.TabIndex = 7;
+            this.btnSend.TabStop = false;
+            this.btnSend.Text = "Send";
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
+            // btnNewPO
+            // 
+            this.btnNewPO.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnNewPO.Appearance.Options.UseFont = true;
+            this.btnNewPO.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnNewPO.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNewPO.ImageOptions.Image")));
+            this.btnNewPO.Location = new System.Drawing.Point(435, 313);
+            this.btnNewPO.Name = "btnNewPO";
+            this.btnNewPO.Size = new System.Drawing.Size(75, 26);
+            this.btnNewPO.TabIndex = 7;
+            this.btnNewPO.TabStop = false;
+            this.btnNewPO.Text = "Save";
+            this.btnNewPO.Click += new System.EventHandler(this.btnNewPO_Click);
+            // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataSource = typeof(Models.Users);
+            // 
+            // txtRemarks
+            // 
+            this.txtRemarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRemarks.Location = new System.Drawing.Point(87, 264);
+            this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.txtRemarks.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtRemarks.Properties.Appearance.Options.UseFont = true;
+            this.txtRemarks.Properties.AutoHeight = false;
+            this.txtRemarks.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtRemarks.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ActionTaken", "", 84, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.txtRemarks.Properties.DataSource = this.ActionTakenBindingSource;
+            this.txtRemarks.Properties.DisplayMember = "ActionTaken";
+            this.txtRemarks.Properties.NullText = "";
+            this.txtRemarks.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.txtRemarks.Properties.ValueMember = "ActionTaken";
+            this.txtRemarks.Size = new System.Drawing.Size(437, 39);
+            this.txtRemarks.TabIndex = 6;
+            this.txtRemarks.EditValueChanged += new System.EventHandler(this.cboStatus_EditValueChanged);
+            // 
             // frmDocActions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(603, 349);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnPreview);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnScanFiles);
             this.Controls.Add(this.btnActionTaken);
             this.Controls.Add(this.btnRouteTo);
             this.Controls.Add(this.cboActivity);
@@ -464,9 +521,9 @@
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.txtRemarks);
             this.Controls.Add(this.txtActionTaken);
             this.Controls.Add(this.cboUsers);
+            this.Controls.Add(this.txtRemarks);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(605, 373);
             this.Name = "frmDocActions";
@@ -475,19 +532,19 @@
             this.Load += new System.EventHandler(this.frmDocActions_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StatusBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPrograms.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboMain.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboSub.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboActivity.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtActionTaken.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ActionTakenBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboUsers.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StatusBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -512,7 +569,6 @@
         private DevExpress.XtraEditors.LookUpEdit cboActivity;
         private System.Windows.Forms.BindingSource ActionTakenBindingSource;
         private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.MemoEdit txtRemarks;
         private DevExpress.XtraEditors.LookUpEdit txtActionTaken;
         private System.Windows.Forms.Panel panel1;
         public DevExpress.XtraEditors.LabelControl lblHeader;
@@ -522,5 +578,9 @@
         private DevExpress.XtraEditors.SimpleButton btnRouteTo;
         private DevExpress.XtraEditors.TextEdit cboUsers;
         private DevExpress.XtraEditors.SimpleButton btnActionTaken;
+        private DevExpress.XtraEditors.SimpleButton btnScanFiles;
+        private DevExpress.XtraEditors.SimpleButton btnDelete;
+        private DevExpress.XtraEditors.SimpleButton btnPreview;
+        private DevExpress.XtraEditors.LookUpEdit txtRemarks;
     }
 }

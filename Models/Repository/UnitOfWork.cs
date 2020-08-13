@@ -19,6 +19,7 @@ namespace Models.Repository
         {
             context = ModelDb.Create(DataSource.ConnectionString);//(/*DataSource.ConnectionString ?? context.Database.Connection.ConnectionString*/);
         }
+
         public UnitOfWork(DbContext dbContext)
         {
             this.context = dbContext;
@@ -26,6 +27,18 @@ namespace Models.Repository
         public UnitOfWork(UnitOfWorkSettings settings)
         {
 
+        }
+
+        private GenericRepository<Files> _FilesRepo;
+        public GenericRepository<Files> FilesRepo
+        {
+            get
+            {
+                if (this._FilesRepo == null)
+                    this._FilesRepo = new GenericRepository<Files>(context);
+                return _FilesRepo;
+            }
+            set { _FilesRepo = value; }
         }
 
         private GenericRepository<ActionTakens> _ActionTakensRepo;

@@ -588,7 +588,7 @@
             this.xtraTabPage1.Controls.Add(this.panel2);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(824, 330);
-            this.xtraTabPage1.Text = "PR Details";
+            this.xtraTabPage1.Text = "PR";
             // 
             // ItemsGridControl
             // 
@@ -775,7 +775,7 @@
             // 
             this.PQTabPage.Name = "PQTabPage";
             this.PQTabPage.Size = new System.Drawing.Size(824, 330);
-            this.PQTabPage.Text = "Price Quotation";
+            this.PQTabPage.Text = "PQ";
             // 
             // tabAPR
             // 
@@ -793,7 +793,7 @@
             // 
             this.tabPO.Name = "tabPO";
             this.tabPO.Size = new System.Drawing.Size(824, 330);
-            this.tabPO.Text = "Purchase Orders";
+            this.tabPO.Text = "PO";
             // 
             // tabPIS
             // 
@@ -811,7 +811,7 @@
             // 
             this.tabAcceptance.Name = "tabAcceptance";
             this.tabAcceptance.Size = new System.Drawing.Size(824, 330);
-            this.tabAcceptance.Text = "Acceptance";
+            this.tabAcceptance.Text = "AIR";
             // 
             // LetterTabPage
             // 

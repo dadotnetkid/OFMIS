@@ -259,9 +259,9 @@
             // 
             this.labelControl10.Location = new System.Drawing.Point(6, 115);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(73, 13);
+            this.labelControl10.Size = new System.Drawing.Size(51, 13);
             this.labelControl10.TabIndex = 11;
-            this.labelControl10.Text = "PBO Control #";
+            this.labelControl10.Text = "ObR No #";
             // 
             // txtPBOControl
             // 

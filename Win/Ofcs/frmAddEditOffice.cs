@@ -72,7 +72,6 @@ namespace Win.Ofcs
             cboUnderOf.EditValue = offices.UnderOf;
 
         }
-
         void Save()
         {
             try

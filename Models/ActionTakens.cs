@@ -16,5 +16,6 @@ namespace Models
     {
         public int Id { get; set; }
         public string ActionTaken { get; set; }
+        public string TableName { get; set; }
     }
 }

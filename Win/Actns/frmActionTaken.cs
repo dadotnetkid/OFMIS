@@ -26,7 +26,7 @@ namespace Win.Actns
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
-                this.actionTakensBindingSource.DataSource = unitOfWork.ActionTakensRepo.Get();
+                this.actionTakensBindingSource.DataSource = unitOfWork.ActionTakensRepo.Get(x => x.TableName == "ActionTakens", orderBy: x => x.OrderBy(m => m.ActionTaken));
             }
             catch (Exception ex)
             {
@@ -45,6 +45,7 @@ namespace Win.Actns
                 UnitOfWork unitOfWork = new UnitOfWork();
                 if (e.Row is ActionTakens item)
                 {
+                    item.TableName = "ActionTakens";
                     if (item.Id == 0)
                     {
                         unitOfWork.ActionTakensRepo.Insert(item);

@@ -22,7 +22,7 @@ namespace Win
             return res;
         }
 
-        public static int? OfficeId() => new UnitOfWork().UsersRepo.Find(m => m.Id == UserId, false, false).OfficeId;
+        public static int? OfficeId() => new UnitOfWork().UsersRepo.Find(m => m.Id == UserId, false, false)?.OfficeId;
         public static string GetFullName()
         {
             var fullName = new UnitOfWork().UsersRepo.Fetch(m => m.Id == UserId).FirstOrDefault()?.FullName;

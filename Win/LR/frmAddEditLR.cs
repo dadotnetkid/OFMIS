@@ -67,7 +67,7 @@ namespace Win.LR
             }
             catch (Exception e)
             {
-
+                MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

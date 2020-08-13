@@ -28,9 +28,9 @@ namespace Models
         public string PreparedBy { get; set; }
         public string PreparedByPos { get; set; }
     
-        public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PISDetails> PISDetails { get; set; }
         public virtual PurchaseRequests PurchaseRequests { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

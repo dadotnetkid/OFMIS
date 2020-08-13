@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.btnServerSetup = new DevExpress.XtraEditors.SimpleButton();
             this.txtToday = new DevExpress.XtraEditors.TextEdit();
-            this.txtUserName = new DevExpress.XtraEditors.TextEdit();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -40,11 +39,12 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.chkRemember = new DevExpress.XtraEditors.CheckEdit();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.txtUserName = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtToday.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkRemember.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnServerSetup
@@ -65,15 +65,6 @@
             this.txtToday.Properties.ReadOnly = true;
             this.txtToday.Size = new System.Drawing.Size(232, 28);
             this.txtToday.TabIndex = 9;
-            // 
-            // txtUserName
-            // 
-            this.txtUserName.Location = new System.Drawing.Point(185, 40);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtUserName.Properties.Appearance.Options.UseFont = true;
-            this.txtUserName.Size = new System.Drawing.Size(232, 28);
-            this.txtUserName.TabIndex = 1;
             // 
             // txtPassword
             // 
@@ -149,6 +140,24 @@
             this.pictureEdit1.Size = new System.Drawing.Size(110, 110);
             this.pictureEdit1.TabIndex = 12;
             // 
+            // txtUserName
+            // 
+            this.txtUserName.Location = new System.Drawing.Point(185, 40);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtUserName.Properties.Appearance.Options.UseFont = true;
+            this.txtUserName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtUserName.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("UserName", "")});
+            this.txtUserName.Properties.DisplayMember = "UserName";
+            this.txtUserName.Properties.NullText = "";
+            this.txtUserName.Properties.PopupSizeable = false;
+            this.txtUserName.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.txtUserName.Properties.ValueMember = "UserName";
+            this.txtUserName.Size = new System.Drawing.Size(232, 28);
+            this.txtUserName.TabIndex = 1;
+            // 
             // frmLogin
             // 
             this.AcceptButton = this.btnLogin;
@@ -164,9 +173,9 @@
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.txtToday);
             this.Controls.Add(this.btnServerSetup);
+            this.Controls.Add(this.txtUserName);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.HelpButton = true;
@@ -179,10 +188,10 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLogin_FormClosing);
             this.Load += new System.EventHandler(this.frmLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtToday.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkRemember.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,7 +200,6 @@
         #endregion
         private DevExpress.XtraEditors.SimpleButton btnServerSetup;
         private DevExpress.XtraEditors.TextEdit txtToday;
-        private DevExpress.XtraEditors.TextEdit txtUserName;
         private DevExpress.XtraEditors.TextEdit txtPassword;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
@@ -200,5 +208,6 @@
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.CheckEdit chkRemember;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private DevExpress.XtraEditors.LookUpEdit txtUserName;
     }
 }

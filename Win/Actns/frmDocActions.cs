@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,8 +13,10 @@ using DevExpress.XtraEditors;
 using Helpers;
 using Models;
 using Models.Repository;
+using Models.ViewModels;
 using Win.BL;
 using Win.Properties;
+using Win.Xcanner;
 
 namespace Win.Actns
 {
@@ -26,9 +30,8 @@ namespace Win.Actns
             InitializeComponent();
             this.documentActions = documentActions;
             this.methodType = methodType;
-
         }
-
+        
         public void Save()
         {
             try
@@ -56,9 +59,6 @@ namespace Win.Actns
                 isClosed = true;
                 Detail();
 
-                if (MessageBox.Show("Do you want to close this?", "Close", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                    return;
-                Close();
             }
             catch (Exception e)
             {
@@ -72,10 +72,25 @@ namespace Win.Actns
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
 
-                var item = unitOfWork.DocumentActionsRepo.Find(x => x.Id == documentActions.Id, "Users");
+                var item = unitOfWork.DocumentActionsRepo.Find(x => x.Id == documentActions.Id, "CreatedByUsers");
+                var files = unitOfWork.FilesRepo.Fetch(x => x.RefId == item.Id && x.TableName == "Action");
+                if (files.Any())
+                {
+                    this.btnScanFiles.Enabled = false;
+                    this.btnDelete.Enabled = true;
+                    btnPreview.Enabled = true;
+                }
+                else
+                {
+                    this.btnScanFiles.Enabled = true;
+                    this.btnDelete.Enabled = false;
+                    btnPreview.Enabled = false;
+                }
                 this.cboPrograms.Properties.DataSource =
                     unitOfWork.ActionsRepo.Get(m => m.Category == "Programs", m => m.OrderBy(x => x.ItemOrder));
-                this.ActionTakenBindingSource.DataSource = new UnitOfWork().ActionTakensRepo.Get();
+                this.ActionTakenBindingSource.DataSource = new UnitOfWork().ActionTakensRepo.Get(x => x.TableName == "ActionTakens", orderBy: x => x.OrderBy(m => m.ActionTaken));
+                this.txtRemarks.Properties.DataSource =
+                    new UnitOfWork().ActionTakensRepo.Get(x => x.TableName == "Remarks", orderBy: x => x.OrderBy(m => m.ActionTaken));
                 // this.cboUsers.Properties.DataSource = unitOfWork.UsersRepo.Get();
                 cboPrograms.EditValue = item.ProgramId;
                 cboMain.EditValue = item.MainActivityId;
@@ -83,8 +98,8 @@ namespace Win.Actns
                 cboSub.EditValue = item.SubActivityId;
                 txtActionTaken.EditValue = item.ActionTaken;
                 dtDate.EditValue = item.ActionDate;
-                txtRemarks.Text = item.Remarks;
-                cboUsers.EditValue = item.RoutedToUsers;
+                txtRemarks.EditValue = item.Remarks;
+                cboUsers.EditValue = item.RouterUsers;
 
 
                 if (item.isSaved == true)
@@ -112,8 +127,9 @@ namespace Win.Actns
                     TableName = documentActions.TableName,
                     RefId = documentActions.RefId,
                     CreatedBy = User.UserId,
-                    ControlNo = documentActions.ControlNo
-
+                    ControlNo = documentActions.ControlNo,
+                    ObR_PR_No = documentActions.ObR_PR_No,
+                    Year = staticSettings.Year
                 };
                 unitOfWork.DocumentActionsRepo.Insert(documentActions);
                 unitOfWork.Save();
@@ -225,7 +241,7 @@ namespace Win.Actns
                 if (MessageBox.Show("Do you want to send this?", "Send", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
                 UnitOfWork unitOfWork = new UnitOfWork();
-                var item = unitOfWork.DocumentActionsRepo.Find(x => x.Id == documentActions.Id, "Users");
+                var item = unitOfWork.DocumentActionsRepo.Find(x => x.Id == documentActions.Id);
 
                 item.IsSend = true;
                 unitOfWork.Save();
@@ -242,14 +258,67 @@ namespace Win.Actns
             frmUsersInAccounts frm = new frmUsersInAccounts(new UnitOfWork().DocumentActionsRepo.Find(x => x.Id == documentActions.Id));
             frm.ShowDialog();
             var item = new UnitOfWork().DocumentActionsRepo.Find(x => x.Id == documentActions.Id);
-            cboUsers.EditValue = item.RoutedToUsers;
+            cboUsers.EditValue = item.RouterUsers;
         }
 
         private void btnActionTaken_Click(object sender, EventArgs e)
         {
             frmActionTaken frm = new frmActionTaken();
             frm.ShowDialog();
-            this.ActionTakenBindingSource.DataSource = new UnitOfWork().ActionTakensRepo.Get();
+            this.ActionTakenBindingSource.DataSource = new UnitOfWork().ActionTakensRepo.Get( orderBy: x => x.OrderBy(m => m.ActionTaken));
+        }
+
+        private void btnScanFiles_Click(object sender, EventArgs e)
+        {
+            Scanners imageScan;
+            frmScanner frmScanner = new frmScanner(scanner => { scanner.RefId = documentActions.Id; });
+            var frm = frmScanner.ShowDialogResult();
+
+            Detail();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+            if (MessageBox.Show("Do you want to Delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+            using (NetworkShareAccesser.Access("PLGUNV_NAS", @"", "pitd.is_user", "Apple_01"))
+            {
+                StaticSettings staticSettings = new StaticSettings();
+                UnitOfWork unitOfWork = new UnitOfWork();
+                var root = $@"\\plgunv_nas\is_docs\ofmis\{staticSettings.Offices.OffcAcr}";
+                if (!Directory.Exists(root))
+                    Directory.CreateDirectory(root);
+
+                var files = unitOfWork.FilesRepo.Find(x => x.RefId == documentActions.Id && x.TableName == "Action");
+
+
+                var path = Path.Combine(root, files.Path + ".png");
+                File.Delete(path);
+                unitOfWork.FilesRepo.Delete(x => x.Id == files.Id);
+                unitOfWork.Save();
+                Detail();
+            }
+        }
+
+        private void btnPreview_Click(object sender, EventArgs e)
+        {
+            using (NetworkShareAccesser.Access("PLGUNV_NAS", @"", "pitd.is_user", "Apple_01"))
+            {
+                StaticSettings staticSettings = new StaticSettings();
+                UnitOfWork unitOfWork = new UnitOfWork();
+                var root = $@"\\plgunv_nas\is_docs\ofmis\{staticSettings.Offices.OffcAcr}";
+                if (!Directory.Exists(root))
+                    Directory.CreateDirectory(root);
+
+                var files = unitOfWork.FilesRepo.Find(x => x.RefId == documentActions.Id && x.TableName == "Action");
+
+                if (files == null)
+                    return;
+                var path = Path.Combine(root, files.Path + ".png");
+                frmPreviewer frm = new frmPreviewer(path);
+                frm.ShowDialog();
+            }
         }
     }
 }

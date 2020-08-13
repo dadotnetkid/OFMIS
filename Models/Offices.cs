@@ -20,13 +20,14 @@ namespace Models
             this.Obligations = new HashSet<Obligations>();
             this.Offices1 = new HashSet<Offices>();
             this.Payees = new HashSet<Payees>();
-            this.Users = new HashSet<Users>();
             this.BACMembers = new HashSet<BACMembers>();
             this.ControlNumbers = new HashSet<ControlNumbers>();
             this.AOQ = new HashSet<AOQ>();
             this.PurchaseRequests = new HashSet<PurchaseRequests>();
             this.Employees = new HashSet<Employees>();
             this.TrashBin = new HashSet<TrashBin>();
+            this.Years = new HashSet<Years>();
+            this.Users = new HashSet<Users>();
         }
     
         public int Id { get; set; }
@@ -53,8 +54,6 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payees> Payees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BACMembers> BACMembers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ControlNumbers> ControlNumbers { get; set; }
@@ -66,5 +65,9 @@ namespace Models
         public virtual ICollection<Employees> Employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TrashBin> TrashBin { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Years> Years { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

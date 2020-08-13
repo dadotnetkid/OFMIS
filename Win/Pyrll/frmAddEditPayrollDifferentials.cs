@@ -117,7 +117,7 @@ namespace Win.Pyrll
                     Description =
                         "WE HEREBY ACKNOWLEDGE RECEIPT of the sum shown opposite our names as full compensation for the services rendered to the period stated",
                     Date = DateTime.Now,
-                    ControlNo = IdHelper.OfficeControlNo(diff?.ControlNo, staticSettings.OfficeId,"PAYROLL", "Differential"),
+                    ControlNo = IdHelper.OfficeControlNo(diff?.ControlNo, staticSettings.OfficeId, "PAYROLL", "Differential"),
 
 
                 };
@@ -145,6 +145,21 @@ namespace Win.Pyrll
                 unitOfWork.PayrollDifferentialsRepo.Insert(item);
                 unitOfWork.Save();
                 payrollDifferentials = item;
+                unitOfWork = new UnitOfWork();
+                payrollDifferentials = unitOfWork.PayrollDifferentialsRepo.Find(x => x.Id == payrollDifferentials.Id, "PayrollDifferentialDetails");
+                var counter = 1;
+                foreach (var i in payrollDifferentials.Obligations.Payees.Employees.OrderBy(x=>x.LastName))
+                {
+                    payrollDifferentials.PayrollDifferentialDetails.Add(new PayrollDifferentialDetails()
+                    {
+                        ItemNumber = counter,
+                        EmployeeId = i.Id,
+                        PayrollDiffentialId = payrollDifferentials.Id
+
+                    });
+                    counter++;
+                }
+                unitOfWork.Save();
                 Detail();
             }
             catch (Exception e)

@@ -26,9 +26,7 @@ namespace Win.BL
             this.payees = payees;
             UnitOfWork unitOfWork = new UnitOfWork();
             this.frm.txtOffice.Properties.DataSource = new BindingList<Offices>(unitOfWork.OfficesRepo.Get());
-            this.frm.cboMembers.Properties.DataSource =
-                new BindingList<Employees>(
-                    new UnitOfWork().EmployeesRepo.Get());
+
             var list = new List<Payees>() { new Payees() { } };
             list.AddRange(unitOfWork.PayeesRepo.Get());
             frm.txtName.Properties.DataSource = new BindingList<Payees>(list);
@@ -50,14 +48,7 @@ namespace Win.BL
                 payees.Office = office?.OfficeName;
                 payees.Address = office?.Address ?? frm.txtAddress.Text;
                 payees.Note = frm.txtNote.Text;
-                var res = frm.cboMembers.Properties.GetCheckedItems();
-                payees.Employees.Clear();
-                foreach (var i in res.ToString()?.Split(','))
-                {
-                    var id = i.Trim().ToInt();
-                    payees.Employees.Add(unitOfWork.EmployeesRepo.Find(m => m.Id == id));
 
-                }
                 unitOfWork.Save();
 
 
@@ -80,12 +71,8 @@ namespace Win.BL
                 frm.txtAddress.EditValue = item.Address;
                 frm.txtOffice.EditValue = item.Office;
                 frm.txtNote.Text = item.Note;
-                foreach (var i in frm.cboMembers.Properties.GetItems().Cast<CheckedListBoxItem>())
-                {
-                    var id = i.Value.ToInt();
-                    if (item.Employees.Any(x => x.Id == id))
-                        i.CheckState = CheckState.Checked;
-                }
+                frm.cboMembers.EditValue = string.Join(",", item.Employees.Select(x => x.EmployeeName));
+            
                 //  frm.cboMembers.EditValue = string.Join(",", item.Employees.Select(x => x.EmployeeName));
 
 
@@ -94,62 +81,62 @@ namespace Win.BL
             {
                 MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+}
 
-        public void Init()
+public void Init()
+{
+    try
+    {
+        if (methodType == MethodType.Edit)
         {
-            try
-            {
-                if (methodType == MethodType.Edit)
-                {
-                    Detail();
-                    return;
-                }
-                var unitOfWork = new UnitOfWork();
-
-                payees = new Payees()
-                {
-
-
-                };
-
-                unitOfWork.PayeesRepo.Insert(payees);
-                unitOfWork.Save();
-                payeeId = payees.Id;
-                Detail();
-                return;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            Detail();
+            return;
         }
+        var unitOfWork = new UnitOfWork();
 
-        public void Close(FormClosingEventArgs formClosing)
+        payees = new Payees()
         {
-            try
-            {
-                if (methodType == MethodType.Edit)
-                    return;
-                if (isClosed)
-                {
-                    return;
-                }
 
-                // formClosing.Cancel = !isClosed;
 
-                var unitOfWork = new UnitOfWork();
-                //this.payeeId =
-                //    (unitOfWork.PayeesRepo.Fetch().OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0) + 1;
-                unitOfWork.PayeesRepo.Delete(m => m.Id == payeeId);
-                unitOfWork.Save();
+        };
 
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                formClosing.Cancel = false;
-            }
+        unitOfWork.PayeesRepo.Insert(payees);
+        unitOfWork.Save();
+        payeeId = payees.Id;
+        Detail();
+        return;
+    }
+    catch (Exception e)
+    {
+        MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+}
+
+public void Close(FormClosingEventArgs formClosing)
+{
+    try
+    {
+        if (methodType == MethodType.Edit)
+            return;
+        if (isClosed)
+        {
+            return;
         }
+
+        // formClosing.Cancel = !isClosed;
+
+        var unitOfWork = new UnitOfWork();
+        //this.payeeId =
+        //    (unitOfWork.PayeesRepo.Fetch().OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0) + 1;
+        unitOfWork.PayeesRepo.Delete(m => m.Id == payeeId);
+        unitOfWork.Save();
+
+    }
+    catch (Exception e)
+    {
+        MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        formClosing.Cancel = false;
+    }
+}
     }
 }

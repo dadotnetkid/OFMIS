@@ -12,13 +12,14 @@ using Models;
 using Models.Repository;
 using Win.BL;
 using Win.OB;
+using Helpers;
 
 namespace Win.PR
 {
     public partial class UCPurchaseRequest : DevExpress.XtraEditors.XtraUserControl, IUserControl
 
     {
-        private LoadAddEditPurchaseRequest loadAddEditPurchaseRequest;
+        public LoadAddEditPurchaseRequest loadAddEditPurchaseRequest;
 
         public override void Refresh()
         {
@@ -27,6 +28,15 @@ namespace Win.PR
             frm.pnlMain.Controls.Add(new UCPurchaseRequest() { Dock = DockStyle.Fill });
             base.Refresh();
         }
+        public UCPurchaseRequest(string controlNo)
+        {
+            InitializeComponent();
+            this.loadAddEditPurchaseRequest = new LoadAddEditPurchaseRequest(this);
+            ((ILoad<PurchaseRequests>)loadAddEditPurchaseRequest).Init();
+            loadAddEditPurchaseRequest.Search(txtSearch.Text, true);
+
+        }
+
         public UCPurchaseRequest()
         {
             InitializeComponent();
@@ -61,17 +71,7 @@ namespace Win.PR
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            try
-            {
-                UnitOfWork unitOfWork = new UnitOfWork();
-                StaticSettings staticSettings = new StaticSettings();
-                this.PRGridControl.DataSource = new BindingList<PurchaseRequests>(unitOfWork.PurchaseRequestsRepo.Get(x => (x.OfficeId == staticSettings.OfficeId && (x.Description.Contains(txtSearch.Text) || x.ControlNo == txtSearch.Text))));
-            }
-            catch (Exception exception)
-            {
-
-            }
-        }
+            loadAddEditPurchaseRequest.Search(txtSearch.Text);}
 
         private void cboStatus_SelectedIndexChanged(object sender, EventArgs e)
         {

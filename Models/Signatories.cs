@@ -31,6 +31,7 @@ namespace Models
         public string Office { get; set; }
         public Nullable<bool> IsBacMember { get; set; }
         public string BacPosition { get; set; }
+        public Nullable<int> EmployeeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AOQ> BACMembers { get; set; }
@@ -40,5 +41,6 @@ namespace Models
         public virtual ICollection<Liquidations> Liquidations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liquidations> Liquidations1 { get; set; }
+        public virtual Employees Employees { get; set; }
     }
 }

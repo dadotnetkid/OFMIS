@@ -71,5 +71,52 @@ namespace Win.Properties {
                 this["ConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultScanner {
+            get {
+                return ((string)(this["DefaultScanner"]));
+            }
+            set {
+                this["DefaultScanner"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection UserNames {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["UserNames"]));
+            }
+            set {
+                this["UserNames"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2020")]
+        public int DefaultYear {
+            get {
+                return ((int)(this["DefaultYear"]));
+            }
+            set {
+                this["DefaultYear"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseDefaultYear {
+            get {
+                return ((bool)(this["UseDefaultYear"]));
+            }
+            set {
+                this["UseDefaultYear"] = value;
+            }
+        }
     }
 }

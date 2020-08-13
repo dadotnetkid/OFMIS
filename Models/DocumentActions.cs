@@ -18,7 +18,7 @@ namespace Models
         public DocumentActions()
         {
             this.DocumentActions1 = new HashSet<DocumentActions>();
-            this.Users = new HashSet<Users>();
+            this.RoutedToUsers = new HashSet<Users>();
         }
     
         public int Id { get; set; }
@@ -40,12 +40,14 @@ namespace Models
         public string ControlNo { get; set; }
         public Nullable<bool> isDone { get; set; }
         public Nullable<int> ActionId { get; set; }
+        public string ObR_PR_No { get; set; }
+        public Nullable<int> Year { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentActions> DocumentActions1 { get; set; }
         public virtual DocumentActions DocumentActions2 { get; set; }
-        public virtual Users CreatedByUser { get; set; }
+        public virtual Users CreatedByUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
+        public virtual ICollection<Users> RoutedToUsers { get; set; }
     }
 }

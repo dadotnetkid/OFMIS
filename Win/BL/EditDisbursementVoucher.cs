@@ -39,9 +39,9 @@ namespace Win.BL
                 item.DVApprovedBy = frm.cboApprovedBy.Text;
                 item.DVApprovedByPosition = frm.txtPosition.Text;
                 item.DVNote = frm.txtNote.Text;
+                item.DVAmount = frm.txtAmount.EditValue?.ToDecimal();
                 unitOfWork.Save();
-                frm.Close();
-            }
+                frm.Close();}
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -53,16 +53,18 @@ namespace Win.BL
             if (item == null)
                 return;
             frm.txtDate.DateTime = item.Date.ToDate();
-            frm.txtControl.Text = item.ControlNo;
-            frm.cboPayee.Text = item.Payees?.Name;
-            frm.txtAddress.Text = item.PayeeAddress;
-            frm.txtOffice.Text = item.PayeeOffice;
-            frm.txtDescription.Text = item.Description;
-            frm.txtParticulars.Text = item.DVParticular;
-            frm.cboApprovedBy.Text = item.DVApprovedBy;
-            frm.txtPosition.Text = item.DVApprovedByPosition;
-            frm.txtNote.Text = item.DVNote;
+            frm.txtControl.EditValue = item.ControlNo;
+            frm.cboPayee.EditValue = item.Payees?.Name;
+            frm.txtAddress.EditValue = item.PayeeAddress;
+            frm.txtOffice.EditValue = item.PayeeOffice;
+            frm.txtDescription.EditValue = item.Description;
+            frm.txtParticulars.EditValue = item.DVParticular;
+            frm.cboApprovedBy.EditValue  = item.DVApprovedBy;
+            frm.txtPosition.EditValue = item.DVApprovedByPosition;
+            frm.txtNote.EditValue = item.DVNote;
             frm.lblHeader.Text = item.ControlNo + " - " + item.Payees?.Name;
+            frm.txtAmount.EditValue = item.TotalAmount;
+
         }
 
         public void Init()

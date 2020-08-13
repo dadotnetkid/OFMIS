@@ -74,6 +74,7 @@
             this.colSSSPS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colOT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lookUpEditEmployees = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PayrollGridControl)).BeginInit();
@@ -88,6 +89,7 @@
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.btnPreview);
+            this.panelControl1.Controls.Add(this.btnDelete);
             this.panelControl1.Controls.Add(this.btnEditNew);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
@@ -102,7 +104,7 @@
             this.btnPreview.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnPreview.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.btnPreview.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview.ImageOptions.Image")));
-            this.btnPreview.Location = new System.Drawing.Point(113, 5);
+            this.btnPreview.Location = new System.Drawing.Point(221, 5);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(102, 23);
             this.btnPreview.TabIndex = 13;
@@ -474,6 +476,20 @@
             this.lookUpEditEmployees.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lookUpEditEmployees.ValueMember = "Id";
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnDelete.Appearance.Options.UseFont = true;
+            this.btnDelete.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
+            this.btnDelete.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(113, 5);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(102, 23);
+            this.btnDelete.TabIndex = 13;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // UCPayrollWages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -532,5 +548,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSSS;
         private DevExpress.XtraGrid.Columns.GridColumn colSSSPS;
         private DevExpress.XtraGrid.Columns.GridColumn colOT;
+        public DevExpress.XtraEditors.SimpleButton btnDelete;
     }
 }

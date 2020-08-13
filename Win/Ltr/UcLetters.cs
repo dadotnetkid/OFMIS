@@ -103,10 +103,11 @@ namespace Win.Ltr
                 var lett = unitOfWork.LettersRepo.Find(x => x.Id == item.Id);
                 RichEditControl rich = new RichEditControl();
 
-                rich.Document.AppendHtmlText($"<b>{item.Salutation}</b><br/><br/>");
+                rich.Document.AppendHtmlText($"<br/><b>{item.Salutation}</b><br/><br/>");
                 rich.Document.AppendHtmlText(item.Body);
                 rich.Document.AppendHtmlText("<br/><br/><br/>" + lett.Closing + "<br/><br/><br/>");
                 rich.Document.DefaultCharacterProperties.FontName = "Calibri";
+                rich.Document.DefaultCharacterProperties.FontSize= 12f;
                 lett.Body = rich.ToHtml();
                 var rpt = new rptLetters()
                 {
@@ -128,7 +129,7 @@ namespace Win.Ltr
                 var office = new UnitOfWork().OfficesRepo.Find(x => x.Id == officeId);
                 if (office.IsDivision == true)
                 {
-                    rpt.lblOfficeName.Text = "Office of the Governor" + Environment.NewLine + office?.OfficeName;
+                    rpt.lblOfficeName.Text = "Office of the Governor".ToUpper() + Environment.NewLine + office?.OfficeName?.ToUpper();
                 }
                 else
                 {
@@ -168,8 +169,8 @@ namespace Win.Ltr
                 item.InsideAddress = rich.HtmlText;
 
                 rpt.lblCC.Text = "CC: " + item.CC;
-                rpt.lblTelno.Text = office.TelNo;
-                rpt.lblAddress.Text = office.Address;
+                rpt.lblTelno.Text ="Tel No: "+ office.TelNo;
+                rpt.lblAddress.Text ="Address: "+ office.Address;
                 rpt.DataSource = new List<Letters>() { unitOfWork.LettersRepo.Find(x => x.Id == item.Id) };
                 frmReportViewer frm = new frmReportViewer(rpt);
                 frm.ShowDialog();

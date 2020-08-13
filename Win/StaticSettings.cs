@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Helpers;
 using Models;
 using Models.Repository;
+using Win.Properties;
 
 namespace Win
 {
@@ -13,11 +14,23 @@ namespace Win
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
         int? officeId = User.OfficeId();
-        private Years activeYear => unitOfWork.YearsRepo.Find(m => m.IsActive == true);
-        public Offices settings() => unitOfWork.OfficesRepo.Fetch(m => m.Id == officeId).FirstOrDefault();
+        private Years activeYear => unitOfWork.YearsRepo.Find(m => m.IsActive == true && m.OfficeId == officeId);
+        public Offices settings() => unitOfWork.OfficesRepo.Fetch(m => m.Id == officeId, "UnderOfOffice").FirstOrDefault();
         public Offices Offices => settings();
         public List<Signatories> chiefOfOffice => new UnitOfWork().Signatories.Get(m => m.Year == Year);
-        public int Year => activeYear.Year.ToInt();
+
+        public int Year
+        {
+            get
+            {
+                if (Settings.Default.UseDefaultYear == true)
+                {
+                    return Settings.Default.DefaultYear;
+                }
+                return activeYear.Year.ToInt();
+
+            }
+        }
         public int Id => settings().Id;
         //public  string PG => settings().PG;
         //public  string PGPos => settings().PGPos;
@@ -34,10 +47,19 @@ namespace Win
         public string OfficeName => settings().OfficeName;
         public string Head => settings().Chief;
         public string HeadPos => settings().ChiefPosition;
-        
+
         public string ResponsibilityCenter => settings().ResponsibilityCenter;
         public string ResponsibilityCenterCode => settings().ResponsibilityCenterCode;
-        public int OfficeId => settings().Id;
+
+        public int OfficeId
+        {
+            get
+            {
+                if (settings() == null)
+                    return 0;
+                return settings().Id;
+            }
+        }
 
 
 

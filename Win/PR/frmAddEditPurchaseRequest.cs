@@ -14,6 +14,7 @@ using Win.BL;
 
 namespace Win.PR
 {
+    ///
     public partial class frmAddEditPurchaseRequest : DevExpress.XtraEditors.XtraForm
     {
         private ITransactions<PurchaseRequests> transaction;

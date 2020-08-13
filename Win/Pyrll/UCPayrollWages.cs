@@ -49,10 +49,13 @@ namespace Win.Pyrll
                 {
                     this.methodType = MethodType.Edit;
                     this.btnEditNew.Text = "Edit Payroll";
+                    this.btnDelete.Enabled = true;
                 }
                 else
                 {
+                    this.btnDelete.Enabled = false;
                     this.methodType = MethodType.Add;
+                    this.btnEditNew.Text = "Add Payroll";
                 }
 
             }
@@ -76,7 +79,7 @@ namespace Win.Pyrll
         {
             var res = new UnitOfWork().PayrollWagesRepo.Find(x => x.Id == obligations.Id);
 
-            res.PayrollWageDetails = res.PayrollWageDetails.Where(x => !string.IsNullOrEmpty(x.Employees?.TIN)).ToList();
+            res.PayrollWageDetails = res?.PayrollWageDetails?.Where(x => !string.IsNullOrEmpty(x.Employees?.TIN)).OrderBy(x => x.Employees.LastName).ToList();
             var rpt = new rptOBRPayrollWages()
             {
                 DataSource = new List<PayrollWages>() { res }
@@ -109,6 +112,25 @@ namespace Win.Pyrll
                 {
                     MessageBox.Show(exception.Message, exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+
+                if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+                UnitOfWork unitOfWork = new UnitOfWork();
+                unitOfWork.PayrollWagesRepo.Delete(x => x.Id == obligations.Id);
+                unitOfWork.Save();
+                Init();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

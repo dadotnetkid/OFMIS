@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rptPurchaseRequest));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.xrLabel43 = new DevExpress.XtraReports.UI.XRLabel();
@@ -80,6 +79,7 @@
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
             this.GroupFooter2 = new DevExpress.XtraReports.UI.GroupFooterBand();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource();
             this.xrCrossBandBox1 = new DevExpress.XtraReports.UI.XRCrossBandBox();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrLine8 = new DevExpress.XtraReports.UI.XRLine();
@@ -136,7 +136,7 @@
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
             this.xrLabel63 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel62 = new DevExpress.XtraReports.UI.XRLabel();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrLabel45 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -218,6 +218,7 @@
             // 
             this.xrPanel1.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
             this.xrPanel1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel45,
             this.xrLabel42,
             this.xrLabel14,
             this.xrLabel15,
@@ -325,10 +326,10 @@
             this.xrLabel11.Multiline = true;
             this.xrLabel11.Name = "xrLabel11";
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel11.SizeF = new System.Drawing.SizeF(154.6875F, 22.99999F);
+            this.xrLabel11.SizeF = new System.Drawing.SizeF(54.13586F, 22.99999F);
             this.xrLabel11.StylePriority.UseBorders = false;
             this.xrLabel11.StylePriority.UseFont = false;
-            this.xrLabel11.Text = "PR. NO.:______________";
+            this.xrLabel11.Text = "PR. NO.:";
             // 
             // xrLabel10
             // 
@@ -714,6 +715,11 @@
             this.GroupFooter2.Name = "GroupFooter2";
             this.GroupFooter2.PrintAtBottom = true;
             this.GroupFooter2.RepeatEveryPage = true;
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(Models.PurchaseRequests);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // xrCrossBandBox1
             // 
@@ -1479,10 +1485,16 @@
             this.xrLabel62.Text = "GO-PITD";
             this.xrLabel62.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
-            // objectDataSource1
+            // xrLabel45
             // 
-            this.objectDataSource1.DataSource = typeof(Models.PurchaseRequests);
-            this.objectDataSource1.Name = "objectDataSource1";
+            this.xrLabel45.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ControlNo]")});
+            this.xrLabel45.LocationFloat = new DevExpress.Utils.PointFloat(587.7401F, 1.999992F);
+            this.xrLabel45.Multiline = true;
+            this.xrLabel45.Name = "xrLabel45";
+            this.xrLabel45.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel45.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel45.Text = "xrLabel45";
             // 
             // rptPurchaseRequest
             // 
@@ -1632,5 +1644,6 @@
         private DevExpress.XtraReports.UI.PageFooterBand PageFooter;
         private DevExpress.XtraReports.UI.XRLabel xrLabel63;
         private DevExpress.XtraReports.UI.XRLabel xrLabel62;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel45;
     }
 }

@@ -1,29 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models.Repository;
+using Newtonsoft.Json;
 
 namespace Models
 {
     public partial class DocumentActions
     {
-        private UnitOfWork unitOfWork = new UnitOfWork(false,false);
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        private UnitOfWork unitOfWork = new UnitOfWork(false, false);
+
+
+
+
+        [JsonIgnore]
+        [NotMapped]
         public Actions Programs => unitOfWork.ActionsRepo.Find(x => x.Id == ProgramId);
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [JsonIgnore]
+        [NotMapped]
         public Actions MainActivity => unitOfWork.ActionsRepo.Find(x => x.Id == MainActivityId);
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [JsonIgnore]
+        [NotMapped]
         public Actions Activity => unitOfWork.ActionsRepo.Find(x => x.Id == ActivityId);
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [JsonIgnore]
+        [NotMapped]
         public Actions SubActivity => unitOfWork.ActionsRepo.Find(x => x.Id == SubActivityId);
-        [Newtonsoft.Json.JsonIgnoreAttribute]
-        public string RoutedToUsers => string.Join(",", this.Users.Select(x => x.FullName));
-        [Newtonsoft.Json.JsonIgnoreAttribute]
-        public Users CreatedByUsers => new UnitOfWork().UsersRepo.Fetch(x => x.Id == CreatedBy).FirstOrDefault();
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [JsonIgnore]
+        [NotMapped]
+        public string RouterUsers => string.Join(",", this.RoutedToUsers.Select(x => x.FullName));
+        [JsonIgnore]
+        [NotMapped]
+        public Users CreatedByUser => new UnitOfWork().UsersRepo.Fetch(x => x.Id == CreatedBy).FirstOrDefault();
+        [JsonIgnore]
+        [NotMapped]
         public string Description =>
             TableName == "PurchaseRequests" ? unitOfWork.PurchaseRequestsRepo.Find(x => x.Id == RefId)?.Description : unitOfWork.ObligationsRepo.Find(x => x.Id == RefId)?.Description;
+        [JsonIgnore]
+        [NotMapped]
+        public decimal? TotalAmount=> TableName == "PurchaseRequests" ? unitOfWork.PurchaseRequestsRepo.Find(x => x.Id == RefId)?.TotalAmount : unitOfWork.ObligationsRepo.Find(x => x.Id == RefId)?.TotalAmount;
     }
 }

@@ -16,7 +16,7 @@ namespace Models
         [Newtonsoft.Json.JsonIgnoreAttribute]
         public Signatories Head => new UnitOfWork(false,false).Signatories.Find(m => m.Person == this.DeptHead);
         [Newtonsoft.Json.JsonIgnoreAttribute]
-        public string AmountToWord => (this.TotalAmount ?? 0).ToString("0.00##").NumberToWords();
+        public string AmountToWord => (this.TotalAmount ?? 0).NumberToText();
         [Newtonsoft.Json.JsonIgnoreAttribute]
         public Signatories PAGov => this.PAPos == "Provincial Administrator"
             ? new UnitOfWork(false,false).Signatories.Find(m => m.Position == "Governor")

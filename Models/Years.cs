@@ -17,5 +17,8 @@ namespace Models
         public int Id { get; set; }
         public Nullable<int> Year { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<int> OfficeId { get; set; }
+    
+        public virtual Offices Offices { get; set; }
     }
 }

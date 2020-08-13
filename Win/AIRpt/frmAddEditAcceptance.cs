@@ -118,7 +118,9 @@ namespace Win.AIRpt
                 cboPropertyOfficer.EditValue = item.PropertyOfficer;
                 cboPropertyOfficer2.EditValue = item.PropertyOfficer2;
                 cboPGSO.EditValue = item.PGSOfficer;
-
+                cboPropertyInspector.EditValue = cboPropertyInspector.EditValue ?? unitOfWork.EmployeesRepo.Find(x => x.Id == 1100)?.EmployeeName;
+                cboPGSO.EditValue = cboPGSO.EditValue ?? unitOfWork.Signatories
+                    .Find(x => x.Position == "Provincial General Services Officer")?.Person;
                 ItemsGridControl.DataSource =
                     new BindingList<AIRDetails>(new UnitOfWork(false, false).AIRDetailsRepo.Get(x => x.AIReportId == item.Id));
 
@@ -220,7 +222,24 @@ namespace Win.AIRpt
 
         private void btnDeleteItemRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-
+            if (ItemsGridView.GetFocusedRow() is AIRDetails item)
+            {
+                try
+                {
+                    if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        return;
+                    UnitOfWork unitOfWork = new UnitOfWork();
+                    unitOfWork.AIRDetailsRepo.Delete(x => x.Id == item.Id);
+                    unitOfWork.Save();
+                    ItemsGridControl.DataSource =
+                        new BindingList<AIRDetails>(new UnitOfWork(false, false).AIRDetailsRepo.Get(x => x.AIReportId == item.AIReportId));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)

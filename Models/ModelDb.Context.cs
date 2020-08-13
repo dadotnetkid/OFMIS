@@ -51,7 +51,6 @@ namespace Models
         public virtual DbSet<UserClaims> UserClaims { get; set; }
         public virtual DbSet<UserLogins> UserLogins { get; set; }
         public virtual DbSet<UserRoles> UserRoles { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Years> Years { get; set; }
         public virtual DbSet<Payrolls> Payrolls { get; set; }
         public virtual DbSet<PayrollWages> PayrollWages { get; set; }
@@ -85,5 +84,7 @@ namespace Models
         public virtual DbSet<Letters> Letters { get; set; }
         public virtual DbSet<TrashBin> TrashBin { get; set; }
         public virtual DbSet<ActionTakens> ActionTakens { get; set; }
+        public virtual DbSet<Files> Files { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

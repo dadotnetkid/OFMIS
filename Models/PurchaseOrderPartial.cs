@@ -20,6 +20,6 @@ namespace Models
         [Newtonsoft.Json.JsonIgnoreAttribute]
         public Signatories PAGov => (TotalAmount ?? 0) < 500000 ? Gov : null;
         [Newtonsoft.Json.JsonIgnoreAttribute]
-        public string AmountToWord => this.TotalAmount?.ToString("0.00##").NumberToWords();
+        public string AmountToWord => this.TotalAmount?.NumberToText();
     }
 }

@@ -22,7 +22,7 @@ namespace Helpers
                 try
                 {
                     info = applicationDeployment.CheckForDetailedUpdate();
-
+                  
                 }
                 catch (DeploymentDownloadException dde)
                 {

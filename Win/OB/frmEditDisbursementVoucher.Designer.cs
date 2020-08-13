@@ -54,6 +54,8 @@
             this.txtDate = new DevExpress.XtraEditors.DateEdit();
             this.cboPayee = new DevExpress.XtraEditors.TextEdit();
             this.cboApprovedBy = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.txtAmount = new DevExpress.XtraEditors.SpinEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
@@ -67,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPayee.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboApprovedBy.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -209,7 +212,7 @@
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(9, 300);
+            this.labelControl8.Location = new System.Drawing.Point(8, 322);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(64, 13);
             this.labelControl8.TabIndex = 48;
@@ -217,7 +220,7 @@
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(9, 324);
+            this.labelControl9.Location = new System.Drawing.Point(8, 346);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(42, 13);
             this.labelControl9.TabIndex = 48;
@@ -225,7 +228,7 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(9, 348);
+            this.labelControl10.Location = new System.Drawing.Point(8, 370);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(25, 13);
             this.labelControl10.TabIndex = 48;
@@ -233,17 +236,17 @@
             // 
             // txtPosition
             // 
-            this.txtPosition.Location = new System.Drawing.Point(92, 321);
+            this.txtPosition.Location = new System.Drawing.Point(91, 343);
             this.txtPosition.Name = "txtPosition";
             this.txtPosition.Size = new System.Drawing.Size(363, 20);
-            this.txtPosition.TabIndex = 8;
+            this.txtPosition.TabIndex = 9;
             // 
             // txtNote
             // 
-            this.txtNote.Location = new System.Drawing.Point(92, 345);
+            this.txtNote.Location = new System.Drawing.Point(91, 367);
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(363, 20);
-            this.txtNote.TabIndex = 9;
+            this.txtNote.TabIndex = 10;
             // 
             // btnClose
             // 
@@ -251,10 +254,10 @@
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
-            this.btnClose.Location = new System.Drawing.Point(350, 371);
+            this.btnClose.Location = new System.Drawing.Point(349, 393);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(105, 31);
-            this.btnClose.TabIndex = 50;
+            this.btnClose.TabIndex = 12;
             this.btnClose.Text = "&Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -264,10 +267,10 @@
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(243, 371);
+            this.btnSave.Location = new System.Drawing.Point(242, 393);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(101, 31);
-            this.btnSave.TabIndex = 49;
+            this.btnSave.TabIndex = 11;
             this.btnSave.Text = "Save ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -302,7 +305,7 @@
             // 
             // cboApprovedBy
             // 
-            this.cboApprovedBy.Location = new System.Drawing.Point(92, 297);
+            this.cboApprovedBy.Location = new System.Drawing.Point(91, 319);
             this.cboApprovedBy.Name = "cboApprovedBy";
             this.cboApprovedBy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -317,14 +320,34 @@
             this.cboApprovedBy.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cboApprovedBy.Properties.ValueMember = "Person";
             this.cboApprovedBy.Size = new System.Drawing.Size(363, 20);
-            this.cboApprovedBy.TabIndex = 7;
+            this.cboApprovedBy.TabIndex = 8;
             this.cboApprovedBy.Tag = "Approved By is Required";
+            // 
+            // labelControl11
+            // 
+            this.labelControl11.Location = new System.Drawing.Point(9, 300);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(41, 13);
+            this.labelControl11.TabIndex = 48;
+            this.labelControl11.Text = "Amount";
+            // 
+            // txtAmount
+            // 
+            this.txtAmount.Location = new System.Drawing.Point(92, 297);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtAmount.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.txtAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.txtAmount.Size = new System.Drawing.Size(363, 20);
+            this.txtAmount.TabIndex = 7;
+            this.txtAmount.Tag = "Approved By is Required";
             // 
             // frmEditDisbursementVoucher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 414);
+            this.ClientSize = new System.Drawing.Size(466, 435);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtParticulars);
@@ -334,6 +357,7 @@
             this.Controls.Add(this.txtControl);
             this.Controls.Add(this.labelControl10);
             this.Controls.Add(this.labelControl9);
+            this.Controls.Add(this.labelControl11);
             this.Controls.Add(this.labelControl8);
             this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.labelControl6);
@@ -348,6 +372,7 @@
             this.Controls.Add(this.txtDate);
             this.Controls.Add(this.cboPayee);
             this.Controls.Add(this.cboApprovedBy);
+            this.Controls.Add(this.txtAmount);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -369,6 +394,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPayee.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboApprovedBy.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,5 +426,7 @@
         public DevExpress.XtraEditors.DateEdit txtDate;
         public DevExpress.XtraEditors.TextEdit cboPayee;
         public DevExpress.XtraEditors.LookUpEdit cboApprovedBy;
+        private DevExpress.XtraEditors.LabelControl labelControl11;
+        public DevExpress.XtraEditors.SpinEdit txtAmount;
     }
 }

@@ -188,10 +188,30 @@ namespace Win.Pyrll
                     ChiefOfOffice = staticSettings.Head,
                     Position = staticSettings.HeadPos,
                     Description = "WE HEREBY ACKNOWLEDGE RECEIPT of the sum shown opposite our names as full compensation for the services rendered to the period stated",
-                    PayrollWageDetails = new List<PayrollWageDetails>()
+                    PayrollWageDetails = new List<PayrollWageDetails>(),
+
 
                 };
+
                 unitOfWork.PayrollWagesRepo.Insert(payrollWages);
+
+                unitOfWork.Save();
+                unitOfWork = new UnitOfWork();
+                payrollWages = unitOfWork.PayrollWagesRepo.Find(x => x.Id == payrollWages.Id, "PayrollWageDetails");
+                var counter = 1;
+                foreach (var i in obligations.Payees.Employees.OrderBy(x => x.LastName))
+                {
+                    payrollWages.PayrollWageDetails.Add(new PayrollWageDetails()
+                    {
+                        ItemNumber = counter,
+                        EmployeeId = i.Id,
+                        PayrollWageId = payrollWages.Id
+
+                    });
+                    counter++;
+
+                }
+
                 unitOfWork.Save();
                 Detail();
             }

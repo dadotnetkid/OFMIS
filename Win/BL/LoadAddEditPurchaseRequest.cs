@@ -280,7 +280,6 @@ namespace Win.BL
                 item.Purpose = frmAddEditPurchaseRequest.txtPurpose.Text;
                 item.TotalAmount = item.PRDetails.Sum(m => m.TotalAmount);
                 item.TotalAmount = item.PRDetails.Sum(m => m.TotalAmount);
-                item.OfficeId = new StaticSettings().OfficeId;
                 item.BudgetControlNo = frmAddEditPurchaseRequest.txtBudgetControl.Text;
                 if (frmAddEditPurchaseRequest.cboApprovedBy.GetSelectedDataRow() is Signatories pa)
                 {
@@ -318,6 +317,23 @@ namespace Win.BL
                     obr = unitOfWork.ObligationsRepo.Find(x => x.Id == obr.Id);
                     obr.PRNo = item.Id;
                 }
+
+                item.IsClosed = frmAddEditPurchaseRequest.chkIsClosed.Checked;
+                if (item.IsClosed)
+                {
+                    unitOfWork.DocumentActionsRepo.Insert(new DocumentActions()
+                    {
+                        ControlNo = item.ControlNo,
+                        ObR_PR_No = item.BudgetControlNo,
+                        ActionDate = DateTime.Now,
+                        DateCreated = DateTime.Now,
+                        CreatedBy = User.UserId,
+                        ActionTaken = "Transaction completed",
+                        RefId = item.Id,
+                        TableName = "PurchaseRequests",
+
+                    });
+                }
                 unitOfWork.Save();
 
 
@@ -337,7 +353,7 @@ namespace Win.BL
             frmAddEditPurchaseRequest.cboAccountCode.Properties.DataSource =
                 new BindingList<Appropriations>(unitOfWork.AppropriationsRepoRepo.Get(m => m.Year == staticSettings.Year && m.OfficeId == staticSettings.OfficeId));
             this.frmAddEditPurchaseRequest.cboObRNo.Properties.DataSource = unitOfWork.ObligationsRepo.Get(m => m.OfficeId == staticSettings.OfficeId);
-            this.frmAddEditPurchaseRequest.cboApprovedBy.Properties.DataSource = unitOfWork.Signatories.Get(x => x.Position == "Provincial Administrator" || x.Position == "Governor" || x.Office=="Governor's Office");
+            this.frmAddEditPurchaseRequest.cboApprovedBy.Properties.DataSource = unitOfWork.Signatories.Get(x => x.Position == "Provincial Administrator" || x.Position == "Governor" || x.Office == "Governor's Office");
             item = unitOfWork.PurchaseRequestsRepo.Find(m => m.Id == item.Id);
             frmAddEditPurchaseRequest.dtDate.EditValue = item.Date ?? DateTime.Now;
             frmAddEditPurchaseRequest.txtControlNumber.Text = item.ControlNo;
@@ -361,7 +377,7 @@ namespace Win.BL
             frmAddEditPurchaseRequest.cboCategoryRepo.DataSource = unitOfWork.CategoriesRepo.Get();
             frmAddEditPurchaseRequest.chkEarmarked.EditValue = item.IsEarmark;
             frmAddEditPurchaseRequest.cboApprovedBy.EditValue = item.PA;
-
+            frmAddEditPurchaseRequest.chkIsClosed.Checked = item.IsClosed;
         }
 
         void ITransactions<PurchaseRequests>.Init()
@@ -380,8 +396,8 @@ namespace Win.BL
                         DivisionHead = staticSettings.Offices.IsDivision == true ? staticSettings.Head : "",
                         DivisionHeadPos = staticSettings.Offices.IsDivision == true ? staticSettings.Head : "",
                         OfficeId = staticSettings.OfficeId,
-                        CreatedBy = User.UserId
-
+                        CreatedBy = User.UserId,
+                        Year = staticSettings.Year
                     };
                     unitOfWork.PurchaseRequestsRepo.Insert(item);
                     unitOfWork.Save();
@@ -433,7 +449,7 @@ namespace Win.BL
             var staticSetting = new StaticSettings();
             ucPR.PRGridControl.DataSource = new EntityServerModeSource()
             {
-                QueryableSource = new UnitOfWork().PurchaseRequestsRepo.Fetch(m => m.OfficeId == staticSetting.OfficeId),
+                QueryableSource = new UnitOfWork().PurchaseRequestsRepo.Fetch(m => m.OfficeId == staticSetting.OfficeId && m.Year == staticSetting.Year),
                 DefaultSorting = "Id ASC"
             };
 
@@ -445,7 +461,7 @@ namespace Win.BL
             ucPR.PRGridControl.DataSource = new EntityServerModeSource()
             {
                 QueryableSource = new UnitOfWork().PurchaseRequestsRepo
-                    .Fetch(m => m.OfficeId == staticSetting.OfficeId)
+                    .Fetch(m => m.OfficeId == staticSetting.OfficeId && m.Year == staticSetting.Year)
             };
 
             /*new BindingList<PurchaseRequests>(new UnitOfWork().PurchaseRequestsRepo
@@ -501,7 +517,7 @@ namespace Win.BL
             ucPR.tabAPR.Controls.Clear();
             ucPR.tabAPR.Controls.Add(new UCAPRs(pr) { Dock = DockStyle.Fill });
             ucPR.tabActions.Controls.Clear();
-            ucPR.tabActions.Controls.Add(new UCDocumentActions(pr.Id, pr.ControlNo, "PurchaseRequests") { Dock = DockStyle.Fill });
+            ucPR.tabActions.Controls.Add(new UCDocumentActions(pr.Id, pr.ControlNo, pr.BudgetControlNo, "PurchaseRequests") { Dock = DockStyle.Fill });
             ucPR.tabAcceptance.Controls.Clear();
             ucPR.tabAcceptance.Controls.Add(new UCAIReports(pr) { Dock = DockStyle.Fill });
             ucPR.tabPIS.Controls.Clear();
@@ -512,7 +528,67 @@ namespace Win.BL
 
         public void Search(string search)
         {
+            Search(search, false);
+        }
 
+        public void Search(string search, bool byYear)
+        {
+            try
+            {
+                if (byYear)
+                {
+                    _search(search);
+                    return;
+                }
+                UnitOfWork unitOfWork = new UnitOfWork();
+                StaticSettings staticSettings = new StaticSettings();
+                var status = ucPR.chkIsClosed.Checked;
+
+                ucPR.PRGridControl.DataSource = new BindingList<PurchaseRequests>(unitOfWork.PurchaseRequestsRepo.Get(x => x.Year == staticSettings.Year && (x.OfficeId == staticSettings.OfficeId && (x.Description.Contains(search) || x.ControlNo == search)) && x.IsClosed == status));
+                if (search.ToDecimal() > 0)
+                {
+                    var amount = search.ToDecimal();
+                    ucPR.PRGridControl.DataSource = new BindingList<PurchaseRequests>(unitOfWork.PurchaseRequestsRepo.Get(x => x.Year == staticSettings.Year && (x.OfficeId == staticSettings.OfficeId && (x.TotalAmount >= amount && x.TotalAmount <= amount)) && x.IsClosed == status));
+                }
+
+                if (ucPR.PRGridControl.DataSource is BindingList<PurchaseRequests> list)
+                {
+                    Detail(list.FirstOrDefault());
+                }
+            }
+            catch (Exception exception)
+            {
+
+            }
+        }
+
+        void _search(string search)
+        {
+            try
+            {
+
+           
+                UnitOfWork unitOfWork = new UnitOfWork();
+                ucPR.txtSearch.Text = search;
+                StaticSettings staticSettings = new StaticSettings();
+                var status = ucPR.chkIsClosed.Checked;
+
+                ucPR.PRGridControl.DataSource = new BindingList<PurchaseRequests>(unitOfWork.PurchaseRequestsRepo.Get(x => (x.OfficeId == staticSettings.OfficeId && (x.Description.Contains(search) || x.ControlNo == search)) && x.IsClosed == status));
+                if (search.ToDecimal() > 0)
+                {
+                    var amount = search.ToDecimal();
+                    ucPR.PRGridControl.DataSource = new BindingList<PurchaseRequests>(unitOfWork.PurchaseRequestsRepo.Get(x => (x.OfficeId == staticSettings.OfficeId && (x.TotalAmount >= amount && x.TotalAmount <= amount)) && x.IsClosed == status));
+                }
+
+                if (ucPR.PRGridControl.DataSource is BindingList<PurchaseRequests> list)
+                {
+                    Detail(list.FirstOrDefault());
+                }
+            }
+            catch (Exception exception)
+            {
+
+            }
         }
     }
 }

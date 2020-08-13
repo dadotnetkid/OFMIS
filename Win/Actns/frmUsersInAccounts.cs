@@ -21,7 +21,7 @@ namespace Win.Actns
         {
             InitializeComponent();
             this.documentActions = documentActions;
-            userIds = documentActions.Users.Select(x => x.Id).ToList();
+            userIds = documentActions.RoutedToUsers.Select(x => x.Id).ToList();
             this.Init();
         }
 
@@ -37,7 +37,7 @@ namespace Win.Actns
 
             foreach (var i in users)
             {
-                i.IsSelectedUserInDocuments = documentActions.Users.Any(x => x.Id == i.Id);
+                i.IsSelectedUserInDocuments = documentActions.RoutedToUsers.Any(x => x.Id == i.Id);
             }
 
             foreach (var i in users)
@@ -59,10 +59,10 @@ namespace Win.Actns
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             documentActions = unitOfWork.DocumentActionsRepo.Find(x => x.Id == documentActions.Id);
-            documentActions.Users.Clear();
+            documentActions.RoutedToUsers.Clear();
             foreach (var i in userIds)
             {
-                documentActions.Users.Add(unitOfWork.UsersRepo.Find(x => x.Id == i));
+                documentActions.RoutedToUsers.Add(unitOfWork.UsersRepo.Find(x => x.Id == i));
             }
             unitOfWork.Save();
             Close();
