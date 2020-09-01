@@ -127,9 +127,9 @@
             // 
             this.labelControl8.Location = new System.Drawing.Point(6, 226);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(85, 13);
+            this.labelControl8.Size = new System.Drawing.Size(71, 13);
             this.labelControl8.TabIndex = 23;
-            this.labelControl8.Text = "Head of Division";
+            this.labelControl8.Text = "Division Chief";
             // 
             // txtDescription
             // 
@@ -471,8 +471,6 @@
             this.colAdjustedAmount.ColumnEdit = this.repositoryItemSpinEdit1;
             this.colAdjustedAmount.FieldName = "AdjustedAmount";
             this.colAdjustedAmount.Name = "colAdjustedAmount";
-            this.colAdjustedAmount.Visible = true;
-            this.colAdjustedAmount.VisibleIndex = 4;
             this.colAdjustedAmount.Width = 118;
             // 
             // cboAppropriationLookUpRepo
@@ -497,8 +495,8 @@
             this.chkClosed.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
             this.chkClosed.Properties.Appearance.Options.UseFont = true;
             this.chkClosed.Properties.Appearance.Options.UseForeColor = true;
-            this.chkClosed.Properties.Caption = "Closed";
-            this.chkClosed.Size = new System.Drawing.Size(75, 19);
+            this.chkClosed.Properties.Caption = "Completed?";
+            this.chkClosed.Size = new System.Drawing.Size(89, 19);
             this.chkClosed.TabIndex = 31;
             // 
             // chkEarmarked
@@ -635,9 +633,9 @@
             // 
             this.labelControl7.Location = new System.Drawing.Point(6, 248);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(58, 13);
+            this.labelControl7.Size = new System.Drawing.Size(80, 13);
             this.labelControl7.TabIndex = 24;
-            this.labelControl7.Text = "Dept. Head";
+            this.labelControl7.Text = "Dept. Head(RO)";
             // 
             // btnSave
             // 

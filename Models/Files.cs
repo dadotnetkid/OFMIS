@@ -19,5 +19,9 @@ namespace Models
         public string TableName { get; set; }
         public string Path { get; set; }
         public string RootFolder { get; set; }
+        public string OriginalFileName { get; set; }
+        public string CreatedBy { get; set; }
+    
+        public virtual Users Users { get; set; }
     }
 }

@@ -44,6 +44,8 @@ namespace Models
     public static class DataSource
     {
         public static string ConnectionString { get; set; }
+        public static string OFMISConnectionString { get; set; }
+        public static string DMSConnectionString { get; set; }
     }
     //public class MyDbConfiguration : DbConfiguration
     //{

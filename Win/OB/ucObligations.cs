@@ -15,6 +15,7 @@ using Models.Repository;
 using Models.ViewModels;
 using Win.BL;
 using Win.Rprts;
+using Helpers;
 
 namespace Win.OB
 {
@@ -33,7 +34,7 @@ namespace Win.OB
         {
             InitializeComponent();
             this.loadObligations = new LoadObligations(this);
-            loadObligations.Init();
+
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -47,9 +48,9 @@ namespace Win.OB
             loadObligations.Detail(obligations);
         }
 
-        private void ucObligations_Load(object sender, EventArgs e)
+        private async void ucObligations_Load(object sender, EventArgs e)
         {
-
+            loadObligations.Init();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -117,7 +118,7 @@ namespace Win.OB
             {
                 var rpt = new rptDV()
                 {
-                    DataSource = new List<DvReportViewModel>() {new DvReportViewModel(item.Id)}
+                    DataSource = new List<DvReportViewModel>() { new DvReportViewModel(item.Id) }
                 };
                 //if (new StaticSettings().Offices.IsDivision != true)
                 //{
@@ -148,7 +149,7 @@ namespace Win.OB
                     if (mark.Earmarked == true)
                         e.Appearance.ForeColor = Color.Red;
                 }
-             
+
                 //                e.Appearance.TextOptions.HAlignment = _mark ? HorzAlignment.Far : HorzAlignment.Near;
             }
 
@@ -193,6 +194,81 @@ namespace Win.OB
         {
             if (e.KeyCode == Keys.Enter)
                 loadObligations.Search(txtSearch.Text);
+        }
+
+        private void btnDuplicate_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (this.OBGridView.GetFocusedRow() is Obligations item)
+            {
+
+
+                try
+                {
+
+                    if (MessageBox.Show("Do you want to duplicate this?", "Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        return;
+                    UnitOfWork unitOfWork = new UnitOfWork();
+                    var obr = unitOfWork.ObligationsRepo.Fetch(x => x.OfficeId == item.OfficeId && x.Year == item.Year)
+                        .OrderByDescending(x => x.Id)?.FirstOrDefault();
+                    var dtls = new List<ORDetails>();
+                    foreach (var i in item.ORDetails)
+                    {
+                        dtls.Add(new ORDetails()
+                        {
+                            Amount = i.Amount,
+                            AppropriationId = i.AppropriationId,
+                            Particulars = i.Particulars,
+                            AdjustedAmount = i.AdjustedAmount
+                        });
+                    }
+                    var obrs = new Obligations()
+                    {
+                        Accountant = item.Accountant,
+                        AccountantPos = item.AccountantPos,
+                        Amount = item.Amount,
+                        BudgetControlNo = item.BudgetControlNo,
+                        Chief = item.Chief,
+                        ChiefPosition = item.ChiefPosition,
+                        Closed = item.Closed,
+                        ControlNo = IdHelper.OfficeControlNo(obr.ControlNo, item.Id, "ObR", "Obligations"),
+                        CreatedBy = User.UserId,
+                        Date = item.Date,
+                        DateClosed = item.DateClosed,
+                        DateCreated = DateTime.Now,
+                        Description = item.Description,
+                        DVAmount = item.DVAmount ?? item.Amount,
+                        DVApprovedBy = item.DVApprovedBy,
+                        DVApprovedByPosition = item.DVApprovedByPosition,
+                        DVNote = item.DVNote,
+                        DVParticular = item.DVParticular,
+                        OBRApprovedBy = item.OBRApprovedBy,
+                        OBRApprovedByPos = item.OBRApprovedByPos,
+                        OfficeId = item.OfficeId,
+                        PayeeAddress = item.PayeeAddress,
+                        PayeeId = item.PayeeId,
+                        PayeeOffice = item.PayeeOffice,
+                        PBO = item.PBO,
+                        PBOPos = item.PBOPos,
+                        ResponsibilityCenter = item.ResponsibilityCenter,
+                        ResponsibilityCenterCode = item.ResponsibilityCenterCode,
+                        Year = new StaticSettings().Year,
+                        TreasurerPos = item.TreasurerPos,
+                        Treasurer = item.Treasurer,
+                        TotalAdjustedAmount = item.TotalAdjustedAmount,
+
+                        Status = item.Status,
+                        ORDetails = dtls
+
+                    };
+                    unitOfWork.ObligationsRepo.Insert(obrs);
+                    unitOfWork.Save();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

@@ -71,7 +71,8 @@ namespace Win.PR
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            loadAddEditPurchaseRequest.Search(txtSearch.Text);}
+            loadAddEditPurchaseRequest.Search(txtSearch.Text);
+        }
 
         private void cboStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -91,6 +92,72 @@ namespace Win.PR
             if (e.KeyCode == Keys.Enter)
             {
                 btnSearch.PerformClick();
+            }
+        }
+
+        private void btnDuplicate_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (this.PRGrid.GetFocusedRow() is PurchaseRequests item)
+            {
+
+                try
+                {
+
+                    if (MessageBox.Show("Do you want to submit this?", "Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        return;
+                    UnitOfWork unitOfWork = new UnitOfWork();
+                    var pr = unitOfWork.PurchaseRequestsRepo.Fetch().OrderByDescending(x => x.Id).FirstOrDefault();
+                    StaticSettings staticSettings = new StaticSettings();
+                    var res = new PurchaseRequests()
+                    {
+                        ControlNo = IdHelper.OfficeControlNo(pr.ControlNo, staticSettings.OfficeId, "PR",
+                            "PurchaseRequests"),
+                        AppropriationId = item.AppropriationId,
+                        CreatedBy = User.UserId,
+                        Date = DateTime.Now,
+                        OfficeId = item.OfficeId,
+                        DeptHead = item.DeptHead,
+                        Description = item.Description,
+                        Year = item.Year,
+                        TotalAmount = item.TotalAmount,
+                        TableName = item.TableName,
+                        Purpose = item.Purpose,
+                        DeptHeadPos = item.DeptHeadPos,
+                        PAPos = item.PAPos,
+                        PA = item.PA,
+                        DivisionHead = item.DivisionHead,
+                        DivisionHeadPos = item.DivisionHeadPos,
+                        IsEarmark = item.IsEarmark,
+
+
+
+                    };
+                    var pRDetails = new List<PRDetails>();
+                    foreach (var i in item.PRDetails)
+                    {
+                        pRDetails.Add(new PRDetails()
+                        {
+                            Category = i.Category,
+                            Cost = i.Cost,
+                            Item = i.Item,
+                            ItemNo = i.ItemNo,
+                            ItemId = i.ItemId,
+                            Quantity = i.Quantity,
+                            TableName = i.TableName,
+                            TotalAmount = i.TotalAmount,
+                            UOM = i.UOM,
+                        });
+                    }
+
+                    res.PRDetails = pRDetails;
+                    unitOfWork.PurchaseRequestsRepo.Insert(res);
+                    unitOfWork.Save();
+                    ((ILoad<PurchaseRequests>) this.loadAddEditPurchaseRequest).Init();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

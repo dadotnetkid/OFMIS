@@ -53,8 +53,7 @@ namespace Win.Ltr
                     Signatories = staticSettings.Head,
                     SignatoriesPosition = staticSettings.HeadPos,
                     CreatedBy = User.UserId,
-                    DateCreated = DateTime.Now
-                };
+                    DateCreated = DateTime.Now};
                 UnitOfWork unitOfWork = new UnitOfWork();
                 unitOfWork.LettersRepo.Insert(letters);
                 unitOfWork.Save();
@@ -73,8 +72,8 @@ namespace Win.Ltr
                 UnitOfWork unitOfWork = new UnitOfWork();
                 this.officesBindingSource.DataSource = unitOfWork.OfficesRepo.Get();
                 this.txtBody.HtmlText = letters.Body;
-                this.cboType.Text = letters.Type;
-                this.cboTemplates.Text = letters.Template;
+                this.cboType.EditValue = letters.Type;
+                this.cboTemplates.EditValue = letters.Template;
                 this.txtTitle.Text = letters.Title;
                 this.dtDate.EditValue = letters.Date;
                 this.txtInsideAddress.HtmlText = letters.InsideAddress;
@@ -103,11 +102,12 @@ namespace Win.Ltr
             {
                 txtTitle.Enabled = true;
                 txtTitle.Text = cboType.Text;
+                txtInsideAddress.Enabled = true;
             }
             if (type == "Plain")
             {
                 txtTitle.Enabled = false;
-                cboOffice.Enabled = false;
+                //cboOffice.Enabled = false;
                 txtInsideAddress.Enabled = false;
                 cboClosing.Enabled = false;
                 dtDate.Enabled = false;
@@ -158,22 +158,9 @@ namespace Win.Ltr
                 return;
             try
             {
-                if (methodType == MethodType.Edit)
-                {
-                    Details();
-                    return;
-                }
                 UnitOfWork unitOfWork = new UnitOfWork();
-                letters = new Letters()
-                {
-                    TableName = letters.TableName,
-                    RefId = letters.RefId,
-                    ControlNo = letters.ControlNo,
-
-                };
-                unitOfWork.LettersRepo.Insert(letters);
+                unitOfWork.LettersRepo.Delete(x => x.Id == letters.Id);
                 unitOfWork.Save();
-                Details();
             }
             catch (Exception ex)
             {
@@ -205,8 +192,12 @@ namespace Win.Ltr
         {
             if (cboOffice.GetSelectedDataRow() is Offices item)
             {
-                txtInsideAddress.HtmlText = item.InsideAddress;
-                txtInsideAddress.Document.DefaultCharacterProperties.FontName = "Calibri";
+                if (cboType.Text != "Plain")
+                {
+                    txtInsideAddress.HtmlText = item.InsideAddress;
+                    txtInsideAddress.Document.DefaultCharacterProperties.FontName = "Calibri";
+                }
+
 
             }
         }

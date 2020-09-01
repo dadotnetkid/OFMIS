@@ -339,7 +339,8 @@ namespace Win
 
         private void btnAccomplishmentReport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmAccomplishmentReport frm = new frmAccomplishmentReport();
+            StaticSettings staticSettings = new StaticSettings();
+            frmAccomplishmentReport frm = new frmAccomplishmentReport(null, $"[{staticSettings.Offices.OffcAcr}]Office Management Information System({User.UserName })");
             frm.ShowDialog();
         }
 

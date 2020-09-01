@@ -12,6 +12,7 @@ using Models;
 using Models.Repository;
 using Newtonsoft.Json;
 using Win.Actns;
+using Win.Itnrry;
 using Win.LR;
 using Win.Ltr;
 using Win.OB;
@@ -106,7 +107,7 @@ namespace Win.BL
                 uc.OBGridView.MakeRowVisible(rowHandle);
             }
         }
-        public void EditObR(Obligations item)
+        public async void EditObR(Obligations item)
         {
 
 
@@ -117,23 +118,26 @@ namespace Win.BL
             frmAddEditObligation frm = new frmAddEditObligation(MethodType.Edit, item);
             frm.ShowDialog();
             //    Init();
-            Detail(new UnitOfWork().ObligationsRepo.Find(m => m.Id == item.Id));
+            Detail(await new UnitOfWork().ObligationsRepo.FindAsync(m => m.Id == item.Id));
             uc.OBGridView.FocusedRowHandle = rowHandle;
             uc.OBGridView.MakeRowVisible(rowHandle);
         }
-        private void GridObligation_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        private async void GridObligation_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (sender is GridView gridView)
             {
                 if (gridView.GetFocusedRow() is Obligations item)
                 {
-                    Detail(new UnitOfWork().ObligationsRepo.Find(m => m.Id == item.Id));
+                    uc.lblStatus.Text = "Querying...";
+
+                    Detail(await new UnitOfWork().ObligationsRepo.FindAsync(m => m.Id == item.Id));
+                    uc.lblStatus.Text = "";
                 }
             }
         }
 
 
-        private void BtnDeleteRepoOBR_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private async void BtnDeleteRepoOBR_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             try
             {
@@ -146,7 +150,7 @@ namespace Win.BL
 
                     TrashbinHelper trashbinHelper = new TrashbinHelper();
                     UnitOfWork unitOfWork = new UnitOfWork(false, false);
-                    item = unitOfWork.ObligationsRepo.Find(x => x.Id == item.Id, false, includeProperties: "PurchaseOrders,ORDetails,Payrolls,PayrollWages,PayrollDifferentials,Liquidations,Letters");
+                    item = await unitOfWork.ObligationsRepo.FindAsync(x => x.Id == item.Id, false, includeProperties: "PurchaseOrders,ORDetails,Payrolls,PayrollWages,PayrollDifferentials,Liquidations,Letters");
                     trashbinHelper.Delete(item, "Obligations", item.Description, User.UserId, new StaticSettings().OfficeId);
 
                     unitOfWork.ObligationsRepo.Delete(m => m.Id == item.Id);
@@ -160,24 +164,29 @@ namespace Win.BL
             }
         }
 
-        public void Init()
+        public async void Init()
         {
             var staticSettings = new StaticSettings();
-            uc.OBGridControl.DataSource = new EntityServerModeSource()
-            { QueryableSource = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year && m.OfficeId == staticSettings.OfficeId, "Payees,ORDetails,CreatedByUser") };
+            uc.lblStatus.Text = "Querying...";
+            uc.OBGridView.ShowLoadingPanel();
+
+            uc.OBGridControl.DataSource = await Task.Run(() => new UnitOfWork().ObligationsRepo.Get(m => m.Year == year && m.OfficeId == staticSettings.OfficeId,
+               orderBy: x => x.OrderByDescending(m => m.Id), includeProperties: "Payees,ORDetails,CreatedByUser"));
+            uc.lblStatus.Text = "";
             //var res = new UnitOfWork(false, false).ObligationsRepo
             //    .Get(m => m.Year == year).Where(x => x.OfficeId == staticSettings.OfficeId).ToList();
             //uc.OBGridControl.DataSource = new BindingList<Obligations>(res);
             if (uc.OBGridView.GetFocusedRow() is Obligations item)
             {
-                Detail(new UnitOfWork(false, false).ObligationsRepo.Find(m => m.Id == item.Id, "Payees,ORDetails,CreatedByUser"));
+                Detail(await Task.Run(() => new UnitOfWork(false, false).ObligationsRepo.Find(m => m.Id == item.Id, "Payees,ORDetails,CreatedByUser")));
             }
 
             uc.lblTotalOf.Text =
                 $@"Total of: {new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year).Count(x => x.OfficeId == staticSettings.OfficeId)}";
+
         }
 
-        public void Detail(Obligations item)
+        public async void Detail(Obligations item)
         {
             try
             {
@@ -198,7 +207,7 @@ namespace Win.BL
                 uc.txtBudgetCtl.Text = item.BudgetControlNo;
                 uc.txtParticular.Text = item.DVParticular;
                 uc.txtAdjustedAmount.Text = item.TotalAdjustedAmount?.ToString("n2");
-                uc.ORDetailGridControl.DataSource = new BindingList<ORDetails>(item.ORDetails.ToList());
+                uc.ORDetailGridControl.DataSource = new BindingList<ORDetails>(await Task.Run(() => item.ORDetails.ToList()));
                 uc.tabPayroll.Controls.Clear();
                 uc.tabPayroll.Controls.Add(new UCPayrolls(item.Id) { Dock = DockStyle.Fill });
                 uc.tabPayrollWages.Controls.Clear();
@@ -209,15 +218,23 @@ namespace Win.BL
                 uc.tabActions.Controls.Add(new UCDocumentActions(item.Id, item.ControlNo, item.BudgetControlNo, "Obligations") { Dock = DockStyle.Fill });
                 uc.tabLR.Controls.Clear();
                 uc.tabLR.Controls.Add(new UCLR(item) { Dock = DockStyle.Fill });
+                uc.tabLetters.Controls.Clear();
                 uc.tabLetters.Controls.Add(new UcLetters(item.Id, item.ControlNo, "Obligation") { Dock = DockStyle.Fill });
+                uc.tabIOT.Controls.Clear();
+                uc.tabIOT.Controls.Add(new UCIteneraryOfTravel(item.Id) { Dock = DockStyle.Fill });
                 uc.lblTotal.Text = item.TotalAmount?.ToString("#,#.0#");
+                uc.tabFiles.Controls.Clear();
+                uc.tabFiles.Controls.Add(new UCFiles(item.Id, item.ControlNo)
+                {
+                    Dock = DockStyle.Fill
+                });
                 uc.txtCreatedBy.Text = item.CreatedByUser?.FullName;
 
                 if (uc.ORDetailsGridView.GetFocusedRow() is ORDetails obr)
                 {
                     uc.lblParticulars.Text = obr.Particulars;
                 }
-
+                uc.OBGridView.HideLoadingPanel();
             }
             catch (Exception exception)
             {
@@ -249,6 +266,17 @@ namespace Win.BL
             else
                 ob = new List<Obligations>().AsQueryable(); if (uc.cboStatus.Text != "All")
                 ob = ob.Where(x => x.Status.Contains(uc.cboStatus.Text));
+            if (search.Contains("to"))
+            {
+                var amount = search.Split(new String[] { "to" }, StringSplitOptions.None);
+                var amount1 = amount[0].ToDecimal();
+                var amount2 = amount[1].ToDecimal();
+                var res = new BindingList<Obligations>(new UnitOfWork().ObligationsRepo.Fetch(x => x.OfficeId == staticSettings.OfficeId).ToList().Where(x => x.TotalAmount >= amount1 && x.TotalAmount <= amount2).ToList());
+                this.uc.OBGridControl.DataSource = res;
+
+                Detail(res.FirstOrDefault());
+                return;
+            }
             this.uc.OBGridControl.DataSource =
                 new BindingList<Obligations>(ob.Where(x => x.OfficeId == staticSettings.OfficeId).ToList());
             Detail(ob.FirstOrDefault());

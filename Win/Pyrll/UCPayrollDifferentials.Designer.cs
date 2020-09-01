@@ -255,6 +255,7 @@
             this.Controls.Add(this.panelControl1);
             this.Name = "UCPayrollDifferentials";
             this.Size = new System.Drawing.Size(1126, 710);
+            this.Load += new System.EventHandler(this.UCPayrollDifferentials_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PayrollDiffGridControl)).EndInit();

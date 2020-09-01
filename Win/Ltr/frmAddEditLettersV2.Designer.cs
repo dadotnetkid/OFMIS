@@ -41,6 +41,7 @@
             this.dtDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.cboOffice = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.officesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colOffcAcr = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colChief = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -49,6 +50,7 @@
             this.dtSalutation = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.cboTemplates = new DevExpress.XtraEditors.LookUpEdit();
+            this.templatesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtBody = new DevExpress.XtraRichEdit.RichEditControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.cboClosing = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -69,8 +71,6 @@
             this.btnUnderline = new DevExpress.XtraEditors.SimpleButton();
             this.btnIncFont = new DevExpress.XtraEditors.SimpleButton();
             this.btnDecFont = new DevExpress.XtraEditors.SimpleButton();
-            this.templatesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.officesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.fntTextfont = new DevExpress.XtraEditors.FontEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
@@ -79,16 +79,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboOffice.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.officesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtSalutation.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTemplates.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.templatesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboClosing.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSignatories.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAbsence.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCC.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.templatesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.officesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fntTextfont.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -210,6 +210,10 @@
             this.cboOffice.TabIndex = 39;
             this.cboOffice.EditValueChanged += new System.EventHandler(this.cboOffice_EditValueChanged);
             // 
+            // officesBindingSource
+            // 
+            this.officesBindingSource.DataSource = typeof(Models.Offices);
+            // 
             // searchLookUpEdit1View
             // 
             this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -288,6 +292,10 @@
             this.cboTemplates.Size = new System.Drawing.Size(319, 20);
             this.cboTemplates.TabIndex = 42;
             this.cboTemplates.EditValueChanged += new System.EventHandler(this.cboTemplates_EditValueChanged);
+            // 
+            // templatesBindingSource
+            // 
+            this.templatesBindingSource.DataSource = typeof(Models.Templates);
             // 
             // txtBody
             // 
@@ -438,7 +446,7 @@
             // 
             // btnBold
             // 
-            this.btnBold.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnBold.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBold.ImageOptions.Image")));
             this.btnBold.Location = new System.Drawing.Point(125, 246);
             this.btnBold.Name = "btnBold";
             this.btnBold.Size = new System.Drawing.Size(27, 23);
@@ -448,7 +456,7 @@
             // 
             // btnItalic
             // 
-            this.btnItalic.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
+            this.btnItalic.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnItalic.ImageOptions.Image")));
             this.btnItalic.Location = new System.Drawing.Point(153, 246);
             this.btnItalic.Name = "btnItalic";
             this.btnItalic.Size = new System.Drawing.Size(27, 23);
@@ -458,7 +466,7 @@
             // 
             // btnUnderline
             // 
-            this.btnUnderline.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
+            this.btnUnderline.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUnderline.ImageOptions.Image")));
             this.btnUnderline.Location = new System.Drawing.Point(181, 246);
             this.btnUnderline.Name = "btnUnderline";
             this.btnUnderline.Size = new System.Drawing.Size(27, 23);
@@ -468,7 +476,6 @@
             // 
             // btnIncFont
             // 
-            this.btnIncFont.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image1")));
             this.btnIncFont.Location = new System.Drawing.Point(214, 246);
             this.btnIncFont.Name = "btnIncFont";
             this.btnIncFont.Size = new System.Drawing.Size(107, 23);
@@ -479,7 +486,6 @@
             // 
             // btnDecFont
             // 
-            this.btnDecFont.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image1")));
             this.btnDecFont.Location = new System.Drawing.Point(327, 246);
             this.btnDecFont.Name = "btnDecFont";
             this.btnDecFont.Size = new System.Drawing.Size(107, 23);
@@ -487,14 +493,6 @@
             this.btnDecFont.Text = "Decrease Font";
             this.btnDecFont.ToolTip = "Add Tables";
             this.btnDecFont.Click += new System.EventHandler(this.btnDecFont_Click);
-            // 
-            // templatesBindingSource
-            // 
-            this.templatesBindingSource.DataSource = typeof(Models.Templates);
-            // 
-            // officesBindingSource
-            // 
-            this.officesBindingSource.DataSource = typeof(Models.Offices);
             // 
             // fntTextfont
             // 
@@ -561,16 +559,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboOffice.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.officesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtSalutation.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTemplates.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.templatesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboClosing.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSignatories.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAbsence.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCC.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.templatesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.officesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fntTextfont.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

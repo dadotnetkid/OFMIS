@@ -269,10 +269,28 @@ namespace Win.BL
         {
             try
             {
+
                 StaticSettings staticSettings = new StaticSettings();
                 UnitOfWork unitOfWork = new UnitOfWork();
 
                 item = unitOfWork.PurchaseRequestsRepo.Find(m => m.Id == item.Id);
+                if (frmAddEditPurchaseRequest.chkIsCancelled.Checked)
+                    if (string.IsNullOrEmpty(item.CancellationReason) && item.IsCancelled != true)
+                    {
+                        new frmCancellationReason(item.Id).ShowDialog();
+                        unitOfWork.DocumentActionsRepo.Insert(new DocumentActions()
+                        {
+                            ActionDate = DateTime.Now,
+                            ActionTaken = "PR Cancelled",
+                            RefId = item.Id,
+                            TableName = "PurchaseRequests",
+                            DateCreated = DateTime.Now,
+                            CreatedBy = User.UserId,
+                            Year = staticSettings.Year,
+                            ControlNo = item.ControlNo,
+                        });
+                    }
+
                 item.Date = frmAddEditPurchaseRequest.dtDate.DateTime;
                 item.ControlNo = frmAddEditPurchaseRequest.txtControlNumber.Text;
                 item.Description = frmAddEditPurchaseRequest.txtDescription.Text;
@@ -281,6 +299,7 @@ namespace Win.BL
                 item.TotalAmount = item.PRDetails.Sum(m => m.TotalAmount);
                 item.TotalAmount = item.PRDetails.Sum(m => m.TotalAmount);
                 item.BudgetControlNo = frmAddEditPurchaseRequest.txtBudgetControl.Text;
+                item.IsCancelled = frmAddEditPurchaseRequest.chkIsCancelled.Checked;
                 if (frmAddEditPurchaseRequest.cboApprovedBy.GetSelectedDataRow() is Signatories pa)
                 {
                     item.PA = pa.Person; //unitOfWork.Signatories.Find(m => m.Position == "Provincial Administrator")?.Person;
@@ -321,18 +340,19 @@ namespace Win.BL
                 item.IsClosed = frmAddEditPurchaseRequest.chkIsClosed.Checked;
                 if (item.IsClosed)
                 {
-                    unitOfWork.DocumentActionsRepo.Insert(new DocumentActions()
-                    {
-                        ControlNo = item.ControlNo,
-                        ObR_PR_No = item.BudgetControlNo,
-                        ActionDate = DateTime.Now,
-                        DateCreated = DateTime.Now,
-                        CreatedBy = User.UserId,
-                        ActionTaken = "Transaction completed",
-                        RefId = item.Id,
-                        TableName = "PurchaseRequests",
+                    if (!unitOfWork.DocumentActionsRepo.Fetch(x => x.ActionTaken == "Transaction completed" && x.RefId == item.Id && x.TableName == "PurchaseRequests").Any())
+                        unitOfWork.DocumentActionsRepo.Insert(new DocumentActions()
+                        {
+                            ControlNo = item.ControlNo,
+                            ObR_PR_No = item.BudgetControlNo,
+                            ActionDate = DateTime.Now,
+                            DateCreated = DateTime.Now,
+                            CreatedBy = User.UserId,
+                            ActionTaken = "Transaction completed",
+                            RefId = item.Id,
+                            TableName = "PurchaseRequests",
 
-                    });
+                        });
                 }
                 unitOfWork.Save();
 
@@ -378,6 +398,7 @@ namespace Win.BL
             frmAddEditPurchaseRequest.chkEarmarked.EditValue = item.IsEarmark;
             frmAddEditPurchaseRequest.cboApprovedBy.EditValue = item.PA;
             frmAddEditPurchaseRequest.chkIsClosed.Checked = item.IsClosed;
+            frmAddEditPurchaseRequest.chkIsCancelled.Checked = item.IsCancelled.ToBool();
         }
 
         void ITransactions<PurchaseRequests>.Init()
@@ -505,7 +526,12 @@ namespace Win.BL
             ucPR.txtPurpose.Text = pr.Purpose;
             ucPR.txtAmount.EditValue = pr.TotalAmount;
             ucPR.txtAccountCode.EditValue = pr.Appropriations?.AccountCode + " - " + pr.Appropriations?.AccountName;
+            ucPR.chkIsClosed.Checked = pr.IsClosed;
+            ucPR.chkEarmarked.Checked = pr.IsEarmark ?? false;
+            ucPR.chkCancelled.Checked = pr.IsCancelled ?? false;
+            ucPR.txtReason.EditValue = pr.CancellationReason;
             ucPR.ItemsGridControl.DataSource = new BindingList<PRDetails>(pr.PRDetails.OrderBy(x => x.ItemNo).ToList());
+
             ucPR.PQTabPage.Controls.Clear();
             ucPR.PQTabPage.Controls.Add(new UCPQ(pr) { Dock = DockStyle.Fill });
             ucPR.tabPO.Controls.Clear();
@@ -567,7 +593,7 @@ namespace Win.BL
             try
             {
 
-           
+
                 UnitOfWork unitOfWork = new UnitOfWork();
                 ucPR.txtSearch.Text = search;
                 StaticSettings staticSettings = new StaticSettings();

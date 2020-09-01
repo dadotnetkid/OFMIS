@@ -273,8 +273,9 @@
             this.chkIsClosed.Properties.Appearance.Options.UseFont = true;
             this.chkIsClosed.Properties.Caption = "is Closed";
             this.chkIsClosed.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.chkIsClosed.Size = new System.Drawing.Size(138, 19);
+            this.chkIsClosed.Size = new System.Drawing.Size(138, 18);
             this.chkIsClosed.TabIndex = 74;
+            this.chkIsClosed.Visible = false;
             // 
             // panel1
             // 

@@ -167,7 +167,7 @@ namespace Win.BL
                 frm.ShowDialog();
                 Detail(new UnitOfWork().AppropriationsRepoRepo.Find(m => m.Id == item.Id));
             }
-       
+
         }
 
         public Appropriations Appropriations { get; set; }
@@ -208,9 +208,13 @@ namespace Win.BL
                 uc.txtReAlignment.Text = item.ReAlignment?.ToString("n2");
                 uc.lblHeader.Text = item.AccountCode + " - " + item.AccountName;
                 uc.txtObligationBudget.Text = item.BudgetAccountBalance?.ToString("n2");
-                uc.AllotmentGridControl.DataSource = new BindingList<Allotments>(item.Allotments.ToList());
+                uc.txtPRCancelled.Text = item.PurchaseRequestCancelled.ToString("n2")
+                    ;uc.AllotmentGridControl.DataSource = new BindingList<Allotments>(item.Allotments.ToList());
                 uc.ObligationGridControl.DataSource = new BindingList<ORDetails>(new UnitOfWork().ORDetailsRepo.Get(m => m.AppropriationId == item.Id, includeProperties: "Obligations,Obligations.Payees"));
                 uc.ReAlignmentGridControl.DataSource = new BindingList<ReAlignments>(new UnitOfWork().ReAlignmentsRepo.Get(m => m.SourceAppropriationId == item.Id || m.TargetAppropriationId == item.Id).ToList());
+                uc.tabEarmarked.Controls.Clear();
+
+                uc.tabEarmarked.Controls.Add(new UCEarmarkPR(item) { Dock = DockStyle.Fill });
             }
             catch (Exception e)
             {

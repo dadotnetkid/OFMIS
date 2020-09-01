@@ -60,7 +60,8 @@ namespace Win.Usr
                 user.Position = txtPosition.Text;
                 foreach (string i in cboUserRole.EditValue.ToString().Split(','))
                 {
-                    user.UserRoles.Add(unitOfWork.UserRolesRepo.Find(m => m.Name == i));
+                    var userRole = i.Trim();
+                    user.UserRoles.Add(unitOfWork.UserRolesRepo.Find(m => m.Name == userRole));
                 }
                 unitOfWork.Save();
 

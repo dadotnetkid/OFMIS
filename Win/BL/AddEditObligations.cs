@@ -194,18 +194,18 @@ namespace Win.BL
                 }
                 if (frm.chkClosed.Checked)
                 {
-                    unitOfWork.DocumentActionsRepo.Insert(new DocumentActions()
-                    {
-                        ControlNo = obligations.ControlNo,
-                        ObR_PR_No = obligations.BudgetControlNo,
-                        ActionDate = DateTime.Now,
-                        DateCreated = DateTime.Now,
-                        CreatedBy = User.UserId,
-                        ActionTaken = "Transaction completed",
-                        RefId = obligations.Id,
-                        TableName = "Obligations",
-
-                    });
+                    if (!unitOfWork.DocumentActionsRepo.Fetch(x => x.ActionTaken == "Transaction completed" && x.RefId == obligations.Id && x.TableName == "Obligations").Any())
+                        unitOfWork.DocumentActionsRepo.Insert(new DocumentActions()
+                        {
+                            ControlNo = obligations.ControlNo,
+                            ObR_PR_No = obligations.BudgetControlNo,
+                            ActionDate = DateTime.Now,
+                            DateCreated = DateTime.Now,
+                            CreatedBy = User.UserId,
+                            ActionTaken = "Transaction completed",
+                            RefId = obligations.Id,
+                            TableName = "Obligations",
+                        });
                 }
                 unitOfWork.Save();
                 this.isClosed = true;
@@ -304,8 +304,8 @@ namespace Win.BL
                     ORDetails = obligations?.ORDetails ?? new List<ORDetails>(),
                     PRNo = obligations?.PRNo,
                     OfficeId = new StaticSettings().OfficeId,
-                    CreatedBy=User.UserId,
-                    DateCreated=DateTime.Now
+                    CreatedBy = User.UserId,
+                    DateCreated = DateTime.Now
                 };
                 unitOfWork.ObligationsRepo.Insert(obligations);
                 unitOfWork.Save();

@@ -24,6 +24,8 @@ namespace Models
             this.PayrollDifferentialDetails = new HashSet<PayrollDifferentialDetails>();
             this.Liquidations = new HashSet<Liquidations>();
             this.Signatories = new HashSet<Signatories>();
+            this.PayrollOTDetails = new HashSet<PayrollOTDetails>();
+            this.ItenaryofTravels = new HashSet<ItenaryofTravels>();
         }
     
         public int Id { get; set; }
@@ -61,5 +63,9 @@ namespace Models
         public virtual Offices Offices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Signatories> Signatories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PayrollOTDetails> PayrollOTDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ItenaryofTravels> ItenaryofTravels { get; set; }
     }
 }

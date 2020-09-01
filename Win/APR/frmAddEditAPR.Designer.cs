@@ -388,6 +388,7 @@
             this.chkIsClosed.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.chkIsClosed.Size = new System.Drawing.Size(138, 18);
             this.chkIsClosed.TabIndex = 90;
+            this.chkIsClosed.Visible = false;
             // 
             // labelControl4
             // 
@@ -395,9 +396,9 @@
             this.labelControl4.Appearance.Options.UseFont = true;
             this.labelControl4.Location = new System.Drawing.Point(12, 173);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(13, 14);
+            this.labelControl4.Size = new System.Drawing.Size(60, 14);
             this.labelControl4.TabIndex = 85;
-            this.labelControl4.Text = "PA";
+            this.labelControl4.Text = "Accountant";
             this.labelControl4.Click += new System.EventHandler(this.labelControl4_Click);
             // 
             // labelControl3

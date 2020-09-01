@@ -144,6 +144,18 @@
         <AssociationConnector Association="Model.FK_UserLogins_Users" />
         <AssociationConnector Association="Model.UsersInDocumentActions" />
         <AssociationConnector Association="Model.UsersInRoles" />
+        <EntityTypeShape EntityType="Model.PayrollOT" Width="1.5" PointX="15.5" PointY="55.25" />
+        <AssociationConnector Association="Model.FK_PayrollOT_Obligations" />
+        <EntityTypeShape EntityType="Model.PayrollOTDetails" Width="1.5" PointX="20.75" PointY="43.625" />
+        <AssociationConnector Association="Model.FK_PayrollOTDetails_Employees" />
+        <AssociationConnector Association="Model.FK_PayrollOTDetails_PayrollOT" />
+        <AssociationConnector Association="Model.FK_Letters_Offices" />
+        <AssociationConnector Association="Model.FK_Files_Users" />
+        <EntityTypeShape EntityType="Model.ItenaryofTravels" Width="1.5" PointX="20.5" PointY="38.125" />
+        <AssociationConnector Association="Model.FK_ItenaryofTravels_Employees" />
+        <AssociationConnector Association="Model.FK_ItenaryofTravels_Obligations" />
+        <EntityTypeShape EntityType="Model.ItenaryDetails" Width="1.5" PointX="22.75" PointY="38.375" />
+        <AssociationConnector Association="Model.FK_ItenaryDetails_ItenaryofTravels" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

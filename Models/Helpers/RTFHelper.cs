@@ -22,6 +22,15 @@ namespace Helpers
             return stringHtml;
         }
 
+        public static string HtmlToRtf(this RichEditControl richEditControl,string markup)
+        {
+            HtmlDocumentExporterOptions options = new HtmlDocumentExporterOptions();
+            options.ExportRootTag = ExportRootTag.Body;
+            options.CssPropertiesExportType = CssPropertiesExportType.Inline;
+            HtmlExporter exporter = new HtmlExporter(richEditControl.Model, options);
+            string stringHtml = exporter.Export();
+            return stringHtml;
+        }
         public static void ToBold(this RichEditControl richEditControl)
         {
             var txt = richEditControl.Document;

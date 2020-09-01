@@ -36,7 +36,9 @@
             this.txtParticulars = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.cboPayee = new DevExpress.XtraEditors.LookUpEdit();
+            this.employeesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cboDepthead = new DevExpress.XtraEditors.LookUpEdit();
+            this.signatoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.cboAccountant = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -46,18 +48,16 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtPeriodCovered = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.signatoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.employeesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtParticulars.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPayee.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDepthead.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.signatoriesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAccountant.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeriodCovered.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.signatoriesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl4
@@ -118,9 +118,9 @@
             // 
             this.labelControl3.Location = new System.Drawing.Point(9, 37);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(29, 13);
+            this.labelControl3.Size = new System.Drawing.Size(49, 13);
             this.labelControl3.TabIndex = 90;
-            this.labelControl3.Text = "Payee";
+            this.labelControl3.Text = "Employee";
             // 
             // cboPayee
             // 
@@ -143,6 +143,10 @@
             this.cboPayee.TabIndex = 1;
             this.cboPayee.Tag = "1";
             // 
+            // employeesBindingSource
+            // 
+            this.employeesBindingSource.DataSource = typeof(Models.Employees);
+            // 
             // cboDepthead
             // 
             this.cboDepthead.EnterMoveNextControl = true;
@@ -163,6 +167,10 @@
             this.cboDepthead.Size = new System.Drawing.Size(355, 20);
             this.cboDepthead.TabIndex = 5;
             this.cboDepthead.Tag = "4";
+            // 
+            // signatoriesBindingSource
+            // 
+            this.signatoriesBindingSource.DataSource = typeof(Models.Signatories);
             // 
             // labelControl5
             // 
@@ -273,14 +281,6 @@
             this.labelControl7.TabIndex = 90;
             this.labelControl7.Text = "Period Covered";
             // 
-            // signatoriesBindingSource
-            // 
-            this.signatoriesBindingSource.DataSource = typeof(Models.Signatories);
-            // 
-            // employeesBindingSource
-            // 
-            this.employeesBindingSource.DataSource = typeof(Models.Employees);
-            // 
             // frmAddEditLR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -312,12 +312,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtParticulars.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPayee.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDepthead.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.signatoriesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAccountant.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeriodCovered.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.signatoriesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

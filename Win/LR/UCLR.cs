@@ -25,12 +25,13 @@ namespace Win.LR
             Init();
         }
 
-        private void Init()
+        private async void Init()
         {
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
-                this.LRGridControl.DataSource = unitOfWork.LiquidationsRepo.Get(x => x.ObRId == obligations.Id);
+                this.LRGridControl.DataSource =
+                    Task.Run(() => unitOfWork.LiquidationsRepo.Get(x => x.ObRId == obligations.Id));
             }
             catch (Exception e)
             {
@@ -50,7 +51,7 @@ namespace Win.LR
             }
         }
 
-      
+
         private void btnDeletePQRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if (LRGridView.GetFocusedRow() is Liquidations item)
@@ -67,7 +68,7 @@ namespace Win.LR
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            frmAddEditLR frm = new frmAddEditLR(new Liquidations() {ObRId = this.obligations.Id}, MethodType.Add);
+            frmAddEditLR frm = new frmAddEditLR(new Liquidations() { ObRId = this.obligations.Id }, MethodType.Add);
             frm.ShowDialog();
             Init();
         }
@@ -80,16 +81,16 @@ namespace Win.LR
                 {
                     frmReportViewer frm = new frmReportViewer(new rptLR()
                     {
-                        DataSource = new UnitOfWork().LiquidationsRepo.Get(x=>x.Id==item.Id)
+                        DataSource = new UnitOfWork().LiquidationsRepo.Get(x => x.Id == item.Id)
                     });
                     frm.ShowDialog();
                 }
 
-              
+
             }
             catch (Exception exception)
             {
-                
+
             }
         }
     }

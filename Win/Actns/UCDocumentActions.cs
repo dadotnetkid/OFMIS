@@ -35,12 +35,12 @@ namespace Win.Actns
             Init();
         }
 
-        public void Init()
+        public async void Init()
         {
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
-                esms.QueryableSource = unitOfWork.DocumentActionsRepo.Fetch(x => x.RefId == refId && x.TableName == tableName);
+                esms.QueryableSource = await Task.Run(() => unitOfWork.DocumentActionsRepo.Fetch(x => x.RefId == refId && x.TableName == tableName));
             }
             catch (Exception e)
             {
@@ -166,10 +166,11 @@ namespace Win.Actns
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
-                var document=unitOfWork.DocumentActionsRepo.Get(x => x.RefId == refId && x.TableName == tableName);
-                rptDocumentLedger rpt = new rptDocumentLedger() {DataSource = document};
+                var document = unitOfWork.DocumentActionsRepo.Get(x => x.RefId == refId && x.TableName == tableName);
+                rptDocumentLedger rpt = new rptDocumentLedger() { DataSource = document };
                 frmReportViewer frm = new frmReportViewer(rpt);
-                frm.ShowDialog();}
+                frm.ShowDialog();
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);

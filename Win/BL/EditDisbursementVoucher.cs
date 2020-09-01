@@ -39,9 +39,16 @@ namespace Win.BL
                 item.DVApprovedBy = frm.cboApprovedBy.Text;
                 item.DVApprovedByPosition = frm.txtPosition.Text;
                 item.DVNote = frm.txtNote.Text;
-                item.DVAmount = frm.txtAmount.EditValue?.ToDecimal();
+                item.TotalAdjustedAmount = item.Amount;
+                if (item.TotalAmount != frm.txtAmount.EditValue?.ToDecimal() || item.DVAmount == null)
+                {
+                    item.DVAmount = frm.txtAmount.EditValue?.ToDecimal();
+                    item.TotalAdjustedAmount = frm.txtAmount.EditValue?.ToDecimal();
+                }
+
                 unitOfWork.Save();
-                frm.Close();}
+                frm.Close();
+            }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -59,11 +66,14 @@ namespace Win.BL
             frm.txtOffice.EditValue = item.PayeeOffice;
             frm.txtDescription.EditValue = item.Description;
             frm.txtParticulars.EditValue = item.DVParticular;
-            frm.cboApprovedBy.EditValue  = item.DVApprovedBy;
+            frm.cboApprovedBy.EditValue = item.DVApprovedBy;
             frm.txtPosition.EditValue = item.DVApprovedByPosition;
             frm.txtNote.EditValue = item.DVNote;
             frm.lblHeader.Text = item.ControlNo + " - " + item.Payees?.Name;
-            frm.txtAmount.EditValue = item.TotalAmount;
+            if (item.TotalAdjustedAmount == item.TotalAmount || item.TotalAdjustedAmount == null || item.TotalAdjustedAmount <= 0)
+                frm.txtAmount.EditValue = item.Amount;
+            else
+                frm.txtAmount.EditValue = item.TotalAdjustedAmount;
 
         }
 
@@ -87,7 +97,7 @@ namespace Win.BL
             {
                 if (lookUpEdit.GetSelectedDataRow() is Signatories signatories)
                 {
-                    frm.txtPosition.Text = string.IsNullOrWhiteSpace(item.DVApprovedByPosition) ? signatories.Position : item.DVApprovedByPosition;
+                    frm.txtPosition.Text = signatories.Position;
                     frm.txtNote.Text = signatories.Note;
                 }
             }

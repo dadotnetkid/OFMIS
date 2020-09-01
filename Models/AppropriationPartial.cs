@@ -43,11 +43,17 @@ namespace Models
         {
             get
             {
-                return this.PurchaseRequests.Where(x => x.IsEarmark == true).Sum(x => x.TotalAmount) ?? 0;
+                return this.PurchaseRequests.Where(x => x.IsEarmark == true && x.IsClosed != true && x.IsCancelled != true).Sum(x => x.TotalAmount) ?? 0;
             }
         }
-
-
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public decimal PurchaseRequestCancelled
+        {
+            get
+            {
+                return this.PurchaseRequests.Where(x => x.IsCancelled == true).Sum(x => x.TotalAmount) ?? 0;
+            }
+        }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Newtonsoft.Json.JsonIgnoreAttribute]
         public decimal? ReAlignment

@@ -43,5 +43,6 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Obligations> Obligations { get; set; }
         public virtual Users Users { get; set; }
+        public virtual Offices Offices { get; set; }
     }
 }

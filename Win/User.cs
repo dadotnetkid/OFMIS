@@ -37,6 +37,12 @@ namespace Win
         {
             return new UnitOfWork().UsersRepo.Fetch(m => m.Id == UserId).FirstOrDefault()?.UserRole;
         }
+        public static bool UsersInRole(params string[] userRole)
+        {
+            var unitOfWork = new UnitOfWork();
+            var userRoles = unitOfWork.UserRolesRepo.Fetch(m => userRole.Contains(m.Name));
+            return userRoles.Any(x => x.Users.Any(m => m.Id == UserId));
+        }
         public static bool UserInAction(string action)
         {
             var unitOfWork = new UnitOfWork();
@@ -72,8 +78,9 @@ namespace Win
         }
         public static bool CheckOwner(string createdBy)
         {
-            if (GetUserLevel() != "Administrator")
+            if (UsersInRole("Administrator"))
             {
+                return true;
                 if ((createdBy != null && createdBy != UserId))
                 {
                     MessageBox.Show(@"You cannot edit this item. Please contact the user created this item.", @"Item is not editable", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

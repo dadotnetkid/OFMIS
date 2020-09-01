@@ -101,7 +101,7 @@ namespace Win.APR
                 //        list.APRDetails.Add(new APRDetails());
                 //    }
                 //}
-
+                list.APRDetails = list.APRDetails.OrderBy(x => x.ItemNo).ToList();
                 frmReportViewer frm = new frmReportViewer(new rptAPR()
                 {
                     DataSource = new List<APRs>() { list }

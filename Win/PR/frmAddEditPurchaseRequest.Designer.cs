@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditPurchaseRequest));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -92,9 +93,10 @@
             this.chkEarmarked = new DevExpress.XtraEditors.CheckEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.cboApprovedBy = new DevExpress.XtraEditors.LookUpEdit();
-            this.signatoriesBindingSource = new System.Windows.Forms.BindingSource();
+            this.signatoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.txtBudgetControl = new DevExpress.XtraEditors.TextEdit();
+            this.chkIsCancelled = new DevExpress.XtraEditors.CheckEdit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
@@ -123,6 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboApprovedBy.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.signatoriesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBudgetControl.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsCancelled.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl3
@@ -256,13 +259,12 @@
             // 
             // chkIsClosed
             // 
-            this.chkIsClosed.Location = new System.Drawing.Point(381, 84);
+            this.chkIsClosed.Location = new System.Drawing.Point(505, 267);
             this.chkIsClosed.Name = "chkIsClosed";
             this.chkIsClosed.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkIsClosed.Properties.Appearance.Options.UseFont = true;
             this.chkIsClosed.Properties.Caption = "is Completed";
-            this.chkIsClosed.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.chkIsClosed.Size = new System.Drawing.Size(138, 18);
+            this.chkIsClosed.Size = new System.Drawing.Size(123, 18);
             this.chkIsClosed.TabIndex = 11;
             // 
             // btnCreateObR
@@ -626,9 +628,9 @@
             // 
             this.labelControl7.Location = new System.Drawing.Point(6, 269);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(58, 13);
+            this.labelControl7.Size = new System.Drawing.Size(80, 13);
             this.labelControl7.TabIndex = 66;
-            this.labelControl7.Text = "Dept. Head";
+            this.labelControl7.Text = "Dept. Head(RO)";
             // 
             // txtChiefOfficer
             // 
@@ -644,9 +646,9 @@
             // 
             this.lblDivisionHead.Location = new System.Drawing.Point(6, 247);
             this.lblDivisionHead.Name = "lblDivisionHead";
-            this.lblDivisionHead.Size = new System.Drawing.Size(85, 13);
+            this.lblDivisionHead.Size = new System.Drawing.Size(71, 13);
             this.lblDivisionHead.TabIndex = 65;
-            this.lblDivisionHead.Text = "Head of Division";
+            this.lblDivisionHead.Text = "Division Chief";
             // 
             // labelControl5
             // 
@@ -741,11 +743,24 @@
             this.txtBudgetControl.Size = new System.Drawing.Size(229, 20);
             this.txtBudgetControl.TabIndex = 2;
             // 
+            // chkIsCancelled
+            // 
+            this.chkIsCancelled.Location = new System.Drawing.Point(398, 288);
+            this.chkIsCancelled.Name = "chkIsCancelled";
+            this.chkIsCancelled.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.chkIsCancelled.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.chkIsCancelled.Properties.Appearance.Options.UseFont = true;
+            this.chkIsCancelled.Properties.Appearance.Options.UseForeColor = true;
+            this.chkIsCancelled.Properties.Caption = "Cancelled";
+            this.chkIsCancelled.Size = new System.Drawing.Size(101, 19);
+            this.chkIsCancelled.TabIndex = 67;
+            // 
             // frmAddEditPurchaseRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 646);
+            this.Controls.Add(this.chkIsCancelled);
             this.Controls.Add(this.chkEarmarked);
             this.Controls.Add(this.cboApprovedBy);
             this.Controls.Add(this.labelControl6);
@@ -812,6 +827,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboApprovedBy.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.signatoriesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBudgetControl.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsCancelled.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -874,5 +890,6 @@
         private System.Windows.Forms.BindingSource signatoriesBindingSource;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         public DevExpress.XtraEditors.TextEdit txtBudgetControl;
+        public DevExpress.XtraEditors.CheckEdit chkIsCancelled;
     }
 }

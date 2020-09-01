@@ -27,6 +27,7 @@ namespace Models
             this.UserLogins = new HashSet<UserLogins>();
             this.RoutedDocuments = new HashSet<DocumentActions>();
             this.UserRoles = new HashSet<UserRoles>();
+            this.Files = new HashSet<Files>();
         }
     
         public string Id { get; set; }
@@ -83,5 +84,7 @@ namespace Models
         public virtual ICollection<DocumentActions> RoutedDocuments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRoles> UserRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Files> Files { get; set; }
     }
 }

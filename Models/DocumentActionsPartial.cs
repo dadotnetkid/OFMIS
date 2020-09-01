@@ -38,8 +38,24 @@ namespace Models
         [NotMapped]
         public string Description =>
             TableName == "PurchaseRequests" ? unitOfWork.PurchaseRequestsRepo.Find(x => x.Id == RefId)?.Description : unitOfWork.ObligationsRepo.Find(x => x.Id == RefId)?.Description;
+
         [JsonIgnore]
         [NotMapped]
-        public decimal? TotalAmount=> TableName == "PurchaseRequests" ? unitOfWork.PurchaseRequestsRepo.Find(x => x.Id == RefId)?.TotalAmount : unitOfWork.ObligationsRepo.Find(x => x.Id == RefId)?.TotalAmount;
+        public decimal? TotalAmount
+        {
+            get
+            {
+                if (TableName == "PurchaseRequests")
+                {
+                    return unitOfWork.PurchaseRequestsRepo.Find(x => x.Id == RefId)?.TotalAmount;
+                }
+                else
+                {
+                    var obr = unitOfWork.ObligationsRepo.Find(x => x.ControlNo == this.ControlNo,"ORDetails");
+                    var res = obr?.ORDetails.Sum(x => x.Amount ?? 0);
+                    return res;
+                }
+            }
+        }
     }
 }

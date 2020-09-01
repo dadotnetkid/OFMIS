@@ -18,6 +18,7 @@ namespace Models.Repository
         public UnitOfWork()
         {
             context = ModelDb.Create(DataSource.ConnectionString);//(/*DataSource.ConnectionString ?? context.Database.Connection.ConnectionString*/);
+
         }
 
         public UnitOfWork(DbContext dbContext)
@@ -29,6 +30,98 @@ namespace Models.Repository
 
         }
 
+
+        private GenericRepository<ItenaryDetails> _ItenaryDetailsRepo;
+        public GenericRepository<ItenaryDetails> ItenaryDetailsRepo
+        {
+            get
+            {
+                if (this._ItenaryDetailsRepo == null)
+                    this._ItenaryDetailsRepo = new GenericRepository<ItenaryDetails>(context);
+                return _ItenaryDetailsRepo;
+            }
+            set { _ItenaryDetailsRepo = value; }
+        }
+        private GenericRepository<ItenaryofTravels> _ItenaryofTravelsRepo;
+        public GenericRepository<ItenaryofTravels> ItenaryofTravelsRepo
+        {
+            get
+            {
+                if (this._ItenaryofTravelsRepo == null)
+                    this._ItenaryofTravelsRepo = new GenericRepository<ItenaryofTravels>(context);
+                return _ItenaryofTravelsRepo;
+            }
+            set { _ItenaryofTravelsRepo = value; }
+        }
+
+        private GenericRepository<Folders> _FoldersRepo;
+        public GenericRepository<Folders> FoldersRepo
+        {
+            get
+            {
+                if (this._FoldersRepo == null)
+                    this._FoldersRepo = new GenericRepository<Folders>(context);
+                return _FoldersRepo;
+            }
+            set { _FoldersRepo = value; }
+        }
+        private GenericRepository<Boxes> _BoxesRepo;
+        public GenericRepository<Boxes> BoxesRepo
+        {
+            get
+            {
+                if (this._BoxesRepo == null)
+                    this._BoxesRepo = new GenericRepository<Boxes>(context);
+                return _BoxesRepo;
+            }
+            set { _BoxesRepo = value; }
+        }
+
+        private GenericRepository<Documents> _DocumentsRepo;
+        public GenericRepository<Documents> DocumentsRepo
+        {
+            get
+            {
+                if (this._DocumentsRepo == null)
+                    this._DocumentsRepo = new GenericRepository<Documents>(context);
+                return _DocumentsRepo;
+            }
+            set { _DocumentsRepo = value; }
+        }
+        private GenericRepository<DocumentTypes> _DocumentTypesRepo;
+        public GenericRepository<DocumentTypes> DocumentTypesRepo
+        {
+            get
+            {
+                if (this._DocumentTypesRepo == null)
+                    this._DocumentTypesRepo = new GenericRepository<DocumentTypes>(context);
+                return _DocumentTypesRepo;
+            }
+            set { _DocumentTypesRepo = value; }
+        }
+
+        private GenericRepository<PayrollOTDetails> _PayrollOTDetailsRepo;
+        public GenericRepository<PayrollOTDetails> PayrollOTDetailsRepo
+        {
+            get
+            {
+                if (this._PayrollOTDetailsRepo == null)
+                    this._PayrollOTDetailsRepo = new GenericRepository<PayrollOTDetails>(context);
+                return _PayrollOTDetailsRepo;
+            }
+            set { _PayrollOTDetailsRepo = value; }
+        }
+        private GenericRepository<PayrollOT> _PayrollOTRepo;
+        public GenericRepository<PayrollOT> PayrollOTRepo
+        {
+            get
+            {
+                if (this._PayrollOTRepo == null)
+                    this._PayrollOTRepo = new GenericRepository<PayrollOT>(context);
+                return _PayrollOTRepo;
+            }
+            set { _PayrollOTRepo = value; }
+        }
         private GenericRepository<Files> _FilesRepo;
         public GenericRepository<Files> FilesRepo
         {

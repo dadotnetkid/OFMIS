@@ -45,13 +45,13 @@
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
             this.label6 = new System.Windows.Forms.Label();
             this.cboUserRole = new DevExpress.XtraEditors.CheckedComboBoxEdit();
-            this.userRolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.cboDepartment = new DevExpress.XtraEditors.LookUpEdit();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.label8 = new System.Windows.Forms.Label();
             this.txtPosition = new DevExpress.XtraEditors.TextEdit();
+            this.userRolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.officesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
@@ -61,9 +61,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboUserRole.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userRolesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDepartment.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userRolesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.officesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -206,10 +206,6 @@
             this.cboUserRole.Size = new System.Drawing.Size(310, 20);
             this.cboUserRole.TabIndex = 6;
             // 
-            // userRolesBindingSource
-            // 
-            this.userRolesBindingSource.DataSource = typeof(Models.UserRoles);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -283,6 +279,10 @@
             this.txtPosition.Size = new System.Drawing.Size(310, 20);
             this.txtPosition.TabIndex = 4;
             // 
+            // userRolesBindingSource
+            // 
+            this.userRolesBindingSource.DataSource = typeof(Models.UserRoles);
+            // 
             // officesBindingSource
             // 
             this.officesBindingSource.DataSource = typeof(Models.Offices);
@@ -328,9 +328,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboUserRole.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userRolesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDepartment.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userRolesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.officesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

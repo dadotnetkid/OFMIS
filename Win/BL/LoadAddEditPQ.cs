@@ -39,8 +39,10 @@ namespace Win.BL
         {
             if (uCPQ.PQGridView.GetFocusedRow() is PriceQuotations item)
             {
+                item.PQDetails = item.PQDetails.OrderBy(x => x.ItemNo).ToList();
                 frmReportViewer frm = new frmReportViewer(new rptPurchaseQuotation(item)
                 {
+
                     DataSource = new List<PriceQuotations>() { item }
                 });
                 frm.ShowDialog();

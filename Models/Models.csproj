@@ -180,6 +180,9 @@
     <Compile Include="BACMembers.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Boxes.cs">
+      <DependentUpon>DTSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Categories.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
@@ -207,6 +210,28 @@
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="DocumentActionsPartial.cs" />
+    <Compile Include="DocumentPartials.cs" />
+    <Compile Include="Documents.cs">
+      <DependentUpon>DTSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentTypes.cs">
+      <DependentUpon>DTSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DTSModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTSModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DTSModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DTSModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTSModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="EditingMode.cs" />
     <Compile Include="EmployeePartial.cs" />
     <Compile Include="Employees.cs">
@@ -215,6 +240,9 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Files.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Folders.cs">
+      <DependentUpon>DTSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ForgotPassword.cs" />
     <Compile Include="FormProperties.cs" />
@@ -232,6 +260,12 @@
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Items.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItenaryDetails.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItenaryofTravels.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="LetterPartial.cs" />
@@ -289,6 +323,12 @@
     </Compile>
     <Compile Include="PayrollDifferentialPartial.cs" />
     <Compile Include="PayrollDifferentials.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PayrollOT.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PayrollOTDetails.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="PayrollPartial.cs" />
@@ -387,6 +427,7 @@
     <Compile Include="ViewModels\AccomplishmentReportViewModel.cs" />
     <Compile Include="ViewModels\AOBViewModel.cs" />
     <Compile Include="ViewModels\DvReportViewModel.cs" />
+    <Compile Include="ViewModels\ExpandoHelper.cs" />
     <Compile Include="ViewModels\LARViewModel.cs" />
     <Compile Include="ViewModels\LetterViewModel.cs" />
     <Compile Include="ViewModels\ObligationRequestViewModel.cs" />
@@ -397,7 +438,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="ModelDb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelDb.Designer.cs</LastGenOutput>
@@ -412,6 +455,13 @@
     </None>
     <None Include="DataTables\dsPayroll.xss">
       <DependentUpon>dsPayroll.xsd</DependentUpon>
+    </None>
+    <EntityDeploy Include="DTSModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DTSModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DTSModel.edmx.diagram">
+      <DependentUpon>DTSModel.edmx</DependentUpon>
     </None>
     <None Include="Locations\cities.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -429,6 +479,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bms.edmx.sql" />
+    <Content Include="DTSModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DTSModel.edmx</DependentUpon>
+      <LastGenOutput>DTSModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DTSModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DTSModel.edmx</DependentUpon>
+      <LastGenOutput>DTSModel.cs</LastGenOutput>
+    </Content>
     <Content Include="ModelDb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelDb.edmx</DependentUpon>

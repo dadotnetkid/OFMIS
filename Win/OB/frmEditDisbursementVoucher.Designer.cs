@@ -110,39 +110,39 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(91, 175);
+            this.txtDescription.Location = new System.Drawing.Point(110, 175);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Properties.ReadOnly = true;
             this.txtDescription.Properties.UseReadOnlyAppearance = false;
-            this.txtDescription.Size = new System.Drawing.Size(363, 20);
+            this.txtDescription.Size = new System.Drawing.Size(344, 20);
             this.txtDescription.TabIndex = 5;
             this.txtDescription.Tag = "Description is Required";
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(91, 153);
+            this.txtAddress.Location = new System.Drawing.Point(110, 153);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Properties.ReadOnly = true;
             this.txtAddress.Properties.UseReadOnlyAppearance = false;
-            this.txtAddress.Size = new System.Drawing.Size(363, 20);
+            this.txtAddress.Size = new System.Drawing.Size(344, 20);
             this.txtAddress.TabIndex = 4;
             // 
             // txtOffice
             // 
-            this.txtOffice.Location = new System.Drawing.Point(92, 131);
+            this.txtOffice.Location = new System.Drawing.Point(111, 131);
             this.txtOffice.Name = "txtOffice";
             this.txtOffice.Properties.ReadOnly = true;
             this.txtOffice.Properties.UseReadOnlyAppearance = false;
-            this.txtOffice.Size = new System.Drawing.Size(363, 20);
+            this.txtOffice.Size = new System.Drawing.Size(344, 20);
             this.txtOffice.TabIndex = 3;
             // 
             // txtControl
             // 
-            this.txtControl.Location = new System.Drawing.Point(91, 83);
+            this.txtControl.Location = new System.Drawing.Point(110, 83);
             this.txtControl.Name = "txtControl";
             this.txtControl.Properties.ReadOnly = true;
             this.txtControl.Properties.UseReadOnlyAppearance = false;
-            this.txtControl.Size = new System.Drawing.Size(363, 20);
+            this.txtControl.Size = new System.Drawing.Size(344, 20);
             this.txtControl.TabIndex = 1;
             // 
             // labelControl6
@@ -181,9 +181,9 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(10, 85);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(39, 13);
+            this.labelControl2.Size = new System.Drawing.Size(94, 13);
             this.labelControl2.TabIndex = 43;
-            this.labelControl2.Text = "Control";
+            this.labelControl2.Text = "Office Control No.";
             // 
             // labelControl1
             // 
@@ -195,10 +195,10 @@
             // 
             // txtParticulars
             // 
-            this.txtParticulars.Location = new System.Drawing.Point(92, 199);
+            this.txtParticulars.Location = new System.Drawing.Point(111, 199);
             this.txtParticulars.Name = "txtParticulars";
             this.txtParticulars.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtParticulars.Size = new System.Drawing.Size(363, 96);
+            this.txtParticulars.Size = new System.Drawing.Size(344, 96);
             this.txtParticulars.TabIndex = 6;
             this.txtParticulars.Tag = "Particulars is Required";
             // 
@@ -236,16 +236,16 @@
             // 
             // txtPosition
             // 
-            this.txtPosition.Location = new System.Drawing.Point(91, 343);
+            this.txtPosition.Location = new System.Drawing.Point(110, 343);
             this.txtPosition.Name = "txtPosition";
-            this.txtPosition.Size = new System.Drawing.Size(363, 20);
+            this.txtPosition.Size = new System.Drawing.Size(344, 20);
             this.txtPosition.TabIndex = 9;
             // 
             // txtNote
             // 
-            this.txtNote.Location = new System.Drawing.Point(91, 367);
+            this.txtNote.Location = new System.Drawing.Point(110, 367);
             this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(363, 20);
+            this.txtNote.Size = new System.Drawing.Size(344, 20);
             this.txtNote.TabIndex = 10;
             // 
             // btnClose
@@ -277,7 +277,7 @@
             // txtDate
             // 
             this.txtDate.EditValue = null;
-            this.txtDate.Location = new System.Drawing.Point(91, 61);
+            this.txtDate.Location = new System.Drawing.Point(110, 61);
             this.txtDate.Name = "txtDate";
             this.txtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -291,21 +291,21 @@
             this.txtDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.txtDate.Properties.ReadOnly = true;
             this.txtDate.Properties.UseReadOnlyAppearance = false;
-            this.txtDate.Size = new System.Drawing.Size(364, 20);
+            this.txtDate.Size = new System.Drawing.Size(345, 20);
             this.txtDate.TabIndex = 0;
             // 
             // cboPayee
             // 
-            this.cboPayee.Location = new System.Drawing.Point(91, 107);
+            this.cboPayee.Location = new System.Drawing.Point(110, 107);
             this.cboPayee.Name = "cboPayee";
             this.cboPayee.Properties.ReadOnly = true;
             this.cboPayee.Properties.UseReadOnlyAppearance = false;
-            this.cboPayee.Size = new System.Drawing.Size(364, 20);
+            this.cboPayee.Size = new System.Drawing.Size(345, 20);
             this.cboPayee.TabIndex = 2;
             // 
             // cboApprovedBy
             // 
-            this.cboApprovedBy.Location = new System.Drawing.Point(91, 319);
+            this.cboApprovedBy.Location = new System.Drawing.Point(110, 319);
             this.cboApprovedBy.Name = "cboApprovedBy";
             this.cboApprovedBy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -319,7 +319,7 @@
             this.cboApprovedBy.Properties.PopupSizeable = false;
             this.cboApprovedBy.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cboApprovedBy.Properties.ValueMember = "Person";
-            this.cboApprovedBy.Size = new System.Drawing.Size(363, 20);
+            this.cboApprovedBy.Size = new System.Drawing.Size(344, 20);
             this.cboApprovedBy.TabIndex = 8;
             this.cboApprovedBy.Tag = "Approved By is Required";
             // 
@@ -333,13 +333,22 @@
             // 
             // txtAmount
             // 
-            this.txtAmount.Location = new System.Drawing.Point(92, 297);
+            this.txtAmount.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtAmount.Location = new System.Drawing.Point(111, 297);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtAmount.Properties.DisplayFormat.FormatString = "#,#.00##";
+            this.txtAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.txtAmount.Properties.EditFormat.FormatString = "#,#.00##";
+            this.txtAmount.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.txtAmount.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.txtAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.txtAmount.Size = new System.Drawing.Size(363, 20);
+            this.txtAmount.Size = new System.Drawing.Size(344, 20);
             this.txtAmount.TabIndex = 7;
             this.txtAmount.Tag = "Approved By is Required";
             // 

@@ -37,14 +37,16 @@ namespace Win.Pyrll
 
         }
 
-        public void Init()
+        public async void Init()
         {
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
 
-                this.PayrollGridControl.DataSource =
-                    new BindingList<PayrollWageDetails>(unitOfWork.PayrollWageDetailsRepo.Get(m => m.PayrollWageId == obligations.Id));
+                this.PayrollGridControl.DataSource = await Task.Run(() =>
+                    new BindingList<PayrollWageDetails>(
+                        unitOfWork.PayrollWageDetailsRepo.Get(m => m.PayrollWageId == obligations.Id)));
+                 
                 if (unitOfWork.PayrollWagesRepo.Fetch(m => m.Id == obligations.Id).Any())
                 {
                     this.methodType = MethodType.Edit;

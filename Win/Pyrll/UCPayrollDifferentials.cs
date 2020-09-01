@@ -26,7 +26,7 @@ namespace Win.Pyrll
             this.item = item;
             btnEditPayrollRepo.ButtonClick += BtnEditPayrollRepo_ButtonClick;
             btnDeletePayrollRepo.ButtonClick += BtnDeletePayrollRepo_ButtonClick;
-            Init();
+
         }
 
         private void BtnDeletePayrollRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -87,13 +87,16 @@ namespace Win.Pyrll
             throw new NotImplementedException();
         }
 
-        public void Init()
+        public async void Init()
         {
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
                 this.PayrollDiffGridControl.DataSource =
-                    unitOfWork.PayrollDifferentialsRepo.Get(x => x.ObId == this.item.Id);
+                    await Task.Run(() =>
+
+                        unitOfWork.PayrollDifferentialsRepo.Get(x => x.ObId == this.item.Id)
+                    );
             }
             catch (Exception e)
             {
@@ -134,6 +137,11 @@ namespace Win.Pyrll
                 frm.ShowDialog();
                 Init();
             }
+        }
+
+        private void UCPayrollDifferentials_Load(object sender, EventArgs e)
+        {
+            Init();
         }
     }
 }

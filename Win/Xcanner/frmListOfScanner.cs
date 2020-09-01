@@ -57,7 +57,7 @@ namespace Win.Xcanner
                     this.Devices.Add(new ScannerViewModels()
                     {
                         Id = i,
-                        ScannerName = deviceManager.DeviceInfos[i].Properties["Name"].get_Value()
+                       // ScannerName = deviceManager.DeviceInfos[i].Properties["Name"].get_Value()
 
                     });
                 }

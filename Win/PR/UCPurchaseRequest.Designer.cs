@@ -54,6 +54,11 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions6 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.PRGridControl = new DevExpress.XtraGrid.GridControl();
             this.PRGrid = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -66,6 +71,8 @@
             this.colEdit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEditRepoPR = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colControlNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDuplicate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnDuplicate = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btnViewAll = new DevExpress.XtraEditors.SimpleButton();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
@@ -122,12 +129,17 @@
             this.txtAmount = new DevExpress.XtraEditors.SpinEdit();
             this.txtAccountCode = new DevExpress.XtraEditors.TextEdit();
             this.lnkOBR = new DevExpress.XtraEditors.HyperlinkLabelControl();
+            this.chkEarmarked = new DevExpress.XtraEditors.CheckEdit();
+            this.chkCancelled = new DevExpress.XtraEditors.CheckEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.txtReason = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PRGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PRGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteRepoPR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditRepoPR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDuplicate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).BeginInit();
@@ -154,6 +166,9 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkEarmarked.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkCancelled.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -174,7 +189,8 @@
             this.PRGridControl.Name = "PRGridControl";
             this.PRGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDeleteRepoPR,
-            this.btnEditRepoPR});
+            this.btnEditRepoPR,
+            this.btnDuplicate});
             this.PRGridControl.Size = new System.Drawing.Size(468, 562);
             this.PRGridControl.TabIndex = 2;
             this.PRGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -189,7 +205,8 @@
             this.colAmount,
             this.colDescription,
             this.colEdit,
-            this.colControlNo});
+            this.colControlNo,
+            this.colDuplicate});
             this.PRGrid.GridControl = this.PRGridControl;
             this.PRGrid.Name = "PRGrid";
             this.PRGrid.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -226,8 +243,8 @@
             this.colDate.FieldName = "Date";
             this.colDate.Name = "colDate";
             this.colDate.Visible = true;
-            this.colDate.VisibleIndex = 2;
-            this.colDate.Width = 51;
+            this.colDate.VisibleIndex = 3;
+            this.colDate.Width = 52;
             // 
             // colAmount
             // 
@@ -239,16 +256,16 @@
             this.colAmount.FieldName = "TotalAmount";
             this.colAmount.Name = "colAmount";
             this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 4;
-            this.colAmount.Width = 101;
+            this.colAmount.VisibleIndex = 5;
+            this.colAmount.Width = 105;
             // 
             // colDescription
             // 
             this.colDescription.FieldName = "Description";
             this.colDescription.Name = "colDescription";
             this.colDescription.Visible = true;
-            this.colDescription.VisibleIndex = 5;
-            this.colDescription.Width = 104;
+            this.colDescription.VisibleIndex = 6;
+            this.colDescription.Width = 109;
             // 
             // colEdit
             // 
@@ -273,8 +290,26 @@
             this.colControlNo.FieldName = "ControlNo";
             this.colControlNo.Name = "colControlNo";
             this.colControlNo.Visible = true;
-            this.colControlNo.VisibleIndex = 3;
-            this.colControlNo.Width = 113;
+            this.colControlNo.VisibleIndex = 4;
+            this.colControlNo.Width = 117;
+            // 
+            // colDuplicate
+            // 
+            this.colDuplicate.ColumnEdit = this.btnDuplicate;
+            this.colDuplicate.Name = "colDuplicate";
+            this.colDuplicate.Visible = true;
+            this.colDuplicate.VisibleIndex = 2;
+            this.colDuplicate.Width = 20;
+            // 
+            // btnDuplicate
+            // 
+            this.btnDuplicate.AutoHeight = false;
+            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
+            this.btnDuplicate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnDuplicate.Name = "btnDuplicate";
+            this.btnDuplicate.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnDuplicate.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDuplicate_ButtonClick);
             // 
             // panelControl2
             // 
@@ -442,14 +477,14 @@
             // 
             // chkIsClosed
             // 
-            this.chkIsClosed.Location = new System.Drawing.Point(512, 245);
+            this.chkIsClosed.Location = new System.Drawing.Point(481, 297);
             this.chkIsClosed.Name = "chkIsClosed";
             this.chkIsClosed.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkIsClosed.Properties.Appearance.Options.UseFont = true;
-            this.chkIsClosed.Properties.Caption = "Closed";
+            this.chkIsClosed.Properties.Caption = "Completed";
             this.chkIsClosed.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.chkIsClosed.Properties.ReadOnly = true;
-            this.chkIsClosed.Size = new System.Drawing.Size(66, 18);
+            this.chkIsClosed.Size = new System.Drawing.Size(91, 18);
             this.chkIsClosed.TabIndex = 67;
             // 
             // labelControl4
@@ -488,9 +523,9 @@
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Location = new System.Drawing.Point(479, 83);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(60, 14);
+            this.labelControl2.Size = new System.Drawing.Size(95, 14);
             this.labelControl2.TabIndex = 64;
-            this.labelControl2.Text = "Control No.";
+            this.labelControl2.Text = "Office Control No.";
             // 
             // labelControl1
             // 
@@ -504,33 +539,33 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(563, 102);
+            this.txtDescription.Location = new System.Drawing.Point(578, 102);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescription.Properties.Appearance.Options.UseFont = true;
             this.txtDescription.Properties.ReadOnly = true;
             this.txtDescription.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtDescription.Properties.UseReadOnlyAppearance = false;
-            this.txtDescription.Size = new System.Drawing.Size(605, 44);
+            this.txtDescription.Size = new System.Drawing.Size(590, 44);
             this.txtDescription.TabIndex = 59;
             // 
             // txtPurpose
             // 
             this.txtPurpose.EditValue = "";
-            this.txtPurpose.Location = new System.Drawing.Point(563, 170);
+            this.txtPurpose.Location = new System.Drawing.Point(578, 170);
             this.txtPurpose.Name = "txtPurpose";
             this.txtPurpose.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPurpose.Properties.Appearance.Options.UseFont = true;
             this.txtPurpose.Properties.ReadOnly = true;
             this.txtPurpose.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtPurpose.Properties.UseReadOnlyAppearance = false;
-            this.txtPurpose.Size = new System.Drawing.Size(605, 48);
+            this.txtPurpose.Size = new System.Drawing.Size(590, 48);
             this.txtPurpose.TabIndex = 65;
             // 
             // dtDate
             // 
             this.dtDate.EditValue = null;
-            this.dtDate.Location = new System.Drawing.Point(563, 58);
+            this.dtDate.Location = new System.Drawing.Point(578, 58);
             this.dtDate.Name = "dtDate";
             this.dtDate.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDate.Properties.Appearance.Options.UseFont = true;
@@ -546,18 +581,18 @@
             this.dtDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.dtDate.Properties.ReadOnly = true;
             this.dtDate.Properties.UseReadOnlyAppearance = false;
-            this.dtDate.Size = new System.Drawing.Size(277, 20);
+            this.dtDate.Size = new System.Drawing.Size(262, 20);
             this.dtDate.TabIndex = 57;
             // 
             // txtControlNumber
             // 
-            this.txtControlNumber.Location = new System.Drawing.Point(563, 80);
+            this.txtControlNumber.Location = new System.Drawing.Point(578, 80);
             this.txtControlNumber.Name = "txtControlNumber";
             this.txtControlNumber.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtControlNumber.Properties.Appearance.Options.UseFont = true;
             this.txtControlNumber.Properties.ReadOnly = true;
             this.txtControlNumber.Properties.UseReadOnlyAppearance = false;
-            this.txtControlNumber.Size = new System.Drawing.Size(278, 20);
+            this.txtControlNumber.Size = new System.Drawing.Size(263, 20);
             this.txtControlNumber.TabIndex = 58;
             // 
             // PRTabControl
@@ -565,10 +600,10 @@
             this.PRTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PRTabControl.Location = new System.Drawing.Point(479, 270);
+            this.PRTabControl.Location = new System.Drawing.Point(479, 321);
             this.PRTabControl.Name = "PRTabControl";
             this.PRTabControl.SelectedTabPage = this.xtraTabPage1;
-            this.PRTabControl.Size = new System.Drawing.Size(826, 353);
+            this.PRTabControl.Size = new System.Drawing.Size(826, 302);
             this.PRTabControl.TabIndex = 68;
             this.PRTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -587,7 +622,7 @@
             this.xtraTabPage1.Controls.Add(this.ItemsGridControl);
             this.xtraTabPage1.Controls.Add(this.panel2);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(824, 330);
+            this.xtraTabPage1.Size = new System.Drawing.Size(824, 279);
             this.xtraTabPage1.Text = "PR";
             // 
             // ItemsGridControl
@@ -604,7 +639,7 @@
             this.repositoryItemMemoEdit1,
             this.spinQuantityRepo,
             this.repositoryItemRichTextEdit1});
-            this.ItemsGridControl.Size = new System.Drawing.Size(824, 296);
+            this.ItemsGridControl.Size = new System.Drawing.Size(824, 245);
             this.ItemsGridControl.TabIndex = 62;
             this.ItemsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ItemsGridView});
@@ -743,18 +778,18 @@
             // btnDeleteItemRepo
             // 
             this.btnDeleteItemRepo.AutoHeight = false;
-            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
+            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
             this.btnDeleteItemRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDeleteItemRepo.Name = "btnDeleteItemRepo";
             this.btnDeleteItemRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // btnEditItemRepo
             // 
             this.btnEditItemRepo.AutoHeight = false;
-            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
+            editorButtonImageOptions5.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions5.Image")));
             this.btnEditItemRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditItemRepo.Name = "btnEditItemRepo";
             this.btnEditItemRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -774,55 +809,55 @@
             // PQTabPage
             // 
             this.PQTabPage.Name = "PQTabPage";
-            this.PQTabPage.Size = new System.Drawing.Size(824, 330);
+            this.PQTabPage.Size = new System.Drawing.Size(824, 279);
             this.PQTabPage.Text = "PQ";
             // 
             // tabAPR
             // 
             this.tabAPR.Name = "tabAPR";
-            this.tabAPR.Size = new System.Drawing.Size(824, 330);
+            this.tabAPR.Size = new System.Drawing.Size(824, 279);
             this.tabAPR.Text = "APRs(DBM)";
             // 
             // tabAOQ
             // 
             this.tabAOQ.Name = "tabAOQ";
-            this.tabAOQ.Size = new System.Drawing.Size(824, 330);
+            this.tabAOQ.Size = new System.Drawing.Size(824, 279);
             this.tabAOQ.Text = "Abstract";
             // 
             // tabPO
             // 
             this.tabPO.Name = "tabPO";
-            this.tabPO.Size = new System.Drawing.Size(824, 330);
+            this.tabPO.Size = new System.Drawing.Size(824, 279);
             this.tabPO.Text = "PO";
             // 
             // tabPIS
             // 
             this.tabPIS.Name = "tabPIS";
-            this.tabPIS.Size = new System.Drawing.Size(824, 330);
+            this.tabPIS.Size = new System.Drawing.Size(824, 279);
             this.tabPIS.Text = "PIS";
             // 
             // tabPAR
             // 
             this.tabPAR.Name = "tabPAR";
-            this.tabPAR.Size = new System.Drawing.Size(824, 330);
+            this.tabPAR.Size = new System.Drawing.Size(824, 279);
             this.tabPAR.Text = "PAR";
             // 
             // tabAcceptance
             // 
             this.tabAcceptance.Name = "tabAcceptance";
-            this.tabAcceptance.Size = new System.Drawing.Size(824, 330);
+            this.tabAcceptance.Size = new System.Drawing.Size(824, 279);
             this.tabAcceptance.Text = "AIR";
             // 
             // LetterTabPage
             // 
             this.LetterTabPage.Name = "LetterTabPage";
-            this.LetterTabPage.Size = new System.Drawing.Size(824, 330);
+            this.LetterTabPage.Size = new System.Drawing.Size(824, 279);
             this.LetterTabPage.Text = "Letter";
             // 
             // tabActions
             // 
             this.tabActions.Name = "tabActions";
-            this.tabActions.Size = new System.Drawing.Size(824, 330);
+            this.tabActions.Size = new System.Drawing.Size(824, 279);
             this.tabActions.Text = "Actions";
             // 
             // labelControl5
@@ -842,31 +877,31 @@
             0,
             0,
             0});
-            this.txtAmount.Location = new System.Drawing.Point(563, 219);
+            this.txtAmount.Location = new System.Drawing.Point(578, 219);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmount.Properties.Appearance.Options.UseFont = true;
             this.txtAmount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.txtAmount.Properties.DisplayFormat.FormatString = "n2";
             this.txtAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.txtAmount.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.txtAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.txtAmount.Properties.ReadOnly = true;
             this.txtAmount.Properties.UseReadOnlyAppearance = false;
-            this.txtAmount.Size = new System.Drawing.Size(278, 20);
+            this.txtAmount.Size = new System.Drawing.Size(263, 20);
             this.txtAmount.TabIndex = 58;
             // 
             // txtAccountCode
             // 
             this.txtAccountCode.EditValue = "";
-            this.txtAccountCode.Location = new System.Drawing.Point(563, 148);
+            this.txtAccountCode.Location = new System.Drawing.Point(578, 148);
             this.txtAccountCode.Name = "txtAccountCode";
             this.txtAccountCode.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccountCode.Properties.Appearance.Options.UseFont = true;
             this.txtAccountCode.Properties.ReadOnly = true;
             this.txtAccountCode.Properties.UseReadOnlyAppearance = false;
-            this.txtAccountCode.Size = new System.Drawing.Size(605, 20);
+            this.txtAccountCode.Size = new System.Drawing.Size(590, 20);
             this.txtAccountCode.TabIndex = 66;
             // 
             // lnkOBR
@@ -878,16 +913,64 @@
             this.lnkOBR.Text = "View OBR";
             this.lnkOBR.Click += new System.EventHandler(this.lnkOBR_Click);
             // 
+            // chkEarmarked
+            // 
+            this.chkEarmarked.Location = new System.Drawing.Point(578, 297);
+            this.chkEarmarked.Name = "chkEarmarked";
+            this.chkEarmarked.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkEarmarked.Properties.Appearance.Options.UseFont = true;
+            this.chkEarmarked.Properties.Caption = "Earmarked";
+            this.chkEarmarked.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.chkEarmarked.Properties.ReadOnly = true;
+            this.chkEarmarked.Size = new System.Drawing.Size(88, 18);
+            this.chkEarmarked.TabIndex = 67;
+            // 
+            // chkCancelled
+            // 
+            this.chkCancelled.Location = new System.Drawing.Point(672, 297);
+            this.chkCancelled.Name = "chkCancelled";
+            this.chkCancelled.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCancelled.Properties.Appearance.Options.UseFont = true;
+            this.chkCancelled.Properties.Caption = "Cancelled";
+            this.chkCancelled.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.chkCancelled.Properties.ReadOnly = true;
+            this.chkCancelled.Size = new System.Drawing.Size(88, 18);
+            this.chkCancelled.TabIndex = 67;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Appearance.Options.UseTextOptions = true;
+            this.labelControl6.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl6.Location = new System.Drawing.Point(481, 242);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(76, 40);
+            this.labelControl6.TabIndex = 64;
+            this.labelControl6.Text = "Cancelled Reason";
+            // 
+            // txtReason
+            // 
+            this.txtReason.Location = new System.Drawing.Point(578, 240);
+            this.txtReason.Name = "txtReason";
+            this.txtReason.Size = new System.Drawing.Size(590, 51);
+            this.txtReason.TabIndex = 70;
+            // 
             // UCPurchaseRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtReason);
             this.Controls.Add(this.lnkOBR);
             this.Controls.Add(this.PRTabControl);
+            this.Controls.Add(this.chkCancelled);
+            this.Controls.Add(this.chkEarmarked);
             this.Controls.Add(this.chkIsClosed);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl10);
+            this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
@@ -907,6 +990,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PRGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteRepoPR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditRepoPR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDuplicate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
@@ -935,6 +1019,9 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkEarmarked.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkCancelled.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReason.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1010,5 +1097,11 @@
         public DevExpress.XtraTab.XtraTabPage tabPIS;
         public DevExpress.XtraTab.XtraTabPage tabPAR;
         public DevExpress.XtraEditors.SearchControl txtSearch;
+        private DevExpress.XtraGrid.Columns.GridColumn colDuplicate;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDuplicate;
+        public DevExpress.XtraEditors.CheckEdit chkEarmarked;
+        public DevExpress.XtraEditors.CheckEdit chkCancelled;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        public DevExpress.XtraEditors.MemoEdit txtReason;
     }
 }

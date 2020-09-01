@@ -30,7 +30,7 @@
     <MinimumRequiredVersion>1.0.0.73</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>40</ApplicationRevision>
+    <ApplicationRevision>61</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -113,6 +113,7 @@
     <Reference Include="Microsoft.Data.ConnectionUI.Dialog, Version=0.0.0.0, Culture=neutral, PublicKeyToken=f4ca07f51760da93, processorArchitecture=MSIL">
       <HintPath>..\..\..\Development Cache\.nuget\packages\DataConnectionDialog.1.2\Lib\Microsoft.Data.ConnectionUI.Dialog.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.JScript" />
     <Reference Include="Microsoft.Owin, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.Owin.4.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
@@ -180,6 +181,12 @@
     </Compile>
     <Compile Include="Accnts\UcAccounts.Designer.cs">
       <DependentUpon>UcAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accnts\UCEarmarkPR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Accnts\UCEarmarkPR.Designer.cs">
+      <DependentUpon>UCEarmarkPR.cs</DependentUpon>
     </Compile>
     <Compile Include="Actns\frmActionTaken.cs">
       <SubType>Form</SubType>
@@ -410,6 +417,18 @@
     <Compile Include="InvCS\UCICS.Designer.cs">
       <DependentUpon>UCICS.cs</DependentUpon>
     </Compile>
+    <Compile Include="Itnrry\frmAddEditIOT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Itnrry\frmAddEditIOT.Designer.cs">
+      <DependentUpon>frmAddEditIOT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Itnrry\UCIteneraryOfTravel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Itnrry\UCIteneraryOfTravel.Designer.cs">
+      <DependentUpon>UCIteneraryOfTravel.cs</DependentUpon>
+    </Compile>
     <Compile Include="LR\frmAddEditLR.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -554,6 +573,12 @@
     <Compile Include="PR\frmAddEditPurchaseRequest.Designer.cs">
       <DependentUpon>frmAddEditPurchaseRequest.cs</DependentUpon>
     </Compile>
+    <Compile Include="PR\frmCancellationReason.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PR\frmCancellationReason.Designer.cs">
+      <DependentUpon>frmCancellationReason.cs</DependentUpon>
+    </Compile>
     <Compile Include="PR\frmItems.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -602,11 +627,23 @@
     <Compile Include="Pyrll\frmAddEditPayrollDynamic.Designer.cs">
       <DependentUpon>frmAddEditPayrollDynamic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pyrll\frmAddEditPayrollOT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pyrll\frmAddEditPayrollOT.Designer.cs">
+      <DependentUpon>frmAddEditPayrollOT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pyrll\frmAddEditPayrollWages.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pyrll\frmAddEditPayrollWages.Designer.cs">
       <DependentUpon>frmAddEditPayrollWages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pyrll\frmPayrollOT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pyrll\frmPayrollOT.Designer.cs">
+      <DependentUpon>frmPayrollOT.cs</DependentUpon>
     </Compile>
     <Compile Include="Pyrll\UCPayrollDifferentials.cs">
       <SubType>UserControl</SubType>
@@ -739,6 +776,12 @@
     </Compile>
     <Compile Include="Rprts\rptPIS.Designer.cs">
       <DependentUpon>rptPIS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptPivotAccomplisment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptPivotAccomplisment.Designer.cs">
+      <DependentUpon>rptPivotAccomplisment.cs</DependentUpon>
     </Compile>
     <Compile Include="Rprts\rptPO.cs">
       <SubType>Component</SubType>
@@ -937,6 +980,12 @@
     <Compile Include="Xcanner\frmScanner.Designer.cs">
       <DependentUpon>frmScanner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Xcanner\UCFiles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Xcanner\UCFiles.Designer.cs">
+      <DependentUpon>UCFiles.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Accnts\frmAddEditAllotment.resx">
       <DependentUpon>frmAddEditAllotment.cs</DependentUpon>
     </EmbeddedResource>
@@ -948,6 +997,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accnts\UcAccounts.resx">
       <DependentUpon>UcAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accnts\UCEarmarkPR.resx">
+      <DependentUpon>UCEarmarkPR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Actns\frmActionTaken.resx">
       <DependentUpon>frmActionTaken.cs</DependentUpon>
@@ -1054,6 +1106,12 @@
     <EmbeddedResource Include="InvCS\UCICS.resx">
       <DependentUpon>UCICS.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Itnrry\frmAddEditIOT.resx">
+      <DependentUpon>frmAddEditIOT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Itnrry\UCIteneraryOfTravel.resx">
+      <DependentUpon>UCIteneraryOfTravel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LR\frmAddEditLR.resx">
       <DependentUpon>frmAddEditLR.cs</DependentUpon>
     </EmbeddedResource>
@@ -1127,6 +1185,9 @@
     <EmbeddedResource Include="PR\frmAddEditPurchaseRequest.resx">
       <DependentUpon>frmAddEditPurchaseRequest.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PR\frmCancellationReason.resx">
+      <DependentUpon>frmCancellationReason.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PR\frmItems.resx">
       <DependentUpon>frmItems.cs</DependentUpon>
     </EmbeddedResource>
@@ -1151,8 +1212,14 @@
     <EmbeddedResource Include="Pyrll\frmAddEditPayrollDynamic.resx">
       <DependentUpon>frmAddEditPayrollDynamic.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pyrll\frmAddEditPayrollOT.resx">
+      <DependentUpon>frmAddEditPayrollOT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pyrll\frmAddEditPayrollWages.resx">
       <DependentUpon>frmAddEditPayrollWages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pyrll\frmPayrollOT.resx">
+      <DependentUpon>frmPayrollOT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pyrll\UCPayrollDifferentials.resx">
       <DependentUpon>UCPayrollDifferentials.cs</DependentUpon>
@@ -1219,6 +1286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptPIS.resx">
       <DependentUpon>rptPIS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptPivotAccomplisment.resx">
+      <DependentUpon>rptPivotAccomplisment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptPO.resx">
       <DependentUpon>rptPO.cs</DependentUpon>
@@ -1326,15 +1396,22 @@
     <EmbeddedResource Include="Xcanner\frmScanner.resx">
       <DependentUpon>frmScanner.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Xcanner\UCFiles.resx">
+      <DependentUpon>UCFiles.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="App_Data\APP-CSE 2020 FORM Dwight Revised.xlsx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Models.ActionTakens.datasource" />
     <None Include="Properties\DataSources\Models.DocumentActions.datasource" />
     <None Include="Properties\DataSources\Models.Employees.datasource" />
+    <None Include="Properties\DataSources\Models.ItenaryDetails.datasource" />
+    <None Include="Properties\DataSources\Models.ItenaryofTravels.datasource" />
     <None Include="Properties\DataSources\Models.Letters.datasource" />
     <None Include="Properties\DataSources\Models.Offices.datasource" />
     <None Include="Properties\DataSources\Models.Payees.datasource" />
+    <None Include="Properties\DataSources\Models.PayrollOTDetails.datasource" />
+    <None Include="Properties\DataSources\Models.PurchaseRequests.datasource" />
     <None Include="Properties\DataSources\Models.SalarySchedules.datasource" />
     <None Include="Properties\DataSources\Models.Signatories.datasource" />
     <None Include="Properties\DataSources\Models.Templates.datasource" />
@@ -1390,8 +1467,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lqdRpt\" />
+    <Folder Include="RS\" />
   </ItemGroup>
   <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="WIA">
       <Guid>{94A0E92D-43C0-494E-AC29-FD45948A5221}</Guid>
       <VersionMajor>1</VersionMajor>

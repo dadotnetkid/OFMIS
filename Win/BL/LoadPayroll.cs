@@ -382,10 +382,10 @@ namespace Win.BL
 
         }
 
-        public void Init()
+        public async void Init()
         {
 
-            payrolls = new UnitOfWork().PayrollsRepo.Find(m => m.Id == obId);
+            payrolls =await Task.Run(() => new UnitOfWork().PayrollsRepo.Find(m => m.Id == obId));
             InitializeGridView(payrolls);
             if (payrolls == null)
             {

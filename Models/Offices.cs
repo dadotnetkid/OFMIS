@@ -28,6 +28,7 @@ namespace Models
             this.TrashBin = new HashSet<TrashBin>();
             this.Years = new HashSet<Years>();
             this.Users = new HashSet<Users>();
+            this.Letters = new HashSet<Letters>();
         }
     
         public int Id { get; set; }
@@ -69,5 +70,7 @@ namespace Models
         public virtual ICollection<Years> Years { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Letters> Letters { get; set; }
     }
 }

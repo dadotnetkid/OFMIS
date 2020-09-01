@@ -86,5 +86,9 @@ namespace Models
         public virtual DbSet<ActionTakens> ActionTakens { get; set; }
         public virtual DbSet<Files> Files { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<PayrollOT> PayrollOT { get; set; }
+        public virtual DbSet<PayrollOTDetails> PayrollOTDetails { get; set; }
+        public virtual DbSet<ItenaryofTravels> ItenaryofTravels { get; set; }
+        public virtual DbSet<ItenaryDetails> ItenaryDetails { get; set; }
     }
 }

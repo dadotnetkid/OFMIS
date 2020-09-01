@@ -23,6 +23,7 @@ namespace Win.Ltr
         private string tableName;
         private int refId;
         private string itemControlNo;
+        private string footer;
 
         public UcLetters(int refId, string itemControlNo, string tableName)
         {
@@ -34,7 +35,18 @@ namespace Win.Ltr
             btnDeleteRepo.ButtonClick += BtnDeleteRepo_ButtonClick;
             Init();
         }
+        public UcLetters(int refId, string itemControlNo, string tableName, string footer)
+        {
+            InitializeComponent();
+            this.refId = refId;
+            this.tableName = tableName;
+            this.itemControlNo = itemControlNo;
+            this.footer = footer;
+            btnEditRepo.ButtonClick += BtnEditRepo_ButtonClick;
+            btnDeleteRepo.ButtonClick += BtnDeleteRepo_ButtonClick;
 
+            Init();
+        }
         private void BtnDeleteRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if (LetterGridView.GetFocusedRow() is Letters item)
@@ -74,13 +86,13 @@ namespace Win.Ltr
             Init();
         }
 
-        public void Init()
+        public async void Init()
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             StaticSettings staticSettings = new StaticSettings();
-            this.LetterGridControl.DataSource = new BindingList<Letters>(unitOfWork.LettersRepo.Get(x => (x.RefId == refId && x.TableName == this.tableName)
-                                                                                                         ));
-        }
+            this.LetterGridControl.DataSource = await Task.Run(() => new BindingList<Letters>(
+                unitOfWork.LettersRepo.Get(x => (x.RefId == refId && x.TableName == this.tableName)
+                )));}
 
         public void Detail(Letters item)
         {
@@ -101,15 +113,54 @@ namespace Win.Ltr
 
                 UnitOfWork unitOfWork = new UnitOfWork();
                 var lett = unitOfWork.LettersRepo.Find(x => x.Id == item.Id);
-                RichEditControl rich = new RichEditControl();
+                RichEditControl rich = new RichEditControl()
+                {
 
-                rich.Document.AppendHtmlText($"<br/><b>{item.Salutation}</b><br/><br/>");
-                rich.Document.AppendHtmlText(item.Body);
-                rich.Document.AppendHtmlText("<br/><br/><br/>" + lett.Closing + "<br/><br/><br/>");
+                };
+                //rich.Document.DefaultParagraphProperties.Alignment = DevExpress.XtraRichEdit.API.Native.ParagraphAlignment.Justify;
+                if (item.Type != "Plain")
+                {
+                    if (!string.IsNullOrEmpty(lett.Closing))
+                    {
+                        var rtf0 = new RichEditControl();
+                        rtf0.Document.DefaultParagraphProperties.Alignment =
+                            DevExpress.XtraRichEdit.API.Native.ParagraphAlignment.Left;
+                        rtf0.Document.DefaultCharacterProperties.FontName = "Calibri";
+                        rtf0.Document.DefaultCharacterProperties.FontSize = 12f;
+                        rtf0.Document.HtmlText = $"<br/><b>{item.Salutation}</b><br/><br/>";
+                        rich.Document.AppendRtfText(rtf0.RtfText, DevExpress.XtraRichEdit.API.Native.InsertOptions.UseDestinationStyles);
+                    }
+
+                }
+                var rtf1 = new RichEditControl();
+                rtf1.Document.DefaultParagraphProperties.Alignment =
+                    DevExpress.XtraRichEdit.API.Native.ParagraphAlignment.Justify;
+                rtf1.Document.DefaultCharacterProperties.FontName = "Calibri";
+                rtf1.Document.DefaultCharacterProperties.FontSize = 12f;
+                rtf1.HtmlText = item.Body;
+                //.Document.HtmlText = $"<br/><b>{item.Salutation}</b><br/><br/>";
+                //rtf1.Document.AppendHtmlText(item.Body, DevExpress.XtraRichEdit.API.Native.InsertOptions.UseDestinationStyles);
+                rich.Document.AppendRtfText(rtf1.RtfText, DevExpress.XtraRichEdit.API.Native.InsertOptions.UseDestinationStyles);
+
+                if (item.Type != "Plain")
+                {
+                    if (!string.IsNullOrEmpty(lett.Closing))
+                    {
+                        var rtf = new RichEditControl();
+                        rtf.Document.DefaultParagraphProperties.Alignment =
+                            DevExpress.XtraRichEdit.API.Native.ParagraphAlignment.Left;
+                        rich.Document.DefaultCharacterProperties.FontName = "Calibri";
+                        rich.Document.DefaultCharacterProperties.FontSize = 12f;
+                        rtf.Document.HtmlText = "<br/><br/><br/>" + lett.Closing + "<br/><br/><br/>";
+                        rich.Document.AppendRtfText(rtf.RtfText, DevExpress.XtraRichEdit.API.Native.InsertOptions.UseDestinationStyles);
+                    }
+
+                }
+
                 rich.Document.DefaultCharacterProperties.FontName = "Calibri";
-                rich.Document.DefaultCharacterProperties.FontSize= 12f;
+                rich.Document.DefaultCharacterProperties.FontSize = 12f;
                 lett.Body = rich.ToHtml();
-                var rpt = new rptLetters()
+                var rpt = new rptLetters(footer)
                 {
 
                 };
@@ -169,9 +220,9 @@ namespace Win.Ltr
                 item.InsideAddress = rich.HtmlText;
 
                 rpt.lblCC.Text = "CC: " + item.CC;
-                rpt.lblTelno.Text ="Tel No: "+ office.TelNo;
-                rpt.lblAddress.Text ="Address: "+ office.Address;
-                rpt.DataSource = new List<Letters>() { unitOfWork.LettersRepo.Find(x => x.Id == item.Id) };
+                rpt.lblTelno.Text = "Tel No: " + office.TelNo;
+                rpt.lblAddress.Text = "Address: " + office.Address;
+                rpt.DataSource = new List<Letters>() { lett };
                 frmReportViewer frm = new frmReportViewer(rpt);
                 frm.ShowDialog();
             }
@@ -182,6 +233,51 @@ namespace Win.Ltr
             btnPreview.PerformClick();
 
 
+        }
+
+        private void btnDuplicate_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (this.LetterGridView.GetFocusedRow() is Letters item)
+            {
+
+                if (MessageBox.Show("Do you want to duplicate this?", "Duplicate", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+
+                try
+                {
+                    UnitOfWork unitOfWork = new UnitOfWork();
+                    item = new Letters()
+                    {
+                        Body = item.Body,
+                        CC = item.CC,
+                        Closing = item.Closing,
+                        ControlNo = item.ControlNo,
+                        CreatedBy = User.UserId,
+                        Date = item.Date,
+                        DateCreated = DateTime.Now,
+                        InsideAddress = item.InsideAddress,
+                        InTheAbsence = item.InTheAbsence,
+                        OfficeId = item.OfficeId,
+                        RefId = item.RefId,
+                        Salutation = item.Salutation,
+                        SignatoriesPosition = item.SignatoriesPosition,
+                        TableName = item.TableName,
+                        Template = item.Template,
+                        Title = item.Title,
+                        Type = item.Type,
+                    };
+                    unitOfWork.LettersRepo.Insert(item);
+                    unitOfWork.Save();
+
+                    frmAddEditLetterV2 frm = new frmAddEditLetterV2(item, MethodType.Edit);
+                    frm.ShowDialog();
+                    Init();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

@@ -31,8 +31,8 @@ namespace Win.Actns
             this.documentActions = documentActions;
             this.methodType = methodType;
         }
-        
-        public void Save()
+
+        public virtual void Save()
         {
             try
             {
@@ -55,9 +55,19 @@ namespace Win.Actns
                 //    var user = i.Trim();
                 //    item.Users.Add(unitOfWork.UsersRepo.Get().FirstOrDefault(x => x.FullName == user));
                 //}
+                //var image = dbPix.Image as byte[];
+                //if (image.Length > 0)
+                //    ScannerHelper.SaveImage("OFMIS", staticSettings.Offices.OffcAcr, item.Id, "Actions",
+                //        Image.FromStream(new MemoryStream(image)));
+                //else
+                //{
+                //    var res = unitOfWork.FilesRepo.Find(x => x.RefId == item.Id);
+                //    ScannerHelper.DeleteFile(res.Id);
+                //}
                 unitOfWork.Save();
                 isClosed = true;
                 Detail();
+
 
             }
             catch (Exception e)
@@ -66,26 +76,27 @@ namespace Win.Actns
             }
         }
 
-        public void Detail()
+        public virtual void Detail()
         {
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
 
                 var item = unitOfWork.DocumentActionsRepo.Find(x => x.Id == documentActions.Id, "CreatedByUsers");
-                var files = unitOfWork.FilesRepo.Fetch(x => x.RefId == item.Id && x.TableName == "Action");
-                if (files.Any())
-                {
-                    this.btnScanFiles.Enabled = false;
-                    this.btnDelete.Enabled = true;
-                    btnPreview.Enabled = true;
-                }
-                else
-                {
-                    this.btnScanFiles.Enabled = true;
-                    this.btnDelete.Enabled = false;
-                    btnPreview.Enabled = false;
-                }
+                //var files = unitOfWork.FilesRepo.Fetch(x => x.RefId == item.Id && x.TableName == "Action");
+                //this.dbPix.Image = ScannerHelper.LoadImage(item.Id, "Action");
+                //if (files.Any())
+                //{
+                //    this.btnScanFiles.Enabled = false;
+                //    this.btnDelete.Enabled = true;
+                //    btnPreview.Enabled = true;
+                //}
+                //else
+                //{
+                //    this.btnScanFiles.Enabled = true;
+                //    this.btnDelete.Enabled = false;
+                //    btnPreview.Enabled = false;
+                //}
                 this.cboPrograms.Properties.DataSource =
                     unitOfWork.ActionsRepo.Get(m => m.Category == "Programs", m => m.OrderBy(x => x.ItemOrder));
                 this.ActionTakenBindingSource.DataSource = new UnitOfWork().ActionTakensRepo.Get(x => x.TableName == "ActionTakens", orderBy: x => x.OrderBy(m => m.ActionTaken));
@@ -110,7 +121,7 @@ namespace Win.Actns
             }
         }
 
-        public void Init()
+        public virtual void Init()
         {
             try
             {
@@ -141,7 +152,7 @@ namespace Win.Actns
             }
         }
 
-        public void Close(FormClosingEventArgs eventArgs)
+        public virtual void Close(FormClosingEventArgs eventArgs)
         {
             if (methodType == MethodType.Edit)
                 return;
@@ -158,12 +169,12 @@ namespace Win.Actns
 
             }
         }
-        private void btnEditPo_Click(object sender, EventArgs e)
+        public virtual void btnEditPo_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void cboStatus_EditValueChanged(object sender, EventArgs e)
+        public virtual void cboStatus_EditValueChanged(object sender, EventArgs e)
         {
             //    if (cboStatus.GetSelectedDataRow() is Statuses item)
             //    {
@@ -174,7 +185,7 @@ namespace Win.Actns
             //    }
         }
 
-        private void cboPrograms_EditValueChanged(object sender, EventArgs e)
+        public virtual void cboPrograms_EditValueChanged(object sender, EventArgs e)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             if (((LookUpEdit)sender).GetSelectedDataRow() is Actions item)
@@ -185,7 +196,7 @@ namespace Win.Actns
 
         }
 
-        private void cboMain_EditValueChanged(object sender, EventArgs e)
+        public virtual void cboMain_EditValueChanged(object sender, EventArgs e)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             if (((LookUpEdit)sender).GetSelectedDataRow() is Actions item)
@@ -195,7 +206,7 @@ namespace Win.Actns
             }
         }
 
-        private void cboActivity_EditValueChanged(object sender, EventArgs e)
+        public virtual void cboActivity_EditValueChanged(object sender, EventArgs e)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             if (((LookUpEdit)sender).GetSelectedDataRow() is Actions item)
@@ -207,7 +218,7 @@ namespace Win.Actns
 
         }
 
-        private void btnAddAction_Click(object sender, EventArgs e)
+        public virtual void btnAddAction_Click(object sender, EventArgs e)
         {
             //frmActionList frm = new frmActionList();
             //frm.ShowDialog();
@@ -216,24 +227,24 @@ namespace Win.Actns
 
         public MethodType methodType { get; set; }
 
-        private void btnNewPO_Click(object sender, EventArgs e)
+        public virtual void btnNewPO_Click(object sender, EventArgs e)
         {
             Save();
 
         }
 
-        private void frmDocActions_FormClosing(object sender, FormClosingEventArgs e)
+        public virtual void frmDocActions_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (methodType == MethodType.Add)
                 Close(e);
         }
 
-        private void frmDocActions_Load(object sender, EventArgs e)
+        public virtual void frmDocActions_Load(object sender, EventArgs e)
         {
             Init();
         }
 
-        private void btnSend_Click(object sender, EventArgs e)
+        public virtual void btnSend_Click(object sender, EventArgs e)
         {
             try
             {
@@ -253,7 +264,7 @@ namespace Win.Actns
             }
         }
 
-        private void btnRouteTo_Click(object sender, EventArgs e)
+        public virtual void btnRouteTo_Click(object sender, EventArgs e)
         {
             frmUsersInAccounts frm = new frmUsersInAccounts(new UnitOfWork().DocumentActionsRepo.Find(x => x.Id == documentActions.Id));
             frm.ShowDialog();
@@ -261,14 +272,14 @@ namespace Win.Actns
             cboUsers.EditValue = item.RouterUsers;
         }
 
-        private void btnActionTaken_Click(object sender, EventArgs e)
+        public virtual void btnActionTaken_Click(object sender, EventArgs e)
         {
             frmActionTaken frm = new frmActionTaken();
             frm.ShowDialog();
-            this.ActionTakenBindingSource.DataSource = new UnitOfWork().ActionTakensRepo.Get( orderBy: x => x.OrderBy(m => m.ActionTaken));
+            this.ActionTakenBindingSource.DataSource = new UnitOfWork().ActionTakensRepo.Get(orderBy: x => x.OrderBy(m => m.ActionTaken));
         }
 
-        private void btnScanFiles_Click(object sender, EventArgs e)
+        public virtual void btnScanFiles_Click(object sender, EventArgs e)
         {
             Scanners imageScan;
             frmScanner frmScanner = new frmScanner(scanner => { scanner.RefId = documentActions.Id; });
@@ -277,7 +288,7 @@ namespace Win.Actns
             Detail();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        public virtual void btnDelete_Click(object sender, EventArgs e)
         {
 
             if (MessageBox.Show("Do you want to Delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -301,7 +312,7 @@ namespace Win.Actns
             }
         }
 
-        private void btnPreview_Click(object sender, EventArgs e)
+        public virtual void btnPreview_Click(object sender, EventArgs e)
         {
             using (NetworkShareAccesser.Access("PLGUNV_NAS", @"", "pitd.is_user", "Apple_01"))
             {
@@ -319,6 +330,13 @@ namespace Win.Actns
                 frmPreviewer frm = new frmPreviewer(path);
                 frm.ShowDialog();
             }
+        }
+
+        private void btnNewRemarks_Click(object sender, EventArgs e)
+        {
+            frmInstructionRemarks frm = new frmInstructionRemarks();
+            frm.ShowDialog();
+            this.txtRemarks.Properties.DataSource = new UnitOfWork().ActionTakensRepo.Get(x => x.TableName == "Remarks", orderBy: x => x.OrderBy(m => m.ActionTaken));
         }
     }
 }

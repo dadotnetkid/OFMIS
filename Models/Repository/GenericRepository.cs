@@ -29,11 +29,13 @@ namespace Models.Repository
         internal DbContext context;
         internal DbSet<TEntity> dbSet;
 
-       
+
         public GenericRepository(DbContext context)
         {
             this.context = context;
-          //  context.Database.Log = (s) => { Debug.WriteLine(s); };
+#if DEBUG
+            context.Database.Log = (s) => { Debug.WriteLine(s); };
+#endif
             this.dbSet = context.Set<TEntity>();
 
         }
@@ -165,6 +167,15 @@ namespace Models.Repository
 
             return query.Where(filter).FirstOrDefault();
         }
+        public virtual async Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> filter, bool proxyCreationEnable, bool asNoTracking = false, string includeProperties = "")
+        {
+            IQueryable<TEntity> query = dbSet;
+            if (includeProperties != "")
+                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    query = query.Include(includeProperty);
+
+            return await query.Where(filter).FirstOrDefaultAsync();
+        }
         public virtual TEntity Find(Expression<Func<TEntity, bool>> filter, bool proxyCreationEnable, bool asNoTracking = false, string includeProperties = "")
         {
             this.context.Configuration.ProxyCreationEnabled = proxyCreationEnable;
@@ -254,9 +265,9 @@ namespace Models.Repository
             return await context.SaveChangesAsync();
         }
 
-        public virtual async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter, string includeProperties = "")
+        public virtual async Task<List<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter, string includeProperties = "")
         {
-            var entity = await dbSet.Where(filter).FirstOrDefaultAsync();
+            var entity = await dbSet.Where(filter).ToListAsync();
             return entity;
         }
         public virtual async Task<int> InsertAsync(TEntity entity)

@@ -130,7 +130,7 @@ namespace Models
         /// </summary>
         /// <param name="value">Value to be converted</param>
         /// <returns></returns>
-        public static string NumberToText( this decimal value)
+        public static string NumberToText(this decimal value)
         {
             string digits, temp;
             bool showThousands = false;
@@ -223,7 +223,7 @@ namespace Models
             var res = String.Format("{0}{1}",
                 Char.ToUpper(builder[0]),
                 builder.ToString(1, builder.Length - 1));
-            return res;
+            return res + " peso(s)";
         }
     }
 }

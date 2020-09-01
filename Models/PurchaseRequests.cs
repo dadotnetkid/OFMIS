@@ -50,6 +50,8 @@ namespace Models
         public string BudgetControlNo { get; set; }
         public bool IsClosed { get; set; }
         public Nullable<int> Year { get; set; }
+        public Nullable<bool> IsCancelled { get; set; }
+        public string CancellationReason { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AIReports> AIReports { get; set; }

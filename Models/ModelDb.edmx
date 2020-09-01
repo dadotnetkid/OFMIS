@@ -311,6 +311,8 @@
           <Property Name="TableName" Type="nvarchar" MaxLength="50" />
           <Property Name="Path" Type="nvarchar" MaxLength="50" />
           <Property Name="RootFolder" Type="nvarchar" MaxLength="50" />
+          <Property Name="OriginalFileName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="Functions">
           <Key>
@@ -365,6 +367,43 @@
           <Property Name="Item" Type="nvarchar" MaxLength="255" />
           <Property Name="UOM" Type="nvarchar" MaxLength="50" />
           <Property Name="Cost" Type="money" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="ItenaryDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IOTId" Type="int" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
+          <Property Name="PlaceVisited" Type="nvarchar(max)" />
+          <Property Name="DepartureTime" Type="datetime" />
+          <Property Name="ArrivalTime" Type="datetime" />
+          <Property Name="MeansOfTransportation" Type="nvarchar" MaxLength="128" />
+          <Property Name="TransportationFee" Type="nvarchar" MaxLength="50" />
+          <Property Name="PerDiems" Type="money" />
+          <Property Name="DailyAllowance" Type="money" />
+          <Property Name="TotalAmount" Type="money" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="ItenaryofTravels">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OBRId" Type="int" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="Position" Type="nvarchar" MaxLength="128" />
+          <Property Name="OfficialAddress" Type="nvarchar" MaxLength="128" />
+          <Property Name="Purpose" Type="nvarchar(max)" />
+          <Property Name="GovernorId" Type="int" />
+          <Property Name="PAId" Type="int" />
+          <Property Name="PreparedBy" Type="int" />
+          <Property Name="PreparedByPos" Type="nvarchar" MaxLength="128" />
+          <Property Name="ApprovedBy" Type="int" />
+          <Property Name="ApprovedByPos" Type="nvarchar" MaxLength="128" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
           <Property Name="DateCreated" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="Letters">
@@ -621,6 +660,43 @@
           <Property Name="ApprovedByPos" Type="nvarchar" MaxLength="128" />
           <Property Name="ApprovedById" Type="int" />
         </EntityType>
+        <EntityType Name="PayrollOT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ObRId" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
+          <Property Name="ApprovedById" Type="int" />
+          <Property Name="ApprovedPosition" Type="nvarchar" MaxLength="128" />
+          <Property Name="HeadId" Type="int" />
+          <Property Name="HeadPosition" Type="nvarchar" MaxLength="128" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="PAId" Type="int" />
+          <Property Name="PAPosition" Type="nvarchar" MaxLength="128" />
+          <Property Name="PTId" Type="int" />
+          <Property Name="PTPosition" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="PayrollOTDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemNo" Type="int" />
+          <Property Name="PayrollOTId" Type="int" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="RatePerMonth" Type="money" />
+          <Property Name="RatePerDay" Type="money" />
+          <Property Name="RatePerHr" Type="money" />
+          <Property Name="WeekEndNoHrs" Type="money" />
+          <Property Name="WeekDayNoHrs" Type="money" />
+          <Property Name="SubTotal" Type="money" />
+          <Property Name="UnderPay" Type="money" />
+          <Property Name="TotalAmount" Type="money" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" />
+        </EntityType>
         <EntityType Name="Payrolls">
           <Key>
             <PropertyRef Name="Id" />
@@ -842,6 +918,8 @@
           <Property Name="BudgetControlNo" Type="nvarchar" MaxLength="128" />
           <Property Name="IsClosed" Type="bit" Nullable="false" />
           <Property Name="Year" Type="int" />
+          <Property Name="IsCancelled" Type="bit" />
+          <Property Name="CancellationReason" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ReAlignments">
           <Key>
@@ -1336,6 +1414,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Files_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Files" Type="Self.Files" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Files">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ICS_PurchaseRequests">
           <End Role="PurchaseRequests" Type="Self.PurchaseRequests" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -1361,6 +1451,60 @@
             </Principal>
             <Dependent Role="ICSDetails">
               <PropertyRef Name="ICSId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItenaryDetails_ItenaryofTravels">
+          <End Role="ItenaryofTravels" Type="Self.ItenaryofTravels" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItenaryDetails" Type="Self.ItenaryDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItenaryofTravels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItenaryDetails">
+              <PropertyRef Name="IOTId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItenaryofTravels_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItenaryofTravels" Type="Self.ItenaryofTravels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItenaryofTravels">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItenaryofTravels_Obligations">
+          <End Role="Obligations" Type="Self.Obligations" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItenaryofTravels" Type="Self.ItenaryofTravels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obligations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItenaryofTravels">
+              <PropertyRef Name="OBRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Letters_Offices">
+          <End Role="Offices" Type="Self.Offices" Multiplicity="0..1" />
+          <End Role="Letters" Type="Self.Letters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Letters">
+              <PropertyRef Name="OfficeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1671,6 +1815,46 @@
             </Principal>
             <Dependent Role="PayrollDifferentials">
               <PropertyRef Name="ObId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayrollOT_Obligations">
+          <End Role="Obligations" Type="Self.Obligations" Multiplicity="0..1" />
+          <End Role="PayrollOT" Type="Self.PayrollOT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obligations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PayrollOT">
+              <PropertyRef Name="ObRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayrollOTDetails_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PayrollOTDetails" Type="Self.PayrollOTDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PayrollOTDetails">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayrollOTDetails_PayrollOT">
+          <End Role="PayrollOT" Type="Self.PayrollOT" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PayrollOTDetails" Type="Self.PayrollOTDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PayrollOT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PayrollOTDetails">
+              <PropertyRef Name="PayrollOTId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2101,6 +2285,8 @@
           <EntitySet Name="ICS" EntityType="Self.ICS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ICSDetails" EntityType="Self.ICSDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItenaryDetails" EntityType="Self.ItenaryDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItenaryofTravels" EntityType="Self.ItenaryofTravels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Letters" EntityType="Self.Letters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Liquidations" EntityType="Self.Liquidations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
@@ -2114,6 +2300,8 @@
           <EntitySet Name="PayrollDetails" EntityType="Self.PayrollDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PayrollDifferentialDetails" EntityType="Self.PayrollDifferentialDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PayrollDifferentials" EntityType="Self.PayrollDifferentials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PayrollOT" EntityType="Self.PayrollOT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PayrollOTDetails" EntityType="Self.PayrollOTDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payrolls" EntityType="Self.Payrolls" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PayrollWageDetails" EntityType="Self.PayrollWageDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PayrollWages" EntityType="Self.PayrollWages" Schema="dbo" store:Type="Tables" />
@@ -2242,6 +2430,10 @@
             <End Role="Payees" EntitySet="Payees" />
             <End Role="EmployeesInPayee" EntitySet="EmployeesInPayee" />
           </AssociationSet>
+          <AssociationSet Name="FK_Files_Users" Association="Self.FK_Files_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Files" EntitySet="Files" />
+          </AssociationSet>
           <AssociationSet Name="FK_ICS_PurchaseRequests" Association="Self.FK_ICS_PurchaseRequests">
             <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
             <End Role="ICS" EntitySet="ICS" />
@@ -2249,6 +2441,22 @@
           <AssociationSet Name="FK_ICSDetails_ICS" Association="Self.FK_ICSDetails_ICS">
             <End Role="ICS" EntitySet="ICS" />
             <End Role="ICSDetails" EntitySet="ICSDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItenaryDetails_ItenaryofTravels" Association="Self.FK_ItenaryDetails_ItenaryofTravels">
+            <End Role="ItenaryofTravels" EntitySet="ItenaryofTravels" />
+            <End Role="ItenaryDetails" EntitySet="ItenaryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItenaryofTravels_Employees" Association="Self.FK_ItenaryofTravels_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="ItenaryofTravels" EntitySet="ItenaryofTravels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItenaryofTravels_Obligations" Association="Self.FK_ItenaryofTravels_Obligations">
+            <End Role="Obligations" EntitySet="Obligations" />
+            <End Role="ItenaryofTravels" EntitySet="ItenaryofTravels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Letters_Offices" Association="Self.FK_Letters_Offices">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="Letters" EntitySet="Letters" />
           </AssociationSet>
           <AssociationSet Name="FK_Letters_Users" Association="Self.FK_Letters_Users">
             <End Role="Users" EntitySet="Users" />
@@ -2345,6 +2553,18 @@
           <AssociationSet Name="FK_PayrollDifferentials_Obligations" Association="Self.FK_PayrollDifferentials_Obligations">
             <End Role="Obligations" EntitySet="Obligations" />
             <End Role="PayrollDifferentials" EntitySet="PayrollDifferentials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayrollOT_Obligations" Association="Self.FK_PayrollOT_Obligations">
+            <End Role="Obligations" EntitySet="Obligations" />
+            <End Role="PayrollOT" EntitySet="PayrollOT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayrollOTDetails_Employees" Association="Self.FK_PayrollOTDetails_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="PayrollOTDetails" EntitySet="PayrollOTDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayrollOTDetails_PayrollOT" Association="Self.FK_PayrollOTDetails_PayrollOT">
+            <End Role="PayrollOT" EntitySet="PayrollOT" />
+            <End Role="PayrollOTDetails" EntitySet="PayrollOTDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Payrolls_Obligations" Association="Self.FK_Payrolls_Obligations">
             <End Role="Obligations" EntitySet="Obligations" />
@@ -2845,6 +3065,42 @@
             <End Role="UserRoles" EntitySet="UserRoles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="PayrollOT" EntityType="Model.PayrollOT" />
+          <AssociationSet Name="FK_PayrollOT_Obligations" Association="Model.FK_PayrollOT_Obligations">
+            <End Role="Obligations" EntitySet="Obligations" />
+            <End Role="PayrollOT" EntitySet="PayrollOT" />
+          </AssociationSet>
+          <EntitySet Name="PayrollOTDetails" EntityType="Model.PayrollOTDetails" />
+          <AssociationSet Name="FK_PayrollOTDetails_Employees" Association="Model.FK_PayrollOTDetails_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="PayrollOTDetails" EntitySet="PayrollOTDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayrollOTDetails_PayrollOT" Association="Model.FK_PayrollOTDetails_PayrollOT">
+            <End Role="PayrollOT" EntitySet="PayrollOT" />
+            <End Role="PayrollOTDetails" EntitySet="PayrollOTDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Letters_Offices" Association="Model.FK_Letters_Offices">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="Letters" EntitySet="Letters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Files_Users" Association="Model.FK_Files_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Files" EntitySet="Files" />
+          </AssociationSet>
+          <EntitySet Name="ItenaryofTravels" EntityType="Model.ItenaryofTravels" />
+          <AssociationSet Name="FK_ItenaryofTravels_Employees" Association="Model.FK_ItenaryofTravels_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="ItenaryofTravels" EntitySet="ItenaryofTravels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItenaryofTravels_Obligations" Association="Model.FK_ItenaryofTravels_Obligations">
+            <End Role="Obligations" EntitySet="Obligations" />
+            <End Role="ItenaryofTravels" EntitySet="ItenaryofTravels" />
+          </AssociationSet>
+          <EntitySet Name="ItenaryDetails" EntityType="Model.ItenaryDetails" />
+          <AssociationSet Name="FK_ItenaryDetails_ItenaryofTravels" Association="Model.FK_ItenaryDetails_ItenaryofTravels">
+            <End Role="ItenaryofTravels" EntitySet="ItenaryofTravels" />
+            <End Role="ItenaryDetails" EntitySet="ItenaryDetails" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Allotments">
           <Key>
@@ -2947,6 +3203,8 @@
           <Property Name="SalaryGrade" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Steps" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Signatories" Relationship="Model.FK_Signatories_Employees" FromRole="Employees" ToRole="Signatories" />
+          <NavigationProperty Name="PayrollOTDetails" Relationship="Model.FK_PayrollOTDetails_Employees" FromRole="Employees" ToRole="PayrollOTDetails" />
+          <NavigationProperty Name="ItenaryofTravels" Relationship="Model.FK_ItenaryofTravels_Employees" FromRole="Employees" ToRole="ItenaryofTravels" />
         </EntityType>
         <EntityType Name="Functions">
           <Key>
@@ -3048,6 +3306,8 @@
           <NavigationProperty Name="Letters" Relationship="Model.OBRInLetters" FromRole="Obligations" ToRole="Letters" />
           <Property Name="DVAmount" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="CreatedByUser" Relationship="Model.FK_Obligations_Users" FromRole="Obligations" ToRole="Users" />
+          <NavigationProperty Name="PayrollOT" Relationship="Model.FK_PayrollOT_Obligations" FromRole="Obligations" ToRole="PayrollOT" />
+          <NavigationProperty Name="ItenaryofTravels" Relationship="Model.FK_ItenaryofTravels_Obligations" FromRole="Obligations" ToRole="ItenaryofTravels" />
         </EntityType>
         <EntityType Name="Offices">
           <Key>
@@ -3080,6 +3340,7 @@
           <NavigationProperty Name="TrashBin" Relationship="Model.FK_TrashBin_Offices" FromRole="Offices" ToRole="TrashBin" />
           <NavigationProperty Name="Years" Relationship="Model.FK_Years_Offices" FromRole="Offices" ToRole="Years" />
           <NavigationProperty Name="Users" Relationship="Model.FK_Users_Offices" FromRole="Offices" ToRole="Users" />
+          <NavigationProperty Name="Letters" Relationship="Model.FK_Letters_Offices" FromRole="Offices" ToRole="Letters" />
         </EntityType>
         <EntityType Name="Payees">
           <Key>
@@ -4188,6 +4449,8 @@
           <Property Name="BudgetControlNo" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="IsClosed" Type="Boolean" Nullable="false" />
           <Property Name="Year" Type="Int32" />
+          <Property Name="IsCancelled" Type="Boolean" />
+          <Property Name="CancellationReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_AIReports_PurchaseRequests">
           <End Type="Model.PurchaseRequests" Role="PurchaseRequests" Multiplicity="0..1" />
@@ -4646,6 +4909,7 @@
           <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="DateCreated" Type="DateTime" Precision="7" />
           <NavigationProperty Name="Users" Relationship="Model.FK_Letters_Users" FromRole="Letters" ToRole="Users" />
+          <NavigationProperty Name="Offices" Relationship="Model.FK_Letters_Offices" FromRole="Letters" ToRole="Offices" />
         </EntityType>
         <Association Name="OBRInLetters">
           <End Type="Model.Letters" Role="Letters" Multiplicity="*" />
@@ -4707,6 +4971,9 @@
           <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RootFolder" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OriginalFileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Model.FK_Files_Users" FromRole="Files" ToRole="Users" />
         </EntityType>
         <Association Name="FK_Signatories_Employees">
           <End Type="Model.Employees" Role="Employees" Multiplicity="0..1" />
@@ -4779,6 +5046,7 @@
           <NavigationProperty Name="UserLogins" Relationship="Model.FK_UserLogins_Users" FromRole="Users" ToRole="UserLogins" />
           <NavigationProperty Name="RoutedDocuments" Relationship="Model.UsersInDocumentActions" FromRole="Users" ToRole="DocumentActions" />
           <NavigationProperty Name="UserRoles" Relationship="Model.UsersInRoles" FromRole="Users" ToRole="UserRoles" />
+          <NavigationProperty Name="Files" Relationship="Model.FK_Files_Users" FromRole="Users" ToRole="Files" />
         </EntityType>
         <Association Name="FK_AIReports_Users">
           <End Type="Model.Users" Role="Users" Multiplicity="0..1" />
@@ -4897,6 +5165,194 @@
         <Association Name="UsersInRoles">
           <End Type="Model.UserRoles" Role="UserRoles" Multiplicity="*" />
           <End Type="Model.Users" Role="Users" Multiplicity="*" />
+        </Association>
+        <EntityType Name="PayrollOT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ObRId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
+          <Property Name="ApprovedById" Type="Int32" />
+          <Property Name="ApprovedPosition" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="HeadId" Type="Int32" />
+          <Property Name="HeadPosition" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PAId" Type="Int32" />
+          <Property Name="PAPosition" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PTId" Type="Int32" />
+          <Property Name="PTPosition" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Obligations" Relationship="Model.FK_PayrollOT_Obligations" FromRole="PayrollOT" ToRole="Obligations" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PayrollOTDetails" Relationship="Model.FK_PayrollOTDetails_PayrollOT" FromRole="PayrollOT" ToRole="PayrollOTDetails" />
+        </EntityType>
+        <Association Name="FK_PayrollOT_Obligations">
+          <End Type="Model.Obligations" Role="Obligations" Multiplicity="0..1" />
+          <End Type="Model.PayrollOT" Role="PayrollOT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obligations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PayrollOT">
+              <PropertyRef Name="ObRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PayrollOTDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PayrollOTId" Type="Int32" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="RatePerMonth" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RatePerDay" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RatePerHr" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="WeekEndNoHrs" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="WeekDayNoHrs" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SubTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UnderPay" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DateCreated" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Employees" Relationship="Model.FK_PayrollOTDetails_Employees" FromRole="PayrollOTDetails" ToRole="Employees" />
+          <NavigationProperty Name="PayrollOT" Relationship="Model.FK_PayrollOTDetails_PayrollOT" FromRole="PayrollOTDetails" ToRole="PayrollOT" />
+          <Property Name="ItemNo" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_PayrollOTDetails_Employees">
+          <End Type="Model.Employees" Role="Employees" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.PayrollOTDetails" Role="PayrollOTDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PayrollOTDetails">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayrollOTDetails_PayrollOT">
+          <End Type="Model.PayrollOT" Role="PayrollOT" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.PayrollOTDetails" Role="PayrollOTDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PayrollOT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PayrollOTDetails">
+              <PropertyRef Name="PayrollOTId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Letters_Offices">
+          <End Type="Model.Offices" Role="Offices" Multiplicity="0..1" />
+          <End Type="Model.Letters" Role="Letters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Letters">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Files_Users">
+          <End Type="Model.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="Model.Files" Role="Files" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Files">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ItenaryofTravels">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OBRId" Type="Int32" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="Position" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="OfficialAddress" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Purpose" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GovernorId" Type="Int32" />
+          <Property Name="PAId" Type="Int32" />
+          <Property Name="PreparedBy" Type="Int32" />
+          <Property Name="PreparedByPos" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedBy" Type="Int32" />
+          <Property Name="ApprovedByPos" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Employees" Relationship="Model.FK_ItenaryofTravels_Employees" FromRole="ItenaryofTravels" ToRole="Employees" />
+          <NavigationProperty Name="Obligations" Relationship="Model.FK_ItenaryofTravels_Obligations" FromRole="ItenaryofTravels" ToRole="Obligations" />
+          <NavigationProperty Name="ItenaryDetails" Relationship="Model.FK_ItenaryDetails_ItenaryofTravels" FromRole="ItenaryofTravels" ToRole="ItenaryDetails" />
+        </EntityType>
+        <Association Name="FK_ItenaryofTravels_Employees">
+          <End Type="Model.Employees" Role="Employees" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.ItenaryofTravels" Role="ItenaryofTravels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItenaryofTravels">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItenaryofTravels_Obligations">
+          <End Type="Model.Obligations" Role="Obligations" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.ItenaryofTravels" Role="ItenaryofTravels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obligations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItenaryofTravels">
+              <PropertyRef Name="OBRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ItenaryDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IOTId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
+          <Property Name="PlaceVisited" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DepartureTime" Type="DateTime" Precision="3" />
+          <Property Name="ArrivalTime" Type="DateTime" Precision="3" />
+          <Property Name="MeansOfTransportation" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TransportationFee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PerDiems" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DailyAllowance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DateCreated" Type="DateTime" Precision="7" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ItenaryofTravels" Relationship="Model.FK_ItenaryDetails_ItenaryofTravels" FromRole="ItenaryDetails" ToRole="ItenaryofTravels" />
+        </EntityType>
+        <Association Name="FK_ItenaryDetails_ItenaryofTravels">
+          <End Type="Model.ItenaryofTravels" Role="ItenaryofTravels" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.ItenaryDetails" Role="ItenaryDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItenaryofTravels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItenaryDetails">
+              <PropertyRef Name="IOTId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -5714,6 +6170,8 @@
           <EntitySetMapping Name="PurchaseRequests">
             <EntityTypeMapping TypeName="Model.PurchaseRequests">
               <MappingFragment StoreEntitySet="PurchaseRequests">
+                <ScalarProperty Name="CancellationReason" ColumnName="CancellationReason" />
+                <ScalarProperty Name="IsCancelled" ColumnName="IsCancelled" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
                 <ScalarProperty Name="BudgetControlNo" ColumnName="BudgetControlNo" />
@@ -5916,6 +6374,8 @@
           <EntitySetMapping Name="Files">
             <EntityTypeMapping TypeName="Model.Files">
               <MappingFragment StoreEntitySet="Files">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
                 <ScalarProperty Name="RootFolder" ColumnName="RootFolder" />
                 <ScalarProperty Name="Path" ColumnName="Path" />
                 <ScalarProperty Name="TableName" ColumnName="TableName" />
@@ -5978,6 +6438,84 @@
               <ScalarProperty Name="Id" ColumnName="UserRoles_Id" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="PayrollOT">
+            <EntityTypeMapping TypeName="Model.PayrollOT">
+              <MappingFragment StoreEntitySet="PayrollOT">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PTPosition" ColumnName="PTPosition" />
+                <ScalarProperty Name="PTId" ColumnName="PTId" />
+                <ScalarProperty Name="PAPosition" ColumnName="PAPosition" />
+                <ScalarProperty Name="PAId" ColumnName="PAId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="HeadPosition" ColumnName="HeadPosition" />
+                <ScalarProperty Name="HeadId" ColumnName="HeadId" />
+                <ScalarProperty Name="ApprovedPosition" ColumnName="ApprovedPosition" />
+                <ScalarProperty Name="ApprovedById" ColumnName="ApprovedById" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ObRId" ColumnName="ObRId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PayrollOTDetails">
+            <EntityTypeMapping TypeName="Model.PayrollOTDetails">
+              <MappingFragment StoreEntitySet="PayrollOTDetails">
+                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="UnderPay" ColumnName="UnderPay" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="WeekDayNoHrs" ColumnName="WeekDayNoHrs" />
+                <ScalarProperty Name="WeekEndNoHrs" ColumnName="WeekEndNoHrs" />
+                <ScalarProperty Name="RatePerHr" ColumnName="RatePerHr" />
+                <ScalarProperty Name="RatePerDay" ColumnName="RatePerDay" />
+                <ScalarProperty Name="RatePerMonth" ColumnName="RatePerMonth" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="PayrollOTId" ColumnName="PayrollOTId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItenaryofTravels">
+            <EntityTypeMapping TypeName="Model.ItenaryofTravels">
+              <MappingFragment StoreEntitySet="ItenaryofTravels">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ApprovedByPos" ColumnName="ApprovedByPos" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="PreparedByPos" ColumnName="PreparedByPos" />
+                <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+                <ScalarProperty Name="PAId" ColumnName="PAId" />
+                <ScalarProperty Name="GovernorId" ColumnName="GovernorId" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+                <ScalarProperty Name="OfficialAddress" ColumnName="OfficialAddress" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="OBRId" ColumnName="OBRId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItenaryDetails">
+            <EntityTypeMapping TypeName="Model.ItenaryDetails">
+              <MappingFragment StoreEntitySet="ItenaryDetails">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="DailyAllowance" ColumnName="DailyAllowance" />
+                <ScalarProperty Name="PerDiems" ColumnName="PerDiems" />
+                <ScalarProperty Name="TransportationFee" ColumnName="TransportationFee" />
+                <ScalarProperty Name="MeansOfTransportation" ColumnName="MeansOfTransportation" />
+                <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="PlaceVisited" ColumnName="PlaceVisited" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IOTId" ColumnName="IOTId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
