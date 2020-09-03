@@ -50,9 +50,9 @@ namespace Win.Actns
             }
             else if (item.Category == "Activity")
             {
-                lblParent.Text = "Project";
+                lblParent.Text = "Activity";
                 lblvalue.Text = "Activity";
-                txtParent.Properties.DataSource = new BindingList<Actions>(new UnitOfWork().ActionsRepo.Get(m => m.Category == "Projects"));
+                txtParent.Properties.DataSource = new BindingList<Actions>(new UnitOfWork().ActionsRepo.Get(m => m.Category == "Activity"));
             }
             else if (item.Category == "SubActivity")
             {
@@ -125,24 +125,17 @@ namespace Win.Actns
 
             }
         }
+
         void Edit()
         {
-            try
-            {
-                UnitOfWork unitOfWork = new UnitOfWork();
-                item = unitOfWork.ActionsRepo.Find(x => x.Id == item.Id);
-                item.Value = txtValue.Text;
-                item.ItemOrder = txtOrder.EditValue?.ToInt();
-                item.ParentId = txtParent.EditValue?.ToInt();
-                item.OfficeId = staticSettings.OfficeId;
-                //   unitOfWork.ActionsRepo.Update(item);
-                unitOfWork.Save();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+            UnitOfWork unitOfWork = new UnitOfWork();
+            var res = unitOfWork.ActionsRepo.Find(x => x.Id == item.Id);
+            res.Value = txtValue.Text;
+            res.ItemOrder = txtOrder.EditValue?.ToInt();
+            res.ParentId = txtParent.EditValue?.ToInt();
+            res.Category = category;
+            unitOfWork.ActionsRepo.Update(item);
+            unitOfWork.Save();
         }
 
         void add()
@@ -150,24 +143,17 @@ namespace Win.Actns
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
-                item = new Actions()
-                {
-                    Value = txtValue.Text,
-                    ItemOrder = txtOrder.EditValue?.ToInt(),
-                    ParentId = txtParent.EditValue?.ToInt(),
-                    Category = this.item.Category,
-                    OfficeId = staticSettings.OfficeId
-
-                };
-
+                item = new Actions();
+                item.Value = txtValue.Text;
+                item.ItemOrder = txtOrder.EditValue?.ToInt();
+                item.ParentId = txtParent.EditValue?.ToInt();
+                item.Category = category;
                 unitOfWork.ActionsRepo.Insert(item);
                 unitOfWork.Save();
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void frmAddEditDocActionTree_Load(object sender, EventArgs e)

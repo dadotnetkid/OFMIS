@@ -50,6 +50,7 @@ namespace Win.Actns
                     this.DashboardGridView.Columns[0].VisibleIndex = -1;
                 }
 
+                this.lblTotalCount.Text = $@"Total Count {documents.Count()}";
                 this.Detail(await Task.Run(() => documents.FirstOrDefault()));
                 DashboardGridView.HideLoadingPanel();
             }
@@ -87,7 +88,7 @@ namespace Win.Actns
                     var obr = new ucObligations() { Dock = DockStyle.Fill };
                     obr.txtSearch.Text = documentActions.ControlNo;
                     frm.pnlMain.Controls.Add(obr);
-                    obr.loadObligations.Search(documentActions.ControlNo, true);
+                    obr.btnSearch.PerformClick();
                 }
                 else
                 {
@@ -237,7 +238,7 @@ namespace Win.Actns
                     documents = await Task.Run(() =>
                         unitOfWork.DocumentActionsRepo.Fetch(x => x.IsSend == true && x.isDone != true));
                 var amount = txtSearch.Text.Split(new string[] { "to" }, StringSplitOptions.None);
-                if (amount.Any(x => x.ToInt() > 0) && amount.Count()>=2)
+                if (amount.Any(x => x.ToInt() > 0) && amount.Count() >= 2)
                 {
                     var a1 = amount[0]?.ToDecimal();
                     var a2 = amount[1]?.ToDecimal();
@@ -252,7 +253,7 @@ namespace Win.Actns
                      x.ControlNo.Contains(txtSearch.Text) ||
                         x.ObR_PR_No.Contains(txtSearch.Text) || prs.Contains(x.ControlNo) || obrs.Contains(x.ControlNo));
                     var res = documents.ToList();
-                    
+
                 }
 
                 this.DashboardGridControl.DataSource = documents.ToList();

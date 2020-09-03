@@ -137,7 +137,7 @@ namespace Win.Rprts
             {
                 Text = "Sub Activity",
                 WidthF = 250.12F,
-  
+
             });
             while (dtFrom <= dtTo)
             {
@@ -186,7 +186,10 @@ namespace Win.Rprts
                         WidthF = 50f,
                         TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
                     };
-
+                    if (xrcell.Text == "0")
+                    {
+                        xrcell.Text = "-";
+                    }
                     xrow.Cells.Add(xrcell);
                     dtFrom = dtFrom.AddDays(1);
                 }

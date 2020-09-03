@@ -48,6 +48,8 @@ namespace Win.Actns
                 item.Remarks = txtRemarks.Text;
                 item.ActionTaken = txtActionTaken.Text;
 
+                item.RoutedToOfficeId = cboOffice.EditValue?.ToInt();
+
                 item.isSaved = true;
                 //item.Users.Clear();
                 //foreach (var i in cboUsers.Text.Split(','))
@@ -102,6 +104,7 @@ namespace Win.Actns
                 this.ActionTakenBindingSource.DataSource = new UnitOfWork().ActionTakensRepo.Get(x => x.TableName == "ActionTakens", orderBy: x => x.OrderBy(m => m.ActionTaken));
                 this.txtRemarks.Properties.DataSource =
                     new UnitOfWork().ActionTakensRepo.Get(x => x.TableName == "Remarks", orderBy: x => x.OrderBy(m => m.ActionTaken));
+                this.officesBindingSource.DataSource = new UnitOfWork().OfficesRepo.Get();
                 // this.cboUsers.Properties.DataSource = unitOfWork.UsersRepo.Get();
                 cboPrograms.EditValue = item.ProgramId;
                 cboMain.EditValue = item.MainActivityId;
@@ -113,8 +116,10 @@ namespace Win.Actns
                 cboUsers.EditValue = item.RouterUsers;
 
 
-                if (item.isSaved == true)
+                if (item.isSaved == true || item.RoutedToOfficeId != null)
                     this.btnSend.Enabled = true;
+                if (item.IsSend == true)
+                    this.btnSend.Enabled = false;
             }
             catch (Exception e)
             {
@@ -253,7 +258,11 @@ namespace Win.Actns
                     return;
                 UnitOfWork unitOfWork = new UnitOfWork();
                 var item = unitOfWork.DocumentActionsRepo.Find(x => x.Id == documentActions.Id);
-
+                if (item.RoutedToOfficeId != null)
+                {
+                 new FDTSDb().SP_GetObrNo("General Fund", null, null, null);
+                
+                }
                 item.IsSend = true;
                 unitOfWork.Save();
                 Close();

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FDTSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="SP_GetCtrlNo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="category" Type="varchar" Mode="In" />
+          <Parameter Name="currentnumber" Type="int" Mode="In" />
+          <Parameter Name="code" Type="varchar" Mode="In" />
+          <Parameter Name="scode" Type="varchar" Mode="In" />
+          <Parameter Name="fiscalyear" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GetObrNo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="category" Type="varchar" Mode="In" />
+          <Parameter Name="currentnumber" Type="int" Mode="In" />
+          <Parameter Name="code" Type="varchar" Mode="In" />
+          <Parameter Name="mon" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GetPRNo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="office" Type="varchar" Mode="In" />
+          <Parameter Name="currentnumber" Type="int" Mode="In" />
+          <Parameter Name="mon" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GetTrknNo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fiscalyear" Type="varchar" Mode="In" />
+          <Parameter Name="currentnumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_InsertDDTL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ControlNo" Type="varchar" Mode="In" />
+          <Parameter Name="DDTL_ACT" Type="varchar" Mode="In" />
+          <Parameter Name="DDTL_TRKN" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_InsertDoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fiscalyear" Type="varchar" Mode="In" />
+          <Parameter Name="trkno" Type="varchar" Mode="In" />
+          <Parameter Name="DOCS_DESC" Type="varchar" Mode="In" />
+          <Parameter Name="DOCS_TYPE" Type="varchar" Mode="In" />
+          <Parameter Name="DOCS_CBY" Type="varchar" Mode="In" />
+          <Parameter Name="DOCS_RCTR" Type="varchar" Mode="In" />
+          <Parameter Name="DOCS_TRNO" Type="varchar" Mode="In" />
+          <Parameter Name="DOCS_CAT" Type="varchar" Mode="In" />
+          <Parameter Name="DOCS_OBR" Type="varchar" Mode="In" />
+          <Parameter Name="DOCS_AMT" Type="decimal" Mode="In" />
+          <Parameter Name="DOCS_RCTR2" Type="varchar" Mode="In" />
+          <Parameter Name="DOCS_CTRLNO" Type="varchar" Mode="In" />
+          <Parameter Name="rowsAffected" Type="int" Mode="In" />
+          <Parameter Name="DOCS_STATUS" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="FDTSModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FDTSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FDTSDb" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="SP_GetPRNo" ReturnType="Collection(Int32)">
+            <Parameter Name="office" Mode="In" Type="String" />
+            <Parameter Name="currentnumber" Mode="In" Type="Int32" />
+            <Parameter Name="mon" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetObrNo" ReturnType="Collection(String)">
+            <Parameter Name="category" Mode="In" Type="String" />
+            <Parameter Name="currentnumber" Mode="In" Type="Int32" />
+            <Parameter Name="code" Mode="In" Type="String" />
+            <Parameter Name="mon" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_InsertDDTL">
+            <Parameter Name="ControlNo" Mode="In" Type="String" />
+            <Parameter Name="DDTL_ACT" Mode="In" Type="String" />
+            <Parameter Name="DDTL_TRKN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetTrknNo" ReturnType="Collection(String)">
+            <Parameter Name="fiscalyear" Mode="In" Type="String" />
+            <Parameter Name="currentnumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_InsertDoc" ReturnType="Collection(Int32)">
+            <Parameter Name="fiscalyear" Mode="In" Type="String" />
+            <Parameter Name="trkno" Mode="In" Type="String" />
+            <Parameter Name="DOCS_DESC" Mode="In" Type="String" />
+            <Parameter Name="DOCS_TYPE" Mode="In" Type="String" />
+            <Parameter Name="DOCS_CBY" Mode="In" Type="String" />
+            <Parameter Name="DOCS_RCTR" Mode="In" Type="String" />
+            <Parameter Name="DOCS_TRNO" Mode="In" Type="String" />
+            <Parameter Name="DOCS_CAT" Mode="In" Type="String" />
+            <Parameter Name="DOCS_OBR" Mode="In" Type="String" />
+            <Parameter Name="DOCS_AMT" Mode="In" Type="Decimal" />
+            <Parameter Name="DOCS_RCTR2" Mode="In" Type="String" />
+            <Parameter Name="DOCS_CTRLNO" Mode="In" Type="String" />
+            <Parameter Name="rowsAffected" Mode="In" Type="Int32" />
+            <Parameter Name="DOCS_STATUS" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetCtrlNo" ReturnType="Collection(String)">
+            <Parameter Name="category" Mode="In" Type="String" />
+            <Parameter Name="currentnumber" Mode="In" Type="Int32" />
+            <Parameter Name="code" Mode="In" Type="String" />
+            <Parameter Name="scode" Mode="In" Type="String" />
+            <Parameter Name="fiscalyear" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FDTSModelStoreContainer" CdmEntityContainer="FDTSDb" >
+          <FunctionImportMapping FunctionImportName="SP_GetPRNo" FunctionName="FDTSModel.Store.SP_GetPRNo" />
+          <FunctionImportMapping FunctionImportName="SP_GetObrNo" FunctionName="FDTSModel.Store.SP_GetObrNo" />
+          <FunctionImportMapping FunctionImportName="SP_InsertDDTL" FunctionName="FDTSModel.Store.SP_InsertDDTL" />
+          <FunctionImportMapping FunctionImportName="SP_GetTrknNo" FunctionName="FDTSModel.Store.SP_GetTrknNo" />
+          <FunctionImportMapping FunctionImportName="SP_InsertDoc" FunctionName="FDTSModel.Store.SP_InsertDoc" />
+          <FunctionImportMapping FunctionImportName="SP_GetCtrlNo" FunctionName="FDTSModel.Store.SP_GetCtrlNo" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

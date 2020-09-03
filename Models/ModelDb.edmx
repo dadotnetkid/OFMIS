@@ -269,6 +269,7 @@
           <Property Name="ActionId" Type="int" />
           <Property Name="ObR_PR_No" Type="nvarchar" MaxLength="128" />
           <Property Name="Year" Type="int" />
+          <Property Name="RoutedToOfficeId" Type="int" />
         </EntityType>
         <EntityType Name="Employees">
           <Key>
@@ -1366,6 +1367,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DocumentActions_Offices">
+          <End Role="Offices" Type="Self.Offices" Multiplicity="0..1" />
+          <End Role="DocumentActions" Type="Self.DocumentActions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentActions">
+              <PropertyRef Name="RoutedToOfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DocumentActions_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="DocumentActions" Type="Self.DocumentActions" Multiplicity="*" />
@@ -2414,6 +2427,10 @@
             <End Role="DocumentActions" EntitySet="DocumentActions" />
             <End Role="DocumentActions1" EntitySet="DocumentActions" />
           </AssociationSet>
+          <AssociationSet Name="FK_DocumentActions_Offices" Association="Self.FK_DocumentActions_Offices">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="DocumentActions" EntitySet="DocumentActions" />
+          </AssociationSet>
           <AssociationSet Name="FK_DocumentActions_Users" Association="Self.FK_DocumentActions_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="DocumentActions" EntitySet="DocumentActions" />
@@ -3101,6 +3118,10 @@
             <End Role="ItenaryofTravels" EntitySet="ItenaryofTravels" />
             <End Role="ItenaryDetails" EntitySet="ItenaryDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_DocumentActions_Offices" Association="Model.FK_DocumentActions_Offices">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="DocumentActions" EntitySet="DocumentActions" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Allotments">
           <Key>
@@ -3341,6 +3362,7 @@
           <NavigationProperty Name="Years" Relationship="Model.FK_Years_Offices" FromRole="Offices" ToRole="Years" />
           <NavigationProperty Name="Users" Relationship="Model.FK_Users_Offices" FromRole="Offices" ToRole="Users" />
           <NavigationProperty Name="Letters" Relationship="Model.FK_Letters_Offices" FromRole="Offices" ToRole="Letters" />
+          <NavigationProperty Name="DocumentActions" Relationship="Model.FK_DocumentActions_Offices" FromRole="Offices" ToRole="DocumentActions" />
         </EntityType>
         <EntityType Name="Payees">
           <Key>
@@ -4871,6 +4893,8 @@
           <Property Name="Year" Type="Int32" />
           <NavigationProperty Name="CreatedByUsers" Relationship="Model.FK_DocumentActions_Users" FromRole="DocumentActions" ToRole="Users" />
           <NavigationProperty Name="RoutedToUsers" Relationship="Model.UsersInDocumentActions" FromRole="DocumentActions" ToRole="Users" />
+          <Property Name="RoutedToOfficeId" Type="Int32" />
+          <NavigationProperty Name="Offices" Relationship="Model.FK_DocumentActions_Offices" FromRole="DocumentActions" ToRole="Offices" />
         </EntityType>
         <Association Name="FK_DocumentActions_DocumentActions1">
           <End Type="Model.DocumentActions" Role="DocumentActions" Multiplicity="0..1" />
@@ -5351,6 +5375,18 @@
             </Principal>
             <Dependent Role="ItenaryDetails">
               <PropertyRef Name="IOTId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentActions_Offices">
+          <End Type="Model.Offices" Role="Offices" Multiplicity="0..1" />
+          <End Type="Model.DocumentActions" Role="DocumentActions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentActions">
+              <PropertyRef Name="RoutedToOfficeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6292,6 +6328,7 @@
           <EntitySetMapping Name="DocumentActions">
             <EntityTypeMapping TypeName="Model.DocumentActions">
               <MappingFragment StoreEntitySet="DocumentActions">
+                <ScalarProperty Name="RoutedToOfficeId" ColumnName="RoutedToOfficeId" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="ObR_PR_No" ColumnName="ObR_PR_No" />
                 <ScalarProperty Name="ActionId" ColumnName="ActionId" />

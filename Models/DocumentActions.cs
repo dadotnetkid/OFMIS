@@ -42,6 +42,7 @@ namespace Models
         public Nullable<int> ActionId { get; set; }
         public string ObR_PR_No { get; set; }
         public Nullable<int> Year { get; set; }
+        public Nullable<int> RoutedToOfficeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentActions> DocumentActions1 { get; set; }
@@ -49,5 +50,6 @@ namespace Models
         public virtual Users CreatedByUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> RoutedToUsers { get; set; }
+        public virtual Offices Offices { get; set; }
     }
 }

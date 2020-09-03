@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,9 @@ using System.Threading;
 using System.Windows.Forms;
 using DevExpress.XtraBars.ToastNotifications;
 using Helpers;
+using Models;
 using Models.Repository;
+using Models.ViewModels;
 using Win.Accnts;
 using Win.Actns;
 using Win.BGMembers;
@@ -369,6 +372,29 @@ namespace Win
         {
             frmUserSettings frm = new frmUserSettings();
             frm.ShowDialog();
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                var db = new FDTSDb();
+
+                var docTrNo = db.SP_GetObrNo("General Fund", null, null, null).FirstOrDefault();
+                var ctrlNo = db.SP_GetCtrlNo("General Fund",null,null, "2020").FirstOrDefault();
+                var trknNo = db.SP_GetTrknNo("2020", null).FirstOrDefault();
+                db.SP_InsertDoc(2020,trknNo,"","OBR",User.UserName,new StaticSettings().ResponsibilityCenter, docTrNo,"General Fund",)
+                /* var res = db.Database.SqlQuery<OBRVM>("exec SP_GetObrNo", 
+                new SqlParameter("@category", "General Fund"), 
+                new SqlParameter("@currentnumber", ""),
+                new SqlParameter("@code", null), 
+                new SqlParameter("@mon", null)).FirstOrDefault();*/
+            }
+            catch (Exception exception)
+            {
+
+            }
+
         }
     }
 }

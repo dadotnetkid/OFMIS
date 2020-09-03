@@ -45,7 +45,6 @@
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.btnEditPo = new DevExpress.XtraEditors.SimpleButton();
             this.txtActionTaken = new DevExpress.XtraEditors.LookUpEdit();
-            this.ActionTakenBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
@@ -59,8 +58,13 @@
             this.btnNewPO = new DevExpress.XtraEditors.SimpleButton();
             this.StatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtRemarks = new DevExpress.XtraEditors.LookUpEdit();
-            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnNewRemarks = new DevExpress.XtraEditors.SimpleButton();
+            this.ActionTakenBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.cboOffice = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.officesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPrograms.Properties)).BeginInit();
@@ -68,13 +72,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboSub.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboActivity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtActionTaken.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ActionTakenBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboUsers.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StatusBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ActionTakenBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboOffice.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.officesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -108,17 +115,23 @@
             this.dtDate.Properties.Appearance.Options.UseFont = true;
             this.dtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtDate.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.True;
             this.dtDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtDate.Properties.CalendarTimeProperties.EditFormat.FormatString = "d";
+            this.dtDate.Properties.CalendarTimeProperties.DisplayFormat.FormatString = "MM/dd/yyyy hh:mm:ss tt";
+            this.dtDate.Properties.CalendarTimeProperties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtDate.Properties.CalendarTimeProperties.EditFormat.FormatString = "MM/dd/yyyy hh:mm:ss tt";
             this.dtDate.Properties.CalendarTimeProperties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtDate.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.ClassicNew;
             this.dtDate.Properties.DisplayFormat.FormatString = "MM/dd/yyyy hh:mm:ss tt";
-            this.dtDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dtDate.Properties.EditFormat.FormatString = "MM/dd/yyyy hh:mm:ss tt";
-            this.dtDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtDate.Properties.Mask.EditMask = "g";
             this.dtDate.Properties.NullDate = new System.DateTime(2020, 2, 25, 18, 51, 15, 217);
             this.dtDate.Properties.NullDateCalendarValue = new System.DateTime(2020, 2, 25, 18, 51, 4, 0);
             this.dtDate.Properties.TodayDate = new System.DateTime(2020, 2, 25, 18, 51, 50, 0);
+            this.dtDate.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
             this.dtDate.Size = new System.Drawing.Size(231, 24);
             this.dtDate.TabIndex = 0;
             // 
@@ -126,7 +139,7 @@
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(25, 228);
+            this.labelControl4.Location = new System.Drawing.Point(23, 270);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(56, 17);
             this.labelControl4.TabIndex = 0;
@@ -276,7 +289,7 @@
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Location = new System.Drawing.Point(21, 265);
+            this.labelControl9.Location = new System.Drawing.Point(19, 300);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(60, 34);
             this.labelControl9.TabIndex = 0;
@@ -287,7 +300,7 @@
             this.btnEditPo.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnEditPo.Appearance.Options.UseFont = true;
             this.btnEditPo.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.btnEditPo.Location = new System.Drawing.Point(516, 309);
+            this.btnEditPo.Location = new System.Drawing.Point(514, 344);
             this.btnEditPo.Name = "btnEditPo";
             this.btnEditPo.Size = new System.Drawing.Size(75, 26);
             this.btnEditPo.TabIndex = 8;
@@ -318,10 +331,6 @@
             this.txtActionTaken.Properties.ValueMember = "ActionTaken";
             this.txtActionTaken.Size = new System.Drawing.Size(437, 44);
             this.txtActionTaken.TabIndex = 5;
-            // 
-            // ActionTakenBindingSource
-            // 
-            this.ActionTakenBindingSource.DataSource = typeof(Models.ActionTakens);
             // 
             // panel1
             // 
@@ -365,7 +374,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboUsers.EditValue = "";
             this.cboUsers.Enabled = false;
-            this.cboUsers.Location = new System.Drawing.Point(87, 226);
+            this.cboUsers.Location = new System.Drawing.Point(85, 261);
             this.cboUsers.Name = "cboUsers";
             this.cboUsers.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.cboUsers.Properties.Appearance.BackColor = System.Drawing.Color.Red;
@@ -440,7 +449,7 @@
             this.btnRouteTo.Appearance.Options.UseFont = true;
             this.btnRouteTo.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
             this.btnRouteTo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRouteTo.ImageOptions.Image")));
-            this.btnRouteTo.Location = new System.Drawing.Point(528, 224);
+            this.btnRouteTo.Location = new System.Drawing.Point(526, 259);
             this.btnRouteTo.MinimumSize = new System.Drawing.Size(63, 38);
             this.btnRouteTo.Name = "btnRouteTo";
             this.btnRouteTo.Size = new System.Drawing.Size(63, 38);
@@ -455,7 +464,7 @@
             this.btnSend.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
             this.btnSend.Enabled = false;
             this.btnSend.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSend.ImageOptions.Image")));
-            this.btnSend.Location = new System.Drawing.Point(303, 309);
+            this.btnSend.Location = new System.Drawing.Point(301, 344);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(126, 26);
             this.btnSend.TabIndex = 7;
@@ -469,7 +478,7 @@
             this.btnNewPO.Appearance.Options.UseFont = true;
             this.btnNewPO.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnNewPO.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNewPO.ImageOptions.Image")));
-            this.btnNewPO.Location = new System.Drawing.Point(435, 309);
+            this.btnNewPO.Location = new System.Drawing.Point(433, 344);
             this.btnNewPO.Name = "btnNewPO";
             this.btnNewPO.Size = new System.Drawing.Size(75, 26);
             this.btnNewPO.TabIndex = 7;
@@ -481,7 +490,7 @@
             // 
             this.txtRemarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRemarks.Location = new System.Drawing.Point(87, 264);
+            this.txtRemarks.Location = new System.Drawing.Point(85, 299);
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.txtRemarks.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -500,17 +509,13 @@
             this.txtRemarks.TabIndex = 6;
             this.txtRemarks.EditValueChanged += new System.EventHandler(this.cboStatus_EditValueChanged);
             // 
-            // usersBindingSource
-            // 
-            this.usersBindingSource.DataSource = typeof(Models.Users);
-            // 
             // btnNewRemarks
             // 
             this.btnNewRemarks.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewRemarks.Appearance.Options.UseFont = true;
             this.btnNewRemarks.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.btnNewRemarks.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.btnNewRemarks.Location = new System.Drawing.Point(528, 265);
+            this.btnNewRemarks.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNewRemarks.ImageOptions.Image")));
+            this.btnNewRemarks.Location = new System.Drawing.Point(526, 300);
             this.btnNewRemarks.MinimumSize = new System.Drawing.Size(63, 38);
             this.btnNewRemarks.Name = "btnNewRemarks";
             this.btnNewRemarks.Size = new System.Drawing.Size(63, 38);
@@ -518,11 +523,69 @@
             this.btnNewRemarks.Text = "New";
             this.btnNewRemarks.Click += new System.EventHandler(this.btnNewRemarks_Click);
             // 
+            // ActionTakenBindingSource
+            // 
+            this.ActionTakenBindingSource.DataSource = typeof(Models.ActionTakens);
+            // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataSource = typeof(Models.Users);
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Appearance.Options.UseTextOptions = true;
+            this.labelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labelControl3.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl3.Location = new System.Drawing.Point(12, 226);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(69, 34);
+            this.labelControl3.TabIndex = 0;
+            this.labelControl3.Text = "Route to Office:";
+            // 
+            // cboOffice
+            // 
+            this.cboOffice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboOffice.EditValue = "";
+            this.cboOffice.Location = new System.Drawing.Point(87, 224);
+            this.cboOffice.Name = "cboOffice";
+            this.cboOffice.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.cboOffice.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.cboOffice.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cboOffice.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+            this.cboOffice.Properties.Appearance.Options.UseBackColor = true;
+            this.cboOffice.Properties.Appearance.Options.UseFont = true;
+            this.cboOffice.Properties.Appearance.Options.UseForeColor = true;
+            this.cboOffice.Properties.AutoHeight = false;
+            this.cboOffice.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboOffice.Properties.DataSource = this.officesBindingSource;
+            this.cboOffice.Properties.DisplayMember = "OfficeName";
+            this.cboOffice.Properties.NullText = "";
+            this.cboOffice.Properties.PopupView = this.searchLookUpEdit1View;
+            this.cboOffice.Properties.ValueMember = "Id";
+            this.cboOffice.Size = new System.Drawing.Size(437, 36);
+            this.cboOffice.TabIndex = 8;
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // officesBindingSource
+            // 
+            this.officesBindingSource.DataSource = typeof(Models.Offices);
+            // 
             // frmDocActions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 355);
+            this.ClientSize = new System.Drawing.Size(603, 379);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnPreview);
             this.Controls.Add(this.btnDelete);
@@ -543,12 +606,14 @@
             this.Controls.Add(this.dtDate);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.labelControl9);
+            this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.txtActionTaken);
             this.Controls.Add(this.cboUsers);
             this.Controls.Add(this.txtRemarks);
+            this.Controls.Add(this.cboOffice);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(605, 373);
             this.Name = "frmDocActions";
@@ -562,14 +627,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboSub.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboActivity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtActionTaken.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ActionTakenBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboUsers.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StatusBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ActionTakenBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboOffice.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.officesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -608,5 +676,9 @@
         private DevExpress.XtraEditors.SimpleButton btnPreview;
         private DevExpress.XtraEditors.LookUpEdit txtRemarks;
         private DevExpress.XtraEditors.SimpleButton btnNewRemarks;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.SearchLookUpEdit cboOffice;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
+        private System.Windows.Forms.BindingSource officesBindingSource;
     }
 }

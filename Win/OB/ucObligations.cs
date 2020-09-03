@@ -34,9 +34,15 @@ namespace Win.OB
         {
             InitializeComponent();
             this.loadObligations = new LoadObligations(this);
+            loadObligations.Init();
+        }
+        public ucObligations(string search)
+        {
+            InitializeComponent();
+            this.loadObligations = new LoadObligations(this);
+            loadObligations.Init();
 
         }
-
         private void btnNew_Click(object sender, EventArgs e)
         {
             if (!User.UserInAction("Add Obligations"))
@@ -50,7 +56,7 @@ namespace Win.OB
 
         private async void ucObligations_Load(object sender, EventArgs e)
         {
-            loadObligations.Init();
+
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -230,7 +236,7 @@ namespace Win.OB
                         Chief = item.Chief,
                         ChiefPosition = item.ChiefPosition,
                         Closed = item.Closed,
-                        ControlNo = IdHelper.OfficeControlNo(obr.ControlNo, item.Id, "ObR", "Obligations"),
+                        ControlNo = IdHelper.OfficeControlNo(obr.ControlNo, item.OfficeId, "ObR", "Obligations"),
                         CreatedBy = User.UserId,
                         Date = item.Date,
                         DateClosed = item.DateClosed,

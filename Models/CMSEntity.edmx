@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="cmsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'cms.dbo.CMS_VHD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CMS_VHD">
+          <Key>
+            <PropertyRef Name="VHD_IDX" />
+          </Key>
+          <Property Name="VHD_IDX" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VHD_VNO" Type="varchar" MaxLength="50" />
+          <Property Name="VHD_DESC" Type="varchar" MaxLength="150" />
+          <Property Name="VHD_RCTR" Type="varchar" MaxLength="150" />
+          <Property Name="VHD_FYR" Type="varchar" MaxLength="10" />
+          <Property Name="VHD_PART" Type="varchar" MaxLength="150" />
+          <Property Name="VHD_DEL" Type="bit" />
+          <Property Name="VHD_DBY" Type="varchar" MaxLength="100" />
+          <Property Name="VHD_ACCT" Type="varchar" MaxLength="200" />
+          <Property Name="VHD_DIS" Type="bit" />
+          <Property Name="VHD_REM" Type="varchar" MaxLength="200" />
+          <Property Name="VHD_PRD" Type="varchar" MaxLength="200" />
+          <Property Name="VHD_ITEM" Type="varchar" MaxLength="100" />
+          <Property Name="VHD_FUND" Type="varchar" MaxLength="100" />
+          <Property Name="VHD_PMOD" Type="varchar" MaxLength="100" />
+          <Property Name="VHD_NAMT" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="VHD_REV" Type="bit" />
+          <Property Name="VHD_REF" Type="varchar" MaxLength="100" />
+          <Property Name="VHD_RBY" Type="varchar" MaxLength="100" />
+          <Property Name="VHD_RDT" Type="datetime" />
+          <Property Name="VHD_APP" Type="bit" />
+          <Property Name="VHD_ABY" Type="varchar" MaxLength="100" />
+          <Property Name="VHD_ADT" Type="datetime" />
+          <Property Name="VHD_UCR" Type="varchar" MaxLength="100" />
+          <Property Name="VHD_CRD" Type="datetime" />
+          <Property Name="VHD_UMD" Type="varchar" MaxLength="100" />
+          <Property Name="VHD_MOD" Type="datetime" />
+          <Property Name="VHD_DTE" Type="datetime" />
+          <Property Name="VHD_AMT" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="VHD_CNO" Type="varchar" MaxLength="150" />
+          <Property Name="VHD_CDE" Type="varchar" MaxLength="50" />
+          <Property Name="VHD_OBR" Type="varchar" MaxLength="50" />
+          <Property Name="VHD_INI" Type="bit" />
+          <Property Name="VHD_IBY" Type="varchar" MaxLength="100" />
+          <Property Name="VHD_IDT" Type="datetime" />
+          <Property Name="VHD_CUST" Type="varchar" MaxLength="150" />
+          <Property Name="VHD_ACTION" Type="varchar" MaxLength="150" />
+          <Property Name="VHD_STATUS" Type="varchar" MaxLength="150" />
+          <Property Name="VHD_DIS2" Type="varchar" MaxLength="200" />
+          <Property Name="VHD_SHOW" Type="bit" />
+          <Property Name="VHD_VHEAD" Type="bigint" />
+          <Property Name="VHD_REM2" Type="varchar" MaxLength="200" />
+          <Property Name="VHD_SIGN" Type="varchar" MaxLength="150" />
+          <Property Name="VHD_POS" Type="varchar" MaxLength="150" />
+          <Property Name="VHD_BANK" Type="varchar" MaxLength="150" />
+          <Property Name="VHD_PAY" Type="varchar" MaxLength="200" />
+          <Property Name="VHD_NOTE" Type="varchar" MaxLength="200" />
+          <Property Name="VHD_PRNT" Type="bit" />
+          <Property Name="VHD_CTYPE" Type="varchar" MaxLength="100" />
+          <Property Name="VHD_SCHK" Type="bit" />
+          <Property Name="VHD_CHKNOTE" Type="varchar" MaxLength="20" />
+          <Property Name="VHD_REL" Type="bit" />
+          <Property Name="VHD_SIGN2" Type="varchar" MaxLength="150" />
+          <Property Name="VHD_POS2" Type="varchar" MaxLength="150" />
+          <Property Name="VHD_TRNO" Type="varchar" MaxLength="50" />
+          <Property Name="VHD_TRKN" Type="varchar" MaxLength="50" />
+          <Property Name="VHD_TYPE" Type="varchar" MaxLength="50" />
+          <Property Name="VHD_PTO" Type="bit" />
+          <Property Name="VHD_SOURCE" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="cmsModelStoreContainer">
+          <EntitySet Name="CMS_VHD" EntityType="Self.CMS_VHD" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CMS_VHD].[VHD_IDX] AS [VHD_IDX], 
+    [CMS_VHD].[VHD_VNO] AS [VHD_VNO], 
+    [CMS_VHD].[VHD_DESC] AS [VHD_DESC], 
+    [CMS_VHD].[VHD_RCTR] AS [VHD_RCTR], 
+    [CMS_VHD].[VHD_FYR] AS [VHD_FYR], 
+    [CMS_VHD].[VHD_PART] AS [VHD_PART], 
+    [CMS_VHD].[VHD_DEL] AS [VHD_DEL], 
+    [CMS_VHD].[VHD_DBY] AS [VHD_DBY], 
+    [CMS_VHD].[VHD_ACCT] AS [VHD_ACCT], 
+    [CMS_VHD].[VHD_DIS] AS [VHD_DIS], 
+    [CMS_VHD].[VHD_REM] AS [VHD_REM], 
+    [CMS_VHD].[VHD_PRD] AS [VHD_PRD], 
+    [CMS_VHD].[VHD_ITEM] AS [VHD_ITEM], 
+    [CMS_VHD].[VHD_FUND] AS [VHD_FUND], 
+    [CMS_VHD].[VHD_PMOD] AS [VHD_PMOD], 
+    [CMS_VHD].[VHD_NAMT] AS [VHD_NAMT], 
+    [CMS_VHD].[VHD_REV] AS [VHD_REV], 
+    [CMS_VHD].[VHD_REF] AS [VHD_REF], 
+    [CMS_VHD].[VHD_RBY] AS [VHD_RBY], 
+    [CMS_VHD].[VHD_RDT] AS [VHD_RDT], 
+    [CMS_VHD].[VHD_APP] AS [VHD_APP], 
+    [CMS_VHD].[VHD_ABY] AS [VHD_ABY], 
+    [CMS_VHD].[VHD_ADT] AS [VHD_ADT], 
+    [CMS_VHD].[VHD_UCR] AS [VHD_UCR], 
+    [CMS_VHD].[VHD_CRD] AS [VHD_CRD], 
+    [CMS_VHD].[VHD_UMD] AS [VHD_UMD], 
+    [CMS_VHD].[VHD_MOD] AS [VHD_MOD], 
+    [CMS_VHD].[VHD_DTE] AS [VHD_DTE], 
+    [CMS_VHD].[VHD_AMT] AS [VHD_AMT], 
+    [CMS_VHD].[VHD_CNO] AS [VHD_CNO], 
+    [CMS_VHD].[VHD_CDE] AS [VHD_CDE], 
+    [CMS_VHD].[VHD_OBR] AS [VHD_OBR], 
+    [CMS_VHD].[VHD_INI] AS [VHD_INI], 
+    [CMS_VHD].[VHD_IBY] AS [VHD_IBY], 
+    [CMS_VHD].[VHD_IDT] AS [VHD_IDT], 
+    [CMS_VHD].[VHD_CUST] AS [VHD_CUST], 
+    [CMS_VHD].[VHD_ACTION] AS [VHD_ACTION], 
+    [CMS_VHD].[VHD_STATUS] AS [VHD_STATUS], 
+    [CMS_VHD].[VHD_DIS2] AS [VHD_DIS2], 
+    [CMS_VHD].[VHD_SHOW] AS [VHD_SHOW], 
+    [CMS_VHD].[VHD_VHEAD] AS [VHD_VHEAD], 
+    [CMS_VHD].[VHD_REM2] AS [VHD_REM2], 
+    [CMS_VHD].[VHD_SIGN] AS [VHD_SIGN], 
+    [CMS_VHD].[VHD_POS] AS [VHD_POS], 
+    [CMS_VHD].[VHD_BANK] AS [VHD_BANK], 
+    [CMS_VHD].[VHD_PAY] AS [VHD_PAY], 
+    [CMS_VHD].[VHD_NOTE] AS [VHD_NOTE], 
+    [CMS_VHD].[VHD_PRNT] AS [VHD_PRNT], 
+    [CMS_VHD].[VHD_CTYPE] AS [VHD_CTYPE], 
+    [CMS_VHD].[VHD_SCHK] AS [VHD_SCHK], 
+    [CMS_VHD].[VHD_CHKNOTE] AS [VHD_CHKNOTE], 
+    [CMS_VHD].[VHD_REL] AS [VHD_REL], 
+    [CMS_VHD].[VHD_SIGN2] AS [VHD_SIGN2], 
+    [CMS_VHD].[VHD_POS2] AS [VHD_POS2], 
+    [CMS_VHD].[VHD_TRNO] AS [VHD_TRNO], 
+    [CMS_VHD].[VHD_TRKN] AS [VHD_TRKN], 
+    [CMS_VHD].[VHD_TYPE] AS [VHD_TYPE], 
+    [CMS_VHD].[VHD_PTO] AS [VHD_PTO], 
+    [CMS_VHD].[VHD_SOURCE] AS [VHD_SOURCE]
+    FROM [dbo].[CMS_VHD] AS [CMS_VHD]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cmsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CMS_VHD">
+          <Key>
+            <PropertyRef Name="VHD_IDX" />
+          </Key>
+          <Property Name="VHD_IDX" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VHD_VNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_DESC" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_RCTR" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_FYR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_PART" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_DEL" Type="Boolean" />
+          <Property Name="VHD_DBY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_ACCT" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_DIS" Type="Boolean" />
+          <Property Name="VHD_REM" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_PRD" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_ITEM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_FUND" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_PMOD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_NAMT" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="VHD_REV" Type="Boolean" />
+          <Property Name="VHD_REF" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_RBY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_RDT" Type="DateTime" Precision="3" />
+          <Property Name="VHD_APP" Type="Boolean" />
+          <Property Name="VHD_ABY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_ADT" Type="DateTime" Precision="3" />
+          <Property Name="VHD_UCR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_CRD" Type="DateTime" Precision="3" />
+          <Property Name="VHD_UMD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_MOD" Type="DateTime" Precision="3" />
+          <Property Name="VHD_DTE" Type="DateTime" Precision="3" />
+          <Property Name="VHD_AMT" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="VHD_CNO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_CDE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_OBR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_INI" Type="Boolean" />
+          <Property Name="VHD_IBY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_IDT" Type="DateTime" Precision="3" />
+          <Property Name="VHD_CUST" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_ACTION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_STATUS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_DIS2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_SHOW" Type="Boolean" />
+          <Property Name="VHD_VHEAD" Type="Int64" />
+          <Property Name="VHD_REM2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_SIGN" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_POS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_BANK" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_PAY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_NOTE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_PRNT" Type="Boolean" />
+          <Property Name="VHD_CTYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_SCHK" Type="Boolean" />
+          <Property Name="VHD_CHKNOTE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_REL" Type="Boolean" />
+          <Property Name="VHD_SIGN2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_POS2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_TRNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_TRKN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VHD_PTO" Type="Boolean" />
+          <Property Name="VHD_SOURCE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="CMSDb" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CMS_VHD" EntityType="Self.CMS_VHD" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cmsModelStoreContainer" CdmEntityContainer="CMSDb">
+          <EntitySetMapping Name="CMS_VHD">
+            <EntityTypeMapping TypeName="cmsModel.CMS_VHD">
+              <MappingFragment StoreEntitySet="CMS_VHD">
+                <ScalarProperty Name="VHD_IDX" ColumnName="VHD_IDX" />
+                <ScalarProperty Name="VHD_VNO" ColumnName="VHD_VNO" />
+                <ScalarProperty Name="VHD_DESC" ColumnName="VHD_DESC" />
+                <ScalarProperty Name="VHD_RCTR" ColumnName="VHD_RCTR" />
+                <ScalarProperty Name="VHD_FYR" ColumnName="VHD_FYR" />
+                <ScalarProperty Name="VHD_PART" ColumnName="VHD_PART" />
+                <ScalarProperty Name="VHD_DEL" ColumnName="VHD_DEL" />
+                <ScalarProperty Name="VHD_DBY" ColumnName="VHD_DBY" />
+                <ScalarProperty Name="VHD_ACCT" ColumnName="VHD_ACCT" />
+                <ScalarProperty Name="VHD_DIS" ColumnName="VHD_DIS" />
+                <ScalarProperty Name="VHD_REM" ColumnName="VHD_REM" />
+                <ScalarProperty Name="VHD_PRD" ColumnName="VHD_PRD" />
+                <ScalarProperty Name="VHD_ITEM" ColumnName="VHD_ITEM" />
+                <ScalarProperty Name="VHD_FUND" ColumnName="VHD_FUND" />
+                <ScalarProperty Name="VHD_PMOD" ColumnName="VHD_PMOD" />
+                <ScalarProperty Name="VHD_NAMT" ColumnName="VHD_NAMT" />
+                <ScalarProperty Name="VHD_REV" ColumnName="VHD_REV" />
+                <ScalarProperty Name="VHD_REF" ColumnName="VHD_REF" />
+                <ScalarProperty Name="VHD_RBY" ColumnName="VHD_RBY" />
+                <ScalarProperty Name="VHD_RDT" ColumnName="VHD_RDT" />
+                <ScalarProperty Name="VHD_APP" ColumnName="VHD_APP" />
+                <ScalarProperty Name="VHD_ABY" ColumnName="VHD_ABY" />
+                <ScalarProperty Name="VHD_ADT" ColumnName="VHD_ADT" />
+                <ScalarProperty Name="VHD_UCR" ColumnName="VHD_UCR" />
+                <ScalarProperty Name="VHD_CRD" ColumnName="VHD_CRD" />
+                <ScalarProperty Name="VHD_UMD" ColumnName="VHD_UMD" />
+                <ScalarProperty Name="VHD_MOD" ColumnName="VHD_MOD" />
+                <ScalarProperty Name="VHD_DTE" ColumnName="VHD_DTE" />
+                <ScalarProperty Name="VHD_AMT" ColumnName="VHD_AMT" />
+                <ScalarProperty Name="VHD_CNO" ColumnName="VHD_CNO" />
+                <ScalarProperty Name="VHD_CDE" ColumnName="VHD_CDE" />
+                <ScalarProperty Name="VHD_OBR" ColumnName="VHD_OBR" />
+                <ScalarProperty Name="VHD_INI" ColumnName="VHD_INI" />
+                <ScalarProperty Name="VHD_IBY" ColumnName="VHD_IBY" />
+                <ScalarProperty Name="VHD_IDT" ColumnName="VHD_IDT" />
+                <ScalarProperty Name="VHD_CUST" ColumnName="VHD_CUST" />
+                <ScalarProperty Name="VHD_ACTION" ColumnName="VHD_ACTION" />
+                <ScalarProperty Name="VHD_STATUS" ColumnName="VHD_STATUS" />
+                <ScalarProperty Name="VHD_DIS2" ColumnName="VHD_DIS2" />
+                <ScalarProperty Name="VHD_SHOW" ColumnName="VHD_SHOW" />
+                <ScalarProperty Name="VHD_VHEAD" ColumnName="VHD_VHEAD" />
+                <ScalarProperty Name="VHD_REM2" ColumnName="VHD_REM2" />
+                <ScalarProperty Name="VHD_SIGN" ColumnName="VHD_SIGN" />
+                <ScalarProperty Name="VHD_POS" ColumnName="VHD_POS" />
+                <ScalarProperty Name="VHD_BANK" ColumnName="VHD_BANK" />
+                <ScalarProperty Name="VHD_PAY" ColumnName="VHD_PAY" />
+                <ScalarProperty Name="VHD_NOTE" ColumnName="VHD_NOTE" />
+                <ScalarProperty Name="VHD_PRNT" ColumnName="VHD_PRNT" />
+                <ScalarProperty Name="VHD_CTYPE" ColumnName="VHD_CTYPE" />
+                <ScalarProperty Name="VHD_SCHK" ColumnName="VHD_SCHK" />
+                <ScalarProperty Name="VHD_CHKNOTE" ColumnName="VHD_CHKNOTE" />
+                <ScalarProperty Name="VHD_REL" ColumnName="VHD_REL" />
+                <ScalarProperty Name="VHD_SIGN2" ColumnName="VHD_SIGN2" />
+                <ScalarProperty Name="VHD_POS2" ColumnName="VHD_POS2" />
+                <ScalarProperty Name="VHD_TRNO" ColumnName="VHD_TRNO" />
+                <ScalarProperty Name="VHD_TRKN" ColumnName="VHD_TRKN" />
+                <ScalarProperty Name="VHD_TYPE" ColumnName="VHD_TYPE" />
+                <ScalarProperty Name="VHD_PTO" ColumnName="VHD_PTO" />
+                <ScalarProperty Name="VHD_SOURCE" ColumnName="VHD_SOURCE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

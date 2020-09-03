@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2d3af104b4f046ac8514e78536113cee" Name="Diagram1" ZoomLevel="81">
+      <Diagram DiagramId="2d3af104b4f046ac8514e78536113cee" Name="Diagram1" ZoomLevel="70">
         <EntityTypeShape EntityType="Model.Allotments" Width="1.5" PointX="5.75" PointY="22.75" />
         <EntityTypeShape EntityType="Model.Appropriations" Width="1.5" PointX="3.5" PointY="23.625" />
         <EntityTypeShape EntityType="Model.Categories" Width="1.5" PointX="2.75" PointY="3.75" />
@@ -156,6 +156,7 @@
         <AssociationConnector Association="Model.FK_ItenaryofTravels_Obligations" />
         <EntityTypeShape EntityType="Model.ItenaryDetails" Width="1.5" PointX="22.75" PointY="38.375" />
         <AssociationConnector Association="Model.FK_ItenaryDetails_ItenaryofTravels" />
+        <AssociationConnector Association="Model.FK_DocumentActions_Offices" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

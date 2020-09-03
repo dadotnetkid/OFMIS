@@ -186,6 +186,24 @@
     <Compile Include="Categories.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="CMSEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CMSEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CMSEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CMSEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CMSEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CMSEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="CMS_VHD.cs">
+      <DependentUpon>CMSEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="ControllersActionsPartial.cs" />
     <Compile Include="Controllers\IdentityController.cs" />
     <Compile Include="ControlNumbers.cs">
@@ -238,6 +256,21 @@
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Enums.cs" />
+    <Compile Include="FDTSEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FDTSEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FDTSEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FDTSEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FDTSEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FDTSEntity.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Files.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
@@ -432,6 +465,7 @@
     <Compile Include="ViewModels\LetterViewModel.cs" />
     <Compile Include="ViewModels\ObligationRequestViewModel.cs" />
     <Compile Include="ViewModels\OBRPayrollViewModel.cs" />
+    <Compile Include="ViewModels\OBRVM.cs" />
     <Compile Include="ViewModels\ScannerViewModels.cs" />
     <Compile Include="Years.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
@@ -445,6 +479,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelDb.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <EntityDeploy Include="CMSEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CMSEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="CMSEntity.edmx.diagram">
+      <DependentUpon>CMSEntity.edmx</DependentUpon>
+    </None>
     <None Include="DataTables\dsPayroll.xsc">
       <DependentUpon>dsPayroll.xsd</DependentUpon>
     </None>
@@ -463,6 +504,13 @@
     <None Include="DTSModel.edmx.diagram">
       <DependentUpon>DTSModel.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="FDTSEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FDTSEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="FDTSEntity.edmx.diagram">
+      <DependentUpon>FDTSEntity.edmx</DependentUpon>
+    </None>
     <None Include="Locations\cities.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -479,6 +527,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bms.edmx.sql" />
+    <Content Include="CMSEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CMSEntity.edmx</DependentUpon>
+      <LastGenOutput>CMSEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CMSEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CMSEntity.edmx</DependentUpon>
+      <LastGenOutput>CMSEntity.cs</LastGenOutput>
+    </Content>
     <Content Include="DTSModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DTSModel.edmx</DependentUpon>
@@ -488,6 +546,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DTSModel.edmx</DependentUpon>
       <LastGenOutput>DTSModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="FDTSEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FDTSEntity.edmx</DependentUpon>
+      <LastGenOutput>FDTSEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="FDTSEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FDTSEntity.edmx</DependentUpon>
+      <LastGenOutput>FDTSEntity.cs</LastGenOutput>
     </Content>
     <Content Include="ModelDb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

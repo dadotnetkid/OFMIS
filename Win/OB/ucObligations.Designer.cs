@@ -1406,7 +1406,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colAccountCode;
         public DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit cboAppropriationLookUpRepo;
         private DevExpress.XtraEditors.LabelControl labelControl13;
-        private DevExpress.XtraEditors.SimpleButton btnSearch;
+        public DevExpress.XtraEditors.SimpleButton btnSearch;
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.SimpleButton btnViewAll;
         public DevExpress.XtraEditors.ComboBoxEdit cboStatus;
