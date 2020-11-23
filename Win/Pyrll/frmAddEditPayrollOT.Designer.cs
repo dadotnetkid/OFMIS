@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions5 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditPayrollOT));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions6 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.txtDate = new DevExpress.XtraEditors.DateEdit();
             this.txtTreasurer = new DevExpress.XtraEditors.LookUpEdit();
             this.signatoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -203,6 +203,7 @@
             // 
             // txtPayTitle
             // 
+            this.txtPayTitle.EditValue = "OVERTIME PAY FOR ";
             this.txtPayTitle.Location = new System.Drawing.Point(102, 123);
             this.txtPayTitle.Name = "txtPayTitle";
             this.txtPayTitle.Properties.UseReadOnlyAppearance = false;
@@ -384,9 +385,12 @@
             this.cboEmployee.AutoHeight = false;
             this.cboEmployee.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboEmployee.DataSource = this.employeesBindingSource;
+            this.cboEmployee.DisplayMember = "EmployeeName";
             this.cboEmployee.Name = "cboEmployee";
             this.cboEmployee.NullText = "";
             this.cboEmployee.PopupView = this.repositoryItemSearchLookUpEdit1View;
+            this.cboEmployee.ValueMember = "Id";
             // 
             // repositoryItemSearchLookUpEdit1View
             // 
@@ -430,6 +434,8 @@
             // 
             // colSubTotal
             // 
+            this.colSubTotal.DisplayFormat.FormatString = "n2";
+            this.colSubTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colSubTotal.FieldName = "SubTotal";
             this.colSubTotal.Name = "colSubTotal";
             this.colSubTotal.Visible = true;
@@ -438,6 +444,8 @@
             // 
             // colUnderPay
             // 
+            this.colUnderPay.DisplayFormat.FormatString = "n2";
+            this.colUnderPay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colUnderPay.FieldName = "UnderPay";
             this.colUnderPay.Name = "colUnderPay";
             this.colUnderPay.Visible = true;
@@ -446,6 +454,8 @@
             // 
             // colTotalAmount
             // 
+            this.colTotalAmount.DisplayFormat.FormatString = "n2";
+            this.colTotalAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colTotalAmount.FieldName = "TotalAmount";
             this.colTotalAmount.Name = "colTotalAmount";
             this.colTotalAmount.Visible = true;
@@ -475,9 +485,9 @@
             // btnDeletePayrollRepo
             // 
             this.btnDeletePayrollRepo.AutoHeight = false;
-            editorButtonImageOptions5.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions5.Image")));
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.btnDeletePayrollRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDeletePayrollRepo.Name = "btnDeletePayrollRepo";
             this.btnDeletePayrollRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -493,9 +503,9 @@
             // btnEditPayrollRepo
             // 
             this.btnEditPayrollRepo.AutoHeight = false;
-            editorButtonImageOptions6.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions6.Image")));
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
             this.btnEditPayrollRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditPayrollRepo.Name = "btnEditPayrollRepo";
             this.btnEditPayrollRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -624,7 +634,7 @@
             this.Controls.Add(this.labelControl10);
             this.Controls.Add(this.txtPayDescription);
             this.Controls.Add(this.txtControl);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmAddEditPayrollOT.IconOptions.Icon")));
             this.Name = "frmAddEditPayrollOT";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "`";

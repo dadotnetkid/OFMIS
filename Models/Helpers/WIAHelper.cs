@@ -20,6 +20,7 @@ namespace Helpers
         private Device _device;
 
         #region WIA constants
+
         public const int WIA_DPS_DOCUMENT_HANDLING_CAPABILITIES = 3086;
         public const int WIA_DPS_DOCUMENT_HANDLING_STATUS = 3087;
         public const int WIA_DPS_DOCUMENT_HANDLING_SELECT = 3088;
@@ -31,7 +32,16 @@ namespace Helpers
 
         public const uint BASE_VAL_WIA_ERROR = 0x80210000;
         public const uint WIA_ERROR_PAPER_EMPTY = BASE_VAL_WIA_ERROR + 3;
+
         #endregion
+
+
+        public async Task<List<Image>> ScanFile(int dpi = 150, double width = 8.5, double height = 8.5)
+        {
+            this.GetDefaultDeviceID();
+            return await this.ScanPages(dpi, width: 8.5, height: 11);
+        }
+
         private DeviceInfo FindDevice(string deviceId)
         {
             DeviceManager manager = new DeviceManager();
@@ -41,6 +51,7 @@ namespace Helpers
 
             return null;
         }
+
         private void FindDevice()
         {
             DeviceManager manager = new DeviceManager();
@@ -52,15 +63,12 @@ namespace Helpers
                         this.deviceInfo = info;
                     }
                 }
-
         }
 
         private DeviceInfo deviceInfo;
 
         public void GetDefaultDeviceID()
         {
-
-
             // Select a scanner
             WIA.CommonDialog wiaDiag = new WIA.CommonDialog();
             Device d = wiaDiag.ShowSelectDevice(WiaDeviceType.ScannerDeviceType, true, false);
@@ -70,15 +78,12 @@ namespace Helpers
                 FindDevice();
                 this._device = this.deviceInfo.Connect();
             }
-
         }
 
         public string DeviceId { get; set; }
 
         public async Task<List<Image>> ScanPages(int dpi = 150, double width = 8.5, double height = 11)
         {
-
-
             Item item = _device.Items[1];
 
             // configure item
@@ -102,12 +107,10 @@ namespace Helpers
                     List<Image> singlePage = await GetPagesFromScanner(ScanSource.Flatbed, item);
                     images.AddRange(singlePage);
                     dialogResult = MessageBox.Show("Scan another page?", "ScanToEvernote", MessageBoxButtons.YesNo);
-                }
-                while (dialogResult == DialogResult.Yes);
+                } while (dialogResult == DialogResult.Yes);
             }
 
             return images;
-
         }
 
         public List<Image> Scan()
@@ -117,19 +120,22 @@ namespace Helpers
             //CommonDialogClass wiaDiag = new CommonDialogClass();
             ICommonDialog wiaDiag = new WIA.CommonDialog();
             WIA.ImageFile wiaImage = null;
-            wiaImage = wiaDiag.ShowAcquireImage(WiaDeviceType.ScannerDeviceType, WiaImageIntent.UnspecifiedIntent, WiaImageBias.MaximizeQuality,
+            wiaImage = wiaDiag.ShowAcquireImage(WiaDeviceType.ScannerDeviceType, WiaImageIntent.UnspecifiedIntent,
+                WiaImageBias.MaximizeQuality,
                 WIA_FORMAT_JPEG, false, true, false);
 
             List<Image> images = new List<Image>();
             if (wiaImage != null)
             {
-
-                System.Diagnostics.Trace.WriteLine(String.Format("Image is {0} x {1} pixels", (float)wiaImage.Width / 150, (float)wiaImage.Height / 150));
+                System.Diagnostics.Trace.WriteLine(String.Format("Image is {0} x {1} pixels",
+                    (float)wiaImage.Width / 150, (float)wiaImage.Height / 150));
                 Image image = ConvertToImage(wiaImage);
                 images.Add(image);
             }
+
             return images;
         }
+
         private async Task<List<Image>> GetPagesFromScanner(ScanSource source, Item item)
         {
             SetDeviceProperty(ref _device, 3088, (int)source);
@@ -141,44 +147,40 @@ namespace Helpers
             {
                 int handlingStatus = GetDeviceProperty(ref _device, WIA_DPS_DOCUMENT_HANDLING_STATUS);
                 Debug.Write(source);
-             //   ICommonDialog wiaDiag = new WIA.CommonDialog();
+                //   ICommonDialog wiaDiag = new WIA.CommonDialog();
                 //var res = wiaDiag.show(this._device, WiaImageIntent.UnspecifiedIntent, WiaImageBias.MaximizeQuality, false, true, false);
-              
+
                 do
                 {
                     ImageFile wiaImage = null;
                     try
                     {
-
-
                         // wiaImage = wiaDiag.ShowTransfer(item);
                         //  SplashScreenManager.ShowForm(this, typeof(frm), true, true, SplashFormStartPosition.Default, new Point(0, 0), ParentFormState.Locked);
-                        
+
                         wiaImage = await Task.Run(() => item.Transfer(WIA_FORMAT_JPEG));
                         // SplashScreenManager.CloseForm();
-
                     }
                     catch (COMException ex)
                     {
                         if ((uint)ex.ErrorCode == WIA_ERROR_PAPER_EMPTY)
                             break;
-
                     }
 
                     if (wiaImage != null)
                     {
-
-                        System.Diagnostics.Trace.WriteLine(String.Format("Image is {0} x {1} pixels", (float)wiaImage.Width / 150, (float)wiaImage.Height / 150));
+                        System.Diagnostics.Trace.WriteLine(String.Format("Image is {0} x {1} pixels",
+                            (float)wiaImage.Width / 150, (float)wiaImage.Height / 150));
                         Image image = ConvertToImage(wiaImage);
                         images.Add(image);
                     }
-                }
-                while (source == ScanSource.DocumentFeeder);
+                } while (source == ScanSource.DocumentFeeder);
             }
             catch (Exception ex)
             {
                 //MessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
             return images;
         }
 
@@ -239,7 +241,6 @@ namespace Helpers
             {
                 Debug.WriteLine(e.Message);
             }
-
         }
 
         private int GetDeviceItemProperty(ref Item item, int propertyID)
@@ -260,6 +261,7 @@ namespace Helpers
 
         #endregion
     }
+
     enum ScanSource
     {
         DocumentFeeder = 1,

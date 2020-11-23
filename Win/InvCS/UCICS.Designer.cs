@@ -45,13 +45,12 @@
             this.ICSGridControl = new DevExpress.XtraGrid.GridControl();
             this.ICSGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colControlNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPurpose = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIssuer = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEdit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEditPQRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDeletePQRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colReceiver = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ICSGridControl)).BeginInit();
@@ -95,6 +94,7 @@
             this.btnNew.Size = new System.Drawing.Size(102, 23);
             this.btnNew.TabIndex = 13;
             this.btnNew.Text = "Add New";
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // ICSGridControl
             // 
@@ -114,11 +114,10 @@
             // 
             this.ICSGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colDate,
-            this.colControlNo,
-            this.colDescription,
-            this.colPurpose,
+            this.colIssuer,
             this.colEdit,
-            this.colDelete});
+            this.colDelete,
+            this.colReceiver});
             this.ICSGridView.GridControl = this.ICSGridControl;
             this.ICSGridView.Name = "ICSGridView";
             this.ICSGridView.OptionsView.ShowGroupPanel = false;
@@ -129,28 +128,15 @@
             this.colDate.Name = "colDate";
             this.colDate.Visible = true;
             this.colDate.VisibleIndex = 2;
-            this.colDate.Width = 112;
+            this.colDate.Width = 222;
             // 
-            // colControlNo
+            // colIssuer
             // 
-            this.colControlNo.FieldName = "ControlNo";
-            this.colControlNo.Name = "colControlNo";
-            this.colControlNo.Visible = true;
-            this.colControlNo.VisibleIndex = 3;
-            this.colControlNo.Width = 142;
-            // 
-            // colDescription
-            // 
-            this.colDescription.FieldName = "Description";
-            this.colDescription.Name = "colDescription";
-            this.colDescription.Visible = true;
-            this.colDescription.VisibleIndex = 4;
-            this.colDescription.Width = 313;
-            // 
-            // colPurpose
-            // 
-            this.colPurpose.FieldName = "Purpose";
-            this.colPurpose.Name = "colPurpose";
+            this.colIssuer.FieldName = "Issuer";
+            this.colIssuer.Name = "colIssuer";
+            this.colIssuer.Visible = true;
+            this.colIssuer.VisibleIndex = 3;
+            this.colIssuer.Width = 311;
             // 
             // colEdit
             // 
@@ -158,7 +144,7 @@
             this.colEdit.Name = "colEdit";
             this.colEdit.Visible = true;
             this.colEdit.VisibleIndex = 1;
-            this.colEdit.Width = 20;
+            this.colEdit.Width = 39;
             // 
             // btnEditPQRepo
             // 
@@ -168,6 +154,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditPQRepo.Name = "btnEditPQRepo";
             this.btnEditPQRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnEditPQRepo.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEditPQRepo_ButtonClick);
             // 
             // colDelete
             // 
@@ -175,7 +162,7 @@
             this.colDelete.Name = "colDelete";
             this.colDelete.Visible = true;
             this.colDelete.VisibleIndex = 0;
-            this.colDelete.Width = 20;
+            this.colDelete.Width = 39;
             // 
             // btnDeletePQRepo
             // 
@@ -185,6 +172,16 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDeletePQRepo.Name = "btnDeletePQRepo";
             this.btnDeletePQRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnDeletePQRepo.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDeletePQRepo_ButtonClick);
+            // 
+            // colReceiver
+            // 
+            this.colReceiver.Caption = "Receiver";
+            this.colReceiver.FieldName = "Receiver";
+            this.colReceiver.Name = "colReceiver";
+            this.colReceiver.Visible = true;
+            this.colReceiver.VisibleIndex = 4;
+            this.colReceiver.Width = 461;
             // 
             // UCICS
             // 
@@ -212,12 +209,11 @@
         public DevExpress.XtraGrid.GridControl ICSGridControl;
         public DevExpress.XtraGrid.Views.Grid.GridView ICSGridView;
         private DevExpress.XtraGrid.Columns.GridColumn colDate;
-        private DevExpress.XtraGrid.Columns.GridColumn colControlNo;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescription;
-        private DevExpress.XtraGrid.Columns.GridColumn colPurpose;
+        private DevExpress.XtraGrid.Columns.GridColumn colIssuer;
         private DevExpress.XtraGrid.Columns.GridColumn colEdit;
         public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditPQRepo;
         private DevExpress.XtraGrid.Columns.GridColumn colDelete;
         public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDeletePQRepo;
+        private DevExpress.XtraGrid.Columns.GridColumn colReceiver;
     }
 }

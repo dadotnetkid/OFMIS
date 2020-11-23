@@ -63,15 +63,15 @@ namespace Models.Startups
             };
 
 
-            app.UseOAuthBearerTokens(OAuthOptions);
-
+          //  app.UseOAuthBearerTokens(OAuthOptions);
+            app.UseOAuthAuthorizationServer(OAuthOptions);
             OAuthBearerOptions = new OAuthBearerAuthenticationOptions()
             {
                 Provider = new OAuthBearerAuthenticationProvider()
             };
             app.UseOAuthBearerAuthentication(OAuthBearerOptions);
 
-
+          
             //app.UseMicrosoftAccountAuthentication(
             //    clientId: "",
             //    clientSecret: "");

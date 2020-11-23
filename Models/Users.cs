@@ -25,7 +25,6 @@ namespace Models
             this.PIS = new HashSet<PIS>();
             this.UserClaims = new HashSet<UserClaims>();
             this.UserLogins = new HashSet<UserLogins>();
-            this.RoutedDocuments = new HashSet<DocumentActions>();
             this.UserRoles = new HashSet<UserRoles>();
             this.Files = new HashSet<Files>();
         }
@@ -80,8 +79,6 @@ namespace Models
         public virtual ICollection<UserClaims> UserClaims { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserLogins> UserLogins { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DocumentActions> RoutedDocuments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRoles> UserRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

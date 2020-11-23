@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ItemOrder" Type="int" />
           <Property Name="Category" Type="nvarchar" MaxLength="50" />
           <Property Name="Value" Type="nvarchar(max)" />
@@ -147,6 +147,7 @@
           <Property Name="DateCreated" Type="datetime2" Precision="7" />
           <Property Name="Createdby" Type="nvarchar" MaxLength="128" />
           <Property Name="OfficeId" Type="int" />
+          <Property Name="FT" Type="nvarchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="APRDetails">
           <Key>
@@ -344,6 +345,8 @@
           <Property Name="ReceiverPos" Type="nvarchar(max)" />
           <Property Name="Date" Type="datetime2" Precision="7" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="PGSO" Type="nvarchar(max)" />
+          <Property Name="PGSOPos" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ICSDetails">
           <Key>
@@ -358,6 +361,9 @@
           <Property Name="UOM" Type="nvarchar" MaxLength="50" />
           <Property Name="Cost" Type="money" />
           <Property Name="TotalAmount" Type="money" />
+          <Property Name="DatePurchase" Type="datetime2" Precision="7" />
+          <Property Name="PropertyNumber" Type="nvarchar(max)" />
+          <Property Name="EstimatedUsefulLife" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Items">
           <Key>
@@ -378,15 +384,16 @@
           <Property Name="IOTId" Type="int" />
           <Property Name="Date" Type="datetime2" Precision="7" />
           <Property Name="PlaceVisited" Type="nvarchar(max)" />
-          <Property Name="DepartureTime" Type="datetime" />
-          <Property Name="ArrivalTime" Type="datetime" />
+          <Property Name="DepartureTime" Type="datetime2" Precision="7" />
+          <Property Name="ArrivalTime" Type="datetime2" Precision="7" />
           <Property Name="MeansOfTransportation" Type="nvarchar" MaxLength="128" />
-          <Property Name="TransportationFee" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransportationFee" Type="money" />
           <Property Name="PerDiems" Type="money" />
           <Property Name="DailyAllowance" Type="money" />
           <Property Name="TotalAmount" Type="money" />
           <Property Name="DateCreated" Type="datetime2" Precision="7" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="InclusiveTime" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="ItenaryofTravels">
           <Key>
@@ -512,6 +519,9 @@
           <Property Name="TotalAdjustedAmount" Type="money" />
           <Property Name="POId" Type="int" />
           <Property Name="DVAmount" Type="money" />
+          <Property Name="FT" Type="nvarchar" MaxLength="5" />
+          <Property Name="IsCancelled" Type="bit" />
+          <Property Name="CancelReason" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="OBRInLetters">
           <Key>
@@ -921,6 +931,7 @@
           <Property Name="Year" Type="int" />
           <Property Name="IsCancelled" Type="bit" />
           <Property Name="CancellationReason" Type="nvarchar(max)" />
+          <Property Name="FT" Type="nvarchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="ReAlignments">
           <Key>
@@ -934,6 +945,43 @@
           <Property Name="Remarks" Type="nvarchar(max)" />
           <Property Name="DateCreated" Type="datetime2" Precision="7" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="RISDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RISId" Type="int" />
+          <Property Name="ItemNo" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="money" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Item" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UOM" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost" Type="money" Nullable="false" />
+          <Property Name="TotalAmount" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RISHeader">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRId" Type="int" />
+          <Property Name="OfficeId" Type="int" />
+          <Property Name="RISNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="SAI" Type="nvarchar" MaxLength="50" />
+          <Property Name="RISDate" Type="datetime2" Precision="7" />
+          <Property Name="SAIDate" Type="datetime2" Precision="7" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="RequestedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="RequestedByPos" Type="nvarchar" MaxLength="128" />
+          <Property Name="ApprovedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="ApprovedByPos" Type="nvarchar" MaxLength="128" />
+          <Property Name="IssuedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="IssuedByPos" Type="nvarchar" MaxLength="128" />
+          <Property Name="ReceivedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="ReceivedByPos" Type="nvarchar" MaxLength="128" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
+          <Property Name="Purpose" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SalarySchedules">
           <Key>
@@ -1478,6 +1526,18 @@
             </Principal>
             <Dependent Role="ItenaryDetails">
               <PropertyRef Name="IOTId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItenaryofTravels_ApprovedBy">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="ItenaryofTravels" Type="Self.ItenaryofTravels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItenaryofTravels">
+              <PropertyRef Name="ApprovedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2095,6 +2155,46 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RISDetails_RISHeader">
+          <End Role="RISHeader" Type="Self.RISHeader" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RISDetails" Type="Self.RISDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RISHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RISDetails">
+              <PropertyRef Name="RISId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RISHeader_Offices">
+          <End Role="Offices" Type="Self.Offices" Multiplicity="0..1" />
+          <End Role="RISHeader" Type="Self.RISHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RISHeader">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RISHeader_PurchaseRequests">
+          <End Role="PurchaseRequests" Type="Self.PurchaseRequests" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RISHeader" Type="Self.RISHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseRequests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RISHeader">
+              <PropertyRef Name="PRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Signatories_Employees">
           <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
           <End Role="Signatories" Type="Self.Signatories" Multiplicity="*" />
@@ -2329,6 +2429,8 @@
           <EntitySet Name="PurchaseOrders" EntityType="Self.PurchaseOrders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchaseRequests" EntityType="Self.PurchaseRequests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReAlignments" EntityType="Self.ReAlignments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RISDetails" EntityType="Self.RISDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RISHeader" EntityType="Self.RISHeader" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalarySchedules" EntityType="Self.SalarySchedules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatories" EntityType="Self.Signatories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
@@ -2462,6 +2564,10 @@
           <AssociationSet Name="FK_ItenaryDetails_ItenaryofTravels" Association="Self.FK_ItenaryDetails_ItenaryofTravels">
             <End Role="ItenaryofTravels" EntitySet="ItenaryofTravels" />
             <End Role="ItenaryDetails" EntitySet="ItenaryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItenaryofTravels_ApprovedBy" Association="Self.FK_ItenaryofTravels_ApprovedBy">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="ItenaryofTravels" EntitySet="ItenaryofTravels" />
           </AssociationSet>
           <AssociationSet Name="FK_ItenaryofTravels_Employees" Association="Self.FK_ItenaryofTravels_Employees">
             <End Role="Employees" EntitySet="Employees" />
@@ -2651,6 +2757,18 @@
             <End Role="Appropriations" EntitySet="Appropriations" />
             <End Role="ReAlignments" EntitySet="ReAlignments" />
           </AssociationSet>
+          <AssociationSet Name="FK_RISDetails_RISHeader" Association="Self.FK_RISDetails_RISHeader">
+            <End Role="RISHeader" EntitySet="RISHeader" />
+            <End Role="RISDetails" EntitySet="RISDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RISHeader_Offices" Association="Self.FK_RISHeader_Offices">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="RISHeader" EntitySet="RISHeader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RISHeader_PurchaseRequests" Association="Self.FK_RISHeader_PurchaseRequests">
+            <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
+            <End Role="RISHeader" EntitySet="RISHeader" />
+          </AssociationSet>
           <AssociationSet Name="FK_Signatories_Employees" Association="Self.FK_Signatories_Employees">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="Signatories" EntitySet="Signatories" />
@@ -2784,14 +2902,6 @@
             <End Role="Provinces" EntitySet="Provinces" />
             <End Role="Towns" EntitySet="Towns" />
           </AssociationSet>
-          <AssociationSet Name="EmployeesInPayee" Association="Model.EmployeesInPayee">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="Payees" EntitySet="Payees" />
-          </AssociationSet>
-          <AssociationSet Name="UserRolesInFunctions" Association="Model.UserRolesInFunctions">
-            <End Role="Functions" EntitySet="Functions" />
-            <End Role="UserRoles" EntitySet="UserRoles" />
-          </AssociationSet>
           <EntitySet Name="Payrolls" EntityType="Model.Payrolls" />
           <AssociationSet Name="FK_Payrolls_Obligations" Association="Model.FK_Payrolls_Obligations">
             <End Role="Obligations" EntitySet="Obligations" />
@@ -2865,10 +2975,6 @@
             <End Role="PQDetails" EntitySet="PQDetails" />
           </AssociationSet>
           <EntitySet Name="AOQ" EntityType="Model.AOQ" />
-          <AssociationSet Name="BACInAOQ" Association="Model.BACInAOQ">
-            <End Role="AOQ" EntitySet="AOQ" />
-            <End Role="Signatories" EntitySet="Signatories" />
-          </AssociationSet>
           <EntitySet Name="AOQDetails" EntityType="Model.AOQDetails" />
           <AssociationSet Name="FK_AOQDetails_AOQ" Association="Model.FK_AOQDetails_AOQ">
             <End Role="AOQ" EntitySet="AOQ" />
@@ -3014,10 +3120,6 @@
             <End Role="DocumentActions1" EntitySet="DocumentActions" />
           </AssociationSet>
           <EntitySet Name="Letters" EntityType="Model.Letters" />
-          <AssociationSet Name="OBRInLetters" Association="Model.OBRInLetters">
-            <End Role="Letters" EntitySet="Letters" />
-            <End Role="Obligations" EntitySet="Obligations" />
-          </AssociationSet>
           <EntitySet Name="TrashBin" EntityType="Model.TrashBin" />
           <AssociationSet Name="FK_TrashBin_TrashBin" Association="Model.FK_TrashBin_TrashBin">
             <End Role="TrashBin" EntitySet="TrashBin" />
@@ -3074,10 +3176,6 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UserLogins" EntitySet="UserLogins" />
           </AssociationSet>
-          <AssociationSet Name="UsersInDocumentActions" Association="Model.UsersInDocumentActions">
-            <End Role="DocumentActions" EntitySet="DocumentActions" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
           <AssociationSet Name="UsersInRoles" Association="Model.UsersInRoles">
             <End Role="UserRoles" EntitySet="UserRoles" />
             <End Role="Users" EntitySet="Users" />
@@ -3086,15 +3184,6 @@
           <AssociationSet Name="FK_PayrollOT_Obligations" Association="Model.FK_PayrollOT_Obligations">
             <End Role="Obligations" EntitySet="Obligations" />
             <End Role="PayrollOT" EntitySet="PayrollOT" />
-          </AssociationSet>
-          <EntitySet Name="PayrollOTDetails" EntityType="Model.PayrollOTDetails" />
-          <AssociationSet Name="FK_PayrollOTDetails_Employees" Association="Model.FK_PayrollOTDetails_Employees">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="PayrollOTDetails" EntitySet="PayrollOTDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PayrollOTDetails_PayrollOT" Association="Model.FK_PayrollOTDetails_PayrollOT">
-            <End Role="PayrollOT" EntitySet="PayrollOT" />
-            <End Role="PayrollOTDetails" EntitySet="PayrollOTDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Letters_Offices" Association="Model.FK_Letters_Offices">
             <End Role="Offices" EntitySet="Offices" />
@@ -3113,14 +3202,61 @@
             <End Role="Obligations" EntitySet="Obligations" />
             <End Role="ItenaryofTravels" EntitySet="ItenaryofTravels" />
           </AssociationSet>
+          <AssociationSet Name="FK_DocumentActions_Offices" Association="Model.FK_DocumentActions_Offices">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="DocumentActions" EntitySet="DocumentActions" />
+          </AssociationSet>
+          <EntitySet Name="RISDetails" EntityType="Model.RISDetails" />
+          <EntitySet Name="RISHeader" EntityType="Model.RISHeader" />
+          <AssociationSet Name="FK_RISHeader_Offices" Association="Model.FK_RISHeader_Offices">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="RISHeader" EntitySet="RISHeader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RISHeader_PurchaseRequests" Association="Model.FK_RISHeader_PurchaseRequests">
+            <End Role="PurchaseRequests" EntitySet="PurchaseRequests" />
+            <End Role="RISHeader" EntitySet="RISHeader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RISDetails_RISHeader" Association="Model.FK_RISDetails_RISHeader">
+            <End Role="RISHeader" EntitySet="RISHeader" />
+            <End Role="RISDetails" EntitySet="RISDetails" />
+          </AssociationSet>
           <EntitySet Name="ItenaryDetails" EntityType="Model.ItenaryDetails" />
           <AssociationSet Name="FK_ItenaryDetails_ItenaryofTravels" Association="Model.FK_ItenaryDetails_ItenaryofTravels">
             <End Role="ItenaryofTravels" EntitySet="ItenaryofTravels" />
             <End Role="ItenaryDetails" EntitySet="ItenaryDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_DocumentActions_Offices" Association="Model.FK_DocumentActions_Offices">
-            <End Role="Offices" EntitySet="Offices" />
+          <AssociationSet Name="FK_ItenaryofTravels_ApprovedBy" Association="Model.FK_ItenaryofTravels_ApprovedBy">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="ItenaryofTravels" EntitySet="ItenaryofTravels" />
+          </AssociationSet>
+          <EntitySet Name="PayrollOTDetails" EntityType="Model.PayrollOTDetails" />
+          <AssociationSet Name="FK_PayrollOTDetails_Employees" Association="Model.FK_PayrollOTDetails_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="PayrollOTDetails" EntitySet="PayrollOTDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayrollOTDetails_PayrollOT" Association="Model.FK_PayrollOTDetails_PayrollOT">
+            <End Role="PayrollOT" EntitySet="PayrollOT" />
+            <End Role="PayrollOTDetails" EntitySet="PayrollOTDetails" />
+          </AssociationSet>
+          <AssociationSet Name="BACInAOQ1" Association="Model.BACInAOQ1">
+            <End Role="AOQ" EntitySet="AOQ" />
+            <End Role="Signatories" EntitySet="Signatories" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeesInPayee1" Association="Model.EmployeesInPayee1">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Payees" EntitySet="Payees" />
+          </AssociationSet>
+          <AssociationSet Name="OBRInLetters1" Association="Model.OBRInLetters1">
+            <End Role="Letters" EntitySet="Letters" />
+            <End Role="Obligations" EntitySet="Obligations" />
+          </AssociationSet>
+          <AssociationSet Name="UserRolesInFunctions1" Association="Model.UserRolesInFunctions1">
+            <End Role="Functions" EntitySet="Functions" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="UsersInDocumentActions1" Association="Model.UsersInDocumentActions1">
             <End Role="DocumentActions" EntitySet="DocumentActions" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Allotments">
@@ -3158,6 +3294,7 @@
           <NavigationProperty Name="AllotmentLetter" Relationship="Model.FK_AllotmentLetter_Appropriations" FromRole="Appropriations" ToRole="AllotmentLetter" />
           <NavigationProperty Name="ORDetails" Relationship="Model.FK_ORDetails_Appropriations" FromRole="Appropriations" ToRole="ORDetails" />
           <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_PurchaseRequests_Appropriations" FromRole="Appropriations" ToRole="PurchaseRequests" />
+          <Property Name="FT" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -3206,7 +3343,6 @@
           <Property Name="OffcAcr" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="OfficeId" Type="Int32" />
           <NavigationProperty Name="PayrollDetails" Relationship="Model.FK_PayrollDetails_Employees" FromRole="Employees" ToRole="PayrollDetails" />
-          <NavigationProperty Name="Payees" Relationship="Model.EmployeesInPayee" FromRole="Employees" ToRole="Payees" />
           <Property Name="TIN" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="PagIbig" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="PhilHealth" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
@@ -3224,8 +3360,10 @@
           <Property Name="SalaryGrade" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Steps" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Signatories" Relationship="Model.FK_Signatories_Employees" FromRole="Employees" ToRole="Signatories" />
-          <NavigationProperty Name="PayrollOTDetails" Relationship="Model.FK_PayrollOTDetails_Employees" FromRole="Employees" ToRole="PayrollOTDetails" />
           <NavigationProperty Name="ItenaryofTravels" Relationship="Model.FK_ItenaryofTravels_Employees" FromRole="Employees" ToRole="ItenaryofTravels" />
+          <NavigationProperty Name="ItineraryApprovedBy" Relationship="Model.FK_ItenaryofTravels_ApprovedBy" FromRole="Employees" ToRole="ItenaryofTravels" />
+          <NavigationProperty Name="PayrollOTDetails" Relationship="Model.FK_PayrollOTDetails_Employees" FromRole="Employees" ToRole="PayrollOTDetails" />
+          <NavigationProperty Name="Payees" Relationship="Model.EmployeesInPayee1" FromRole="Employees" ToRole="Payees" />
         </EntityType>
         <EntityType Name="Functions">
           <Key>
@@ -3233,7 +3371,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Action" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="UserRoles" Relationship="Model.UserRolesInFunctions" FromRole="Functions" ToRole="UserRoles" />
+          <NavigationProperty Name="UserRoles" Relationship="Model.UserRolesInFunctions1" FromRole="Functions" ToRole="UserRoles" />
         </EntityType>
         <EntityType Name="FundTypes">
           <Key>
@@ -3324,11 +3462,14 @@
           <Property Name="POId" Type="Int32" />
           <NavigationProperty Name="PurchaseOrders" Relationship="Model.FK_Obligations_PurchaseOrders" FromRole="Obligations" ToRole="PurchaseOrders" />
           <NavigationProperty Name="Liquidations" Relationship="Model.FK_Liquidations_Obligations" FromRole="Obligations" ToRole="Liquidations" />
-          <NavigationProperty Name="Letters" Relationship="Model.OBRInLetters" FromRole="Obligations" ToRole="Letters" />
           <Property Name="DVAmount" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="CreatedByUser" Relationship="Model.FK_Obligations_Users" FromRole="Obligations" ToRole="Users" />
           <NavigationProperty Name="PayrollOT" Relationship="Model.FK_PayrollOT_Obligations" FromRole="Obligations" ToRole="PayrollOT" />
           <NavigationProperty Name="ItenaryofTravels" Relationship="Model.FK_ItenaryofTravels_Obligations" FromRole="Obligations" ToRole="ItenaryofTravels" />
+          <Property Name="FT" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="IsCancelled" Type="Boolean" />
+          <Property Name="CancelReason" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Letters1" Relationship="Model.OBRInLetters1" FromRole="Obligations" ToRole="Letters" />
         </EntityType>
         <EntityType Name="Offices">
           <Key>
@@ -3363,6 +3504,7 @@
           <NavigationProperty Name="Users" Relationship="Model.FK_Users_Offices" FromRole="Offices" ToRole="Users" />
           <NavigationProperty Name="Letters" Relationship="Model.FK_Letters_Offices" FromRole="Offices" ToRole="Letters" />
           <NavigationProperty Name="DocumentActions" Relationship="Model.FK_DocumentActions_Offices" FromRole="Offices" ToRole="DocumentActions" />
+          <NavigationProperty Name="RISHeader" Relationship="Model.FK_RISHeader_Offices" FromRole="Offices" ToRole="RISHeader" />
         </EntityType>
         <EntityType Name="Payees">
           <Key>
@@ -3376,8 +3518,8 @@
           <Property Name="OfficeId" Type="Int32" />
           <NavigationProperty Name="Obligations" Relationship="Model.FK_Obligations_Payees" FromRole="Payees" ToRole="Obligations" />
           <NavigationProperty Name="Offices" Relationship="Model.FK_Payees_Offices" FromRole="Payees" ToRole="Offices" />
-          <NavigationProperty Name="Employees" Relationship="Model.EmployeesInPayee" FromRole="Payees" ToRole="Employees" />
           <NavigationProperty Name="Liquidations" Relationship="Model.FK_Liquidations_Payees" FromRole="Payees" ToRole="Liquidations" />
+          <NavigationProperty Name="Employees" Relationship="Model.EmployeesInPayee1" FromRole="Payees" ToRole="Employees" />
         </EntityType>
         <EntityType Name="PayrollDetails">
           <Key>
@@ -3502,12 +3644,12 @@
           <Property Name="Office" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsBacMember" Type="Boolean" />
           <Property Name="BacPosition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BACMembers" Relationship="Model.BACInAOQ" FromRole="Signatories" ToRole="AOQ" />
           <NavigationProperty Name="BACChairperson" Relationship="Model.FK_AOQ_Signatories" FromRole="Signatories" ToRole="AOQ" />
           <NavigationProperty Name="Liquidations" Relationship="Model.FK_Liquidations_Accountant" FromRole="Signatories" ToRole="Liquidations" />
           <NavigationProperty Name="Liquidations1" Relationship="Model.FK_Liquidations_Head" FromRole="Signatories" ToRole="Liquidations" />
           <Property Name="EmployeeId" Type="Int32" />
           <NavigationProperty Name="Employees" Relationship="Model.FK_Signatories_Employees" FromRole="Signatories" ToRole="Employees" />
+          <NavigationProperty Name="BacMembers" Relationship="Model.BACInAOQ1" FromRole="Signatories" ToRole="AOQ" />
         </EntityType>
         <EntityType Name="Suppliers">
           <Key>
@@ -3560,7 +3702,7 @@
           <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Functions" Relationship="Model.UserRolesInFunctions" FromRole="UserRoles" ToRole="Functions" />
+          <NavigationProperty Name="Functions" Relationship="Model.UserRolesInFunctions1" FromRole="UserRoles" ToRole="Functions" />
           <NavigationProperty Name="Users" Relationship="Model.UsersInRoles" FromRole="UserRoles" ToRole="Users" />
         </EntityType>
         <EntityType Name="Years">
@@ -3704,14 +3846,6 @@
               <PropertyRef Name="ProvinceId" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="EmployeesInPayee">
-          <End Type="Model.Employees" Role="Employees" Multiplicity="*" />
-          <End Type="Model.Payees" Role="Payees" Multiplicity="*" />
-        </Association>
-        <Association Name="UserRolesInFunctions">
-          <End Type="Model.Functions" Role="Functions" Multiplicity="*" />
-          <End Type="Model.UserRoles" Role="UserRoles" Multiplicity="*" />
         </Association>
         <EntityType Name="Payrolls">
           <Key>
@@ -4137,7 +4271,6 @@
           <Property Name="RFQNo" Type="Int32" />
           <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedById" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BacMembers" Relationship="Model.BACInAOQ" FromRole="AOQ" ToRole="Signatories" />
           <Property Name="OfficeId" Type="Int32" />
           <Property Name="Head" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="HeadPosition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -4146,11 +4279,8 @@
           <NavigationProperty Name="Signatories" Relationship="Model.FK_AOQ_Signatories" FromRole="AOQ" ToRole="Signatories" />
           <NavigationProperty Name="Offices" Relationship="Model.FK_AOQ_Offices" FromRole="AOQ" ToRole="Offices" />
           <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_AOQ_PurchaseRequests" FromRole="AOQ" ToRole="PurchaseRequests" />
+          <NavigationProperty Name="BacMembers" Relationship="Model.BACInAOQ1" FromRole="AOQ" ToRole="Signatories" />
         </EntityType>
-        <Association Name="BACInAOQ">
-          <End Type="Model.AOQ" Role="AOQ" Multiplicity="*" />
-          <End Type="Model.Signatories" Role="Signatories" Multiplicity="*" />
-        </Association>
         <EntityType Name="AOQDetails">
           <Key>
             <PropertyRef Name="Id" />
@@ -4473,6 +4603,8 @@
           <Property Name="Year" Type="Int32" />
           <Property Name="IsCancelled" Type="Boolean" />
           <Property Name="CancellationReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FT" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RISHeader" Relationship="Model.FK_RISHeader_PurchaseRequests" FromRole="PurchaseRequests" ToRole="RISHeader" />
         </EntityType>
         <Association Name="FK_AIReports_PurchaseRequests">
           <End Type="Model.PurchaseRequests" Role="PurchaseRequests" Multiplicity="0..1" />
@@ -4820,6 +4952,8 @@
           <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_ICS_PurchaseRequests" FromRole="ICS" ToRole="PurchaseRequests" />
           <NavigationProperty Name="ICSDetails" Relationship="Model.FK_ICSDetails_ICS" FromRole="ICS" ToRole="ICSDetails" />
+          <Property Name="PGSO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PGSOPos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_ICS_PurchaseRequests">
           <End Type="Model.PurchaseRequests" Role="PurchaseRequests" Multiplicity="0..1">
@@ -4849,6 +4983,9 @@
           <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="ICS" Relationship="Model.FK_ICSDetails_ICS" FromRole="ICSDetails" ToRole="ICS" />
+          <Property Name="DatePurchase" Type="DateTime" Precision="7" />
+          <Property Name="PropertyNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EstimatedUsefulLife" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_ICSDetails_ICS">
           <End Type="Model.ICS" Role="ICS" Multiplicity="0..1">
@@ -4892,9 +5029,9 @@
           <Property Name="ObR_PR_No" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="Int32" />
           <NavigationProperty Name="CreatedByUsers" Relationship="Model.FK_DocumentActions_Users" FromRole="DocumentActions" ToRole="Users" />
-          <NavigationProperty Name="RoutedToUsers" Relationship="Model.UsersInDocumentActions" FromRole="DocumentActions" ToRole="Users" />
           <Property Name="RoutedToOfficeId" Type="Int32" />
           <NavigationProperty Name="Offices" Relationship="Model.FK_DocumentActions_Offices" FromRole="DocumentActions" ToRole="Offices" />
+          <NavigationProperty Name="RoutedToUsers" Relationship="Model.UsersInDocumentActions1" FromRole="DocumentActions" ToRole="Users" />
         </EntityType>
         <Association Name="FK_DocumentActions_DocumentActions1">
           <End Type="Model.DocumentActions" Role="DocumentActions" Multiplicity="0..1" />
@@ -4928,17 +5065,13 @@
           <Property Name="SignatoriesPosition" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="CC" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="InTheAbsence" Type="Boolean" />
-          <NavigationProperty Name="Obligations" Relationship="Model.OBRInLetters" FromRole="Letters" ToRole="Obligations" />
           <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="DateCreated" Type="DateTime" Precision="7" />
           <NavigationProperty Name="Users" Relationship="Model.FK_Letters_Users" FromRole="Letters" ToRole="Users" />
           <NavigationProperty Name="Offices" Relationship="Model.FK_Letters_Offices" FromRole="Letters" ToRole="Offices" />
+          <NavigationProperty Name="Obligations1" Relationship="Model.OBRInLetters1" FromRole="Letters" ToRole="Obligations" />
         </EntityType>
-        <Association Name="OBRInLetters">
-          <End Type="Model.Letters" Role="Letters" Multiplicity="*" />
-          <End Type="Model.Obligations" Role="Obligations" Multiplicity="*" />
-        </Association>
         <EntityType Name="TrashBin">
           <Key>
             <PropertyRef Name="Id" />
@@ -5068,7 +5201,6 @@
           <NavigationProperty Name="PIS" Relationship="Model.FK_PIS_Users" FromRole="Users" ToRole="PIS" />
           <NavigationProperty Name="UserClaims" Relationship="Model.FK_UserClaims_Users" FromRole="Users" ToRole="UserClaims" />
           <NavigationProperty Name="UserLogins" Relationship="Model.FK_UserLogins_Users" FromRole="Users" ToRole="UserLogins" />
-          <NavigationProperty Name="RoutedDocuments" Relationship="Model.UsersInDocumentActions" FromRole="Users" ToRole="DocumentActions" />
           <NavigationProperty Name="UserRoles" Relationship="Model.UsersInRoles" FromRole="Users" ToRole="UserRoles" />
           <NavigationProperty Name="Files" Relationship="Model.FK_Files_Users" FromRole="Users" ToRole="Files" />
         </EntityType>
@@ -5182,10 +5314,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UsersInDocumentActions">
-          <End Type="Model.DocumentActions" Role="DocumentActions" Multiplicity="*" />
-          <End Type="Model.Users" Role="Users" Multiplicity="*" />
-        </Association>
         <Association Name="UsersInRoles">
           <End Type="Model.UserRoles" Role="UserRoles" Multiplicity="*" />
           <End Type="Model.Users" Role="Users" Multiplicity="*" />
@@ -5220,54 +5348,6 @@
             </Principal>
             <Dependent Role="PayrollOT">
               <PropertyRef Name="ObRId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="PayrollOTDetails">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PayrollOTId" Type="Int32" />
-          <Property Name="EmployeeId" Type="Int32" />
-          <Property Name="RatePerMonth" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="RatePerDay" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="RatePerHr" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="WeekEndNoHrs" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="WeekDayNoHrs" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="SubTotal" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="UnderPay" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="DateCreated" Type="DateTime" Precision="7" />
-          <NavigationProperty Name="Employees" Relationship="Model.FK_PayrollOTDetails_Employees" FromRole="PayrollOTDetails" ToRole="Employees" />
-          <NavigationProperty Name="PayrollOT" Relationship="Model.FK_PayrollOTDetails_PayrollOT" FromRole="PayrollOTDetails" ToRole="PayrollOT" />
-          <Property Name="ItemNo" Type="Int32" />
-        </EntityType>
-        <Association Name="FK_PayrollOTDetails_Employees">
-          <End Type="Model.Employees" Role="Employees" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.PayrollOTDetails" Role="PayrollOTDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PayrollOTDetails">
-              <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PayrollOTDetails_PayrollOT">
-          <End Type="Model.PayrollOT" Role="PayrollOT" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.PayrollOTDetails" Role="PayrollOTDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PayrollOT">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PayrollOTDetails">
-              <PropertyRef Name="PayrollOTId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5316,6 +5396,7 @@
           <NavigationProperty Name="Employees" Relationship="Model.FK_ItenaryofTravels_Employees" FromRole="ItenaryofTravels" ToRole="Employees" />
           <NavigationProperty Name="Obligations" Relationship="Model.FK_ItenaryofTravels_Obligations" FromRole="ItenaryofTravels" ToRole="Obligations" />
           <NavigationProperty Name="ItenaryDetails" Relationship="Model.FK_ItenaryDetails_ItenaryofTravels" FromRole="ItenaryofTravels" ToRole="ItenaryDetails" />
+          <NavigationProperty Name="HeadOfOffice" Relationship="Model.FK_ItenaryofTravels_ApprovedBy" FromRole="ItenaryofTravels" ToRole="Employees" />
         </EntityType>
         <Association Name="FK_ItenaryofTravels_Employees">
           <End Type="Model.Employees" Role="Employees" Multiplicity="0..1">
@@ -5345,6 +5426,99 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DocumentActions_Offices">
+          <End Type="Model.Offices" Role="Offices" Multiplicity="0..1" />
+          <End Type="Model.DocumentActions" Role="DocumentActions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentActions">
+              <PropertyRef Name="RoutedToOfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RISDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RISId" Type="Int32" />
+          <NavigationProperty Name="RISHeader" Relationship="Model.FK_RISDetails_RISHeader" FromRole="RISDetails" ToRole="RISHeader" />
+          <Property Name="ItemNo" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UOM" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="RISHeader">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRId" Type="Int32" />
+          <Property Name="OfficeId" Type="Int32" />
+          <Property Name="RISNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RISDate" Type="DateTime" Precision="7" />
+          <Property Name="SAIDate" Type="DateTime" Precision="7" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RequestedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RequestedByPos" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedByPos" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IssuedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IssuedByPos" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ReceivedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ReceivedByPos" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Offices" Relationship="Model.FK_RISHeader_Offices" FromRole="RISHeader" ToRole="Offices" />
+          <NavigationProperty Name="PurchaseRequests" Relationship="Model.FK_RISHeader_PurchaseRequests" FromRole="RISHeader" ToRole="PurchaseRequests" />
+          <NavigationProperty Name="RISDetails" Relationship="Model.FK_RISDetails_RISHeader" FromRole="RISHeader" ToRole="RISDetails" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
+          <Property Name="Purpose" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_RISHeader_Offices">
+          <End Type="Model.Offices" Role="Offices" Multiplicity="0..1" />
+          <End Type="Model.RISHeader" Role="RISHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RISHeader">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RISHeader_PurchaseRequests">
+          <End Type="Model.PurchaseRequests" Role="PurchaseRequests" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.RISHeader" Role="RISHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseRequests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RISHeader">
+              <PropertyRef Name="PRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RISDetails_RISHeader">
+          <End Type="Model.RISHeader" Role="RISHeader" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.RISDetails" Role="RISDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RISHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RISDetails">
+              <PropertyRef Name="RISId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="ItenaryDetails">
           <Key>
             <PropertyRef Name="Id" />
@@ -5353,15 +5527,16 @@
           <Property Name="IOTId" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="7" />
           <Property Name="PlaceVisited" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DepartureTime" Type="DateTime" Precision="3" />
-          <Property Name="ArrivalTime" Type="DateTime" Precision="3" />
+          <Property Name="DepartureTime" Type="DateTime" Precision="7" />
+          <Property Name="ArrivalTime" Type="DateTime" Precision="7" />
           <Property Name="MeansOfTransportation" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="TransportationFee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransportationFee" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="PerDiems" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="DailyAllowance" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="DateCreated" Type="DateTime" Precision="7" />
           <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InclusiveTime" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ItenaryofTravels" Relationship="Model.FK_ItenaryDetails_ItenaryofTravels" FromRole="ItenaryDetails" ToRole="ItenaryofTravels" />
         </EntityType>
         <Association Name="FK_ItenaryDetails_ItenaryofTravels">
@@ -5378,17 +5553,85 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DocumentActions_Offices">
-          <End Type="Model.Offices" Role="Offices" Multiplicity="0..1" />
-          <End Type="Model.DocumentActions" Role="DocumentActions" Multiplicity="*" />
+        <Association Name="FK_ItenaryofTravels_ApprovedBy">
+          <End Type="Model.Employees" Role="Employees" Multiplicity="0..1" />
+          <End Type="Model.ItenaryofTravels" Role="ItenaryofTravels" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Offices">
+            <Principal Role="Employees">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="DocumentActions">
-              <PropertyRef Name="RoutedToOfficeId" />
+            <Dependent Role="ItenaryofTravels">
+              <PropertyRef Name="ApprovedBy" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PayrollOTDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemNo" Type="Int32" />
+          <Property Name="PayrollOTId" Type="Int32" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="RatePerMonth" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RatePerDay" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RatePerHr" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="WeekEndNoHrs" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="WeekDayNoHrs" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SubTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UnderPay" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DateCreated" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Employees" Relationship="Model.FK_PayrollOTDetails_Employees" FromRole="PayrollOTDetails" ToRole="Employees" />
+          <NavigationProperty Name="PayrollOT" Relationship="Model.FK_PayrollOTDetails_PayrollOT" FromRole="PayrollOTDetails" ToRole="PayrollOT" />
+        </EntityType>
+        <Association Name="FK_PayrollOTDetails_Employees">
+          <End Type="Model.Employees" Role="Employees" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.PayrollOTDetails" Role="PayrollOTDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PayrollOTDetails">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayrollOTDetails_PayrollOT">
+          <End Type="Model.PayrollOT" Role="PayrollOT" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.PayrollOTDetails" Role="PayrollOTDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PayrollOT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PayrollOTDetails">
+              <PropertyRef Name="PayrollOTId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BACInAOQ1">
+          <End Type="Model.AOQ" Role="AOQ" Multiplicity="*" />
+          <End Type="Model.Signatories" Role="Signatories" Multiplicity="*" />
+        </Association>
+        <Association Name="EmployeesInPayee1">
+          <End Type="Model.Employees" Role="Employees" Multiplicity="*" />
+          <End Type="Model.Payees" Role="Payees" Multiplicity="*" />
+        </Association>
+        <Association Name="OBRInLetters1">
+          <End Type="Model.Letters" Role="Letters" Multiplicity="*" />
+          <End Type="Model.Obligations" Role="Obligations" Multiplicity="*" />
+        </Association>
+        <Association Name="UserRolesInFunctions1">
+          <End Type="Model.Functions" Role="Functions" Multiplicity="*" />
+          <End Type="Model.UserRoles" Role="UserRoles" Multiplicity="*" />
+        </Association>
+        <Association Name="UsersInDocumentActions1">
+          <End Type="Model.DocumentActions" Role="DocumentActions" Multiplicity="*" />
+          <End Type="Model.Users" Role="Users" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -5396,646 +5639,1174 @@
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ModelDb">
-          <EntitySetMapping Name="Allotments">
-            <EntityTypeMapping TypeName="Model.Allotments">
-              <MappingFragment StoreEntitySet="Allotments">
-                <ScalarProperty Name="CreatedB" ColumnName="CreatedB" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="AllotmentAmount" ColumnName="AllotmentAmount" />
-                <ScalarProperty Name="AllotmentDate" ColumnName="AllotmentDate" />
-                <ScalarProperty Name="AppropriationId" ColumnName="AppropriationId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Appropriations">
-            <EntityTypeMapping TypeName="Model.Appropriations">
-              <MappingFragment StoreEntitySet="Appropriations">
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Appropriation" ColumnName="Appropriation" />
-                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
-                <ScalarProperty Name="FundTypeId" ColumnName="FundTypeId" />
-                <ScalarProperty Name="FundType" ColumnName="FundType" />
-                <ScalarProperty Name="AccountCodeText" ColumnName="AccountCodeText" />
-                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="Model.Categories">
-              <MappingFragment StoreEntitySet="Categories">
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DefaultAccounts">
-            <EntityTypeMapping TypeName="Model.DefaultAccounts">
-              <MappingFragment StoreEntitySet="DefaultAccounts">
-                <ScalarProperty Name="FundTypeId" ColumnName="FundTypeId" />
-                <ScalarProperty Name="FundType" ColumnName="FundType" />
-                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
-                <ScalarProperty Name="AccountCodeText" ColumnName="AccountCodeText" />
-                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DefaultSettings">
-            <EntityTypeMapping TypeName="Model.DefaultSettings">
-              <MappingFragment StoreEntitySet="DefaultSettings">
-                <ScalarProperty Name="UnderOf" ColumnName="UnderOf" />
-                <ScalarProperty Name="IsDepartment" ColumnName="IsDepartment" />
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="ResponsibilityCenterCode" ColumnName="ResponsibilityCenterCode" />
-                <ScalarProperty Name="ResponsibilityCenter" ColumnName="ResponsibilityCenter" />
-                <ScalarProperty Name="ChiefOfOfficePos" ColumnName="ChiefOfOfficePos" />
-                <ScalarProperty Name="ChiefOfOffice" ColumnName="ChiefOfOffice" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="Model.Employees">
-              <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="Steps" ColumnName="Steps" />
-                <ScalarProperty Name="SalaryGrade" ColumnName="SalaryGrade" />
-                <ScalarProperty Name="GSIS" ColumnName="GSIS" />
-                <ScalarProperty Name="ExtName" ColumnName="ExtName" />
-                <ScalarProperty Name="SSS" ColumnName="SSS" />
-                <ScalarProperty Name="SG" ColumnName="SG" />
-                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="PhilHealth" ColumnName="PhilHealth" />
-                <ScalarProperty Name="PagIbig" ColumnName="PagIbig" />
-                <ScalarProperty Name="TIN" ColumnName="TIN" />
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="OffcAcr" ColumnName="OffcAcr" />
-                <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Functions">
-            <EntityTypeMapping TypeName="Model.Functions">
-              <MappingFragment StoreEntitySet="Functions">
-                <ScalarProperty Name="Action" ColumnName="Action" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FundTypes">
-            <EntityTypeMapping TypeName="Model.FundTypes">
-              <MappingFragment StoreEntitySet="FundTypes">
-                <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="FundType" ColumnName="FundType" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Items">
-            <EntityTypeMapping TypeName="Model.Items">
-              <MappingFragment StoreEntitySet="Items">
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="UOM" ColumnName="UOM" />
-                <ScalarProperty Name="Item" ColumnName="Item" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Logs">
-            <EntityTypeMapping TypeName="Model.Logs">
-              <MappingFragment StoreEntitySet="Logs">
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Action" ColumnName="Action" />
-                <ScalarProperty Name="NewValues" ColumnName="NewValues" />
-                <ScalarProperty Name="OldValues" ColumnName="OldValues" />
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Obligations">
-            <EntityTypeMapping TypeName="Model.Obligations">
-              <MappingFragment StoreEntitySet="Obligations">
-                <ScalarProperty Name="DVAmount" ColumnName="DVAmount" />
-                <ScalarProperty Name="POId" ColumnName="POId" />
-                <ScalarProperty Name="TotalAdjustedAmount" ColumnName="TotalAdjustedAmount" />
-                <ScalarProperty Name="ModifiedData" ColumnName="ModifiedData" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DMSNo" ColumnName="DMSNo" />
-                <ScalarProperty Name="OBRApprovedByPos" ColumnName="OBRApprovedByPos" />
-                <ScalarProperty Name="OBRApprovedBy" ColumnName="OBRApprovedBy" />
-                <ScalarProperty Name="AccountantPos" ColumnName="AccountantPos" />
-                <ScalarProperty Name="Accountant" ColumnName="Accountant" />
-                <ScalarProperty Name="TreasurerPos" ColumnName="TreasurerPos" />
-                <ScalarProperty Name="Treasurer" ColumnName="Treasurer" />
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="ResponsibilityCenterCode" ColumnName="ResponsibilityCenterCode" />
-                <ScalarProperty Name="ResponsibilityCenter" ColumnName="ResponsibilityCenter" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
-                <ScalarProperty Name="PRNo" ColumnName="PRNo" />
-                <ScalarProperty Name="Earmarked" ColumnName="Earmarked" />
-                <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="DVNote" ColumnName="DVNote" />
-                <ScalarProperty Name="DVApprovedByPosition" ColumnName="DVApprovedByPosition" />
-                <ScalarProperty Name="DVApprovedBy" ColumnName="DVApprovedBy" />
-                <ScalarProperty Name="DVParticular" ColumnName="DVParticular" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Closed" ColumnName="Closed" />
-                <ScalarProperty Name="PBO" ColumnName="PBO" />
-                <ScalarProperty Name="PBOPos" ColumnName="PBOPos" />
-                <ScalarProperty Name="ChiefPosition" ColumnName="ChiefPosition" />
-                <ScalarProperty Name="Chief" ColumnName="Chief" />
-                <ScalarProperty Name="PayeeAddress" ColumnName="PayeeAddress" />
-                <ScalarProperty Name="PayeeOffice" ColumnName="PayeeOffice" />
-                <ScalarProperty Name="PayeeId" ColumnName="PayeeId" />
-                <ScalarProperty Name="BudgetControlNo" ColumnName="BudgetControlNo" />
-                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Offices">
-            <EntityTypeMapping TypeName="Model.Offices">
-              <MappingFragment StoreEntitySet="Offices">
-                <ScalarProperty Name="InsideAddress" ColumnName="InsideAddress" />
-                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
-                <ScalarProperty Name="TelNo" ColumnName="TelNo" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UnderOf" ColumnName="UnderOf" />
-                <ScalarProperty Name="IsDivision" ColumnName="IsDivision" />
-                <ScalarProperty Name="ResponsibilityCenterCode" ColumnName="ResponsibilityCenterCode" />
-                <ScalarProperty Name="ResponsibilityCenter" ColumnName="ResponsibilityCenter" />
-                <ScalarProperty Name="ChiefPosition" ColumnName="ChiefPosition" />
-                <ScalarProperty Name="Chief" ColumnName="Chief" />
-                <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
-                <ScalarProperty Name="OffcAcr" ColumnName="OffcAcr" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Payees">
-            <EntityTypeMapping TypeName="Model.Payees">
-              <MappingFragment StoreEntitySet="Payees">
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Office" ColumnName="Office" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PayrollDetails">
-            <EntityTypeMapping TypeName="Model.PayrollDetails">
-              <MappingFragment StoreEntitySet="PayrollDetails">
-                <ScalarProperty Name="ColumnTitle" ColumnName="ColumnTitle" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="ColumnTitle2" ColumnName="ColumnTitle2" />
-                <ScalarProperty Name="ColumnTitle1" ColumnName="ColumnTitle1" />
-                <ScalarProperty Name="Designation" ColumnName="Designation" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
-                <ScalarProperty Name="PayrollId" ColumnName="PayrollId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Positions">
-            <EntityTypeMapping TypeName="Model.Positions">
-              <MappingFragment StoreEntitySet="Positions">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PRDetails">
-            <EntityTypeMapping TypeName="Model.PRDetails">
-              <MappingFragment StoreEntitySet="PRDetails">
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="UOM" ColumnName="UOM" />
-                <ScalarProperty Name="Item" ColumnName="Item" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
-                <ScalarProperty Name="PRId" ColumnName="PRId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PriceQuotations">
-            <EntityTypeMapping TypeName="Model.PriceQuotations">
-              <MappingFragment StoreEntitySet="PriceQuotations">
-                <ScalarProperty Name="Office" ColumnName="Office" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="PGSOfficer" ColumnName="PGSOfficer" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="PRId" ColumnName="PRId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Provinces">
-            <EntityTypeMapping TypeName="Model.Provinces">
-              <MappingFragment StoreEntitySet="Provinces">
-                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PurchaseOrders">
-            <EntityTypeMapping TypeName="Model.PurchaseOrders">
-              <MappingFragment StoreEntitySet="PurchaseOrders">
-                <ScalarProperty Name="PaymentTerm" ColumnName="PaymentTerm" />
-                <ScalarProperty Name="DeliveryTerm" ColumnName="DeliveryTerm" />
-                <ScalarProperty Name="DateOfDelivery" ColumnName="DateOfDelivery" />
-                <ScalarProperty Name="PlaceOfDelivery" ColumnName="PlaceOfDelivery" />
-                <ScalarProperty Name="PRNo" ColumnName="PRNo" />
-                <ScalarProperty Name="ModeOfProcurement" ColumnName="ModeOfProcurement" />
-                <ScalarProperty Name="PODate" ColumnName="PODate" />
-                <ScalarProperty Name="PONo" ColumnName="PONo" />
-                <ScalarProperty Name="SupplierAddress" ColumnName="SupplierAddress" />
-                <ScalarProperty Name="Supplier" ColumnName="Supplier" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="PGSOfficer" ColumnName="PGSOfficer" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="PRId" ColumnName="PRId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ReAlignments">
-            <EntityTypeMapping TypeName="Model.ReAlignments">
-              <MappingFragment StoreEntitySet="ReAlignments">
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="TargetAppropriationId" ColumnName="TargetAppropriationId" />
-                <ScalarProperty Name="SourceAppropriationId" ColumnName="SourceAppropriationId" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Signatories">
-            <EntityTypeMapping TypeName="Model.Signatories">
-              <MappingFragment StoreEntitySet="Signatories">
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="BacPosition" ColumnName="BacPosition" />
-                <ScalarProperty Name="IsBacMember" ColumnName="IsBacMember" />
-                <ScalarProperty Name="Office" ColumnName="Office" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Person" ColumnName="Person" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Suppliers">
-            <EntityTypeMapping TypeName="Model.Suppliers">
-              <MappingFragment StoreEntitySet="Suppliers">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="CellNumber" ColumnName="CellNumber" />
-                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Towns">
-            <EntityTypeMapping TypeName="Model.Towns">
-              <MappingFragment StoreEntitySet="Towns">
-                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserClaims">
-            <EntityTypeMapping TypeName="Model.UserClaims">
-              <MappingFragment StoreEntitySet="UserClaims">
-                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserLogins">
-            <EntityTypeMapping TypeName="Model.UserLogins">
-              <MappingFragment StoreEntitySet="UserLogins">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserRoles">
-            <EntityTypeMapping TypeName="Model.UserRoles">
-              <MappingFragment StoreEntitySet="UserRoles">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Years">
-            <EntityTypeMapping TypeName="Model.Years">
-              <MappingFragment StoreEntitySet="Years">
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="EmployeesInPayee" TypeName="Model.EmployeesInPayee" StoreEntitySet="EmployeesInPayee">
-            <EndProperty Name="Payees">
-              <ScalarProperty Name="Id" ColumnName="PayeeId" />
-            </EndProperty>
-            <EndProperty Name="Employees">
-              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="UserRolesInFunctions" TypeName="Model.UserRolesInFunctions" StoreEntitySet="UserRolesInFunctions">
-            <EndProperty Name="UserRoles">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-            <EndProperty Name="Functions">
-              <ScalarProperty Name="Id" ColumnName="FunctionId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <EntitySetMapping Name="Payrolls">
-            <EntityTypeMapping TypeName="Model.Payrolls">
-              <MappingFragment StoreEntitySet="Payrolls">
-                <ScalarProperty Name="DeptHeadPos" ColumnName="DeptHeadPos" />
-                <ScalarProperty Name="DeptHead" ColumnName="DeptHead" />
-                <ScalarProperty Name="ApprovedById" ColumnName="ApprovedById" />
-                <ScalarProperty Name="ApprovedByPos" ColumnName="ApprovedByPos" />
-                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
-                <ScalarProperty Name="TreasurerPos" ColumnName="TreasurerPos" />
-                <ScalarProperty Name="Treasurer" ColumnName="Treasurer" />
-                <ScalarProperty Name="AccountantPos" ColumnName="AccountantPos" />
-                <ScalarProperty Name="Accountant" ColumnName="Accountant" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="ChiefOfOffice" ColumnName="ChiefOfOffice" />
-                <ScalarProperty Name="ColumnTitle2" ColumnName="ColumnTitle2" />
-                <ScalarProperty Name="ColumnTitle1" ColumnName="ColumnTitle1" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PayrollWages">
-            <EntityTypeMapping TypeName="Model.PayrollWages">
-              <MappingFragment StoreEntitySet="PayrollWages">
-                <ScalarProperty Name="ColumnTitles" ColumnName="ColumnTitles" />
-                <ScalarProperty Name="ApprovedById" ColumnName="ApprovedById" />
-                <ScalarProperty Name="ApprovedByPos" ColumnName="ApprovedByPos" />
-                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
-                <ScalarProperty Name="TreasurerPos" ColumnName="TreasurerPos" />
-                <ScalarProperty Name="Treasurer" ColumnName="Treasurer" />
-                <ScalarProperty Name="AccountantPos" ColumnName="AccountantPos" />
-                <ScalarProperty Name="Accountant" ColumnName="Accountant" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="ChiefOfOffice" ColumnName="ChiefOfOffice" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BACMembers">
-            <EntityTypeMapping TypeName="Model.BACMembers">
-              <MappingFragment StoreEntitySet="BACMembers">
-                <ScalarProperty Name="OffcAcr" ColumnName="OffcAcr" />
-                <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AllotmentLetter">
-            <EntityTypeMapping TypeName="Model.AllotmentLetter">
-              <MappingFragment StoreEntitySet="AllotmentLetter">
-                <ScalarProperty Name="AppropriationId" ColumnName="AppropriationId" />
-                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
-                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
-                <ScalarProperty Name="PBOPos" ColumnName="PBOPos" />
-                <ScalarProperty Name="PBO" ColumnName="PBO" />
-                <ScalarProperty Name="HeadofDivisionPOS" ColumnName="HeadofDivisionPOS" />
-                <ScalarProperty Name="HeadofDivision" ColumnName="HeadofDivision" />
-                <ScalarProperty Name="Letter" ColumnName="Letter" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="Reason" ColumnName="Reason" />
-                <ScalarProperty Name="PRId" ColumnName="PRId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ControlNumbers">
-            <EntityTypeMapping TypeName="Model.ControlNumbers">
-              <MappingFragment StoreEntitySet="ControlNumbers">
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PayrollWageDetails">
-            <EntityTypeMapping TypeName="Model.PayrollWageDetails">
-              <MappingFragment StoreEntitySet="PayrollWageDetails">
-                <ScalarProperty Name="OT" ColumnName="OT" />
-                <ScalarProperty Name="SSSPS" ColumnName="SSSPS" />
-                <ScalarProperty Name="GSISConsol" ColumnName="GSISConsol" />
-                <ScalarProperty Name="GSISPolicy" ColumnName="GSISPolicy" />
-                <ScalarProperty Name="BIRWH" ColumnName="BIRWH" />
-                <ScalarProperty Name="DBP" ColumnName="DBP" />
-                <ScalarProperty Name="LBP" ColumnName="LBP" />
-                <ScalarProperty Name="SSSLoan" ColumnName="SSSLoan" />
-                <ScalarProperty Name="NVPEA" ColumnName="NVPEA" />
-                <ScalarProperty Name="PIFCalLoan" ColumnName="PIFCalLoan" />
-                <ScalarProperty Name="MPL" ColumnName="MPL" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="PIGS" ColumnName="PIGS" />
-                <ScalarProperty Name="PIPS" ColumnName="PIPS" />
-                <ScalarProperty Name="PHGS" ColumnName="PHGS" />
-                <ScalarProperty Name="PHPS" ColumnName="PHPS" />
-                <ScalarProperty Name="PERA" ColumnName="PERA" />
-                <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
-                <ScalarProperty Name="RatePerDay" ColumnName="RatePerDay" />
-                <ScalarProperty Name="NoOfdays" ColumnName="NoOfdays" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="PayrollWageId" ColumnName="PayrollWageId" />
-                <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Templates">
-            <EntityTypeMapping TypeName="Model.Templates">
-              <MappingFragment StoreEntitySet="Templates">
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="TemplateContent" ColumnName="TemplateContent" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SalarySchedules">
-            <EntityTypeMapping TypeName="Model.SalarySchedules">
-              <MappingFragment StoreEntitySet="SalarySchedules">
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="Step" ColumnName="Step" />
-                <ScalarProperty Name="SG" ColumnName="SG" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PayrollDifferentials">
-            <EntityTypeMapping TypeName="Model.PayrollDifferentials">
-              <MappingFragment StoreEntitySet="PayrollDifferentials">
-                <ScalarProperty Name="ObId" ColumnName="ObId" />
-                <ScalarProperty Name="ApprovedById" ColumnName="ApprovedById" />
-                <ScalarProperty Name="ApprovedByPos" ColumnName="ApprovedByPos" />
-                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
-                <ScalarProperty Name="TreasurerPos" ColumnName="TreasurerPos" />
-                <ScalarProperty Name="Treasurer" ColumnName="Treasurer" />
-                <ScalarProperty Name="AccountantPos" ColumnName="AccountantPos" />
-                <ScalarProperty Name="Accountant" ColumnName="Accountant" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="ChiefOfOffice" ColumnName="ChiefOfOffice" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ORDetails">
-            <EntityTypeMapping TypeName="Model.ORDetails">
-              <MappingFragment StoreEntitySet="ORDetails">
-                <ScalarProperty Name="AdjustedAmount" ColumnName="AdjustedAmount" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Particulars" ColumnName="Particulars" />
-                <ScalarProperty Name="ObligationId" ColumnName="ObligationId" />
-                <ScalarProperty Name="AppropriationId" ColumnName="AppropriationId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PODetails">
-            <EntityTypeMapping TypeName="Model.PODetails">
-              <MappingFragment StoreEntitySet="PODetails">
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="UOM" ColumnName="UOM" />
-                <ScalarProperty Name="Item" ColumnName="Item" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
-                <ScalarProperty Name="POId" ColumnName="POId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PQDetails">
-            <EntityTypeMapping TypeName="Model.PQDetails">
-              <MappingFragment StoreEntitySet="PQDetails">
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="UOM" ColumnName="UOM" />
-                <ScalarProperty Name="Item" ColumnName="Item" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
-                <ScalarProperty Name="PQId" ColumnName="PQId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AOQ">
-            <EntityTypeMapping TypeName="Model.AOQ">
-              <MappingFragment StoreEntitySet="AOQ">
-                <ScalarProperty Name="BACChairperson" ColumnName="BACChairperson" />
-                <ScalarProperty Name="HeadPosition" ColumnName="HeadPosition" />
-                <ScalarProperty Name="Head" ColumnName="Head" />
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="RFQNo" ColumnName="RFQNo" />
-                <ScalarProperty Name="ABC" ColumnName="ABC" />
-                <ScalarProperty Name="RequisitioningOffice" ColumnName="RequisitioningOffice" />
-                <ScalarProperty Name="NameofProject" ColumnName="NameofProject" />
-                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="PRId" ColumnName="PRId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="BACInAOQ" TypeName="Model.BACInAOQ" StoreEntitySet="BACInAOQ">
+    <EntitySetMapping Name="Allotments">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Allotments)">
+        <MappingFragment StoreEntitySet="Allotments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AppropriationId" ColumnName="AppropriationId" />
+          <ScalarProperty Name="AllotmentDate" ColumnName="AllotmentDate" />
+          <ScalarProperty Name="AllotmentAmount" ColumnName="AllotmentAmount" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="CreatedB" ColumnName="CreatedB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Appropriations">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Appropriations)">
+        <MappingFragment StoreEntitySet="Appropriations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+          <ScalarProperty Name="AccountCodeText" ColumnName="AccountCodeText" />
+          <ScalarProperty Name="FundType" ColumnName="FundType" />
+          <ScalarProperty Name="FundTypeId" ColumnName="FundTypeId" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="Appropriation" ColumnName="Appropriation" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="FT" ColumnName="FT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Categories)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DefaultAccounts">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.DefaultAccounts)">
+        <MappingFragment StoreEntitySet="DefaultAccounts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+          <ScalarProperty Name="AccountCodeText" ColumnName="AccountCodeText" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="FundType" ColumnName="FundType" />
+          <ScalarProperty Name="FundTypeId" ColumnName="FundTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DefaultSettings">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.DefaultSettings)">
+        <MappingFragment StoreEntitySet="DefaultSettings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="ChiefOfOffice" ColumnName="ChiefOfOffice" />
+          <ScalarProperty Name="ChiefOfOfficePos" ColumnName="ChiefOfOfficePos" />
+          <ScalarProperty Name="ResponsibilityCenter" ColumnName="ResponsibilityCenter" />
+          <ScalarProperty Name="ResponsibilityCenterCode" ColumnName="ResponsibilityCenterCode" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="IsDepartment" ColumnName="IsDepartment" />
+          <ScalarProperty Name="UnderOf" ColumnName="UnderOf" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Employees)">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
+          <ScalarProperty Name="OffcAcr" ColumnName="OffcAcr" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="TIN" ColumnName="TIN" />
+          <ScalarProperty Name="PagIbig" ColumnName="PagIbig" />
+          <ScalarProperty Name="PhilHealth" ColumnName="PhilHealth" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+          <ScalarProperty Name="SG" ColumnName="SG" />
+          <ScalarProperty Name="SSS" ColumnName="SSS" />
+          <ScalarProperty Name="ExtName" ColumnName="ExtName" />
+          <ScalarProperty Name="GSIS" ColumnName="GSIS" />
+          <ScalarProperty Name="SalaryGrade" ColumnName="SalaryGrade" />
+          <ScalarProperty Name="Steps" ColumnName="Steps" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Functions">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Functions)">
+        <MappingFragment StoreEntitySet="Functions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FundTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.FundTypes)">
+        <MappingFragment StoreEntitySet="FundTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FundType" ColumnName="FundType" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Items)">
+        <MappingFragment StoreEntitySet="Items">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="UOM" ColumnName="UOM" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logs">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Logs)">
+        <MappingFragment StoreEntitySet="Logs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="OldValues" ColumnName="OldValues" />
+          <ScalarProperty Name="NewValues" ColumnName="NewValues" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Obligations">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Obligations)">
+        <MappingFragment StoreEntitySet="Obligations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+          <ScalarProperty Name="BudgetControlNo" ColumnName="BudgetControlNo" />
+          <ScalarProperty Name="PayeeId" ColumnName="PayeeId" />
+          <ScalarProperty Name="PayeeOffice" ColumnName="PayeeOffice" />
+          <ScalarProperty Name="PayeeAddress" ColumnName="PayeeAddress" />
+          <ScalarProperty Name="Chief" ColumnName="Chief" />
+          <ScalarProperty Name="ChiefPosition" ColumnName="ChiefPosition" />
+          <ScalarProperty Name="PBOPos" ColumnName="PBOPos" />
+          <ScalarProperty Name="PBO" ColumnName="PBO" />
+          <ScalarProperty Name="Closed" ColumnName="Closed" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DVParticular" ColumnName="DVParticular" />
+          <ScalarProperty Name="DVApprovedBy" ColumnName="DVApprovedBy" />
+          <ScalarProperty Name="DVApprovedByPosition" ColumnName="DVApprovedByPosition" />
+          <ScalarProperty Name="DVNote" ColumnName="DVNote" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
+          <ScalarProperty Name="Earmarked" ColumnName="Earmarked" />
+          <ScalarProperty Name="PRNo" ColumnName="PRNo" />
+          <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="ResponsibilityCenter" ColumnName="ResponsibilityCenter" />
+          <ScalarProperty Name="ResponsibilityCenterCode" ColumnName="ResponsibilityCenterCode" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="Treasurer" ColumnName="Treasurer" />
+          <ScalarProperty Name="TreasurerPos" ColumnName="TreasurerPos" />
+          <ScalarProperty Name="Accountant" ColumnName="Accountant" />
+          <ScalarProperty Name="AccountantPos" ColumnName="AccountantPos" />
+          <ScalarProperty Name="OBRApprovedBy" ColumnName="OBRApprovedBy" />
+          <ScalarProperty Name="OBRApprovedByPos" ColumnName="OBRApprovedByPos" />
+          <ScalarProperty Name="DMSNo" ColumnName="DMSNo" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="ModifiedData" ColumnName="ModifiedData" />
+          <ScalarProperty Name="TotalAdjustedAmount" ColumnName="TotalAdjustedAmount" />
+          <ScalarProperty Name="POId" ColumnName="POId" />
+          <ScalarProperty Name="DVAmount" ColumnName="DVAmount" />
+          <ScalarProperty Name="FT" ColumnName="FT" />
+          <ScalarProperty Name="IsCancelled" ColumnName="IsCancelled" />
+          <ScalarProperty Name="CancelReason" ColumnName="CancelReason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Offices">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Offices)">
+        <MappingFragment StoreEntitySet="Offices">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OffcAcr" ColumnName="OffcAcr" />
+          <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
+          <ScalarProperty Name="Chief" ColumnName="Chief" />
+          <ScalarProperty Name="ChiefPosition" ColumnName="ChiefPosition" />
+          <ScalarProperty Name="ResponsibilityCenter" ColumnName="ResponsibilityCenter" />
+          <ScalarProperty Name="ResponsibilityCenterCode" ColumnName="ResponsibilityCenterCode" />
+          <ScalarProperty Name="IsDivision" ColumnName="IsDivision" />
+          <ScalarProperty Name="UnderOf" ColumnName="UnderOf" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="TelNo" ColumnName="TelNo" />
+          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+          <ScalarProperty Name="InsideAddress" ColumnName="InsideAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payees">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Payees)">
+        <MappingFragment StoreEntitySet="Payees">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Office" ColumnName="Office" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayrollDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PayrollDetails)">
+        <MappingFragment StoreEntitySet="PayrollDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PayrollId" ColumnName="PayrollId" />
+          <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="ColumnTitle1" ColumnName="ColumnTitle1" />
+          <ScalarProperty Name="ColumnTitle2" ColumnName="ColumnTitle2" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="ColumnTitle" ColumnName="ColumnTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Positions">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Positions)">
+        <MappingFragment StoreEntitySet="Positions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PRDetails)">
+        <MappingFragment StoreEntitySet="PRDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PRId" ColumnName="PRId" />
+          <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="UOM" ColumnName="UOM" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PriceQuotations">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PriceQuotations)">
+        <MappingFragment StoreEntitySet="PriceQuotations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PRId" ColumnName="PRId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="PGSOfficer" ColumnName="PGSOfficer" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Office" ColumnName="Office" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Provinces">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Provinces)">
+        <MappingFragment StoreEntitySet="Provinces">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseOrders">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PurchaseOrders)">
+        <MappingFragment StoreEntitySet="PurchaseOrders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PRId" ColumnName="PRId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="PGSOfficer" ColumnName="PGSOfficer" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Supplier" ColumnName="Supplier" />
+          <ScalarProperty Name="SupplierAddress" ColumnName="SupplierAddress" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="PODate" ColumnName="PODate" />
+          <ScalarProperty Name="ModeOfProcurement" ColumnName="ModeOfProcurement" />
+          <ScalarProperty Name="PRNo" ColumnName="PRNo" />
+          <ScalarProperty Name="PlaceOfDelivery" ColumnName="PlaceOfDelivery" />
+          <ScalarProperty Name="DateOfDelivery" ColumnName="DateOfDelivery" />
+          <ScalarProperty Name="DeliveryTerm" ColumnName="DeliveryTerm" />
+          <ScalarProperty Name="PaymentTerm" ColumnName="PaymentTerm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReAlignments">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.ReAlignments)">
+        <MappingFragment StoreEntitySet="ReAlignments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="SourceAppropriationId" ColumnName="SourceAppropriationId" />
+          <ScalarProperty Name="TargetAppropriationId" ColumnName="TargetAppropriationId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Signatories">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Signatories)">
+        <MappingFragment StoreEntitySet="Signatories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Person" ColumnName="Person" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Office" ColumnName="Office" />
+          <ScalarProperty Name="IsBacMember" ColumnName="IsBacMember" />
+          <ScalarProperty Name="BacPosition" ColumnName="BacPosition" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Suppliers)">
+        <MappingFragment StoreEntitySet="Suppliers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+          <ScalarProperty Name="CellNumber" ColumnName="CellNumber" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Towns">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Towns)">
+        <MappingFragment StoreEntitySet="Towns">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserClaims">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.UserClaims)">
+        <MappingFragment StoreEntitySet="UserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLogins">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.UserLogins)">
+        <MappingFragment StoreEntitySet="UserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.UserRoles)">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Years">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Years)">
+        <MappingFragment StoreEntitySet="Years">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payrolls">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Payrolls)">
+        <MappingFragment StoreEntitySet="Payrolls">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ColumnTitle1" ColumnName="ColumnTitle1" />
+          <ScalarProperty Name="ColumnTitle2" ColumnName="ColumnTitle2" />
+          <ScalarProperty Name="ChiefOfOffice" ColumnName="ChiefOfOffice" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Accountant" ColumnName="Accountant" />
+          <ScalarProperty Name="AccountantPos" ColumnName="AccountantPos" />
+          <ScalarProperty Name="Treasurer" ColumnName="Treasurer" />
+          <ScalarProperty Name="TreasurerPos" ColumnName="TreasurerPos" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="ApprovedByPos" ColumnName="ApprovedByPos" />
+          <ScalarProperty Name="ApprovedById" ColumnName="ApprovedById" />
+          <ScalarProperty Name="DeptHead" ColumnName="DeptHead" />
+          <ScalarProperty Name="DeptHeadPos" ColumnName="DeptHeadPos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayrollWages">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PayrollWages)">
+        <MappingFragment StoreEntitySet="PayrollWages">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ChiefOfOffice" ColumnName="ChiefOfOffice" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Accountant" ColumnName="Accountant" />
+          <ScalarProperty Name="AccountantPos" ColumnName="AccountantPos" />
+          <ScalarProperty Name="Treasurer" ColumnName="Treasurer" />
+          <ScalarProperty Name="TreasurerPos" ColumnName="TreasurerPos" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="ApprovedByPos" ColumnName="ApprovedByPos" />
+          <ScalarProperty Name="ApprovedById" ColumnName="ApprovedById" />
+          <ScalarProperty Name="ColumnTitles" ColumnName="ColumnTitles" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BACMembers">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.BACMembers)">
+        <MappingFragment StoreEntitySet="BACMembers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
+          <ScalarProperty Name="OffcAcr" ColumnName="OffcAcr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AllotmentLetter">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AllotmentLetter)">
+        <MappingFragment StoreEntitySet="AllotmentLetter">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PRId" ColumnName="PRId" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Letter" ColumnName="Letter" />
+          <ScalarProperty Name="HeadofDivision" ColumnName="HeadofDivision" />
+          <ScalarProperty Name="HeadofDivisionPOS" ColumnName="HeadofDivisionPOS" />
+          <ScalarProperty Name="PBO" ColumnName="PBO" />
+          <ScalarProperty Name="PBOPos" ColumnName="PBOPos" />
+          <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="AppropriationId" ColumnName="AppropriationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ControlNumbers">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.ControlNumbers)">
+        <MappingFragment StoreEntitySet="ControlNumbers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayrollWageDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PayrollWageDetails)">
+        <MappingFragment StoreEntitySet="PayrollWageDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+          <ScalarProperty Name="PayrollWageId" ColumnName="PayrollWageId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="NoOfdays" ColumnName="NoOfdays" />
+          <ScalarProperty Name="RatePerDay" ColumnName="RatePerDay" />
+          <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
+          <ScalarProperty Name="PERA" ColumnName="PERA" />
+          <ScalarProperty Name="PHPS" ColumnName="PHPS" />
+          <ScalarProperty Name="PHGS" ColumnName="PHGS" />
+          <ScalarProperty Name="PIPS" ColumnName="PIPS" />
+          <ScalarProperty Name="PIGS" ColumnName="PIGS" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="MPL" ColumnName="MPL" />
+          <ScalarProperty Name="PIFCalLoan" ColumnName="PIFCalLoan" />
+          <ScalarProperty Name="NVPEA" ColumnName="NVPEA" />
+          <ScalarProperty Name="SSSLoan" ColumnName="SSSLoan" />
+          <ScalarProperty Name="LBP" ColumnName="LBP" />
+          <ScalarProperty Name="DBP" ColumnName="DBP" />
+          <ScalarProperty Name="BIRWH" ColumnName="BIRWH" />
+          <ScalarProperty Name="GSISPolicy" ColumnName="GSISPolicy" />
+          <ScalarProperty Name="GSISConsol" ColumnName="GSISConsol" />
+          <ScalarProperty Name="SSSPS" ColumnName="SSSPS" />
+          <ScalarProperty Name="OT" ColumnName="OT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Templates">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Templates)">
+        <MappingFragment StoreEntitySet="Templates">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TemplateContent" ColumnName="TemplateContent" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalarySchedules">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.SalarySchedules)">
+        <MappingFragment StoreEntitySet="SalarySchedules">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SG" ColumnName="SG" />
+          <ScalarProperty Name="Step" ColumnName="Step" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayrollDifferentials">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PayrollDifferentials)">
+        <MappingFragment StoreEntitySet="PayrollDifferentials">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ChiefOfOffice" ColumnName="ChiefOfOffice" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Accountant" ColumnName="Accountant" />
+          <ScalarProperty Name="AccountantPos" ColumnName="AccountantPos" />
+          <ScalarProperty Name="Treasurer" ColumnName="Treasurer" />
+          <ScalarProperty Name="TreasurerPos" ColumnName="TreasurerPos" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="ApprovedByPos" ColumnName="ApprovedByPos" />
+          <ScalarProperty Name="ApprovedById" ColumnName="ApprovedById" />
+          <ScalarProperty Name="ObId" ColumnName="ObId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.ORDetails)">
+        <MappingFragment StoreEntitySet="ORDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AppropriationId" ColumnName="AppropriationId" />
+          <ScalarProperty Name="ObligationId" ColumnName="ObligationId" />
+          <ScalarProperty Name="Particulars" ColumnName="Particulars" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="AdjustedAmount" ColumnName="AdjustedAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PODetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PODetails)">
+        <MappingFragment StoreEntitySet="PODetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="POId" ColumnName="POId" />
+          <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="UOM" ColumnName="UOM" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PQDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PQDetails)">
+        <MappingFragment StoreEntitySet="PQDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PQId" ColumnName="PQId" />
+          <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="UOM" ColumnName="UOM" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AOQ">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AOQ)">
+        <MappingFragment StoreEntitySet="AOQ">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PRId" ColumnName="PRId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+          <ScalarProperty Name="NameofProject" ColumnName="NameofProject" />
+          <ScalarProperty Name="RequisitioningOffice" ColumnName="RequisitioningOffice" />
+          <ScalarProperty Name="ABC" ColumnName="ABC" />
+          <ScalarProperty Name="RFQNo" ColumnName="RFQNo" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="Head" ColumnName="Head" />
+          <ScalarProperty Name="HeadPosition" ColumnName="HeadPosition" />
+          <ScalarProperty Name="BACChairperson" ColumnName="BACChairperson" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AOQDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AOQDetails)">
+        <MappingFragment StoreEntitySet="AOQDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AOQId" ColumnName="AOQId" />
+          <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="UOM" ColumnName="UOM" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="APRs">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.APRs)">
+        <MappingFragment StoreEntitySet="APRs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PRId" ColumnName="PRId" />
+          <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PGSOId" ColumnName="PGSOId" />
+          <ScalarProperty Name="AccountantId" ColumnName="AccountantId" />
+          <ScalarProperty Name="GovernorId" ColumnName="GovernorId" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="APRDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.APRDetails)">
+        <MappingFragment StoreEntitySet="APRDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="APRId" ColumnName="APRId" />
+          <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="UOM" ColumnName="UOM" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Actions">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Actions)">
+        <MappingFragment StoreEntitySet="Actions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayrollDifferentialDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PayrollDifferentialDetails)">
+        <MappingFragment StoreEntitySet="PayrollDifferentialDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PayrollDiffentialId" ColumnName="PayrollDiffentialId" />
+          <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="SalaryGrade" ColumnName="SalaryGrade" />
+          <ScalarProperty Name="NewRate" ColumnName="NewRate" />
+          <ScalarProperty Name="OldRate" ColumnName="OldRate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="DiffMidYearBonus" ColumnName="DiffMidYearBonus" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="DiffBonus" ColumnName="DiffBonus" />
+          <ScalarProperty Name="PHPS" ColumnName="PHPS" />
+          <ScalarProperty Name="PHGS" ColumnName="PHGS" />
+          <ScalarProperty Name="PIPS" ColumnName="PIPS" />
+          <ScalarProperty Name="PIGS" ColumnName="PIGS" />
+          <ScalarProperty Name="GSISPS" ColumnName="GSISPS" />
+          <ScalarProperty Name="GSISGS" ColumnName="GSISGS" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AIRDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AIRDetails)">
+        <MappingFragment StoreEntitySet="AIRDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AIReportId" ColumnName="AIReportId" />
+          <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="UOM" ColumnName="UOM" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PIS">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PIS)">
+        <MappingFragment StoreEntitySet="PIS">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PRId" ColumnName="PRId" />
+          <ScalarProperty Name="TransferorId" ColumnName="TransferorId" />
+          <ScalarProperty Name="TransfereeId" ColumnName="TransfereeId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="PreparedByPos" ColumnName="PreparedByPos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PISDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PISDetails)">
+        <MappingFragment StoreEntitySet="PISDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PISId" ColumnName="PISId" />
+          <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="UOM" ColumnName="UOM" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AIReports">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AIReports)">
+        <MappingFragment StoreEntitySet="AIReports">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="POId" ColumnName="POId" />
+          <ScalarProperty Name="PRId" ColumnName="PRId" />
+          <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+          <ScalarProperty Name="RISNo" ColumnName="RISNo" />
+          <ScalarProperty Name="RISDate" ColumnName="RISDate" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="PropertyInspector" ColumnName="PropertyInspector" />
+          <ScalarProperty Name="PropertyInspectorPosition" ColumnName="PropertyInspectorPosition" />
+          <ScalarProperty Name="PropertyInspector2" ColumnName="PropertyInspector2" />
+          <ScalarProperty Name="PropertyInspector2Position" ColumnName="PropertyInspector2Position" />
+          <ScalarProperty Name="PGSOfficer" ColumnName="PGSOfficer" />
+          <ScalarProperty Name="PGSOfficerPosition" ColumnName="PGSOfficerPosition" />
+          <ScalarProperty Name="Head" ColumnName="Head" />
+          <ScalarProperty Name="HeadPosition" ColumnName="HeadPosition" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="PropertyOfficer2" ColumnName="PropertyOfficer2" />
+          <ScalarProperty Name="PropertyOfficerPosition2" ColumnName="PropertyOfficerPosition2" />
+          <ScalarProperty Name="NotedBy" ColumnName="NotedBy" />
+          <ScalarProperty Name="NotedByPosition" ColumnName="NotedByPosition" />
+          <ScalarProperty Name="PropertyOfficer" ColumnName="PropertyOfficer" />
+          <ScalarProperty Name="PropertyOfficerPosition" ColumnName="PropertyOfficerPosition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseRequests">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PurchaseRequests)">
+        <MappingFragment StoreEntitySet="PurchaseRequests">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AppropriationId" ColumnName="AppropriationId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="PA" ColumnName="PA" />
+          <ScalarProperty Name="PAPos" ColumnName="PAPos" />
+          <ScalarProperty Name="DeptHead" ColumnName="DeptHead" />
+          <ScalarProperty Name="DeptHeadPos" ColumnName="DeptHeadPos" />
+          <ScalarProperty Name="DivisionHead" ColumnName="DivisionHead" />
+          <ScalarProperty Name="DivisionHeadPos" ColumnName="DivisionHeadPos" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsEarmark" ColumnName="IsEarmark" />
+          <ScalarProperty Name="BudgetControlNo" ColumnName="BudgetControlNo" />
+          <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="IsCancelled" ColumnName="IsCancelled" />
+          <ScalarProperty Name="CancellationReason" ColumnName="CancellationReason" />
+          <ScalarProperty Name="FT" ColumnName="FT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Liquidations">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Liquidations)">
+        <MappingFragment StoreEntitySet="Liquidations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ObRId" ColumnName="ObRId" />
+          <ScalarProperty Name="PayeeId" ColumnName="PayeeId" />
+          <ScalarProperty Name="PayeeName" ColumnName="PayeeName" />
+          <ScalarProperty Name="PayeeAddress" ColumnName="PayeeAddress" />
+          <ScalarProperty Name="PAId" ColumnName="PAId" />
+          <ScalarProperty Name="HeadOfDep" ColumnName="HeadOfDep" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Particulars" ColumnName="Particulars" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="AccountantName" ColumnName="AccountantName" />
+          <ScalarProperty Name="AccountantPosition" ColumnName="AccountantPosition" />
+          <ScalarProperty Name="HeadName" ColumnName="HeadName" />
+          <ScalarProperty Name="HeadPosition" ColumnName="HeadPosition" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="PeriodCovered" ColumnName="PeriodCovered" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PARDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PARDetails)">
+        <MappingFragment StoreEntitySet="PARDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PARId" ColumnName="PARId" />
+          <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="UOM" ColumnName="UOM" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="DateAcquired" ColumnName="DateAcquired" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAR">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PAR)">
+        <MappingFragment StoreEntitySet="PAR">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PRId" ColumnName="PRId" />
+          <ScalarProperty Name="EntityName" ColumnName="EntityName" />
+          <ScalarProperty Name="FundCluster" ColumnName="FundCluster" />
+          <ScalarProperty Name="PGSOId" ColumnName="PGSOId" />
+          <ScalarProperty Name="PGSO" ColumnName="PGSO" />
+          <ScalarProperty Name="PGSOPosition" ColumnName="PGSOPosition" />
+          <ScalarProperty Name="ReceivedById" ColumnName="ReceivedById" />
+          <ScalarProperty Name="ReceivedBy" ColumnName="ReceivedBy" />
+          <ScalarProperty Name="ReceivedByPos" ColumnName="ReceivedByPos" />
+          <ScalarProperty Name="IssuedById" ColumnName="IssuedById" />
+          <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+          <ScalarProperty Name="IssuedByPos" ColumnName="IssuedByPos" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ICS">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.ICS)">
+        <MappingFragment StoreEntitySet="ICS">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PRId" ColumnName="PRId" />
+          <ScalarProperty Name="Office" ColumnName="Office" />
+          <ScalarProperty Name="Issuer" ColumnName="Issuer" />
+          <ScalarProperty Name="IssuerPosition" ColumnName="IssuerPosition" />
+          <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+          <ScalarProperty Name="ReceiverPos" ColumnName="ReceiverPos" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="PGSO" ColumnName="PGSO" />
+          <ScalarProperty Name="PGSOPos" ColumnName="PGSOPos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ICSDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.ICSDetails)">
+        <MappingFragment StoreEntitySet="ICSDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ICSId" ColumnName="ICSId" />
+          <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="UOM" ColumnName="UOM" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="DatePurchase" ColumnName="DatePurchase" />
+          <ScalarProperty Name="PropertyNumber" ColumnName="PropertyNumber" />
+          <ScalarProperty Name="EstimatedUsefulLife" ColumnName="EstimatedUsefulLife" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentActions">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.DocumentActions)">
+        <MappingFragment StoreEntitySet="DocumentActions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RefId" ColumnName="RefId" />
+          <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+          <ScalarProperty Name="MainActivityId" ColumnName="MainActivityId" />
+          <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
+          <ScalarProperty Name="SubActivityId" ColumnName="SubActivityId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ActionTaken" ColumnName="ActionTaken" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="ActionDate" ColumnName="ActionDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="EndorsedTo" ColumnName="EndorsedTo" />
+          <ScalarProperty Name="IsSend" ColumnName="IsSend" />
+          <ScalarProperty Name="isSaved" ColumnName="isSaved" />
+          <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+          <ScalarProperty Name="isDone" ColumnName="isDone" />
+          <ScalarProperty Name="ActionId" ColumnName="ActionId" />
+          <ScalarProperty Name="ObR_PR_No" ColumnName="ObR_PR_No" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="RoutedToOfficeId" ColumnName="RoutedToOfficeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Letters">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Letters)">
+        <MappingFragment StoreEntitySet="Letters">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RefId" ColumnName="RefId" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
+          <ScalarProperty Name="Template" ColumnName="Template" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="InsideAddress" ColumnName="InsideAddress" />
+          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Closing" ColumnName="Closing" />
+          <ScalarProperty Name="Signatories" ColumnName="Signatories" />
+          <ScalarProperty Name="SignatoriesPosition" ColumnName="SignatoriesPosition" />
+          <ScalarProperty Name="CC" ColumnName="CC" />
+          <ScalarProperty Name="InTheAbsence" ColumnName="InTheAbsence" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrashBin">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.TrashBin)">
+        <MappingFragment StoreEntitySet="TrashBin">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="OldValues" ColumnName="OldValues" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActionTakens">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.ActionTakens)">
+        <MappingFragment StoreEntitySet="ActionTakens">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ActionTaken" ColumnName="ActionTaken" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Files">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Files)">
+        <MappingFragment StoreEntitySet="Files">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RefId" ColumnName="RefId" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="RootFolder" ColumnName="RootFolder" />
+          <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Users)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="CivilStatus" ColumnName="CivilStatus" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="TownCity" ColumnName="TownCity" />
+          <ScalarProperty Name="Cellular" ColumnName="Cellular" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="Religion" ColumnName="Religion" />
+          <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
+          <ScalarProperty Name="Languages" ColumnName="Languages" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayrollOT">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PayrollOT)">
+        <MappingFragment StoreEntitySet="PayrollOT">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ObRId" ColumnName="ObRId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ApprovedById" ColumnName="ApprovedById" />
+          <ScalarProperty Name="ApprovedPosition" ColumnName="ApprovedPosition" />
+          <ScalarProperty Name="HeadId" ColumnName="HeadId" />
+          <ScalarProperty Name="HeadPosition" ColumnName="HeadPosition" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="PAId" ColumnName="PAId" />
+          <ScalarProperty Name="PAPosition" ColumnName="PAPosition" />
+          <ScalarProperty Name="PTId" ColumnName="PTId" />
+          <ScalarProperty Name="PTPosition" ColumnName="PTPosition" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItenaryofTravels">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.ItenaryofTravels)">
+        <MappingFragment StoreEntitySet="ItenaryofTravels">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OBRId" ColumnName="OBRId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="OfficialAddress" ColumnName="OfficialAddress" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+          <ScalarProperty Name="GovernorId" ColumnName="GovernorId" />
+          <ScalarProperty Name="PAId" ColumnName="PAId" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="PreparedByPos" ColumnName="PreparedByPos" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="ApprovedByPos" ColumnName="ApprovedByPos" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RISDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.RISDetails)">
+        <MappingFragment StoreEntitySet="RISDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RISId" ColumnName="RISId" />
+          <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="UOM" ColumnName="UOM" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RISHeader">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.RISHeader)">
+        <MappingFragment StoreEntitySet="RISHeader">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PRId" ColumnName="PRId" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="RISNo" ColumnName="RISNo" />
+          <ScalarProperty Name="SAI" ColumnName="SAI" />
+          <ScalarProperty Name="RISDate" ColumnName="RISDate" />
+          <ScalarProperty Name="SAIDate" ColumnName="SAIDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="RequestedBy" ColumnName="RequestedBy" />
+          <ScalarProperty Name="RequestedByPos" ColumnName="RequestedByPos" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="ApprovedByPos" ColumnName="ApprovedByPos" />
+          <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+          <ScalarProperty Name="IssuedByPos" ColumnName="IssuedByPos" />
+          <ScalarProperty Name="ReceivedBy" ColumnName="ReceivedBy" />
+          <ScalarProperty Name="ReceivedByPos" ColumnName="ReceivedByPos" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItenaryDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.ItenaryDetails)">
+        <MappingFragment StoreEntitySet="ItenaryDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IOTId" ColumnName="IOTId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="PlaceVisited" ColumnName="PlaceVisited" />
+          <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+          <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+          <ScalarProperty Name="MeansOfTransportation" ColumnName="MeansOfTransportation" />
+          <ScalarProperty Name="TransportationFee" ColumnName="TransportationFee" />
+          <ScalarProperty Name="PerDiems" ColumnName="PerDiems" />
+          <ScalarProperty Name="DailyAllowance" ColumnName="DailyAllowance" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="InclusiveTime" ColumnName="InclusiveTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayrollOTDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PayrollOTDetails)">
+        <MappingFragment StoreEntitySet="PayrollOTDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+          <ScalarProperty Name="PayrollOTId" ColumnName="PayrollOTId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="RatePerMonth" ColumnName="RatePerMonth" />
+          <ScalarProperty Name="RatePerDay" ColumnName="RatePerDay" />
+          <ScalarProperty Name="RatePerHr" ColumnName="RatePerHr" />
+          <ScalarProperty Name="WeekEndNoHrs" ColumnName="WeekEndNoHrs" />
+          <ScalarProperty Name="WeekDayNoHrs" ColumnName="WeekDayNoHrs" />
+          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+          <ScalarProperty Name="UnderPay" ColumnName="UnderPay" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UsersInRoles" TypeName="Model.UsersInRoles" StoreEntitySet="UsersInRoles">
+      <EndProperty Name="UserRoles">
+        <ScalarProperty Name="Id" ColumnName="UserRoles_Id" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="Users_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+          <AssociationSetMapping Name="BACInAOQ1" TypeName="Model.BACInAOQ1" StoreEntitySet="BACInAOQ">
             <EndProperty Name="Signatories">
               <ScalarProperty Name="Id" ColumnName="BACId" />
             </EndProperty>
@@ -6043,342 +6814,15 @@
               <ScalarProperty Name="Id" ColumnName="AOQId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="AOQDetails">
-            <EntityTypeMapping TypeName="Model.AOQDetails">
-              <MappingFragment StoreEntitySet="AOQDetails">
-                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="UOM" ColumnName="UOM" />
-                <ScalarProperty Name="Item" ColumnName="Item" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
-                <ScalarProperty Name="AOQId" ColumnName="AOQId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="APRs">
-            <EntityTypeMapping TypeName="Model.APRs">
-              <MappingFragment StoreEntitySet="APRs">
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="GovernorId" ColumnName="GovernorId" />
-                <ScalarProperty Name="AccountantId" ColumnName="AccountantId" />
-                <ScalarProperty Name="PGSOId" ColumnName="PGSOId" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
-                <ScalarProperty Name="PRId" ColumnName="PRId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="APRDetails">
-            <EntityTypeMapping TypeName="Model.APRDetails">
-              <MappingFragment StoreEntitySet="APRDetails">
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="UOM" ColumnName="UOM" />
-                <ScalarProperty Name="Item" ColumnName="Item" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
-                <ScalarProperty Name="APRId" ColumnName="APRId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Actions">
-            <EntityTypeMapping TypeName="Model.Actions">
-              <MappingFragment StoreEntitySet="Actions">
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PayrollDifferentialDetails">
-            <EntityTypeMapping TypeName="Model.PayrollDifferentialDetails">
-              <MappingFragment StoreEntitySet="PayrollDifferentialDetails">
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="GSISGS" ColumnName="GSISGS" />
-                <ScalarProperty Name="GSISPS" ColumnName="GSISPS" />
-                <ScalarProperty Name="PIGS" ColumnName="PIGS" />
-                <ScalarProperty Name="PIPS" ColumnName="PIPS" />
-                <ScalarProperty Name="PHGS" ColumnName="PHGS" />
-                <ScalarProperty Name="PHPS" ColumnName="PHPS" />
-                <ScalarProperty Name="DiffBonus" ColumnName="DiffBonus" />
-                <ScalarProperty Name="Month" ColumnName="Month" />
-                <ScalarProperty Name="DiffMidYearBonus" ColumnName="DiffMidYearBonus" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="OldRate" ColumnName="OldRate" />
-                <ScalarProperty Name="NewRate" ColumnName="NewRate" />
-                <ScalarProperty Name="SalaryGrade" ColumnName="SalaryGrade" />
-                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
-                <ScalarProperty Name="Designation" ColumnName="Designation" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
-                <ScalarProperty Name="PayrollDiffentialId" ColumnName="PayrollDiffentialId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AIRDetails">
-            <EntityTypeMapping TypeName="Model.AIRDetails">
-              <MappingFragment StoreEntitySet="AIRDetails">
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="UOM" ColumnName="UOM" />
-                <ScalarProperty Name="Item" ColumnName="Item" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
-                <ScalarProperty Name="AIReportId" ColumnName="AIReportId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PIS">
-            <EntityTypeMapping TypeName="Model.PIS">
-              <MappingFragment StoreEntitySet="PIS">
-                <ScalarProperty Name="PreparedByPos" ColumnName="PreparedByPos" />
-                <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="TransfereeId" ColumnName="TransfereeId" />
-                <ScalarProperty Name="TransferorId" ColumnName="TransferorId" />
-                <ScalarProperty Name="PRId" ColumnName="PRId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PISDetails">
-            <EntityTypeMapping TypeName="Model.PISDetails">
-              <MappingFragment StoreEntitySet="PISDetails">
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="UOM" ColumnName="UOM" />
-                <ScalarProperty Name="Item" ColumnName="Item" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
-                <ScalarProperty Name="PISId" ColumnName="PISId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AIReports">
-            <EntityTypeMapping TypeName="Model.AIReports">
-              <MappingFragment StoreEntitySet="AIReports">
-                <ScalarProperty Name="PropertyOfficerPosition" ColumnName="PropertyOfficerPosition" />
-                <ScalarProperty Name="PropertyOfficer" ColumnName="PropertyOfficer" />
-                <ScalarProperty Name="NotedByPosition" ColumnName="NotedByPosition" />
-                <ScalarProperty Name="NotedBy" ColumnName="NotedBy" />
-                <ScalarProperty Name="PropertyOfficerPosition2" ColumnName="PropertyOfficerPosition2" />
-                <ScalarProperty Name="PropertyOfficer2" ColumnName="PropertyOfficer2" />
-                <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
-                <ScalarProperty Name="HeadPosition" ColumnName="HeadPosition" />
-                <ScalarProperty Name="Head" ColumnName="Head" />
-                <ScalarProperty Name="PGSOfficerPosition" ColumnName="PGSOfficerPosition" />
-                <ScalarProperty Name="PGSOfficer" ColumnName="PGSOfficer" />
-                <ScalarProperty Name="PropertyInspector2Position" ColumnName="PropertyInspector2Position" />
-                <ScalarProperty Name="PropertyInspector2" ColumnName="PropertyInspector2" />
-                <ScalarProperty Name="PropertyInspectorPosition" ColumnName="PropertyInspectorPosition" />
-                <ScalarProperty Name="PropertyInspector" ColumnName="PropertyInspector" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="RISDate" ColumnName="RISDate" />
-                <ScalarProperty Name="RISNo" ColumnName="RISNo" />
-                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
-                <ScalarProperty Name="PRId" ColumnName="PRId" />
-                <ScalarProperty Name="POId" ColumnName="POId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PurchaseRequests">
-            <EntityTypeMapping TypeName="Model.PurchaseRequests">
-              <MappingFragment StoreEntitySet="PurchaseRequests">
-                <ScalarProperty Name="CancellationReason" ColumnName="CancellationReason" />
-                <ScalarProperty Name="IsCancelled" ColumnName="IsCancelled" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
-                <ScalarProperty Name="BudgetControlNo" ColumnName="BudgetControlNo" />
-                <ScalarProperty Name="IsEarmark" ColumnName="IsEarmark" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DivisionHeadPos" ColumnName="DivisionHeadPos" />
-                <ScalarProperty Name="DivisionHead" ColumnName="DivisionHead" />
-                <ScalarProperty Name="DeptHeadPos" ColumnName="DeptHeadPos" />
-                <ScalarProperty Name="DeptHead" ColumnName="DeptHead" />
-                <ScalarProperty Name="PAPos" ColumnName="PAPos" />
-                <ScalarProperty Name="PA" ColumnName="PA" />
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="AppropriationId" ColumnName="AppropriationId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Liquidations">
-            <EntityTypeMapping TypeName="Model.Liquidations">
-              <MappingFragment StoreEntitySet="Liquidations">
-                <ScalarProperty Name="PeriodCovered" ColumnName="PeriodCovered" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="HeadPosition" ColumnName="HeadPosition" />
-                <ScalarProperty Name="HeadName" ColumnName="HeadName" />
-                <ScalarProperty Name="AccountantPosition" ColumnName="AccountantPosition" />
-                <ScalarProperty Name="AccountantName" ColumnName="AccountantName" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Particulars" ColumnName="Particulars" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="HeadOfDep" ColumnName="HeadOfDep" />
-                <ScalarProperty Name="PAId" ColumnName="PAId" />
-                <ScalarProperty Name="PayeeAddress" ColumnName="PayeeAddress" />
-                <ScalarProperty Name="PayeeName" ColumnName="PayeeName" />
-                <ScalarProperty Name="PayeeId" ColumnName="PayeeId" />
-                <ScalarProperty Name="ObRId" ColumnName="ObRId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PARDetails">
-            <EntityTypeMapping TypeName="Model.PARDetails">
-              <MappingFragment StoreEntitySet="PARDetails">
-                <ScalarProperty Name="DateAcquired" ColumnName="DateAcquired" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="UOM" ColumnName="UOM" />
-                <ScalarProperty Name="Item" ColumnName="Item" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
-                <ScalarProperty Name="PARId" ColumnName="PARId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PAR">
-            <EntityTypeMapping TypeName="Model.PAR">
-              <MappingFragment StoreEntitySet="PAR">
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="IssuedByPos" ColumnName="IssuedByPos" />
-                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
-                <ScalarProperty Name="IssuedById" ColumnName="IssuedById" />
-                <ScalarProperty Name="ReceivedByPos" ColumnName="ReceivedByPos" />
-                <ScalarProperty Name="ReceivedBy" ColumnName="ReceivedBy" />
-                <ScalarProperty Name="ReceivedById" ColumnName="ReceivedById" />
-                <ScalarProperty Name="PGSOPosition" ColumnName="PGSOPosition" />
-                <ScalarProperty Name="PGSO" ColumnName="PGSO" />
-                <ScalarProperty Name="PGSOId" ColumnName="PGSOId" />
-                <ScalarProperty Name="FundCluster" ColumnName="FundCluster" />
-                <ScalarProperty Name="EntityName" ColumnName="EntityName" />
-                <ScalarProperty Name="PRId" ColumnName="PRId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ICS">
-            <EntityTypeMapping TypeName="Model.ICS">
-              <MappingFragment StoreEntitySet="ICS">
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="ReceiverPos" ColumnName="ReceiverPos" />
-                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
-                <ScalarProperty Name="IssuerPosition" ColumnName="IssuerPosition" />
-                <ScalarProperty Name="Issuer" ColumnName="Issuer" />
-                <ScalarProperty Name="Office" ColumnName="Office" />
-                <ScalarProperty Name="PRId" ColumnName="PRId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ICSDetails">
-            <EntityTypeMapping TypeName="Model.ICSDetails">
-              <MappingFragment StoreEntitySet="ICSDetails">
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="UOM" ColumnName="UOM" />
-                <ScalarProperty Name="Item" ColumnName="Item" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
-                <ScalarProperty Name="ICSId" ColumnName="ICSId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DocumentActions">
-            <EntityTypeMapping TypeName="Model.DocumentActions">
-              <MappingFragment StoreEntitySet="DocumentActions">
-                <ScalarProperty Name="RoutedToOfficeId" ColumnName="RoutedToOfficeId" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="ObR_PR_No" ColumnName="ObR_PR_No" />
-                <ScalarProperty Name="ActionId" ColumnName="ActionId" />
-                <ScalarProperty Name="isDone" ColumnName="isDone" />
-                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
-                <ScalarProperty Name="isSaved" ColumnName="isSaved" />
-                <ScalarProperty Name="IsSend" ColumnName="IsSend" />
-                <ScalarProperty Name="EndorsedTo" ColumnName="EndorsedTo" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ActionDate" ColumnName="ActionDate" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="ActionTaken" ColumnName="ActionTaken" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="SubActivityId" ColumnName="SubActivityId" />
-                <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
-                <ScalarProperty Name="MainActivityId" ColumnName="MainActivityId" />
-                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
-                <ScalarProperty Name="RefId" ColumnName="RefId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Letters">
-            <EntityTypeMapping TypeName="Model.Letters">
-              <MappingFragment StoreEntitySet="Letters">
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="InTheAbsence" ColumnName="InTheAbsence" />
-                <ScalarProperty Name="CC" ColumnName="CC" />
-                <ScalarProperty Name="SignatoriesPosition" ColumnName="SignatoriesPosition" />
-                <ScalarProperty Name="Signatories" ColumnName="Signatories" />
-                <ScalarProperty Name="Closing" ColumnName="Closing" />
-                <ScalarProperty Name="Body" ColumnName="Body" />
-                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
-                <ScalarProperty Name="InsideAddress" ColumnName="InsideAddress" />
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Template" ColumnName="Template" />
-                <ScalarProperty Name="ControlNo" ColumnName="ControlNo" />
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
-                <ScalarProperty Name="RefId" ColumnName="RefId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="OBRInLetters" TypeName="Model.OBRInLetters" StoreEntitySet="OBRInLetters">
+          <AssociationSetMapping Name="EmployeesInPayee1" TypeName="Model.EmployeesInPayee1" StoreEntitySet="EmployeesInPayee">
+            <EndProperty Name="Payees">
+              <ScalarProperty Name="Id" ColumnName="PayeeId" />
+            </EndProperty>
+            <EndProperty Name="Employees">
+              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="OBRInLetters1" TypeName="Model.OBRInLetters1" StoreEntitySet="OBRInLetters">
             <EndProperty Name="Obligations">
               <ScalarProperty Name="Id" ColumnName="ObrId" />
             </EndProperty>
@@ -6386,80 +6830,15 @@
               <ScalarProperty Name="Id" ColumnName="LetterId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="TrashBin">
-            <EntityTypeMapping TypeName="Model.TrashBin">
-              <MappingFragment StoreEntitySet="TrashBin">
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="OldValues" ColumnName="OldValues" />
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ActionTakens">
-            <EntityTypeMapping TypeName="Model.ActionTakens">
-              <MappingFragment StoreEntitySet="ActionTakens">
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
-                <ScalarProperty Name="ActionTaken" ColumnName="ActionTaken" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Files">
-            <EntityTypeMapping TypeName="Model.Files">
-              <MappingFragment StoreEntitySet="Files">
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
-                <ScalarProperty Name="RootFolder" ColumnName="RootFolder" />
-                <ScalarProperty Name="Path" ColumnName="Path" />
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
-                <ScalarProperty Name="RefId" ColumnName="RefId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="Model.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Languages" ColumnName="Languages" />
-                <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
-                <ScalarProperty Name="Religion" ColumnName="Religion" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="Cellular" ColumnName="Cellular" />
-                <ScalarProperty Name="TownCity" ColumnName="TownCity" />
-                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
-                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="CivilStatus" ColumnName="CivilStatus" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
-                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="UsersInDocumentActions" TypeName="Model.UsersInDocumentActions" StoreEntitySet="UsersInDocumentActions">
+          <AssociationSetMapping Name="UserRolesInFunctions1" TypeName="Model.UserRolesInFunctions1" StoreEntitySet="UserRolesInFunctions">
+            <EndProperty Name="UserRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="Functions">
+              <ScalarProperty Name="Id" ColumnName="FunctionId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UsersInDocumentActions1" TypeName="Model.UsersInDocumentActions1" StoreEntitySet="UsersInDocumentActions">
             <EndProperty Name="Users">
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
@@ -6467,93 +6846,7 @@
               <ScalarProperty Name="Id" ColumnName="DocActId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="UsersInRoles" TypeName="Model.UsersInRoles" StoreEntitySet="UsersInRoles">
-            <EndProperty Name="Users">
-              <ScalarProperty Name="Id" ColumnName="Users_Id" />
-            </EndProperty>
-            <EndProperty Name="UserRoles">
-              <ScalarProperty Name="Id" ColumnName="UserRoles_Id" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <EntitySetMapping Name="PayrollOT">
-            <EntityTypeMapping TypeName="Model.PayrollOT">
-              <MappingFragment StoreEntitySet="PayrollOT">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="PTPosition" ColumnName="PTPosition" />
-                <ScalarProperty Name="PTId" ColumnName="PTId" />
-                <ScalarProperty Name="PAPosition" ColumnName="PAPosition" />
-                <ScalarProperty Name="PAId" ColumnName="PAId" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="HeadPosition" ColumnName="HeadPosition" />
-                <ScalarProperty Name="HeadId" ColumnName="HeadId" />
-                <ScalarProperty Name="ApprovedPosition" ColumnName="ApprovedPosition" />
-                <ScalarProperty Name="ApprovedById" ColumnName="ApprovedById" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ObRId" ColumnName="ObRId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PayrollOTDetails">
-            <EntityTypeMapping TypeName="Model.PayrollOTDetails">
-              <MappingFragment StoreEntitySet="PayrollOTDetails">
-                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="UnderPay" ColumnName="UnderPay" />
-                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
-                <ScalarProperty Name="WeekDayNoHrs" ColumnName="WeekDayNoHrs" />
-                <ScalarProperty Name="WeekEndNoHrs" ColumnName="WeekEndNoHrs" />
-                <ScalarProperty Name="RatePerHr" ColumnName="RatePerHr" />
-                <ScalarProperty Name="RatePerDay" ColumnName="RatePerDay" />
-                <ScalarProperty Name="RatePerMonth" ColumnName="RatePerMonth" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="PayrollOTId" ColumnName="PayrollOTId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ItenaryofTravels">
-            <EntityTypeMapping TypeName="Model.ItenaryofTravels">
-              <MappingFragment StoreEntitySet="ItenaryofTravels">
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ApprovedByPos" ColumnName="ApprovedByPos" />
-                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
-                <ScalarProperty Name="PreparedByPos" ColumnName="PreparedByPos" />
-                <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
-                <ScalarProperty Name="PAId" ColumnName="PAId" />
-                <ScalarProperty Name="GovernorId" ColumnName="GovernorId" />
-                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
-                <ScalarProperty Name="OfficialAddress" ColumnName="OfficialAddress" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="OBRId" ColumnName="OBRId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ItenaryDetails">
-            <EntityTypeMapping TypeName="Model.ItenaryDetails">
-              <MappingFragment StoreEntitySet="ItenaryDetails">
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="DailyAllowance" ColumnName="DailyAllowance" />
-                <ScalarProperty Name="PerDiems" ColumnName="PerDiems" />
-                <ScalarProperty Name="TransportationFee" ColumnName="TransportationFee" />
-                <ScalarProperty Name="MeansOfTransportation" ColumnName="MeansOfTransportation" />
-                <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
-                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
-                <ScalarProperty Name="PlaceVisited" ColumnName="PlaceVisited" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="IOTId" ColumnName="IOTId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          </EntityContainerMapping>
+  </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->

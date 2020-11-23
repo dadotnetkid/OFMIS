@@ -197,15 +197,19 @@ namespace Win.BL
         {
             if (purchaseRequests == null)
             {
-                frmItems.ItemsGridControl.DataSource = new BindingList<Items>(new UnitOfWork().ItemsRepo.Get());
+                frmItems.ItemsGridControl.DataSource = new BindingList<Items>(new UnitOfWork().ItemsRepo.Get(orderBy: x => x.OrderBy(m => m.Category=="").ThenBy(m=>m.Category==null).ThenBy(m => m.Category)));
                 frmItems.cboCategory.Properties.DataSource =
-                    new EntityServerModeSource() { QueryableSource = new UnitOfWork().CategoriesRepo.Fetch() };
+                    new EntityServerModeSource()
+                    {
+                        QueryableSource = new UnitOfWork().CategoriesRepo.Fetch(orderBy: x => x.OrderBy(m => m.Category)),
+                        DefaultSorting = "Category ASC"
+                    };
                 frmItems.cboSearch.Properties.DataSource = new EntityServerModeSource() { QueryableSource = new UnitOfWork().ItemsRepo.Fetch() };
                 return;
             }
             var itemsSelected = new UnitOfWork().PRDetailsRepo.Get(m => m.PRId == purchaseRequests.Id).Select(x => x.ItemId);
             frmItems.ItemsGridControl.DataSource = new BindingList<Items>(new UnitOfWork().ItemsRepo.Get(x => itemsSelected.All(m => m != x.Id)));
-            frmItems.cboCategory.Properties.DataSource = new UnitOfWork().ItemsRepo.Fetch(x => x.Category != null || x.Category != "").GroupBy(x => x.Category).ToList().Select(x => new Items() { Category = x.Key });
+            frmItems.cboCategory.Properties.DataSource = new UnitOfWork().ItemsRepo.Fetch(x => x.Category != null || x.Category != "").GroupBy(x => x.Category).ToList().Select(x => new Items() { Category = x.Key }).OrderBy(x => x.Category);
             frmItems.cboSearch.Properties.DataSource = new UnitOfWork().ItemsRepo.Fetch().Select(x => new { x.Item }).ToList().Select(x => new Items() { Item = x.Item });
         }
 

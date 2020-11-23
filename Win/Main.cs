@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using DevExpress.UserSkins;
 using DevExpress.XtraBars.ToastNotifications;
 using Helpers;
 using Models;
@@ -30,20 +31,35 @@ using Win.Usr;
 
 namespace Win
 {
+
     public partial class Main : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-
+        class ShowFormThreadData
+        {
+            public DevExpress.LookAndFeel.UserLookAndFeel mainLookAndFeel;
+            // TODO add more fields to pass data to a new thread
+        }
         private string[] param;
 
         public Main(string[] param)
         {
             new frmSplashScreen().ShowDialog(this);
+            frmFundTypeChoices frmFundTypeChoices = new frmFundTypeChoices();
+            frmFundTypeChoices.ShowDialog();
             InitializeComponent();
             Init();
             if (!backgroundWorker1.IsBusy)
                 backgroundWorker1.RunWorkerAsync();
         }
-
+        public Main()
+        {
+            frmFundTypeChoices frmFundTypeChoices = new frmFundTypeChoices();
+            frmFundTypeChoices.ShowDialog();
+            InitializeComponent();
+            Init();
+            if (!backgroundWorker1.IsBusy)
+                backgroundWorker1.RunWorkerAsync();
+        }
         void Impersonate(string[] param)
         {
             User.UserId = param[0];
@@ -60,13 +76,14 @@ namespace Win
         }
         void Init(bool isLogged = false)
         {
+           
             Form frm = new frmLogin();
             if (isLogged == false)
                 frm.ShowDialog();
-            lblUsername.Caption = $"Name: {User.GetFullName() }";
-            lblUserLevel.Caption = $"User Level: {User.GetUserLevel()} - " + new StaticSettings()?.Offices?.OffcAcr;
-            var unitOfWork = new UnitOfWork();
             StaticSettings staticSettings = new StaticSettings();
+            lblUsername.Caption = $"Name: {User.GetFullName() }";
+            lblUserLevel.Caption = $"User Level: {User.GetUserLevel()} - " + staticSettings?.Offices?.OffcAcr + $"-[{staticSettings.FT}]";
+            var unitOfWork = new UnitOfWork();
             if (!unitOfWork.YearsRepo.Fetch(x => x.OfficeId == staticSettings.OfficeId).Any(x => x.IsActive == true))
             {
                 MessageBox.Show("No Default Year Selected", "Default Year", MessageBoxButtons.OK,
@@ -74,7 +91,7 @@ namespace Win
                 frm = new frmYears();
                 frm.ShowDialog();
             }
-            this.Text = $"OFMIS[{staticSettings.Year}]";
+            this.Text = $"OFMIS[{staticSettings.Year}]" + $"-[{staticSettings.FT}]";
             pnlMain.Controls.Clear();
             pnlMain.Controls.Add(new UCDashboard() { Dock = DockStyle.Fill });
 
@@ -82,6 +99,8 @@ namespace Win
         }
         private void btnObligation_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (this.pnlMain.Controls[0].Name == "ucObligations")
+                return;
             if (!User.UserInAction("Obligations"))
                 return;
             pnlMain.Controls.Clear();
@@ -96,8 +115,11 @@ namespace Win
 
         private void btnAccounts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (this.pnlMain.Controls[0].Name == "UcAccounts")
+                return;
             if (!User.UserInAction("Accounts"))
                 return;
+
             pnlMain.Controls.Clear();
             pnlMain.Controls.Add(new UcAccounts() { Dock = DockStyle.Fill });
         }
@@ -161,6 +183,8 @@ namespace Win
 
         private void btnPR_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (this.pnlMain.Controls[0].Name == "UCPurchaseRequest")
+                return;
             if (!User.UserInAction("Purchase Requests"))
                 return;
             pnlMain.Controls.Clear();
@@ -208,14 +232,34 @@ namespace Win
                 return;
             Application.Exit();
         }
-
+        [STAThread]
         private void btnLogout_ItemClick(object sender, DevExpress.XtraBars.Ribbon.BackstageViewItemEventArgs e)
         {
-            User.UserId = null;
+            this.Close();
+            ShowFormThreadData data = new ShowFormThreadData();
+            data.mainLookAndFeel = DevExpress.LookAndFeel.UserLookAndFeel.Default;
+            var th = new Thread(() =>
+              {
+                  ShowFormThreadData td = data as ShowFormThreadData;
+
+                // this thread 
+#pragma warning disable 618
+                DevExpress.UserSkins.OfficeSkins.Register();
+#pragma warning restore 618
+                DevExpress.UserSkins.BonusSkins.Register();
+                  DevExpress.LookAndFeel.UserLookAndFeel.Default.Assign(td.mainLookAndFeel);
+
+                  Application.Run(new Main());
+              });
+            th.SetApartmentState(ApartmentState.STA);
+            th.Start();
+            //Application.Restart();
+            //Application.Restart();
+            /*User.UserId = null;
             backstageViewControl1.Close();
             frmLogin frm = new frmLogin();
             frm.ShowDialog();
-            Init(true);
+            Init(true);*/
         }
 
         private void btnOffices_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -333,6 +377,8 @@ namespace Win
 
         private void btnDashboard_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (this.pnlMain.Controls[0].Name=="UCDashboard")
+                return;
             this.pnlMain.Controls.Clear();
             this.pnlMain.Controls.Add(new UCDashboard()
             {
@@ -380,10 +426,10 @@ namespace Win
             {
                 var db = new FDTSDb();
 
-                var docTrNo = db.SP_GetObrNo("General Fund", null, null, null).FirstOrDefault();
-                var ctrlNo = db.SP_GetCtrlNo("General Fund",null,null, "2020").FirstOrDefault();
-                var trknNo = db.SP_GetTrknNo("2020", null).FirstOrDefault();
-                db.SP_InsertDoc(2020,trknNo,"","OBR",User.UserName,new StaticSettings().ResponsibilityCenter, docTrNo,"General Fund",)
+                //var docTrNo = db.SP_GetObrNo("General Fund", null, null, null).FirstOrDefault();
+                //var ctrlNo = db.SP_GetCtrlNo("General Fund",null,null, "2020").FirstOrDefault();
+                //var trknNo = db.SP_GetTrknNo("2020", null).FirstOrDefault();
+                //db.SP_InsertDoc(2020, trknNo, "", "OBR", User.UserName, new StaticSettings().ResponsibilityCenter, docTrNo, "General Fund");
                 /* var res = db.Database.SqlQuery<OBRVM>("exec SP_GetObrNo", 
                 new SqlParameter("@category", "General Fund"), 
                 new SqlParameter("@currentnumber", ""),
@@ -395,6 +441,18 @@ namespace Win
 
             }
 
+        }
+
+        private void btnStatusSummary_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmSummaryOfStatusFinancialDocuments frm = new frmSummaryOfStatusFinancialDocuments();
+            frm.ShowDialog();
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmSummaryOfStatusFinancialDocuments frm = new frmSummaryOfStatusFinancialDocuments();
+            frm.ShowDialog();
         }
     }
 }

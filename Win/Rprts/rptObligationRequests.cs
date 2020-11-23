@@ -21,5 +21,19 @@ namespace Win.Rprts
                 lbl.Text = $"[{staticSettings.Offices.OffcAcr}]Office Management Information System({User.UserName})";
             }
         }
+
+        private void xrLabel8_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            txtPreparedBy.Text = User.GetFullName();
+            txtPos.Text = User.GetUserPosition();
+        }
+
+        private void xrLabel8_BeforePrint_1(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            if (sender is XRLabel lbl)
+            {
+                lbl.Text = User.GetOffice();
+            }
+        }
     }
 }

@@ -36,6 +36,7 @@ namespace Models
         public Nullable<System.DateTime> DateCreated { get; set; }
         public string Createdby { get; set; }
         public Nullable<int> OfficeId { get; set; }
+        public string FT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Allotments> Allotments { get; set; }

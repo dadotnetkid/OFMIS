@@ -41,6 +41,8 @@ namespace Win.Usr
             throw new NotImplementedException();
         }
 
+      
+
         private void btnNew_Click(object sender, EventArgs e)
         {
             frmAddEditUserLevel frm = new frmAddEditUserLevel(MethodType.Add, new UserRoles());

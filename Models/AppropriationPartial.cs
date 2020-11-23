@@ -28,7 +28,6 @@ namespace Models
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Newtonsoft.Json.JsonIgnoreAttribute]
         public decimal? Allotment
         {
             get
@@ -38,7 +37,6 @@ namespace Models
             }
             set => _allotment = value;
         }
-        [Newtonsoft.Json.JsonIgnoreAttribute]
         public decimal PurchaseRequestEarmarked
         {
             get
@@ -46,7 +44,6 @@ namespace Models
                 return this.PurchaseRequests.Where(x => x.IsEarmark == true && x.IsClosed != true && x.IsCancelled != true).Sum(x => x.TotalAmount) ?? 0;
             }
         }
-        [Newtonsoft.Json.JsonIgnoreAttribute]
         public decimal PurchaseRequestCancelled
         {
             get
@@ -55,7 +52,6 @@ namespace Models
             }
         }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Newtonsoft.Json.JsonIgnoreAttribute]
         public decimal? ReAlignment
         {
             get
@@ -67,7 +63,6 @@ namespace Models
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Newtonsoft.Json.JsonIgnoreAttribute]
         public decimal? AppropriationBalance
         {
             get
@@ -79,17 +74,21 @@ namespace Models
         }
         //pr without obr + 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Newtonsoft.Json.JsonIgnoreAttribute]
         public decimal? AllotmentBalanceIncEM => (this.PurchaseRequests.Where(x => !x.Obligations.Any()).Sum(x => x.TotalAmount) ?? 0) + (PurchaseRequests.Where(x => x.Obligations.Any())
             .Sum(x => x.Obligations.Sum(m => m.TotalAmount)) ?? 0);
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Newtonsoft.Json.JsonIgnoreAttribute]
         public decimal? AllotmentBalanceExcEM => Allotments.Sum(x => x.AllotmentAmount) - this.ObligationsOffice;
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Newtonsoft.Json.JsonIgnoreAttribute]
-        public decimal? ObligationsOffice => this.ORDetails.Where(x => x.Obligations.Year == Year && x.Obligations.OfficeId == OfficeId).Sum(x => x.Amount);
+        public decimal? ObligationsOffice
+        {
+            get
+            {
+                var amount =this.ORDetails.Where(x => x.Obligations.Year == Year && x.Obligations.OfficeId == OfficeId).Sum(x => x.Amount);
+                return amount;
+            }
+        }
 
 
     }

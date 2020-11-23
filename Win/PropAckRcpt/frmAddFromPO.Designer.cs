@@ -86,9 +86,9 @@
             this.lblHeader.Appearance.Options.UseForeColor = true;
             this.lblHeader.Location = new System.Drawing.Point(87, 12);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(271, 26);
+            this.lblHeader.Size = new System.Drawing.Size(268, 26);
             this.lblHeader.TabIndex = 12;
-            this.lblHeader.Text = "Add Items from Price Quotation";
+            this.lblHeader.Text = "Add Items from Purchase Order";
             // 
             // pictureEdit1
             // 

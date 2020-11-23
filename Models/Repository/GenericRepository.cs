@@ -116,7 +116,7 @@ namespace Models.Repository
 
             return query.Select(selector).ToList();
         }
-        public virtual IQueryable<TEntity> Fetch(Expression<Func<TEntity, bool>> filter = null, string includeProperties = "")
+        public virtual IQueryable<TEntity> Fetch(Expression<Func<TEntity, bool>> filter = null, string includeProperties = "", Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
         {
             IQueryable<TEntity> query = dbSet;
             if (includeProperties != "")
@@ -124,7 +124,10 @@ namespace Models.Repository
                     query = query.Include(includeProperty);
             if (filter != null)
                 query = query.Where(filter);
-
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
             return query;
         }
 
@@ -151,7 +154,7 @@ namespace Models.Repository
         {
             return dbSet.Find(id);
         }
-        public virtual async Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter = null)
+        public virtual async Task<List<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter = null)
         {
             IQueryable<TEntity> query = dbSet;
             if (filter != null)
@@ -167,13 +170,16 @@ namespace Models.Repository
 
             return query.Where(filter).FirstOrDefault();
         }
-        public virtual async Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> filter, bool proxyCreationEnable, bool asNoTracking = false, string includeProperties = "")
+        public virtual async Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> filter, bool proxyCreationEnable=true, bool asNoTracking = true,bool lazyLoading=true, string includeProperties = "")
         {
+            this.context.Configuration.ProxyCreationEnabled = proxyCreationEnable;
+            this.context.Configuration.LazyLoadingEnabled = lazyLoading;
+
             IQueryable<TEntity> query = dbSet;
             if (includeProperties != "")
                 foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                     query = query.Include(includeProperty);
-
+                
             return await query.Where(filter).FirstOrDefaultAsync();
         }
         public virtual TEntity Find(Expression<Func<TEntity, bool>> filter, bool proxyCreationEnable, bool asNoTracking = false, string includeProperties = "")

@@ -13,6 +13,7 @@ namespace Win
     public class StaticSettings
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
+        public string FT = Win.Properties.Settings.Default.FundType;
         int? officeId = User.OfficeId();
         private Years activeYear => unitOfWork.YearsRepo.Find(m => m.IsActive == true && m.OfficeId == officeId);
         public Offices settings() => unitOfWork.OfficesRepo.Fetch(m => m.Id == officeId, "UnderOfOffice").FirstOrDefault();

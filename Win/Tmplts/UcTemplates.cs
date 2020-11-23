@@ -93,9 +93,9 @@ namespace Win.Tmplts
             //frmConfirmationTemplates frm = new frmConfirmationTemplates(new Models.Templates(), Models.MethodType.Add);
             //frm.ShowDialog();
             //Init();
-        //    frmAddEditTemplateV2 frm = new frmAddEditTemplateV2();
-        //    frm.ShowDialog();
-            frmAddEditTemplatesV2 frm = new frmAddEditTemplatesV2(new Templates() {},MethodType.Add);
+            //    frmAddEditTemplateV2 frm = new frmAddEditTemplateV2();
+            //    frm.ShowDialog();
+            frmAddEditTemplatesV2 frm = new frmAddEditTemplatesV2(new Templates() { }, MethodType.Add);
             frm.ShowDialog();
             Init();
         }
@@ -117,6 +117,8 @@ namespace Win.Tmplts
             throw new NotImplementedException();
         }
 
+
+
         private void btnPreview_Click(object sender, EventArgs e)
         {
             try
@@ -136,6 +138,17 @@ namespace Win.Tmplts
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message, exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void TemplateGridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (TemplateGridView.GetFocusedRow() is Templates item)
+            {
+                UnitOfWork unitOfWork = new UnitOfWork();
+                var res = unitOfWork.TemplatesRepo.Fetch(x => x.Id == item.Id).Select(x => new { x.TemplateContent })
+                    .FirstOrDefault();
+                this.rtfPreview.HtmlText = res?.TemplateContent;
             }
         }
     }

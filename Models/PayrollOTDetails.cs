@@ -15,6 +15,7 @@ namespace Models
     public partial class PayrollOTDetails
     {
         public int Id { get; set; }
+        public Nullable<int> ItemNo { get; set; }
         public Nullable<int> PayrollOTId { get; set; }
         public Nullable<int> EmployeeId { get; set; }
         public Nullable<decimal> RatePerMonth { get; set; }
@@ -26,7 +27,6 @@ namespace Models
         public Nullable<decimal> UnderPay { get; set; }
         public Nullable<decimal> TotalAmount { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
-        public Nullable<int> ItemNo { get; set; }
     
         public virtual Employees Employees { get; set; }
         public virtual PayrollOT PayrollOT { get; set; }

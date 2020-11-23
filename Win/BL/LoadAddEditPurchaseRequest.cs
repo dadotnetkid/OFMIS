@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,8 @@ using Win.PropAckRcpt;
 using Win.PropIsSlp;
 using Win.PR;
 using Win.Rprts;
+using Win.ReqIsSlp;
+using Win.InvCS;
 
 namespace Win.BL
 {
@@ -38,8 +41,13 @@ namespace Win.BL
             ucPR.btnDeleteRepoPR.ButtonClick += BtnDeleteRepoPR_ButtonClick;
             ucPR.btnEditRepoPR.ButtonClick += BtnEditRepoPR_ButtonClick;
             ucPR.btnPreview.Click += BtnPreview_Click;
+            ucPR.btnViewAll.Click += BtnViewAll_Click;
 
+        }
 
+        private void BtnViewAll_Click(object sender, EventArgs e)
+        {
+            ((ILoad<PurchaseRequests>)this).Init();
         }
 
         private void BtnPreview_Click(object sender, EventArgs e)
@@ -100,6 +108,7 @@ namespace Win.BL
                     if (!User.CheckOwner(pr.CreatedBy))
                         return;
                     frmAddEditPurchaseRequest frm = new frmAddEditPurchaseRequest(MethodType.Edit, pr);
+                    frm.lblHeader.Text = "Edit Purchase Request";
                     frm.ShowDialog();
                     // ((ILoad<PurchaseRequests>) this).Init();
                     Detail(pr);
@@ -337,7 +346,7 @@ namespace Win.BL
                     obr.PRNo = item.Id;
                 }
 
-                item.IsClosed = frmAddEditPurchaseRequest.chkIsClosed.Checked;
+                //   item.IsClosed = frmAddEditPurchaseRequest.chkIsClosed.Checked;
                 if (item.IsClosed)
                 {
                     if (!unitOfWork.DocumentActionsRepo.Fetch(x => x.ActionTaken == "Transaction completed" && x.RefId == item.Id && x.TableName == "PurchaseRequests").Any())
@@ -397,7 +406,7 @@ namespace Win.BL
             frmAddEditPurchaseRequest.cboCategoryRepo.DataSource = unitOfWork.CategoriesRepo.Get();
             frmAddEditPurchaseRequest.chkEarmarked.EditValue = item.IsEarmark;
             frmAddEditPurchaseRequest.cboApprovedBy.EditValue = item.PA;
-            frmAddEditPurchaseRequest.chkIsClosed.Checked = item.IsClosed;
+            //   frmAddEditPurchaseRequest.chkIsClosed.Checked = item.IsClosed;
             frmAddEditPurchaseRequest.chkIsCancelled.Checked = item.IsCancelled.ToBool();
         }
 
@@ -418,7 +427,8 @@ namespace Win.BL
                         DivisionHeadPos = staticSettings.Offices.IsDivision == true ? staticSettings.Head : "",
                         OfficeId = staticSettings.OfficeId,
                         CreatedBy = User.UserId,
-                        Year = staticSettings.Year
+                        Year = staticSettings.Year,
+                        FT = Win.Properties.Settings.Default.FundType
                     };
                     unitOfWork.PurchaseRequestsRepo.Insert(item);
                     unitOfWork.Save();
@@ -465,16 +475,28 @@ namespace Win.BL
             }
         }
 
-        void ILoad<PurchaseRequests>.Init()
+        async void ILoad<PurchaseRequests>.Init()
         {
             var staticSetting = new StaticSettings();
-            ucPR.PRGridControl.DataSource = new EntityServerModeSource()
-            {
-                QueryableSource = new UnitOfWork().PurchaseRequestsRepo.Fetch(m => m.OfficeId == staticSetting.OfficeId && m.Year == staticSetting.Year),
-                DefaultSorting = "Id ASC"
-            };
+            var ft = Win.Properties.Settings.Default.FundType;
 
+            UnitOfWork unitOfWork = new UnitOfWork();
+            ucPR.PRGrid.ShowLoadingPanel();
+            if (ucPR.InvokeRequired)
+                ucPR.Invoke(new Action(async () =>
+                {
+                    ucPR.PRGridControl.DataSource = await new UnitOfWork().PurchaseRequestsRepo
+                        .Fetch(m => m.OfficeId == staticSetting.OfficeId && m.Year == staticSetting.Year && m.FT == ft)
+                        .OrderByDescending(x => x.Date)
+                        .ToListAsync();
+                }));
+            else
+                ucPR.PRGridControl.DataSource = await new UnitOfWork().PurchaseRequestsRepo
+                    .Fetch(m => m.OfficeId == staticSetting.OfficeId && m.Year == staticSetting.Year && m.FT == ft)
+                    .OrderByDescending(x => x.Date)
+                    .ToListAsync();
 
+            ucPR.PRGrid.HideLoadingPanel();
         }
         void Init(PurchaseRequests pr)
         {
@@ -513,54 +535,64 @@ namespace Win.BL
             }
         }
 
-        public void Detail(PurchaseRequests pr)
+        public async void Detail(PurchaseRequests pr)
         {
-            pr = new UnitOfWork().PurchaseRequestsRepo.Find(m => m.Id == pr.Id);
+
+            UnitOfWork unitOfWork = new UnitOfWork();
+            pr = await unitOfWork.PurchaseRequestsRepo.FindAsync(m => m.Id == pr.Id, false, false, false);
             if (pr == null)
                 return;
-
-            ucPR.lblHeader.Text = pr.ControlNo + " - " + pr.Description;
-            ucPR.dtDate.EditValue = pr.Date;
-            ucPR.txtControlNumber.Text = pr.ControlNo;
-            ucPR.txtDescription.Text = pr.Description;
-            ucPR.txtPurpose.Text = pr.Purpose;
-            ucPR.txtAmount.EditValue = pr.TotalAmount;
-            ucPR.txtAccountCode.EditValue = pr.Appropriations?.AccountCode + " - " + pr.Appropriations?.AccountName;
-            ucPR.chkIsClosed.Checked = pr.IsClosed;
-            ucPR.chkEarmarked.Checked = pr.IsEarmark ?? false;
-            ucPR.chkCancelled.Checked = pr.IsCancelled ?? false;
-            ucPR.txtReason.EditValue = pr.CancellationReason;
-            ucPR.ItemsGridControl.DataSource = new BindingList<PRDetails>(pr.PRDetails.OrderBy(x => x.ItemNo).ToList());
-
-            ucPR.PQTabPage.Controls.Clear();
-            ucPR.PQTabPage.Controls.Add(new UCPQ(pr) { Dock = DockStyle.Fill });
-            ucPR.tabPO.Controls.Clear();
-            ucPR.tabPO.Controls.Add(new UCPO(pr) { Dock = DockStyle.Fill });
-            ucPR.tabAOQ.Controls.Clear();
-            ucPR.tabAOQ.Controls.Add(new UCAOQ(pr) { Dock = DockStyle.Fill });
-            ucPR.LetterTabPage.Controls.Clear();
-            ucPR.LetterTabPage.Controls.Add(new UcLetters(pr.Id, pr.ControlNo, "PurchaseRequest") { Dock = DockStyle.Fill });
-            ucPR.tabAPR.Controls.Clear();
-            ucPR.tabAPR.Controls.Add(new UCAPRs(pr) { Dock = DockStyle.Fill });
-            ucPR.tabActions.Controls.Clear();
-            ucPR.tabActions.Controls.Add(new UCDocumentActions(pr.Id, pr.ControlNo, pr.BudgetControlNo, "PurchaseRequests") { Dock = DockStyle.Fill });
-            ucPR.tabAcceptance.Controls.Clear();
-            ucPR.tabAcceptance.Controls.Add(new UCAIReports(pr) { Dock = DockStyle.Fill });
-            ucPR.tabPIS.Controls.Clear();
-            ucPR.tabPIS.Controls.Add(new UCPIS(pr) { Dock = DockStyle.Fill });
-            ucPR.tabPAR.Controls.Clear();
-            ucPR.tabPAR.Controls.Add(new UCPAR(pr) { Dock = DockStyle.Fill });
+            ucPR.Invoke(new Action(async () =>
+            {
+                ucPR.lblHeader.Text = pr.ControlNo + " - " + pr.Description;
+                ucPR.dtDate.EditValue = pr.Date;
+                ucPR.txtControlNumber.Text = pr.ControlNo;
+                ucPR.txtDescription.Text = pr.Description;
+                ucPR.txtPurpose.Text = pr.Purpose;
+                ucPR.txtAmount.EditValue = pr.TotalAmount;
+                ucPR.txtAccountCode.EditValue = pr.Appropriations?.AccountCode + " - " + pr.Appropriations?.AccountName;
+                ucPR.chkIsClosed.Checked = pr.IsClosed;
+                ucPR.chkEarmarked.Checked = pr.IsEarmark ?? false;
+                ucPR.chkCancelled.Checked = pr.IsCancelled ?? false;
+                ucPR.txtReason.EditValue = pr.CancellationReason;
+                ucPR.ItemsGridView.ShowLoadingPanel();
+                ucPR.ItemsGridControl.DataSource = await unitOfWork.PRDetailsRepo.Fetch(x => x.PRId == pr.Id).OrderBy(x => x.ItemNo).ToListAsync();
+                ucPR.ItemsGridView.HideLoadingPanel();
+                ucPR.PQTabPage.Controls.Clear();
+                ucPR.PQTabPage.Controls.Add(new UCPQ(pr) { Dock = DockStyle.Fill });
+                ucPR.tabPO.Controls.Clear();
+                ucPR.tabPO.Controls.Add(new UCPO(pr) { Dock = DockStyle.Fill });
+                ucPR.tabAOQ.Controls.Clear();
+                ucPR.tabAOQ.Controls.Add(new UCAOQ(pr) { Dock = DockStyle.Fill });
+                ucPR.LetterTabPage.Controls.Clear();
+                ucPR.LetterTabPage.Controls.Add(new UcLetters(pr.Id, pr.ControlNo, "PurchaseRequest") { Dock = DockStyle.Fill });
+                ucPR.tabAPR.Controls.Clear();
+                ucPR.tabAPR.Controls.Add(new UCAPRs(pr) { Dock = DockStyle.Fill });
+                ucPR.tabActions.Controls.Clear();
+                ucPR.tabActions.Controls.Add(new UCDocumentActions(pr.Id, pr.ControlNo, pr.BudgetControlNo, "PurchaseRequests") { Dock = DockStyle.Fill });
+                ucPR.tabAcceptance.Controls.Clear();
+                ucPR.tabAcceptance.Controls.Add(new UCAIReports(pr) { Dock = DockStyle.Fill });
+                ucPR.tabPIS.Controls.Clear();
+                ucPR.tabPIS.Controls.Add(new UCPIS(pr) { Dock = DockStyle.Fill });
+                ucPR.tabPAR.Controls.Clear();
+                ucPR.tabPAR.Controls.Add(new UCPAR(pr) { Dock = DockStyle.Fill });
+                ucPR.tabRIS.Controls.Clear();
+                ucPR.tabRIS.Controls.Add(new UCRIS(pr.Id) { Dock = DockStyle.Fill });
+                ucPR.tabICS.Controls.Clear();
+                ucPR.tabICS.Controls.Add(new UCICS(pr.Id) { Dock = DockStyle.Fill });
+            }));
         }
 
-        public void Search(string search)
+        public async void Search(string search)
         {
-            Search(search, false);
+            await Search(search, false);
         }
 
-        public void Search(string search, bool byYear)
+        public async Task Search(string search, bool byYear)
         {
             try
             {
+                ucPR.PRGrid.ShowLoadingPanel();
                 if (byYear)
                 {
                     _search(search);
@@ -568,19 +600,67 @@ namespace Win.BL
                 }
                 UnitOfWork unitOfWork = new UnitOfWork();
                 StaticSettings staticSettings = new StaticSettings();
-                var status = ucPR.chkIsClosed.Checked;
+                var status = ucPR.cboStatus.EditValue;
 
-                ucPR.PRGridControl.DataSource = new BindingList<PurchaseRequests>(unitOfWork.PurchaseRequestsRepo.Get(x => x.Year == staticSettings.Year && (x.OfficeId == staticSettings.OfficeId && (x.Description.Contains(search) || x.ControlNo == search)) && x.IsClosed == status));
-                if (search.ToDecimal() > 0)
+                var iqry = unitOfWork.PurchaseRequestsRepo.Fetch(x =>
+                    x.Year == staticSettings.Year && (x.OfficeId == staticSettings.OfficeId));
+
+
+                switch (ucPR.cboStatus.EditValue)
                 {
-                    var amount = search.ToDecimal();
-                    ucPR.PRGridControl.DataSource = new BindingList<PurchaseRequests>(unitOfWork.PurchaseRequestsRepo.Get(x => x.Year == staticSettings.Year && (x.OfficeId == staticSettings.OfficeId && (x.TotalAmount >= amount && x.TotalAmount <= amount)) && x.IsClosed == status));
+                    case "Completed":
+                        iqry = iqry.Where(x => x.IsClosed == true);
+                        break;
+                    case "Earmarked":
+                        iqry = iqry.Where(x => x.IsEarmark == true);
+                        break;
+                    case "Cancelled":
+                        iqry = iqry.Where(x => x.IsCancelled == true);
+                        break;
+                    case "Ongoing":
+                        iqry = iqry.Where(x => x.IsCancelled == false || x.IsClosed == false || x.IsEarmark == false);
+                        break;
+
                 }
 
+                //Completed
+                //          Earmarked
+                //            Cancelled
+
+
+                if (iqry.Any(x => (x.Description.Contains(search) || x.ControlNo == search)))
+                {
+
+
+                    iqry = iqry.Where(x => (x.Description.Contains(search) || x.ControlNo == search));
+
+
+                }
+                else
+                {
+                    if (search.ToDecimal() > 0)
+                    {
+                        var amount = search.ToDecimal();
+                        iqry = iqry.Where(x => (x.TotalAmount >= amount && x.TotalAmount <= amount));
+
+                    }
+                }
+
+                ucPR.PRGridControl.DataSource =
+                    new BindingList<PurchaseRequests>(
+                        await iqry.ToListAsync());
+
+                ucPR.PRGrid.HideLoadingPanel();
                 if (ucPR.PRGridControl.DataSource is BindingList<PurchaseRequests> list)
                 {
-                    Detail(list.FirstOrDefault());
+                    Detail(await iqry.FirstOrDefaultAsync());
                 }
+
+                //if (!string.IsNullOrEmpty(ucPR.cboStatus.EditValue.ToString()))
+                //{
+                //    var amount = search.ToDecimal();
+                //    ucPR.PRGridControl.DataSource = new BindingList<PurchaseRequests>(await unitOfWork.PurchaseRequestsRepo.GetAsync(x => x.Year == staticSettings.Year && (x.OfficeId == staticSettings.OfficeId && (x.TotalAmount >= amount && x.TotalAmount <= amount)) && x.IsClosed == status));
+                //}
             }
             catch (Exception exception)
             {

@@ -453,6 +453,9 @@
             this.txtPGSOfficer.Properties.Appearance.Options.UseFont = true;
             this.txtPGSOfficer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtPGSOfficer.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Person", "Person"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Position", "Position")});
             this.txtPGSOfficer.Properties.DisplayMember = "Person";
             this.txtPGSOfficer.Properties.NullText = "";
             this.txtPGSOfficer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;

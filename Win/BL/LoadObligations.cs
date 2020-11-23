@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -167,23 +168,37 @@ namespace Win.BL
         public async void Init()
         {
             var staticSettings = new StaticSettings();
+            var ft = Win.Properties.Settings.Default.FundType;
+
             uc.lblStatus.Text = "Querying...";
             uc.OBGridView.ShowLoadingPanel();
 
-            uc.OBGridControl.DataSource = await Task.Run(() => new UnitOfWork().ObligationsRepo.Get(m => m.Year == year && m.OfficeId == staticSettings.OfficeId,
-               orderBy: x => x.OrderByDescending(m => m.Id), includeProperties: "Payees,ORDetails,CreatedByUser"));
+
+            if (Win.Properties.Settings.Default.FundType != "GF")
+            {
+                uc.OBGridControl.DataSource = await new UnitOfWork().ObligationsRepo.Fetch(
+                    m => m.OfficeId == staticSettings.OfficeId && m.FT == ft,
+                    orderBy: x => x.OrderByDescending(m => m.Id), includeProperties: "Payees,ORDetails,CreatedByUser").ToListAsync();
+            }
+            else
+            {
+                uc.OBGridControl.DataSource = await new UnitOfWork().ObligationsRepo.Fetch(
+                    m => m.Year == year && m.OfficeId == staticSettings.OfficeId && m.FT == ft,
+                    orderBy: x => x.OrderByDescending(m => m.Id), includeProperties: "Payees,ORDetails,CreatedByUser").ToListAsync();
+            }
+
             uc.lblStatus.Text = "";
             //var res = new UnitOfWork(false, false).ObligationsRepo
             //    .Get(m => m.Year == year).Where(x => x.OfficeId == staticSettings.OfficeId).ToList();
             //uc.OBGridControl.DataSource = new BindingList<Obligations>(res);
             if (uc.OBGridView.GetFocusedRow() is Obligations item)
             {
-                Detail(await Task.Run(() => new UnitOfWork(false, false).ObligationsRepo.Find(m => m.Id == item.Id, "Payees,ORDetails,CreatedByUser")));
+                Detail(await new UnitOfWork().ObligationsRepo.Fetch(m => m.Id == item.Id, "Payees,ORDetails,CreatedByUser").FirstOrDefaultAsync());
             }
 
             uc.lblTotalOf.Text =
-                $@"Total of: {new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year).Count(x => x.OfficeId == staticSettings.OfficeId)}";
-
+                $@"Total of: {new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year).Select(x => new { x.OfficeId }).Count(x => x.OfficeId == staticSettings.OfficeId)}";
+            uc.OBGridView.HideLoadingPanel();
         }
 
         public async void Detail(Obligations item)
@@ -199,15 +214,25 @@ namespace Win.BL
                 uc.txtOffice.Text = item.Payees?.Office;
                 uc.txtAddress.Text = item.Payees?.Address;
                 uc.txtORDescription.Text = item.Description;
-                uc.txtBudgetOfficer.Text = item.PBO;
-                uc.txtChiefOfficer.Text = item.Chief;
-                uc.txtPosition.Text = item.ChiefPosition;
+                if (item.CreatedByUser.Offices.IsDivision != true)
+                {
+                    uc.txtRO.Text = item.OBRApprovedBy;
+                    uc.txtROPOs.Text = item.OBRApprovedByPos;
+                }
+                else
+                {
+
+                    uc.txtChiefOfficer.Text = item.Chief;
+                    uc.txtPosition.Text = item.ChiefPosition;
+                }
+
+
                 uc.txtAmount.Text = item.Amount.ToString("n2");
                 uc.txtStatus.Text = item.Status;
                 uc.txtBudgetCtl.Text = item.BudgetControlNo;
                 uc.txtParticular.Text = item.DVParticular;
                 uc.txtAdjustedAmount.Text = item.TotalAdjustedAmount?.ToString("n2");
-                uc.ORDetailGridControl.DataSource = new BindingList<ORDetails>(await Task.Run(() => item.ORDetails.ToList()));
+                uc.ORDetailGridControl.DataSource = new BindingList<ORDetails>(await new UnitOfWork().ORDetailsRepo.Fetch(x => x.ObligationId == item.Id).ToListAsync());
                 uc.tabPayroll.Controls.Clear();
                 uc.tabPayroll.Controls.Add(new UCPayrolls(item.Id) { Dock = DockStyle.Fill });
                 uc.tabPayrollWages.Controls.Clear();
@@ -234,7 +259,10 @@ namespace Win.BL
                 {
                     uc.lblParticulars.Text = obr.Particulars;
                 }
-                uc.OBGridView.HideLoadingPanel();
+
+                uc.tabOT.Controls.Clear();
+                uc.tabOT.Controls.Add(new UCPayrollOT(item.Id){Dock=DockStyle.Fill});
+
             }
             catch (Exception exception)
             {
@@ -256,7 +284,10 @@ namespace Win.BL
             }
 
             var staticSettings = new StaticSettings();
-            var ob = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year && m.OfficeId == staticSettings.OfficeId);
+
+            var ob = new UnitOfWork().ObligationsRepo.Fetch(m => m.Year == year && m.OfficeId == staticSettings.OfficeId && m.FT == staticSettings.FT);
+            if (staticSettings.FT != "GF")
+                ob = new UnitOfWork().ObligationsRepo.Fetch(m => m.FT == staticSettings.FT && m.OfficeId == staticSettings.OfficeId);
             if (ob.Any(x => x.Description.Contains(search)))
                 ob = ob.Where(x => x.Description.Contains(search));
             else if (ob.Any(x => x.ControlNo.Contains(search)))
@@ -284,7 +315,7 @@ namespace Win.BL
         private void _search(string search)
         {
             var staticSettings = new StaticSettings();
-            var ob = new UnitOfWork().ObligationsRepo.Fetch(m => m.OfficeId == staticSettings.OfficeId);
+            var ob = new UnitOfWork().ObligationsRepo.Fetch(m => m.OfficeId == staticSettings.OfficeId && m.FT == staticSettings.FT);
             if (ob.Any(x => x.Description.Contains(search)))
                 ob = ob.Where(x => x.Description.Contains(search));
             else if (ob.Any(x => x.ControlNo.Contains(search)))

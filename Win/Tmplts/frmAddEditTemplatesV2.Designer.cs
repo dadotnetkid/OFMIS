@@ -138,7 +138,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(9, 30);
+            this.labelControl1.Location = new System.Drawing.Point(9, 21);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(79, 13);
             this.labelControl1.TabIndex = 32;
@@ -146,22 +146,23 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(62, 8);
+            this.labelControl2.Location = new System.Drawing.Point(537, 24);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(24, 13);
             this.labelControl2.TabIndex = 32;
             this.labelControl2.Text = "Type";
+            this.labelControl2.Visible = false;
             // 
             // txtTemplateName
             // 
-            this.txtTemplateName.Location = new System.Drawing.Point(94, 27);
+            this.txtTemplateName.Location = new System.Drawing.Point(94, 18);
             this.txtTemplateName.Name = "txtTemplateName";
             this.txtTemplateName.Size = new System.Drawing.Size(319, 20);
             this.txtTemplateName.TabIndex = 33;
             // 
             // cboType
             // 
-            this.cboType.Location = new System.Drawing.Point(94, 6);
+            this.cboType.Location = new System.Drawing.Point(569, 22);
             this.cboType.Name = "cboType";
             this.cboType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -172,6 +173,7 @@
             "Plain"});
             this.cboType.Size = new System.Drawing.Size(319, 20);
             this.cboType.TabIndex = 34;
+            this.cboType.Visible = false;
             // 
             // panel2
             // 
@@ -958,7 +960,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmAddEditTemplatesV2.IconOptions.Icon")));
             this.Name = "frmAddEditTemplatesV2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Edit Templates";

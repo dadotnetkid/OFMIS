@@ -12,11 +12,13 @@ namespace Models.ViewModels
         public List<FundTypeVM> FundTypes { get; set; }
         public int OfficeId { get; set; }
         public int Year { get; set; }
+        public string FT { get; set; }
+
         public void Generate()
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             var res = new List<FundTypeVM>();
-            foreach (var i in unitOfWork.FundTypesRepo.Fetch().OrderBy(x=>x.ItemNumber))
+            foreach (var i in unitOfWork.FundTypesRepo.Fetch().OrderBy(x => x.ItemNumber))
             {
                 var vm = new FundTypeVM()
                 {
@@ -26,7 +28,7 @@ namespace Models.ViewModels
                     Year = Year
                 };
 
-                vm.Generate();
+                vm.Generate(FT);
                 res.Add(vm);
             }
 
@@ -38,9 +40,13 @@ namespace Models.ViewModels
 
     public class FundTypeVM : FundTypes
     {
-        public void Generate()
+        private string ft;
+
+        public void Generate(string ft)
         {
+            this.ft = ft;
             this.AppropriationVms = this._appropriationVMs;
+
         }
 
         public List<AppropriationVM> AppropriationVms { get; set; }
@@ -51,8 +57,10 @@ namespace Models.ViewModels
 
                 UnitOfWork unitOfWork = new UnitOfWork();
                 var res = new List<AppropriationVM>();
-                foreach (var i in unitOfWork.AppropriationsRepoRepo.Get(x => x.FundTypeId == Id && x.OfficeId == OfficeId && x.Year == Year).Where(x => x.Allotments.Any()))
+
+                foreach (var i in unitOfWork.AppropriationsRepoRepo.Get(x => x.FundTypeId == Id && x.OfficeId == OfficeId && x.Year == Year && x.FT == ft).Where(x => x.Allotments.Any()))
                 {
+
                     var vm = new AppropriationVM()
                     {
                         Id = i.Id,
@@ -63,7 +71,7 @@ namespace Models.ViewModels
                         AccountName = i.AccountName,
                         Appropriation = i.Appropriation,
                         OfficeId = OfficeId,
-                        Year = Year
+                        Year = Year,
 
                     };
                     vm.Generate();
@@ -81,6 +89,7 @@ namespace Models.ViewModels
 
     public class AppropriationVM : Appropriations
     {
+        public decimal? TotalAppropriationBalance { get; set; }
         public void Generate()
         {
             AllotmentVms = _allotmentVM;
@@ -93,15 +102,18 @@ namespace Models.ViewModels
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
                 var res = new List<AllotmentVM>();
+                var balance = this.Appropriation;
                 foreach (var i in unitOfWork.AllotmentsRepo.Get(x => x.AppropriationId == Id))
                 {
+                    balance = balance - i.AllotmentAmount;
                     res.Add(new AllotmentVM()
                     {
                         Id = i.Id,
                         AppropriationId = i.AppropriationId,
                         AllotmentAmount = i.AllotmentAmount,
                         AllotmentDate = i.AllotmentDate,
-                        Remarks = i.Remarks
+                        Remarks = i.Remarks,
+                        AllotmentBalance = balance
                     });
 
                 }
@@ -122,6 +134,7 @@ namespace Models.ViewModels
 
     public class AllotmentVM : Allotments
     {
-
+        public decimal? AllotmentBalance { get; set; }
     }
 }
+//[FundTypes.AppropriationVms.Appropriation]-[AllotmentAmount]

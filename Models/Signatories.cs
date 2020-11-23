@@ -17,10 +17,10 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Signatories()
         {
-            this.BACMembers = new HashSet<AOQ>();
             this.BACChairperson = new HashSet<AOQ>();
             this.Liquidations = new HashSet<Liquidations>();
             this.Liquidations1 = new HashSet<Liquidations>();
+            this.BacMembers = new HashSet<AOQ>();
         }
     
         public int Id { get; set; }
@@ -34,13 +34,13 @@ namespace Models
         public Nullable<int> EmployeeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AOQ> BACMembers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AOQ> BACChairperson { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liquidations> Liquidations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liquidations> Liquidations1 { get; set; }
         public virtual Employees Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AOQ> BacMembers { get; set; }
     }
 }

@@ -194,7 +194,7 @@ namespace Win.BL
                 }
                 if (frm.chkClosed.Checked)
                 {
-                    if (!unitOfWork.DocumentActionsRepo.Fetch(x => x.ActionTaken == "Transaction completed" && x.RefId == obligations.Id && x.TableName == "Obligations").Any())
+                    if (!unitOfWork.DocumentActionsRepo.Fetch(x => x.ActionTaken.Contains("Transaction completed") && x.RefId == obligations.Id && x.TableName == "Obligations").Any())
                         unitOfWork.DocumentActionsRepo.Insert(new DocumentActions()
                         {
                             ControlNo = obligations.ControlNo,
@@ -202,11 +202,16 @@ namespace Win.BL
                             ActionDate = DateTime.Now,
                             DateCreated = DateTime.Now,
                             CreatedBy = User.UserId,
-                            ActionTaken = "Transaction completed",
+                            ActionTaken = $"Transaction completed [{obligations.ControlNo}]",
                             RefId = obligations.Id,
                             TableName = "Obligations",
                         });
                 }
+                obligations.IsCancelled = this.frm.chkCancelled.Checked;
+
+                if (obligations.IsCancelled == true)
+                    obligations.CancelReason = XtraInputBox.Show("Enter Cancel Reason", "Cancel Reason", "");
+
                 unitOfWork.Save();
                 this.isClosed = true;
             }
@@ -228,7 +233,7 @@ namespace Win.BL
                 var staticSetting = new StaticSettings();
                 UnitOfWork unitOfWork = new UnitOfWork();
                 var chiefOfOffice = unitOfWork.Signatories.Find(m => m.Year == staticSetting.Year);
-                var item = unitOfWork.ObligationsRepo.Find(m => m.Id == obligations.Id);
+                var item = unitOfWork.ObligationsRepo.Find(m => m.Id == obligations.Id, "CreatedByUser");
                 if (item == null) return;
                 frm.txtDate.EditValue = item.Date;
                 frm.txtControl.EditValue = item.ControlNo;
@@ -239,7 +244,11 @@ namespace Win.BL
                 frm.txtDescription.EditValue = item.Description;
                 frm.txtBudgetOfficer.EditValue = item.PBO;
                 frm.cboApprovedBy.EditValue = item.OBRApprovedBy;
-                frm.txtChiefOfficer.EditValue = item.Chief;
+                if (item.CreatedByUser.Offices.IsDivision != true)
+                {
+                    frm.txtChiefOfficer.ReadOnly = true;
+                    frm.txtChiefOfficer.EditValue = item.Chief;
+                }
 
                 this.obId = obligations?.Id ?? obId;
                 this.controlNo = obligations?.ControlNo ?? controlNo;
@@ -305,7 +314,8 @@ namespace Win.BL
                     PRNo = obligations?.PRNo,
                     OfficeId = new StaticSettings().OfficeId,
                     CreatedBy = User.UserId,
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
+                    FT = Win.Properties.Settings.Default.FundType
                 };
                 unitOfWork.ObligationsRepo.Insert(obligations);
                 unitOfWork.Save();
@@ -344,6 +354,7 @@ namespace Win.BL
                     ORDetails = obligations?.ORDetails ?? new List<ORDetails>(),
                     PRNo = obligations?.PRNo,
                     OfficeId = new StaticSettings().OfficeId,
+                    FT = Win.Properties.Settings.Default.FundType
                 };
                 unitOfWork.ObligationsRepo.Insert(obligations);
                 unitOfWork.Save();

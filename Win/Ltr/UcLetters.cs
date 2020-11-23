@@ -92,7 +92,8 @@ namespace Win.Ltr
             StaticSettings staticSettings = new StaticSettings();
             this.LetterGridControl.DataSource = await Task.Run(() => new BindingList<Letters>(
                 unitOfWork.LettersRepo.Get(x => (x.RefId == refId && x.TableName == this.tableName)
-                )));}
+                )));
+        }
 
         public void Detail(Letters item)
         {
@@ -103,6 +104,8 @@ namespace Win.Ltr
         {
             throw new NotImplementedException();
         }
+
+     
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
@@ -261,6 +264,7 @@ namespace Win.Ltr
                         RefId = item.RefId,
                         Salutation = item.Salutation,
                         SignatoriesPosition = item.SignatoriesPosition,
+                        Signatories = item.Signatories,
                         TableName = item.TableName,
                         Template = item.Template,
                         Title = item.Title,
@@ -278,6 +282,11 @@ namespace Win.Ltr
                     MessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void LetterGridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+          
         }
     }
 }

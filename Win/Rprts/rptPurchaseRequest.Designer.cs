@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rptPurchaseRequest));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.xrLabel43 = new DevExpress.XtraReports.UI.XRLabel();
@@ -38,6 +39,7 @@
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel44 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPanel1 = new DevExpress.XtraReports.UI.XRPanel();
+            this.xrLabel45 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel42 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
@@ -79,7 +81,7 @@
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
             this.GroupFooter2 = new DevExpress.XtraReports.UI.GroupFooterBand();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.xrCrossBandBox1 = new DevExpress.XtraReports.UI.XRCrossBandBox();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrLine8 = new DevExpress.XtraReports.UI.XRLine();
@@ -136,7 +138,6 @@
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
             this.xrLabel63 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel62 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel45 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -236,6 +237,17 @@
             this.xrPanel1.Name = "xrPanel1";
             this.xrPanel1.SizeF = new System.Drawing.SizeF(798.9584F, 75F);
             this.xrPanel1.StylePriority.UseBorders = false;
+            // 
+            // xrLabel45
+            // 
+            this.xrLabel45.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ControlNo]")});
+            this.xrLabel45.LocationFloat = new DevExpress.Utils.PointFloat(587.7401F, 1.999992F);
+            this.xrLabel45.Multiline = true;
+            this.xrLabel45.Name = "xrLabel45";
+            this.xrLabel45.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel45.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel45.Text = "xrLabel45";
             // 
             // xrLabel42
             // 
@@ -600,8 +612,9 @@
             this.xrTableCell6.StylePriority.UseTextAlignment = false;
             this.xrTableCell6.Text = "xrTableCell6";
             this.xrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            this.xrTableCell6.TextFormatString = "{0:#,#.00}";
             this.xrTableCell6.Weight = 0.62499965667724622D;
+            this.xrTableCell6.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell6_BeforePrint);
+            this.xrTableCell6.AfterPrint += new System.EventHandler(this.xrTableCell6_AfterPrint);
             // 
             // GroupHeader2
             // 
@@ -806,7 +819,7 @@
             this.xrLabel7.StylePriority.UseTextAlignment = false;
             this.xrLabel7.Text = "xrLabel12";
             this.xrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrLabel7.TextFormatString = "{0:PHP #,##.00}";
+            this.xrLabel7.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel7_BeforePrint);
             // 
             // xrControlStyle1
             // 
@@ -1484,17 +1497,6 @@
             this.xrLabel62.StylePriority.UseTextAlignment = false;
             this.xrLabel62.Text = "GO-PITD";
             this.xrLabel62.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
-            // xrLabel45
-            // 
-            this.xrLabel45.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ControlNo]")});
-            this.xrLabel45.LocationFloat = new DevExpress.Utils.PointFloat(587.7401F, 1.999992F);
-            this.xrLabel45.Multiline = true;
-            this.xrLabel45.Name = "xrLabel45";
-            this.xrLabel45.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel45.SizeF = new System.Drawing.SizeF(100F, 23F);
-            this.xrLabel45.Text = "xrLabel45";
             // 
             // rptPurchaseRequest
             // 

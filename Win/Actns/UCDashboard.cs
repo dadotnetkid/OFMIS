@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Data.Entity;
 using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,18 +32,14 @@ namespace Win.Actns
             {
                 DashboardGridView.ShowLoadingPanel();
                 UnitOfWork unitOfWork = new UnitOfWork();
-                var documents = await Task.Run(() => unitOfWork.DocumentActionsRepo.Get(x =>
-                    x.RoutedToUsers.Any(m => m.Id == User.UserId) && x.IsSend == true && x.isDone != true));
-                this.cboUsers.Properties.DataSource = await Task.Run(() => unitOfWork.UsersRepo.Get(x => x.OfficeId == staticSettings.OfficeId));
-                DashboardGridControl.DataSource = documents;
-                //txtSearchKey.Properties.DataSource = await Task.Run(() =>
-                //  {
-                //      var userIds = unitOfWork.UsersRepo.Fetch(x => x.OfficeId == staticSettings.OfficeId)
-                //          .Select(x => x.Id);
-                //      return unitOfWork.DocumentActionsRepo.Fetch(x => x.RoutedToUsers.Any(m => userIds.Contains(m.Id))).Distinct()
-                //          .ToList();
-                //  });
-                this.documentActionsBindingSource.DataSource = documents;
+                var documents = unitOfWork.DocumentActionsRepo.Fetch(x =>
+                    x.RoutedToUsers.Any(m => m.Id == User.UserId) && x.IsSend == true && x.isDone != true, includeProperties: "RoutedToUsers");
+
+
+                this.cboUsers.Properties.DataSource = await unitOfWork.UsersRepo.Fetch(x => x.OfficeId == staticSettings.OfficeId).ToListAsync();
+                DashboardGridControl.DataSource = await documents.ToListAsync();
+
+                this.documentActionsBindingSource.DataSource = await documents.ToListAsync();
 
                 this.cboUsers.EditValue = User.UserId;
                 if (!User.UsersInRole("Super Administrator"))
@@ -51,7 +48,7 @@ namespace Win.Actns
                 }
 
                 this.lblTotalCount.Text = $@"Total Count {documents.Count()}";
-                this.Detail(await Task.Run(() => documents.FirstOrDefault()));
+                //  this.Detail(await documents.FirstOrDefaultAsync());
                 DashboardGridView.HideLoadingPanel();
             }
             catch (Exception e)
@@ -60,15 +57,35 @@ namespace Win.Actns
             }
         }
 
-        private async void Detail(DocumentActions document)
+        private async Task Detail(DocumentActions document)
         {
             if (document == null)
                 return;
+            UnitOfWork unitOfWork = new UnitOfWork();
             ActionTakenGridView.ShowLoadingPanel();
-            this.ActionTakenGridControl.DataSource =
-                await Task.Run(() => new UnitOfWork().DocumentActionsRepo.Get(x =>
-                        x.RefId == document.RefId && x.TableName == document.TableName,
-                    orderBy: x => x.OrderByDescending(m => m.DateCreated)));
+            var list = await new UnitOfWork().DocumentActionsRepo.Fetch(x =>
+                     x.RefId == document.RefId && x.TableName == document.TableName,
+                orderBy: x => x.OrderByDescending(m => m.DateCreated), includeProperties: "RoutedToUsers").ToListAsync();
+            if (document.TableName == "PurchaseRequests")
+            {
+                var po = await unitOfWork.PurchaseOrdersRepo.GetAsync(x => x.PRId == document.RefId);
+
+                foreach (var i in po)
+                {
+                    foreach (var obr in i.Obligations)
+                    {
+
+                        list.AddRange(unitOfWork.DocumentActionsRepo.Get(x =>
+                            x.RefId == obr.Id && x.TableName == "Obligations"));
+                    }
+
+
+                }
+            }
+
+
+            this.ActionTakenGridControl.DataSource = list;
+
             ActionTakenGridView.HideLoadingPanel();
         }
 
@@ -135,11 +152,11 @@ namespace Win.Actns
             }
         }
 
-        private void DashboardGridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        private async void DashboardGridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (DashboardGridView.GetFocusedRow() is DocumentActions item)
             {
-                Detail(item);
+                await Detail(item);
             }
         }
 
@@ -198,7 +215,12 @@ namespace Win.Actns
                 UnitOfWork unitOfWork = new UnitOfWork();
                 item = unitOfWork.DocumentActionsRepo.Find(x => x.Id == item.Id, "RoutedToUsers");
                 item.RoutedToUsers.Remove(unitOfWork.UsersRepo.Find(x => x.Id == User.UserId));
+                if (!item.RoutedToUsers.Any())
+                {
+                    item.IsSend = false;
+                }
                 unitOfWork.Save();
+
                 Init();
             }
         }

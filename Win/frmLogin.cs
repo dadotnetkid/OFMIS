@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using Helpers;
 using Models;
 using Models.Repository;
+using Models.Startups;
 using Win.Properties;
 
 namespace Win
@@ -52,27 +53,27 @@ namespace Win
         private void BtnLogin_Click(object sender, EventArgs e)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
-            if (new CMS.Models.cmsEntities().Database.Connection.State == ConnectionState.Open)
-            {
-                var cms_user = new UnitOfWork(new CMS.Models.cmsEntities()).CMS_USERRepo.Find(x => x.USER_nme == txtUserName.Text);
+            //if (new CMS.Models.cmsEntities().Database.Connection.State == ConnectionState.Open)
+            //{
+            //    var cms_user = new UnitOfWork(new CMS.Models.cmsEntities()).CMS_USERRepo.Find(x => x.USER_nme == txtUserName.Text);
 
-                if (cms_user != null)
-                {
-                    if (!unitOfWork.UsersRepo.Fetch(x => x.UserName == cms_user.USER_nme).Any())
-                        unitOfWork.UsersRepo.Insert(new Models.Users()
-                        {
-                            Id = Guid.NewGuid().ToString(),
-                            UserName = cms_user.USER_nme,
-                            Email = cms_user.USER_email,
-                            FirstName = cms_user.USER_fnm,
-                            MiddleName = cms_user.USER_mnm,
-                            LastName = cms_user.USER_lnm,
-                            SecurityStamp = "0ram@1234xxxxxxxxxxtttttuuuuuiiiiio",
-                            PasswordHash = cms_user.USER_pwd
-                        });
-                    unitOfWork.Save();
-                }
-            }
+            //    if (cms_user != null)
+            //    {
+            //        if (!unitOfWork.UsersRepo.Fetch(x => x.UserName == cms_user.USER_nme).Any())
+            //            unitOfWork.UsersRepo.Insert(new Models.Users()
+            //            {
+            //                Id = Guid.NewGuid().ToString(),
+            //                UserName = cms_user.USER_nme,
+            //                Email = cms_user.USER_email,
+            //                FirstName = cms_user.USER_fnm,
+            //                MiddleName = cms_user.USER_mnm,
+            //                LastName = cms_user.USER_lnm,
+            //                SecurityStamp = "0ram@1234xxxxxxxxxxtttttuuuuuiiiiio",
+            //                PasswordHash = cms_user.USER_pwd
+            //            });
+            //        unitOfWork.Save();
+            //    }
+            //}
 
             unitOfWork = new UnitOfWork();
             var user = unitOfWork.UsersRepo.Find(m => m.UserName == txtUserName.Text);

@@ -17,6 +17,17 @@ namespace Models.Repository
                 : string.Empty;
         }
 
+        public static int? GetOfficeId(this IIdentity user)
+        {
+            if (user is ClaimsIdentity claimIdent && claimIdent.HasClaim(c => c.Type == "OfficeId"))
+            {
+                string ret = claimIdent.FindFirst("OfficeId").Value ?? null;
+                if (ret == null)
+                    return null;
+                return Convert.ToInt32(ret);
+            }
+            return null;
+        }
         public static string GetEmail(this IIdentity user)
         {
             return user is ClaimsIdentity claimIdent && claimIdent.HasClaim(c => c.Type == "Email")

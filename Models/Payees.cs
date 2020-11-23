@@ -18,8 +18,8 @@ namespace Models
         public Payees()
         {
             this.Obligations = new HashSet<Obligations>();
-            this.Employees = new HashSet<Employees>();
             this.Liquidations = new HashSet<Liquidations>();
+            this.Employees = new HashSet<Employees>();
         }
     
         public int Id { get; set; }
@@ -33,8 +33,8 @@ namespace Models
         public virtual ICollection<Obligations> Obligations { get; set; }
         public virtual Offices Offices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employees> Employees { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liquidations> Liquidations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Employees> Employees { get; set; }
     }
 }

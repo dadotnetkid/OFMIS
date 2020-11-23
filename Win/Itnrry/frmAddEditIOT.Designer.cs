@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditIOT));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblHeader = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
@@ -71,12 +71,13 @@
             this.colPerDiems = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDailyAllowance = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotalAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repoSpin = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.colDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.dtTime = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.repoSpin = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.colInclusiveTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPosition.Properties)).BeginInit();
@@ -93,10 +94,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.itenaryDetailsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IOTGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tsTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoSpin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoSpin)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -107,7 +108,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(912, 54);
+            this.panel1.Size = new System.Drawing.Size(998, 54);
             this.panel1.TabIndex = 103;
             // 
             // lblHeader
@@ -315,7 +316,7 @@
             this.dtTime,
             this.tsTime,
             this.repoSpin});
-            this.IOTGridControl.Size = new System.Drawing.Size(890, 313);
+            this.IOTGridControl.Size = new System.Drawing.Size(976, 313);
             this.IOTGridControl.TabIndex = 111;
             this.IOTGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.IOTGridView});
@@ -337,7 +338,8 @@
             this.colPerDiems,
             this.colDailyAllowance,
             this.colTotalAmount,
-            this.colDelete});
+            this.colDelete,
+            this.colInclusiveTime});
             this.IOTGridView.GridControl = this.IOTGridControl;
             this.IOTGridView.Name = "IOTGridView";
             this.IOTGridView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
@@ -365,80 +367,107 @@
             this.colPlaceVisited.FieldName = "PlaceVisited";
             this.colPlaceVisited.Name = "colPlaceVisited";
             this.colPlaceVisited.Visible = true;
-            this.colPlaceVisited.VisibleIndex = 2;
+            this.colPlaceVisited.VisibleIndex = 3;
             this.colPlaceVisited.Width = 96;
             // 
             // colDepartureTime
             // 
             this.colDepartureTime.ColumnEdit = this.tsTime;
-            this.colDepartureTime.DisplayFormat.FormatString = "hh:mm:ss tt";
-            this.colDepartureTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colDepartureTime.DisplayFormat.FormatString = "hh:mm tt";
+            this.colDepartureTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colDepartureTime.FieldName = "DepartureTime";
             this.colDepartureTime.Name = "colDepartureTime";
+            this.colDepartureTime.UnboundType = DevExpress.Data.UnboundColumnType.DateTime;
             this.colDepartureTime.Visible = true;
-            this.colDepartureTime.VisibleIndex = 3;
+            this.colDepartureTime.VisibleIndex = 4;
             this.colDepartureTime.Width = 96;
             // 
             // tsTime
             // 
+            this.tsTime.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.tsTime.AutoHeight = false;
             this.tsTime.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tsTime.DisplayFormat.FormatString = "hh:mm tt";
+            this.tsTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.tsTime.EditFormat.FormatString = "hh:mm tt";
+            this.tsTime.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.tsTime.Name = "tsTime";
             // 
             // colArrivalTime
             // 
             this.colArrivalTime.ColumnEdit = this.tsTime;
-            this.colArrivalTime.DisplayFormat.FormatString = "hh:mm:ss tt";
-            this.colArrivalTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colArrivalTime.DisplayFormat.FormatString = "hh:mm tt";
+            this.colArrivalTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colArrivalTime.FieldName = "ArrivalTime";
             this.colArrivalTime.Name = "colArrivalTime";
+            this.colArrivalTime.UnboundType = DevExpress.Data.UnboundColumnType.DateTime;
             this.colArrivalTime.Visible = true;
-            this.colArrivalTime.VisibleIndex = 4;
+            this.colArrivalTime.VisibleIndex = 5;
             this.colArrivalTime.Width = 96;
             // 
             // colMeansOfTransportation
             // 
+            this.colMeansOfTransportation.Caption = "Means of Trans.";
             this.colMeansOfTransportation.FieldName = "MeansOfTransportation";
             this.colMeansOfTransportation.Name = "colMeansOfTransportation";
             this.colMeansOfTransportation.Visible = true;
-            this.colMeansOfTransportation.VisibleIndex = 5;
+            this.colMeansOfTransportation.VisibleIndex = 6;
             this.colMeansOfTransportation.Width = 96;
             // 
             // colTransportationFee
             // 
+            this.colTransportationFee.Caption = "Trans Fee";
+            this.colTransportationFee.DisplayFormat.FormatString = "n2";
+            this.colTransportationFee.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colTransportationFee.FieldName = "TransportationFee";
             this.colTransportationFee.Name = "colTransportationFee";
             this.colTransportationFee.Visible = true;
-            this.colTransportationFee.VisibleIndex = 6;
+            this.colTransportationFee.VisibleIndex = 7;
             this.colTransportationFee.Width = 96;
             // 
             // colPerDiems
             // 
+            this.colPerDiems.DisplayFormat.FormatString = "n2";
+            this.colPerDiems.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colPerDiems.FieldName = "PerDiems";
             this.colPerDiems.Name = "colPerDiems";
             this.colPerDiems.Visible = true;
-            this.colPerDiems.VisibleIndex = 7;
+            this.colPerDiems.VisibleIndex = 8;
             this.colPerDiems.Width = 96;
             // 
             // colDailyAllowance
             // 
+            this.colDailyAllowance.Caption = "Other Exp.";
+            this.colDailyAllowance.DisplayFormat.FormatString = "n2";
+            this.colDailyAllowance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colDailyAllowance.FieldName = "DailyAllowance";
             this.colDailyAllowance.Name = "colDailyAllowance";
             this.colDailyAllowance.Visible = true;
-            this.colDailyAllowance.VisibleIndex = 8;
+            this.colDailyAllowance.VisibleIndex = 9;
             this.colDailyAllowance.Width = 96;
             // 
             // colTotalAmount
             // 
             this.colTotalAmount.ColumnEdit = this.repoSpin;
-            this.colTotalAmount.DisplayFormat.FormatString = "#,#.00";
+            this.colTotalAmount.DisplayFormat.FormatString = "n2";
             this.colTotalAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colTotalAmount.FieldName = "TotalAmount";
             this.colTotalAmount.Name = "colTotalAmount";
             this.colTotalAmount.Visible = true;
-            this.colTotalAmount.VisibleIndex = 9;
+            this.colTotalAmount.VisibleIndex = 10;
             this.colTotalAmount.Width = 111;
+            // 
+            // repoSpin
+            // 
+            this.repoSpin.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.repoSpin.AutoHeight = false;
+            this.repoSpin.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repoSpin.DisplayFormat.FormatString = "n2";
+            this.repoSpin.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.repoSpin.EditFormat.FormatString = "n2";
+            this.repoSpin.Name = "repoSpin";
             // 
             // colDelete
             // 
@@ -451,9 +480,9 @@
             // btnDelete
             // 
             this.btnDelete.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
             this.btnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnDelete_ButtonClick);
@@ -481,7 +510,7 @@
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
-            this.btnClose.Location = new System.Drawing.Point(795, 261);
+            this.btnClose.Location = new System.Drawing.Point(881, 261);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(105, 31);
             this.btnClose.TabIndex = 130;
@@ -494,23 +523,20 @@
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(688, 261);
+            this.btnSave.Location = new System.Drawing.Point(774, 261);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(101, 31);
             this.btnSave.TabIndex = 129;
             this.btnSave.Text = "Save ";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // repoSpin
+            // colInclusiveTime
             // 
-            this.repoSpin.AutoHeight = false;
-            this.repoSpin.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repoSpin.DisplayFormat.FormatString = "#,#.00";
-            this.repoSpin.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.repoSpin.EditFormat.FormatString = "#,#.00";
-            this.repoSpin.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.repoSpin.Name = "repoSpin";
+            this.colInclusiveTime.Caption = "Inc. Time";
+            this.colInclusiveTime.FieldName = "InclusiveTime";
+            this.colInclusiveTime.Name = "colInclusiveTime";
+            this.colInclusiveTime.Visible = true;
+            this.colInclusiveTime.VisibleIndex = 2;
             // 
             // frmAddEditIOT
             // 
@@ -518,7 +544,7 @@
             this.Appearance.Options.UseForeColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(912, 623);
+            this.ClientSize = new System.Drawing.Size(998, 623);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.IOTGridControl);
@@ -535,8 +561,8 @@
             this.Controls.Add(this.txtStation);
             this.Controls.Add(this.txtPurpose);
             this.Controls.Add(this.cboApprovedBy);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(914, 655);
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmAddEditIOT.IconOptions.Icon")));
+            this.MaximumSize = new System.Drawing.Size(1000, 655);
             this.Name = "frmAddEditIOT";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Edit Itenerary of Travel";
@@ -557,10 +583,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.itenaryDetailsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IOTGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tsTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoSpin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoSpin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -610,5 +636,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit dtTime;
         private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit tsTime;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repoSpin;
+        private DevExpress.XtraGrid.Columns.GridColumn colInclusiveTime;
     }
 }

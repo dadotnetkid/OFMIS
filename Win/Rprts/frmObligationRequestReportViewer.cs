@@ -21,8 +21,8 @@ namespace Win.Rprts
         public frmObligationRequestReportViewer()
         {
             InitializeComponent();
-
-            cboYearList.Properties.DataSource = new BindingList<Years>(new UnitOfWork().YearsRepo.Get());
+            StaticSettings staticSettings = new StaticSettings();
+            cboYearList.Properties.DataSource = new BindingList<Years>(new UnitOfWork().YearsRepo.Get(m => m.OfficeId == staticSettings.OfficeId));
         }
 
         private void btnPreview_Click(object sender, EventArgs e)
@@ -30,7 +30,12 @@ namespace Win.Rprts
             if (cboYearList.GetSelectedDataRow() is Years item)
             {
                 ObligationRequestViewModel model = new ObligationRequestViewModel();
-                model.GenerateReport(item.Year.ToInt(), new StaticSettings().OfficeId);
+                model.GenerateReport(vm =>
+                {
+                    var user = new UnitOfWork().UsersRepo.Find(x => x.Id == User.UserId);
+                    vm.PreparedBy = user?.FullName;
+                    vm.PreparedByPos = user?.Position;
+                },item.Year.ToInt(), new StaticSettings().OfficeId, Win.Properties.Settings.Default.FundType);
                 frmReportViewer frm = new frmReportViewer(new rptObligationRequests()
                 {
                     DataSource = new List<ObligationRequestViewModel>() { model }

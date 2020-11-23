@@ -199,13 +199,14 @@ namespace Win.BL
                 for (var i = 0; i <= item.PayrollDetails.Count() - 1; i++)
                 {
                     var row = dt.NewRow();
-                    row["Id"] = item.PayrollDetails.ToList()[i]?.Id;
-                    row["Name"] = item.PayrollDetails.ToList()[i]?.Name;
-                    row["ItemNumber"] = item.PayrollDetails.ToList()[i]?.ItemNumber;
-                    row["PayrollId"] = item.PayrollDetails.ToList()[i]?.PayrollId;
-                    row["Designation"] = item.PayrollDetails.ToList()[i]?.Designation;
-                    row["Total"] = item.PayrollDetails.ToList()[i]?.Total;
-                    row["EmployeeId"] = item.PayrollDetails.ToList()[i].EmployeeId;
+                    var detail = item.PayrollDetails.ToList()[i] as PayrollDetails;
+                    row["Id"] = detail?.Id;
+                    row["Name"] = detail?.Name;
+                    row["ItemNumber"] = detail?.ItemNumber;
+                    row["PayrollId"] = detail?.PayrollId;
+                    row["Designation"] = detail?.Designation;
+                    row["Total"] = detail?.Total;
+                    row["EmployeeId"] = detail?.EmployeeId??0;
                     for (var x = 0; x <= columnTitles.Count() - 1; x++)
                     {
                         var columnTitle = item.PayrollDetails.ToList()[i]?.ColumnTitle?.Split(',')
@@ -254,6 +255,7 @@ namespace Win.BL
                         ColumnEdit = frm.spinTotalRepo
                     };
                     c.DisplayFormat.FormatString = "n2";
+                    c.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
                     frm.PayrollGridView.Columns.Add(c);
                     index++;
                 }
@@ -267,6 +269,7 @@ namespace Win.BL
                     VisibleIndex = index
                 };
                 t.DisplayFormat.FormatString = "n2";
+                t.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
                 frm.PayrollGridView.Columns.Add(t);
             }
 

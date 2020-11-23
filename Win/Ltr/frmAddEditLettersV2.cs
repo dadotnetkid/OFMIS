@@ -53,7 +53,8 @@ namespace Win.Ltr
                     Signatories = staticSettings.Head,
                     SignatoriesPosition = staticSettings.HeadPos,
                     CreatedBy = User.UserId,
-                    DateCreated = DateTime.Now};
+                    DateCreated = DateTime.Now
+                };
                 UnitOfWork unitOfWork = new UnitOfWork();
                 unitOfWork.LettersRepo.Insert(letters);
                 unitOfWork.Save();
@@ -70,7 +71,8 @@ namespace Win.Ltr
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
-                this.officesBindingSource.DataSource = unitOfWork.OfficesRepo.Get();
+                this.templatesBindingSource.DataSource = unitOfWork.TemplatesRepo.Get(orderBy: x => x.OrderBy(m => m.Name));
+                this.officesBindingSource.DataSource = unitOfWork.OfficesRepo.Get(orderBy: x => x.OrderBy(m => m.OffcAcr));
                 this.txtBody.HtmlText = letters.Body;
                 this.cboType.EditValue = letters.Type;
                 this.cboTemplates.EditValue = letters.Template;
@@ -103,6 +105,7 @@ namespace Win.Ltr
                 txtTitle.Enabled = true;
                 txtTitle.Text = cboType.Text;
                 txtInsideAddress.Enabled = true;
+                cboOffice.Enabled = true;
             }
             if (type == "Plain")
             {
@@ -116,6 +119,7 @@ namespace Win.Ltr
                 txtCC.Enabled = false;
                 chkAbsence.Enabled = false;
                 dtSalutation.Enabled = false;
+                cboOffice.Enabled = false;
             }
 
         }
@@ -171,7 +175,7 @@ namespace Win.Ltr
         private void cboType_SelectedIndexChanged(object sender, EventArgs e)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
-            this.templatesBindingSource.DataSource = unitOfWork.TemplatesRepo.Get(x => x.Type == cboType.Text);
+            //  this.templatesBindingSource.DataSource = unitOfWork.TemplatesRepo.Get(x => x.Type == cboType.Text);
             DisableEditors(cboType.Text);
 
 

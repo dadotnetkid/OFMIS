@@ -92,7 +92,7 @@ namespace Win.Rprts
                     {
                         UserId = item.Id,
                         DateFrom = dtDateFrom.DateTime,
-                        DateTo = dtDateTo.DateTime,
+                        DateTo = dtDateTo.DateTime.AddHours(11).AddMinutes(59).AddSeconds(59),
                         Office = item.Offices?.OfficeName,
                         TelNo = item.Offices?.TelNo,
                         Address = item.Offices?.Address,
@@ -137,7 +137,8 @@ namespace Win.Rprts
             {
                 Text = "Sub Activity",
                 WidthF = 250.12F,
-
+                BorderWidth=1f,
+                Borders=DevExpress.XtraPrinting.BorderSide.All
             });
             while (dtFrom <= dtTo)
             {
@@ -145,8 +146,9 @@ namespace Win.Rprts
                 {
                     Text = dtFrom.ToString("dd"),
                     WidthF = 50f,
-                    TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-
+                    TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter,
+                    BorderWidth = 1f,
+                    Borders = DevExpress.XtraPrinting.BorderSide.All
                 });
                 dtFrom = dtFrom.AddDays(1);
             }
@@ -155,7 +157,9 @@ namespace Win.Rprts
             {
                 Text = "Total",
                 WidthF = 50f,
-                TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+                TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter,
+                BorderWidth = 1f,
+                Borders = DevExpress.XtraPrinting.BorderSide.All
             });
             rpt.tblHeader.Rows.Add(xrow);
             rpt.tblDetails.Rows.Clear();
@@ -172,6 +176,8 @@ namespace Win.Rprts
                 {
                     Text = property.SubActivity,
                     WidthF = 250.12F,
+                    BorderWidth = 1f,
+                    Borders = DevExpress.XtraPrinting.BorderSide.All
                 });
                 int subActivity = property.SubActivityId;
                 while (dtFrom <= dtTo)
@@ -184,7 +190,9 @@ namespace Win.Rprts
                     {
                         Text = doc.Count(x => x.SubActivityId == subActivity && (x.ActionDate >= _from && x.ActionDate <= _to)).ToString("0"),
                         WidthF = 50f,
-                        TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+                        TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter,
+                        BorderWidth = 1f,
+                        Borders = DevExpress.XtraPrinting.BorderSide.All
                     };
                     if (xrcell.Text == "0")
                     {
@@ -198,7 +206,9 @@ namespace Win.Rprts
                 {
                     Text = doc.Count(x => x.SubActivityId == subActivity && (x.ActionDate >= dtDateFrom.DateTime && x.ActionDate <= dtTo)).ToString("0"),
                     WidthF = 50f,
-                    TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+                    TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter,
+                    BorderWidth = 1f,
+                    Borders = DevExpress.XtraPrinting.BorderSide.All
                 });
                 rpt.tblDetails.Rows.Add(xrow);
 

@@ -105,7 +105,7 @@ namespace Win.Itnrry
                 }
 
                 unitOfWork.Save();
-
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -155,6 +155,7 @@ namespace Win.Itnrry
                     if (MessageBox.Show("Do you want to submit this?", "Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         return;
                     UnitOfWork unitOfWork = new UnitOfWork();
+                    item.TotalAmount = (item.PerDiems ?? 0) + (item.DailyAllowance ?? 0) + (item.TransportationFee ?? 0);
                     if (item.Id == 0)
                     {
                         item.CreatedBy = User.UserId;
@@ -186,19 +187,19 @@ namespace Win.Itnrry
 
         private void IOTGridView_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            if (IOTGridView.GetRow(e.RowHandle) is ItenaryDetails item)
-            {
-                if (item.Date != null)
-                {
-                    item.DepartureTime =
-                        Convert.ToDateTime(item.Date?.ToShortDateString() + " " +
-                                           item.DepartureTime?.ToShortTimeString());
-                    item.ArrivalTime =
-                        Convert.ToDateTime(item.Date?.ToShortDateString() + " " +
-                                           item.ArrivalTime?.ToShortTimeString());
-                }
+            //if (IOTGridView.GetRow(e.RowHandle) is ItenaryDetails item)
+            //{
+            //    if (item.Date != null)
+            //    {
+            //        item.DepartureTime =
+            //            Convert.ToDateTime(item.Date?.ToShortDateString() + " " +
+            //                               item.DepartureTime?.ToShortTimeString());
+            //        item.ArrivalTime =
+            //            Convert.ToDateTime(item.Date?.ToShortDateString() + " " +
+            //                               item.ArrivalTime?.ToShortTimeString());
+            //    }
 
-            }
+            //}
         }
 
         private void cboEmployeeName_EditValueChanged(object sender, EventArgs e)

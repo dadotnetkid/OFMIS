@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Models.Repository;
 using Models;
+using Win.Rprts;
+using Win.Xcanner;
+using DevExpress.XtraReports.UI;
 
 namespace Win.Itnrry
 {
@@ -51,6 +54,7 @@ namespace Win.Itnrry
                 DateCreated = DateTime.Now
             });
             frm.ShowDialog();
+            Init();
         }
 
         private void btnDeletePQRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -84,6 +88,35 @@ namespace Win.Itnrry
                 frm.ShowDialog();
                 Init();
             }
+        }
+        rptItenerary rpt;
+        private void btnPreview_Click(object sender, EventArgs e)
+        {
+            if (this.IOTGridView.GetFocusedRow() is ItenaryofTravels item)
+            {
+                var list = new UnitOfWork().ItenaryofTravelsRepo.Get(x => x.Id == item.Id);
+                rpt = new rptItenerary()
+                {
+                    DataSource = list
+                };
+                rpt.CreateDocument();
+                rpt.AfterPrint += (se, ev) =>
+                {
+
+                    CreateDocument(list);
+                };
+
+
+                frmReportViewer frm = new frmReportViewer(rpt);
+                frm.ShowDialog();
+            }
+
+        }
+
+        void CreateDocument(List<ItenaryofTravels> itenaryofTravelses)
+        {
+            
+           
         }
     }
 }

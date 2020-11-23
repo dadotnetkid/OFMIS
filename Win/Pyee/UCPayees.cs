@@ -62,6 +62,8 @@ namespace Win.Pyee
             }
         }
 
+      
+
         private void btnEditRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if (PayeeGridView.GetFocusedRow() is Payees item)

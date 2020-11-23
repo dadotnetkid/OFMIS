@@ -77,11 +77,11 @@ namespace Win.BL
                 var unitOfWork = new UnitOfWork();
                 var item = unitOfWork.AppropriationsRepoRepo.Find(x => x.Id == appropriation.Id);
                 StaticSettings staticSettings = new StaticSettings();
-                if (unitOfWork.AppropriationsRepoRepo.Fetch(x => x.AccountCode == frm.txtAccountCode.Text && x.OfficeId== staticSettings.OfficeId).Any())
+                if (unitOfWork.AppropriationsRepoRepo.Fetch(x => x.AccountCode == frm.txtAccountCode.Text && x.OfficeId == staticSettings.OfficeId).Any())
                 {
 
                     if (MessageBox.Show($@"Duplicate Entry for { frm.txtAccountCode.Text} - {frm.txtAccountName.Text}, Do you want to submit this?", "Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                         return;
+                        return;
                 }
 
                 item.AccountCode = frm.txtAccountCode.Text;
@@ -136,7 +136,10 @@ namespace Win.BL
                     return;
                 }
                 UnitOfWork unitOfWork = new UnitOfWork();
-                appropriation = new Appropriations();
+                appropriation = new Appropriations()
+                {
+                    FT = Win.Properties.Settings.Default.FundType
+                };
                 appropriation.DateCreated = DateTime.Now;
                 unitOfWork.AppropriationsRepoRepo.Insert(appropriation);
                 unitOfWork.Save();

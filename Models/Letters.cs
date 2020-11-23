@@ -17,7 +17,7 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Letters()
         {
-            this.Obligations = new HashSet<Obligations>();
+            this.Obligations1 = new HashSet<Obligations>();
         }
     
         public int Id { get; set; }
@@ -40,9 +40,9 @@ namespace Models
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Obligations> Obligations { get; set; }
         public virtual Users Users { get; set; }
         public virtual Offices Offices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Obligations> Obligations1 { get; set; }
     }
 }

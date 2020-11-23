@@ -142,6 +142,8 @@ namespace Win.Ofcs
 
         }
 
+    
+
         private void OfficesGridView_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             if (e.Column.Name == "colChief")

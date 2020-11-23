@@ -308,7 +308,7 @@
             this.ClientSize = new System.Drawing.Size(992, 566);
             this.Controls.Add(this.ItemsGridControl);
             this.Controls.Add(this.panel1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmItems.IconOptions.Icon")));
             this.Name = "frmItems";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Items";

@@ -110,6 +110,9 @@ namespace Win.BL
         {
             if (uc.ReAlignmentGridView.GetFocusedRow() is ReAlignments item)
             {
+
+                if (MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
                 UnitOfWork unitOfWork = new UnitOfWork();
                 unitOfWork.ReAlignmentsRepo.Delete(m => m.Id == item.Id);
                 unitOfWork.Save();
@@ -175,10 +178,18 @@ namespace Win.BL
         public void Init()
         {
             var staticSettings = new StaticSettings();
+            var ft = Win.Properties.Settings.Default.FundType;
             uc.appropriationGridControl.DataSource = new EntityServerModeSource()
             {
-                QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch(m => m.Year == staticSettings.Year && m.OfficeId == staticSettings.OfficeId)
+                QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch(m => m.Year == staticSettings.Year && m.OfficeId == staticSettings.OfficeId && m.FT == ft)
             };
+            if (staticSettings.FT != "GF")
+            {
+                uc.appropriationGridControl.DataSource = new EntityServerModeSource()
+                {
+                    QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch(m => m.OfficeId == staticSettings.OfficeId && m.FT == ft)
+                };
+            }
 
         }
 
@@ -208,8 +219,9 @@ namespace Win.BL
                 uc.txtReAlignment.Text = item.ReAlignment?.ToString("n2");
                 uc.lblHeader.Text = item.AccountCode + " - " + item.AccountName;
                 uc.txtObligationBudget.Text = item.BudgetAccountBalance?.ToString("n2");
-                uc.txtPRCancelled.Text = item.PurchaseRequestCancelled.ToString("n2")
-                    ;uc.AllotmentGridControl.DataSource = new BindingList<Allotments>(item.Allotments.ToList());
+                uc.txtPRCancelled.Text = item.PurchaseRequestCancelled.ToString("n2");
+                uc.txtEarmarked.Text = item.PurchaseRequestEarmarked.ToString("n2");
+                uc.AllotmentGridControl.DataSource = new BindingList<Allotments>(item.Allotments.ToList());
                 uc.ObligationGridControl.DataSource = new BindingList<ORDetails>(new UnitOfWork().ORDetailsRepo.Get(m => m.AppropriationId == item.Id, includeProperties: "Obligations,Obligations.Payees"));
                 uc.ReAlignmentGridControl.DataSource = new BindingList<ReAlignments>(new UnitOfWork().ReAlignmentsRepo.Get(m => m.SourceAppropriationId == item.Id || m.TargetAppropriationId == item.Id).ToList());
                 uc.tabEarmarked.Controls.Clear();
@@ -227,7 +239,9 @@ namespace Win.BL
 
             var unitOfWork = new UnitOfWork();
             StaticSettings staticSettings = new StaticSettings();
-            IQueryable<Appropriations> obj = unitOfWork.AppropriationsRepoRepo.Fetch(m => m.Year == year && m.OfficeId == staticSettings.OfficeId);
+            IQueryable<Appropriations> obj = unitOfWork.AppropriationsRepoRepo.Fetch(m => m.FT == staticSettings.FT && m.OfficeId == staticSettings.OfficeId);
+            if (staticSettings.FT == "GF")
+                obj = obj.Where(x => x.Year == staticSettings.Year);
             if (obj.Any(x => x.AccountCode.Contains(search)))
                 obj = obj.Where(x => x.AccountCode.Contains(search));
             else if (obj.Any(x => x.AccountCodeText.Contains(search)))

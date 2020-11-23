@@ -212,10 +212,10 @@
             this.Controls.Add(this.cboCategory);
             this.Controls.Add(this.cboUOM);
             this.Controls.Add(this.txtCost);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmAddEditItems.IconOptions.Icon")));
             this.Name = "frmAddEditItems";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmAddEditItems";
+            this.Text = "Items";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAddEditItems_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -23,6 +23,9 @@ namespace Models
         public string UOM { get; set; }
         public Nullable<decimal> Cost { get; set; }
         public Nullable<decimal> TotalAmount { get; set; }
+        public Nullable<System.DateTime> DatePurchase { get; set; }
+        public string PropertyNumber { get; set; }
+        public string EstimatedUsefulLife { get; set; }
     
         public virtual ICS ICS { get; set; }
     }

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Helpers;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using Models.Repository;
 
 namespace Models.Startups
 {
@@ -27,20 +30,23 @@ namespace Models.Startups
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            Users user = await userManager.FindAsync(context.UserName, context.Password);
-
-            if (user == null)
+            //Users user = await userManager.FindAsync(context.UserName, context.Password);
+            var user = new UnitOfWork().UsersRepo.Find(m => m.UserName == context.UserName);
+            var users = await userManager.FindByIdAsync(user.Id);
+            if (Cryptography.Encrypt(context.Password, user.SecurityStamp ?? "0ram@1234xxxxxxxxxxtttttuuuuuiiiiio") !=
+                user.PasswordHash)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
+
 
             ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
                OAuthDefaults.AuthenticationType);
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
                 CookieAuthenticationDefaults.AuthenticationType);
 
-            AuthenticationProperties properties = CreateProperties(user.UserName);
+            AuthenticationProperties properties = CreateProperties(user);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
@@ -86,7 +92,20 @@ namespace Models.Startups
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                { "userName", userName },
+
+            };
+            return new AuthenticationProperties(data);
+        }
+        public static AuthenticationProperties CreateProperties(Users users)
+        {
+            IDictionary<string, string> data = new Dictionary<string, string>
+            {
+                { "userName", users.UserName },
+                {"UserRoles",users.UserRole},
+                {"Functions",string.Join(",", users.UserRoles.Select(x=>string.Join(",",x.Functions.Select(m=>m.Action))))},
+                {"FullName",users.FullName},
+                {"OfficeId",users.OfficeId.ToString()}
             };
             return new AuthenticationProperties(data);
         }

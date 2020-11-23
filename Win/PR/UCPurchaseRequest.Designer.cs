@@ -96,10 +96,12 @@
             this.dtDate = new DevExpress.XtraEditors.DateEdit();
             this.txtControlNumber = new DevExpress.XtraEditors.TextEdit();
             this.PRTabControl = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.tabPR = new DevExpress.XtraTab.XtraTabPage();
             this.ItemsGridControl = new DevExpress.XtraGrid.GridControl();
             this.ItemsGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colObREdit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnEditItemRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colItem = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemRichTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit();
@@ -113,7 +115,6 @@
             this.spinNumberRepo = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.Total = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDeleteItemRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.btnEditItemRepo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.panel2 = new System.Windows.Forms.Panel();
             this.PQTabPage = new DevExpress.XtraTab.XtraTabPage();
@@ -123,6 +124,8 @@
             this.tabPIS = new DevExpress.XtraTab.XtraTabPage();
             this.tabPAR = new DevExpress.XtraTab.XtraTabPage();
             this.tabAcceptance = new DevExpress.XtraTab.XtraTabPage();
+            this.tabRIS = new DevExpress.XtraTab.XtraTabPage();
+            this.tabICS = new DevExpress.XtraTab.XtraTabPage();
             this.LetterTabPage = new DevExpress.XtraTab.XtraTabPage();
             this.tabActions = new DevExpress.XtraTab.XtraTabPage();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -153,15 +156,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtControlNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PRTabControl)).BeginInit();
             this.PRTabControl.SuspendLayout();
-            this.xtraTabPage1.SuspendLayout();
+            this.tabPR.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditItemRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinAmountRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinQuantityRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinNumberRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteItemRepo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditItemRepo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).BeginInit();
@@ -286,7 +289,7 @@
             // 
             // colControlNo
             // 
-            this.colControlNo.Caption = "Control No";
+            this.colControlNo.Caption = "PR No";
             this.colControlNo.FieldName = "ControlNo";
             this.colControlNo.Name = "colControlNo";
             this.colControlNo.Visible = true;
@@ -396,12 +399,15 @@
             this.cboStatus.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 10F);
             this.cboStatus.Properties.Appearance.Options.UseFont = true;
             this.cboStatus.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Down),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
             this.cboStatus.Properties.ImmediatePopup = true;
             this.cboStatus.Properties.Items.AddRange(new object[] {
-            "Active",
-            "Closed"});
+            "",
+            "Ongoing",
+            "Completed",
+            "Earmarked",
+            "Cancelled"});
             this.cboStatus.Properties.NullValuePromptShowForEmptyValue = true;
             this.cboStatus.Properties.ValidateOnEnterKey = true;
             this.cboStatus.Size = new System.Drawing.Size(263, 22);
@@ -417,7 +423,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(472, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(836, 43);
+            this.panel1.Size = new System.Drawing.Size(836, 52);
             this.panel1.TabIndex = 15;
             // 
             // btnNew
@@ -459,7 +465,7 @@
             this.lblHeader.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblHeader.Location = new System.Drawing.Point(0, 0);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(258, 43);
+            this.lblHeader.Size = new System.Drawing.Size(258, 52);
             this.lblHeader.TabIndex = 13;
             this.lblHeader.Text = "00000";
             // 
@@ -484,14 +490,14 @@
             this.chkIsClosed.Properties.Caption = "Completed";
             this.chkIsClosed.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.chkIsClosed.Properties.ReadOnly = true;
-            this.chkIsClosed.Size = new System.Drawing.Size(91, 18);
+            this.chkIsClosed.Size = new System.Drawing.Size(85, 18);
             this.chkIsClosed.TabIndex = 67;
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(478, 173);
+            this.labelControl4.Location = new System.Drawing.Point(478, 193);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(44, 14);
             this.labelControl4.TabIndex = 61;
@@ -552,7 +558,7 @@
             // txtPurpose
             // 
             this.txtPurpose.EditValue = "";
-            this.txtPurpose.Location = new System.Drawing.Point(578, 170);
+            this.txtPurpose.Location = new System.Drawing.Point(578, 189);
             this.txtPurpose.Name = "txtPurpose";
             this.txtPurpose.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPurpose.Properties.Appearance.Options.UseFont = true;
@@ -602,11 +608,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PRTabControl.Location = new System.Drawing.Point(479, 321);
             this.PRTabControl.Name = "PRTabControl";
-            this.PRTabControl.SelectedTabPage = this.xtraTabPage1;
+            this.PRTabControl.SelectedTabPage = this.tabPR;
             this.PRTabControl.Size = new System.Drawing.Size(826, 302);
             this.PRTabControl.TabIndex = 68;
             this.PRTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage1,
+            this.tabPR,
             this.PQTabPage,
             this.tabAPR,
             this.tabAOQ,
@@ -614,16 +620,18 @@
             this.tabPIS,
             this.tabPAR,
             this.tabAcceptance,
+            this.tabRIS,
+            this.tabICS,
             this.LetterTabPage,
             this.tabActions});
             // 
-            // xtraTabPage1
+            // tabPR
             // 
-            this.xtraTabPage1.Controls.Add(this.ItemsGridControl);
-            this.xtraTabPage1.Controls.Add(this.panel2);
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(824, 279);
-            this.xtraTabPage1.Text = "PR";
+            this.tabPR.Controls.Add(this.ItemsGridControl);
+            this.tabPR.Controls.Add(this.panel2);
+            this.tabPR.Name = "tabPR";
+            this.tabPR.Size = new System.Drawing.Size(824, 279);
+            this.tabPR.Text = "PR";
             // 
             // ItemsGridControl
             // 
@@ -648,6 +656,7 @@
             // 
             this.ItemsGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
+            this.colObREdit,
             this.colCategory,
             this.colItem,
             this.colUOM,
@@ -673,22 +682,44 @@
             this.gridColumn1.FieldName = "Id";
             this.gridColumn1.Name = "gridColumn1";
             // 
+            // colObREdit
+            // 
+            this.colObREdit.ColumnEdit = this.btnEditItemRepo;
+            this.colObREdit.Name = "colObREdit";
+            this.colObREdit.Visible = true;
+            this.colObREdit.VisibleIndex = 0;
+            this.colObREdit.Width = 20;
+            // 
+            // btnEditItemRepo
+            // 
+            this.btnEditItemRepo.AutoHeight = false;
+            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
+            this.btnEditItemRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnEditItemRepo.Name = "btnEditItemRepo";
+            this.btnEditItemRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnEditItemRepo.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnEditItemRepo_ButtonClick);
+            // 
             // colCategory
             // 
+            this.colCategory.AppearanceCell.Options.UseTextOptions = true;
+            this.colCategory.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
             this.colCategory.FieldName = "Category";
             this.colCategory.Name = "colCategory";
             this.colCategory.Visible = true;
-            this.colCategory.VisibleIndex = 4;
-            this.colCategory.Width = 167;
+            this.colCategory.VisibleIndex = 5;
+            this.colCategory.Width = 148;
             // 
             // colItem
             // 
+            this.colItem.AppearanceCell.Options.UseTextOptions = true;
+            this.colItem.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
             this.colItem.ColumnEdit = this.repositoryItemRichTextEdit1;
             this.colItem.FieldName = "Item";
             this.colItem.Name = "colItem";
             this.colItem.Visible = true;
-            this.colItem.VisibleIndex = 3;
-            this.colItem.Width = 377;
+            this.colItem.VisibleIndex = 4;
+            this.colItem.Width = 336;
             // 
             // repositoryItemRichTextEdit1
             // 
@@ -697,20 +728,24 @@
             // 
             // colUOM
             // 
+            this.colUOM.AppearanceCell.Options.UseTextOptions = true;
+            this.colUOM.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
             this.colUOM.FieldName = "UOM";
             this.colUOM.Name = "colUOM";
             this.colUOM.Visible = true;
-            this.colUOM.VisibleIndex = 2;
-            this.colUOM.Width = 70;
+            this.colUOM.VisibleIndex = 3;
+            this.colUOM.Width = 62;
             // 
             // colCost
             // 
+            this.colCost.AppearanceCell.Options.UseTextOptions = true;
+            this.colCost.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
             this.colCost.ColumnEdit = this.spinAmountRepo;
             this.colCost.FieldName = "Cost";
             this.colCost.Name = "colCost";
             this.colCost.Visible = true;
-            this.colCost.VisibleIndex = 5;
-            this.colCost.Width = 65;
+            this.colCost.VisibleIndex = 6;
+            this.colCost.Width = 57;
             // 
             // spinAmountRepo
             // 
@@ -730,13 +765,15 @@
             // 
             // colQuantity
             // 
+            this.colQuantity.AppearanceCell.Options.UseTextOptions = true;
+            this.colQuantity.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
             this.colQuantity.Caption = "Quantity";
             this.colQuantity.ColumnEdit = this.spinQuantityRepo;
             this.colQuantity.FieldName = "Quantity";
             this.colQuantity.Name = "colQuantity";
             this.colQuantity.Visible = true;
-            this.colQuantity.VisibleIndex = 1;
-            this.colQuantity.Width = 56;
+            this.colQuantity.VisibleIndex = 2;
+            this.colQuantity.Width = 49;
             // 
             // spinQuantityRepo
             // 
@@ -747,13 +784,15 @@
             // 
             // colItemNo
             // 
+            this.colItemNo.AppearanceCell.Options.UseTextOptions = true;
+            this.colItemNo.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
             this.colItemNo.Caption = "Item No.";
             this.colItemNo.ColumnEdit = this.spinNumberRepo;
             this.colItemNo.FieldName = "ItemNo";
             this.colItemNo.Name = "colItemNo";
             this.colItemNo.Visible = true;
-            this.colItemNo.VisibleIndex = 0;
-            this.colItemNo.Width = 60;
+            this.colItemNo.VisibleIndex = 1;
+            this.colItemNo.Width = 52;
             // 
             // spinNumberRepo
             // 
@@ -766,32 +805,24 @@
             // 
             // Total
             // 
+            this.Total.AppearanceCell.Options.UseTextOptions = true;
+            this.Total.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
             this.Total.Caption = "Total";
             this.Total.ColumnEdit = this.spinAmountRepo;
             this.Total.FieldName = "TotalAmount";
             this.Total.Name = "Total";
             this.Total.OptionsColumn.ReadOnly = true;
             this.Total.Visible = true;
-            this.Total.VisibleIndex = 6;
-            this.Total.Width = 77;
+            this.Total.VisibleIndex = 7;
             // 
             // btnDeleteItemRepo
             // 
             this.btnDeleteItemRepo.AutoHeight = false;
-            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
+            editorButtonImageOptions5.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions5.Image")));
             this.btnDeleteItemRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDeleteItemRepo.Name = "btnDeleteItemRepo";
             this.btnDeleteItemRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
-            // btnEditItemRepo
-            // 
-            this.btnEditItemRepo.AutoHeight = false;
-            editorButtonImageOptions5.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions5.Image")));
-            this.btnEditItemRepo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.btnEditItemRepo.Name = "btnEditItemRepo";
-            this.btnEditItemRepo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -848,6 +879,19 @@
             this.tabAcceptance.Size = new System.Drawing.Size(824, 279);
             this.tabAcceptance.Text = "AIR";
             // 
+            // tabRIS
+            // 
+            this.tabRIS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabRIS.Name = "tabRIS";
+            this.tabRIS.Size = new System.Drawing.Size(824, 279);
+            this.tabRIS.Text = "RIS";
+            // 
+            // tabICS
+            // 
+            this.tabICS.Name = "tabICS";
+            this.tabICS.Size = new System.Drawing.Size(824, 279);
+            this.tabICS.Text = "ICS";
+            // 
             // LetterTabPage
             // 
             this.LetterTabPage.Name = "LetterTabPage";
@@ -864,7 +908,7 @@
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(479, 222);
+            this.labelControl5.Location = new System.Drawing.Point(479, 171);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(42, 14);
             this.labelControl5.TabIndex = 64;
@@ -877,7 +921,7 @@
             0,
             0,
             0});
-            this.txtAmount.Location = new System.Drawing.Point(578, 219);
+            this.txtAmount.Location = new System.Drawing.Point(578, 168);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmount.Properties.Appearance.Options.UseFont = true;
@@ -889,7 +933,7 @@
             this.txtAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.txtAmount.Properties.ReadOnly = true;
             this.txtAmount.Properties.UseReadOnlyAppearance = false;
-            this.txtAmount.Size = new System.Drawing.Size(263, 20);
+            this.txtAmount.Size = new System.Drawing.Size(590, 20);
             this.txtAmount.TabIndex = 58;
             // 
             // txtAccountCode
@@ -922,7 +966,7 @@
             this.chkEarmarked.Properties.Caption = "Earmarked";
             this.chkEarmarked.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.chkEarmarked.Properties.ReadOnly = true;
-            this.chkEarmarked.Size = new System.Drawing.Size(88, 18);
+            this.chkEarmarked.Size = new System.Drawing.Size(87, 18);
             this.chkEarmarked.TabIndex = 67;
             // 
             // chkCancelled
@@ -934,7 +978,7 @@
             this.chkCancelled.Properties.Caption = "Cancelled";
             this.chkCancelled.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.chkCancelled.Properties.ReadOnly = true;
-            this.chkCancelled.Size = new System.Drawing.Size(88, 18);
+            this.chkCancelled.Size = new System.Drawing.Size(83, 18);
             this.chkCancelled.TabIndex = 67;
             // 
             // labelControl6
@@ -948,7 +992,7 @@
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(76, 40);
             this.labelControl6.TabIndex = 64;
-            this.labelControl6.Text = "Cancelled Reason";
+            this.labelControl6.Text = "Reason for Cancellation";
             // 
             // txtReason
             // 
@@ -984,6 +1028,7 @@
             this.Controls.Add(this.txtAccountCode);
             this.Name = "UCPurchaseRequest";
             this.Size = new System.Drawing.Size(1308, 626);
+            this.Load += new System.EventHandler(this.UCPurchaseRequest_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PRGridControl)).EndInit();
@@ -1006,15 +1051,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtControlNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PRTabControl)).EndInit();
             this.PRTabControl.ResumeLayout(false);
-            this.xtraTabPage1.ResumeLayout(false);
+            this.tabPR.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditItemRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinAmountRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinQuantityRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinNumberRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteItemRepo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditItemRepo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).EndInit();
@@ -1041,7 +1086,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colEdit;
         public DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditRepoPR;
         private DevExpress.XtraEditors.PanelControl panelControl2;
-        private DevExpress.XtraEditors.SimpleButton btnViewAll;
+        public DevExpress.XtraEditors.SimpleButton btnViewAll;
         public DevExpress.XtraEditors.SimpleButton btnSearch;
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.LabelControl labelControl13;
@@ -1060,8 +1105,8 @@
         public DevExpress.XtraEditors.MemoEdit txtPurpose;
         public DevExpress.XtraEditors.DateEdit dtDate;
         public DevExpress.XtraEditors.TextEdit txtControlNumber;
-        private DevExpress.XtraTab.XtraTabControl PRTabControl;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+        public DevExpress.XtraTab.XtraTabControl PRTabControl;
+        private DevExpress.XtraTab.XtraTabPage tabPR;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         public DevExpress.XtraEditors.SpinEdit txtAmount;
         public DevExpress.XtraEditors.TextEdit txtAccountCode;
@@ -1103,5 +1148,8 @@
         public DevExpress.XtraEditors.CheckEdit chkCancelled;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         public DevExpress.XtraEditors.MemoEdit txtReason;
+        public DevExpress.XtraTab.XtraTabPage tabRIS;
+        private DevExpress.XtraGrid.Columns.GridColumn colObREdit;
+        public DevExpress.XtraTab.XtraTabPage tabICS;
     }
 }

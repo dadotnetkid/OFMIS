@@ -2,10 +2,12 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
-using CMS.Models;
+
 using Newtonsoft.Json;
 
 
@@ -17,7 +19,16 @@ namespace Models.Repository
 
         public UnitOfWork()
         {
-            context = ModelDb.Create(DataSource.ConnectionString);//(/*DataSource.ConnectionString ?? context.Database.Connection.ConnectionString*/);
+            string fullName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+            context = ModelDb.Create();
+            if (fullName == "Win")
+            {
+                context = ModelDb.Create(DataSource.ConnectionString);
+            }
+
+          
+
+            //(/*DataSource.ConnectionString ?? context.Database.Connection.ConnectionString*/);
 
         }
 
@@ -31,6 +42,28 @@ namespace Models.Repository
         }
 
 
+        private GenericRepository<RISHeader> _RISHeaderRepo;
+        public GenericRepository<RISHeader> RISHeaderRepo
+        {
+            get
+            {
+                if (this._RISHeaderRepo == null)
+                    this._RISHeaderRepo = new GenericRepository<RISHeader>(context);
+                return _RISHeaderRepo;
+            }
+            set { _RISHeaderRepo = value; }
+        }
+        private GenericRepository<RISDetails> _RISDetailsRepo;
+        public GenericRepository<RISDetails> RISDetailsRepo
+        {
+            get
+            {
+                if (this._RISDetailsRepo == null)
+                    this._RISDetailsRepo = new GenericRepository<RISDetails>(context);
+                return _RISDetailsRepo;
+            }
+            set { _RISDetailsRepo = value; }
+        }
         private GenericRepository<ItenaryDetails> _ItenaryDetailsRepo;
         public GenericRepository<ItenaryDetails> ItenaryDetailsRepo
         {
@@ -204,7 +237,12 @@ namespace Models.Repository
 
         public UnitOfWork(bool lazyLoadingEnabled, bool proxyCreationEnabled)
         {
-            context = ModelDb.Create(DataSource.ConnectionString);//(/*DataSource.ConnectionString ?? context.Database.Connection.ConnectionString*/);
+            string fullName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+            context = ModelDb.Create();
+            if (fullName == "Win")
+            {
+                context = ModelDb.Create(DataSource.ConnectionString);
+            };//(/*DataSource.ConnectionString ?? context.Database.Connection.ConnectionString*/);
             this.context.Configuration.LazyLoadingEnabled = lazyLoadingEnabled;
             this.context.Configuration.ProxyCreationEnabled = proxyCreationEnabled;
         }
@@ -815,17 +853,7 @@ namespace Models.Repository
         }
 
 
-        private GenericRepository<CMS_USER> _CMS_USERRepo;
-        public GenericRepository<CMS_USER> CMS_USERRepo
-        {
-            get
-            {
-                if (this._CMS_USERRepo == null)
-                    this._CMS_USERRepo = new GenericRepository<CMS_USER>(context);
-                return _CMS_USERRepo;
-            }
-            set { _CMS_USERRepo = value; }
-        }
+        
 
 
         private GenericRepository<Users> usersRepo;

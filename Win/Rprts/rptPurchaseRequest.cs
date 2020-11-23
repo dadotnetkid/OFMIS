@@ -41,5 +41,22 @@ namespace Win.PR
                            User.UserName + ")";
             }
         }
+
+        private void xrTableCell6_AfterPrint(object sender, EventArgs e)
+        {
+       
+        }
+
+        private void xrTableCell6_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            var s = sender as XRTableCell;
+            double value = Math.Truncate(Convert.ToDouble(s.Text) * 100) / 100;
+            s.Text = value.ToString("n2");
+        }
+
+        private void xrLabel7_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+
+        }
     }
 }

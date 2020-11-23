@@ -18,14 +18,15 @@ namespace Models
         public Employees()
         {
             this.PayrollDetails = new HashSet<PayrollDetails>();
-            this.Payees = new HashSet<Payees>();
             this.BACMembers = new HashSet<BACMembers>();
             this.PayrollWageDetails = new HashSet<PayrollWageDetails>();
             this.PayrollDifferentialDetails = new HashSet<PayrollDifferentialDetails>();
             this.Liquidations = new HashSet<Liquidations>();
             this.Signatories = new HashSet<Signatories>();
-            this.PayrollOTDetails = new HashSet<PayrollOTDetails>();
             this.ItenaryofTravels = new HashSet<ItenaryofTravels>();
+            this.ItineraryApprovedBy = new HashSet<ItenaryofTravels>();
+            this.PayrollOTDetails = new HashSet<PayrollOTDetails>();
+            this.Payees = new HashSet<Payees>();
         }
     
         public int Id { get; set; }
@@ -51,8 +52,6 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayrollDetails> PayrollDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payees> Payees { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BACMembers> BACMembers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayrollWageDetails> PayrollWageDetails { get; set; }
@@ -64,8 +63,12 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Signatories> Signatories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ItenaryofTravels> ItenaryofTravels { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ItenaryofTravels> ItineraryApprovedBy { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayrollOTDetails> PayrollOTDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ItenaryofTravels> ItenaryofTravels { get; set; }
+        public virtual ICollection<Payees> Payees { get; set; }
     }
 }

@@ -32,16 +32,21 @@ namespace Win.PR
         {
             InitializeComponent();
             this.loadAddEditPurchaseRequest = new LoadAddEditPurchaseRequest(this);
+
             ((ILoad<PurchaseRequests>)loadAddEditPurchaseRequest).Init();
             loadAddEditPurchaseRequest.Search(txtSearch.Text, true);
-
         }
 
         public UCPurchaseRequest()
         {
             InitializeComponent();
             this.loadAddEditPurchaseRequest = new LoadAddEditPurchaseRequest(this);
-            ((ILoad<PurchaseRequests>)loadAddEditPurchaseRequest).Init();
+
+            Task.Run(async () =>
+            {
+                ((ILoad<PurchaseRequests>) loadAddEditPurchaseRequest).Init(); 
+
+            });
         }
 
         private void lnkOBR_Click(object sender, EventArgs e)
@@ -159,6 +164,21 @@ namespace Win.PR
                     MessageBox.Show(ex.Message, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnEditItemRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (this.ItemsGridView.GetFocusedRow() is PRDetails item)
+            {
+                frmAddEditPurchaseRequest frm= new frmAddEditPurchaseRequest(MethodType.Edit, item.PurchaseRequests);
+                frm.ShowDialog();
+            }
+        }
+
+        private async void UCPurchaseRequest_Load(object sender, EventArgs e)
+        {
+            
+
         }
     }
 }

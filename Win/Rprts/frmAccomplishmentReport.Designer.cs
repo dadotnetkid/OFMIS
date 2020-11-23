@@ -35,33 +35,33 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.cboStaff = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.StaffEntityServerSource = new DevExpress.Data.Linq.EntityServerModeSource();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colStaff = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cboNotedBy = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colPerson = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cboReviewedBy = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.ReviewedByEntitySource = new DevExpress.Data.Linq.EntityServerModeSource();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colEmployeeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dtDateFrom = new DevExpress.XtraEditors.DateEdit();
             this.dtDateTo = new DevExpress.XtraEditors.DateEdit();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.ReviewedByEntitySource = new DevExpress.Data.Linq.EntityServerModeSource();
-            this.colEmployeeName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPerson = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.StaffEntityServerSource = new DevExpress.Data.Linq.EntityServerModeSource();
-            this.colStaff = new DevExpress.XtraGrid.Columns.GridColumn();
             this.NotedEntityServerSource = new DevExpress.Data.Linq.EntityServerModeSource();
             ((System.ComponentModel.ISupportInitialize)(this.cboStaff.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StaffEntityServerSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboNotedBy.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboReviewedBy.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReviewedByEntitySource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDateFrom.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDateFrom.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDateTo.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDateTo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReviewedByEntitySource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StaffEntityServerSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NotedEntityServerSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,7 +75,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(28, 35);
+            this.labelControl2.Location = new System.Drawing.Point(28, 55);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(49, 13);
             this.labelControl2.TabIndex = 0;
@@ -83,7 +83,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(11, 55);
+            this.labelControl3.Location = new System.Drawing.Point(11, 35);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(66, 13);
             this.labelControl3.TabIndex = 0;
@@ -120,6 +120,11 @@
             this.cboStaff.TabIndex = 0;
             this.cboStaff.EditValueChanged += new System.EventHandler(this.cboStaff_EditValueChanged);
             // 
+            // StaffEntityServerSource
+            // 
+            this.StaffEntityServerSource.ElementType = typeof(Models.Users);
+            this.StaffEntityServerSource.KeyExpression = "Id";
+            // 
             // searchLookUpEdit1View
             // 
             this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -129,10 +134,17 @@
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
+            // colStaff
+            // 
+            this.colStaff.FieldName = "FullName";
+            this.colStaff.Name = "colStaff";
+            this.colStaff.Visible = true;
+            this.colStaff.VisibleIndex = 0;
+            // 
             // cboNotedBy
             // 
             this.cboNotedBy.EditValue = "";
-            this.cboNotedBy.Location = new System.Drawing.Point(83, 32);
+            this.cboNotedBy.Location = new System.Drawing.Point(83, 52);
             this.cboNotedBy.Name = "cboNotedBy";
             this.cboNotedBy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -141,7 +153,7 @@
             this.cboNotedBy.Properties.PopupView = this.gridView1;
             this.cboNotedBy.Properties.ValueMember = "Id";
             this.cboNotedBy.Size = new System.Drawing.Size(398, 20);
-            this.cboNotedBy.TabIndex = 1;
+            this.cboNotedBy.TabIndex = 2;
             // 
             // gridView1
             // 
@@ -152,10 +164,17 @@
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // colPerson
+            // 
+            this.colPerson.FieldName = "EmployeeName";
+            this.colPerson.Name = "colPerson";
+            this.colPerson.Visible = true;
+            this.colPerson.VisibleIndex = 0;
+            // 
             // cboReviewedBy
             // 
             this.cboReviewedBy.EditValue = "";
-            this.cboReviewedBy.Location = new System.Drawing.Point(83, 52);
+            this.cboReviewedBy.Location = new System.Drawing.Point(83, 32);
             this.cboReviewedBy.Name = "cboReviewedBy";
             this.cboReviewedBy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -164,7 +183,13 @@
             this.cboReviewedBy.Properties.PopupView = this.gridView2;
             this.cboReviewedBy.Properties.ValueMember = "Id";
             this.cboReviewedBy.Size = new System.Drawing.Size(398, 20);
-            this.cboReviewedBy.TabIndex = 2;
+            this.cboReviewedBy.TabIndex = 1;
+            // 
+            // ReviewedByEntitySource
+            // 
+            this.ReviewedByEntitySource.DefaultSorting = "Id ASC";
+            this.ReviewedByEntitySource.ElementType = typeof(Models.Employees);
+            this.ReviewedByEntitySource.KeyExpression = "EmployeeName";
             // 
             // gridView2
             // 
@@ -174,6 +199,14 @@
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView2.OptionsView.ShowGroupPanel = false;
+            // 
+            // colEmployeeName
+            // 
+            this.colEmployeeName.Caption = "EmployeeName";
+            this.colEmployeeName.FieldName = "EmployeeName";
+            this.colEmployeeName.Name = "colEmployeeName";
+            this.colEmployeeName.Visible = true;
+            this.colEmployeeName.VisibleIndex = 0;
             // 
             // dtDateFrom
             // 
@@ -225,39 +258,6 @@
             this.btnSave.Text = "Submit";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // ReviewedByEntitySource
-            // 
-            this.ReviewedByEntitySource.DefaultSorting = "Id ASC";
-            this.ReviewedByEntitySource.ElementType = typeof(Models.Employees);
-            this.ReviewedByEntitySource.KeyExpression = "EmployeeName";
-            // 
-            // colEmployeeName
-            // 
-            this.colEmployeeName.Caption = "EmployeeName";
-            this.colEmployeeName.FieldName = "EmployeeName";
-            this.colEmployeeName.Name = "colEmployeeName";
-            this.colEmployeeName.Visible = true;
-            this.colEmployeeName.VisibleIndex = 0;
-            // 
-            // colPerson
-            // 
-            this.colPerson.FieldName = "EmployeeName";
-            this.colPerson.Name = "colPerson";
-            this.colPerson.Visible = true;
-            this.colPerson.VisibleIndex = 0;
-            // 
-            // StaffEntityServerSource
-            // 
-            this.StaffEntityServerSource.ElementType = typeof(Models.Users);
-            this.StaffEntityServerSource.KeyExpression = "Id";
-            // 
-            // colStaff
-            // 
-            this.colStaff.FieldName = "FullName";
-            this.colStaff.Name = "colStaff";
-            this.colStaff.Visible = true;
-            this.colStaff.VisibleIndex = 0;
-            // 
             // NotedEntityServerSource
             // 
             this.NotedEntityServerSource.DefaultSorting = "Id ASC";
@@ -281,23 +281,23 @@
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmAccomplishmentReport.IconOptions.Icon")));
             this.Name = "frmAccomplishmentReport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Accomplishment Report";
             this.Load += new System.EventHandler(this.frmAccomplishmentReport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cboStaff.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StaffEntityServerSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboNotedBy.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboReviewedBy.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReviewedByEntitySource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDateFrom.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDateFrom.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDateTo.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDateTo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReviewedByEntitySource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StaffEntityServerSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NotedEntityServerSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

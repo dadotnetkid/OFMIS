@@ -120,7 +120,8 @@ namespace Win.AOQ
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
                 item = unitOfWork.AOQRepo.Find(x => x.Id == item.Id);
-                foreach (var i in item.AOQDetails)
+                item.AOQDetails = item.AOQDetails.OrderBy(x => x.Id).ThenByDescending(x=>x.ItemNo).ToList();
+                foreach (var i in item.AOQDetails.OrderBy(x=>x.ItemNo))
                 {
                     var rtf = new RichEditControl();
                     //rtf.Font = new Font("Calibri", 9.5f);

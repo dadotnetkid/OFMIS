@@ -68,6 +68,8 @@
             this.btnActionTaken = new DevExpress.XtraBars.BarButtonItem();
             this.btnUserSetting = new DevExpress.XtraBars.BarButtonItem();
             this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -82,13 +84,13 @@
             this.btnItems = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.pnlMain = new DevExpress.XtraEditors.PanelControl();
             this.toastManager = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnStatusSummary = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
@@ -101,6 +103,7 @@
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
+            this.ribbonControl1.SearchEditItem,
             this.lblUsername,
             this.lblUserLevel,
             this.btnObligation,
@@ -135,9 +138,10 @@
             this.btnActionTaken,
             this.btnUserSetting,
             this.lblStatus,
-            this.barButtonItem2});
+            this.barButtonItem2,
+            this.barButtonItem3});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 34;
+            this.ribbonControl1.MaxItemId = 36;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -145,7 +149,7 @@
             this.ribbonPage3,
             this.ribbonPage4});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019;
-            this.ribbonControl1.Size = new System.Drawing.Size(1344, 156);
+            this.ribbonControl1.Size = new System.Drawing.Size(1344, 160);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // backstageViewControl1
@@ -157,6 +161,7 @@
             this.backstageViewControl1.OwnerControl = this.ribbonControl1;
             this.backstageViewControl1.Size = new System.Drawing.Size(480, 247);
             this.backstageViewControl1.TabIndex = 7;
+            this.backstageViewControl1.VisibleInDesignTime = true;
             // 
             // btnLogout
             // 
@@ -204,7 +209,7 @@
             // 
             // btnYear
             // 
-            this.btnYear.Caption = "Years";
+            this.btnYear.Caption = "Budget Years";
             this.btnYear.Id = 1;
             this.btnYear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnYear.ImageOptions.Image")));
             this.btnYear.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnYear.ImageOptions.LargeImage")));
@@ -378,6 +383,7 @@
             this.btnConfiguration.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnConfiguration.ImageOptions.Image")));
             this.btnConfiguration.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnConfiguration.ImageOptions.LargeImage")));
             this.btnConfiguration.Name = "btnConfiguration";
+            this.btnConfiguration.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btnRecipientLists
             // 
@@ -462,6 +468,22 @@
             this.lblStatus.ItemAppearance.Normal.Options.UseFont = true;
             this.lblStatus.Name = "lblStatus";
             // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "barButtonItem2";
+            this.barButtonItem2.Id = 33;
+            this.barButtonItem2.Name = "barButtonItem2";
+            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "FD Status Report";
+            this.barButtonItem3.Id = 35;
+            this.barButtonItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
+            this.barButtonItem3.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
+            this.barButtonItem3.Name = "barButtonItem3";
+            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -488,16 +510,15 @@
             // 
             // ribbonPageGroup2
             // 
-            this.ribbonPageGroup2.ItemLinks.Add(this.btnObligation);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnAccounts);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnPR);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnObligation);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnLetter);
-            this.ribbonPageGroup2.ItemLinks.Add(this.btnRecipientLists);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Manage Funds";
             // 
             // rbnGrpPR
             // 
-            this.rbnGrpPR.ItemLinks.Add(this.btnPR);
             this.rbnGrpPR.Name = "rbnGrpPR";
             // 
             // homeOpt
@@ -520,6 +541,8 @@
             this.ribbonPageGroup4.ItemLinks.Add(this.btnDetailedobligationRequest);
             this.ribbonPageGroup4.ItemLinks.Add(this.btnAOBReport);
             this.ribbonPageGroup4.ItemLinks.Add(this.btnLAR);
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnRecipientLists);
+            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem3);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             // 
             // ribbonPageGroup7
@@ -538,20 +561,20 @@
             // 
             // maintenanceOpt
             // 
-            this.maintenanceOpt.ItemLinks.Add(this.btnPayees);
             this.maintenanceOpt.ItemLinks.Add(this.btnYear);
             this.maintenanceOpt.ItemLinks.Add(this.btnDefaultSettings);
-            this.maintenanceOpt.ItemLinks.Add(this.btnSignatories);
             this.maintenanceOpt.ItemLinks.Add(this.btnDefaultAccounts);
             this.maintenanceOpt.ItemLinks.Add(this.btnOffices);
+            this.maintenanceOpt.ItemLinks.Add(this.btnSignatories);
             this.maintenanceOpt.ItemLinks.Add(this.btnEmployees);
-            this.maintenanceOpt.ItemLinks.Add(this.btnBACMembers);
+            this.maintenanceOpt.ItemLinks.Add(this.btnPayees);
             this.maintenanceOpt.ItemLinks.Add(this.btnTemplates);
+            this.maintenanceOpt.ItemLinks.Add(this.btnBACMembers);
             this.maintenanceOpt.ItemLinks.Add(this.btnItems);
             this.maintenanceOpt.ItemLinks.Add(this.btnActionTree);
-            this.maintenanceOpt.ItemLinks.Add(this.btnTrashbin);
             this.maintenanceOpt.ItemLinks.Add(this.btnRemarks);
             this.maintenanceOpt.ItemLinks.Add(this.btnActionTaken);
+            this.maintenanceOpt.ItemLinks.Add(this.btnTrashbin);
             this.maintenanceOpt.Name = "maintenanceOpt";
             this.maintenanceOpt.Text = "Options";
             // 
@@ -577,6 +600,20 @@
             this.ribbonPageGroup3.ItemLinks.Add(this.btnConfiguration);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             // 
+            // ribbonPage4
+            // 
+            this.ribbonPage4.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup8});
+            this.ribbonPage4.Name = "ribbonPage4";
+            this.ribbonPage4.Text = "ribbonPage4";
+            this.ribbonPage4.Visible = false;
+            // 
+            // ribbonPageGroup8
+            // 
+            this.ribbonPageGroup8.ItemLinks.Add(this.barButtonItem2);
+            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
+            this.ribbonPageGroup8.Text = "ribbonPageGroup8";
+            // 
             // ribbonStatusBar1
             // 
             this.ribbonStatusBar1.ItemLinks.Add(this.lblTime);
@@ -589,9 +626,9 @@
             // pnlMain
             // 
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 156);
+            this.pnlMain.Location = new System.Drawing.Point(0, 160);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1344, 540);
+            this.pnlMain.Size = new System.Drawing.Size(1344, 536);
             this.pnlMain.TabIndex = 4;
             // 
             // toastManager
@@ -604,25 +641,14 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
-            // ribbonPage4
+            // btnStatusSummary
             // 
-            this.ribbonPage4.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup8});
-            this.ribbonPage4.Name = "ribbonPage4";
-            this.ribbonPage4.Text = "ribbonPage4";
-            // 
-            // ribbonPageGroup8
-            // 
-            this.ribbonPageGroup8.ItemLinks.Add(this.barButtonItem2);
-            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
-            this.ribbonPageGroup8.Text = "ribbonPageGroup8";
-            // 
-            // barButtonItem2
-            // 
-            this.barButtonItem2.Caption = "barButtonItem2";
-            this.barButtonItem2.Id = 33;
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            this.btnStatusSummary.Caption = "Status Summary of Financial Documents";
+            this.btnStatusSummary.Id = 34;
+            this.btnStatusSummary.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnStatusSummary.ImageOptions.Image")));
+            this.btnStatusSummary.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnStatusSummary.ImageOptions.LargeImage")));
+            this.btnStatusSummary.Name = "btnStatusSummary";
+            this.btnStatusSummary.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStatusSummary_ItemClick);
             // 
             // Main
             // 
@@ -636,7 +662,7 @@
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
             this.Font = new System.Drawing.Font("Calibri", 9F);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("Main.IconOptions.Icon")));
             this.Name = "Main";
             this.Ribbon = this.ribbonControl1;
             this.StatusBar = this.ribbonStatusBar1;
@@ -714,6 +740,8 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage4;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraBars.BarButtonItem btnStatusSummary;
     }
 }
 

@@ -28,6 +28,16 @@ namespace Win
             var fullName = new UnitOfWork().UsersRepo.Fetch(m => m.Id == UserId).FirstOrDefault()?.FullName;
             return fullName;
         }
+        public static string GetUserPosition()
+        {
+            var position = new UnitOfWork().UsersRepo.Fetch(m => m.Id == UserId).FirstOrDefault()?.Position;
+            return position;
+        }
+        public static string GetOffice()
+        {
+            var officeName = new UnitOfWork().UsersRepo.Fetch(m => m.Id == UserId).FirstOrDefault()?.Offices?.OfficeName;
+            return officeName;
+        }
         public static string GetFullName(string userId)
         {
             var fullName = new UnitOfWork().UsersRepo.Fetch(m => m.Id == userId).FirstOrDefault()?.FullName;

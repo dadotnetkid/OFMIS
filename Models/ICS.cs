@@ -29,6 +29,8 @@ namespace Models
         public string ReceiverPos { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public string CreatedBy { get; set; }
+        public string PGSO { get; set; }
+        public string PGSOPos { get; set; }
     
         public virtual PurchaseRequests PurchaseRequests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

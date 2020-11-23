@@ -10,11 +10,15 @@ namespace Models.ViewModels
     public class ObligationRequestViewModel
     {
         private List<Obligations> _obligations;
-
-        public void GenerateReport(int year, int officeId)
+        public string PreparedBy { get; set; }
+        public string PreparedByPos { get; set; }
+        public void GenerateReport(Action<ObligationRequestViewModel> action ,int year, int officeId, string defaultFundType)
         {
-            UnitOfWork unitOfWork = new UnitOfWork();
-            this.Obligations = unitOfWork.ObligationsRepo.Get(m => m.Year == year && m.OfficeId == officeId);
+            ObligationRequestViewModel vm = new ObligationRequestViewModel();
+            action(vm);
+
+               UnitOfWork unitOfWork = new UnitOfWork();
+            this.Obligations = unitOfWork.ObligationsRepo.Get(m => m.Year == year && m.OfficeId == officeId && m.FT == defaultFundType);
             this.Offices = unitOfWork.OfficesRepo.Find(m => m.Id == officeId);
             this.Year = year;
         }

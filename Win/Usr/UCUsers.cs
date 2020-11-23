@@ -10,18 +10,19 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CMS.Models;
 using DevExpress.Data.Linq;
 using DevExpress.UserSkins;
 using DevExpress.XtraEditors;
 using Models;
 using Models.Repository;
 using Win.BL;
+using Win.Rprts;
 
 namespace Win.Usr
 {
     public partial class UCUsers : DevExpress.XtraEditors.XtraUserControl, ILoad<Users>
     {
+        StaticSettings staticSettings = new StaticSettings();
         public UCUsers()
         {
             InitializeComponent();
@@ -42,7 +43,8 @@ namespace Win.Usr
         public void Init()
         {
             var unitOfWork = new UnitOfWork();
-            UserGridControl.DataSource = new BindingList<Users>(unitOfWork.UsersRepo.Get());
+
+            UserGridControl.DataSource = new BindingList<Users>(unitOfWork.UsersRepo.Get(x => x.OfficeId == staticSettings.OfficeId));
             Search(txtSearch.Text);
         }
 
@@ -56,7 +58,7 @@ namespace Win.Usr
             try
             {
                 var unitOfWork = new UnitOfWork();
-                IQueryable<Users> users = unitOfWork.UsersRepo.Fetch();
+                IQueryable<Users> users = unitOfWork.UsersRepo.Fetch(x => x.OfficeId == staticSettings.OfficeId);
                 if (users.Select(x => new { FullName = x.FirstName + ", " + x.MiddleName + " " + x.LastName })
                     .Any(x => x.FullName.Contains(search)))
                 {
@@ -67,13 +69,14 @@ namespace Win.Usr
                     users = users.Where(x => x.UserName.Contains(search));
 
                 UserGridControl.DataSource = new BindingList<Users>(users.ToList());
-   
+
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void btnDeleteUserRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
@@ -129,32 +132,32 @@ namespace Win.Usr
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            UnitOfWork unitOfWork = new UnitOfWork();
-            foreach (var i in new UnitOfWork(new cmsEntities()).CMS_USERRepo.Get())
-            {
-                if (unitOfWork.UsersRepo.Fetch(x => x.UserName == i.USER_nme).Any())
-                    continue;
-                unitOfWork.UsersRepo.Insert(new Users()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    UserName = i.USER_nme,
-                    Email = i.USER_email,
-                    FirstName = i.USER_fnm,
-                    MiddleName = i.USER_mnm,
-                    LastName = i.USER_lnm,
-                    SecurityStamp = "0ram@1234xxxxxxxxxxtttttuuuuuiiiiio",
-                    PasswordHash = i.USER_pwd,
-                    UserRoles = new List<UserRoles>() { unitOfWork.UserRolesRepo.Find(x => x.Name == "User") },
-                });
-                unitOfWork.Save();
-            }
+            // UnitOfWork unitOfWork = new UnitOfWork();
+            // foreach (var i in new UnitOfWork(new cmsEntities()).CMS_USERRepo.Get())
+            // {
+            //     if (unitOfWork.UsersRepo.Fetch(x => x.UserName == i.USER_nme).Any())
+            //         continue;
+            //     unitOfWork.UsersRepo.Insert(new Users()
+            //     {
+            //         Id = Guid.NewGuid().ToString(),
+            //         UserName = i.USER_nme,
+            //         Email = i.USER_email,
+            //         FirstName = i.USER_fnm,
+            //         MiddleName = i.USER_mnm,
+            //         LastName = i.USER_lnm,
+            //         SecurityStamp = "0ram@1234xxxxxxxxxxtttttuuuuuiiiiio",
+            //         PasswordHash = i.USER_pwd,
+            //         UserRoles = new List<UserRoles>() { unitOfWork.UserRolesRepo.Find(x => x.Name == "User") },
+            //     });
+            //     unitOfWork.Save();
+            // }
 
             Init();
         }
 
         private void txtSearch_EditValueChanged(object sender, EventArgs e)
         {
-     
+
         }
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
@@ -162,6 +165,18 @@ namespace Win.Usr
             if (e.KeyCode == Keys.Enter)
             {
                 Search(txtSearch.Text);
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (UserGridControl.DataSource is BindingList<Users> model)
+            {
+                frmReportViewer frm = new frmReportViewer(new rptUsers()
+                {
+                    DataSource = model.ToList()
+                });
+                frm.ShowDialog();
             }
         }
     }

@@ -143,10 +143,11 @@
             this.cboType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboType.Properties.Items.AddRange(new object[] {
-            "Letter",
-            "Endorsement",
             "Certification",
+            "Endorsement",
+            "Letter",
             "Plain"});
+            this.cboType.Properties.Sorted = true;
             this.cboType.Size = new System.Drawing.Size(319, 20);
             this.cboType.TabIndex = 35;
             this.cboType.SelectedIndexChanged += new System.EventHandler(this.cboType_SelectedIndexChanged);
@@ -282,8 +283,7 @@
             this.cboTemplates.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboTemplates.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name", 39, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Type", "Type", 34, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name", 39, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cboTemplates.Properties.DataSource = this.templatesBindingSource;
             this.cboTemplates.Properties.DisplayMember = "Name";
             this.cboTemplates.Properties.NullText = "";
@@ -309,8 +309,6 @@
             this.txtBody.Options.VerticalRuler.Visibility = DevExpress.XtraRichEdit.RichEditRulerVisibility.Hidden;
             this.txtBody.Size = new System.Drawing.Size(1055, 267);
             this.txtBody.TabIndex = 43;
-            this.txtBody.Views.DraftView.Padding = new System.Windows.Forms.Padding(0);
-            this.txtBody.Views.SimpleView.Padding = new System.Windows.Forms.Padding(0);
             // 
             // labelControl8
             // 
@@ -400,7 +398,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 49;
-            this.btnSave.Text = "Submit";
+            this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // labelControl11
@@ -423,8 +421,6 @@
             this.txtInsideAddress.Options.VerticalRuler.Visibility = DevExpress.XtraRichEdit.RichEditRulerVisibility.Hidden;
             this.txtInsideAddress.Size = new System.Drawing.Size(1055, 99);
             this.txtInsideAddress.TabIndex = 43;
-            this.txtInsideAddress.Views.DraftView.Padding = new System.Windows.Forms.Padding(0);
-            this.txtInsideAddress.Views.SimpleView.Padding = new System.Windows.Forms.Padding(0);
             // 
             // labelControl12
             // 
@@ -546,7 +542,7 @@
             this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.panel1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmAddEditLetterV2.IconOptions.Icon")));
             this.Name = "frmAddEditLetterV2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Edit Letters";

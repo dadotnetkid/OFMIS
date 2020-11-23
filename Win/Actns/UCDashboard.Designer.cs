@@ -109,15 +109,17 @@
             // 
             this.DashboardGridControl.DataSource = this.documentActionsBindingSource;
             this.DashboardGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DashboardGridControl.Location = new System.Drawing.Point(0, 53);
+            this.DashboardGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.DashboardGridControl.Location = new System.Drawing.Point(0, 69);
             this.DashboardGridControl.MainView = this.DashboardGridView;
+            this.DashboardGridControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DashboardGridControl.Name = "DashboardGridControl";
             this.DashboardGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.lblControlNo,
             this.btnAddAction,
             this.btnTaskDone,
             this.btnTaskDelete});
-            this.DashboardGridControl.Size = new System.Drawing.Size(1179, 244);
+            this.DashboardGridControl.Size = new System.Drawing.Size(1375, 499);
             this.DashboardGridControl.TabIndex = 0;
             this.DashboardGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.DashboardGridView});
@@ -141,21 +143,23 @@
             this.colOBR_PR,
             this.colYear,
             this.colTotalAmount});
+            this.DashboardGridView.DetailHeight = 458;
             this.DashboardGridView.GridControl = this.DashboardGridControl;
             this.DashboardGridView.Name = "DashboardGridView";
             this.DashboardGridView.OptionsView.ShowFooter = true;
             this.DashboardGridView.OptionsView.ShowGroupPanel = false;
-            this.DashboardGridView.RowHeight = 40;
+            this.DashboardGridView.RowHeight = 52;
             this.DashboardGridView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.DashboardGridView_FocusedRowChanged);
             this.DashboardGridView.RowCountChanged += new System.EventHandler(this.DashboardGridView_RowCountChanged);
             // 
             // colDeleteTask
             // 
             this.colDeleteTask.ColumnEdit = this.btnTaskDelete;
+            this.colDeleteTask.MinWidth = 23;
             this.colDeleteTask.Name = "colDeleteTask";
             this.colDeleteTask.Visible = true;
             this.colDeleteTask.VisibleIndex = 0;
-            this.colDeleteTask.Width = 20;
+            this.colDeleteTask.Width = 23;
             // 
             // btnTaskDelete
             // 
@@ -171,20 +175,22 @@
             // 
             this.colTalbleName.Caption = "Type of Document";
             this.colTalbleName.FieldName = "TableName";
+            this.colTalbleName.MinWidth = 23;
             this.colTalbleName.Name = "colTalbleName";
             this.colTalbleName.Visible = true;
             this.colTalbleName.VisibleIndex = 3;
-            this.colTalbleName.Width = 99;
+            this.colTalbleName.Width = 115;
             // 
             // colControlNo
             // 
-            this.colControlNo.Caption = "ControlNo";
+            this.colControlNo.Caption = "Office ControlNo";
             this.colControlNo.ColumnEdit = this.lblControlNo;
             this.colControlNo.FieldName = "ControlNo";
+            this.colControlNo.MinWidth = 23;
             this.colControlNo.Name = "colControlNo";
             this.colControlNo.Visible = true;
             this.colControlNo.VisibleIndex = 2;
-            this.colControlNo.Width = 133;
+            this.colControlNo.Width = 155;
             // 
             // lblControlNo
             // 
@@ -197,45 +203,50 @@
             // 
             this.colDescription.Caption = "Description";
             this.colDescription.FieldName = "Description";
+            this.colDescription.MinWidth = 23;
             this.colDescription.Name = "colDescription";
             this.colDescription.Visible = true;
             this.colDescription.VisibleIndex = 5;
-            this.colDescription.Width = 207;
+            this.colDescription.Width = 241;
             // 
             // colFrom
             // 
             this.colFrom.Caption = "From";
             this.colFrom.FieldName = "CreatedByUsers.FullName";
+            this.colFrom.MinWidth = 23;
             this.colFrom.Name = "colFrom";
             this.colFrom.Visible = true;
             this.colFrom.VisibleIndex = 7;
-            this.colFrom.Width = 150;
+            this.colFrom.Width = 175;
             // 
             // colAssignedTo
             // 
             this.colAssignedTo.Caption = "Assigned To";
             this.colAssignedTo.FieldName = "RouterUsers";
+            this.colAssignedTo.MinWidth = 23;
             this.colAssignedTo.Name = "colAssignedTo";
             this.colAssignedTo.Visible = true;
-            this.colAssignedTo.VisibleIndex = 9;
-            this.colAssignedTo.Width = 96;
+            this.colAssignedTo.VisibleIndex = 8;
+            this.colAssignedTo.Width = 112;
             // 
             // colTask
             // 
             this.colTask.Caption = "Task";
             this.colTask.FieldName = "Remarks";
+            this.colTask.MinWidth = 23;
             this.colTask.Name = "colTask";
             this.colTask.Visible = true;
-            this.colTask.VisibleIndex = 8;
-            this.colTask.Width = 151;
+            this.colTask.VisibleIndex = 9;
+            this.colTask.Width = 176;
             // 
             // colAddAction
             // 
             this.colAddAction.ColumnEdit = this.btnAddAction;
+            this.colAddAction.MinWidth = 23;
             this.colAddAction.Name = "colAddAction";
             this.colAddAction.Visible = true;
             this.colAddAction.VisibleIndex = 10;
-            this.colAddAction.Width = 44;
+            this.colAddAction.Width = 51;
             // 
             // btnAddAction
             // 
@@ -251,10 +262,11 @@
             // 
             this.colDone.Caption = " ";
             this.colDone.ColumnEdit = this.btnTaskDone;
+            this.colDone.MinWidth = 23;
             this.colDone.Name = "colDone";
             this.colDone.Visible = true;
             this.colDone.VisibleIndex = 11;
-            this.colDone.Width = 58;
+            this.colDone.Width = 68;
             // 
             // btnTaskDone
             // 
@@ -270,19 +282,21 @@
             // 
             this.colOBR_PR.Caption = "ObR/PR No";
             this.colOBR_PR.FieldName = "ObR_PR_No";
+            this.colOBR_PR.MinWidth = 23;
             this.colOBR_PR.Name = "colOBR_PR";
             this.colOBR_PR.Visible = true;
             this.colOBR_PR.VisibleIndex = 4;
-            this.colOBR_PR.Width = 79;
+            this.colOBR_PR.Width = 92;
             // 
             // colYear
             // 
             this.colYear.Caption = "Year";
             this.colYear.FieldName = "Year";
+            this.colYear.MinWidth = 23;
             this.colYear.Name = "colYear";
             this.colYear.Visible = true;
             this.colYear.VisibleIndex = 1;
-            this.colYear.Width = 60;
+            this.colYear.Width = 70;
             // 
             // colTotalAmount
             // 
@@ -290,20 +304,23 @@
             this.colTotalAmount.DisplayFormat.FormatString = "#,#0.00";
             this.colTotalAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colTotalAmount.FieldName = "TotalAmount";
+            this.colTotalAmount.MinWidth = 23;
             this.colTotalAmount.Name = "colTotalAmount";
             this.colTotalAmount.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.colTotalAmount.Visible = true;
             this.colTotalAmount.VisibleIndex = 6;
-            this.colTotalAmount.Width = 57;
+            this.colTotalAmount.Width = 66;
             // 
             // ActionTakenGridControl
             // 
             this.ActionTakenGridControl.DataSource = this.documentActionsBindingSource;
             this.ActionTakenGridControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ActionTakenGridControl.Location = new System.Drawing.Point(0, 297);
+            this.ActionTakenGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ActionTakenGridControl.Location = new System.Drawing.Point(0, 568);
             this.ActionTakenGridControl.MainView = this.ActionTakenGridView;
+            this.ActionTakenGridControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ActionTakenGridControl.Name = "ActionTakenGridControl";
-            this.ActionTakenGridControl.Size = new System.Drawing.Size(1179, 249);
+            this.ActionTakenGridControl.Size = new System.Drawing.Size(1375, 146);
             this.ActionTakenGridControl.TabIndex = 1;
             this.ActionTakenGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ActionTakenGridView});
@@ -317,6 +334,7 @@
             this.colActionTaken,
             this.colRoutedTo,
             this.colRemarks});
+            this.ActionTakenGridView.DetailHeight = 458;
             this.ActionTakenGridView.GridControl = this.ActionTakenGridControl;
             this.ActionTakenGridView.Name = "ActionTakenGridView";
             this.ActionTakenGridView.OptionsView.ShowGroupPanel = false;
@@ -327,49 +345,61 @@
             this.colDateCreated.DisplayFormat.FormatString = "MM/dd/yy hh:mm:ss tt";
             this.colDateCreated.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colDateCreated.FieldName = "DateCreated";
+            this.colDateCreated.MinWidth = 23;
             this.colDateCreated.Name = "colDateCreated";
             this.colDateCreated.Visible = true;
             this.colDateCreated.VisibleIndex = 0;
+            this.colDateCreated.Width = 87;
             // 
             // colActionDate
             // 
             this.colActionDate.Caption = "Action Date";
             this.colActionDate.FieldName = "ActionDate";
+            this.colActionDate.MinWidth = 23;
             this.colActionDate.Name = "colActionDate";
             this.colActionDate.Visible = true;
             this.colActionDate.VisibleIndex = 1;
+            this.colActionDate.Width = 87;
             // 
             // colCreatedBy
             // 
             this.colCreatedBy.Caption = "By";
             this.colCreatedBy.FieldName = "CreatedByUser.FullName";
+            this.colCreatedBy.MinWidth = 23;
             this.colCreatedBy.Name = "colCreatedBy";
             this.colCreatedBy.Visible = true;
             this.colCreatedBy.VisibleIndex = 2;
+            this.colCreatedBy.Width = 87;
             // 
             // colActionTaken
             // 
             this.colActionTaken.Caption = "Action";
             this.colActionTaken.FieldName = "ActionTaken";
+            this.colActionTaken.MinWidth = 23;
             this.colActionTaken.Name = "colActionTaken";
             this.colActionTaken.Visible = true;
             this.colActionTaken.VisibleIndex = 3;
+            this.colActionTaken.Width = 87;
             // 
             // colRoutedTo
             // 
             this.colRoutedTo.Caption = "Routed To";
             this.colRoutedTo.FieldName = "RouterUsers";
+            this.colRoutedTo.MinWidth = 23;
             this.colRoutedTo.Name = "colRoutedTo";
             this.colRoutedTo.Visible = true;
             this.colRoutedTo.VisibleIndex = 4;
+            this.colRoutedTo.Width = 87;
             // 
             // colRemarks
             // 
             this.colRemarks.Caption = "Remarks/Instructions";
             this.colRemarks.FieldName = "Remarks";
+            this.colRemarks.MinWidth = 23;
             this.colRemarks.Name = "colRemarks";
             this.colRemarks.Visible = true;
             this.colRemarks.VisibleIndex = 5;
+            this.colRemarks.Width = 87;
             // 
             // pnlSearch
             // 
@@ -385,60 +415,65 @@
             this.pnlSearch.Controls.Add(this.cboDocType);
             this.pnlSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlSearch.Location = new System.Drawing.Point(0, 0);
+            this.pnlSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlSearch.Name = "pnlSearch";
-            this.pnlSearch.Size = new System.Drawing.Size(1179, 53);
+            this.pnlSearch.Size = new System.Drawing.Size(1375, 69);
             this.pnlSearch.TabIndex = 2;
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(408, 4);
+            this.txtSearch.Location = new System.Drawing.Point(476, 5);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Repository.ClearButton(),
             new DevExpress.XtraEditors.Repository.SearchButton()});
-            this.txtSearch.Size = new System.Drawing.Size(143, 20);
+            this.txtSearch.Size = new System.Drawing.Size(167, 24);
             this.txtSearch.TabIndex = 3;
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // dtTo
             // 
             this.dtTo.EditValue = null;
-            this.dtTo.Location = new System.Drawing.Point(214, 25);
+            this.dtTo.Location = new System.Drawing.Point(250, 33);
+            this.dtTo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtTo.Name = "dtTo";
             this.dtTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtTo.Size = new System.Drawing.Size(100, 20);
+            this.dtTo.Size = new System.Drawing.Size(117, 24);
             this.dtTo.TabIndex = 2;
             this.dtTo.EditValueChanged += new System.EventHandler(this.dtTo_EditValueChanged);
             // 
             // dtFrom
             // 
             this.dtFrom.EditValue = null;
-            this.dtFrom.Location = new System.Drawing.Point(86, 25);
+            this.dtFrom.Location = new System.Drawing.Point(100, 33);
+            this.dtFrom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtFrom.Name = "dtFrom";
             this.dtFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtFrom.Size = new System.Drawing.Size(100, 20);
+            this.dtFrom.Size = new System.Drawing.Size(117, 24);
             this.dtFrom.TabIndex = 2;
             this.dtFrom.EditValueChanged += new System.EventHandler(this.dtTo_EditValueChanged);
             // 
             // cboUsers
             // 
-            this.cboUsers.Location = new System.Drawing.Point(86, 4);
+            this.cboUsers.Location = new System.Drawing.Point(100, 5);
+            this.cboUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboUsers.Name = "cboUsers";
             this.cboUsers.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboUsers.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FullName", "")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FullName", "", 23, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.cboUsers.Properties.DataSource = this.usersBindingSource;
             this.cboUsers.Properties.DisplayMember = "FullName";
             this.cboUsers.Properties.NullText = "";
             this.cboUsers.Properties.ValueMember = "Id";
-            this.cboUsers.Size = new System.Drawing.Size(228, 20);
+            this.cboUsers.Size = new System.Drawing.Size(266, 24);
             this.cboUsers.TabIndex = 1;
             this.cboUsers.EditValueChanged += new System.EventHandler(this.cboUsers_EditValueChanged);
             // 
@@ -448,47 +483,53 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(192, 28);
+            this.labelControl3.Location = new System.Drawing.Point(224, 37);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(16, 13);
+            this.labelControl3.Size = new System.Drawing.Size(18, 17);
             this.labelControl3.TabIndex = 0;
             this.labelControl3.Text = "To:";
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(5, 28);
+            this.labelControl2.Location = new System.Drawing.Point(6, 37);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(29, 13);
+            this.labelControl2.Size = new System.Drawing.Size(33, 17);
             this.labelControl2.TabIndex = 0;
             this.labelControl2.Text = "From:";
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(320, 28);
+            this.labelControl5.Location = new System.Drawing.Point(373, 37);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(86, 13);
+            this.labelControl5.Size = new System.Drawing.Size(97, 17);
             this.labelControl5.TabIndex = 0;
             this.labelControl5.Text = "Document Type:.";
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(320, 7);
+            this.labelControl4.Location = new System.Drawing.Point(373, 9);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(60, 13);
+            this.labelControl4.Size = new System.Drawing.Size(70, 17);
             this.labelControl4.TabIndex = 0;
             this.labelControl4.Text = "Search Key:.";
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(5, 7);
+            this.labelControl1.Location = new System.Drawing.Point(6, 9);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(75, 13);
+            this.labelControl1.Size = new System.Drawing.Size(83, 17);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Show tasks of:";
             // 
             // cboDocType
             // 
-            this.cboDocType.Location = new System.Drawing.Point(408, 25);
+            this.cboDocType.Location = new System.Drawing.Point(476, 33);
+            this.cboDocType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboDocType.Name = "cboDocType";
             this.cboDocType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -496,7 +537,7 @@
             "Obligations",
             "PurchaseRequests"});
             this.cboDocType.Properties.PopupSizeable = true;
-            this.cboDocType.Size = new System.Drawing.Size(143, 20);
+            this.cboDocType.Size = new System.Drawing.Size(167, 24);
             this.cboDocType.TabIndex = 1;
             this.cboDocType.SelectedIndexChanged += new System.EventHandler(this.cboDocType_SelectedIndexChanged);
             this.cboDocType.EditValueChanged += new System.EventHandler(this.cboControlNo_EditValueChanged);
@@ -504,22 +545,24 @@
             // lblTotalCount
             // 
             this.lblTotalCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblTotalCount.Location = new System.Drawing.Point(5, 272);
+            this.lblTotalCount.Location = new System.Drawing.Point(6, 447);
+            this.lblTotalCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblTotalCount.Name = "lblTotalCount";
-            this.lblTotalCount.Size = new System.Drawing.Size(64, 13);
+            this.lblTotalCount.Size = new System.Drawing.Size(70, 17);
             this.lblTotalCount.TabIndex = 3;
             this.lblTotalCount.Text = "Total Count:";
             // 
             // UCDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblTotalCount);
             this.Controls.Add(this.DashboardGridControl);
             this.Controls.Add(this.pnlSearch);
             this.Controls.Add(this.ActionTakenGridControl);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UCDashboard";
-            this.Size = new System.Drawing.Size(1179, 546);
+            this.Size = new System.Drawing.Size(1375, 714);
             this.Load += new System.EventHandler(this.UCDashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DashboardGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentActionsBindingSource)).EndInit();

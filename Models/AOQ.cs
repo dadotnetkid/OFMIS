@@ -17,8 +17,8 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AOQ()
         {
-            this.BacMembers = new HashSet<Signatories>();
             this.AOQDetails = new HashSet<AOQDetails>();
+            this.BacMembers = new HashSet<Signatories>();
         }
     
         public int Id { get; set; }
@@ -39,11 +39,11 @@ namespace Models
         public Nullable<int> BACChairperson { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Signatories> BacMembers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AOQDetails> AOQDetails { get; set; }
         public virtual Signatories Signatories { get; set; }
         public virtual Offices Offices { get; set; }
         public virtual PurchaseRequests PurchaseRequests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Signatories> BacMembers { get; set; }
     }
 }

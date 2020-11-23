@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Data.Entity;
 using System.IO;
 using System.Text;
 using System.Linq;
@@ -39,8 +40,33 @@ namespace Win.Actns
         {
             try
             {
+                DocActionGridView.ShowLoadingPanel();
                 UnitOfWork unitOfWork = new UnitOfWork();
-                esms.QueryableSource = await Task.Run(() => unitOfWork.DocumentActionsRepo.Fetch(x => x.RefId == refId && x.TableName == tableName));
+                List<DocumentActions> documentActions = new List<DocumentActions>();
+                //    esms.QueryableSource = await Task.Run(() => unitOfWork.DocumentActionsRepo.Fetch(x => x.RefId == refId && x.TableName == tableName));
+                documentActions = await unitOfWork.DocumentActionsRepo
+                    .Fetch(x => x.RefId == refId && x.TableName == tableName).ToListAsync();
+
+                if (this.tableName == "PurchaseRequests")
+                {
+                    var po =await unitOfWork.PurchaseOrdersRepo.Fetch(x => x.PRId == refId).ToListAsync();
+
+                    foreach (var i in po)
+                    {
+                        foreach (var obr in i.Obligations)
+                        {
+
+                            documentActions.AddRange(await unitOfWork.DocumentActionsRepo.Fetch(x =>
+                                x.RefId == obr.Id && x.TableName == "Obligations").ToListAsync());
+                        }
+
+
+                    }
+                }
+
+                this.DocActionGridControl.DataSource = documentActions;
+                DocActionGridView.HideLoadingPanel();
+
             }
             catch (Exception e)
             {

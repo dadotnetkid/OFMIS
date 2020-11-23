@@ -20,9 +20,9 @@ namespace Models
             this.ORDetails = new HashSet<ORDetails>();
             this.PayrollDifferentials = new HashSet<PayrollDifferentials>();
             this.Liquidations = new HashSet<Liquidations>();
-            this.Letters = new HashSet<Letters>();
             this.PayrollOT = new HashSet<PayrollOT>();
             this.ItenaryofTravels = new HashSet<ItenaryofTravels>();
+            this.Letters1 = new HashSet<Letters>();
         }
     
         public int Id { get; set; }
@@ -67,6 +67,9 @@ namespace Models
         public Nullable<decimal> TotalAdjustedAmount { get; set; }
         public Nullable<int> POId { get; set; }
         public Nullable<decimal> DVAmount { get; set; }
+        public string FT { get; set; }
+        public Nullable<bool> IsCancelled { get; set; }
+        public string CancelReason { get; set; }
     
         public virtual Offices Offices { get; set; }
         public virtual Payees Payees { get; set; }
@@ -79,12 +82,12 @@ namespace Models
         public virtual PurchaseOrders PurchaseOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liquidations> Liquidations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Letters> Letters { get; set; }
         public virtual Users CreatedByUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayrollOT> PayrollOT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItenaryofTravels> ItenaryofTravels { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Letters> Letters1 { get; set; }
     }
 }

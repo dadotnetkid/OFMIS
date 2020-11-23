@@ -77,6 +77,8 @@ namespace Win.Pyrll
             throw new NotImplementedException();
         }
 
+      
+
         private void btnPreview_Click(object sender, EventArgs e)
         {
             var res = new UnitOfWork().PayrollWagesRepo.Find(x => x.Id == obligations.Id);

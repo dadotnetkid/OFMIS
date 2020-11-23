@@ -39,5 +39,6 @@ namespace Models
         public virtual Obligations Obligations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItenaryDetails> ItenaryDetails { get; set; }
+        public virtual Employees HeadOfOffice { get; set; }
     }
 }

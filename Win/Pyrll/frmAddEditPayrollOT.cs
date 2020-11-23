@@ -38,23 +38,26 @@ namespace Win.Pyrll
                 }
                 UnitOfWork unitOfWork = new UnitOfWork();
                 var PA = unitOfWork.Signatories.Find(x => x.Position.Contains("Accountant"));
-                var PT = unitOfWork.Signatories.Find(x => x.Position.Contains("Treasuser"));
+                var PT = unitOfWork.Signatories.Find(x => x.Position.Contains("Treauser"));
                 var ProvAdmin = unitOfWork.Signatories.Find(x => x.Position.Contains("Provincial Administrator"));
                 payroll = new PayrollOT()
                 {
-                    ObRId = payroll.ObRId,
+                    ObRId = payroll?.ObRId,
                     Date = DateTime.Now,
                     HeadId = new StaticSettings().Offices.HeadId,
                     HeadPosition = new StaticSettings().HeadPos,
-                    PAId = PA.Id,
-                    PAPosition = PA.Position,
-                    PTId = PT.Id,
-                    PTPosition = PT.Position,
-                    ApprovedById = ProvAdmin.Id,
-                    ApprovedPosition = ProvAdmin.Position
+                    PAId = PA?.Id,
+                    PAPosition = PA?.Position,
+                    PTId = PT?.Id,
+                    PTPosition = PT?.Position,
+                    ApprovedById = ProvAdmin?.Id,
+                    ApprovedPosition = ProvAdmin?.Position
 
 
                 };
+                payroll.Description =
+                    "WE HEREBY ACKNOWLEDGE RECEIPT of the sum shown opposite our names as full compensation for the services rendered to the period stated ";
+                payroll.Title = "OVERTIME PAY FOR ";
                 unitOfWork.PayrollOTRepo.Insert(payroll);
                 unitOfWork.Save();
                 Details(payroll);
@@ -72,7 +75,8 @@ namespace Win.Pyrll
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
                 this.signatoriesBindingSource.DataSource = unitOfWork.Signatories.Get();
-                this.cboEmployee.DataSource = unitOfWork.EmployeesRepo.Get();
+               // this.cboEmployee.DataSource = unitOfWork.EmployeesRepo.Get();
+                this.employeesBindingSource.DataSource = unitOfWork.EmployeesRepo.Get();
 
                 item = unitOfWork.PayrollOTRepo.Find(x => x.Id == item.Id, includeProperties: "Obligations");
                 txtDate.EditValue = item.Date;
@@ -154,14 +158,34 @@ namespace Win.Pyrll
                     return;
                 UnitOfWork unitOfWork = new UnitOfWork();
                 var res = unitOfWork.PayrollOTRepo.Find(x => x.Id == payroll.Id);
-                res.Description = txtPayDescription.EditValue.ToString();
-                res.Title = txtPayTitle.EditValue.ToString();
-                if (CboHead.GetSelectedDataRow() is Signatories item)
+                res.Description = txtPayDescription.EditValue?.ToString();
+                res.Title = txtPayTitle.EditValue?.ToString();
+                if (CboHead.GetSelectedDataRow() is Employees head)
                 {
-
+                    res.HeadId = head.Id ;
+                    res.HeadPosition = head.Position;
                 }
 
+                if (cboApprovedBy.GetSelectedDataRow() is Signatories approvedBy)
+                {
+                    res.ApprovedById = approvedBy.Id;
+                    res.ApprovedPosition = approvedBy.Position;
+                }
+                if (txtAccountant.GetSelectedDataRow() is Signatories accountant)
+                {
+                    res.ApprovedById = accountant.Id;
+                    res.ApprovedPosition = accountant.Position;
+                }
+                if (txtTreasurer.GetSelectedDataRow() is Signatories treasurer)
+                {
+                    res.ApprovedById = treasurer.Id;
+                    res.ApprovedPosition = treasurer.Position;
+                }
+
+                unitOfWork.Save();
+
                 isClosed = true;
+                Close();
             }
             catch (Exception ex)
             {
@@ -171,7 +195,7 @@ namespace Win.Pyrll
         private void btnSave_Click(object sender, EventArgs e)
         {
 
-
+            Save();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

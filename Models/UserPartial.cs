@@ -22,10 +22,20 @@ namespace Models
         [NotMapped]
         private string _userRole;
 
+        private string _fullName;
+
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [NotMapped]
-        [Newtonsoft.Json.JsonIgnoreAttribute]
-        public string FullName => $"{FirstName} {LastName}";
+        public string FullName
+        {
+            get
+            {
+                if (_fullName == null) 
+                    _fullName = $"{FirstName} {LastName}";
+                return _fullName;
+            }
+            set => _fullName = value;
+        }
 
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
@@ -66,7 +76,9 @@ namespace Models
 
             // Add custom user claims here
             userIdentity.AddClaim(new Claim("FullName", this.FullName));
-            userIdentity.AddClaim(new Claim("Email", this.Email));
+            userIdentity.AddClaim(new Claim("Email", this.Email??this.UserName));
+            userIdentity.AddClaim(new Claim("UserRoles", this.UserRole));
+            userIdentity.AddClaim(new Claim("OfficeId", this.OfficeId?.ToString()));
             // Add custom user claims here
             return userIdentity;
         }

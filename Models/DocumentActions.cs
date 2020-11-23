@@ -48,8 +48,8 @@ namespace Models
         public virtual ICollection<DocumentActions> DocumentActions1 { get; set; }
         public virtual DocumentActions DocumentActions2 { get; set; }
         public virtual Users CreatedByUsers { get; set; }
+        public virtual Offices Offices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> RoutedToUsers { get; set; }
-        public virtual Offices Offices { get; set; }
     }
 }

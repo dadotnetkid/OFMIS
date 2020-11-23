@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
+  <Import Project="..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -30,7 +30,7 @@
     <MinimumRequiredVersion>1.0.0.73</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>68</ApplicationRevision>
+    <ApplicationRevision>111</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -66,43 +66,44 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.BonusSkins.v18.2" />
-    <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Data.v18.2" />
-    <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Images.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Office.v18.2.Core, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Pdf.v18.2.Core, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.PivotGrid.v18.2.Core, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Printing.v18.2.Core" />
-    <Reference Include="DevExpress.RichEdit.v18.2.Core, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.RichEdit.v18.2.Export, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v18.2" />
-    <Reference Include="DevExpress.Utils.v18.2.UI, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpo.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraBars.v18.2" />
-    <Reference Include="DevExpress.Sparkline.v18.2.Core" />
-    <Reference Include="DevExpress.XtraCharts.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v18.2" />
-    <Reference Include="DevExpress.XtraGauges.v18.2.Core, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraGrid.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPivotGrid.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraPrinting.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraReports.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraReports.v18.2.Extensions, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraRichEdit.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraRichEdit.v18.2.Extensions, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraVerticalGrid.v18.2, Version=18.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.BonusSkins.v20.2" />
+    <Reference Include="DevExpress.Charts.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v20.2" />
+    <Reference Include="DevExpress.DataAccess.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Images.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v20.2.Core" />
+    <Reference Include="DevExpress.RichEdit.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v20.2.Export, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.SpellChecker.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.Desktop.v20.2" />
+    <Reference Include="DevExpress.Utils.v20.2" />
+    <Reference Include="DevExpress.Utils.v20.2.UI, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v20.2" />
+    <Reference Include="DevExpress.Sparkline.v20.2.Core" />
+    <Reference Include="DevExpress.XtraCharts.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v20.2" />
+    <Reference Include="DevExpress.XtraGauges.v20.2.Core, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPivotGrid.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v20.2.Extensions, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraSpellChecker.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <HintPath>..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.AspNet.SignalR.Core.2.4.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
@@ -143,7 +144,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\Development Cache\.nuget\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
@@ -338,6 +342,11 @@
     <Compile Include="Cnfg\frmServer.Designer.cs">
       <DependentUpon>frmServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\WebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ConnectionDialog.cs" />
     <Compile Include="BGMembers\frmAddEditBACMembers.cs">
       <SubType>Form</SubType>
@@ -368,6 +377,12 @@
     </Compile>
     <Compile Include="frmDefaultSettings.Designer.cs">
       <DependentUpon>frmDefaultSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFundTypeChoices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFundTypeChoices.Designer.cs">
+      <DependentUpon>frmFundTypeChoices.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -410,6 +425,12 @@
     </Compile>
     <Compile Include="InvCS\frmAddEditICS.Designer.cs">
       <DependentUpon>frmAddEditICS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InvCS\frmAddFromPO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvCS\frmAddFromPO.Designer.cs">
+      <DependentUpon>frmAddFromPO.cs</DependentUpon>
     </Compile>
     <Compile Include="InvCS\UCICS.cs">
       <SubType>UserControl</SubType>
@@ -470,6 +491,12 @@
     </Compile>
     <Compile Include="OB\frmEditDisbursementVoucher.Designer.cs">
       <DependentUpon>frmEditDisbursementVoucher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OB\frmPrompPR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OB\frmPrompPR.Designer.cs">
+      <DependentUpon>frmPrompPR.cs</DependentUpon>
     </Compile>
     <Compile Include="Ofcs\frmAddEditOffice.cs">
       <SubType>Form</SubType>
@@ -639,11 +666,11 @@
     <Compile Include="Pyrll\frmAddEditPayrollWages.Designer.cs">
       <DependentUpon>frmAddEditPayrollWages.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pyrll\frmPayrollOT.cs">
+    <Compile Include="Pyrll\UCPayrollOT.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pyrll\frmPayrollOT.Designer.cs">
-      <DependentUpon>frmPayrollOT.cs</DependentUpon>
+    <Compile Include="Pyrll\UCPayrollOT.Designer.cs">
+      <DependentUpon>UCPayrollOT.cs</DependentUpon>
     </Compile>
     <Compile Include="Pyrll\UCPayrollDifferentials.cs">
       <SubType>UserControl</SubType>
@@ -663,6 +690,24 @@
     <Compile Include="Pyrll\UCPayrollWages.Designer.cs">
       <DependentUpon>UCPayrollWages.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReqIsSlp\frmAddEditRIS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReqIsSlp\frmAddEditRIS.Designer.cs">
+      <DependentUpon>frmAddEditRIS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReqIsSlp\frmAddFromPO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReqIsSlp\frmAddFromPO.Designer.cs">
+      <DependentUpon>frmAddFromPO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReqIsSlp\UCRIS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReqIsSlp\UCRIS.Designer.cs">
+      <DependentUpon>UCRIS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rprts\frmAccomplishmentReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -674,6 +719,18 @@
     </Compile>
     <Compile Include="Rprts\frmLARReportViewer.Designer.cs">
       <DependentUpon>frmLARReportViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\frmSummaryOfStatusFinancialDocuments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rprts\frmSummaryOfStatusFinancialDocuments.Designer.cs">
+      <DependentUpon>frmSummaryOfStatusFinancialDocuments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptEmployees.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptEmployees.Designer.cs">
+      <DependentUpon>rptEmployees.cs</DependentUpon>
     </Compile>
     <Compile Include="Rprts\rptAcceptanceAndInspections.cs">
       <SubType>Component</SubType>
@@ -722,6 +779,18 @@
     </Compile>
     <Compile Include="Rprts\rptDV.Designer.cs">
       <DependentUpon>rptDV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptICS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptICS.Designer.cs">
+      <DependentUpon>rptICS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptItenerary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptItenerary.Designer.cs">
+      <DependentUpon>rptItenerary.cs</DependentUpon>
     </Compile>
     <Compile Include="Rprts\rptLAR.cs">
       <SubType>Component</SubType>
@@ -869,11 +938,23 @@
     <Compile Include="Rprts\rptRecipients.Designer.cs">
       <DependentUpon>rptRecipients.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rprts\rptRIS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptRIS.Designer.cs">
+      <DependentUpon>rptRIS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rprts\rptSOA.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Rprts\rptSOA.Designer.cs">
       <DependentUpon>rptSOA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptStatusSummaryofFD.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptStatusSummaryofFD.Designer.cs">
+      <DependentUpon>rptStatusSummaryofFD.cs</DependentUpon>
     </Compile>
     <Compile Include="Rprts\rptTemplatePreview.cs">
       <SubType>Component</SubType>
@@ -886,6 +967,12 @@
     </Compile>
     <Compile Include="Rprts\rptRecipientLists.Designer.cs">
       <DependentUpon>rptRecipientLists.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rprts\rptUsers.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rprts\rptUsers.Designer.cs">
+      <DependentUpon>rptUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Xcanner\frmListOfScanner.cs">
       <SubType>Form</SubType>
@@ -1082,6 +1169,9 @@
     <EmbeddedResource Include="frmDefaultSettings.resx">
       <DependentUpon>frmDefaultSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmFundTypeChoices.resx">
+      <DependentUpon>frmFundTypeChoices.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -1102,6 +1192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InvCS\frmAddEditICS.resx">
       <DependentUpon>frmAddEditICS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvCS\frmAddFromPO.resx">
+      <DependentUpon>frmAddFromPO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InvCS\UCICS.resx">
       <DependentUpon>UCICS.cs</DependentUpon>
@@ -1132,6 +1225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OB\frmEditDisbursementVoucher.resx">
       <DependentUpon>frmEditDisbursementVoucher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OB\frmPrompPR.resx">
+      <DependentUpon>frmPrompPR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ofcs\frmAddEditOffice.resx">
       <DependentUpon>frmAddEditOffice.cs</DependentUpon>
@@ -1218,8 +1314,8 @@
     <EmbeddedResource Include="Pyrll\frmAddEditPayrollWages.resx">
       <DependentUpon>frmAddEditPayrollWages.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pyrll\frmPayrollOT.resx">
-      <DependentUpon>frmPayrollOT.cs</DependentUpon>
+    <EmbeddedResource Include="Pyrll\UCPayrollOT.resx">
+      <DependentUpon>UCPayrollOT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pyrll\UCPayrollDifferentials.resx">
       <DependentUpon>UCPayrollDifferentials.cs</DependentUpon>
@@ -1230,11 +1326,26 @@
     <EmbeddedResource Include="Pyrll\UCPayrollWages.resx">
       <DependentUpon>UCPayrollWages.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReqIsSlp\frmAddEditRIS.resx">
+      <DependentUpon>frmAddEditRIS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReqIsSlp\frmAddFromPO.resx">
+      <DependentUpon>frmAddFromPO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReqIsSlp\UCRIS.resx">
+      <DependentUpon>UCRIS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rprts\frmAccomplishmentReport.resx">
       <DependentUpon>frmAccomplishmentReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\frmLARReportViewer.resx">
       <DependentUpon>frmLARReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\frmSummaryOfStatusFinancialDocuments.resx">
+      <DependentUpon>frmSummaryOfStatusFinancialDocuments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptEmployees.resx">
+      <DependentUpon>rptEmployees.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptAcceptanceAndInspections.resx">
       <DependentUpon>rptAcceptanceAndInspections.cs</DependentUpon>
@@ -1259,6 +1370,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptDV.resx">
       <DependentUpon>rptDV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptICS.resx">
+      <DependentUpon>rptICS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptItenerary.resx">
+      <DependentUpon>rptItenerary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptLAR.resx">
       <DependentUpon>rptLAR.cs</DependentUpon>
@@ -1342,14 +1459,23 @@
     <EmbeddedResource Include="Rprts\rptRecipients.resx">
       <DependentUpon>rptRecipients.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptRIS.resx">
+      <DependentUpon>rptRIS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptSOA.resx">
       <DependentUpon>rptSOA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptStatusSummaryofFD.resx">
+      <DependentUpon>rptStatusSummaryofFD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptTemplatePreview.resx">
       <DependentUpon>rptTemplatePreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rprts\rptRecipientLists.resx">
       <DependentUpon>rptRecipientLists.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rprts\rptUsers.resx">
+      <DependentUpon>rptUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Xcanner\frmListOfScanner.resx">
       <DependentUpon>frmListOfScanner.cs</DependentUpon>
@@ -1401,6 +1527,10 @@
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="App_Data\APP-CSE 2020 FORM Dwight Revised.xlsx" />
+    <None Include="Connected Services\WebService\Win.WebService.documentActionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\WebService\wsDashboard.wsdl" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Models.ActionTakens.datasource" />
     <None Include="Properties\DataSources\Models.DocumentActions.datasource" />
@@ -1408,10 +1538,13 @@
     <None Include="Properties\DataSources\Models.ItenaryDetails.datasource" />
     <None Include="Properties\DataSources\Models.ItenaryofTravels.datasource" />
     <None Include="Properties\DataSources\Models.Letters.datasource" />
+    <None Include="Properties\DataSources\Models.Obligations.datasource" />
     <None Include="Properties\DataSources\Models.Offices.datasource" />
+    <None Include="Properties\DataSources\Models.PAR.datasource" />
     <None Include="Properties\DataSources\Models.Payees.datasource" />
     <None Include="Properties\DataSources\Models.PayrollOTDetails.datasource" />
     <None Include="Properties\DataSources\Models.PurchaseRequests.datasource" />
+    <None Include="Properties\DataSources\Models.RISHeader.datasource" />
     <None Include="Properties\DataSources\Models.SalarySchedules.datasource" />
     <None Include="Properties\DataSources\Models.Signatories.datasource" />
     <None Include="Properties\DataSources\Models.Templates.datasource" />
@@ -1432,10 +1565,6 @@
     <None Include="Win_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExistingUser.Models\CMS.Models.csproj">
-      <Project>{67205DA2-03C6-4929-BB9F-F45AE38AAFDA}</Project>
-      <Name>CMS.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Models\Helpers\Helpers.csproj">
       <Project>{E093F1B4-5439-4A4D-ACEA-39566C4B2869}</Project>
       <Name>Helpers</Name>
@@ -1449,6 +1578,13 @@
     <None Include="Resources\nv_logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\WebService\wsDashboard.disco" />
+    <None Include="Connected Services\WebService\configuration91.svcinfo" />
+    <None Include="Connected Services\WebService\configuration.svcinfo" />
+    <None Include="Connected Services\WebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="nv_logo.ico" />
     <Content Include="Resources\nv_logo.ico" />
     <Content Include="sql-scripts\ofmis.sql" />
@@ -1489,17 +1625,23 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\WebService\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\..\Development Cache\.nuget\packages\EmptyLicensesLicx.2.0.0\build\EmptyLicensesLicx.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\Development Cache\.nuget\packages\EmptyLicensesLicx.2.0.0\build\EmptyLicensesLicx.targets'))" />
-    <Error Condition="!Exists('..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="..\..\..\Development Cache\.nuget\packages\EmptyLicensesLicx.2.0.0\build\EmptyLicensesLicx.targets" Condition="Exists('..\..\..\Development Cache\.nuget\packages\EmptyLicensesLicx.2.0.0\build\EmptyLicensesLicx.targets')" />
-  <Import Project="..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+  <Import Project="..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\..\..\Development Cache\.nuget\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

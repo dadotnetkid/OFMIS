@@ -129,7 +129,7 @@
             this.labelControl5.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl5.Appearance.Options.UseFont = true;
             this.labelControl5.Appearance.Options.UseForeColor = true;
-            this.labelControl5.Location = new System.Drawing.Point(11, 167);
+            this.labelControl5.Location = new System.Drawing.Point(13, 167);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(52, 16);
             this.labelControl5.TabIndex = 42;
@@ -141,7 +141,7 @@
             this.labelControl4.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl4.Appearance.Options.UseFont = true;
             this.labelControl4.Appearance.Options.UseForeColor = true;
-            this.labelControl4.Location = new System.Drawing.Point(11, 141);
+            this.labelControl4.Location = new System.Drawing.Point(13, 141);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(50, 16);
             this.labelControl4.TabIndex = 43;
@@ -153,11 +153,11 @@
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.Location = new System.Drawing.Point(11, 89);
+            this.labelControl2.Location = new System.Drawing.Point(11, 115);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(142, 16);
+            this.labelControl2.Size = new System.Drawing.Size(138, 16);
             this.labelControl2.TabIndex = 40;
-            this.labelControl2.Text = "Source Account Code*";
+            this.labelControl2.Text = "Target Account Code*";
             // 
             // labelControl1
             // 
@@ -173,7 +173,7 @@
             // 
             // cboTargetAccountCode
             // 
-            this.cboTargetAccountCode.Location = new System.Drawing.Point(168, 112);
+            this.cboTargetAccountCode.Location = new System.Drawing.Point(168, 85);
             this.cboTargetAccountCode.Name = "cboTargetAccountCode";
             this.cboTargetAccountCode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.cboTargetAccountCode.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -219,11 +219,11 @@
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl3.Appearance.Options.UseFont = true;
             this.labelControl3.Appearance.Options.UseForeColor = true;
-            this.labelControl3.Location = new System.Drawing.Point(12, 118);
+            this.labelControl3.Location = new System.Drawing.Point(12, 91);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(138, 16);
+            this.labelControl3.Size = new System.Drawing.Size(142, 16);
             this.labelControl3.TabIndex = 40;
-            this.labelControl3.Text = "Target Account Code*";
+            this.labelControl3.Text = "Source Account Code*";
             // 
             // txtRemarks
             // 
@@ -240,7 +240,7 @@
             // 
             // cboSourceAccountCode
             // 
-            this.cboSourceAccountCode.Location = new System.Drawing.Point(168, 86);
+            this.cboSourceAccountCode.Location = new System.Drawing.Point(168, 112);
             this.cboSourceAccountCode.Name = "cboSourceAccountCode";
             this.cboSourceAccountCode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.cboSourceAccountCode.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -253,6 +253,11 @@
             // 
             // txtAmount
             // 
+            this.txtAmount.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.txtAmount.Location = new System.Drawing.Point(168, 138);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -288,7 +293,7 @@
             this.Controls.Add(this.txtRemarks);
             this.Controls.Add(this.cboSourceAccountCode);
             this.Controls.Add(this.txtAmount);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmAddEditReAlignment.IconOptions.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAddEditReAlignment";

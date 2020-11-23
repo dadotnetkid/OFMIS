@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -170,7 +171,7 @@ namespace Win.BL
             Save();
         }
 
-        private void BtnNew_Click(object sender, EventArgs e)
+        private async void BtnNew_Click(object sender, EventArgs e)
         {
             frmAddEditPQ frm = new frmAddEditPQ(MethodType.Add, new PriceQuotations() { PRId = pr.Id });
             frm.ShowDialog();
@@ -178,13 +179,13 @@ namespace Win.BL
         }
 
 
-        private void BtnEditPQRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private async void BtnEditPQRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if (uCPQ.PQGridView.GetFocusedRow() is PriceQuotations pq)
             {
                 frmAddEditPQ frm = new frmAddEditPQ(MethodType.Edit, pq);
                 frm.ShowDialog();
-                ((ILoad<PriceQuotations>)this).Init();
+              ((ILoad<PriceQuotations>)this).Init();
             }
         }
 
@@ -243,14 +244,14 @@ namespace Win.BL
 
         public void Detail()
         {
-            var offices = new string[] { "Provincial Legal Office" };
+            var offices = new string[] { "Provincial Legal Office", };
             priceQuotations = new UnitOfWork().PriceQuotationsRepo.Find(m => m.Id == priceQuotations.Id);
             if (priceQuotations == null) return;
             var staticSetting = new StaticSettings();
             frmAddEditPQ.dtDate.EditValue = priceQuotations.Date ?? DateTime.Now;
             frmAddEditPQ.txtControlNumber.Text = priceQuotations.ControlNo;
             frmAddEditPQ.txtDescription.Text = priceQuotations.Description ?? priceQuotations.PurchaseRequests?.Description;
-            frmAddEditPQ.txtPGSOfficer.Properties.DataSource = new EntityServerModeSource() { QueryableSource = new UnitOfWork().Signatories.Fetch().Where(x => offices.Contains(x.Office)) };
+            frmAddEditPQ.txtPGSOfficer.Properties.DataSource = new EntityServerModeSource() { QueryableSource = new UnitOfWork().Signatories.Fetch().Where(x => x.IsBacMember == true )};
             frmAddEditPQ.txtPGSOfficer.Text = priceQuotations.PGSOfficer;
             frmAddEditPQ.txtPGSOPosition.Text = priceQuotations.Position;
             frmAddEditPQ.ItemsGridControl.DataSource =
@@ -309,14 +310,12 @@ namespace Win.BL
             }
         }
 
-        void ILoad<PriceQuotations>.Init()
+     async   void ILoad<PriceQuotations>.Init()
         {
             try
             {
-                uCPQ.PQGridControl.DataSource = new EntityServerModeSource()
-                {
-                    QueryableSource = new UnitOfWork().PriceQuotationsRepo.Fetch(m => m.PRId == pr.Id)
-                };
+                uCPQ.PQGridControl.DataSource =await
+                    new UnitOfWork().PriceQuotationsRepo.Fetch(m => m.PRId == pr.Id).ToListAsync();
                 uCPQ.btnPreview.Enabled = true;
                 if (!new UnitOfWork().PriceQuotationsRepo.Fetch(m => m.PRId == pr.Id).Any())
                     uCPQ.btnPreview.Enabled = false;

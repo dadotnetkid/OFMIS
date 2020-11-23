@@ -31,7 +31,7 @@ namespace Win.PropIsSlp
             try
             {
                 UnitOfWork unitOfWork = new UnitOfWork();
-                this.PISGridControl.DataSource = unitOfWork.PISRepo.Get(x => x.PRId == purchaseRequests.Id);
+                this.PISGridControl.DataSource = unitOfWork.PISRepo.Get(x => x.PRId == purchaseRequests.Id,includeProperties:"PurchaseRequests");
                 
             }
             catch (Exception e)
@@ -48,6 +48,8 @@ namespace Win.PropIsSlp
         {
             throw new NotImplementedException();
         }
+
+       
 
         private void btnDeletePQRepo_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {

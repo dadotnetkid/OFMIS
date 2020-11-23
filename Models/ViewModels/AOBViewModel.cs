@@ -11,7 +11,7 @@ namespace Models.ViewModels
     {
 
 
-        public void GenerateReport(int year, int officeId)
+        public void GenerateReport(int year, int officeId, string defaultFundType)
         {
             this.Year = year;
 
@@ -27,11 +27,12 @@ namespace Models.ViewModels
                     Year = year,
                     OfficeId = officeId
                 };
-                fundTypeViewModel.Generate();
+                fundTypeViewModel.Generate(defaultFundType);
 
                 FundTypesRepo.Add(fundTypeViewModel);
             }
 
+            
             this.Office = unitOfWork.OfficesRepo.Find(x => x.Id == officeId);
         }
 
@@ -52,10 +53,10 @@ namespace Models.ViewModels
         public int Year { get; set; }
         public int OfficeId { get; set; }
 
-        public void Generate()
+        public void Generate(string defaultFundType)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
-            this.Appropriations = unitOfWork.AppropriationsRepoRepo.Get(x => x.OfficeId == OfficeId && x.Year == Year && x.FundTypeId == Id);
+            this.Appropriations = unitOfWork.AppropriationsRepoRepo.Get(x => x.OfficeId == OfficeId && x.Year == Year && x.FundTypeId == Id && x.FT==defaultFundType);
             TotalAppropriation = Appropriations.Sum(x => x.Appropriation);
             TotalAllotment = Appropriations.Sum(x => x.Allotment);
             TotalAppBalance = Appropriations.Sum(x => x.AppropriationBalance);

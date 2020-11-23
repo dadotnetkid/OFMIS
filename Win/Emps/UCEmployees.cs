@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using Models;
 using Models.Repository;
 using Win.BL;
+using Win.Rprts;
 
 namespace Win.Emps
 {
@@ -121,7 +122,7 @@ namespace Win.Emps
             StaticSettings staticSettings = new StaticSettings();
             EmployeesGridControl.DataSource =
                 new BindingList<Employees>(unitOfWork.EmployeesRepo.Get(x => x.OfficeId == staticSettings.OfficeId));
-            cboStatusRepo.DataSource = new List<string>() { "Permanent", "Casual", "COS" }.Select(x => new { Status = x });
+            cboStatusRepo.DataSource = new List<string>() { "Permanent", "Casual", "COS","CO-TERM" }.Select(x => new { Status = x });
             cboOfficeSearch.Properties.DataSource = unitOfWork.OfficesRepo.Get();
             cboOfficeSearch.EditValue = staticSettings.OfficeId;
             Search(txtSearch.Text);
@@ -154,6 +155,8 @@ namespace Win.Emps
             EmployeesGridControl.DataSource = new BindingList<Employees>(employees.ToList());
         }
 
+     
+
         private void cboOfficeSearch_EditValueChanged(object sender, EventArgs e)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
@@ -168,7 +171,14 @@ namespace Win.Emps
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-
+            if (EmployeesGridControl.DataSource is BindingList<Employees> model)
+            {
+                frmReportViewer frm = new frmReportViewer(new rptEmployees()
+                {
+                    DataSource=model
+                });
+                frm.ShowDialog();
+            }
         }
     }
 }

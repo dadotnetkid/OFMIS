@@ -28,6 +28,7 @@ namespace Models
             this.PurchaseOrders = new HashSet<PurchaseOrders>();
             this.PAR = new HashSet<PAR>();
             this.ICS = new HashSet<ICS>();
+            this.RISHeader = new HashSet<RISHeader>();
         }
     
         public int Id { get; set; }
@@ -52,6 +53,7 @@ namespace Models
         public Nullable<int> Year { get; set; }
         public Nullable<bool> IsCancelled { get; set; }
         public string CancellationReason { get; set; }
+        public string FT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AIReports> AIReports { get; set; }
@@ -77,5 +79,7 @@ namespace Models
         public virtual ICollection<PAR> PAR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ICS> ICS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RISHeader> RISHeader { get; set; }
     }
 }

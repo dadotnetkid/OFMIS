@@ -49,7 +49,7 @@ namespace Win.BL
                 {
                     SourceAppropriationId = item.SourceAppropriationId,
                     TargetAppropriationId = frm.cboTargetAccountCode.EditValue?.ToInt(),
-                    Amount = frm.txtAmount.Text .ToDecimal(),
+                    Amount = frm.txtAmount.Text.ToDecimal(),
                     Remarks = frm.txtRemarks.Text,
                     Date = frm.dtRealignmentDate.DateTime,
                     Id = item.Id,
@@ -57,7 +57,7 @@ namespace Win.BL
                 };
                 UnitOfWork unitOfWork = new UnitOfWork();
                 unitOfWork.ReAlignmentsRepo.Update(model);
-               unitOfWork.Save();
+                unitOfWork.Save();
                 this.isClosed = true;
                 frm.Close();
             }
@@ -82,7 +82,7 @@ namespace Win.BL
                 frm.cboTargetAccountCode.EditValue = item.TargetAppropriationId;
                 frm.txtAmount.EditValue = item.Amount;
                 frm.txtRemarks.Text = item.Remarks;
-                frm.lblHeader.Text = "Realignment from " + item.SourceAppropriations.AccountCode + " to ";
+                frm.lblHeader.Text = "Realignment to " + item.SourceAppropriations?.AccountName + " from " + item.TargetAppropriations?.AccountName;
                 LoadTargetAccount();
             }
             catch (Exception e)
@@ -140,9 +140,10 @@ namespace Win.BL
 
         void LoadTargetAccount()
         {
+            StaticSettings staticSettings = new StaticSettings();
             frm.cboTargetAccountCode.Properties.DataSource = new EntityServerModeSource()
             {
-                QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch().Where(x => x.Id != item.SourceAppropriations.Id)
+                QueryableSource = new UnitOfWork().AppropriationsRepoRepo.Fetch().Where(x => x.Id != item.SourceAppropriations.Id && x.OfficeId == staticSettings.OfficeId)
             };
         }
 

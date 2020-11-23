@@ -21,12 +21,13 @@ namespace Models
         public Nullable<System.DateTime> DepartureTime { get; set; }
         public Nullable<System.DateTime> ArrivalTime { get; set; }
         public string MeansOfTransportation { get; set; }
-        public string TransportationFee { get; set; }
+        public Nullable<decimal> TransportationFee { get; set; }
         public Nullable<decimal> PerDiems { get; set; }
         public Nullable<decimal> DailyAllowance { get; set; }
         public Nullable<decimal> TotalAmount { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public string CreatedBy { get; set; }
+        public string InclusiveTime { get; set; }
     
         public virtual ItenaryofTravels ItenaryofTravels { get; set; }
     }

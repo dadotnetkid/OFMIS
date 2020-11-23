@@ -72,7 +72,9 @@ namespace Helpers
 
             DocumentRange res = txt.Selection;
             CharacterProperties cp = txt.BeginUpdateCharacters(res);
-            cp.FontSize += 2.0f;
+            if (cp.FontSize == null)
+                cp.FontSize = 10f;
+            cp.FontSize+= 2.0f;
             txt.EndUpdateCharacters(cp);
         }
         public static void DecreaseFont(this RichEditControl richEditControl)
